@@ -12,16 +12,16 @@ return [
     ],
     'controllers' => [
         'invokables' => [
-            'Scripto\Controller\SiteAdmin\Index' => 'Scripto\Controller\SiteAdmin\IndexController',
+            'Scripto\Controller\Index' => 'Scripto\Controller\IndexController',
+            'Scripto\Controller\Admin\Index' => 'Scripto\Controller\Admin\IndexController',
         ],
     ],
     'navigation' => [
-        'site' => [
+        'AdminModule' => [
             [
                 'label' => 'Scripto', // @translate
-                'route' => 'admin/site/slug/scripto',
-                'action' => 'index',
-                'useRouteMatch' => true,
+                'route' => 'admin/scripto',
+                'resource' => 'Scripto\Controller\Admin\Index',
             ],
         ],
     ],
@@ -29,22 +29,52 @@ return [
         'routes' => [
             'admin' => [
                 'child_routes' => [
-                    'site' => [
+                    'scripto' => [
+                        'type' => 'Literal',
+                        'options' => [
+                            'route' => '/scripto',
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\Admin',
+                                'controller' => 'Scripto\Controller\Admin\Index',
+                                'action' => 'index',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            'scripto' => [
+                'type' => 'Literal',
+                'options' => [
+                    'route' => '/scripto',
+                    'defaults' => [
+                        'controller' => 'Scripto\Controller\Index',
+                        'action' => 'index',
+                    ],
+                ],
+                'may_terminate' => true,
+                'child_routes' => [
+                    'set' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/:set-id',
+                            'constraints' => [
+                                'set-id' => '\d+',
+                            ],
+                            'defaults' => [
+                                'action' => 'browse',
+                            ],
+                        ],
+                        'may_terminate' => true,
                         'child_routes' => [
-                            'slug' => [
-                                'child_routes' => [
-                                    'scripto' => [
-                                        'type' => 'Literal',
-                                        'options' => [
-                                            'route' => '/scripto',
-                                            'defaults' => [
-                                                '__NAMESPACE__' => 'Scripto\Controller\SiteAdmin',
-                                                'controller' => 'Index',
-                                                'action' => 'index',
-                                            ],
-                                        ],
-                                        'may_terminate' => true,
-                                        'child_routes' => [],
+                            'item' => [
+                                'type' => 'Segment',
+                                'options' => [
+                                    'route' => '/:item-id',
+                                    'constraints' => [
+                                        'item-id' => '\d+',
+                                    ],
+                                    'defaults' => [
+                                        'action' => 'show',
                                     ],
                                 ],
                             ],
@@ -52,6 +82,7 @@ return [
                     ],
                 ],
             ],
+
         ],
     ],
 ];
