@@ -8,8 +8,8 @@ use Zend\Session\Container;
 /**
  * MediaWiki API client
  *
- * @todo Change \Exception to Scripto\Mediawiki\Exception\*
- * @todo Pass Omeka S URL to constructor for loginreturnurl in login()
+ * @todo Change \Exception to \Scripto\Mediawiki\Exception\*
+ * @todo Pass Omeka S URL to constructor for *returnurl
  */
 class ApiClient
 {
@@ -46,12 +46,43 @@ class ApiClient
     }
 
     /**
-     * Log in to MediaWiki using the default PasswordAuthenticationRequest.
+     * Create a MediaWiki account using the default requests.
      *
-     * @param string $username
-     * @param string $password
+     * @param string $username Username for authentication
+     * @param string $password Password for authentication
+     * @param string $retype Retype password
+     * @param string $email Email address
+     * @param string $realname Real name of the user
      */
-    public function login($username, $password)
+    public function createaccount($username, $password, $retype, $email, $realname)
+    {
+        $query = $this->request([
+            'action' => 'query',
+            'meta' => 'tokens',
+            'type' => 'createaccount'
+        ]);
+        $clientlogin = $this->request([
+            'action' => 'createaccount',
+            'createreturnurl' => 'http://example.com',
+            'createtoken' => $query['query']['tokens']['createaccounttoken'],
+            'username' => $username,
+            'password' => $password,
+            'retype' => $password,
+            'email' => $email,
+            'realname' => $realname,
+        ]);
+        if (isset($clientlogin['error'])) {
+            throw new \Exception($clientlogin['error']['info']);
+        }
+    }
+
+    /**
+     * Log in to MediaWiki using the default requests.
+     *
+     * @param string $username Username for authentication
+     * @param string $password Password for authentication
+     */
+    public function clientlogin($username, $password)
     {
         $query = $this->request([
             'action' => 'query',
