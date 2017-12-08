@@ -32,6 +32,11 @@ class ApiClient
     protected $session;
 
     /**
+     * @var array
+     */
+    protected $userinfo;
+
+    /**
      * Construct the client.
      *
      * @param HttpClient $client
@@ -51,6 +56,22 @@ class ApiClient
                 $this->httpClient->addCookie($cookie);
             }
         }
+
+        // Set user information.
+        $this->userinfo = $this->userinfo();
+    }
+
+    /**
+     * Get information about the current user.
+     *
+     * @return array
+     */
+    public function userinfo()
+    {
+        return $this->request([
+            'action' => 'query',
+            'meta' => 'userinfo',
+        ]);
     }
 
     /**
@@ -115,6 +136,9 @@ class ApiClient
         }
         // Persist the authentication cookies.
         $this->session->cookies = $this->httpClient->getCookies();
+
+        // Set user information.
+        $this->userinfo = $this->userinfo();
     }
 
     /**
@@ -125,6 +149,19 @@ class ApiClient
         $this->request(['action' => 'logout']); // MediaWiki logout
         $this->httpClient->clearCookies(); // HTTP client logout
         $this->session->cookies = null; // Session logout
+        $this->userinfo = null; // Reset user information
+    }
+
+    /**
+     * Is the current user logged in?
+     *
+     * @return bool
+     */
+    public function isLoggedIn()
+    {
+        return isset($this->userinfo['query']['userinfo'])
+            ? (bool) $this->userinfo['query']['userinfo']['id']
+            : false;
     }
 
     /**
