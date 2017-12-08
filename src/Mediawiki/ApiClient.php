@@ -70,6 +70,7 @@ class ApiClient
     /**
      * Get information about the MediaWiki site.
      *
+     * @link https://www.mediawiki.org/wiki/API:Siteinfo
      * @return array
      */
     public function siteinfo()
@@ -83,6 +84,7 @@ class ApiClient
     /**
      * Get information about the current MediaWiki user.
      *
+     * @link https://www.mediawiki.org/wiki/API:Userinfo
      * @return array
      */
     public function userinfo()
@@ -96,6 +98,7 @@ class ApiClient
     /**
      * Create a MediaWiki account using the default requests.
      *
+     * @link https://www.mediawiki.org/wiki/API:Account_creation
      * @param string $username Username for authentication
      * @param string $password Password for authentication
      * @param string $retype Retype password
@@ -130,6 +133,7 @@ class ApiClient
     /**
      * Log in to MediaWiki using the default requests.
      *
+     * @link https://www.mediawiki.org/wiki/API:Login
      * @param string $username Username for authentication
      * @param string $password Password for authentication
      */
@@ -162,6 +166,8 @@ class ApiClient
 
     /**
      * Log out of MediaWiki.
+     *
+     * @link https://www.mediawiki.org/wiki/API:Logout
      */
     public function logout()
     {
