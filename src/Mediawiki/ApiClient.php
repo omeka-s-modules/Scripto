@@ -34,6 +34,11 @@ class ApiClient
     /**
      * @var array
      */
+    protected $siteinfo;
+
+    /**
+     * @var array
+     */
     protected $userinfo;
 
     /**
@@ -57,12 +62,26 @@ class ApiClient
             }
         }
 
-        // Set user information.
+        // Set MediaWiki site and user information.
+        $this->siteinfo = $this->siteinfo();
         $this->userinfo = $this->userinfo();
     }
 
     /**
-     * Get information about the current user.
+     * Get information about the MediaWiki site.
+     *
+     * @return array
+     */
+    public function siteinfo()
+    {
+        return $this->request([
+            'action' => 'query',
+            'meta' => 'siteinfo',
+        ]);
+    }
+
+    /**
+     * Get information about the current MediaWiki user.
      *
      * @return array
      */
