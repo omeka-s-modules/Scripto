@@ -19,7 +19,7 @@ class ApiClient
     /**
      * @var string
      */
-    protected $apiUri;
+    protected $apiUrl;
 
     /**
      * @var string
@@ -45,13 +45,13 @@ class ApiClient
      * Construct the client.
      *
      * @param HttpClient $client
-     * @param string $apiUri MediaWiki API endpoint
+     * @param string $apiUrl MediaWiki API endpoint URL
      * @param string $returnUrl Return URL for third-party authentication flows.
      *        Currently unused but required by accountcreation and clientlogin.
      */
-    public function __construct(HttpClient $httpClient, $apiUri, $returnUrl) {
+    public function __construct(HttpClient $httpClient, $apiUrl, $returnUrl) {
         $this->httpClient = $httpClient;
-        $this->apiUri = $apiUri;
+        $this->apiUrl = $apiUrl;
         $this->returnUrl = $returnUrl;
 
         // Retrieve persisted MediaWiki cookies and add them to the HTTP client.
@@ -199,7 +199,7 @@ class ApiClient
         $params['format'] = 'json';
 
         $request = new Request;
-        $request->setUri($this->apiUri);
+        $request->setUri($this->apiUrl);
         $request->setMethod(Request::METHOD_POST);
         $request->getPost()->fromArray($params);
 
@@ -207,6 +207,6 @@ class ApiClient
         if ($response->isSuccess()) {
             return json_decode($response->getBody(), true);
         }
-        throw new \Exception($response->renderStatusLine());
+        throw new Exception\RequestException($response->renderStatusLine());
     }
 }
