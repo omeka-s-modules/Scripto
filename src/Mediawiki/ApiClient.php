@@ -8,8 +8,6 @@ use Zend\Session\Container;
 
 /**
  * MediaWiki API client
- *
- * @todo Pass Omeka S URL to constructor for *returnurl
  */
 class ApiClient
 {
@@ -24,17 +22,27 @@ class ApiClient
     protected $apiUri;
 
     /**
+     * @var string
+     */
+    protected $returnUrl;
+
+    /**
      * @var Container
      */
     protected $session;
 
     /**
+     * Construct the client.
+     *
      * @param HttpClient $client
-     * @param string $apiUri
+     * @param string $apiUri MediaWiki API endpoint
+     * @param string $returnUrl Return URL for third-party authentication flows.
+     *        Currently unused but required by accountcreation and clientlogin.
      */
-    public function __construct(HttpClient $httpClient, $apiUri) {
+    public function __construct(HttpClient $httpClient, $apiUri, $returnUrl) {
         $this->httpClient = $httpClient;
         $this->apiUri = $apiUri;
+        $this->returnUrl = $returnUrl;
 
         // Retrieve persisted MediaWiki cookies and add them to the HTTP client.
         $this->session = new Container('ScriptoMediawiki');
@@ -63,7 +71,7 @@ class ApiClient
         ]);
         $createaccount = $this->request([
             'action' => 'createaccount',
-            'createreturnurl' => 'http://example.com',
+            'createreturnurl' => $this->returnUrl,
             'createtoken' => $query['query']['tokens']['createaccounttoken'],
             'username' => $username,
             'password' => $password,
@@ -91,7 +99,7 @@ class ApiClient
         ]);
         $clientlogin = $this->request([
             'action' => 'clientlogin',
-            'loginreturnurl' => 'http://example.com',
+            'loginreturnurl' => $this->returnUrl,
             'logintoken' => $query['query']['tokens']['logintoken'],
             'username' => $username,
             'password' => $password,
