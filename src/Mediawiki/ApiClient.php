@@ -79,6 +79,9 @@ class ApiClient
             'email' => $email,
             'realname' => $realname,
         ]);
+        if (isset($createaccount['error'])) {
+            throw new Exception\CreateaccountException($createaccount['error']['info']);
+        }
         if ('FAIL' === $createaccount['createaccount']['status']) {
             throw new Exception\CreateaccountException($createaccount['createaccount']['message']);
         }
@@ -104,6 +107,9 @@ class ApiClient
             'username' => $username,
             'password' => $password,
         ]);
+        if (isset($clientlogin['error'])) {
+            throw new Exception\ClientloginException($clientlogin['error']['info']);
+        }
         if ('FAIL' === $clientlogin['clientlogin']['status']) {
             throw new Exception\ClientloginException($clientlogin['clientlogin']['message']);
         }
