@@ -1,6 +1,7 @@
 <?php
 namespace Scripto\Mediawiki;
 
+use Scripto\Mediawiki\Exception;
 use Zend\Http\Client as HttpClient;
 use Zend\Http\Request;
 use Zend\Session\Container;
@@ -8,7 +9,6 @@ use Zend\Session\Container;
 /**
  * MediaWiki API client
  *
- * @todo Change \Exception to \Scripto\Mediawiki\Exception\*
  * @todo Pass Omeka S URL to constructor for *returnurl
  */
 class ApiClient
@@ -61,7 +61,7 @@ class ApiClient
             'meta' => 'tokens',
             'type' => 'createaccount'
         ]);
-        $clientlogin = $this->request([
+        $createaccount = $this->request([
             'action' => 'createaccount',
             'createreturnurl' => 'http://example.com',
             'createtoken' => $query['query']['tokens']['createaccounttoken'],
@@ -71,8 +71,8 @@ class ApiClient
             'email' => $email,
             'realname' => $realname,
         ]);
-        if (isset($clientlogin['error'])) {
-            throw new \Exception($clientlogin['error']['info']);
+        if ('FAIL' === $createaccount['createaccount']['status']) {
+            throw new Exception\CreateaccountException($createaccount['createaccount']['message']);
         }
     }
 
@@ -96,8 +96,8 @@ class ApiClient
             'username' => $username,
             'password' => $password,
         ]);
-        if (isset($clientlogin['error'])) {
-            throw new \Exception($clientlogin['error']['info']);
+        if ('FAIL' === $clientlogin['clientlogin']['status']) {
+            throw new Exception\ClientloginException($clientlogin['clientlogin']['message']);
         }
         // Persist the authentication cookies.
         $this->session->cookies = $this->httpClient->getCookies();
