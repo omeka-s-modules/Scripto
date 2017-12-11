@@ -17,11 +17,17 @@ class ApiClient
     protected $httpClient;
 
     /**
+     * MediaWiki API endpoint URL
+     *
      * @var string
      */
     protected $apiUrl;
 
     /**
+     * Return URL for third-party authentication flows
+     *
+     * Currently unused but required by accountcreation and clientlogin.
+     *
      * @var string
      */
     protected $returnUrl;
@@ -32,11 +38,15 @@ class ApiClient
     protected $session;
 
     /**
+     * Cache of MediaWiki site information
+     *
      * @var array
      */
     protected $siteinfo;
 
     /**
+     * Cache of MediaWiki user information
+     *
      * @var array
      */
     protected $userinfo;
@@ -45,11 +55,11 @@ class ApiClient
      * Construct the client.
      *
      * @param HttpClient $client
-     * @param string $apiUrl MediaWiki API endpoint URL
-     * @param string $returnUrl Return URL for third-party authentication flows.
-     *        Currently unused but required by accountcreation and clientlogin.
+     * @param string $apiUrl
+     * @param string $returnUrl
      */
-    public function __construct(HttpClient $httpClient, $apiUrl, $returnUrl) {
+    public function __construct(HttpClient $httpClient, $apiUrl, $returnUrl)
+    {
         $this->httpClient = $httpClient;
         $this->apiUrl = $apiUrl;
         $this->returnUrl = $returnUrl;
@@ -171,10 +181,10 @@ class ApiClient
      */
     public function logout()
     {
-        $this->request(['action' => 'logout']); // MediaWiki logout
-        $this->httpClient->clearCookies(); // HTTP client logout
-        $this->session->cookies = null; // Session logout
-        $this->userinfo = null; // Reset user information
+        $this->request(['action' => 'logout']); // Log out of MediaWiki
+        $this->httpClient->clearCookies(); // Clear HTTP client cookies
+        $this->session->cookies = null; // Clear session cookies
+        $this->userinfo = $this->userinfo(); // Reset MediaWiki user information
     }
 
     /**
