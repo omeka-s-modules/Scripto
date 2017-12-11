@@ -42,14 +42,14 @@ class ApiClient
      *
      * @var array
      */
-    protected $siteinfo;
+    protected $siteInfo;
 
     /**
      * Cache of MediaWiki user information
      *
      * @var array
      */
-    protected $userinfo;
+    protected $userInfo;
 
     /**
      * Construct the client.
@@ -73,8 +73,8 @@ class ApiClient
         }
 
         // Set MediaWiki site and user information.
-        $this->siteinfo = $this->siteinfo();
-        $this->userinfo = $this->userinfo();
+        $this->siteInfo = $this->getSiteInfo();
+        $this->userInfo = $this->getUserInfo();
     }
 
     /**
@@ -117,7 +117,7 @@ class ApiClient
      * @link https://www.mediawiki.org/wiki/API:Siteinfo
      * @return array
      */
-    public function siteinfo()
+    public function getSiteInfo()
     {
         return $this->request([
             'action' => 'query',
@@ -131,7 +131,7 @@ class ApiClient
      * @link https://www.mediawiki.org/wiki/API:Userinfo
      * @return array
      */
-    public function userinfo()
+    public function getUserInfo()
     {
         return $this->request([
             'action' => 'query',
@@ -149,7 +149,7 @@ class ApiClient
      * @param string $email Email address
      * @param string $realname Real name of the user
      */
-    public function createaccount($username, $password, $retype, $email, $realname)
+    public function createAccount($username, $password, $retype, $email, $realname)
     {
         $query = $this->request([
             'action' => 'query',
@@ -181,7 +181,7 @@ class ApiClient
      * @param string $username Username for authentication
      * @param string $password Password for authentication
      */
-    public function clientlogin($username, $password)
+    public function login($username, $password)
     {
         $query = $this->request([
             'action' => 'query',
@@ -205,7 +205,7 @@ class ApiClient
         $this->session->cookies = $this->httpClient->getCookies();
 
         // Set user information.
-        $this->userinfo = $this->userinfo();
+        $this->userInfo = $this->getUserInfo();
     }
 
     /**
@@ -218,7 +218,7 @@ class ApiClient
         $this->request(['action' => 'logout']); // Log out of MediaWiki
         $this->httpClient->clearCookies(); // Clear HTTP client cookies
         $this->session->cookies = null; // Clear session cookies
-        $this->userinfo = $this->userinfo(); // Reset MediaWiki user information
+        $this->userInfo = $this->getUserInfo(); // Reset MediaWiki user information
     }
 
     /**
@@ -228,8 +228,8 @@ class ApiClient
      */
     public function isLoggedIn()
     {
-        return isset($this->userinfo['query']['userinfo'])
-            ? (bool) $this->userinfo['query']['userinfo']['id']
+        return isset($this->userInfo['query']['userinfo'])
+            ? (bool) $this->userInfo['query']['userinfo']['id']
             : false;
     }
 
