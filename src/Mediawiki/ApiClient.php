@@ -78,6 +78,40 @@ class ApiClient
     }
 
     /**
+     * Get information about a single page, including revisions.
+     *
+     * @param string $title The page title
+     * @param int $revisionLimit The maximum number of revisions to return
+     * @param bool $content Get the revision content?
+     * @return array|null Returns null if the page is not created
+     */
+    public function getPage($title, $revisionLimit = 50, $content = false)
+    {
+        if (!is_string($title)) {
+            throw new Exception\InvalidArgumentException('Page title must be a string');
+        }
+        if (strstr($title, '|')) {
+            throw new Exception\InvalidArgumentException('Can only get one page at a time');
+        }
+        $rvprop = ['ids', 'flags', 'timestamp', 'comment', 'user'];
+        if ($content) {
+            $rvprop[] = 'content';
+        }
+        $query = $this->request([
+            'action' => 'query',
+            'prop' => 'revisions',
+            'titles' => $title,
+            'rvlimit' => $revisionLimit,
+            'rvprop' => implode('|', $rvprop),
+        ]);
+        if (0 >= key($query['query']['pages'])) {
+            // A zero or negative index indicates an uncreated page.
+            return null;
+        }
+        return reset($query['query']['pages']);
+    }
+
+    /**
      * Get information about the MediaWiki site.
      *
      * @link https://www.mediawiki.org/wiki/API:Siteinfo
