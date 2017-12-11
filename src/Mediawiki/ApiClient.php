@@ -104,11 +104,12 @@ class ApiClient
             'rvlimit' => $revisionLimit,
             'rvprop' => implode('|', $rvprop),
         ]);
-        if (0 >= key($query['query']['pages'])) {
-            // A zero or negative index indicates an uncreated page.
+        $page = $query['query']['pages'][0];
+        if (isset($page['missing'])) {
+            // "missing" indicates an uncreated page.
             return null;
         }
-        return reset($query['query']['pages']);
+        return $page;
     }
 
     /**
@@ -234,13 +235,18 @@ class ApiClient
     }
 
     /**
-     * Make a HTTP request.
+     * Make a HTTP request
      *
+     * Returns JSON response format version 2.
+     *
+     * @link https://www.mediawiki.org/wiki/API:JSON_version_2
      * @param array $params
+     * @return array
      */
     public function request(array $params = [])
     {
         $params['format'] = 'json';
+        $params['formatversion'] = '2';
 
         $request = new Request;
         $request->setUri($this->apiUrl);
