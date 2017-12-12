@@ -110,7 +110,7 @@ class ApiClient
      * @param string $title
      * @return bool
      */
-    public function pageCreated($title)
+    public function isPageCreated($title)
     {
         $pageInfo = $this->getPageInfo($title);
         return !isset($pageInfo['missing']);
@@ -125,7 +125,7 @@ class ApiClient
      * @param string $title
      * @return bool
      */
-    public function userCan($action, $title)
+    public function canUser($action, $title)
     {
         $pageInfo = $this->getPageInfo($title);
         return isset($pageInfo['actions'][$action])
@@ -247,7 +247,7 @@ class ApiClient
      *
      * @return bool
      */
-    public function userIsLoggedIn()
+    public function isUserLoggedIn()
     {
         return isset($this->userInfo['query']['userinfo'])
             ? (bool) $this->userInfo['query']['userinfo']['id']
