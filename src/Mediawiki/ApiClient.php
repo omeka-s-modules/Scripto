@@ -78,9 +78,50 @@ class ApiClient
     }
 
     /**
+     * Is this page created?
+     *
+     * @param string $title
+     * @return bool
+     */
+    public function pageIsCreated($title)
+    {
+        $pageInfo = $this->getPageInfo($title);
+        return !isset($pageInfo['missing']);
+    }
+
+    /**
+     * Can the user perform this action on this page?
+     *
+     * Find the available actions in self::getPageInfo() under intestactions.
+     *
+     * @param string $action
+     * @param string $title
+     * @return bool
+     */
+    public function userCan($action, $title)
+    {
+        $pageInfo = $this->getPageInfo($title);
+        return isset($pageInfo['actions'][$action])
+            ? (bool) $pageInfo['actions'][$action] : false;
+    }
+
+    /**
+     * Is the current user logged in?
+     *
+     * @return bool
+     */
+    public function userIsLoggedIn()
+    {
+        return isset($this->userInfo['query']['userinfo'])
+            ? (bool) $this->userInfo['query']['userinfo']['id']
+            : false;
+    }
+
+    /**
      * Get information about a single page.
      *
      * @link https://www.mediawiki.org/wiki/API:Info
+     * @link https://www.mediawiki.org/wiki/Manual:User_rights#List_of_permissions
      * @param string $title The page title
      * @return array
      */
@@ -96,40 +137,13 @@ class ApiClient
             'action' => 'query',
             'prop' => 'info',
             'titles' => $title,
+            'inprop' => 'protection|url',
             'intestactions' => 'read|edit|createpage|createtalk|protect|rollback',
         ]);
         if (isset($query['error'])) {
             throw new Exception\QueryException($query['error']['info']);
         }
         return $query['query']['pages'][0];
-    }
-
-    /**
-     * Is this page created?
-     *
-     * @param string $title
-     * @return bool
-     */
-    public function isPageCreated($title)
-    {
-        $pageInfo = $this->getPageInfo($title);
-        return !isset($pageInfo['missing']);
-    }
-
-    /**
-     * Can the user perform this action on this page?
-     *
-     * Actions include: read, edit, createpage, createtalk, protect, rollback
-     *
-     * @param string $action
-     * @param string $title
-     * @return bool
-     */
-    public function canUser($action, $title)
-    {
-        $pageInfo = $this->getPageInfo($title);
-        return isset($pageInfo['actions'][$action])
-            ? (bool) $pageInfo['actions'][$action] : false;
     }
 
     /**
@@ -240,18 +254,6 @@ class ApiClient
         $this->httpClient->clearCookies(); // Clear HTTP client cookies
         $this->session->cookies = null; // Clear session cookies
         $this->userInfo = $this->getUserInfo(); // Reset MediaWiki user information
-    }
-
-    /**
-     * Is the current user logged in?
-     *
-     * @return bool
-     */
-    public function isUserLoggedIn()
-    {
-        return isset($this->userInfo['query']['userinfo'])
-            ? (bool) $this->userInfo['query']['userinfo']['id']
-            : false;
     }
 
     /**
