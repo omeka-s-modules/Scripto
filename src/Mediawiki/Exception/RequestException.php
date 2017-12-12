@@ -1,6 +1,6 @@
 <?php
 namespace Scripto\Mediawiki\Exception;
 
-class RequestException extends \Exception
+class RequestException extends \RuntimeException
 {
 }

@@ -1,6 +1,6 @@
 <?php
 namespace Scripto\Mediawiki\Exception;
 
-class ClientloginException extends \Exception
+class ClientloginException extends \RuntimeException
 {
 }

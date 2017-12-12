@@ -1,6 +1,6 @@
 <?php
 namespace Scripto\Mediawiki\Exception;
 
-class CreateaccountException extends \Exception
+class CreateaccountException extends \RuntimeException
 {
 }
