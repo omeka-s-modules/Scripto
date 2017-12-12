@@ -118,7 +118,7 @@ class ApiClient
     }
 
     /**
-     * Get information about a single page.
+     * Get information about a page.
      *
      * @link https://www.mediawiki.org/wiki/API:Info
      * @link https://www.mediawiki.org/wiki/Manual:User_rights#List_of_permissions
@@ -144,6 +144,39 @@ class ApiClient
             throw new Exception\QueryException($query['error']['info']);
         }
         return $query['query']['pages'][0];
+    }
+
+    /**
+     * Edit or create a page.
+     *
+     * @link https://www.mediawiki.org/wiki/API:Edit
+     * @param string $title
+     * @param string $text
+     * @return array The successful edit result
+     */
+    public function editPage($title, $text)
+    {
+        if (!is_string($title)) {
+            throw new Exception\InvalidArgumentException('Page title must be a string');
+        }
+        if (!is_string($text)) {
+            throw new Exception\InvalidArgumentException('Page text must be a string');
+        }
+        $query = $this->request([
+            'action' => 'query',
+            'meta' => 'tokens',
+            'type' => 'csrf'
+        ]);
+        $edit = $this->request([
+            'action' => 'edit',
+            'title' => $title,
+            'text' => $text,
+            'token' => $query['query']['tokens']['csrftoken'],
+        ]);
+        if (isset($edit['error'])) {
+            throw new Exception\EditException($edit['error']['info']);
+        }
+        return $edit['edit'];
     }
 
     /**
@@ -183,6 +216,7 @@ class ApiClient
      * @param string $retype Retype password
      * @param string $email Email address
      * @param string $realname Real name of the user
+     * @return array The successful create account result
      */
     public function createAccount($username, $password, $retype, $email, $realname)
     {
@@ -207,6 +241,7 @@ class ApiClient
         if ('FAIL' === $createaccount['createaccount']['status']) {
             throw new Exception\CreateaccountException($createaccount['createaccount']['message']);
         }
+        return $createaccount['createaccount'];
     }
 
     /**
@@ -215,6 +250,7 @@ class ApiClient
      * @link https://www.mediawiki.org/wiki/API:Login
      * @param string $username Username for authentication
      * @param string $password Password for authentication
+     * @return array The successful login result
      */
     public function login($username, $password)
     {
@@ -238,9 +274,9 @@ class ApiClient
         }
         // Persist the authentication cookies.
         $this->session->cookies = $this->httpClient->getCookies();
-
         // Set user information.
         $this->userInfo = $this->getUserInfo();
+        return $clientlogin['clientlogin'];
     }
 
     /**
