@@ -78,14 +78,13 @@ class ApiClient
     }
 
     /**
-     * Get information about a single page, including revisions.
+     * Get information about a single page.
      *
+     * @link https://www.mediawiki.org/wiki/API:Info
      * @param string $title The page title
-     * @param int $revisionLimit The maximum number of revisions to return
-     * @param bool $content Get the revision content?
-     * @return array|null Returns null if the page is not created
+     * @return array
      */
-    public function getPage($title, $revisionLimit = 50, $content = false)
+    public function getPageInfo($title)
     {
         if (!is_string($title)) {
             throw new Exception\InvalidArgumentException('Page title must be a string');
@@ -93,23 +92,44 @@ class ApiClient
         if (strstr($title, '|')) {
             throw new Exception\InvalidArgumentException('Can only get one page at a time');
         }
-        $rvprop = ['ids', 'flags', 'timestamp', 'comment', 'user'];
-        if ($content) {
-            $rvprop[] = 'content';
-        }
         $query = $this->request([
             'action' => 'query',
-            'prop' => 'revisions',
+            'prop' => 'info',
             'titles' => $title,
-            'rvlimit' => $revisionLimit,
-            'rvprop' => implode('|', $rvprop),
+            'intestactions' => 'read|edit|createpage|createtalk|protect|rollback',
         ]);
-        $page = $query['query']['pages'][0];
-        if (isset($page['missing'])) {
-            // "missing" indicates an uncreated page.
-            return null;
+        if (isset($query['error'])) {
+            throw new Exception\QueryException($query['error']['info']);
         }
-        return $page;
+        return $query['query']['pages'][0];
+    }
+
+    /**
+     * Is this page created?
+     *
+     * @param string $title
+     * @return bool
+     */
+    public function pageCreated($title)
+    {
+        $pageInfo = $this->getPageInfo($title);
+        return !isset($pageInfo['missing']);
+    }
+
+    /**
+     * Can the user perform this action on this page?
+     *
+     * Actions include: read, edit, createpage, createtalk, protect, rollback
+     *
+     * @param string $action
+     * @param string $title
+     * @return bool
+     */
+    public function userCan($action, $title)
+    {
+        $pageInfo = $this->getPageInfo($title);
+        return isset($pageInfo['actions'][$action])
+            ? (bool) $pageInfo['actions'][$action] : false;
     }
 
     /**
@@ -227,7 +247,7 @@ class ApiClient
      *
      * @return bool
      */
-    public function isLoggedIn()
+    public function userIsLoggedIn()
     {
         return isset($this->userInfo['query']['userinfo'])
             ? (bool) $this->userInfo['query']['userinfo']['id']
