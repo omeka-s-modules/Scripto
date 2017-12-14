@@ -118,14 +118,14 @@ class ApiClient
     }
 
     /**
-     * Get information about pages.
+     * Get page information and their latest revisions.
      *
      * @link https://www.mediawiki.org/wiki/API:Info
      * @link https://www.mediawiki.org/wiki/Manual:User_rights#List_of_permissions
      * @param array $titles Page titles
      * @return array
      */
-    public function getPagesInfo(array $titles)
+    public function getPages(array $titles)
     {
         if (count($titles) !== count(array_unique($titles))) {
             throw new Exception\InvalidArgumentException('Titles must be unique');
@@ -138,14 +138,16 @@ class ApiClient
                 throw new Exception\InvalidArgumentException('A title must not contain a vertical bar');
             }
         }
-        $pagesInfo = [];
+
+        $pages = [];
         // The API limits titles to 50 per query.
         foreach (array_chunk($titles, 50) as $titleChunk) {
             $query = $this->request([
                 'action' => 'query',
-                'prop' => 'info',
+                'prop' => 'info|revisions',
                 'titles' => implode('|', $titleChunk),
                 'inprop' => 'protection|url',
+                'rvprop' => 'content|ids|flags|timestamp|comment|user',
                 'intestactions' => 'read|edit|createpage|createtalk|protect|rollback',
             ]);
             if (isset($query['error'])) {
@@ -163,15 +165,15 @@ class ApiClient
             foreach ($titleChunk as $title) {
                 $title = (string) $title;
                 $normalizedTitle = isset($normalized[$title]) ? $normalized[$title] : $title;
-                foreach ($query['query']['pages'] as  $pageInfo) {
-                    if ($pageInfo['title'] === $normalizedTitle) {
-                        $pagesInfo[] = $pageInfo;
+                foreach ($query['query']['pages'] as  $page) {
+                    if ($page['title'] === $normalizedTitle) {
+                        $pages[] = $page;
                         continue;
                     }
                 }
             }
         }
-        return $pagesInfo;
+        return $pages;
     }
 
     /**
