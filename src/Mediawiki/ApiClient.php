@@ -118,32 +118,60 @@ class ApiClient
     }
 
     /**
-     * Get information about a page.
+     * Get information about pages.
      *
      * @link https://www.mediawiki.org/wiki/API:Info
      * @link https://www.mediawiki.org/wiki/Manual:User_rights#List_of_permissions
-     * @param string $title The page title
+     * @param array $titles Page titles
      * @return array
      */
-    public function getPageInfo($title)
+    public function getPagesInfo(array $titles)
     {
-        if (!is_string($title)) {
-            throw new Exception\InvalidArgumentException('Page title must be a string');
+        if (count($titles) !== count(array_unique($titles))) {
+            throw new Exception\InvalidArgumentException('Titles must be unique');
         }
-        if (strstr($title, '|')) {
-            throw new Exception\InvalidArgumentException('Can only get one page at a time');
+        foreach ($titles as $title) {
+            if (!is_string($title)) {
+                throw new Exception\InvalidArgumentException('A title must be a string');
+            }
+            if (strstr($title, '|')) {
+                throw new Exception\InvalidArgumentException('A title must not contain a vertical bar');
+            }
         }
-        $query = $this->request([
-            'action' => 'query',
-            'prop' => 'info',
-            'titles' => $title,
-            'inprop' => 'protection|url',
-            'intestactions' => 'read|edit|createpage|createtalk|protect|rollback',
-        ]);
-        if (isset($query['error'])) {
-            throw new Exception\QueryException($query['error']['info']);
+        $pagesInfo = [];
+        // The API limits titles to 50 per query.
+        foreach (array_chunk($titles, 50) as $titleChunk) {
+            $query = $this->request([
+                'action' => 'query',
+                'prop' => 'info',
+                'titles' => implode('|', $titleChunk),
+                'inprop' => 'protection|url',
+                'intestactions' => 'read|edit|createpage|createtalk|protect|rollback',
+            ]);
+            if (isset($query['error'])) {
+                throw new Exception\QueryException($query['error']['info']);
+            }
+
+            // The ordering of the response does not necessarily correspond to
+            // the ordering of the input. Here we match the original ordering.
+            $normalized = [];
+            if (isset($query['query']['normalized']) ) {
+                foreach ($query['query']['normalized'] as $value) {
+                    $normalized[$value['from']] = $value['to'];
+                }
+            }
+            foreach ($titleChunk as $title) {
+                $title = (string) $title;
+                $normalizedTitle = isset($normalized[$title]) ? $normalized[$title] : $title;
+                foreach ($query['query']['pages'] as  $pageInfo) {
+                    if ($pageInfo['title'] === $normalizedTitle) {
+                        $pagesInfo[] = $pageInfo;
+                        continue;
+                    }
+                }
+            }
         }
-        return $query['query']['pages'][0];
+        return $pagesInfo;
     }
 
     /**
