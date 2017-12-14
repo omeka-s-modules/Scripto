@@ -85,8 +85,8 @@ class ApiClient
      */
     public function pageIsCreated($title)
     {
-        $pageInfo = $this->getPageInfo($title);
-        return !isset($pageInfo['missing']);
+        $page = $this->getPage($title);
+        return !isset($page['missing']);
     }
 
     /**
@@ -100,9 +100,9 @@ class ApiClient
      */
     public function userCan($action, $title)
     {
-        $pageInfo = $this->getPageInfo($title);
-        return isset($pageInfo['actions'][$action])
-            ? (bool) $pageInfo['actions'][$action] : false;
+        $page = $this->getPage($title);
+        return isset($page['actions'][$action])
+            ? (bool) $page['actions'][$action] : false;
     }
 
     /**
@@ -118,7 +118,18 @@ class ApiClient
     }
 
     /**
-     * Get page information and their latest revisions.
+     * Get information about a page and its latest revision.
+     *
+     * @param string $title Page title
+     * @return array
+     */
+    public function getPage($title)
+    {
+        return $this->getPages([$title])[0];
+    }
+
+    /**
+     * Get information about pages and their latest revisions.
      *
      * @link https://www.mediawiki.org/wiki/API:Info
      * @link https://www.mediawiki.org/wiki/Manual:User_rights#List_of_permissions
