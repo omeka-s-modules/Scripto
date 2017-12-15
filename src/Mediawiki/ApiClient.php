@@ -73,8 +73,8 @@ class ApiClient
         }
 
         // Set MediaWiki site and user information.
-        $this->siteInfo = $this->getSiteInfo();
-        $this->userInfo = $this->getUserInfo();
+        $this->siteInfo = $this->querySiteInfo();
+        $this->userInfo = $this->queryUserInfo();
     }
 
     /**
@@ -92,7 +92,7 @@ class ApiClient
     /**
      * Can the user perform this action on this page?
      *
-     * Find the available actions in self::getPageInfo() under intestactions.
+     * Find the available actions in self::queryPages() under intestactions.
      *
      * @param string $action
      * @param string $title
@@ -261,12 +261,12 @@ class ApiClient
     }
 
     /**
-     * Get information about the MediaWiki site.
+     * Query information about the MediaWiki site.
      *
      * @link https://www.mediawiki.org/wiki/API:Siteinfo
      * @return array
      */
-    public function getSiteInfo()
+    public function querySiteInfo()
     {
         return $this->request([
             'action' => 'query',
@@ -275,12 +275,12 @@ class ApiClient
     }
 
     /**
-     * Get information about the current MediaWiki user.
+     * Query information about the current MediaWiki user.
      *
      * @link https://www.mediawiki.org/wiki/API:Userinfo
      * @return array
      */
-    public function getUserInfo()
+    public function queryUserInfo()
     {
         return $this->request([
             'action' => 'query',
@@ -356,7 +356,7 @@ class ApiClient
         // Persist the authentication cookies.
         $this->session->cookies = $this->httpClient->getCookies();
         // Set user information.
-        $this->userInfo = $this->getUserInfo();
+        $this->userInfo = $this->queryUserInfo();
         return $clientlogin['clientlogin'];
     }
 
@@ -370,7 +370,7 @@ class ApiClient
         $this->request(['action' => 'logout']); // Log out of MediaWiki
         $this->httpClient->clearCookies(); // Clear HTTP client cookies
         $this->session->cookies = null; // Clear session cookies
-        $this->userInfo = $this->getUserInfo(); // Reset MediaWiki user information
+        $this->userInfo = $this->queryUserInfo(); // Reset MediaWiki user information
     }
 
     /**
