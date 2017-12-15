@@ -188,6 +188,46 @@ class ApiClient
     }
 
     /**
+     * Query all page revisions.
+     *
+     * @param string $title
+     * @return array
+     */
+    public function queryRevisions($title)
+    {
+        if (!is_string($title)) {
+            throw new Exception\InvalidArgumentException('A title must be a string');
+        }
+        if (strstr($title, '|')) {
+            throw new Exception\InvalidArgumentException('A title must not contain a vertical bar');
+        }
+
+        $revisions = [];
+        $continue = false;
+        do {
+            $request = [
+                'action' => 'query',
+                'prop' => 'revisions',
+                'titles' => $title,
+                'rvprop' => 'ids|flags|timestamp|comment|user',
+                'rvlimit' => 'max',
+            ];
+            if ($continue) {
+                // The previous iteration returned a continue query.
+                $request['continue'] = $query['continue']['continue'];
+                $request['rvcontinue'] = $query['continue']['rvcontinue'];
+            }
+            $query = $this->request($request);
+            if (isset($query['error'])) {
+                throw new Exception\QueryException($query['error']['info']);
+            }
+            $revisions = array_merge($revisions, $query['query']['pages'][0]['revisions']);
+            $continue = isset($query['continue']);
+        } while ($continue);
+        return $revisions;
+    }
+
+    /**
      * Edit or create a page.
      *
      * @link https://www.mediawiki.org/wiki/API:Edit
