@@ -85,7 +85,7 @@ class ApiClient
      */
     public function pageIsCreated($title)
     {
-        $page = $this->getPage($title);
+        $page = $this->queryPage($title);
         return !isset($page['missing']);
     }
 
@@ -100,7 +100,7 @@ class ApiClient
      */
     public function userCan($action, $title)
     {
-        $page = $this->getPage($title);
+        $page = $this->queryPage($title);
         return isset($page['actions'][$action])
             ? (bool) $page['actions'][$action] : false;
     }
@@ -118,25 +118,25 @@ class ApiClient
     }
 
     /**
-     * Get information about a page and its latest revision.
+     * Query information about a page, including its latest revision.
      *
      * @param string $title Page title
      * @return array
      */
-    public function getPage($title)
+    public function queryPage($title)
     {
-        return $this->getPages([$title])[0];
+        return $this->queryPages([$title])[0];
     }
 
     /**
-     * Get information about pages and their latest revisions.
+     * Query information about pages, including their latest revisions.
      *
      * @link https://www.mediawiki.org/wiki/API:Info
      * @link https://www.mediawiki.org/wiki/Manual:User_rights#List_of_permissions
      * @param array $titles Page titles
      * @return array
      */
-    public function getPages(array $titles)
+    public function queryPages(array $titles)
     {
         if (count($titles) !== count(array_unique($titles))) {
             throw new Exception\InvalidArgumentException('Titles must be unique');
