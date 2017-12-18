@@ -221,7 +221,9 @@ class ApiClient
             if (isset($query['error'])) {
                 throw new Exception\QueryException($query['error']['info']);
             }
-            $revisions = array_merge($revisions, $query['query']['pages'][0]['revisions']);
+            if (isset($query['query']['pages'][0]['revisions'])) {
+                $revisions = array_merge($revisions, $query['query']['pages'][0]['revisions']);
+            }
             $continue = isset($query['continue']);
         } while ($continue);
         return $revisions;
