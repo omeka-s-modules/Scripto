@@ -188,18 +188,27 @@ class ApiClient
     }
 
     /**
-     * Query all page revisions.
+     * Query page revisions.
      *
+     * @link https://www.mediawiki.org/wiki/API:Revisions
      * @param string $title
+     * @param int $limit
+     * @param int $offset
      * @return array
      */
-    public function queryRevisions($title)
+    public function queryRevisions($title, $limit = null, $offset = null)
     {
         if (!is_string($title)) {
             throw new Exception\InvalidArgumentException('A title must be a string');
         }
         if (strstr($title, '|')) {
             throw new Exception\InvalidArgumentException('A title must not contain a vertical bar');
+        }
+        if (isset($limit) && !is_numeric($limit)) {
+            throw new Exception\InvalidArgumentException('A limit must be numeric');
+        }
+        if (isset($offset) && !is_numeric($offset)) {
+            throw new Exception\InvalidArgumentException('An offset must be numeric');
         }
 
         $revisions = [];
@@ -226,7 +235,12 @@ class ApiClient
             }
             $continue = isset($query['continue']);
         } while ($continue);
-        return $revisions;
+
+        // We get all revisions before slicing out what was requested because
+        // the API does not provide a conventional limit/offset query. This way
+        // is rather unoptimized but it offers a simpler and more predictable
+        // interface with only a minor speed reduction.
+        return array_slice($revisions, $offset, $limit);
     }
 
     /**
