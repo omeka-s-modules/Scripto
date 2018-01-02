@@ -264,11 +264,14 @@ class ApiClient
             'meta' => 'tokens',
             'type' => 'csrf'
         ]);
+        $page = $this->queryPage($title);
         $edit = $this->request([
             'action' => 'edit',
             'title' => $title,
             'text' => $text,
             'token' => $query['query']['tokens']['csrftoken'],
+            // Use the timestamp of the base revision to detect edit conflicts.
+            'basetimestamp' => isset($page['revisions']) ? $page['revisions'][0]['timestamp'] : null,
         ]);
         if (isset($edit['error'])) {
             throw new Exception\EditException($edit['error']['info']);
