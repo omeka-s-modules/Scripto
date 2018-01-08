@@ -118,6 +118,50 @@ class ApiClient
     }
 
     /**
+     * Query information about a user.
+     *
+     * @param string $name User name
+     * @return array
+     */
+    public function queryUser($name)
+    {
+        return $this->queryUsers([$name])[0];
+    }
+
+    /**
+     * Query information about users.
+     *
+     * @link https://www.mediawiki.org/wiki/API:Users
+     * @param array $names User names
+     * @return array
+     */
+    public function queryUsers(array $names)
+    {
+        if (count($names) !== count(array_unique($names))) {
+            throw new Exception\InvalidArgumentException('Names must be unique');
+        }
+        foreach ($names as $name) {
+            if (!is_string($name)) {
+                throw new Exception\InvalidArgumentException('A name must be a string');
+            }
+            if (strstr($name, '|')) {
+                throw new Exception\InvalidArgumentException('A name must not contain a vertical bar');
+            }
+        }
+
+        $query = $this->request([
+            'action' => 'query',
+            'list' => 'users',
+            'ususers' => implode('|', $names),
+            'usprop' => 'blockinfo|groups|implicitgroups|rights|editcount|registration|emailable|gender',
+        ]);
+        if (isset($query['error'])) {
+            throw new Exception\QueryException($query['error']['info']);
+        }
+        return $query['query']['users'];
+    }
+
+    /**
      * Query information about a page, including its latest revision.
      *
      * @param string $title Page title
