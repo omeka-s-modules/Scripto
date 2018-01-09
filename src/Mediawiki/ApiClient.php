@@ -324,6 +324,32 @@ class ApiClient
     }
 
     /**
+     * Parse page wikitext into HTML.
+     *
+     * @link https://www.mediawiki.org/wiki/API:Parsing_wikitext
+     * @param string $title
+     * @return string The page HTML
+     */
+    public function parsePage($title)
+    {
+        if (!is_string($title)) {
+            throw new Exception\InvalidArgumentException('Page title must be a string');
+        }
+        $parse = $this->request([
+            'action' => 'parse',
+            'page' => $title,
+            'prop' => 'text',
+            'disablelimitreport' => true,
+            'disableeditsection' => true,
+            'disabletoc' => true,
+        ]);
+        if (isset($parse['error'])) {
+            throw new Exception\ParseException($parse['error']['info']);
+        }
+        return $parse['parse']['text'];
+    }
+
+    /**
      * Query information about the MediaWiki site.
      *
      * @link https://www.mediawiki.org/wiki/API:Siteinfo
