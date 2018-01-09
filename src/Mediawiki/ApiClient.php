@@ -118,7 +118,7 @@ class ApiClient
     }
 
     /**
-     * Query information about a user.
+     * Query information about a named user.
      *
      * @param string $name User name
      * @return array
@@ -129,7 +129,7 @@ class ApiClient
     }
 
     /**
-     * Query information about users.
+     * Query information about named users.
      *
      * @link https://www.mediawiki.org/wiki/API:Users
      * @param array $names User names
@@ -159,6 +159,52 @@ class ApiClient
             throw new Exception\QueryException($query['error']['info']);
         }
         return $query['query']['users'];
+    }
+
+    /**
+     * Query information about all users.
+     *
+     * @link https://www.mediawiki.org/wiki/API:Allusers
+     * @param int $limit
+     * @param int $offset
+     * @return array
+     */
+    public function queryAllUsers($offset = null, $limit = null)
+    {
+        if (isset($limit) && !is_numeric($limit)) {
+            throw new Exception\InvalidArgumentException('A limit must be numeric');
+        }
+        if (isset($offset) && !is_numeric($offset)) {
+            throw new Exception\InvalidArgumentException('An offset must be numeric');
+        }
+
+        $users = [];
+        $continue = false;
+        do {
+            $request = [
+                'action' => 'query',
+                'list' => 'allusers',
+                'aulimit' => 500,
+                'auprop' => 'blockinfo|groups|implicitgroups|rights|editcount|registration',
+            ];
+            if ($continue) {
+                // The previous iteration returned a continue query.
+                $request['continue'] = $query['continue']['continue'];
+                $request['aufrom'] = $query['continue']['aufrom'];
+            }
+            $query = $this->request($request);
+            if (isset($query['error'])) {
+                throw new Exception\QueryException($query['error']['info']);
+            }
+            $users = array_merge($users, $query['query']['allusers']);
+            $continue = isset($query['continue']);
+        } while ($continue);
+
+        // We get all users before slicing out what was requested because the
+        // API does not provide a conventional limit/offset query. This way is
+        // rather unoptimized but it offers a simpler and more predictable
+        // interface with only a minor speed reduction.
+        return array_slice($users, $offset, $limit);
     }
 
     /**
