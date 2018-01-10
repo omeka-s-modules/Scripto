@@ -24,15 +24,6 @@ class ApiClient
     protected $apiUrl;
 
     /**
-     * Return URL for third-party authentication flows
-     *
-     * Currently unused but required by accountcreation and clientlogin.
-     *
-     * @var string
-     */
-    protected $returnUrl;
-
-    /**
      * @var Container
      */
     protected $session;
@@ -56,13 +47,11 @@ class ApiClient
      *
      * @param HttpClient $client
      * @param string $apiUrl
-     * @param string $returnUrl
      */
-    public function __construct(HttpClient $httpClient, $apiUrl, $returnUrl)
+    public function __construct(HttpClient $httpClient, $apiUrl)
     {
         $this->httpClient = $httpClient;
         $this->apiUrl = $apiUrl;
-        $this->returnUrl = $returnUrl;
 
         // Retrieve persisted MediaWiki cookies and add them to the HTTP client.
         $this->session = new Container('ScriptoMediawiki');
@@ -443,7 +432,7 @@ class ApiClient
         ]);
         $createaccount = $this->request([
             'action' => 'createaccount',
-            'createreturnurl' => $this->returnUrl,
+            'createreturnurl' => 'http://example.com/', // currently unused but required
             'createtoken' => $query['query']['tokens']['createaccounttoken'],
             'username' => $username,
             'password' => $password,
@@ -477,7 +466,7 @@ class ApiClient
         ]);
         $clientlogin = $this->request([
             'action' => 'clientlogin',
-            'loginreturnurl' => $this->returnUrl,
+            'loginreturnurl' => 'http://example.com/', // currently unused but required
             'logintoken' => $query['query']['tokens']['logintoken'],
             'username' => $username,
             'password' => $password,
