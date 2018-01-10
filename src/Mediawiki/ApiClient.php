@@ -399,6 +399,16 @@ class ApiClient
     }
 
     /**
+     * Get the most recently queried site information.
+     *
+     * @return array
+     */
+    public function getSiteInfo()
+    {
+        return $this->siteInfo;
+    }
+
+    /**
      * Query information about the current MediaWiki user.
      *
      * @link https://www.mediawiki.org/wiki/API:Userinfo
@@ -410,6 +420,16 @@ class ApiClient
             'action' => 'query',
             'meta' => 'userinfo',
         ]);
+    }
+
+    /**
+     * Get the most recently queried user information.
+     *
+     * @return array
+     */
+    public function getUserInfo()
+    {
+        return $this->userInfo;
     }
 
     /**

@@ -16,6 +16,11 @@ return [
             'Scripto\Controller\Admin\Index' => 'Scripto\Controller\Admin\IndexController',
         ],
     ],
+    'form_elements' => [
+        'factories' => [
+            'Scripto\Form\ConfigForm' => Scripto\Service\Form\ConfigFormFactory::class,
+        ],
+    ],
     'navigation' => [
         'AdminModule' => [
             [
