@@ -23,10 +23,36 @@ class Module extends AbstractModule
 
     public function install(ServiceLocatorInterface $services)
     {
+        $services->get('Omeka\Connection')->exec('
+SET FOREIGN_KEY_CHECKS=0;
+CREATE TABLE scripto_media (id INT AUTO_INCREMENT NOT NULL, item_id INT NOT NULL, media_id INT NOT NULL, approved_by_id INT DEFAULT NULL, completed TINYINT(1) NOT NULL, completed_by VARCHAR(255) NOT NULL, approved TINYINT(1) NOT NULL, created DATETIME NOT NULL, modified DATETIME DEFAULT NULL, INDEX IDX_28ABA038126F525E (item_id), INDEX IDX_28ABA038EA9FDD75 (media_id), INDEX IDX_28ABA0382D234F6A (approved_by_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB;
+CREATE TABLE scripto_item (id INT AUTO_INCREMENT NOT NULL, project_id INT NOT NULL, item_id INT NOT NULL, created DATETIME NOT NULL, modified DATETIME DEFAULT NULL, INDEX IDX_2A827D37166D1F9C (project_id), INDEX IDX_2A827D37126F525E (item_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB;
+CREATE TABLE scripto_project (id INT AUTO_INCREMENT NOT NULL, owner_id INT DEFAULT NULL, item_set_id INT DEFAULT NULL, property_id INT DEFAULT NULL, title VARCHAR(255) NOT NULL, description LONGTEXT DEFAULT NULL, created DATETIME NOT NULL, modified DATETIME DEFAULT NULL, INDEX IDX_E39E51087E3C61F9 (owner_id), INDEX IDX_E39E5108960278D7 (item_set_id), INDEX IDX_E39E5108549213EC (property_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB;
+ALTER TABLE scripto_media ADD CONSTRAINT FK_28ABA038126F525E FOREIGN KEY (item_id) REFERENCES scripto_item (id) ON DELETE CASCADE;
+ALTER TABLE scripto_media ADD CONSTRAINT FK_28ABA038EA9FDD75 FOREIGN KEY (media_id) REFERENCES media (id) ON DELETE CASCADE;
+ALTER TABLE scripto_media ADD CONSTRAINT FK_28ABA0382D234F6A FOREIGN KEY (approved_by_id) REFERENCES user (id) ON DELETE SET NULL;
+ALTER TABLE scripto_item ADD CONSTRAINT FK_2A827D37166D1F9C FOREIGN KEY (project_id) REFERENCES scripto_project (id) ON DELETE CASCADE;
+ALTER TABLE scripto_item ADD CONSTRAINT FK_2A827D37126F525E FOREIGN KEY (item_id) REFERENCES item (id) ON DELETE CASCADE;
+ALTER TABLE scripto_project ADD CONSTRAINT FK_E39E51087E3C61F9 FOREIGN KEY (owner_id) REFERENCES user (id) ON DELETE SET NULL;
+ALTER TABLE scripto_project ADD CONSTRAINT FK_E39E5108960278D7 FOREIGN KEY (item_set_id) REFERENCES item_set (id) ON DELETE SET NULL;
+ALTER TABLE scripto_project ADD CONSTRAINT FK_E39E5108549213EC FOREIGN KEY (property_id) REFERENCES property (id) ON DELETE SET NULL;
+SET FOREIGN_KEY_CHECKS=1;
+');
     }
 
     public function uninstall(ServiceLocatorInterface $services)
     {
+        $services->get('Omeka\Connection')->exec('
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE IF EXISTS collecting_item;
+DROP TABLE IF EXISTS collecting_prompt;
+DROP TABLE IF EXISTS collecting_form;
+DROP TABLE IF EXISTS collecting_input;
+DROP TABLE IF EXISTS collecting_user;
+SET FOREIGN_KEY_CHECKS=1;
+');
+        $settings = $this->getServiceLocator()->get('Omeka\Settings');
+        $settings->delete('scripto_apiurl');
     }
 
     public function getConfigForm(PhpRenderer $renderer)

@@ -21,6 +21,14 @@ return [
             'Scripto\Form\ConfigForm' => Scripto\Service\Form\ConfigFormFactory::class,
         ],
     ],
+    'entity_manager' => [
+        'mapping_classes_paths' => [
+            OMEKA_PATH . '/modules/Scripto/src/Entity',
+        ],
+        'proxy_paths' => [
+            OMEKA_PATH . '/modules/Scripto/data/doctrine-proxies',
+        ],
+    ],
     'navigation' => [
         'AdminModule' => [
             [
