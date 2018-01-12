@@ -2,7 +2,7 @@
 return [
     'service_manager' => [
         'factories' => [
-            'Scripto\Mediawiki\ApiClient'  => 'Scripto\Service\Mediawiki\ApiClientFactory',
+            'Scripto\Mediawiki\ApiClient'  => Scripto\Service\Mediawiki\ApiClientFactory::class,
         ],
     ],
     'view_manager' => [
@@ -12,8 +12,8 @@ return [
     ],
     'controllers' => [
         'invokables' => [
-            'Scripto\Controller\Index' => 'Scripto\Controller\IndexController',
-            'Scripto\Controller\Admin\Index' => 'Scripto\Controller\Admin\IndexController',
+            'Scripto\Controller\Index' => Scripto\Controller\IndexController::class,
+            'Scripto\Controller\Admin\Index' => Scripto\Controller\Admin\IndexController::class,
         ],
     ],
     'form_elements' => [
@@ -27,6 +27,12 @@ return [
         ],
         'proxy_paths' => [
             OMEKA_PATH . '/modules/Scripto/data/doctrine-proxies',
+        ],
+    ],
+    'api_adapters' => [
+        'invokables' => [
+            'scripto_projects' => Scripto\Api\Adapter\ScriptoProjectAdapter::class,
+            'scripto_items' => Scripto\Api\Adapter\ScriptoItemAdapter::class,
         ],
     ],
     'navigation' => [
