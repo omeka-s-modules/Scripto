@@ -44,11 +44,9 @@ SET FOREIGN_KEY_CHECKS=1;
     {
         $services->get('Omeka\Connection')->exec('
 SET FOREIGN_KEY_CHECKS=0;
-DROP TABLE IF EXISTS collecting_item;
-DROP TABLE IF EXISTS collecting_prompt;
-DROP TABLE IF EXISTS collecting_form;
-DROP TABLE IF EXISTS collecting_input;
-DROP TABLE IF EXISTS collecting_user;
+DROP TABLE IF EXISTS scripto_media;
+DROP TABLE IF EXISTS scripto_item;
+DROP TABLE IF EXISTS scripto_project;
 SET FOREIGN_KEY_CHECKS=1;
 ');
         $settings = $this->getServiceLocator()->get('Omeka\Settings');
