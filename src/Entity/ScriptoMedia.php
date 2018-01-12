@@ -10,6 +10,13 @@ use Omeka\Entity\User;
 /**
  * @Entity
  * @HasLifecycleCallbacks
+ * @Table(
+ *     uniqueConstraints={
+ *         @UniqueConstraint(
+ *             columns={"item_id", "media_id"}
+ *         )
+ *     }
+ * )
  */
 class ScriptoMedia extends AbstractEntity
 {

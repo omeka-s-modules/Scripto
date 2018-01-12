@@ -9,6 +9,13 @@ use Omeka\Entity\Item;
 /**
  * @Entity
  * @HasLifecycleCallbacks
+ * @Table(
+ *     uniqueConstraints={
+ *         @UniqueConstraint(
+ *             columns={"project_id", "item_id"}
+ *         )
+ *     }
+ * )
  */
 class ScriptoItem extends AbstractEntity
 {
