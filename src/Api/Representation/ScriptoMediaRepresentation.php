@@ -41,6 +41,15 @@ class ScriptoMediaRepresentation extends AbstractRepresentation
 
     public function jsonSerialize()
     {
+        $approvedBy = $this->approvedBy();
+        return [
+            'o-module-scripto:item' => $this->item()->getReference(),
+            'o:media' => $this->media()->getReference(),
+            'o-module-scripto:completed' => $this->completed(),
+            'o-module-scripto:completedBy' => $this->completedBy(),
+            'o-module-scripto:approved' => $this->approved(),
+            'o-module-scripto:approvedBy' => $approvedBy ? $approvedBy->getReference() : null,
+        ];
     }
 
     public function item()
@@ -51,5 +60,37 @@ class ScriptoMediaRepresentation extends AbstractRepresentation
     public function media()
     {
         return $this->getAdapter('media')->getRepresentation($this->oMedia);
+    }
+
+    public function completed()
+    {
+        return $this->sMedia ? $this->sMedia->getCompleted() : false;
+    }
+
+    public function completedBy()
+    {
+        return $this->sMedia ? $this->sMedia->getCompletedBy() : null;
+    }
+
+    public function approved()
+    {
+        return $this->sMedia ? $this->sMedia->getApproved() : false;
+    }
+
+    public function approvedBy()
+    {
+        return $this->sMedia
+            ? $this->getAdapter('users')->getRepresentation($this->sMedia->getApprovedBy())
+            : null;
+    }
+
+    public function created()
+    {
+        return $this->sMedia ? $this->sMedia->getCreated() : null;
+    }
+
+    public function modified()
+    {
+        return $this->sMedia ? $this->sMedia->getModified() : null;
     }
 }

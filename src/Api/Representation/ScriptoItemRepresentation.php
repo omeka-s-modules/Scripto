@@ -15,6 +15,7 @@ class ScriptoItemRepresentation extends AbstractEntityRepresentation
         return [
             'o-module-scripto:project' => $this->project()->getReference(),
             'o:item' => $this->item()->getReference(),
+            'o-module-scripto:media' => $this->media(),
         ];
     }
 
