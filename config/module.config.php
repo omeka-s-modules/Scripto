@@ -33,6 +33,7 @@ return [
         'invokables' => [
             'scripto_projects' => Scripto\Api\Adapter\ScriptoProjectAdapter::class,
             'scripto_items' => Scripto\Api\Adapter\ScriptoItemAdapter::class,
+            'scripto_media' => Scripto\Api\Adapter\ScriptoMediaAdapter::class,
         ],
     ],
     'navigation' => [

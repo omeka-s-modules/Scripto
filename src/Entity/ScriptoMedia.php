@@ -55,7 +55,7 @@ class ScriptoMedia extends AbstractEntity
     protected $completed = false;
 
     /**
-     * @Column
+     * @Column(nullable=true)
      */
     protected $completedBy;
 

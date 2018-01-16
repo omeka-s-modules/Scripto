@@ -1,13 +1,12 @@
 <?php
 namespace Scripto\Api\Representation;
 
-use Omeka\Entity\Media as OMedia;
-use Omeka\Api\Representation\AbstractRepresentation;
-use Scripto\Entity\ScriptoItem as SItem;
-use Scripto\Entity\ScriptoMedia as SMedia;
+use Omeka\Api\Adapter\AdapterInterface;
+use Omeka\Api\Representation\AbstractResourceRepresentation;
+use Scripto\Api\ScriptoMediaResource;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class ScriptoMediaRepresentation extends AbstractRepresentation
+class ScriptoMediaRepresentation extends AbstractResourceRepresentation
 {
     /**
      * @var OMedia Omeka media
@@ -24,23 +23,14 @@ class ScriptoMediaRepresentation extends AbstractRepresentation
      */
     protected $sMedia;
 
-    /**
-     * @param ServiceLocatorInterface $services
-     * @param OMedia $oMedia
-     * @param SItem $sItem
-     * @param SMedia|null $sMedia
-     */
-    public function __construct(ServiceLocatorInterface $services, OMedia $oMedia,
-        SItem $sItem, SMedia $sMedia = null
-    ) {
-        $this->setServiceLocator($services);
-        $this->oMedia = $oMedia;
-        $this->sItem = $sItem;
-        $this->sMedia = $sMedia;
+    public function __construct(ScriptoMediaResource $sMediaResource, AdapterInterface $adapter) {
+        parent::__construct($sMediaResource, $adapter);
+        $this->oMedia = $sMediaResource->getOMedia();
+        $this->sItem = $sMediaResource->getSItem();
+        $this->sMedia = $sMediaResource->getSMedia();
     }
 
-    public function jsonSerialize()
-    {
+    public function getJsonLd(){
         $approvedBy = $this->approvedBy();
         return [
             'o-module-scripto:item' => $this->item()->getReference(),
@@ -50,6 +40,10 @@ class ScriptoMediaRepresentation extends AbstractRepresentation
             'o-module-scripto:approved' => $this->approved(),
             'o-module-scripto:approvedBy' => $approvedBy ? $approvedBy->getReference() : null,
         ];
+    }
+
+    public function getJsonLdType(){
+        return 'o-module-scripto:Media';
     }
 
     public function item()

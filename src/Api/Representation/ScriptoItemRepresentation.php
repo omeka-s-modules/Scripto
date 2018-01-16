@@ -40,23 +40,4 @@ class ScriptoItemRepresentation extends AbstractEntityRepresentation
     {
         return $this->resource->getModified();
     }
-
-    /**
-     * Get this Scripto item's media.
-     *
-     * @return array
-     */
-    public function media()
-    {
-        $services = $this->getServiceLocator();
-        $em = $services->get('Omeka\EntityManager');
-
-        $media = [];
-        foreach ($this->resource->getItem()->getMedia() as $oMedia) {
-            $sItem = $this->resource;
-            $sMedia = $em->find('Scripto\Entity\ScriptoMedia', $oMedia->getId());
-            $media[]= new ScriptoMediaRepresentation($services, $oMedia, $sItem, $sMedia);
-        }
-        return $media;
-    }
 }
