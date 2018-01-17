@@ -15,6 +15,8 @@ class ScriptoItemRepresentation extends AbstractEntityRepresentation
         return [
             'o-module-scripto:project' => $this->scriptoProject()->getReference(),
             'o:item' => $this->item()->getReference(),
+            'o:created' => $this->getDateTime($this->created()),
+            'o:modified' => $this->modified() ? $this->getDateTime($this->modified()) : null,
         ];
     }
 

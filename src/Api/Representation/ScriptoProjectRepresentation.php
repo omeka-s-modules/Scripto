@@ -21,6 +21,8 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
             'o:owner' => $owner ? $owner->getReference() : null,
             'o:item_set' => $itemSet ? $itemSet->getReference() : null,
             'o:property' => $property ? $property->getReference() : null,
+            'o:created' => $this->getDateTime($this->created()),
+            'o:modified' => $this->modified() ? $this->getDateTime($this->modified()) : null,
         ];
     }
 
