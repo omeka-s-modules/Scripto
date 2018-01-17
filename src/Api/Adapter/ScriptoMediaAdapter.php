@@ -62,6 +62,10 @@ class ScriptoMediaAdapter extends AbstractAdapter
         $em = $services->get('Omeka\EntityManager');
 
         list($projectId, $mediaId) = explode(':', $request->getId());
+
+        // First, check if the Scripto media entity is already created. If not,
+        // check if the given Omeka media belongs to an Omeka item that's
+        // assigned to the given project.
         $query = $em->createQuery('
             SELECT m
             FROM Scripto\Entity\ScriptoMedia m JOIN m.scriptoItem i JOIN i.scriptoProject p
@@ -71,8 +75,19 @@ class ScriptoMediaAdapter extends AbstractAdapter
             'media_id' => $mediaId,
             'project_id' => $projectId,
         ]);
-        $sMedia = $query->getSingleResult();
-        return new Response(new ScriptoMediaResource($sMedia->getScriptoItem(), $sMedia->getMedia(), $sMedia));
+        try {
+            $sMedia = $query->getSingleResult();
+            $media = $sMedia->getMedia();
+            $sItem = $sMedia->getScriptoItem();
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            $media = $em->find('Omeka\Entity\Media', $mediaId);
+            $sItem = $em->getRepository('Scripto\Entity\ScriptoItem')->findOneBy([
+                'scriptoProject' => $projectId,
+                'item' => $media->getItem()->getId(),
+            ]);
+            $sMedia = null;
+        }
+        return new Response(new ScriptoMediaResource($sItem, $media, $sMedia));
 
     }
 }
