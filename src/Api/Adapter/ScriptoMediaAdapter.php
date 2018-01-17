@@ -55,4 +55,23 @@ class ScriptoMediaAdapter extends AbstractAdapter
         $em->flush();
         return new Response(new ScriptoMediaResource($oMedia, $sItem, $sMedia));
     }
+
+    public function read(Request $request)
+    {
+        $services = $this->getServiceLocator();
+        $em = $services->get('Omeka\EntityManager');
+
+        list($projectId, $oItemId, $oMediaId) = explode(':', $request->getId());
+        $oMedia = $em->find('Omeka\Entity\Media', $oMediaId);
+        $sItem = $em->getRepository('Scripto\Entity\ScriptoItem')->findOneBy([
+            'project' => $projectId,
+            'item' => $oItemId,
+        ]);
+        $sMedia = $em->getRepository('Scripto\Entity\ScriptoMedia')->findOneBy([
+            'item' => $sItem,
+            'media' => $oMedia
+        ]);
+        return new Response(new ScriptoMediaResource($oMedia, $sItem, $sMedia));
+
+    }
 }

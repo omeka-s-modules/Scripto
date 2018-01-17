@@ -43,13 +43,16 @@ class ScriptoMediaResource implements ResourceInterface
     /**
      * Get the resource ID.
      *
-     * Note that the ID is null if the Scripto media is not created.
-     *
      * @return int|null
      */
     public function getId()
     {
-        return $this->sMedia ? $this->sMedia->getId() : null;
+        return sprintf(
+            '%s:%s:%s',
+            $this->sItem->getProject()->getId(),
+            $this->sItem->getItem()->getId(),
+            $this->oMedia->getId()
+        );
     }
 
     /**
