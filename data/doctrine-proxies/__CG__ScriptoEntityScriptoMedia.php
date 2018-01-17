@@ -64,10 +64,10 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'item', 'media', 'completed', 'completedBy', 'approved', 'approvedBy', 'created', 'modified'];
+            return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'completed', 'completedBy', 'approved', 'approvedBy', 'created', 'modified'];
         }
 
-        return ['__isInitialized__', 'id', 'item', 'media', 'completed', 'completedBy', 'approved', 'approvedBy', 'created', 'modified'];
+        return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'completed', 'completedBy', 'approved', 'approvedBy', 'created', 'modified'];
     }
 
     /**
@@ -191,23 +191,23 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
     /**
      * {@inheritDoc}
      */
-    public function setItem(\Scripto\Entity\ScriptoItem $item)
+    public function setScriptoItem(\Scripto\Entity\ScriptoItem $scriptoItem)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setItem', [$item]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setScriptoItem', [$scriptoItem]);
 
-        return parent::setItem($item);
+        return parent::setScriptoItem($scriptoItem);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getItem()
+    public function getScriptoItem()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getItem', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getScriptoItem', []);
 
-        return parent::getItem();
+        return parent::getScriptoItem();
     }
 
     /**

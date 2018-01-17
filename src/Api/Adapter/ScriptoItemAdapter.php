@@ -40,8 +40,8 @@ class ScriptoItemAdapter extends AbstractEntityAdapter
     {
         if (Request::CREATE === $request->getOperation()) {
             $data = $request->getContent();
-            $project = $this->getAdapter('scripto_projects')->findEntity($data['o-module-scripto:project']['o:id']);
-            $entity->setProject($project);
+            $sProject = $this->getAdapter('scripto_projects')->findEntity($data['o-module-scripto:project']['o:id']);
+            $entity->setScriptoProject($sProject);
             $item = $this->getAdapter('items')->findEntity($data['o:item']['o:id']);
             $entity->setItem($item);
         }
@@ -49,7 +49,7 @@ class ScriptoItemAdapter extends AbstractEntityAdapter
 
     public function validateEntity(EntityInterface $entity, ErrorStore $errorStore)
     {
-        if (null === $entity->getProject()) {
+        if (null === $entity->getScriptoProject()) {
             $errorStore->addError('o-module-scripto:project', 'A Scripto project must not be null'); // @translate
         }
         if (null === $entity->getItem()) {

@@ -13,7 +13,7 @@ use Omeka\Entity\User;
  * @Table(
  *     uniqueConstraints={
  *         @UniqueConstraint(
- *             columns={"item_id", "media_id"}
+ *             columns={"scripto_item_id", "media_id"}
  *         )
  *     }
  * )
@@ -36,7 +36,7 @@ class ScriptoMedia extends AbstractEntity
      *     onDelete="CASCADE"
      * )
      */
-    protected $item;
+    protected $scriptoItem;
 
     /**
      * @ManyToOne(
@@ -90,14 +90,14 @@ class ScriptoMedia extends AbstractEntity
         return $this->id;
     }
 
-    public function setItem(ScriptoItem $item)
+    public function setScriptoItem(ScriptoItem $scriptoItem)
     {
-        $this->item = $item;
+        $this->scriptoItem = $scriptoItem;
     }
 
-    public function getItem()
+    public function getScriptoItem()
     {
-        return $this->item;
+        return $this->scriptoItem;
     }
 
     public function setMedia(Media $media)

@@ -9,31 +9,31 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 class ScriptoMediaRepresentation extends AbstractResourceRepresentation
 {
     /**
-     * @var OMedia Omeka media
-     */
-    protected $oMedia;
-
-    /**
-     * @var SItem Scripto item
+     * @var ScriptoItem Scripto item
      */
     protected $sItem;
 
     /**
-     * @var SMedia|null Scripto media
+     * @var Media Omeka media
+     */
+    protected $media;
+
+    /**
+     * @var ScriptoMedia|null Scripto media
      */
     protected $sMedia;
 
-    public function __construct(ScriptoMediaResource $sMediaResource, AdapterInterface $adapter) {
-        parent::__construct($sMediaResource, $adapter);
-        $this->oMedia = $sMediaResource->getOMedia();
-        $this->sItem = $sMediaResource->getSItem();
-        $this->sMedia = $sMediaResource->getSMedia();
+    public function __construct(ScriptoMediaResource $resource, AdapterInterface $adapter) {
+        parent::__construct($resource, $adapter);
+        $this->sItem = $resource->getScriptoItem();
+        $this->media = $resource->getMedia();
+        $this->sMedia = $resource->getScriptoMedia();
     }
 
     public function getJsonLd(){
         $approvedBy = $this->approvedBy();
         return [
-            'o-module-scripto:item' => $this->item()->getReference(),
+            'o-module-scripto:item' => $this->scriptoItem()->getReference(),
             'o:media' => $this->media()->getReference(),
             'o-module-scripto:completed' => $this->completed(),
             'o-module-scripto:completedBy' => $this->completedBy(),
@@ -46,14 +46,14 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
         return 'o-module-scripto:Media';
     }
 
-    public function item()
+    public function scriptoItem()
     {
         return $this->getAdapter('scripto_items')->getRepresentation($this->sItem);
     }
 
     public function media()
     {
-        return $this->getAdapter('media')->getRepresentation($this->oMedia);
+        return $this->getAdapter('media')->getRepresentation($this->media);
     }
 
     public function completed()

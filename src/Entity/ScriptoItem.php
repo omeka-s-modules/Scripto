@@ -12,7 +12,7 @@ use Omeka\Entity\Item;
  * @Table(
  *     uniqueConstraints={
  *         @UniqueConstraint(
- *             columns={"project_id", "item_id"}
+ *             columns={"scripto_project_id", "item_id"}
  *         )
  *     }
  * )
@@ -35,7 +35,7 @@ class ScriptoItem extends AbstractEntity
      *     onDelete="CASCADE"
      * )
      */
-    protected $project;
+    protected $scriptoProject;
 
     /**
      * @ManyToOne(
@@ -63,14 +63,14 @@ class ScriptoItem extends AbstractEntity
         return $this->id;
     }
 
-    public function setProject(ScriptoProject $project)
+    public function setScriptoProject(ScriptoProject $scriptoProject)
     {
-        $this->project = $project;
+        $this->scriptoProject = $scriptoProject;
     }
 
-    public function getProject()
+    public function getScriptoProject()
     {
-        return $this->project;
+        return $this->scriptoProject;
     }
 
     public function setItem(Item $item)

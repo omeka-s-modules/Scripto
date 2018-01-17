@@ -2,9 +2,9 @@
 namespace Scripto\Api;
 
 use Omeka\Api\ResourceInterface;
-use Omeka\Entity\Media as OMedia;
-use Scripto\Entity\ScriptoItem as SItem;
-use Scripto\Entity\ScriptoMedia as SMedia;
+use Omeka\Entity\Media;
+use Scripto\Entity\ScriptoItem;
+use Scripto\Entity\ScriptoMedia;
 
 /**
  * Scripto media API resource
@@ -12,75 +12,79 @@ use Scripto\Entity\ScriptoMedia as SMedia;
 class ScriptoMediaResource implements ResourceInterface
 {
     /**
-     * @var OMedia Omeka media
-     */
-    protected $oMedia;
-
-    /**
-     * @var SItem Scripto item
+     * @var ScriptoItem Scripto item
      */
     protected $sItem;
 
     /**
-     * @var SMedia|null Scripto media
+     * @var Media Omeka media
+     */
+    protected $media;
+
+    /**
+     * @var ScriptoMedia|null Scripto media
      */
     protected $sMedia;
 
     /**
      * Construct the Scripto media API resource.
      *
-     * @param OMedia $oMedia
-     * @param SItem $sItem
-     * @param SMedia $sMedia
+     * @param ScriptoItem $sItem
+     * @param Media $media
+     * @param ScriptoMedia $sMedia
      */
-    public function __construct(OMedia $oMedia, SItem $sItem, SMedia $sMedia = null)
+    public function __construct(ScriptoItem $sItem, Media $media, ScriptoMedia $sMedia = null)
     {
-        $this->oMedia = $oMedia;
         $this->sItem = $sItem;
+        $this->media = $media;
         $this->sMedia = $sMedia;
     }
 
     /**
      * Get the resource ID.
      *
+     * Note that a Scripto media entity isn't created until the corresponding
+     * MediaWiki page is created. Because of this we can't use the entity ID as
+     * the resource ID. Instead we use an aggregate ID using Scripto project ID
+     * and Omeka media ID, both of which will always exist in this context.
+     *
      * @return int|null
      */
     public function getId()
     {
         return sprintf(
-            '%s:%s:%s',
-            $this->sItem->getProject()->getId(),
-            $this->sItem->getItem()->getId(),
-            $this->oMedia->getId()
+            '%s:%s',
+            $this->sItem->getScriptoProject()->getId(),
+            $this->media->getId()
         );
-    }
-
-    /**
-     * Get the Omeka media.
-     *
-     * @return OMedia
-     */
-    public function getOMedia()
-    {
-        return $this->oMedia;
     }
 
     /**
      * Get the Scripto item.
      *
-     * @return SItem
+     * @return ScriptoItem
      */
-    public function getSItem()
+    public function getScriptoItem()
     {
         return $this->sItem;
     }
 
     /**
+     * Get the Omeka media.
+     *
+     * @return Media
+     */
+    public function getMedia()
+    {
+        return $this->media;
+    }
+
+    /**
      * Get the Scripto media, if created.
      *
-     * @return SMedia|null
+     * @return ScriptoMedia|null
      */
-    public function getSMedia()
+    public function getScriptoMedia()
     {
         return $this->sMedia;
     }

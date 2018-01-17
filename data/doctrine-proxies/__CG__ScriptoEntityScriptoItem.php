@@ -64,10 +64,10 @@ class ScriptoItem extends \Scripto\Entity\ScriptoItem implements \Doctrine\ORM\P
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'project', 'item', 'created', 'modified'];
+            return ['__isInitialized__', 'id', 'scriptoProject', 'item', 'created', 'modified'];
         }
 
-        return ['__isInitialized__', 'id', 'project', 'item', 'created', 'modified'];
+        return ['__isInitialized__', 'id', 'scriptoProject', 'item', 'created', 'modified'];
     }
 
     /**
@@ -191,23 +191,23 @@ class ScriptoItem extends \Scripto\Entity\ScriptoItem implements \Doctrine\ORM\P
     /**
      * {@inheritDoc}
      */
-    public function setProject(\Scripto\Entity\ScriptoProject $project)
+    public function setScriptoProject(\Scripto\Entity\ScriptoProject $scriptoProject)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setProject', [$project]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setScriptoProject', [$scriptoProject]);
 
-        return parent::setProject($project);
+        return parent::setScriptoProject($scriptoProject);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getProject()
+    public function getScriptoProject()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getProject', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getScriptoProject', []);
 
-        return parent::getProject();
+        return parent::getScriptoProject();
     }
 
     /**

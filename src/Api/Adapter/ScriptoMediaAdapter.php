@@ -27,15 +27,15 @@ class ScriptoMediaAdapter extends AbstractAdapter
         $query = $request->getContent();
         $sItem = $em->find('Scripto\Entity\ScriptoItem', $query['scripto_item_id']);
 
-        $media = [];
-        foreach ($sItem->getItem()->getMedia() as $oMedia) {
+        $medias = [];
+        foreach ($sItem->getItem()->getMedia() as $media) {
             $sMedia = $em->getRepository('Scripto\Entity\ScriptoMedia')->findOneBy([
-                'item' => $sItem->getId(),
-                'media' => $oMedia->getId(),
+                'scriptoItem' => $sItem->getId(),
+                'media' => $media->getId(),
             ]);
-            $media[] = new ScriptoMediaResource($oMedia, $sItem, $sMedia);
+            $medias[] = new ScriptoMediaResource($sItem, $media, $sMedia);
         }
-        return new Response($media);
+        return new Response($medias);
     }
 
     public function create(Request $request)
@@ -44,16 +44,16 @@ class ScriptoMediaAdapter extends AbstractAdapter
         $em = $services->get('Omeka\EntityManager');
 
         $data = $request->getContent();
+        $sItem = $em->find('Scripto\Entity\ScriptoItem', $data['o-module-scripto:item']['o:id']);
+        $media = $em->find('Omeka\Entity\Media', $data['o:media']['o:id']);
 
         $sMedia = new ScriptoMedia;
-        $sItem = $em->find('Scripto\Entity\ScriptoItem', $data['o-module-scripto:item']['o:id']);
-        $sMedia->setItem($sItem);
-        $oMedia = $em->find('Omeka\Entity\Media', $data['o:media']['o:id']);
-        $sMedia->setMedia($oMedia);
+        $sMedia->setScriptoItem($sItem);
+        $sMedia->setMedia($media);
 
         $em->persist($sMedia);
         $em->flush();
-        return new Response(new ScriptoMediaResource($oMedia, $sItem, $sMedia));
+        return new Response(new ScriptoMediaResource($sItem, $media, $sMedia));
     }
 
     public function read(Request $request)
@@ -61,17 +61,18 @@ class ScriptoMediaAdapter extends AbstractAdapter
         $services = $this->getServiceLocator();
         $em = $services->get('Omeka\EntityManager');
 
-        list($projectId, $oItemId, $oMediaId) = explode(':', $request->getId());
-        $oMedia = $em->find('Omeka\Entity\Media', $oMediaId);
-        $sItem = $em->getRepository('Scripto\Entity\ScriptoItem')->findOneBy([
-            'project' => $projectId,
-            'item' => $oItemId,
+        list($projectId, $mediaId) = explode(':', $request->getId());
+        $query = $em->createQuery('
+            SELECT m
+            FROM Scripto\Entity\ScriptoMedia m JOIN m.scriptoItem i JOIN i.scriptoProject p
+            WHERE m.media = :media_id AND p.id = :project_id'
+        );
+        $query->setParameters([
+            'media_id' => $mediaId,
+            'project_id' => $projectId,
         ]);
-        $sMedia = $em->getRepository('Scripto\Entity\ScriptoMedia')->findOneBy([
-            'item' => $sItem,
-            'media' => $oMedia
-        ]);
-        return new Response(new ScriptoMediaResource($oMedia, $sItem, $sMedia));
+        $sMedia = $query->getSingleResult();
+        return new Response(new ScriptoMediaResource($sMedia->getScriptoItem(), $sMedia->getMedia(), $sMedia));
 
     }
 }

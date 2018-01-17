@@ -13,16 +13,15 @@ class ScriptoItemRepresentation extends AbstractEntityRepresentation
     public function getJsonLd()
     {
         return [
-            'o-module-scripto:project' => $this->project()->getReference(),
+            'o-module-scripto:project' => $this->scriptoProject()->getReference(),
             'o:item' => $this->item()->getReference(),
-            'o-module-scripto:media' => $this->media(),
         ];
     }
 
-    public function project()
+    public function scriptoProject()
     {
         return $this->getAdapter('scripto_projects')
-            ->getRepresentation($this->resource->getProject());
+            ->getRepresentation($this->resource->getScriptoProject());
     }
 
     public function item()
