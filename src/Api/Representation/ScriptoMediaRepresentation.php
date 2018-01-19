@@ -101,6 +101,11 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
     /**
      * Return the status of this media.
      *
+     * - APPROVED: this Scripto media is approved (flagged by admin)
+     * - COMPLETED: this Scripto media is completed (flagged by transcriber)
+     * - IN PROGRESS: implied by a created Scripto media entity
+     * - NEW: implied by an uncreated Scripto media entity
+     *
      * @return int
      */
     public function status()
