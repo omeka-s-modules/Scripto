@@ -83,11 +83,11 @@ class ApiClient
      *
      * Find the available actions in self::queryPages() under intestactions.
      *
-     * @param string $action
      * @param string $title
+     * @param string $action
      * @return bool
      */
-    public function userCan($action, $title)
+    public function userCan($title, $action)
     {
         $page = $this->queryPage($title);
         return isset($page['actions'][$action])
