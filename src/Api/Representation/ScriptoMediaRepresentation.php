@@ -9,6 +9,14 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 class ScriptoMediaRepresentation extends AbstractResourceRepresentation
 {
     /**
+     * Scripto media statuses
+     */
+    const STATUS_NEW = 0;
+    const STATUS_IN_PROGRESS = 1;
+    const STATUS_COMPLETED = 2;
+    const STATUS_APPROVED = 3;
+
+    /**
      * @var ScriptoItem Scripto item
      */
     protected $sItem;
@@ -35,9 +43,9 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
         return [
             'o-module-scripto:item' => $this->scriptoItem()->getReference(),
             'o:media' => $this->media()->getReference(),
-            'o-module-scripto:completed' => $this->completed(),
+            'o-module-scripto:is_completed' => $this->isCompleted(),
             'o-module-scripto:completedBy' => $this->completedBy(),
-            'o-module-scripto:approved' => $this->approved(),
+            'o-module-scripto:is_approved' => $this->isApproved(),
             'o-module-scripto:approvedBy' => $approvedBy ? $approvedBy->getReference() : null,
             'o:created' => $this->created() ? $this->getDateTime($this->created()) : null,
             'o:modified' => $this->modified() ? $this->getDateTime($this->modified()) : null,
@@ -58,9 +66,9 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
         return $this->getAdapter('media')->getRepresentation($this->media);
     }
 
-    public function completed()
+    public function isCompleted()
     {
-        return $this->sMedia ? $this->sMedia->getCompleted() : false;
+        return $this->sMedia ? $this->sMedia->getIsCompleted() : false;
     }
 
     public function completedBy()
@@ -68,9 +76,9 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
         return $this->sMedia ? $this->sMedia->getCompletedBy() : null;
     }
 
-    public function approved()
+    public function isApproved()
     {
-        return $this->sMedia ? $this->sMedia->getApproved() : false;
+        return $this->sMedia ? $this->sMedia->getIsApproved() : false;
     }
 
     public function approvedBy()
@@ -88,5 +96,24 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
     public function modified()
     {
         return $this->sMedia ? $this->sMedia->getModified() : null;
+    }
+
+    /**
+     * Return the status of this media.
+     *
+     * @return int
+     */
+    public function status()
+    {
+        if ($this->isApproved()) {
+            return STATUS_APPROVED;
+        }
+        if ($this->isCompleted()) {
+            return STATUS_COMPLETED;
+        }
+        if ($this->created()) {
+            return STATUS_IN_PROGRESS;
+        }
+        return STATUS_NEW;
     }
 }

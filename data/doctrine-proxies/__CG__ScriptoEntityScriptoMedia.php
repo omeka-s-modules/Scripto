@@ -64,10 +64,10 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'completed', 'completedBy', 'approved', 'approvedBy', 'created', 'modified'];
+            return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'isCompleted', 'completedBy', 'isApproved', 'approvedBy', 'created', 'modified'];
         }
 
-        return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'completed', 'completedBy', 'approved', 'approvedBy', 'created', 'modified'];
+        return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'isCompleted', 'completedBy', 'isApproved', 'approvedBy', 'created', 'modified'];
     }
 
     /**
@@ -235,23 +235,23 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
     /**
      * {@inheritDoc}
      */
-    public function setCompleted($completed)
+    public function setIsCompleted($isCompleted)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCompleted', [$completed]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setIsCompleted', [$isCompleted]);
 
-        return parent::setCompleted($completed);
+        return parent::setIsCompleted($isCompleted);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getCompleted()
+    public function getIsCompleted()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCompleted', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIsCompleted', []);
 
-        return parent::getCompleted();
+        return parent::getIsCompleted();
     }
 
     /**
@@ -279,23 +279,23 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
     /**
      * {@inheritDoc}
      */
-    public function setApproved($approved)
+    public function setIsApproved($isApproved)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setApproved', [$approved]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setIsApproved', [$isApproved]);
 
-        return parent::setApproved($approved);
+        return parent::setIsApproved($isApproved);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getApproved()
+    public function getIsApproved()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getApproved', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIsApproved', []);
 
-        return parent::getApproved();
+        return parent::getIsApproved();
     }
 
     /**

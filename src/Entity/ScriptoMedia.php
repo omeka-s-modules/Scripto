@@ -52,7 +52,7 @@ class ScriptoMedia extends AbstractEntity
     /**
      * @Column(type="boolean", nullable=false)
      */
-    protected $completed = false;
+    protected $isCompleted = false;
 
     /**
      * @Column(nullable=true)
@@ -62,7 +62,7 @@ class ScriptoMedia extends AbstractEntity
     /**
      * @Column(type="boolean", nullable=false)
      */
-    protected $approved = false;
+    protected $isApproved = false;
 
     /**
      * @ManyToOne(
@@ -110,14 +110,14 @@ class ScriptoMedia extends AbstractEntity
         return $this->media;
     }
 
-    public function setCompleted($completed)
+    public function setIsCompleted($isCompleted)
     {
-        $this->completed = (bool) $completed;
+        $this->isCompleted = (bool) $isCompleted;
     }
 
-    public function getCompleted()
+    public function getIsCompleted()
     {
-        return $this->completed;
+        return $this->isCompleted;
     }
 
     public function setCompletedBy($completedBy)
@@ -130,14 +130,14 @@ class ScriptoMedia extends AbstractEntity
         return $this->completedBy;
     }
 
-    public function setApproved($approved)
+    public function setIsApproved($isApproved)
     {
-        $this->approved = (bool) $completed;
+        $this->isApproved = (bool) $isApproved;
     }
 
-    public function getApproved()
+    public function getIsApproved()
     {
-        return $this->approved;
+        return $this->isApproved;
     }
 
     public function setApprovedBy(User $approvedBy = null)
