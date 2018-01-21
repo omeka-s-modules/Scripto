@@ -11,7 +11,7 @@ class ApiClientFactory implements FactoryInterface
     {
         return new ApiClient(
             $services->get('Omeka\HttpClient'),
-            $services->get('Omeka\Settings')->get('scripto_apiurl');
+            $services->get('Omeka\Settings')->get('scripto_apiurl'),
             $services->get('ViewHelperManager')->get('ServerUrl')->__invoke()
         );
     }
