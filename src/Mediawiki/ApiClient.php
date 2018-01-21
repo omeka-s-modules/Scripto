@@ -69,13 +69,19 @@ class ApiClient
     /**
      * Is this page created?
      *
-     * @param string $title
+     * @param string|array $title A string or the result of self::queryPage()
      * @return bool
      */
     public function pageIsCreated($title)
     {
-        $page = $this->queryPage($title);
-        return !isset($page['missing']);
+        if (is_string($title)) {
+            $page = $this->queryPage($title);
+        } elseif (is_array($title)) {
+            $page = $title;
+        } else {
+            throw new Exception\InvalidArgumentException('A title must be a string or an array');
+        }
+        return isset($page['pageid']);
     }
 
     /**
@@ -83,13 +89,19 @@ class ApiClient
      *
      * Find the available actions in self::queryPages() under intestactions.
      *
-     * @param string $title
+     * @param string|array $title A string or the result of self::queryPage()
      * @param string $action
      * @return bool
      */
     public function userCan($title, $action)
     {
-        $page = $this->queryPage($title);
+        if (is_string($title)) {
+            $page = $this->queryPage($title);
+        } elseif (is_array($title)) {
+            $page = $title;
+        } else {
+            throw new Exception\InvalidArgumentException('A title must be a string or an array');
+        }
         return isset($page['actions'][$action])
             ? (bool) $page['actions'][$action] : false;
     }
