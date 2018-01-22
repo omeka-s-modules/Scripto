@@ -16,30 +16,10 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
     const STATUS_COMPLETED = 2;
     const STATUS_APPROVED = 3;
 
-    /**
-     * @var ScriptoItem Scripto item
-     */
-    protected $sItem;
-
-    /**
-     * @var Media Omeka media
-     */
-    protected $media;
-
-    /**
-     * @var ScriptoMedia|null Scripto media
-     */
-    protected $sMedia;
-
-    public function __construct(ScriptoMediaResource $resource, AdapterInterface $adapter) {
-        parent::__construct($resource, $adapter);
-        $this->sItem = $resource->getScriptoItem();
-        $this->media = $resource->getMedia();
-        $this->sMedia = $resource->getScriptoMedia();
-    }
-
     public function getJsonLd(){
         $approvedBy = $this->approvedBy();
+        $created = $this->created();
+        $modified = $this->modified();
         return [
             'o-module-scripto:item' => $this->scriptoItem()->getReference(),
             'o:media' => $this->media()->getReference(),
@@ -47,8 +27,8 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
             'o-module-scripto:completedBy' => $this->completedBy(),
             'o-module-scripto:is_approved' => $this->isApproved(),
             'o-module-scripto:approvedBy' => $approvedBy ? $approvedBy->getReference() : null,
-            'o:created' => $this->created() ? $this->getDateTime($this->created()) : null,
-            'o:modified' => $this->modified() ? $this->getDateTime($this->modified()) : null,
+            'o:created' => $created ? $this->getDateTime($created) : null,
+            'o:modified' => $modified ? $this->getDateTime($modified) : null,
         ];
     }
 
@@ -58,44 +38,48 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
 
     public function scriptoItem()
     {
-        return $this->getAdapter('scripto_items')->getRepresentation($this->sItem);
+        return $this->getAdapter('scripto_items')->getRepresentation($this->resource->getScriptoItem());
     }
 
     public function media()
     {
-        return $this->getAdapter('media')->getRepresentation($this->media);
+        return $this->getAdapter('media')->getRepresentation($this->resource->getMedia());
     }
 
     public function isCompleted()
     {
-        return $this->sMedia ? $this->sMedia->getIsCompleted() : false;
+        $sMedia = $this->resource->getScriptoMedia();
+        return $sMedia ? $sMedia->getIsCompleted() : false;
     }
 
     public function completedBy()
     {
-        return $this->sMedia ? $this->sMedia->getCompletedBy() : null;
+        $sMedia = $this->resource->getScriptoMedia();
+        return $sMedia ? $sMedia->getCompletedBy() : null;
     }
 
     public function isApproved()
     {
-        return $this->sMedia ? $this->sMedia->getIsApproved() : false;
+        $sMedia = $this->resource->getScriptoMedia();
+        return $sMedia ? $sMedia->getIsApproved() : false;
     }
 
     public function approvedBy()
     {
-        return $this->sMedia
-            ? $this->getAdapter('users')->getRepresentation($this->sMedia->getApprovedBy())
-            : null;
+        $sMedia = $this->resource->getScriptoMedia();
+        return $sMedia ? $this->getAdapter('users')->getRepresentation($sMedia->getApprovedBy()) : null;
     }
 
     public function created()
     {
-        return $this->sMedia ? $this->sMedia->getCreated() : null;
+        $sMedia = $this->resource->getScriptoMedia();
+        return $sMedia ? $sMedia->getCreated() : null;
     }
 
     public function modified()
     {
-        return $this->sMedia ? $this->sMedia->getModified() : null;
+        $sMedia = $this->resource->getScriptoMedia();
+        return $sMedia ? $sMedia->getModified() : null;
     }
 
     /**
