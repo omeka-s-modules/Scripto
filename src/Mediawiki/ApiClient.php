@@ -397,6 +397,29 @@ class ApiClient
     }
 
     /**
+     * Compare page revisions.
+     *
+     * @param int $fromRevId The first revision ID to compare
+     * @param int $toRevId The second revision ID to compare
+     * @return string
+     */
+    public function compareRevisions($fromRevId, $toRevId)
+    {
+        if (!is_numeric($fromRevId) || !is_numeric($toRevId)) {
+            throw new Exception\InvalidArgumentException('Revision IDs must be numeric');
+        }
+        $compare = $this->request([
+            'action' => 'compare',
+            'fromrev' => $fromRevId,
+            'torev' => $toRevId,
+        ]);
+        if (isset($compare['error'])) {
+            throw new Exception\ParseException($compare['error']['info']);
+        }
+        return $compare['compare']['body'];
+    }
+
+    /**
      * Query information about the MediaWiki site.
      *
      * @link https://www.mediawiki.org/wiki/API:Siteinfo
