@@ -309,7 +309,7 @@ class ApiClient
                 'action' => 'query',
                 'prop' => 'revisions',
                 'titles' => $title,
-                'rvprop' => 'ids|flags|timestamp|comment|user',
+                'rvprop' => 'ids|flags|timestamp|user|size|parsedcomment',
                 'rvlimit' => 'max',
             ];
             if ($continue) {
