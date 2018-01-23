@@ -5,12 +5,18 @@ use Omeka\Api\ResourceInterface;
 use Omeka\Entity\Media;
 use Scripto\Entity\ScriptoItem;
 use Scripto\Entity\ScriptoMedia;
+use Scripto\Mediawiki\ApiClient;
 
 /**
  * Scripto media API resource
  */
 class ScriptoMediaResource implements ResourceInterface
 {
+    /**
+     * @var ApiClient MediaWiki API client
+     */
+    protected $client;
+
     /**
      * @var ScriptoItem Scripto item
      */
@@ -27,14 +33,22 @@ class ScriptoMediaResource implements ResourceInterface
     protected $sMedia;
 
     /**
+     * @var array The corresponding MediaWiki page information
+     */
+    protected $page;
+
+    /**
      * Construct the Scripto media API resource.
      *
+     * @param ApiClient $client
      * @param ScriptoItem $sItem
      * @param Media $media
      * @param ScriptoMedia $sMedia
      */
-    public function __construct(ScriptoItem $sItem, Media $media, ScriptoMedia $sMedia = null)
-    {
+    public function __construct(ApiClient $client, ScriptoItem $sItem,
+        Media $media, ScriptoMedia $sMedia = null
+    ) {
+        $this->client = $client;
         $this->sItem = $sItem;
         $this->media = $media;
         $this->sMedia = $sMedia;
@@ -87,5 +101,56 @@ class ScriptoMediaResource implements ResourceInterface
     public function getScriptoMedia()
     {
         return $this->sMedia;
+    }
+
+    /**
+     * Get information about the corresponding MediaWiki page.
+     *
+     * Caches the information when first called.
+     *
+     * @return array
+     */
+    public function queryPage()
+    {
+        if (null === $this->page) {
+            $this->page = $this->client->queryPage($this->getId());
+        }
+        return $this->page;
+    }
+
+    /**
+     * Get revisions of the corresponding MediaWiki page.
+     *
+     * @param int $limit
+     * @param int $offset
+     * @return array
+     */
+    public function queryRevisions($limit = null, $offset = null)
+    {
+        return $this->client->queryRevisions($this->getId(), $limit, $offset);
+    }
+
+    /**
+     * Is the corresponding MediaWiki page created?
+     *
+     * Note that a MediaWiki page could have already been created if a
+     * previously transcribed Omeka item has been removed from the project's
+     * item set and subsequently re-added.
+     *
+     * @return bool
+     */
+    public function pageIsCreated()
+    {
+        $this->client->pageIsCreated($this->queryPage());
+    }
+
+    /**
+     * Can the user perform this action on the corresponding MediaWiki page?
+     *
+     * @return bool
+     */
+    public function userCan($action)
+    {
+        $this->client->userCan($this->queryPage(), $action);
     }
 }

@@ -23,6 +23,7 @@ class ScriptoMediaAdapter extends AbstractAdapter
     {
         $services = $this->getServiceLocator();
         $em = $services->get('Omeka\EntityManager');
+        $client = $services->get('Scripto\Mediawiki\ApiClient');
 
         $query = $request->getContent();
         $sItem = $em->find('Scripto\Entity\ScriptoItem', $query['scripto_item_id']);
@@ -33,7 +34,7 @@ class ScriptoMediaAdapter extends AbstractAdapter
                 'scriptoItem' => $sItem->getId(),
                 'media' => $media->getId(),
             ]);
-            $medias[] = new ScriptoMediaResource($sItem, $media, $sMedia);
+            $medias[] = new ScriptoMediaResource($client, $sItem, $media, $sMedia);
         }
         return new Response($medias);
     }
@@ -60,6 +61,7 @@ class ScriptoMediaAdapter extends AbstractAdapter
     {
         $services = $this->getServiceLocator();
         $em = $services->get('Omeka\EntityManager');
+        $client = $services->get('Scripto\Mediawiki\ApiClient');
 
         list($projectId, $mediaId) = explode(':', $request->getId());
 
@@ -87,7 +89,7 @@ class ScriptoMediaAdapter extends AbstractAdapter
             ]);
             $sMedia = null;
         }
-        return new Response(new ScriptoMediaResource($sItem, $media, $sMedia));
+        return new Response(new ScriptoMediaResource($client, $sItem, $media, $sMedia));
 
     }
 }

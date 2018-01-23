@@ -16,7 +16,8 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
     const STATUS_COMPLETED = 2;
     const STATUS_APPROVED = 3;
 
-    public function getJsonLd(){
+    public function getJsonLd()
+    {
         $approvedBy = $this->approvedBy();
         $created = $this->created();
         $modified = $this->modified();
@@ -32,7 +33,8 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
         ];
     }
 
-    public function getJsonLdType(){
+    public function getJsonLdType()
+    {
         return 'o-module-scripto:Media';
     }
 
@@ -104,5 +106,48 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
             return STATUS_IN_PROGRESS;
         }
         return STATUS_NEW;
+    }
+
+    /**
+     * Get the most recent text.
+     *
+     * @return string
+     */
+    public function text()
+    {
+        $page = $this->resource->queryPage();
+        return isset($page['revisions'][0]['content']) ? $page['revisions'][0]['content'] : null;
+    }
+
+    /**
+     * Get text revisions.
+     *
+     * @param int $limit
+     * @param int $offset
+     * @return array
+     */
+    public function revisions($limit = null, $offset = null)
+    {
+        return $this->resource->queryRevisions($limit, $offset);
+    }
+
+    /**
+     * Is the corresponding MediaWiki page created?
+     *
+     * @return bool
+     */
+    public function mwPageIsCreated()
+    {
+        return $this->resource->pageIsCreated();
+    }
+
+    /**
+     * Can the user perform this action on the corresponding MediaWiki page?
+     *
+     * @return bool
+     */
+    public function mwUserCan($action)
+    {
+        return $this->resource->userCan($action);
     }
 }
