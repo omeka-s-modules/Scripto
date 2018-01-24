@@ -1,6 +1,7 @@
 <?php
 namespace Scripto\Api\Adapter;
 
+use Doctrine\ORM\QueryBuilder;
 use Omeka\Api\Adapter\AbstractEntityAdapter;
 use Omeka\Api\Request;
 use Omeka\Entity\EntityInterface;
@@ -21,6 +22,26 @@ class ScriptoItemAdapter extends AbstractEntityAdapter
     public function getEntityClass()
     {
         return 'Scripto\Entity\ScriptoItem';
+    }
+
+    public function buildQuery(QueryBuilder $qb, array $query)
+    {
+        if (isset($query['scripto_project_id'])) {
+            $alias = $this->createAlias();
+            $qb->innerJoin('Scripto\Entity\ScriptoItem.scriptoProject', $alias);
+            $qb->andWhere($qb->expr()->eq(
+                "$alias.id",
+                $this->createNamedParameter($qb, $query['scripto_project_id']))
+            );
+        }
+        if (isset($query['item_id'])) {
+            $alias = $this->createAlias();
+            $qb->innerJoin('Scripto\Entity\ScriptoItem.item', $alias);
+            $qb->andWhere($qb->expr()->eq(
+                "$alias.id",
+                $this->createNamedParameter($qb, $query['item_id']))
+            );
+        }
     }
 
     public function validateRequest(Request $request, ErrorStore $errorStore)

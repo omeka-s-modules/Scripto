@@ -1,6 +1,7 @@
 <?php
 namespace Scripto\Api\Adapter;
 
+use Doctrine\ORM\QueryBuilder;
 use Omeka\Api\Adapter\AbstractEntityAdapter;
 use Omeka\Api\Request;
 use Omeka\Entity\EntityInterface;
@@ -23,6 +24,33 @@ class ScriptoProjectAdapter extends AbstractEntityAdapter
         return 'Scripto\Entity\ScriptoProject';
     }
 
+    public function buildQuery(QueryBuilder $qb, array $query)
+    {
+        if (isset($query['owner_id'])) {
+            $alias = $this->createAlias();
+            $qb->innerJoin('Scripto\Entity\ScriptoProject.owner', $alias);
+            $qb->andWhere($qb->expr()->eq(
+                "$alias.id",
+                $this->createNamedParameter($qb, $query['owner_id']))
+            );
+        }
+        if (isset($query['item_set_id'])) {
+            $alias = $this->createAlias();
+            $qb->innerJoin('Scripto\Entity\ScriptoProject.itemSet', $alias);
+            $qb->andWhere($qb->expr()->eq(
+                "$alias.id",
+                $this->createNamedParameter($qb, $query['item_set_id']))
+            );
+        }
+        if (isset($query['property_id'])) {
+            $alias = $this->createAlias();
+            $qb->innerJoin('Scripto\Entity\ScriptoProject.property', $alias);
+            $qb->andWhere($qb->expr()->eq(
+                "$alias.id",
+                $this->createNamedParameter($qb, $query['property_id']))
+            );
+        }
+    }
     public function validateRequest(Request $request, ErrorStore $errorStore)
     {
         $data = $request->getContent();
