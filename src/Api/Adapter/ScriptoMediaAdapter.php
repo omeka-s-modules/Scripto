@@ -1,13 +1,21 @@
 <?php
 namespace Scripto\Api\Adapter;
 
-use Omeka\Api\Adapter\AbstractAdapter;
+use Omeka\Api\Adapter\AbstractEntityAdapter;
 use Omeka\Api\Request;
 use Omeka\Api\Response;
+use Omeka\Entity\EntityInterface;
+use Omeka\Stdlib\ErrorStore;
 use Scripto\Api\ScriptoMediaResource;
 use Scripto\Entity\ScriptoMedia;
 
-class ScriptoMediaAdapter extends AbstractAdapter
+/**
+ * Scripto media adapter
+ *
+ * Must override SCRUD operations because of the unconventional construction of
+ * ScriptoMediaResource.
+ */
+class ScriptoMediaAdapter extends AbstractEntityAdapter
 {
     public function getResourceName()
     {
@@ -17,6 +25,11 @@ class ScriptoMediaAdapter extends AbstractAdapter
     public function getRepresentationClass()
     {
         return 'Scripto\Api\Representation\ScriptoMediaRepresentation';
+    }
+
+    public function getEntityClass()
+    {
+        return 'Scripto\Entity\ScriptoMedia';
     }
 
     public function search(Request $request)
@@ -41,20 +54,16 @@ class ScriptoMediaAdapter extends AbstractAdapter
 
     public function create(Request $request)
     {
-        $services = $this->getServiceLocator();
-        $em = $services->get('Omeka\EntityManager');
-
-        $data = $request->getContent();
-        $sItem = $em->find('Scripto\Entity\ScriptoItem', $data['o-module-scripto:item']['o:id']);
-        $media = $em->find('Omeka\Entity\Media', $data['o:media']['o:id']);
-
         $sMedia = new ScriptoMedia;
-        $sMedia->setScriptoItem($sItem);
-        $sMedia->setMedia($media);
+        $this->hydrateEntity($request, $sMedia, new ErrorStore);
+        $this->getEntityManager()->persist($sMedia);
+        $this->getEntityManager()->flush();
+        $this->getEntityManager()->refresh($sMedia);
 
-        $em->persist($sMedia);
-        $em->flush();
-        return new Response(new ScriptoMediaResource($sItem, $media, $sMedia));
+        $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
+        return new Response(new ScriptoMediaResource(
+            $client, $sMedia->getScriptoItem(), $sMedia->getMedia(), $sMedia
+        ));
     }
 
     public function read(Request $request)
@@ -90,6 +99,41 @@ class ScriptoMediaAdapter extends AbstractAdapter
             $sMedia = null;
         }
         return new Response(new ScriptoMediaResource($client, $sItem, $media, $sMedia));
+    }
 
+    public function validateRequest(Request $request, ErrorStore $errorStore)
+    {
+        if (Request::CREATE === $request->getOperation()) {
+            $data = $request->getContent();
+            if (!isset($data['o-module-scripto:item']['o:id'])) {
+                $errorStore->addError('o-module-scripto:item', 'A Scripto media must be assigned a Scripto item on creation.'); // @translate
+            }
+            if (!isset($data['o:media']['o:id'])) {
+                $errorStore->addError('o:media', 'A Scripto media must be assigned an Omeka media on creation.'); // @translate
+            }
+        }
+    }
+
+    public function hydrate(Request $request, EntityInterface $entity, ErrorStore $errorStore)
+    {
+        if (Request::CREATE === $request->getOperation()) {
+            $data = $request->getContent();
+
+            $sItem = $this->getAdapter('scripto_items')->findEntity($data['o-module-scripto:item']['o:id']);
+            $media = $this->getAdapter('media')->findEntity($data['o:media']['o:id']);
+
+            $entity->setScriptoItem($sItem);
+            $entity->setMedia($media);
+        }
+    }
+
+    public function validateEntity(EntityInterface $entity, ErrorStore $errorStore)
+    {
+        if (null === $entity->getScriptoItem()) {
+            $errorStore->addError('o-module-scripto:item', 'A Scripto item must not be null'); // @translate
+        }
+        if (null === $entity->getMedia()) {
+            $errorStore->addError('o:media', 'A media must not be null'); // @translate
+        }
     }
 }
