@@ -2,6 +2,7 @@
 namespace Scripto\Api\Adapter;
 
 use Omeka\Api\Adapter\AbstractEntityAdapter;
+use Omeka\Api\Exception;
 use Omeka\Api\Request;
 use Omeka\Api\Response;
 use Omeka\Entity\EntityInterface;
@@ -72,6 +73,7 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
         $em = $services->get('Omeka\EntityManager');
         $client = $services->get('Scripto\Mediawiki\ApiClient');
 
+        $this->validateResourceId($request->getId());
         list($projectId, $mediaId) = explode(':', $request->getId());
 
         // First, check if the Scripto media entity is already created. If not,
@@ -104,6 +106,15 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
             $sMedia = null;
         }
         return new Response(new ScriptoMediaResource($client, $sItem, $media, $sMedia));
+    }
+
+    public function validateResourceId($id)
+    {
+        if (!preg_match('/^\d+:\d$/', $id)) {
+            throw new Exception\NotFoundException(sprintf(
+                $this->getTranslator()->translate('Scripto\Entity\ScriptoMedia entity with ID %s not found'), $id
+            ));
+        }
     }
 
     public function validateRequest(Request $request, ErrorStore $errorStore)
