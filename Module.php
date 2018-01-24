@@ -3,6 +3,7 @@ namespace Scripto;
 
 use Omeka\Module\AbstractModule;
 use Scripto\Form\ConfigForm;
+use Zend\EventManager\Event;
 use Zend\EventManager\SharedEventManagerInterface;
 use Zend\Mvc\Controller\AbstractController;
 use Zend\Mvc\MvcEvent;
@@ -81,5 +82,25 @@ SET FOREIGN_KEY_CHECKS=1;
 
     public function attachListeners(SharedEventManagerInterface $sharedEventManager)
     {
+        $sharedEventManager->attach(
+            'Scripto\Entity\ScriptoProject',
+            'entity.persist.post',
+            [$this, 'addItemsToNewProjects']
+        );
+    }
+
+    /**
+     * Add all items from the corresponding item set to newly created projects.
+     *
+     * @param Event $event
+     */
+    public function addItemsToNewProjects(Event $event)
+    {
+        $project = $event->getTarget();
+        $dispatcher = $this->getServiceLocator()->get('Omeka\Job\Dispatcher');
+        $dispatcher->dispatch('Scripto\Job\SyncProjectItems', [
+            'scripto_project_id' => $project->getId(),
+            'item_set_id' => $project->getItemSet()->getId(),
+        ]);
     }
 }
