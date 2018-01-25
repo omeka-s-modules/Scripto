@@ -35,10 +35,6 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
 
     public function search(Request $request)
     {
-        $services = $this->getServiceLocator();
-        $em = $services->get('Omeka\EntityManager');
-        $client = $services->get('Scripto\Mediawiki\ApiClient');
-
         $sItemId = $request->getValue('scripto_item_id');
         if (!$sItemId) {
             throw new Exception\BadRequestException('The search query must include scripto_item_id'); // @translate
@@ -46,6 +42,8 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
         $sItem = $this->getAdapter('scripto_items')->findEntity($sItemId);
 
         $medias = [];
+        $em = $this->getEntityManager();
+        $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
         foreach ($sItem->getItem()->getMedia() as $media) {
             $sMedia = $em->getRepository('Scripto\Entity\ScriptoMedia')->findOneBy([
                 'scriptoItem' => $sItem->getId(),
@@ -72,19 +70,12 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
 
     public function read(Request $request)
     {
-        $services = $this->getServiceLocator();
-        $em = $services->get('Omeka\EntityManager');
-        $client = $services->get('Scripto\Mediawiki\ApiClient');
-
         if (!$this->resourceIdIsValid($request->getId())) {
             throw new Exception\BadRequestException('Invalid resource ID format; must use "scripto_project_id:media_id"'); // @translate
         }
         list($projectId, $mediaId) = explode(':', $request->getId());
 
-        // First, check if the Scripto media entity is already created. If not,
-        // check if the given Omeka media belongs to an Omeka item that's
-        // assigned to the given project.
-        $query = $em->createQuery('
+        $query = $this->getEntityManager()->createQuery('
             SELECT m
             FROM Scripto\Entity\ScriptoMedia m
             JOIN m.scriptoItem i
@@ -96,12 +87,13 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
             'project_id' => $projectId,
         ]);
         try {
-            // The Scripto media entity exists.
+            // First, check if the Scripto media entity is already created.
             $sMedia = $query->getSingleResult();
             $media = $sMedia->getMedia();
             $sItem = $sMedia->getScriptoItem();
         } catch (\Doctrine\ORM\NoResultException $e) {
-            // The Scripto media entity does not exist.
+            // If not, check if the given Omeka media belongs to an Omeka item
+            // that's assigned to the given project.
             $media = $this->getAdapter('media')->findEntity($mediaId);
             $sItem = $this->getAdapter('scripto_items')->findEntity([
                 'scriptoProject' => $projectId,
@@ -109,6 +101,8 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
             ]);
             $sMedia = null;
         }
+
+        $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
         return new Response(new ScriptoMediaResource($client, $sItem, $media, $sMedia));
     }
 
