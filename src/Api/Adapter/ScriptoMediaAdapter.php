@@ -39,8 +39,11 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
         $em = $services->get('Omeka\EntityManager');
         $client = $services->get('Scripto\Mediawiki\ApiClient');
 
-        $query = $request->getContent();
-        $sItem = $em->find('Scripto\Entity\ScriptoItem', $query['scripto_item_id']);
+        $sItemId = $request->getValue('scripto_item_id');
+        if (!$sItemId) {
+            throw new Exception\BadRequestException('The search query must include scripto_item_id'); // @translate
+        }
+        $sItem = $this->getAdapter('scripto_items')->findEntity($sItemId);
 
         $medias = [];
         foreach ($sItem->getItem()->getMedia() as $media) {
@@ -73,7 +76,9 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
         $em = $services->get('Omeka\EntityManager');
         $client = $services->get('Scripto\Mediawiki\ApiClient');
 
-        $this->validateResourceId($request->getId());
+        if (!$this->resourceIdIsValid($request->getId())) {
+            throw new Exception\BadRequestException('Invalid resource ID format; must use "scripto_project_id:media_id"'); // @translate
+        }
         list($projectId, $mediaId) = explode(':', $request->getId());
 
         // First, check if the Scripto media entity is already created. If not,
@@ -86,8 +91,7 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
             JOIN i.scriptoProject p
             WHERE m.media = :media_id
             AND p.id = :project_id'
-        );
-        $query->setParameters([
+        )->setParameters([
             'media_id' => $mediaId,
             'project_id' => $projectId,
         ]);
@@ -108,13 +112,15 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
         return new Response(new ScriptoMediaResource($client, $sItem, $media, $sMedia));
     }
 
-    public function validateResourceId($id)
+    /**
+     * Is the passed Scripto media resource ID valid?
+     *
+     * @param int $id
+     * @return bool
+     */
+    public function resourceIdIsValid($id)
     {
-        if (!preg_match('/^\d+:\d$/', $id)) {
-            throw new Exception\NotFoundException(sprintf(
-                $this->getTranslator()->translate('Scripto\Entity\ScriptoMedia entity with ID %s not found'), $id
-            ));
-        }
+        return preg_match('/^\d+:\d$/', $id); // scripto_project_id:media_id
     }
 
     public function validateRequest(Request $request, ErrorStore $errorStore)
