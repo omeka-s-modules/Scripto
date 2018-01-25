@@ -14,7 +14,8 @@ use Scripto\Entity\ScriptoMedia;
  * Scripto media adapter
  *
  * Must override SCRUD operations because of the unconventional construction of
- * ScriptoMediaResource.
+ * ScriptoMediaResource and because the corresponding MediaWiki pages must be
+ * edited before flushing the entity manager during create/update.
  */
 class ScriptoMediaAdapter extends AbstractEntityAdapter
 {
@@ -58,6 +59,7 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
     {
         $sMedia = new ScriptoMedia;
         $this->hydrateEntity($request, $sMedia, new ErrorStore);
+        $this->editMediawikiPage($sMedia, $request->getValue('o-module-scripto:text'));
         $this->getEntityManager()->persist($sMedia);
         $this->getEntityManager()->flush();
         $this->getEntityManager()->refresh($sMedia);
@@ -70,7 +72,7 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
 
     public function read(Request $request)
     {
-        if (!$this->resourceIdIsValid($request->getId())) {
+        if (!$this->scriptoMediaResourceIdIsValid($request->getId())) {
             throw new Exception\BadRequestException('Invalid resource ID format; must use "scripto_project_id:media_id"'); // @translate
         }
         list($projectId, $mediaId) = explode(':', $request->getId());
@@ -106,21 +108,13 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
         return new Response(new ScriptoMediaResource($client, $sItem, $media, $sMedia));
     }
 
-    /**
-     * Is the passed Scripto media resource ID valid?
-     *
-     * @param int $id
-     * @return bool
-     */
-    public function resourceIdIsValid($id)
-    {
-        return preg_match('/^\d+:\d$/', $id); // scripto_project_id:media_id
-    }
-
     public function validateRequest(Request $request, ErrorStore $errorStore)
     {
         if (Request::CREATE === $request->getOperation()) {
             $data = $request->getContent();
+            if (!isset($data['o-module-scripto:text'])) {
+                $errorStore->addError('o:media', 'A Scripto media must have text on creation.'); // @translate
+            }
             if (!isset($data['o-module-scripto:item']['o:id'])) {
                 $errorStore->addError('o-module-scripto:item', 'A Scripto media must be assigned a Scripto item on creation.'); // @translate
             }
@@ -151,5 +145,58 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
         if (null === $entity->getMedia()) {
             $errorStore->addError('o:media', 'A media must not be null'); // @translate
         }
+    }
+
+    /**
+     * Is the passed Scripto media resource ID valid?
+     *
+     * @param int $id
+     * @return bool
+     */
+    public function scriptoMediaResourceIdIsValid($id)
+    {
+        return preg_match('/^\d+:\d$/', $id); // scripto_project_id:media_id
+    }
+
+    /**
+     * Get the Scripto media resource ID from the Scripto media entity.
+     *
+     * @param ScriptoMedia $sMedia
+     * @return string
+     */
+    public function getScriptoMediaResourceId(ScriptoMedia $sMedia)
+    {
+        return sprintf(
+            '%s:%s',
+            $sMedia->getScriptoItem()->getScriptoProject()->getId(),
+            $sMedia->getMedia()->getId()
+        );
+    }
+
+    /**
+     * Edit a corresponding MediaWiki page.
+     *
+     * @param ScriptoMedia $sMedia
+     * @param string $text
+     */
+    public function editMediawikiPage(ScriptoMedia $sMedia, $text)
+    {
+        $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
+        $pageTitle = $this->getScriptoMediaResourceId($sMedia);
+        $page = $client->queryPage($pageTitle);
+        $pageIsCreated = $client->pageIsCreated($page);
+        if (!$pageIsCreated && !$client->userCan($page, 'createpage')) {
+            throw new Exception\RuntimeException(sprintf(
+                $this->getTranslator()->translate('The MediaWiki user does not have the necessary permissions to create the page "%s"'),
+                $pageTitle
+            ));
+        }
+        if ($pageIsCreated && !$client->userCan($page, 'edit')) {
+            throw new Exception\RuntimeException(sprintf(
+                $this->getTranslator()->translate('The MediaWiki user does not have the necessary permissions to edit the page "%s"'),
+                $pageTitle
+            ));
+        }
+        $client->editPage($pageTitle, $text);
     }
 }
