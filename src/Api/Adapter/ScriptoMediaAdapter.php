@@ -74,17 +74,18 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
     {
         $sMedia = $this->getScriptoMediaEntity($request->getId());
         if ($sMedia) {
-            // First check if the Scripto media entity has already been created.
+            // The Scripto media entity has already been created.
             $media = $sMedia->getMedia();
             $sItem = $sMedia->getScriptoItem();
         } else {
-            // If not check if the Omeka media belongs to an Omeka item that's
-            // assigned to the Scripto project.
-            list($projectId, $mediaId) = explode(':', $request->getId());
+            // The Scripto media entity has not been created. Get the component
+            // entities from the resource ID.
+            list($projectId, $itemId, $mediaId) = explode(':', $request->getId());
+            $item = $this->getAdapter('items')->findEntity($itemId);
             $media = $this->getAdapter('media')->findEntity($mediaId);
             $sItem = $this->getAdapter('scripto_items')->findEntity([
                 'scriptoProject' => $projectId,
-                'item' => $media->getItem()->getId(),
+                'item' => $item->getId(),
             ]);
         }
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
@@ -138,19 +139,21 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
      */
     public function getScriptoMediaEntity($resourceId)
     {
-        if (!preg_match('/^\d+:\d+$/', $resourceId)) {
-            throw new Exception\RuntimeException('Invalid resource ID format; must use "scripto_project_id:media_id"'); // @translate
+        if (!preg_match('/^\d+:\d+:\d+$/', $resourceId)) {
+            throw new Exception\RuntimeException('Invalid resource ID format; must use "scripto_project_id:item_id:media_id"'); // @translate
         }
-        list($projectId, $mediaId) = explode(':', $resourceId);
+        list($projectId, $itemId, $mediaId) = explode(':', $resourceId);
         $query = $this->getEntityManager()->createQuery('
             SELECT m
             FROM Scripto\Entity\ScriptoMedia m
             JOIN m.scriptoItem i
             JOIN i.scriptoProject p
             WHERE m.media = :media_id
+            AND i.item = :item_id
             AND p.id = :project_id'
         )->setParameters([
             'media_id' => $mediaId,
+            'item_id' => $itemId,
             'project_id' => $projectId,
         ]);
         try {
@@ -170,8 +173,9 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
     public function getScriptoMediaResourceId(ScriptoMedia $sMedia)
     {
         return sprintf(
-            '%s:%s',
+            '%s:%s:%s',
             $sMedia->getScriptoItem()->getScriptoProject()->getId(),
+            $sMedia->getScriptoItem()->getItem()->getId(),
             $sMedia->getMedia()->getId()
         );
     }

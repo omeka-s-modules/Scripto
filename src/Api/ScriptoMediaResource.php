@@ -59,16 +59,18 @@ class ScriptoMediaResource implements ResourceInterface
      *
      * Note that a Scripto media entity isn't created until the corresponding
      * MediaWiki page is created. Because of this we can't use the entity ID as
-     * the resource ID. Instead we use an aggregate ID using Scripto project ID
-     * and Omeka media ID, both of which will always exist in this context.
+     * the resource ID. Instead we use an aggregate ID using Scripto project ID,
+     * Omeka item ID, and Omeka media ID, each of which will always exist in
+     * this context.
      *
      * @return int|null
      */
     public function getId()
     {
         return sprintf(
-            '%s:%s',
+            '%s:%s:%s',
             $this->sItem->getScriptoProject()->getId(),
+            $this->sItem->getItem()->getId(),
             $this->media->getId()
         );
     }
