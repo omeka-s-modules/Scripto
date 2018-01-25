@@ -72,38 +72,21 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
 
     public function read(Request $request)
     {
-        if (!$this->scriptoMediaResourceIdIsValid($request->getId())) {
-            throw new Exception\BadRequestException('Invalid resource ID format; must use "scripto_project_id:media_id"'); // @translate
-        }
-        list($projectId, $mediaId) = explode(':', $request->getId());
-
-        $query = $this->getEntityManager()->createQuery('
-            SELECT m
-            FROM Scripto\Entity\ScriptoMedia m
-            JOIN m.scriptoItem i
-            JOIN i.scriptoProject p
-            WHERE m.media = :media_id
-            AND p.id = :project_id'
-        )->setParameters([
-            'media_id' => $mediaId,
-            'project_id' => $projectId,
-        ]);
-        try {
-            // First, check if the Scripto media entity is already created.
-            $sMedia = $query->getSingleResult();
+        $sMedia = $this->getScriptoMediaEntity($request->getId());
+        if ($sMedia) {
+            // First check if the Scripto media entity has already been created.
             $media = $sMedia->getMedia();
             $sItem = $sMedia->getScriptoItem();
-        } catch (\Doctrine\ORM\NoResultException $e) {
-            // If not, check if the given Omeka media belongs to an Omeka item
-            // that's assigned to the given project.
+        } else {
+            // If not check if the Omeka media belongs to an Omeka item that's
+            // assigned to the Scripto project.
+            list($projectId, $mediaId) = explode(':', $request->getId());
             $media = $this->getAdapter('media')->findEntity($mediaId);
             $sItem = $this->getAdapter('scripto_items')->findEntity([
                 'scriptoProject' => $projectId,
                 'item' => $media->getItem()->getId(),
             ]);
-            $sMedia = null;
         }
-
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
         return new Response(new ScriptoMediaResource($client, $sItem, $media, $sMedia));
     }
@@ -148,14 +131,34 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
     }
 
     /**
-     * Is the passed Scripto media resource ID valid?
+     * Get a Scripto media entity from a Scripto media resource ID.
      *
-     * @param int $id
-     * @return bool
+     * @param string $resourceId
+     * @return ScriptoMedia|null
      */
-    public function scriptoMediaResourceIdIsValid($id)
+    public function getScriptoMediaEntity($resourceId)
     {
-        return preg_match('/^\d+:\d$/', $id); // scripto_project_id:media_id
+        if (!preg_match('/^\d+:\d+$/', $resourceId)) {
+            throw new Exception\RuntimeException('Invalid resource ID format; must use "scripto_project_id:media_id"'); // @translate
+        }
+        list($projectId, $mediaId) = explode(':', $resourceId);
+        $query = $this->getEntityManager()->createQuery('
+            SELECT m
+            FROM Scripto\Entity\ScriptoMedia m
+            JOIN m.scriptoItem i
+            JOIN i.scriptoProject p
+            WHERE m.media = :media_id
+            AND p.id = :project_id'
+        )->setParameters([
+            'media_id' => $mediaId,
+            'project_id' => $projectId,
+        ]);
+        try {
+            $sMedia = $query->getSingleResult();
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            $sMedia = null;
+        }
+        return $sMedia;
     }
 
     /**
