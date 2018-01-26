@@ -87,6 +87,11 @@ SET FOREIGN_KEY_CHECKS=1;
             'entity.persist.post',
             [$this, 'addItemsToNewProjects']
         );
+        $sharedEventManager->attach(
+            'Scripto\Entity\ScriptoMedia',
+            'entity.persist.pre',
+            [$this, 'editMediawikiPage']
+        );
     }
 
     /**
@@ -102,5 +107,45 @@ SET FOREIGN_KEY_CHECKS=1;
             'scripto_project_id' => $project->getId(),
             'item_set_id' => $project->getItemSet()->getId(),
         ]);
+    }
+
+    /**
+     * Create or edit a MediaWiki page given a Scripto media entity.
+     *
+     * Attaches to the entity.persist.pre event to ensure that the corresponding
+     * MediaWiki page is successfully created prior to creating the Scripto
+     * media entity.
+     *
+     * @param Event $event
+     */
+    public function editMediawikiPage(Event $event)
+    {
+        $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
+        $translator = $this->getServiceLocator()->get('MvcTranslator');
+
+        $sMedia = $event->getTarget();
+        $pageTitle = sprintf(
+            '%s:%s:%s',
+            $sMedia->getScriptoItem()->getScriptoProject()->getId(),
+            $sMedia->getScriptoItem()->getItem()->getId(),
+            $sMedia->getMedia()->getId()
+        );
+        $page = $client->queryPage($pageTitle);
+        $pageIsCreated = $client->pageIsCreated($page);
+
+        if (!$pageIsCreated && !$client->userCan($page, 'createpage')) {
+            throw new \Exception(sprintf(
+                $translator->translate('The MediaWiki user does not have the necessary permissions to create the page "%s"'),
+                $pageTitle
+            ));
+        }
+        if ($pageIsCreated && !$client->userCan($page, 'edit')) {
+            throw new \Exception(sprintf(
+                $translator->translate('The MediaWiki user does not have the necessary permissions to edit the page "%s"'),
+                $pageTitle
+            ));
+        }
+
+        $client->editPage($pageTitle, $sMedia->getText());
     }
 }

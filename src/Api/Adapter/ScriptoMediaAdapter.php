@@ -16,8 +16,7 @@ use Scripto\Entity\ScriptoMedia;
  * Scripto media adapter
  *
  * Must override SCRUD operations because of the unconventional construction of
- * ScriptoMediaResource and because the corresponding MediaWiki pages must be
- * edited before flushing the entity manager during create/update.
+ * ScriptoMediaResource.
  */
 class ScriptoMediaAdapter extends AbstractEntityAdapter
 {
@@ -39,7 +38,7 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
     public function search(Request $request)
     {
         throw new Exception\OperationNotImplementedException(
-            'The Scripto\Api\Adapter\ScriptoMediaAdapter adapter does not implement the search operation' // @translate
+            'The Scripto\Api\Adapter\ScriptoMediaAdapter adapter does not implement the search operation.' // @translate
         );
     }
 
@@ -47,7 +46,6 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
     {
         $sMedia = new ScriptoMedia;
         $this->hydrateEntity($request, $sMedia, new ErrorStore);
-        $this->editMediawikiPage($sMedia, $request->getValue('o-module-scripto:text'));
         $this->getEntityManager()->persist($sMedia);
         $this->getEntityManager()->flush();
         $this->getEntityManager()->refresh($sMedia);
@@ -60,7 +58,7 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
 
     public function read(Request $request)
     {
-        $sMedia = $this->getScriptoMediaEntity($request->getId());
+        $sMedia = $this->getScriptoMediaEntityFromResourceId($request->getId());
         if ($sMedia) {
             // The Scripto media entity has already been created.
             $media = $sMedia->getMedia();
@@ -77,7 +75,7 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
             ]);
             if (!$this->itemHasMedia($sItem->getItem(), $media)) {
                 throw new Exception\RuntimeException(sprintf(
-                    'The specified media "%s" does not belong to the specified item "%s"',
+                    'The specified media "%s" does not belong to the specified item "%s".',
                     $media->getId(),
                     $sItem->getItem()->getId()
                 ));
@@ -113,16 +111,21 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
 
             $entity->setScriptoItem($sItem);
             $entity->setMedia($media);
+            $entity->setText($data['o-module-scripto:text']);
+
+            if ($this->getScriptoMediaEntityFromEntityIds($sItem->getId(), $media->getId())) {
+                $errorStore->addError('o-module-scripto:media', 'Cannot create a Scripto media that has already been created.'); // @translate
+            }
         }
     }
 
     public function validateEntity(EntityInterface $entity, ErrorStore $errorStore)
     {
         if (null === $entity->getScriptoItem()) {
-            $errorStore->addError('o-module-scripto:item', 'A Scripto item must not be null'); // @translate
+            $errorStore->addError('o-module-scripto:item', 'A Scripto item must not be null.'); // @translate
         }
         if (null === $entity->getMedia()) {
-            $errorStore->addError('o:media', 'A media must not be null'); // @translate
+            $errorStore->addError('o:media', 'A media must not be null.'); // @translate
         }
     }
 
@@ -132,10 +135,10 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
      * @param string $resourceId
      * @return ScriptoMedia|null
      */
-    public function getScriptoMediaEntity($resourceId)
+    public function getScriptoMediaEntityFromResourceId($resourceId)
     {
         if (!preg_match('/^\d+:\d+:\d+$/', $resourceId)) {
-            throw new Exception\RuntimeException('Invalid resource ID format; must use "scripto_project_id:item_id:media_id"'); // @translate
+            throw new Exception\RuntimeException('Invalid resource ID format; must use "scripto_project_id:item_id:media_id".'); // @translate
         }
         list($projectId, $itemId, $mediaId) = explode(':', $resourceId);
         $query = $this->getEntityManager()->createQuery('
@@ -160,19 +163,29 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
     }
 
     /**
-     * Get the Scripto media resource ID from the Scripto media entity.
+     * Get a Scripto media entity from a Scripto item ID and media ID.
      *
-     * @param ScriptoMedia $sMedia
-     * @return string
+     * @param int $sItemId
+     * @param int $mediaId
+     * @return ScriptoMedia|null
      */
-    public function getScriptoMediaResourceId(ScriptoMedia $sMedia)
+    public function getScriptoMediaEntityFromEntityIds($sItemId, $mediaId)
     {
-        return sprintf(
-            '%s:%s:%s',
-            $sMedia->getScriptoItem()->getScriptoProject()->getId(),
-            $sMedia->getScriptoItem()->getItem()->getId(),
-            $sMedia->getMedia()->getId()
-        );
+        $query = $this->getEntityManager()->createQuery('
+            SELECT m.id
+            FROM Scripto\Entity\ScriptoMedia m
+            WHERE m.scriptoItem = :scripto_item_id
+            AND m.media = :media_id'
+        )->setParameters([
+            'scripto_item_id' => $sItemId,
+            'media_id' => $mediaId,
+        ]);
+        try {
+            $sMedia = $query->getSingleResult();
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            $sMedia = null;
+        }
+        return $sMedia;
     }
 
     /**
@@ -197,32 +210,5 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
             'item_id' => $item->getId(),
         ]);
         return (bool) $query->getSingleScalarResult();
-    }
-
-    /**
-     * Edit a corresponding MediaWiki page.
-     *
-     * @param ScriptoMedia $sMedia
-     * @param string $text
-     */
-    public function editMediawikiPage(ScriptoMedia $sMedia, $text)
-    {
-        $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
-        $pageTitle = $this->getScriptoMediaResourceId($sMedia);
-        $page = $client->queryPage($pageTitle);
-        $pageIsCreated = $client->pageIsCreated($page);
-        if (!$pageIsCreated && !$client->userCan($page, 'createpage')) {
-            throw new Exception\RuntimeException(sprintf(
-                $this->getTranslator()->translate('The MediaWiki user does not have the necessary permissions to create the page "%s"'),
-                $pageTitle
-            ));
-        }
-        if ($pageIsCreated && !$client->userCan($page, 'edit')) {
-            throw new Exception\RuntimeException(sprintf(
-                $this->getTranslator()->translate('The MediaWiki user does not have the necessary permissions to edit the page "%s"'),
-                $pageTitle
-            ));
-        }
-        $client->editPage($pageTitle, $text);
     }
 }

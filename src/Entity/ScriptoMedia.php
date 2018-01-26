@@ -85,6 +85,8 @@ class ScriptoMedia extends AbstractEntity
      */
     protected $modified;
 
+    protected $text;
+
     public function getId()
     {
         return $this->id;
@@ -168,6 +170,16 @@ class ScriptoMedia extends AbstractEntity
     public function getModified()
     {
         return $this->modified;
+    }
+
+    public function setText($text)
+    {
+        $this->text = $text;
+    }
+
+    public function getText()
+    {
+        return $this->text;
     }
 
     /**
