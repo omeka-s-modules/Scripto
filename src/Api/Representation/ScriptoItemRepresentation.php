@@ -2,6 +2,8 @@
 namespace Scripto\Api\Representation;
 
 use Omeka\Api\Representation\AbstractEntityRepresentation;
+use Omeka\Entity\Item;
+use Scripto\Api\ScriptoMediaResource;
 
 class ScriptoItemRepresentation extends AbstractEntityRepresentation
 {
@@ -118,5 +120,47 @@ class ScriptoItemRepresentation extends AbstractEntityRepresentation
         }
 
         return self::STATUS_IN_PROGRESS;
+    }
+
+    /**
+     * Get all Scripto media assigned to this item.
+     *
+     * @return array
+     */
+    public function media()
+    {
+        $services = $this->getServiceLocator();
+        $em = $services->get('Omeka\EntityManager');
+        $client = $services->get('Scripto\Mediawiki\ApiClient');
+        $sMediaAdapter = $this->getAdapter('scripto_media');
+
+        $sItem = $this->resource;
+        $item = $sItem->getItem();
+
+        $medias = [];
+        foreach ($this->getAllItemMedia($item) as $media) {
+            $sMedia = $em->getRepository('Scripto\Entity\ScriptoMedia')->findOneBy([
+                'scriptoItem' => $item->getId(),
+                'media' => $media->getId(),
+            ]);
+            $sMediaResource = new ScriptoMediaResource($client, $sItem, $media, $sMedia);
+            $medias[] = $sMediaAdapter->getRepresentation($sMediaResource);
+        }
+
+        return $medias;
+    }
+
+    /**
+     * Get all media assigned to the passed item, in original order.
+     *
+     * This method provides an abstraction for implementations that need to
+     * change which media are assigned to an item.
+     *
+     * @param Item $item
+     * @return array
+     */
+    public function getAllItemMedia(Item $item)
+    {
+        return $item->getMedia();
     }
 }

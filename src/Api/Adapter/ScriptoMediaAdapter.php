@@ -38,23 +38,9 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
 
     public function search(Request $request)
     {
-        $sItemId = $request->getValue('scripto_item_id');
-        if (!$sItemId) {
-            throw new Exception\BadRequestException('The search query must include scripto_item_id'); // @translate
-        }
-        $sItem = $this->getAdapter('scripto_items')->findEntity($sItemId);
-
-        $medias = [];
-        $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
-        foreach ($this->getAllItemMedia($sItem->getItem()) as $media) {
-            $sMedia = $this->getEntityManager()
-                ->getRepository('Scripto\Entity\ScriptoMedia')->findOneBy([
-                    'scriptoItem' => $sItem->getId(),
-                    'media' => $media->getId(),
-                ]);
-            $medias[] = new ScriptoMediaResource($client, $sItem, $media, $sMedia);
-        }
-        return new Response($medias);
+        throw new Exception\OperationNotImplementedException(
+            'The Scripto\Api\Adapter\ScriptoMediaAdapter adapter does not implement the search operation' // @translate
+        );
     }
 
     public function create(Request $request)
@@ -187,20 +173,6 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
             $sMedia->getScriptoItem()->getItem()->getId(),
             $sMedia->getMedia()->getId()
         );
-    }
-
-    /**
-     * Get all media assigned to the passed item.
-     *
-     * This method provides an abstraction for implementations that need to
-     * change which media are assigned to an item.
-     *
-     * @param Item $item
-     * @return array
-     */
-    public function getAllItemMedia(Item $item)
-    {
-        return $item->getMedia();
     }
 
     /**
