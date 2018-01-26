@@ -6,6 +6,8 @@ use Omeka\Api\Exception;
 use Omeka\Api\Request;
 use Omeka\Api\Response;
 use Omeka\Entity\EntityInterface;
+use Omeka\Entity\Item;
+use Omeka\Entity\Media;
 use Omeka\Stdlib\ErrorStore;
 use Scripto\Api\ScriptoMediaResource;
 use Scripto\Entity\ScriptoMedia;
@@ -43,13 +45,13 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
         $sItem = $this->getAdapter('scripto_items')->findEntity($sItemId);
 
         $medias = [];
-        $em = $this->getEntityManager();
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
-        foreach ($sItem->getItem()->getMedia() as $media) {
-            $sMedia = $em->getRepository('Scripto\Entity\ScriptoMedia')->findOneBy([
-                'scriptoItem' => $sItem->getId(),
-                'media' => $media->getId(),
-            ]);
+        foreach ($this->getAllItemMedia($sItem->getItem()) as $media) {
+            $sMedia = $this->getEntityManager()
+                ->getRepository('Scripto\Entity\ScriptoMedia')->findOneBy([
+                    'scriptoItem' => $sItem->getId(),
+                    'media' => $media->getId(),
+                ]);
             $medias[] = new ScriptoMediaResource($client, $sItem, $media, $sMedia);
         }
         return new Response($medias);
@@ -79,14 +81,21 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
             $sItem = $sMedia->getScriptoItem();
         } else {
             // The Scripto media entity has not been created. Get the component
-            // entities from the resource ID.
+            // entities from the resource ID and verify that the media is
+            // assigned to the item.
             list($projectId, $itemId, $mediaId) = explode(':', $request->getId());
-            $item = $this->getAdapter('items')->findEntity($itemId);
             $media = $this->getAdapter('media')->findEntity($mediaId);
             $sItem = $this->getAdapter('scripto_items')->findEntity([
                 'scriptoProject' => $projectId,
-                'item' => $item->getId(),
+                'item' => $itemId,
             ]);
+            if (!$this->itemHasMedia($sItem->getItem(), $media)) {
+                throw new Exception\RuntimeException(sprintf(
+                    'The specified media "%s" does not belong to the specified item "%s"',
+                    $media->getId(),
+                    $sItem->getItem()->getId()
+                ));
+            }
         }
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
         return new Response(new ScriptoMediaResource($client, $sItem, $media, $sMedia));
@@ -178,6 +187,44 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
             $sMedia->getScriptoItem()->getItem()->getId(),
             $sMedia->getMedia()->getId()
         );
+    }
+
+    /**
+     * Get all media assigned to the passed item.
+     *
+     * This method provides an abstraction for implementations that need to
+     * change which media are assigned to an item.
+     *
+     * @param Item $item
+     * @return array
+     */
+    public function getAllItemMedia(Item $item)
+    {
+        return $item->getMedia();
+    }
+
+    /**
+     * Is this media assigned to this item?
+     *
+     * This method provides an abstraction for implementations that need to
+     * change which media are assigned to an item.
+     *
+     * @param Item $item
+     * @param Media $media
+     * @return bool
+     */
+    public function itemHasMedia(Item $item, Media $media)
+    {
+        $query = $this->getEntityManager()->createQuery('
+            SELECT COUNT(m.id)
+            FROM Omeka\Entity\Media m
+            WHERE m.id = :media_id
+            AND m.item = :item_id'
+        )->setParameters([
+            'media_id' => $media->getId(),
+            'item_id' => $item->getId(),
+        ]);
+        return (bool) $query->getSingleScalarResult();
     }
 
     /**
