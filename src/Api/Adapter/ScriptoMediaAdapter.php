@@ -111,12 +111,12 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
 
             $entity->setScriptoItem($sItem);
             $entity->setMedia($media);
-            $entity->setText($data['o-module-scripto:text']);
 
             if ($this->getScriptoMediaEntityFromEntityIds($sItem->getId(), $media->getId())) {
                 $errorStore->addError('o-module-scripto:media', 'Cannot create a Scripto media that has already been created.'); // @translate
             }
         }
+        $entity->setText($request->getValue('o-module-scripto:text'));
     }
 
     public function validateEntity(EntityInterface $entity, ErrorStore $errorStore)
