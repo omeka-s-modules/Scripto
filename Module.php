@@ -120,10 +120,15 @@ SET FOREIGN_KEY_CHECKS=1;
      */
     public function editMediawikiPage(Event $event)
     {
+        $sMedia = $event->getTarget();
+        if (!is_string($sMedia->getText())) {
+            // No need to edit the MediaWiki page if no text is set.
+            return;
+        }
+
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
         $translator = $this->getServiceLocator()->get('MvcTranslator');
 
-        $sMedia = $event->getTarget();
         $pageTitle = sprintf(
             '%s:%s:%s',
             $sMedia->getScriptoItem()->getScriptoProject()->getId(),
