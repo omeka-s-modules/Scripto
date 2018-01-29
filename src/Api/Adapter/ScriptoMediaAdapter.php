@@ -58,7 +58,7 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
 
     public function read(Request $request)
     {
-        $sMedia = $this->getScriptoMediaEntityFromResourceId($request->getId());
+        $sMedia = $this->getScriptoMediaEntity($request->getId());
         if ($sMedia) {
             // The Scripto media entity has already been created.
             $media = $sMedia->getMedia();
@@ -87,17 +87,17 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
 
     public function validateRequest(Request $request, ErrorStore $errorStore)
     {
+        $data = $request->getContent();
         if (Request::CREATE === $request->getOperation()) {
-            $data = $request->getContent();
             if (!isset($data['o-module-scripto:text'])) {
                 $errorStore->addError('o:media', 'A Scripto media must have text on creation.'); // @translate
             }
-            if (!isset($data['o-module-scripto:item']['o:id'])) {
-                $errorStore->addError('o-module-scripto:item', 'A Scripto media must be assigned a Scripto item on creation.'); // @translate
-            }
-            if (!isset($data['o:media']['o:id'])) {
-                $errorStore->addError('o:media', 'A Scripto media must be assigned an Omeka media on creation.'); // @translate
-            }
+        }
+        if (!isset($data['o-module-scripto:item']['o:id'])) {
+            $errorStore->addError('o-module-scripto:item', 'A Scripto media must be assigned a Scripto item ID.'); // @translate
+        }
+        if (!isset($data['o:media']['o:id'])) {
+            $errorStore->addError('o:media', 'A Scripto media must be assigned an Omeka media ID.'); // @translate
         }
     }
 
@@ -106,13 +106,15 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
         if (Request::CREATE === $request->getOperation()) {
             $data = $request->getContent();
 
+            // Can only set Scripto item and Omeka media during creation.
             $sItem = $this->getAdapter('scripto_items')->findEntity($data['o-module-scripto:item']['o:id']);
             $media = $this->getAdapter('media')->findEntity($data['o:media']['o:id']);
 
             $entity->setScriptoItem($sItem);
             $entity->setMedia($media);
 
-            if ($this->getScriptoMediaEntityFromEntityIds($sItem->getId(), $media->getId())) {
+            $resourceId = [$sItem->getScriptoProject()->getId(), $sItem->getItem()->getId(), $media->getId()];
+            if ($this->getScriptoMediaEntity($resourceId)) {
                 $errorStore->addError('o-module-scripto:media', 'Cannot create a Scripto media that has already been created.'); // @translate
             }
         }
@@ -132,13 +134,16 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
     /**
      * Get a Scripto media entity from a Scripto media resource ID.
      *
-     * @param string $resourceId
+     * @param string|array $resourceId
      * @return ScriptoMedia|null
      */
-    public function getScriptoMediaEntityFromResourceId($resourceId)
+    public function getScriptoMediaEntity($resourceId)
     {
+        if (is_array($resourceId)) {
+            $resourceId = implode(':', $resourceId);
+        }
         if (!preg_match('/^\d+:\d+:\d+$/', $resourceId)) {
-            throw new Exception\RuntimeException('Invalid resource ID format; must use "scripto_project_id:item_id:media_id".'); // @translate
+            throw new Exception\InvalidArgumentException('Invalid resource ID format; must use "scripto_project_id:item_id:media_id".'); // @translate
         }
         list($projectId, $itemId, $mediaId) = explode(':', $resourceId);
         $query = $this->getEntityManager()->createQuery('
@@ -153,32 +158,6 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
             'media_id' => $mediaId,
             'item_id' => $itemId,
             'project_id' => $projectId,
-        ]);
-        try {
-            $sMedia = $query->getSingleResult();
-        } catch (\Doctrine\ORM\NoResultException $e) {
-            $sMedia = null;
-        }
-        return $sMedia;
-    }
-
-    /**
-     * Get a Scripto media entity from a Scripto item ID and media ID.
-     *
-     * @param int $sItemId
-     * @param int $mediaId
-     * @return ScriptoMedia|null
-     */
-    public function getScriptoMediaEntityFromEntityIds($sItemId, $mediaId)
-    {
-        $query = $this->getEntityManager()->createQuery('
-            SELECT m.id
-            FROM Scripto\Entity\ScriptoMedia m
-            WHERE m.scriptoItem = :scripto_item_id
-            AND m.media = :media_id'
-        )->setParameters([
-            'scripto_item_id' => $sItemId,
-            'media_id' => $mediaId,
         ]);
         try {
             $sMedia = $query->getSingleResult();
