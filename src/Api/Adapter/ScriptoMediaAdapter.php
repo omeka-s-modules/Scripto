@@ -118,6 +118,25 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
                 $errorStore->addError('o-module-scripto:media', 'Cannot create a Scripto media that has already been created.'); // @translate
             }
         }
+
+        $mwUser = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient')->getUserInfo();
+        if (!$entity->getIsCompleted() && $request->getValue('o-module-scripto:is_completed')) {
+            $entity->setIsCompleted(true);
+            $entity->setCompletedBy($mwUser['name']);
+        } elseif ($entity->getIsCompleted() && !$request->getValue('o-module-scripto:is_completed')) {
+            $entity->setIsCompleted(false);
+            $entity->setCompletedBy($mwUser['name']);
+        }
+
+        $oUser = $this->getServiceLocator()->get('Omeka\AuthenticationService')->getIdentity();
+        if (!$entity->getIsApproved() && $request->getValue('o-module-scripto:is_approved')) {
+            $entity->setIsApproved(true);
+            $entity->setApprovedBy($oUser);
+        } elseif ($entity->getIsApproved() && !$request->getValue('o-module-scripto:is_approved')) {
+            $entity->setIsApproved(false);
+            $entity->setApprovedBy($oUser);
+        }
+
         $entity->setText($request->getValue('o-module-scripto:text'));
     }
 
