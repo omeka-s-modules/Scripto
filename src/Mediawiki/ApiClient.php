@@ -113,9 +113,7 @@ class ApiClient
      */
     public function userIsLoggedIn()
     {
-        return isset($this->userInfo['query']['userinfo'])
-            ? (bool) $this->userInfo['query']['userinfo']['id']
-            : false;
+        return isset($this->userInfo) ? (bool) $this->userInfo['id'] : false;
     }
 
     /**
@@ -427,10 +425,11 @@ class ApiClient
      */
     public function querySiteInfo()
     {
-        return $this->request([
+        $query = $this->request([
             'action' => 'query',
             'meta' => 'siteinfo',
         ]);
+        return $query['query']['general'];
     }
 
     /**
@@ -451,10 +450,11 @@ class ApiClient
      */
     public function queryUserInfo()
     {
-        return $this->request([
+        $query = $this->request([
             'action' => 'query',
             'meta' => 'userinfo',
         ]);
+        return $query['query']['userinfo'];
     }
 
     /**
