@@ -20,7 +20,7 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
     {
         $approvedBy = $this->approvedBy();
         $created = $this->created();
-        $modified = $this->modified();
+        $edited = $this->edited();
         return [
             'o-module-scripto:item' => $this->scriptoItem()->getReference(),
             'o:media' => $this->media()->getReference(),
@@ -29,7 +29,7 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
             'o-module-scripto:is_approved' => $this->isApproved(),
             'o-module-scripto:approvedBy' => $approvedBy ? $approvedBy->getReference() : null,
             'o:created' => $created ? $this->getDateTime($created) : null,
-            'o:modified' => $modified ? $this->getDateTime($modified) : null,
+            'o:edited' => $edited ? $this->getDateTime($edited) : null,
         ];
     }
 
@@ -78,10 +78,10 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
         return $sMedia ? $sMedia->getCreated() : null;
     }
 
-    public function modified()
+    public function edited()
     {
         $sMedia = $this->resource->getScriptoMedia();
-        return $sMedia ? $sMedia->getModified() : null;
+        return $sMedia ? $sMedia->getEdited() : null;
     }
 
     /**
