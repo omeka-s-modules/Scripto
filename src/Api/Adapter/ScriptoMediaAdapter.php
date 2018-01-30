@@ -85,6 +85,24 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
         return new Response(new ScriptoMediaResource($client, $sItem, $media, $sMedia));
     }
 
+    public function update(Request $request)
+    {
+        $sMedia = $this->getScriptoMediaEntity($request->getId());
+        if (!$sMedia) {
+            throw new Exception\NotFoundException(sprintf(
+                $this->getTranslator()->translate('Scripto media resource with ID %s not found'),
+                $request->getId()
+            ));
+        }
+        $this->hydrateEntity($request, $sMedia, new ErrorStore);
+        $this->getEntityManager()->flush();
+
+        $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
+        return new Response(new ScriptoMediaResource(
+            $client, $sMedia->getScriptoItem(), $sMedia->getMedia(), $sMedia
+        ));
+    }
+
     public function validateRequest(Request $request, ErrorStore $errorStore)
     {
         $data = $request->getContent();
