@@ -125,9 +125,11 @@ class ScriptoItemRepresentation extends AbstractEntityRepresentation
     /**
      * Get all Scripto media assigned to this item.
      *
+     * @param string $sortBy Sort by this Scripto media representation method
+     * @param string $sortOrder ASC or DESC (ASC is default)
      * @return array
      */
-    public function media()
+    public function media($sortBy = null, $sortOrder = null)
     {
         $services = $this->getServiceLocator();
         $em = $services->get('Omeka\EntityManager');
@@ -138,13 +140,28 @@ class ScriptoItemRepresentation extends AbstractEntityRepresentation
         $item = $sItem->getItem();
 
         $medias = [];
-        foreach ($this->getAllItemMedia($item) as $media) {
+        foreach ($this->getAllItemMedia() as $media) {
             $sMedia = $em->getRepository('Scripto\Entity\ScriptoMedia')->findOneBy([
                 'scriptoItem' => $item->getId(),
                 'media' => $media->getId(),
             ]);
             $sMediaResource = new ScriptoMediaResource($client, $sItem, $media, $sMedia);
             $medias[] = $sMediaAdapter->getRepresentation($sMediaResource);
+        }
+
+        // Order the result.
+        $sortMethods = ['isCompleted', 'isApproved', 'created', 'edited'];
+        if (in_array($sortBy, $sortMethods)) {
+            usort($medias, function ($a, $b) use ($sortBy, $sortOrder) {
+                if ($a->$sortBy() == $b->$sortBy()) {
+                    return 0;
+                }
+                if ('DESC' === strtoupper($sortOrder)) {
+                    return ($a->$sortBy() > $b->$sortBy()) ? -1 : 1;
+                } else {
+                    return ($a->$sortBy() < $b->$sortBy()) ? -1 : 1;
+                }
+            });
         }
 
         return $medias;
@@ -154,13 +171,12 @@ class ScriptoItemRepresentation extends AbstractEntityRepresentation
      * Get all media assigned to the passed item, in original order.
      *
      * This method provides an abstraction for implementations that need to
-     * change which media are assigned to an item.
+     * change which media are mapped to an item.
      *
-     * @param Item $item
      * @return array
      */
-    public function getAllItemMedia(Item $item)
+    public function getAllItemMedia()
     {
-        return $item->getMedia();
+        return $this->resource->getItem()->getMedia();
     }
 }
