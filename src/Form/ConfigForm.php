@@ -68,8 +68,7 @@ class ConfigForm extends Form
         } catch (\Exception $e) {
             return false;
         }
-        $siteInfo = $client->getSiteInfo();
-        return is_array($siteInfo) && isset($siteInfo['query']);
+        return is_array($client->getSiteInfo());
     }
 
     /**
