@@ -110,12 +110,12 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
             if (!isset($data['o-module-scripto:text'])) {
                 $errorStore->addError('o:media', 'A Scripto media must have text on creation.'); // @translate
             }
-        }
-        if (!isset($data['o-module-scripto:item']['o:id'])) {
-            $errorStore->addError('o-module-scripto:item', 'A Scripto media must be assigned a Scripto item ID.'); // @translate
-        }
-        if (!isset($data['o:media']['o:id'])) {
-            $errorStore->addError('o:media', 'A Scripto media must be assigned an Omeka media ID.'); // @translate
+            if (!isset($data['o-module-scripto:item']['o:id'])) {
+                $errorStore->addError('o-module-scripto:item', 'A Scripto media must be assigned a Scripto item ID on creation.'); // @translate
+            }
+            if (!isset($data['o:media']['o:id'])) {
+                $errorStore->addError('o:media', 'A Scripto media must be assigned an Omeka media ID on creation.'); // @translate
+            }
         }
     }
 
@@ -138,24 +138,34 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
         }
 
         $mwUser = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient')->getUserInfo();
-        if (!$entity->getIsCompleted() && $request->getValue('o-module-scripto:is_completed')) {
-            $entity->setIsCompleted(true);
-            $entity->setCompletedBy($mwUser['name']);
-        } elseif ($entity->getIsCompleted() && !$request->getValue('o-module-scripto:is_completed')) {
-            $entity->setIsCompleted(false);
-            $entity->setCompletedBy($mwUser['name']);
-        }
-
         $oUser = $this->getServiceLocator()->get('Omeka\AuthenticationService')->getIdentity();
-        if (!$entity->getIsApproved() && $request->getValue('o-module-scripto:is_approved')) {
-            $entity->setIsApproved(true);
-            $entity->setApprovedBy($oUser);
-        } elseif ($entity->getIsApproved() && !$request->getValue('o-module-scripto:is_approved')) {
-            $entity->setIsApproved(false);
-            $entity->setApprovedBy($oUser);
+        $isCompleted = $request->getValue('o-module-scripto:is_completed');
+        $isApproved = $request->getValue('o-module-scripto:is_approved');
+
+        if (null !== $isCompleted) {
+            if ($isCompleted && !$entity->getIsCompleted()) {
+                // Set as completed only if the entity is set as not completed.
+                $entity->setIsCompleted(true);
+                $entity->setCompletedBy($mwUser['name']);
+            } elseif (!$isCompleted && $entity->getIsCompleted()) {
+                // Set as not completed only if the entity is set as completed.
+                $entity->setIsCompleted(false);
+                $entity->setCompletedBy($mwUser['name']);
+            }
+        }
+        if (null !== $isApproved) {
+            if ($isApproved && !$entity->getIsApproved()) {
+                // Set as approved only if the entity is set as not approved.
+                $entity->setIsApproved(true);
+                $entity->setApprovedBy($oUser);
+            } elseif (!$isApproved && $entity->getIsApproved()) {
+                // Set as not approved only if the entity is set as approved.
+                $entity->setIsApproved(false);
+                $entity->setApprovedBy($oUser);
+            }
         }
         if ($entity->getIsApproved() && !$entity->getIsCompleted()) {
-            // Automatically mark media as completed if it is approved.
+            // Automatically set as completed if set as approved.
             $entity->setIsCompleted(true);
             $entity->setCompletedBy($mwUser['name']);
         }
