@@ -83,8 +83,14 @@ class ScriptoMedia extends AbstractEntity
     /**
      * @Column(type="datetime", nullable=true)
      */
-    protected $modified;
+    protected $edited;
 
+    /**
+     * Scripto media text
+     *
+     * Note that text is stored in MediaWiki, not Omeka. We use this property to
+     * store text until persisting it using the Media API client.
+     */
     protected $text;
 
     public function getId()
@@ -162,14 +168,14 @@ class ScriptoMedia extends AbstractEntity
         return $this->created;
     }
 
-    public function setModified(DateTime $dateTime)
+    public function setEdited(DateTime $dateTime)
     {
-        $this->modified = $dateTime;
+        $this->edited = $dateTime;
     }
 
-    public function getModified()
+    public function getEdited()
     {
-        return $this->modified;
+        return $this->edited;
     }
 
     public function setText($text)

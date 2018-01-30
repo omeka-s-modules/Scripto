@@ -64,10 +64,10 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'isCompleted', 'completedBy', 'isApproved', 'approvedBy', 'created', 'modified'];
+            return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'isCompleted', 'completedBy', 'isApproved', 'approvedBy', 'created', 'edited', 'text'];
         }
 
-        return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'isCompleted', 'completedBy', 'isApproved', 'approvedBy', 'created', 'modified'];
+        return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'isCompleted', 'completedBy', 'isApproved', 'approvedBy', 'created', 'edited', 'text'];
     }
 
     /**
@@ -345,23 +345,45 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
     /**
      * {@inheritDoc}
      */
-    public function setModified(\DateTime $dateTime)
+    public function setEdited(\DateTime $dateTime)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setModified', [$dateTime]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEdited', [$dateTime]);
 
-        return parent::setModified($dateTime);
+        return parent::setEdited($dateTime);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getModified()
+    public function getEdited()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getModified', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEdited', []);
 
-        return parent::getModified();
+        return parent::getEdited();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setText($text)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setText', [$text]);
+
+        return parent::setText($text);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getText()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getText', []);
+
+        return parent::getText();
     }
 
     /**
