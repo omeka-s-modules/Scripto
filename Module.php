@@ -89,8 +89,8 @@ SET FOREIGN_KEY_CHECKS=1;
             [$this, 'addItemsToNewProjects']
         );
         $sharedEventManager->attach(
-            'Scripto\Entity\ScriptoMedia',
-            'entity.persist.pre',
+            'Scripto\Api\Adapter\ScriptoMediaAdapter',
+            'api.hydrate.post',
             [$this, 'editMediawikiPage']
         );
     }
@@ -113,15 +113,17 @@ SET FOREIGN_KEY_CHECKS=1;
     /**
      * Create or edit a MediaWiki page given a Scripto media entity.
      *
-     * Attaches to the entity.persist.pre event to ensure that the corresponding
+     * Attaches to the api.hydrate.post event to ensure that the corresponding
      * MediaWiki page is successfully created prior to creating the Scripto
-     * media entity.
+     * media entity. Ideally we'd use entity.persist.pre and entity.update.pre
+     * to ensure that the entity is validated, but the latter is not triggered
+     * when there are no changes to the entity.
      *
      * @param Event $event
      */
     public function editMediawikiPage(Event $event)
     {
-        $sMedia = $event->getTarget();
+        $sMedia = $event->getParam('entity');
         if (!is_string($sMedia->getText())) {
             // No need to edit the MediaWiki page if no text is set.
             return;
