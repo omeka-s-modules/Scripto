@@ -21,6 +21,11 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
      */
     protected $mwPage;
 
+    public function getJsonLdType()
+    {
+        return 'o-module-scripto:Media';
+    }
+
     public function getJsonLd()
     {
         $approvedBy = $this->approvedBy();
@@ -36,11 +41,6 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
             'o:created' => $created ? $this->getDateTime($created) : null,
             'o:edited' => $edited ? $this->getDateTime($edited) : null,
         ];
-    }
-
-    public function getJsonLdType()
-    {
-        return 'o-module-scripto:Media';
     }
 
     public function scriptoItem()

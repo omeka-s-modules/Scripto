@@ -2,8 +2,6 @@
 namespace Scripto\Api\Representation;
 
 use Omeka\Api\Representation\AbstractEntityRepresentation;
-use Omeka\Entity\Item;
-use Scripto\Api\ScriptoMediaResource;
 
 class ScriptoItemRepresentation extends AbstractEntityRepresentation
 {

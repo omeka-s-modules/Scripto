@@ -5,13 +5,8 @@ use Doctrine\ORM\QueryBuilder;
 use Omeka\Api\Adapter\AbstractEntityAdapter;
 use Omeka\Api\Exception;
 use Omeka\Api\Request;
-use Omeka\Api\Response;
 use Omeka\Entity\EntityInterface;
-use Omeka\Entity\Item;
-use Omeka\Entity\Media;
 use Omeka\Stdlib\ErrorStore;
-use Scripto\Api\ScriptoMediaResource;
-use Scripto\Entity\ScriptoMedia;
 
 /**
  * Scripto media adapter
