@@ -117,7 +117,7 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
     public function mwPage()
     {
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
-        if (null === $this->page) {
+        if (null === $this->mwPage) {
             $this->mwPage = $client->queryPage($this->resource->getMediawikiPageTitle());
         }
         return $this->mwPage;
