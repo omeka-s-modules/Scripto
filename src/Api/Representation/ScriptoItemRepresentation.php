@@ -66,5 +66,20 @@ class ScriptoItemRepresentation extends AbstractEntityRepresentation
      */
     public function status()
     {
+        $adapter = $this->getAdapter();
+        $totalCount = $adapter->getTotalScriptoMediaCount($this->id());
+        $approvedCount = $adapter->getApprovedScriptoMediaCount($this->id());
+        if ($approvedCount === $totalCount) {
+            return self::STATUS_APPROVED;
+        }
+        $completedCount = $adapter->getCompletedScriptoMediaCount($this->id());
+        if ($completedCount === $totalCount) {
+            return self::STATUS_COMPLETED;
+        }
+        $editedCount = $adapter->getEditedScriptoMediaCount($this->id());
+        if ($editedCount) {
+            return self::STATUS_IN_PROGRESS;
+        }
+        return self::STATUS_NEW;
     }
 }

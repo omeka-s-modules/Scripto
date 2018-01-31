@@ -69,4 +69,77 @@ class ScriptoItemAdapter extends AbstractEntityAdapter
             $errorStore->addError('o:item', 'An item must not be null'); // @translate
         }
     }
+
+    /**
+     * Get total Scripto media count for a Scripto item.
+     *
+     * @param int $sItemId
+     * @return int
+     */
+    public function getTotalScriptoMediaCount($sItemId)
+    {
+        $query = $this->getEntityManager()->createQuery('
+            SELECT COUNT(m)
+            FROM Scripto\Entity\ScriptoMedia m
+            WHERE m.scriptoItem = :scripto_item_id'
+        )->setParameter('scripto_item_id', $sItemId);
+        return $query->getSingleScalarResult();
+    }
+
+    /**
+     * Get approved Scripto media count for a Scripto item.
+     *
+     * @param int $sItemId
+     * @return int
+     */
+    public function getApprovedScriptoMediaCount($sItemId)
+    {
+        $query = $this->getEntityManager()->createQuery('
+            SELECT COUNT(m)
+            FROM Scripto\Entity\ScriptoMedia m
+            WHERE m.scriptoItem = :scripto_item_id
+            AND m.isApproved = :is_approved'
+        )->setParameters([
+            'scripto_item_id' => $sItemId,
+            'is_approved' => true,
+        ]);
+        return $query->getSingleScalarResult();
+    }
+
+    /**
+     * Get completed Scripto media count for a Scripto item.
+     *
+     * @param int $sItemId
+     * @return int
+     */
+    public function getCompletedScriptoMediaCount($sItemId)
+    {
+        $query = $this->getEntityManager()->createQuery('
+            SELECT COUNT(m)
+            FROM Scripto\Entity\ScriptoMedia m
+            WHERE m.scriptoItem = :scripto_item_id
+            AND m.isCompleted = :is_completed'
+        )->setParameters([
+            'scripto_item_id' => $sItemId,
+            'is_completed' => true,
+        ]);
+        return $query->getSingleScalarResult();
+    }
+
+    /**
+     * Get edited Scripto media count for a Scripto item.
+     *
+     * @param int $sItemId
+     * @return int
+     */
+    public function getEditedScriptoMediaCount($sItemId)
+    {
+        $query = $this->getEntityManager()->createQuery('
+            SELECT COUNT(m)
+            FROM Scripto\Entity\ScriptoMedia m
+            WHERE m.scriptoItem = :scripto_item_id
+            AND m.edited IS NOT NULL'
+        )->setParameter('scripto_item_id', $sItemId);
+        return $query->getSingleScalarResult();
+    }
 }
