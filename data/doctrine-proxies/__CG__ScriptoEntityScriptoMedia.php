@@ -64,10 +64,10 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'isCompleted', 'completedBy', 'isApproved', 'approvedBy', 'created', 'edited', 'text'];
+            return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'isCompleted', 'completedBy', 'isApproved', 'approvedBy', 'position', 'created', 'edited', 'text'];
         }
 
-        return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'isCompleted', 'completedBy', 'isApproved', 'approvedBy', 'created', 'edited', 'text'];
+        return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'isCompleted', 'completedBy', 'isApproved', 'approvedBy', 'position', 'created', 'edited', 'text'];
     }
 
     /**
@@ -318,6 +318,28 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getApprovedBy', []);
 
         return parent::getApprovedBy();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPosition($position)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPosition', [$position]);
+
+        return parent::setPosition($position);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPosition()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPosition', []);
+
+        return parent::getPosition();
     }
 
     /**

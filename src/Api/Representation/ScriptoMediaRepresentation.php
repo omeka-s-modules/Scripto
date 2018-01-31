@@ -16,6 +16,11 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
     const STATUS_COMPLETED = 2;
     const STATUS_APPROVED = 3;
 
+    /**
+     * @var array Corresponding MediaWiki page information
+     */
+    protected $mwPage;
+
     public function getJsonLd()
     {
         $approvedBy = $this->approvedBy();
@@ -50,38 +55,32 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
 
     public function isCompleted()
     {
-        $sMedia = $this->resource->getScriptoMedia();
-        return $sMedia ? $sMedia->getIsCompleted() : false;
+        return $this->resource->getIsCompleted();
     }
 
     public function completedBy()
     {
-        $sMedia = $this->resource->getScriptoMedia();
-        return $sMedia ? $sMedia->getCompletedBy() : null;
+        return $this->resource->getCompletedBy();
     }
 
     public function isApproved()
     {
-        $sMedia = $this->resource->getScriptoMedia();
-        return $sMedia ? $sMedia->getIsApproved() : false;
+        return $this->resource->getIsApproved();
     }
 
     public function approvedBy()
     {
-        $sMedia = $this->resource->getScriptoMedia();
-        return $sMedia ? $this->getAdapter('users')->getRepresentation($sMedia->getApprovedBy()) : null;
+        return $this->getAdapter('users')->getRepresentation($this->resource->getApprovedBy());
     }
 
     public function created()
     {
-        $sMedia = $this->resource->getScriptoMedia();
-        return $sMedia ? $sMedia->getCreated() : null;
+        return $this->resource->getCreated();
     }
 
     public function edited()
     {
-        $sMedia = $this->resource->getScriptoMedia();
-        return $sMedia ? $sMedia->getEdited() : null;
+        return $this->resource->getEdited();
     }
 
     /**
@@ -89,8 +88,8 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
      *
      * - APPROVED: this Scripto media is approved (flagged by admin)
      * - COMPLETED: this Scripto media is completed (flagged by transcriber)
-     * - IN PROGRESS: implied by a created Scripto media entity
-     * - NEW: implied by an uncreated Scripto media entity
+     * - IN PROGRESS: implied by an edited Scripto media entity
+     * - NEW: implied by an unedited Scripto media entity
      *
      * @return int
      */
@@ -102,10 +101,26 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
         if ($this->isCompleted()) {
             return STATUS_COMPLETED;
         }
-        if ($this->created()) {
+        if ($this->edited()) {
             return STATUS_IN_PROGRESS;
         }
         return STATUS_NEW;
+    }
+
+    /**
+     * Get information about the corresponding MediaWiki page.
+     *
+     * Caches the information when first called.
+     *
+     * @return array
+     */
+    public function mwPage()
+    {
+        $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
+        if (null === $this->page) {
+            $this->mwPage = $client->queryPage($this->resource->getMediawikiPageTitle());
+        }
+        return $this->mwPage;
     }
 
     /**
@@ -115,8 +130,8 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
      */
     public function text()
     {
-        $page = $this->resource->queryPage();
-        return isset($page['revisions'][0]['content']) ? $page['revisions'][0]['content'] : null;
+        $mwPage = $this->mwPage();
+        return isset($mwPage['revisions'][0]['content']) ? $mwPage['revisions'][0]['content'] : null;
     }
 
     /**
@@ -128,7 +143,8 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
      */
     public function revisions($limit = null, $offset = null)
     {
-        return $this->resource->queryRevisions($limit, $offset);
+        $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
+        return $client->queryRevisions($this->resource->getMediawikiPageTitle(), $limit, $offset);
     }
 
     /**
@@ -138,7 +154,8 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
      */
     public function mwPageIsCreated()
     {
-        return $this->resource->pageIsCreated();
+        $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
+        return $client->pageIsCreated($this->mwPage());
     }
 
     /**
@@ -148,6 +165,7 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
      */
     public function mwUserCan($action)
     {
-        return $this->resource->userCan($action);
+        $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
+        return $client->userCan($this->mwPage(), $action);
     }
 }

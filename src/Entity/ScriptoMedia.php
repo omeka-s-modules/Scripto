@@ -76,6 +76,11 @@ class ScriptoMedia extends AbstractEntity
     protected $approvedBy;
 
     /**
+     * @Column(type="integer")
+     */
+    protected $position;
+
+    /**
      * @Column(type="datetime")
      */
     protected $created;
@@ -158,6 +163,16 @@ class ScriptoMedia extends AbstractEntity
         return $this->approvedBy;
     }
 
+    public function setPosition($position)
+    {
+        $this->position = $position;
+    }
+
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
     public function setCreated(DateTime $dateTime)
     {
         $this->created = $dateTime;
@@ -186,6 +201,16 @@ class ScriptoMedia extends AbstractEntity
     public function getText()
     {
         return $this->text;
+    }
+
+    public function getMediawikiPageTitle()
+    {
+        return sprintf(
+            '%s:%s:%s',
+            $this->getScriptoItem()->getScriptoProject()->getId(),
+            $this->getScriptoItem()->getItem()->getId(),
+            $this->getMedia()->getId()
+        );
     }
 
     /**

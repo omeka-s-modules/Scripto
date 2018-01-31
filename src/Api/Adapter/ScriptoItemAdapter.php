@@ -3,6 +3,7 @@ namespace Scripto\Api\Adapter;
 
 use Doctrine\ORM\QueryBuilder;
 use Omeka\Api\Adapter\AbstractEntityAdapter;
+use Omeka\Api\Exception;
 use Omeka\Api\Request;
 use Omeka\Entity\EntityInterface;
 use Omeka\Stdlib\ErrorStore;
@@ -44,28 +45,19 @@ class ScriptoItemAdapter extends AbstractEntityAdapter
         }
     }
 
+    public function create(Request $request)
+    {
+        throw new Exception\OperationNotImplementedException(
+            'The Scripto\Api\Adapter\ScriptoItemAdapter adapter does not implement the create operation.' // @translate
+        );
+    }
+
     public function validateRequest(Request $request, ErrorStore $errorStore)
     {
-        if (Request::CREATE === $request->getOperation()) {
-            $data = $request->getContent();
-            if (!isset($data['o-module-scripto:project']['o:id'])) {
-                $errorStore->addError('o-module-scripto:project', 'A Scripto item must be assigned a Scripto project on creation.'); // @translate
-            }
-            if (!isset($data['o:item']['o:id'])) {
-                $errorStore->addError('o:item', 'A Scripto item must be assigned an item on creation.'); // @translate
-            }
-        }
     }
 
     public function hydrate(Request $request, EntityInterface $entity, ErrorStore $errorStore)
     {
-        if (Request::CREATE === $request->getOperation()) {
-            $data = $request->getContent();
-            $sProject = $this->getAdapter('scripto_projects')->findEntity($data['o-module-scripto:project']['o:id']);
-            $entity->setScriptoProject($sProject);
-            $item = $this->getAdapter('items')->findEntity($data['o:item']['o:id']);
-            $entity->setItem($item);
-        }
     }
 
     public function validateEntity(EntityInterface $entity, ErrorStore $errorStore)
