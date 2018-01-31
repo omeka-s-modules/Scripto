@@ -2,7 +2,6 @@
 namespace Scripto\Entity;
 
 use DateTime;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Omeka\Entity\AbstractEntity;
@@ -156,7 +155,7 @@ class ScriptoProject extends AbstractEntity
      */
     public function prePersist(LifecycleEventArgs $eventArgs)
     {
-        $this->created = new DateTime('now');
+        $this->setCreated(new DateTime('now'));
     }
 
     /**
@@ -164,6 +163,6 @@ class ScriptoProject extends AbstractEntity
      */
     public function preUpdate(PreUpdateEventArgs $eventArgs)
     {
-        $this->modified = new DateTime('now');
+        $this->setModified(new DateTime('now'));
     }
 }

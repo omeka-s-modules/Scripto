@@ -3,6 +3,7 @@ namespace Scripto\Entity;
 
 use DateTime;
 use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Omeka\Entity\AbstractEntity;
 use Omeka\Entity\Media;
 use Omeka\Entity\User;
@@ -83,12 +84,22 @@ class ScriptoMedia extends AbstractEntity
     /**
      * @Column(type="datetime")
      */
-    protected $created;
+    protected $synced;
 
     /**
      * @Column(type="datetime", nullable=true)
      */
     protected $edited;
+
+    /**
+     * @Column(type="datetime", nullable=true)
+     */
+    protected $completed;
+
+    /**
+     * @Column(type="datetime", nullable=true)
+     */
+    protected $approved;
 
     /**
      * Scripto media text
@@ -173,14 +184,14 @@ class ScriptoMedia extends AbstractEntity
         return $this->position;
     }
 
-    public function setCreated(DateTime $dateTime)
+    public function setSynced(DateTime $dateTime)
     {
-        $this->created = $dateTime;
+        $this->synced = $dateTime;
     }
 
-    public function getCreated()
+    public function getSynced()
     {
-        return $this->created;
+        return $this->synced;
     }
 
     public function setEdited(DateTime $dateTime)
@@ -191,6 +202,26 @@ class ScriptoMedia extends AbstractEntity
     public function getEdited()
     {
         return $this->edited;
+    }
+
+    public function setCompleted(DateTime $dateTime)
+    {
+        $this->completed = $dateTime;
+    }
+
+    public function getCompleted()
+    {
+        return $this->completed;
+    }
+
+    public function setApproved(DateTime $dateTime)
+    {
+        $this->approved = $dateTime;
+    }
+
+    public function getApproved()
+    {
+        return $this->approved;
     }
 
     public function setText($text)
@@ -218,6 +249,19 @@ class ScriptoMedia extends AbstractEntity
      */
     public function prePersist(LifecycleEventArgs $eventArgs)
     {
-        $this->created = new DateTime('now');
+        $this->setSynced(new DateTime('now'));
+    }
+
+    /**
+     * @PreUpdate
+     */
+    public function preUpdate(PreUpdateEventArgs $eventArgs)
+    {
+        if ($eventArgs->hasChangedField('isCompleted')) {
+            $this->setCompleted(new DateTime('now'));
+        }
+        if ($eventArgs->hasChangedField('isApproved')) {
+            $this->setApproved(new DateTime('now'));
+        }
     }
 }

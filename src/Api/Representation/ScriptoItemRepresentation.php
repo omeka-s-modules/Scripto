@@ -20,11 +20,12 @@ class ScriptoItemRepresentation extends AbstractEntityRepresentation
 
     public function getJsonLd()
     {
+        $modified = $this->modified();
         return [
             'o-module-scripto:project' => $this->scriptoProject()->getReference(),
             'o:item' => $this->item()->getReference(),
-            'o:created' => $this->getDateTime($this->created()),
-            'o:modified' => $this->modified() ? $this->getDateTime($this->modified()) : null,
+            'o-module-scripto:synced' => $this->getDateTime($this->synced()),
+            'o:modified' => $modified ? $this->getDateTime($modified) : null,
         ];
     }
 
@@ -40,9 +41,9 @@ class ScriptoItemRepresentation extends AbstractEntityRepresentation
             ->getRepresentation($this->resource->getItem());
     }
 
-    public function created()
+    public function synced()
     {
-        return $this->resource->getCreated();
+        return $this->resource->getSynced();
     }
 
     public function modified()

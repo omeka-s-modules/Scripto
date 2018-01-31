@@ -29,8 +29,10 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
     public function getJsonLd()
     {
         $approvedBy = $this->approvedBy();
-        $created = $this->created();
+        $synced = $this->synced();
         $edited = $this->edited();
+        $completed = $this->completed();
+        $approved = $this->approved();
         return [
             'o-module-scripto:item' => $this->scriptoItem()->getReference(),
             'o:media' => $this->media()->getReference(),
@@ -38,8 +40,10 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
             'o-module-scripto:completedBy' => $this->completedBy(),
             'o-module-scripto:is_approved' => $this->isApproved(),
             'o-module-scripto:approvedBy' => $approvedBy ? $approvedBy->getReference() : null,
-            'o:created' => $created ? $this->getDateTime($created) : null,
-            'o:edited' => $edited ? $this->getDateTime($edited) : null,
+            'o-module-scripto:synced' => $synced ? $this->getDateTime($synced) : null,
+            'o-module-scripto:edited' => $edited ? $this->getDateTime($edited) : null,
+            'o-module-scripto:completed' => $completed ? $this->getDateTime($completed) : null,
+            'o-module-scripto:approved' => $approved ? $this->getDateTime($approved) : null,
         ];
     }
 
@@ -73,14 +77,24 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
         return $this->getAdapter('users')->getRepresentation($this->resource->getApprovedBy());
     }
 
-    public function created()
+    public function synced()
     {
-        return $this->resource->getCreated();
+        return $this->resource->getSynced();
     }
 
     public function edited()
     {
         return $this->resource->getEdited();
+    }
+
+    public function completed()
+    {
+        return $this->resource->getCompleted();
+    }
+
+    public function approved()
+    {
+        return $this->resource->getApproved();
     }
 
     /**
