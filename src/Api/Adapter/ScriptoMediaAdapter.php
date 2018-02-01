@@ -33,6 +33,14 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
         return 'Scripto\Entity\ScriptoMedia';
     }
 
+    public function create(Request $request)
+    {
+        // Scripto items are created only when a project is synced.
+        throw new Exception\OperationNotImplementedException(
+            'The Scripto\Api\Adapter\ScriptoMediaAdapter adapter does not implement the create operation.' // @translate
+        );
+    }
+
     public function buildQuery(QueryBuilder $qb, array $query)
     {
         if (isset($query['scripto_item_id'])) {
@@ -51,13 +59,6 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
                 $this->createNamedParameter($qb, $query['media_id']))
             );
         }
-    }
-
-    public function create(Request $request)
-    {
-        throw new Exception\OperationNotImplementedException(
-            'The Scripto\Api\Adapter\ScriptoMediaAdapter adapter does not implement the create operation.' // @translate
-        );
     }
 
     public function validateRequest(Request $request, ErrorStore $errorStore)

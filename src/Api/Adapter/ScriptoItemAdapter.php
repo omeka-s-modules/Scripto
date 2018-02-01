@@ -25,6 +25,14 @@ class ScriptoItemAdapter extends AbstractEntityAdapter
         return 'Scripto\Entity\ScriptoItem';
     }
 
+    public function create(Request $request)
+    {
+        // Scripto items are created only when a project is synced.
+        throw new Exception\OperationNotImplementedException(
+            'The Scripto\Api\Adapter\ScriptoItemAdapter adapter does not implement the create operation.' // @translate
+        );
+    }
+
     public function buildQuery(QueryBuilder $qb, array $query)
     {
         if (isset($query['scripto_project_id'])) {
@@ -43,13 +51,6 @@ class ScriptoItemAdapter extends AbstractEntityAdapter
                 $this->createNamedParameter($qb, $query['item_id']))
             );
         }
-    }
-
-    public function create(Request $request)
-    {
-        throw new Exception\OperationNotImplementedException(
-            'The Scripto\Api\Adapter\ScriptoItemAdapter adapter does not implement the create operation.' // @translate
-        );
     }
 
     public function validateRequest(Request $request, ErrorStore $errorStore)

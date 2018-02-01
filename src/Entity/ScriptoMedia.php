@@ -101,12 +101,6 @@ class ScriptoMedia extends AbstractEntity
      */
     protected $approved;
 
-    /**
-     * Scripto media text
-     *
-     * Note that text is stored in MediaWiki, not Omeka. We use this property to
-     * store text until persisting it using the Media API client.
-     */
     protected $text;
 
     public function getId()
@@ -224,16 +218,43 @@ class ScriptoMedia extends AbstractEntity
         return $this->approved;
     }
 
+    /**
+     * Set Scripto media text.
+     *
+     * Note that text is stored in MediaWiki, not Omeka. We use this setter to
+     * store text until persisting it using the Media API client.
+     *
+     * @param string $text
+     */
     public function setText($text)
     {
         $this->text = $text;
     }
 
+    /**
+     * Get the Scripto media text.
+     *
+     * @return string
+     */
     public function getText()
     {
         return $this->text;
     }
 
+    /**
+     * Get the title of the corresponding MediaWiki page.
+     *
+     * Every Scripto media maps to a MediaWiki page. For the page title we use
+     * a unique sequence of IDs: the Scripto project ID, the Omeka item ID, and
+     * the Omeka media ID, each separated by a colon.
+     *
+     * We use the IDs of Omeka entities (instead of the IDs of the corresponding
+     * Scripto entities) so the pages are recoverable should an item be
+     * accidentally removed from the project. It also allows for a possible
+     * future feature of reconstitution of projects should the they be deleted.
+     *
+     * @return string
+     */
     public function getMediawikiPageTitle()
     {
         return sprintf(
