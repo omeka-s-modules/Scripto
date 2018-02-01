@@ -51,6 +51,17 @@ class ScriptoItemAdapter extends AbstractEntityAdapter
                 $this->createNamedParameter($qb, $query['item_id']))
             );
         }
+        if (isset($query['approved'])) {
+            // Get all approved Scripto items. An item is approved if a) all
+            // child media are marked as approved, or b) it has no child media.
+            $alias = $this->createAlias();
+            $subQb = $this->getEntityManager()->createQueryBuilder()
+                ->select($alias)
+                ->from('Scripto\Entity\ScriptoMedia', $alias)
+                ->andWhere("$alias.scriptoItem = Scripto\Entity\ScriptoItem.id")
+                ->andWhere("$alias.isApproved = 0");
+            $qb->andWhere($qb->expr()->not($qb->expr()->exists($subQb->getDQL())));
+        }
     }
 
     public function validateRequest(Request $request, ErrorStore $errorStore)

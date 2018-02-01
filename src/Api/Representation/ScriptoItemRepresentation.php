@@ -56,7 +56,7 @@ class ScriptoItemRepresentation extends AbstractEntityRepresentation
      *
      * The status is contingent on the status of child media.
      *
-     * - APPROVED: implied by all Scripto media entities approved
+     * - APPROVED: implied by all Scripto media entities approved or no Scripto media entities
      * - COMPLETED: implied by all Scripto media entities completed
      * - IN PROGRESS: implied by at least one Scripto media entity edited
      * - NEW: implied by no Scripto media entities edited
@@ -67,6 +67,9 @@ class ScriptoItemRepresentation extends AbstractEntityRepresentation
     {
         $adapter = $this->getAdapter();
         $totalCount = $adapter->getTotalScriptoMediaCount($this->id());
+        if (!$totalCount) {
+            return self::STATUS_APPROVED;
+        }
         $approvedCount = $adapter->getApprovedScriptoMediaCount($this->id());
         if ($approvedCount === $totalCount) {
             return self::STATUS_APPROVED;
