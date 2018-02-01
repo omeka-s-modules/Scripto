@@ -106,7 +106,6 @@ SET FOREIGN_KEY_CHECKS=1;
         $dispatcher = $this->getServiceLocator()->get('Omeka\Job\Dispatcher');
         $dispatcher->dispatch('Scripto\Job\SyncProject', [
             'scripto_project_id' => $project->getId(),
-            'item_set_id' => $project->getItemSet()->getId(),
         ]);
     }
 
