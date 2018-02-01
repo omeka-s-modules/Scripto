@@ -5,20 +5,11 @@ return [
             'Scripto\Mediawiki\ApiClient'  => Scripto\Service\Mediawiki\ApiClientFactory::class,
         ],
     ],
-    'view_manager' => [
-        'template_path_stack' => [
-            OMEKA_PATH . '/modules/Scripto/view',
-        ],
-    ],
-    'controllers' => [
+    'api_adapters' => [
         'invokables' => [
-            'Scripto\Controller\Index' => Scripto\Controller\IndexController::class,
-            'Scripto\Controller\Admin\Index' => Scripto\Controller\Admin\IndexController::class,
-        ],
-    ],
-    'form_elements' => [
-        'factories' => [
-            'Scripto\Form\ConfigForm' => Scripto\Service\Form\ConfigFormFactory::class,
+            'scripto_projects' => Scripto\Api\Adapter\ScriptoProjectAdapter::class,
+            'scripto_items' => Scripto\Api\Adapter\ScriptoItemAdapter::class,
+            'scripto_media' => Scripto\Api\Adapter\ScriptoMediaAdapter::class,
         ],
     ],
     'entity_manager' => [
@@ -29,11 +20,20 @@ return [
             OMEKA_PATH . '/modules/Scripto/data/doctrine-proxies',
         ],
     ],
-    'api_adapters' => [
+    'form_elements' => [
+        'factories' => [
+            'Scripto\Form\ConfigForm' => Scripto\Service\Form\ConfigFormFactory::class,
+        ],
+    ],
+    'controllers' => [
         'invokables' => [
-            'scripto_projects' => Scripto\Api\Adapter\ScriptoProjectAdapter::class,
-            'scripto_items' => Scripto\Api\Adapter\ScriptoItemAdapter::class,
-            'scripto_media' => Scripto\Api\Adapter\ScriptoMediaAdapter::class,
+            'Scripto\Controller\Index' => Scripto\Controller\IndexController::class,
+            'Scripto\Controller\Admin\Index' => Scripto\Controller\Admin\IndexController::class,
+        ],
+    ],
+    'view_manager' => [
+        'template_path_stack' => [
+            OMEKA_PATH . '/modules/Scripto/view',
         ],
     ],
     'navigation' => [
@@ -73,12 +73,12 @@ return [
                 ],
                 'may_terminate' => true,
                 'child_routes' => [
-                    'set' => [
+                    'project' => [
                         'type' => 'Segment',
                         'options' => [
-                            'route' => '/:set-id',
+                            'route' => '/:project-id',
                             'constraints' => [
-                                'set-id' => '\d+',
+                                'project-id' => '\d+',
                             ],
                             'defaults' => [
                                 'action' => 'browse',
@@ -95,6 +95,21 @@ return [
                                     ],
                                     'defaults' => [
                                         'action' => 'show',
+                                    ],
+                                ],
+                                'may_terminate' => true,
+                                'child_routes' => [
+                                    'item' => [
+                                        'type' => 'Segment',
+                                        'options' => [
+                                            'route' => '/:media-id',
+                                            'constraints' => [
+                                                'media-id' => '\d+',
+                                            ],
+                                            'defaults' => [
+                                                'action' => 'show',
+                                            ],
+                                        ],
                                     ],
                                 ],
                             ],
