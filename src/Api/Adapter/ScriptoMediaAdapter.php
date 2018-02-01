@@ -62,18 +62,6 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
 
     public function validateRequest(Request $request, ErrorStore $errorStore)
     {
-        $data = $request->getContent();
-        if (Request::CREATE === $request->getOperation()) {
-            if (!isset($data['o-module-scripto:text'])) {
-                $errorStore->addError('o:media', 'A Scripto media must have text on creation.'); // @translate
-            }
-            if (!isset($data['o-module-scripto:item']['o:id'])) {
-                $errorStore->addError('o-module-scripto:item', 'A Scripto media must be assigned a Scripto item ID on creation.'); // @translate
-            }
-            if (!isset($data['o:media']['o:id'])) {
-                $errorStore->addError('o:media', 'A Scripto media must be assigned an Omeka media ID on creation.'); // @translate
-            }
-        }
     }
 
     public function hydrate(Request $request, EntityInterface $entity, ErrorStore $errorStore)
