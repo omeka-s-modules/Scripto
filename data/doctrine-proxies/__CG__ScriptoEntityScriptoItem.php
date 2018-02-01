@@ -64,10 +64,10 @@ class ScriptoItem extends \Scripto\Entity\ScriptoItem implements \Doctrine\ORM\P
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'scriptoProject', 'item', 'synced', 'modified'];
+            return ['__isInitialized__', 'id', 'scriptoProject', 'item', 'synced', 'edited'];
         }
 
-        return ['__isInitialized__', 'id', 'scriptoProject', 'item', 'synced', 'modified'];
+        return ['__isInitialized__', 'id', 'scriptoProject', 'item', 'synced', 'edited'];
     }
 
     /**
@@ -257,23 +257,23 @@ class ScriptoItem extends \Scripto\Entity\ScriptoItem implements \Doctrine\ORM\P
     /**
      * {@inheritDoc}
      */
-    public function setModified(\DateTime $dateTime)
+    public function setEdited(\DateTime $dateTime)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setModified', [$dateTime]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEdited', [$dateTime]);
 
-        return parent::setModified($dateTime);
+        return parent::setEdited($dateTime);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getModified()
+    public function getEdited()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getModified', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEdited', []);
 
-        return parent::getModified();
+        return parent::getEdited();
     }
 
     /**

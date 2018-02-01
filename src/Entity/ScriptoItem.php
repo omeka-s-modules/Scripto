@@ -56,7 +56,7 @@ class ScriptoItem extends AbstractEntity
     /**
      * @Column(type="datetime", nullable=true)
      */
-    protected $modified;
+    protected $edited;
 
     public function getId()
     {
@@ -93,14 +93,14 @@ class ScriptoItem extends AbstractEntity
         return $this->synced;
     }
 
-    public function setModified(DateTime $dateTime)
+    public function setEdited(DateTime $dateTime)
     {
-        $this->modified = $dateTime;
+        $this->edited = $dateTime;
     }
 
-    public function getModified()
+    public function getEdited()
     {
-        return $this->modified;
+        return $this->edited;
     }
 
     /**
