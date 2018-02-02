@@ -188,7 +188,7 @@ class ScriptoMedia extends AbstractEntity
         return $this->synced;
     }
 
-    public function setEdited(DateTime $dateTime)
+    public function setEdited(DateTime $dateTime = null)
     {
         $this->edited = $dateTime;
     }
@@ -198,7 +198,7 @@ class ScriptoMedia extends AbstractEntity
         return $this->edited;
     }
 
-    public function setCompleted(DateTime $dateTime)
+    public function setCompleted(DateTime $dateTime = null)
     {
         $this->completed = $dateTime;
     }
@@ -208,7 +208,7 @@ class ScriptoMedia extends AbstractEntity
         return $this->completed;
     }
 
-    public function setApproved(DateTime $dateTime)
+    public function setApproved(DateTime $dateTime = null)
     {
         $this->approved = $dateTime;
     }
@@ -279,10 +279,14 @@ class ScriptoMedia extends AbstractEntity
     public function preUpdate(PreUpdateEventArgs $eventArgs)
     {
         if ($eventArgs->hasChangedField('isCompleted')) {
-            $this->setCompleted(new DateTime('now'));
+            $this->isCompleted()
+                ? $this->setCompleted(new DateTime('now'))
+                : $this->setCompleted(null);
         }
         if ($eventArgs->hasChangedField('isApproved')) {
-            $this->setApproved(new DateTime('now'));
+            $this->isApproved()
+                ? $this->setApproved(new DateTime('now'))
+                : $this->setApproved(null);
         }
     }
 }

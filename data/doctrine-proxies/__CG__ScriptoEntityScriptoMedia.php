@@ -367,7 +367,7 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
     /**
      * {@inheritDoc}
      */
-    public function setEdited(\DateTime $dateTime)
+    public function setEdited(\DateTime $dateTime = NULL)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEdited', [$dateTime]);
@@ -389,7 +389,7 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
     /**
      * {@inheritDoc}
      */
-    public function setCompleted(\DateTime $dateTime)
+    public function setCompleted(\DateTime $dateTime = NULL)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCompleted', [$dateTime]);
@@ -411,7 +411,7 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
     /**
      * {@inheritDoc}
      */
-    public function setApproved(\DateTime $dateTime)
+    public function setApproved(\DateTime $dateTime = NULL)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setApproved', [$dateTime]);
