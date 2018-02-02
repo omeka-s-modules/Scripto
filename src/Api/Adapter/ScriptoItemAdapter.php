@@ -52,7 +52,7 @@ class ScriptoItemAdapter extends AbstractEntityAdapter
             );
         }
         if (isset($query['approved'])) {
-            // Get all approved Scripto items. An item is approved if a) all
+            // Get all approved Scripto items. An item is "approved" if a) all
             // child media are marked as approved, or b) it has no child media.
             $alias = $this->createAlias();
             $subQb = $this->getEntityManager()->createQueryBuilder()
@@ -61,6 +61,16 @@ class ScriptoItemAdapter extends AbstractEntityAdapter
                 ->andWhere("$alias.scriptoItem = Scripto\Entity\ScriptoItem.id")
                 ->andWhere("$alias.isApproved = 0");
             $qb->andWhere($qb->expr()->not($qb->expr()->exists($subQb->getDQL())));
+        } elseif (isset($query['not_approved'])) {
+            // Get all not approved Scripto items. An item is "not approved" if
+            // at least one child media is not marked as approved.
+            $alias = $this->createAlias();
+            $subQb = $this->getEntityManager()->createQueryBuilder()
+                ->select($alias)
+                ->from('Scripto\Entity\ScriptoMedia', $alias)
+                ->andWhere("$alias.scriptoItem = Scripto\Entity\ScriptoItem.id")
+                ->andWhere("$alias.isApproved = 0");
+            $qb->andWhere($qb->expr()->exists($subQb->getDQL()));
         }
     }
 
