@@ -74,6 +74,7 @@ class SyncProject extends AbstractJob
 
         // Flush the entity manager to complete the changes.
         $em->flush();
+        $em->clear();
     }
 
     /**
@@ -127,11 +128,12 @@ class SyncProject extends AbstractJob
                 'scripto_media_ids' => $sMediaIdsToRetain,
             ]);
             $query->execute();
-        }
 
-        // Must flush the entity manager after deleting so newly persisted
-        // entities are not deleted.
-        $em->flush();
+            // Must flush the entity manager after deleting so newly persisted
+            // entities are not deleted.
+            $em->flush();
+            $em->clear();
+        }
     }
 
     /**
