@@ -39,7 +39,7 @@ class SyncProject extends AbstractJob
     public function syncProjectItems($projectId)
     {
         $em = $this->getServiceLocator()->get('Omeka\EntityManager');
-        $project = $em->find('Scripto\Entity\ScriptoProject', $projectId);
+        $project = $em->getReference('Scripto\Entity\ScriptoProject', $projectId);
 
         // Get IDs of all items in the Scripto project.
         $sItems = $this->getProjectItemIds($project->getId());
@@ -61,7 +61,7 @@ class SyncProject extends AbstractJob
         foreach ($toCreate as $itemId) {
             $sItem = new ScriptoItem;
             $sItem->setScriptoProject($project);
-            $sItem->setItem($em->find('Omeka\Entity\Item', $itemId));
+            $sItem->setItem($em->getReference('Omeka\Entity\Item', $itemId));
             $em->persist($sItem);
         }
 
@@ -93,8 +93,8 @@ class SyncProject extends AbstractJob
         // Iterate all Scripto items in the Scripto project.
         $sItemIds = $this->getProjectItemIds($projectId);
         foreach ($sItemIds as $sItemId => $itemId) {
-            $item = $em->find('Omeka\Entity\Item', $itemId);
-            $sItem = $em->find('Scripto\Entity\ScriptoItem', $sItemId);
+            $item = $em->getReference('Omeka\Entity\Item', $itemId);
+            $sItem = $em->getReference('Scripto\Entity\ScriptoItem', $sItemId);
             $sMediaIdsToRetain = [];
             $position = 1;
             // Iterate all media assigned to the item.
