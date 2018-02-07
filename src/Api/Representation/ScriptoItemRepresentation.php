@@ -65,20 +65,39 @@ class ScriptoItemRepresentation extends AbstractEntityRepresentation
      */
     public function status()
     {
-        $adapter = $this->getAdapter();
-        $totalCount = $adapter->getTotalScriptoMediaCount($this->id());
+        $api = $this->getServiceLocator()->get('Omeka\ApiManager');
+        $response = $api->search('scripto_media', [
+            'scripto_item_id' => $this->id(),
+            'limit' => 0,
+        ]);
+        $totalCount = $response->getTotalResults();
         if (!$totalCount) {
             return self::STATUS_APPROVED;
         }
-        $approvedCount = $adapter->getApprovedScriptoMediaCount($this->id());
+        $response = $api->search('scripto_media', [
+            'scripto_item_id' => $this->id(),
+            'is_approved' => true,
+            'limit' => 0,
+        ]);
+        $approvedCount = $response->getTotalResults();
         if ($approvedCount === $totalCount) {
             return self::STATUS_APPROVED;
         }
-        $completedCount = $adapter->getCompletedScriptoMediaCount($this->id());
+        $response = $api->search('scripto_media', [
+            'scripto_item_id' => $this->id(),
+            'is_completed' => true,
+            'limit' => 0,
+        ]);
+        $completedCount = $response->getTotalResults();
         if ($completedCount === $totalCount) {
             return self::STATUS_COMPLETED;
         }
-        $editedCount = $adapter->getEditedScriptoMediaCount($this->id());
+        $response = $api->search('scripto_media', [
+            'scripto_item_id' => $this->id(),
+            'is_edited' => true,
+            'limit' => 0,
+        ]);
+        $editedCount = $response->getTotalResults();
         if ($editedCount) {
             return self::STATUS_IN_PROGRESS;
         }

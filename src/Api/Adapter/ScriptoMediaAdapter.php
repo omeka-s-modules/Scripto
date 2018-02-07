@@ -1,6 +1,7 @@
 <?php
 namespace Scripto\Api\Adapter;
 
+use DateTime;
 use Doctrine\ORM\QueryBuilder;
 use Omeka\Api\Adapter\AbstractEntityAdapter;
 use Omeka\Api\Exception;
@@ -59,6 +60,21 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
                 $this->createNamedParameter($qb, $query['media_id']))
             );
         }
+        if (isset($query['is_approved'])) {
+            $qb->andWhere($qb->expr()->isNotNull('Scripto\Entity\ScriptoMedia.approved'));
+        } elseif (isset($query['is_not_approved'])) {
+            $qb->andWhere($qb->expr()->isNull('Scripto\Entity\ScriptoMedia.approved'));
+        }
+        if (isset($query['is_completed'])) {
+            $qb->andWhere($qb->expr()->isNotNull('Scripto\Entity\ScriptoMedia.completed'));
+        } elseif (isset($query['is_not_completed'])) {
+            $qb->andWhere($qb->expr()->isNull('Scripto\Entity\ScriptoMedia.completed'));
+        }
+        if (isset($query['is_edited'])) {
+            $qb->andWhere($qb->expr()->isNotNull('Scripto\Entity\ScriptoMedia.edited'));
+        } elseif (isset($query['is_not_edited'])) {
+            $qb->andWhere($qb->expr()->isNull('Scripto\Entity\ScriptoMedia.edited'));
+        }
     }
 
     public function validateRequest(Request $request, ErrorStore $errorStore)
@@ -69,34 +85,34 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
     {
         $mwUser = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient')->getUserInfo();
         $oUser = $this->getServiceLocator()->get('Omeka\AuthenticationService')->getIdentity();
-        $isCompleted = $request->getValue('o-module-scripto:is_completed');
-        $isApproved = $request->getValue('o-module-scripto:is_approved');
+        $setIsCompleted = $request->getValue('o-module-scripto:is_completed');
+        $setIsApproved = $request->getValue('o-module-scripto:is_approved');
 
-        if (null !== $isCompleted) {
-            if ($isCompleted && !$entity->getIsCompleted()) {
+        if (null !== $setIsCompleted) {
+            if ($setIsCompleted && !$entity->getCompleted()) {
                 // Set as completed only if the entity is set as not completed.
-                $entity->setIsCompleted(true);
+                $entity->setCompleted(new DateTime('now'));
                 $entity->setCompletedBy($mwUser['name']);
-            } elseif (!$isCompleted && $entity->getIsCompleted()) {
+            } elseif (!$setIsCompleted && $entity->getCompleted()) {
                 // Set as not completed only if the entity is set as completed.
-                $entity->setIsCompleted(false);
+                $entity->setCompleted(null);
                 $entity->setCompletedBy($mwUser['name']);
             }
         }
-        if (null !== $isApproved) {
-            if ($isApproved && !$entity->getIsApproved()) {
+        if (null !== $setIsApproved) {
+            if ($setIsApproved && !$entity->getApproved()) {
                 // Set as approved only if the entity is set as not approved.
-                $entity->setIsApproved(true);
+                $entity->setApproved(new DateTime('now'));
                 $entity->setApprovedBy($oUser);
-            } elseif (!$isApproved && $entity->getIsApproved()) {
+            } elseif (!$setIsApproved && $entity->getApproved()) {
                 // Set as not approved only if the entity is set as approved.
-                $entity->setIsApproved(false);
+                $entity->setApproved(null);
                 $entity->setApprovedBy($oUser);
             }
         }
-        if ($entity->getIsApproved() && !$entity->getIsCompleted()) {
+        if ($entity->getApproved() && !$entity->getCompleted()) {
             // Automatically set as completed if set as approved.
-            $entity->setIsCompleted(true);
+            $entity->setCompleted(new DateTime('now'));
             $entity->setCompletedBy($mwUser['name']);
         }
 

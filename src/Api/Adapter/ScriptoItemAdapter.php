@@ -51,7 +51,7 @@ class ScriptoItemAdapter extends AbstractEntityAdapter
                 $this->createNamedParameter($qb, $query['item_id']))
             );
         }
-        if (isset($query['approved'])) {
+        if (isset($query['is_approved'])) {
             // Get all approved Scripto items. An item is "approved" if a) all
             // child media are marked as approved, or b) it has no child media.
             $alias = $this->createAlias();
@@ -59,9 +59,9 @@ class ScriptoItemAdapter extends AbstractEntityAdapter
                 ->select($alias)
                 ->from('Scripto\Entity\ScriptoMedia', $alias)
                 ->andWhere("$alias.scriptoItem = Scripto\Entity\ScriptoItem.id")
-                ->andWhere("$alias.isApproved = 0");
+                ->andWhere("$alias.approved IS NULL");
             $qb->andWhere($qb->expr()->not($qb->expr()->exists($subQb->getDQL())));
-        } elseif (isset($query['not_approved'])) {
+        } elseif (isset($query['is_not_approved'])) {
             // Get all not approved Scripto items. An item is "not approved" if
             // at least one child media is not marked as approved.
             $alias = $this->createAlias();
@@ -69,7 +69,7 @@ class ScriptoItemAdapter extends AbstractEntityAdapter
                 ->select($alias)
                 ->from('Scripto\Entity\ScriptoMedia', $alias)
                 ->andWhere("$alias.scriptoItem = Scripto\Entity\ScriptoItem.id")
-                ->andWhere("$alias.isApproved = 0");
+                ->andWhere("$alias.approved IS NULL");
             $qb->andWhere($qb->expr()->exists($subQb->getDQL()));
         }
     }
@@ -90,78 +90,5 @@ class ScriptoItemAdapter extends AbstractEntityAdapter
         if (null === $entity->getItem()) {
             $errorStore->addError('o:item', 'An item must not be null'); // @translate
         }
-    }
-
-    /**
-     * Get total Scripto media count for a Scripto item.
-     *
-     * @param int $sItemId
-     * @return int
-     */
-    public function getTotalScriptoMediaCount($sItemId)
-    {
-        $query = $this->getEntityManager()->createQuery('
-            SELECT COUNT(m)
-            FROM Scripto\Entity\ScriptoMedia m
-            WHERE m.scriptoItem = :scripto_item_id'
-        )->setParameter('scripto_item_id', $sItemId);
-        return $query->getSingleScalarResult();
-    }
-
-    /**
-     * Get approved Scripto media count for a Scripto item.
-     *
-     * @param int $sItemId
-     * @return int
-     */
-    public function getApprovedScriptoMediaCount($sItemId)
-    {
-        $query = $this->getEntityManager()->createQuery('
-            SELECT COUNT(m)
-            FROM Scripto\Entity\ScriptoMedia m
-            WHERE m.scriptoItem = :scripto_item_id
-            AND m.isApproved = :is_approved'
-        )->setParameters([
-            'scripto_item_id' => $sItemId,
-            'is_approved' => true,
-        ]);
-        return $query->getSingleScalarResult();
-    }
-
-    /**
-     * Get completed Scripto media count for a Scripto item.
-     *
-     * @param int $sItemId
-     * @return int
-     */
-    public function getCompletedScriptoMediaCount($sItemId)
-    {
-        $query = $this->getEntityManager()->createQuery('
-            SELECT COUNT(m)
-            FROM Scripto\Entity\ScriptoMedia m
-            WHERE m.scriptoItem = :scripto_item_id
-            AND m.isCompleted = :is_completed'
-        )->setParameters([
-            'scripto_item_id' => $sItemId,
-            'is_completed' => true,
-        ]);
-        return $query->getSingleScalarResult();
-    }
-
-    /**
-     * Get edited Scripto media count for a Scripto item.
-     *
-     * @param int $sItemId
-     * @return int
-     */
-    public function getEditedScriptoMediaCount($sItemId)
-    {
-        $query = $this->getEntityManager()->createQuery('
-            SELECT COUNT(m)
-            FROM Scripto\Entity\ScriptoMedia m
-            WHERE m.scriptoItem = :scripto_item_id
-            AND m.edited IS NOT NULL'
-        )->setParameter('scripto_item_id', $sItemId);
-        return $query->getSingleScalarResult();
     }
 }

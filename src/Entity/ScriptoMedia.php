@@ -51,19 +51,9 @@ class ScriptoMedia extends AbstractEntity
     protected $media;
 
     /**
-     * @Column(type="boolean", nullable=false)
-     */
-    protected $isCompleted = false;
-
-    /**
      * @Column(nullable=true)
      */
     protected $completedBy;
-
-    /**
-     * @Column(type="boolean", nullable=false)
-     */
-    protected $isApproved = false;
 
     /**
      * @ManyToOne(
@@ -128,16 +118,6 @@ class ScriptoMedia extends AbstractEntity
         return $this->media;
     }
 
-    public function setIsCompleted($isCompleted)
-    {
-        $this->isCompleted = (bool) $isCompleted;
-    }
-
-    public function getIsCompleted()
-    {
-        return $this->isCompleted;
-    }
-
     public function setCompletedBy($completedBy)
     {
         $this->completedBy = $completedBy;
@@ -146,16 +126,6 @@ class ScriptoMedia extends AbstractEntity
     public function getCompletedBy()
     {
         return $this->completedBy;
-    }
-
-    public function setIsApproved($isApproved)
-    {
-        $this->isApproved = (bool) $isApproved;
-    }
-
-    public function getIsApproved()
-    {
-        return $this->isApproved;
     }
 
     public function setApprovedBy(User $approvedBy = null)
@@ -271,22 +241,5 @@ class ScriptoMedia extends AbstractEntity
     public function prePersist(LifecycleEventArgs $eventArgs)
     {
         $this->setSynced(new DateTime('now'));
-    }
-
-    /**
-     * @PreUpdate
-     */
-    public function preUpdate(PreUpdateEventArgs $eventArgs)
-    {
-        if ($eventArgs->hasChangedField('isCompleted')) {
-            $this->isCompleted()
-                ? $this->setCompleted(new DateTime('now'))
-                : $this->setCompleted(null);
-        }
-        if ($eventArgs->hasChangedField('isApproved')) {
-            $this->isApproved()
-                ? $this->setApproved(new DateTime('now'))
-                : $this->setApproved(null);
-        }
     }
 }

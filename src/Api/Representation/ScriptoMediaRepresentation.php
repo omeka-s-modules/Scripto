@@ -36,9 +36,7 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
         return [
             'o-module-scripto:item' => $this->scriptoItem()->getReference(),
             'o:media' => $this->media()->getReference(),
-            'o-module-scripto:is_completed' => $this->isCompleted(),
             'o-module-scripto:completedBy' => $this->completedBy(),
-            'o-module-scripto:is_approved' => $this->isApproved(),
             'o-module-scripto:approvedBy' => $approvedBy ? $approvedBy->getReference() : null,
             'o-module-scripto:synced' => $synced ? $this->getDateTime($synced) : null,
             'o-module-scripto:edited' => $edited ? $this->getDateTime($edited) : null,
@@ -57,19 +55,9 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
         return $this->getAdapter('media')->getRepresentation($this->resource->getMedia());
     }
 
-    public function isCompleted()
-    {
-        return $this->resource->getIsCompleted();
-    }
-
     public function completedBy()
     {
         return $this->resource->getCompletedBy();
-    }
-
-    public function isApproved()
-    {
-        return $this->resource->getIsApproved();
     }
 
     public function approvedBy()
@@ -109,10 +97,10 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
      */
     public function status()
     {
-        if ($this->isApproved()) {
+        if ($this->approved()) {
             return STATUS_APPROVED;
         }
-        if ($this->isCompleted()) {
+        if ($this->completed()) {
             return STATUS_COMPLETED;
         }
         if ($this->edited()) {
