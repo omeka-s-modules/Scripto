@@ -110,11 +110,6 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
                 $entity->setApprovedBy($oUser);
             }
         }
-        if ($entity->getApproved() && !$entity->getCompleted()) {
-            // Automatically set as completed if set as approved.
-            $entity->setCompleted(new DateTime('now'));
-            $entity->setCompletedBy($mwUser['name']);
-        }
 
         $entity->setText($request->getValue('o-module-scripto:text'));
     }
