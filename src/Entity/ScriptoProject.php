@@ -73,7 +73,7 @@ class ScriptoProject extends AbstractEntity
     /**
      * @Column(type="datetime", nullable=true)
      */
-    protected $modified;
+    protected $synced;
 
     public function getId()
     {
@@ -140,14 +140,14 @@ class ScriptoProject extends AbstractEntity
         return $this->created;
     }
 
-    public function setModified(DateTime $dateTime)
+    public function setSynced(DateTime $dateTime)
     {
-        $this->modified = $dateTime;
+        $this->synced = $dateTime;
     }
 
-    public function getModified()
+    public function getSynced()
     {
-        return $this->modified;
+        return $this->synced;
     }
 
     /**
@@ -156,13 +156,5 @@ class ScriptoProject extends AbstractEntity
     public function prePersist(LifecycleEventArgs $eventArgs)
     {
         $this->setCreated(new DateTime('now'));
-    }
-
-    /**
-     * @PreUpdate
-     */
-    public function preUpdate(PreUpdateEventArgs $eventArgs)
-    {
-        $this->setModified(new DateTime('now'));
     }
 }

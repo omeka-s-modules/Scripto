@@ -64,10 +64,10 @@ class ScriptoProject extends \Scripto\Entity\ScriptoProject implements \Doctrine
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'owner', 'itemSet', 'property', 'title', 'description', 'created', 'modified'];
+            return ['__isInitialized__', 'id', 'owner', 'itemSet', 'property', 'title', 'description', 'created', 'synced'];
         }
 
-        return ['__isInitialized__', 'id', 'owner', 'itemSet', 'property', 'title', 'description', 'created', 'modified'];
+        return ['__isInitialized__', 'id', 'owner', 'itemSet', 'property', 'title', 'description', 'created', 'synced'];
     }
 
     /**
@@ -323,23 +323,23 @@ class ScriptoProject extends \Scripto\Entity\ScriptoProject implements \Doctrine
     /**
      * {@inheritDoc}
      */
-    public function setModified(\DateTime $dateTime)
+    public function setSynced(\DateTime $dateTime)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setModified', [$dateTime]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSynced', [$dateTime]);
 
-        return parent::setModified($dateTime);
+        return parent::setSynced($dateTime);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getModified()
+    public function getSynced()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getModified', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSynced', []);
 
-        return parent::getModified();
+        return parent::getSynced();
     }
 
     /**
@@ -351,17 +351,6 @@ class ScriptoProject extends \Scripto\Entity\ScriptoProject implements \Doctrine
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'prePersist', [$eventArgs]);
 
         return parent::prePersist($eventArgs);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function preUpdate(\Doctrine\ORM\Event\PreUpdateEventArgs $eventArgs)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'preUpdate', [$eventArgs]);
-
-        return parent::preUpdate($eventArgs);
     }
 
     /**

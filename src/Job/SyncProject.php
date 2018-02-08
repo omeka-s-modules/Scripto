@@ -1,10 +1,13 @@
 <?php
 namespace Scripto\Job;
 
+use DateTime;
 use Omeka\Entity\Item;
+use Omeka\Entity\Media;
 use Omeka\Job\AbstractJob;
 use Scripto\Entity\ScriptoItem;
 use Scripto\Entity\ScriptoMedia;
+use Scripto\Entity\ScriptoProject;
 
 /**
  * Sync a Scripto project with its corresponding item set.
@@ -13,18 +16,27 @@ class SyncProject extends AbstractJob
 {
     public function perform()
     {
-        $this->syncProject($this->getArg('scripto_project_id'));
+        $em = $this->getServiceLocator()->get('Omeka\EntityManager');
+        $project = $em->find('Scripto\Entity\ScriptoProject', $this->getArg('scripto_project_id'));
+
+        $this->syncProject($project);
     }
 
     /**
      * Sync a project.
      *
-     * @param int $projectId
+     * @param ScriptoProject $project
      */
-    public function syncProject($projectId)
+    public function syncProject(ScriptoProject $project)
     {
-        $this->syncProjectItems($projectId);
-        $this->syncProjectMedia($projectId);
+        $this->syncProjectItems($project);
+        $this->syncProjectMedia($project);
+
+        $project->setSynced(new DateTime('now'));
+
+        $em = $this->getServiceLocator()->get('Omeka\EntityManager');
+        $em->merge($project); // entity is detached because of clear()
+        $em->flush();
     }
 
     /**
@@ -34,15 +46,14 @@ class SyncProject extends AbstractJob
      * last sync; and deletes Scripto items that have been removed from an item
      * set since the last sync.
      *
-     * @param int $projectId
+     * @param ScriptoProject $project
      */
-    public function syncProjectItems($projectId)
+    public function syncProjectItems(ScriptoProject $project)
     {
         $em = $this->getServiceLocator()->get('Omeka\EntityManager');
-        $project = $em->getReference('Scripto\Entity\ScriptoProject', $projectId);
 
         // Get IDs of all items in the Scripto project.
-        $sItems = $this->getProjectItemIds($project->getId());
+        $sItems = $this->getProjectItemIds($project);
 
         // Get IDs of all items in the item set.
         $query = $em->createQuery('
@@ -84,14 +95,14 @@ class SyncProject extends AbstractJob
      * sync; and deletes Scripto media that have been removed from an item since
      * the last sync.
      *
-     * @param int $projectId
+     * @param ScriptoProject $project
      */
-    public function syncProjectMedia($projectId)
+    public function syncProjectMedia(ScriptoProject $project)
     {
         $em = $this->getServiceLocator()->get('Omeka\EntityManager');
 
         // Iterate all Scripto items in the Scripto project.
-        $sItemIds = $this->getProjectItemIds($projectId);
+        $sItemIds = $this->getProjectItemIds($project);
         foreach ($sItemIds as $sItemId => $itemId) {
             $item = $em->getReference('Omeka\Entity\Item', $itemId);
             $sItem = $em->getReference('Scripto\Entity\ScriptoItem', $sItemId);
@@ -99,7 +110,7 @@ class SyncProject extends AbstractJob
             $position = 1;
             // Iterate all media assigned to the item.
             foreach ($this->getAllItemMedia($item) as $media) {
-                $sMedia = $this->getScriptoMediaEntity($projectId, $item->getId(), $media->getId());
+                $sMedia = $this->getScriptoMediaEntity($project, $item, $media);
                 if ($sMedia) {
                     // Update existing Scripto media.
                     $sMedia->setPosition($position);
@@ -139,10 +150,10 @@ class SyncProject extends AbstractJob
     /**
      * Get IDs of all items in the Scripto project.
      *
-     * @param int $projectId
+     * @param ScriptoProject $project
      * @return array
      */
-    public function getProjectItemIds($projectId)
+    public function getProjectItemIds(ScriptoProject $project)
     {
         $em = $this->getServiceLocator()->get('Omeka\EntityManager');
         $query = $em->createQuery('
@@ -151,19 +162,19 @@ class SyncProject extends AbstractJob
             JOIN si.item i
             JOIN si.scriptoProject sp
             WHERE sp.id = :scripto_project_id'
-        )->setParameter('scripto_project_id', $projectId);
+        )->setParameter('scripto_project_id', $project->getId());
         return array_column($query->getScalarResult(), 'item_id', 'scripto_item_id');
     }
 
     /**
      * Get a Scripto media entity given project, item, and media IDs.
      *
-     * @param int $projectId
-     * @param int $itemId
-     * @param int $mediaId
+     * @param ScriptoProject $project
+     * @param Item $item
+     * @param Media $media
      * @return ScriptoMedia|null
      */
-    public function getScriptoMediaEntity($projectId, $itemId, $mediaId)
+    public function getScriptoMediaEntity(ScriptoProject $project, Item $item, Media $media)
     {
         $em = $this->getServiceLocator()->get('Omeka\EntityManager');
         $query = $em->createQuery('
@@ -175,9 +186,9 @@ class SyncProject extends AbstractJob
             AND i.item = :item_id
             AND p.id = :project_id'
         )->setParameters([
-            'media_id' => $mediaId,
-            'item_id' => $itemId,
-            'project_id' => $projectId,
+            'media_id' => $media->getId(),
+            'item_id' => $item->getId(),
+            'project_id' => $project->getId(),
         ]);
         try {
             $sMedia = $query->getSingleResult();
