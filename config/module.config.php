@@ -29,6 +29,9 @@ return [
         'invokables' => [
             'Scripto\Controller\Index' => Scripto\Controller\IndexController::class,
             'Scripto\Controller\Admin\Index' => Scripto\Controller\Admin\IndexController::class,
+            'Scripto\Controller\Admin\Project' => Scripto\Controller\Admin\ProjectController::class,
+            'Scripto\Controller\Admin\Item' => Scripto\Controller\Admin\ItemController::class,
+            'Scripto\Controller\Admin\Media' => Scripto\Controller\Admin\MediaController::class,
         ],
     ],
     'view_manager' => [
@@ -41,7 +44,7 @@ return [
             [
                 'label' => 'Scripto', // @translate
                 'route' => 'admin/scripto',
-                'resource' => 'Scripto\Controller\Admin\Index',
+                'resource' => 'Scripto\Controller\Admin\Project',
             ],
         ],
     ],
@@ -55,8 +58,65 @@ return [
                             'route' => '/scripto',
                             'defaults' => [
                                 '__NAMESPACE__' => 'Scripto\Controller\Admin',
-                                'controller' => 'Scripto\Controller\Admin\Index',
-                                'action' => 'index',
+                                'controller' => 'Project',
+                                'action' => 'browse',
+                            ],
+                        ],
+                        'may_terminate' => true,
+                        'child_routes' => [
+                            'add' => [
+                                'type' => 'Literal',
+                                'options' => [
+                                    'route' => '/add',
+                                    'defaults' => [
+                                        'action' => 'add',
+                                    ],
+                                ],
+                            ],
+                            'id' => [
+                                'type' => 'Segment',
+                                'options' => [
+                                    'route' => '/:project-id[/:action]',
+                                    'constraints' => [
+                                        'project-id' => '\d+',
+                                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                    ],
+                                    'defaults' => [
+                                        'action' => 'review',
+                                    ],
+                                ],
+                            ],
+                            'item' => [
+                                'type' => 'Segment',
+                                'options' => [
+                                    'route' => '/:project-id/:item-id',
+                                    'constraints' => [
+                                        'project-id' => '\d+',
+                                        'item-id' => '\d+',
+                                    ],
+                                    'defaults' => [
+                                        'controller' => 'Item',
+                                        'action' => 'review',
+                                    ],
+                                ],
+                                'may_terminate' => true,
+                                'child_routes' => [
+                                    'media' => [
+                                        'type' => 'Segment',
+                                        'options' => [
+                                            'route' => '/:media-id',
+                                            'constraints' => [
+                                                'project-id' => '\d+',
+                                                'item-id' => '\d+',
+                                                'media-id' => '\d+',
+                                            ],
+                                            'defaults' => [
+                                                'controller' => 'Media',
+                                                'action' => 'review',
+                                            ],
+                                        ],
+                                    ],
+                                ],
                             ],
                         ],
                     ],
