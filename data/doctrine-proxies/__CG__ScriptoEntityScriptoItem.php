@@ -64,10 +64,10 @@ class ScriptoItem extends \Scripto\Entity\ScriptoItem implements \Doctrine\ORM\P
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'scriptoProject', 'item', 'synced', 'edited'];
+            return ['__isInitialized__', 'id', 'scriptoProject', 'item', 'synced', 'imported', 'edited'];
         }
 
-        return ['__isInitialized__', 'id', 'scriptoProject', 'item', 'synced', 'edited'];
+        return ['__isInitialized__', 'id', 'scriptoProject', 'item', 'synced', 'imported', 'edited'];
     }
 
     /**
@@ -252,6 +252,28 @@ class ScriptoItem extends \Scripto\Entity\ScriptoItem implements \Doctrine\ORM\P
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSynced', []);
 
         return parent::getSynced();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setImported(\DateTime $dateTime)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setImported', [$dateTime]);
+
+        return parent::setImported($dateTime);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getImported()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getImported', []);
+
+        return parent::getImported();
     }
 
     /**

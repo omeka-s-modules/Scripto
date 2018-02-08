@@ -64,10 +64,10 @@ class ScriptoProject extends \Scripto\Entity\ScriptoProject implements \Doctrine
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'owner', 'itemSet', 'property', 'title', 'description', 'created', 'synced'];
+            return ['__isInitialized__', 'id', 'owner', 'itemSet', 'property', 'title', 'description', 'created', 'synced', 'imported'];
         }
 
-        return ['__isInitialized__', 'id', 'owner', 'itemSet', 'property', 'title', 'description', 'created', 'synced'];
+        return ['__isInitialized__', 'id', 'owner', 'itemSet', 'property', 'title', 'description', 'created', 'synced', 'imported'];
     }
 
     /**
@@ -340,6 +340,28 @@ class ScriptoProject extends \Scripto\Entity\ScriptoProject implements \Doctrine
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSynced', []);
 
         return parent::getSynced();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setImported(\DateTime $dateTime)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setImported', [$dateTime]);
+
+        return parent::setImported($dateTime);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getImported()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getImported', []);
+
+        return parent::getImported();
     }
 
     /**

@@ -75,6 +75,11 @@ class ScriptoProject extends AbstractEntity
      */
     protected $synced;
 
+    /**
+     * @Column(type="datetime", nullable=true)
+     */
+    protected $imported;
+
     public function getId()
     {
         return $this->id;
@@ -148,6 +153,16 @@ class ScriptoProject extends AbstractEntity
     public function getSynced()
     {
         return $this->synced;
+    }
+
+    public function setImported(DateTime $dateTime)
+    {
+        $this->imported = $dateTime;
+    }
+
+    public function getImported()
+    {
+        return $this->imported;
     }
 
     /**
