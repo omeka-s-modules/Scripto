@@ -2,7 +2,6 @@
 namespace Scripto\Entity;
 
 use DateTime;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Omeka\Entity\AbstractEntity;
@@ -74,7 +73,7 @@ class ScriptoProject extends AbstractEntity
     /**
      * @Column(type="datetime", nullable=true)
      */
-    protected $modified;
+    protected $synced;
 
     public function getId()
     {
@@ -141,14 +140,14 @@ class ScriptoProject extends AbstractEntity
         return $this->created;
     }
 
-    public function setModified(DateTime $dateTime)
+    public function setSynced(DateTime $dateTime)
     {
-        $this->modified = $dateTime;
+        $this->synced = $dateTime;
     }
 
-    public function getModified()
+    public function getSynced()
     {
-        return $this->modified;
+        return $this->synced;
     }
 
     /**
@@ -156,14 +155,6 @@ class ScriptoProject extends AbstractEntity
      */
     public function prePersist(LifecycleEventArgs $eventArgs)
     {
-        $this->created = new DateTime('now');
-    }
-
-    /**
-     * @PreUpdate
-     */
-    public function preUpdate(PreUpdateEventArgs $eventArgs)
-    {
-        $this->modified = new DateTime('now');
+        $this->setCreated(new DateTime('now'));
     }
 }

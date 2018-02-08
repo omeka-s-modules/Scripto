@@ -64,10 +64,10 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'isCompleted', 'completedBy', 'isApproved', 'approvedBy', 'created', 'edited', 'text'];
+            return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'completedBy', 'approvedBy', 'position', 'synced', 'edited', 'completed', 'approved', 'text'];
         }
 
-        return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'isCompleted', 'completedBy', 'isApproved', 'approvedBy', 'created', 'edited', 'text'];
+        return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'completedBy', 'approvedBy', 'position', 'synced', 'edited', 'completed', 'approved', 'text'];
     }
 
     /**
@@ -235,28 +235,6 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
     /**
      * {@inheritDoc}
      */
-    public function setIsCompleted($isCompleted)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setIsCompleted', [$isCompleted]);
-
-        return parent::setIsCompleted($isCompleted);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getIsCompleted()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIsCompleted', []);
-
-        return parent::getIsCompleted();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function setCompletedBy($completedBy)
     {
 
@@ -274,28 +252,6 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCompletedBy', []);
 
         return parent::getCompletedBy();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setIsApproved($isApproved)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setIsApproved', [$isApproved]);
-
-        return parent::setIsApproved($isApproved);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getIsApproved()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIsApproved', []);
-
-        return parent::getIsApproved();
     }
 
     /**
@@ -323,29 +279,51 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
     /**
      * {@inheritDoc}
      */
-    public function setCreated(\DateTime $dateTime)
+    public function setPosition($position)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCreated', [$dateTime]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPosition', [$position]);
 
-        return parent::setCreated($dateTime);
+        return parent::setPosition($position);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getCreated()
+    public function getPosition()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreated', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPosition', []);
 
-        return parent::getCreated();
+        return parent::getPosition();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setEdited(\DateTime $dateTime)
+    public function setSynced(\DateTime $dateTime)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSynced', [$dateTime]);
+
+        return parent::setSynced($dateTime);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSynced()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSynced', []);
+
+        return parent::getSynced();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setEdited(\DateTime $dateTime = NULL)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEdited', [$dateTime]);
@@ -362,6 +340,50 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEdited', []);
 
         return parent::getEdited();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCompleted(\DateTime $dateTime = NULL)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCompleted', [$dateTime]);
+
+        return parent::setCompleted($dateTime);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCompleted()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCompleted', []);
+
+        return parent::getCompleted();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setApproved(\DateTime $dateTime = NULL)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setApproved', [$dateTime]);
+
+        return parent::setApproved($dateTime);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getApproved()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getApproved', []);
+
+        return parent::getApproved();
     }
 
     /**
@@ -384,6 +406,17 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getText', []);
 
         return parent::getText();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getMediawikiPageTitle()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMediawikiPageTitle', []);
+
+        return parent::getMediawikiPageTitle();
     }
 
     /**

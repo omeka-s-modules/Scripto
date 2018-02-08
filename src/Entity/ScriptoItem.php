@@ -51,12 +51,12 @@ class ScriptoItem extends AbstractEntity
     /**
      * @Column(type="datetime")
      */
-    protected $created;
+    protected $synced;
 
     /**
      * @Column(type="datetime", nullable=true)
      */
-    protected $modified;
+    protected $edited;
 
     public function getId()
     {
@@ -83,24 +83,24 @@ class ScriptoItem extends AbstractEntity
         return $this->item;
     }
 
-    public function setCreated(DateTime $dateTime)
+    public function setSynced(DateTime $dateTime)
     {
-        $this->created = $dateTime;
+        $this->synced = $dateTime;
     }
 
-    public function getCreated()
+    public function getSynced()
     {
-        return $this->created;
+        return $this->synced;
     }
 
-    public function setModified(DateTime $dateTime)
+    public function setEdited(DateTime $dateTime)
     {
-        $this->modified = $dateTime;
+        $this->edited = $dateTime;
     }
 
-    public function getModified()
+    public function getEdited()
     {
-        return $this->modified;
+        return $this->edited;
     }
 
     /**
@@ -108,6 +108,6 @@ class ScriptoItem extends AbstractEntity
      */
     public function prePersist(LifecycleEventArgs $eventArgs)
     {
-        $this->created = new DateTime('now');
+        $this->setSynced(new DateTime('now'));
     }
 }

@@ -64,10 +64,10 @@ class ScriptoItem extends \Scripto\Entity\ScriptoItem implements \Doctrine\ORM\P
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'scriptoProject', 'item', 'created', 'modified'];
+            return ['__isInitialized__', 'id', 'scriptoProject', 'item', 'synced', 'edited'];
         }
 
-        return ['__isInitialized__', 'id', 'scriptoProject', 'item', 'created', 'modified'];
+        return ['__isInitialized__', 'id', 'scriptoProject', 'item', 'synced', 'edited'];
     }
 
     /**
@@ -235,45 +235,45 @@ class ScriptoItem extends \Scripto\Entity\ScriptoItem implements \Doctrine\ORM\P
     /**
      * {@inheritDoc}
      */
-    public function setCreated(\DateTime $dateTime)
+    public function setSynced(\DateTime $dateTime)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCreated', [$dateTime]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSynced', [$dateTime]);
 
-        return parent::setCreated($dateTime);
+        return parent::setSynced($dateTime);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getCreated()
+    public function getSynced()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreated', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSynced', []);
 
-        return parent::getCreated();
+        return parent::getSynced();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setModified(\DateTime $dateTime)
+    public function setEdited(\DateTime $dateTime)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setModified', [$dateTime]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEdited', [$dateTime]);
 
-        return parent::setModified($dateTime);
+        return parent::setEdited($dateTime);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getModified()
+    public function getEdited()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getModified', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEdited', []);
 
-        return parent::getModified();
+        return parent::getEdited();
     }
 
     /**

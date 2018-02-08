@@ -3,6 +3,7 @@ namespace Scripto\Api\Adapter;
 
 use Doctrine\ORM\QueryBuilder;
 use Omeka\Api\Adapter\AbstractEntityAdapter;
+use Omeka\Api\Exception;
 use Omeka\Api\Request;
 use Omeka\Entity\EntityInterface;
 use Omeka\Stdlib\ErrorStore;
@@ -24,6 +25,14 @@ class ScriptoItemAdapter extends AbstractEntityAdapter
         return 'Scripto\Entity\ScriptoItem';
     }
 
+    public function create(Request $request)
+    {
+        // Scripto items are created only when a project is synced.
+        throw new Exception\OperationNotImplementedException(
+            'The Scripto\Api\Adapter\ScriptoItemAdapter adapter does not implement the create operation.' // @translate
+        );
+    }
+
     public function buildQuery(QueryBuilder $qb, array $query)
     {
         if (isset($query['scripto_project_id'])) {
@@ -42,30 +51,35 @@ class ScriptoItemAdapter extends AbstractEntityAdapter
                 $this->createNamedParameter($qb, $query['item_id']))
             );
         }
+        if (isset($query['is_approved'])) {
+            // Get all approved Scripto items. An item is "approved" if a) all
+            // child media are marked as approved, or b) it has no child media.
+            $alias = $this->createAlias();
+            $subQb = $this->getEntityManager()->createQueryBuilder()
+                ->select($alias)
+                ->from('Scripto\Entity\ScriptoMedia', $alias)
+                ->andWhere("$alias.scriptoItem = Scripto\Entity\ScriptoItem.id")
+                ->andWhere("$alias.approved IS NULL");
+            $qb->andWhere($qb->expr()->not($qb->expr()->exists($subQb->getDQL())));
+        } elseif (isset($query['is_not_approved'])) {
+            // Get all not approved Scripto items. An item is "not approved" if
+            // at least one child media is not marked as approved.
+            $alias = $this->createAlias();
+            $subQb = $this->getEntityManager()->createQueryBuilder()
+                ->select($alias)
+                ->from('Scripto\Entity\ScriptoMedia', $alias)
+                ->andWhere("$alias.scriptoItem = Scripto\Entity\ScriptoItem.id")
+                ->andWhere("$alias.approved IS NULL");
+            $qb->andWhere($qb->expr()->exists($subQb->getDQL()));
+        }
     }
 
     public function validateRequest(Request $request, ErrorStore $errorStore)
     {
-        if (Request::CREATE === $request->getOperation()) {
-            $data = $request->getContent();
-            if (!isset($data['o-module-scripto:project']['o:id'])) {
-                $errorStore->addError('o-module-scripto:project', 'A Scripto item must be assigned a Scripto project on creation.'); // @translate
-            }
-            if (!isset($data['o:item']['o:id'])) {
-                $errorStore->addError('o:item', 'A Scripto item must be assigned an item on creation.'); // @translate
-            }
-        }
     }
 
     public function hydrate(Request $request, EntityInterface $entity, ErrorStore $errorStore)
     {
-        if (Request::CREATE === $request->getOperation()) {
-            $data = $request->getContent();
-            $sProject = $this->getAdapter('scripto_projects')->findEntity($data['o-module-scripto:project']['o:id']);
-            $entity->setScriptoProject($sProject);
-            $item = $this->getAdapter('items')->findEntity($data['o:item']['o:id']);
-            $entity->setItem($item);
-        }
     }
 
     public function validateEntity(EntityInterface $entity, ErrorStore $errorStore)

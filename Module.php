@@ -27,9 +27,9 @@ class Module extends AbstractModule
     {
         $services->get('Omeka\Connection')->exec('
 SET FOREIGN_KEY_CHECKS=0;
-CREATE TABLE scripto_media (id INT AUTO_INCREMENT NOT NULL, scripto_item_id INT NOT NULL, media_id INT NOT NULL, approved_by_id INT DEFAULT NULL, is_completed TINYINT(1) NOT NULL, completed_by VARCHAR(255) DEFAULT NULL, is_approved TINYINT(1) NOT NULL, created DATETIME NOT NULL, edited DATETIME DEFAULT NULL, INDEX IDX_28ABA038DE42D3B8 (scripto_item_id), INDEX IDX_28ABA038EA9FDD75 (media_id), INDEX IDX_28ABA0382D234F6A (approved_by_id), UNIQUE INDEX UNIQ_28ABA038DE42D3B8EA9FDD75 (scripto_item_id, media_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB;
-CREATE TABLE scripto_item (id INT AUTO_INCREMENT NOT NULL, scripto_project_id INT NOT NULL, item_id INT NOT NULL, created DATETIME NOT NULL, modified DATETIME DEFAULT NULL, INDEX IDX_2A827D37DC45463D (scripto_project_id), INDEX IDX_2A827D37126F525E (item_id), UNIQUE INDEX UNIQ_2A827D37DC45463D126F525E (scripto_project_id, item_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB;
-CREATE TABLE scripto_project (id INT AUTO_INCREMENT NOT NULL, owner_id INT DEFAULT NULL, item_set_id INT DEFAULT NULL, property_id INT DEFAULT NULL, title VARCHAR(255) NOT NULL, description LONGTEXT DEFAULT NULL, created DATETIME NOT NULL, modified DATETIME DEFAULT NULL, INDEX IDX_E39E51087E3C61F9 (owner_id), INDEX IDX_E39E5108960278D7 (item_set_id), INDEX IDX_E39E5108549213EC (property_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB;
+CREATE TABLE scripto_media (id INT AUTO_INCREMENT NOT NULL, scripto_item_id INT NOT NULL, media_id INT NOT NULL, approved_by_id INT DEFAULT NULL, completed_by VARCHAR(255) DEFAULT NULL, position INT NOT NULL, synced DATETIME NOT NULL, edited DATETIME DEFAULT NULL, completed DATETIME DEFAULT NULL, approved DATETIME DEFAULT NULL, INDEX IDX_28ABA038DE42D3B8 (scripto_item_id), INDEX IDX_28ABA038EA9FDD75 (media_id), INDEX IDX_28ABA0382D234F6A (approved_by_id), UNIQUE INDEX UNIQ_28ABA038DE42D3B8EA9FDD75 (scripto_item_id, media_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB;
+CREATE TABLE scripto_item (id INT AUTO_INCREMENT NOT NULL, scripto_project_id INT NOT NULL, item_id INT NOT NULL, synced DATETIME NOT NULL, edited DATETIME DEFAULT NULL, INDEX IDX_2A827D37DC45463D (scripto_project_id), INDEX IDX_2A827D37126F525E (item_id), UNIQUE INDEX UNIQ_2A827D37DC45463D126F525E (scripto_project_id, item_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB;
+CREATE TABLE scripto_project (id INT AUTO_INCREMENT NOT NULL, owner_id INT DEFAULT NULL, item_set_id INT DEFAULT NULL, property_id INT DEFAULT NULL, title VARCHAR(255) NOT NULL, description LONGTEXT DEFAULT NULL, created DATETIME NOT NULL, synced DATETIME DEFAULT NULL, INDEX IDX_E39E51087E3C61F9 (owner_id), INDEX IDX_E39E5108960278D7 (item_set_id), INDEX IDX_E39E5108549213EC (property_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB;
 ALTER TABLE scripto_media ADD CONSTRAINT FK_28ABA038DE42D3B8 FOREIGN KEY (scripto_item_id) REFERENCES scripto_item (id) ON DELETE CASCADE;
 ALTER TABLE scripto_media ADD CONSTRAINT FK_28ABA038EA9FDD75 FOREIGN KEY (media_id) REFERENCES media (id) ON DELETE CASCADE;
 ALTER TABLE scripto_media ADD CONSTRAINT FK_28ABA0382D234F6A FOREIGN KEY (approved_by_id) REFERENCES user (id) ON DELETE SET NULL;
@@ -104,9 +104,8 @@ SET FOREIGN_KEY_CHECKS=1;
     {
         $project = $event->getTarget();
         $dispatcher = $this->getServiceLocator()->get('Omeka\Job\Dispatcher');
-        $dispatcher->dispatch('Scripto\Job\SyncProjectItems', [
+        $dispatcher->dispatch('Scripto\Job\SyncProject', [
             'scripto_project_id' => $project->getId(),
-            'item_set_id' => $project->getItemSet()->getId(),
         ]);
     }
 
@@ -114,10 +113,10 @@ SET FOREIGN_KEY_CHECKS=1;
      * Create or edit a MediaWiki page given a Scripto media entity.
      *
      * Attaches to the api.hydrate.post event to ensure that the corresponding
-     * MediaWiki page is successfully created prior to creating the Scripto
-     * media entity. Ideally we'd use entity.persist.pre and entity.update.pre
-     * to ensure that the entity is validated, but the latter is not triggered
-     * when there are no changes to the entity.
+     * MediaWiki page is successfully created/edited prior to updating the
+     * Scripto media entity. Ideally we'd use entity.update.pre to ensure that
+     * the entity is validated, but it isn't triggered when there are no changes
+     * to the entity (i.e. when only the text has changed).
      *
      * @param Event $event
      */
@@ -125,19 +124,14 @@ SET FOREIGN_KEY_CHECKS=1;
     {
         $sMedia = $event->getParam('entity');
         if (!is_string($sMedia->getText())) {
-            // No need to edit the MediaWiki page if no text is set.
+            // No need to edit the MediaWiki page if text is null.
             return;
         }
 
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
         $translator = $this->getServiceLocator()->get('MvcTranslator');
 
-        $pageTitle = sprintf(
-            '%s:%s:%s',
-            $sMedia->getScriptoItem()->getScriptoProject()->getId(),
-            $sMedia->getScriptoItem()->getItem()->getId(),
-            $sMedia->getMedia()->getId()
-        );
+        $pageTitle = $sMedia->getMediawikiPageTitle();
         $page = $client->queryPage($pageTitle);
         $pageIsCreated = $client->pageIsCreated($page);
 
@@ -155,9 +149,12 @@ SET FOREIGN_KEY_CHECKS=1;
         }
 
         $result = $client->editPage($pageTitle, $sMedia->getText());
+
         if (!isset($result['nochange'])) {
             // Update edited datetime only if there was a change.
-            $sMedia->setEdited(new DateTime('now'));
+            $now = new DateTime('now');
+            $sMedia->setEdited($now);
+            $sMedia->getScriptoItem()->setEdited($now);
         }
     }
 }

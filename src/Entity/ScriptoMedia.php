@@ -3,6 +3,7 @@ namespace Scripto\Entity;
 
 use DateTime;
 use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Omeka\Entity\AbstractEntity;
 use Omeka\Entity\Media;
 use Omeka\Entity\User;
@@ -50,19 +51,9 @@ class ScriptoMedia extends AbstractEntity
     protected $media;
 
     /**
-     * @Column(type="boolean", nullable=false)
-     */
-    protected $isCompleted = false;
-
-    /**
      * @Column(nullable=true)
      */
     protected $completedBy;
-
-    /**
-     * @Column(type="boolean", nullable=false)
-     */
-    protected $isApproved = false;
 
     /**
      * @ManyToOne(
@@ -76,9 +67,14 @@ class ScriptoMedia extends AbstractEntity
     protected $approvedBy;
 
     /**
+     * @Column(type="integer")
+     */
+    protected $position;
+
+    /**
      * @Column(type="datetime")
      */
-    protected $created;
+    protected $synced;
 
     /**
      * @Column(type="datetime", nullable=true)
@@ -86,11 +82,15 @@ class ScriptoMedia extends AbstractEntity
     protected $edited;
 
     /**
-     * Scripto media text
-     *
-     * Note that text is stored in MediaWiki, not Omeka. We use this property to
-     * store text until persisting it using the Media API client.
+     * @Column(type="datetime", nullable=true)
      */
+    protected $completed;
+
+    /**
+     * @Column(type="datetime", nullable=true)
+     */
+    protected $approved;
+
     protected $text;
 
     public function getId()
@@ -118,16 +118,6 @@ class ScriptoMedia extends AbstractEntity
         return $this->media;
     }
 
-    public function setIsCompleted($isCompleted)
-    {
-        $this->isCompleted = (bool) $isCompleted;
-    }
-
-    public function getIsCompleted()
-    {
-        return $this->isCompleted;
-    }
-
     public function setCompletedBy($completedBy)
     {
         $this->completedBy = $completedBy;
@@ -136,16 +126,6 @@ class ScriptoMedia extends AbstractEntity
     public function getCompletedBy()
     {
         return $this->completedBy;
-    }
-
-    public function setIsApproved($isApproved)
-    {
-        $this->isApproved = (bool) $isApproved;
-    }
-
-    public function getIsApproved()
-    {
-        return $this->isApproved;
     }
 
     public function setApprovedBy(User $approvedBy = null)
@@ -158,17 +138,27 @@ class ScriptoMedia extends AbstractEntity
         return $this->approvedBy;
     }
 
-    public function setCreated(DateTime $dateTime)
+    public function setPosition($position)
     {
-        $this->created = $dateTime;
+        $this->position = $position;
     }
 
-    public function getCreated()
+    public function getPosition()
     {
-        return $this->created;
+        return $this->position;
     }
 
-    public function setEdited(DateTime $dateTime)
+    public function setSynced(DateTime $dateTime)
+    {
+        $this->synced = $dateTime;
+    }
+
+    public function getSynced()
+    {
+        return $this->synced;
+    }
+
+    public function setEdited(DateTime $dateTime = null)
     {
         $this->edited = $dateTime;
     }
@@ -178,14 +168,71 @@ class ScriptoMedia extends AbstractEntity
         return $this->edited;
     }
 
+    public function setCompleted(DateTime $dateTime = null)
+    {
+        $this->completed = $dateTime;
+    }
+
+    public function getCompleted()
+    {
+        return $this->completed;
+    }
+
+    public function setApproved(DateTime $dateTime = null)
+    {
+        $this->approved = $dateTime;
+    }
+
+    public function getApproved()
+    {
+        return $this->approved;
+    }
+
+    /**
+     * Set Scripto media text.
+     *
+     * Note that text is stored in MediaWiki, not Omeka. We use this setter to
+     * store text until persisting it using the Media API client.
+     *
+     * @param string $text
+     */
     public function setText($text)
     {
         $this->text = $text;
     }
 
+    /**
+     * Get the Scripto media text.
+     *
+     * @return string
+     */
     public function getText()
     {
         return $this->text;
+    }
+
+    /**
+     * Get the title of the corresponding MediaWiki page.
+     *
+     * Every Scripto media maps to a MediaWiki page. For the page title we use
+     * a unique sequence of IDs: the Scripto project ID, the Omeka item ID, and
+     * the Omeka media ID, each separated by a colon.
+     *
+     * We use the IDs of Omeka entities (instead of the IDs of the corresponding
+     * Scripto entities) so the pages are recoverable should an item be
+     * accidentally removed from the project. It also allows for a possible
+     * future feature of reconstitution of projects should the they be deleted.
+     *
+     * @return string
+     */
+    public function getMediawikiPageTitle()
+    {
+        return sprintf(
+            '%s:%s:%s',
+            $this->getScriptoItem()->getScriptoProject()->getId(),
+            $this->getScriptoItem()->getItem()->getId(),
+            $this->getMedia()->getId()
+        );
     }
 
     /**
@@ -193,6 +240,6 @@ class ScriptoMedia extends AbstractEntity
      */
     public function prePersist(LifecycleEventArgs $eventArgs)
     {
-        $this->created = new DateTime('now');
+        $this->setSynced(new DateTime('now'));
     }
 }
