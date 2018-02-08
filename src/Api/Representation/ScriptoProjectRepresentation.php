@@ -22,7 +22,7 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
             'o:item_set' => $itemSet ? $itemSet->getReference() : null,
             'o:property' => $property ? $property->getReference() : null,
             'o:created' => $this->getDateTime($this->created()),
-            'o:modified' => $this->modified() ? $this->getDateTime($this->modified()) : null,
+            'o-module-scripto:synced' => $this->synced() ? $this->getDateTime($this->synced()) : null,
         ];
     }
 
@@ -59,8 +59,8 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
         return $this->resource->getCreated();
     }
 
-    public function modified()
+    public function synced()
     {
-        return $this->resource->getModified();
+        return $this->resource->getSynced();
     }
 }
