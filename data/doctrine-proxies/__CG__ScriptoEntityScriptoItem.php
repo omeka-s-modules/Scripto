@@ -64,10 +64,10 @@ class ScriptoItem extends \Scripto\Entity\ScriptoItem implements \Doctrine\ORM\P
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'scriptoProject', 'item', 'synced', 'imported', 'edited'];
+            return ['__isInitialized__', 'id', 'scriptoProject', 'item', 'synced', 'imported', 'edited', 'scriptoMedia'];
         }
 
-        return ['__isInitialized__', 'id', 'scriptoProject', 'item', 'synced', 'imported', 'edited'];
+        return ['__isInitialized__', 'id', 'scriptoProject', 'item', 'synced', 'imported', 'edited', 'scriptoMedia'];
     }
 
     /**
@@ -296,6 +296,17 @@ class ScriptoItem extends \Scripto\Entity\ScriptoItem implements \Doctrine\ORM\P
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEdited', []);
 
         return parent::getEdited();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getScriptoMedia()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getScriptoMedia', []);
+
+        return parent::getScriptoMedia();
     }
 
     /**

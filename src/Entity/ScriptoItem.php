@@ -63,6 +63,15 @@ class ScriptoItem extends AbstractEntity
      */
     protected $edited;
 
+    /**
+     * @OneToMany(
+     *     targetEntity="ScriptoMedia",
+     *     mappedBy="scriptoItem"
+     * )
+     * @OrderBy({"position" = "ASC"})
+     */
+    protected $scriptoMedia;
+
     public function getId()
     {
         return $this->id;
@@ -116,6 +125,11 @@ class ScriptoItem extends AbstractEntity
     public function getEdited()
     {
         return $this->edited;
+    }
+
+    public function getScriptoMedia()
+    {
+        return $this->scriptoMedia;
     }
 
     /**

@@ -30,7 +30,8 @@ class ScriptoMedia extends AbstractEntity
 
     /**
      * @ManyToOne(
-     *     targetEntity="ScriptoItem"
+     *     targetEntity="ScriptoItem",
+     *     inversedBy="media"
      * )
      * @JoinColumn(
      *     nullable=false,
