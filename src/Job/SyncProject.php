@@ -112,9 +112,13 @@ class SyncProject extends AbstractJob
             foreach ($this->getAllItemMedia($item) as $media) {
                 $sMedia = $this->getScriptoMediaEntity($project, $item, $media);
                 if ($sMedia) {
-                    // Update existing Scripto media.
-                    $sMedia->setPosition($position);
+                    // Scripto media already exists.
                     $sMediaIdsToRetain[] = $sMedia->getId();
+                    if ($position !== $sMedia->getPosition()) {
+                        // Position has changed; update the synced timestamp.
+                        $sMedia->setSynced(new DateTime('now'));
+                        $sMedia->setPosition($position);
+                    }
                 } else {
                     // Create new Scripto media.
                     $sMedia = new ScriptoMedia;
