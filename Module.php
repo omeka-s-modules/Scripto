@@ -21,6 +21,7 @@ class Module extends AbstractModule
     public function onBootstrap(MvcEvent $event)
     {
         parent::onBootstrap($event);
+        $this->addAclRules();
     }
 
     public function install(ServiceLocatorInterface $services)
@@ -84,6 +85,18 @@ SET FOREIGN_KEY_CHECKS=1;
     public function attachListeners(SharedEventManagerInterface $sharedEventManager)
     {
         $sharedEventManager->attach(
+            '*',
+            'sql_filter.resource_visibility',
+            function (Event $event) {
+                // Users can view Scripto items and Scripto media only if they
+                // have permission to view the related Omeka item or Omeka media.
+                $relatedEntities = $event->getParam('relatedEntities');
+                $relatedEntities['Scripto\Entity\ScriptoItem'] = 'item_id';
+                $relatedEntities['Scripto\Entity\ScriptoMedia'] = 'media_id';
+                $event->setParam('relatedEntities', $relatedEntities);
+            }
+        );
+        $sharedEventManager->attach(
             'Scripto\Entity\ScriptoProject',
             'entity.persist.post',
             [$this, 'addItemsToNewProjects']
@@ -94,6 +107,34 @@ SET FOREIGN_KEY_CHECKS=1;
             [$this, 'editMediawikiPage']
         );
     }
+
+    /**
+     * Add ACL rules for this module.
+     */
+    protected function addAclRules()
+    {
+        // Everyone has general access to the Scripto resources.
+        $acl = $this->getServiceLocator()->get('Omeka\Acl');
+        $acl->allow(
+            null,
+            [
+                'Scripto\Api\Adapter\ScriptoProjectAdapter',
+                'Scripto\Api\Adapter\ScriptoItemAdapter',
+                'Scripto\Api\Adapter\ScriptoMediaAdapter',
+            ]
+        );
+        // Everyone can read the Scripto entities.
+        $acl->allow(
+            null,
+            [
+                'Scripto\Entity\ScriptoProject',
+                'Scripto\Entity\ScriptoItem',
+                'Scripto\Entity\ScriptoMedia',
+            ],
+            'read'
+        );
+    }
+
 
     /**
      * Add all items from the corresponding item set to newly created projects.
