@@ -56,11 +56,6 @@ class ScriptoItem extends AbstractEntity
     /**
      * @Column(type="datetime", nullable=true)
      */
-    protected $imported;
-
-    /**
-     * @Column(type="datetime", nullable=true)
-     */
     protected $edited;
 
     /**
@@ -105,16 +100,6 @@ class ScriptoItem extends AbstractEntity
     public function getSynced()
     {
         return $this->synced;
-    }
-
-    public function setImported(DateTime $dateTime)
-    {
-        $this->imported = $dateTime;
-    }
-
-    public function getImported()
-    {
-        return $this->imported;
     }
 
     public function setEdited(DateTime $dateTime)
