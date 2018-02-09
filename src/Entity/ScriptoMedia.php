@@ -52,6 +52,11 @@ class ScriptoMedia extends AbstractEntity
     protected $media;
 
     /**
+     * @Column(type="integer")
+     */
+    protected $position;
+
+    /**
      * @Column(nullable=true)
      */
     protected $completedBy;
@@ -66,11 +71,6 @@ class ScriptoMedia extends AbstractEntity
      * )
      */
     protected $approvedBy;
-
-    /**
-     * @Column(type="integer")
-     */
-    protected $position;
 
     /**
      * @Column(type="datetime")
@@ -119,6 +119,16 @@ class ScriptoMedia extends AbstractEntity
         return $this->media;
     }
 
+    public function setPosition($position)
+    {
+        $this->position = $position;
+    }
+
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
     public function setCompletedBy($completedBy)
     {
         $this->completedBy = $completedBy;
@@ -137,16 +147,6 @@ class ScriptoMedia extends AbstractEntity
     public function getApprovedBy()
     {
         return $this->approvedBy;
-    }
-
-    public function setPosition($position)
-    {
-        $this->position = $position;
-    }
-
-    public function getPosition()
-    {
-        return $this->position;
     }
 
     public function setSynced(DateTime $dateTime)

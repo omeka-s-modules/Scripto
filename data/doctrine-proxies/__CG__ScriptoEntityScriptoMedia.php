@@ -64,10 +64,10 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'completedBy', 'approvedBy', 'position', 'synced', 'edited', 'completed', 'approved', 'text'];
+            return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'position', 'completedBy', 'approvedBy', 'synced', 'edited', 'completed', 'approved', 'text'];
         }
 
-        return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'completedBy', 'approvedBy', 'position', 'synced', 'edited', 'completed', 'approved', 'text'];
+        return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'position', 'completedBy', 'approvedBy', 'synced', 'edited', 'completed', 'approved', 'text'];
     }
 
     /**
@@ -235,6 +235,28 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
     /**
      * {@inheritDoc}
      */
+    public function setPosition($position)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPosition', [$position]);
+
+        return parent::setPosition($position);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPosition()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPosition', []);
+
+        return parent::getPosition();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setCompletedBy($completedBy)
     {
 
@@ -274,28 +296,6 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getApprovedBy', []);
 
         return parent::getApprovedBy();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setPosition($position)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPosition', [$position]);
-
-        return parent::setPosition($position);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getPosition()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPosition', []);
-
-        return parent::getPosition();
     }
 
     /**
