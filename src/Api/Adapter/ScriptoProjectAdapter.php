@@ -82,6 +82,9 @@ class ScriptoProjectAdapter extends AbstractEntityAdapter
             }
             $entity->setProperty($property);
         }
+        if ($this->shouldHydrate($request, 'o-module-scripto:lang')) {
+            $entity->setLang($request->getValue('o-module-scripto:lang'));
+        }
         if ($this->shouldHydrate($request, 'o-module-scripto:title')) {
             $entity->setTitle($request->getValue('o-module-scripto:title'));
         }

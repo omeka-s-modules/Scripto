@@ -20,6 +20,7 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
         return [
             'o-module-scripto:title' => $this->title(),
             'o-module-scripto:description' => $this->description(),
+            'o-module-scripto:lang' => $this->lang(),
             'o:owner' => $owner ? $owner->getReference() : null,
             'o:item_set' => $itemSet ? $itemSet->getReference() : null,
             'o:property' => $property ? $property->getReference() : null,
@@ -45,6 +46,11 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
     {
         return $this->getAdapter('properties')
             ->getRepresentation($this->resource->getProperty());
+    }
+
+    public function lang()
+    {
+        return $this->resource->getLang();
     }
 
     public function title()
