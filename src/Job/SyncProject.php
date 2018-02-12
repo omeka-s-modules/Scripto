@@ -4,7 +4,6 @@ namespace Scripto\Job;
 use DateTime;
 use Omeka\Entity\Item;
 use Omeka\Entity\Media;
-use Omeka\Job\AbstractJob;
 use Scripto\Entity\ScriptoItem;
 use Scripto\Entity\ScriptoMedia;
 use Scripto\Entity\ScriptoProject;
@@ -12,13 +11,12 @@ use Scripto\Entity\ScriptoProject;
 /**
  * Sync a Scripto project with its corresponding item set.
  */
-class SyncProject extends AbstractJob
+class SyncProject extends ScriptoJob
 {
     public function perform()
     {
         $em = $this->getServiceLocator()->get('Omeka\EntityManager');
         $project = $em->find('Scripto\Entity\ScriptoProject', $this->getArg('scripto_project_id'));
-
         $this->syncProject($project);
     }
 
@@ -33,7 +31,6 @@ class SyncProject extends AbstractJob
         $this->syncProjectMedia($project);
 
         $project->setSynced(new DateTime('now'));
-
         $em = $this->getServiceLocator()->get('Omeka\EntityManager');
         $em->merge($project); // entity is detached because of clear()
         $em->flush();
@@ -62,7 +59,7 @@ class SyncProject extends AbstractJob
             JOIN i.itemSets iset
             WHERE iset.id = :item_set_id'
         )->setParameter('item_set_id', $project->getItemSet()->getId());
-        $oItems = array_column($query->getScalarResult(), 'id');
+        $oItems = array_column($query->getResult(), 'id');
 
         // Calculate which items to delete and which to create.
         $toDelete = array_diff($sItems, $oItems);
@@ -149,25 +146,6 @@ class SyncProject extends AbstractJob
             $em->flush();
             $em->clear();
         }
-    }
-
-    /**
-     * Get IDs of all items in the Scripto project.
-     *
-     * @param ScriptoProject $project
-     * @return array
-     */
-    public function getProjectItemIds(ScriptoProject $project)
-    {
-        $em = $this->getServiceLocator()->get('Omeka\EntityManager');
-        $query = $em->createQuery('
-            SELECT si.id scripto_item_id, i.id item_id
-            FROM Scripto\Entity\ScriptoItem si
-            JOIN si.item i
-            JOIN si.scriptoProject sp
-            WHERE sp.id = :scripto_project_id'
-        )->setParameter('scripto_project_id', $project->getId());
-        return array_column($query->getScalarResult(), 'item_id', 'scripto_item_id');
     }
 
     /**

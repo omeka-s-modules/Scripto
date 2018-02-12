@@ -345,7 +345,7 @@ class ScriptoProject extends \Scripto\Entity\ScriptoProject implements \Doctrine
     /**
      * {@inheritDoc}
      */
-    public function setSynced(\DateTime $dateTime)
+    public function setSynced(\DateTime $dateTime = NULL)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSynced', [$dateTime]);
@@ -367,7 +367,7 @@ class ScriptoProject extends \Scripto\Entity\ScriptoProject implements \Doctrine
     /**
      * {@inheritDoc}
      */
-    public function setImported(\DateTime $dateTime)
+    public function setImported(\DateTime $dateTime = NULL)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setImported', [$dateTime]);

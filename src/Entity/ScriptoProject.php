@@ -160,7 +160,7 @@ class ScriptoProject extends AbstractEntity
         return $this->created;
     }
 
-    public function setSynced(DateTime $dateTime)
+    public function setSynced(DateTime $dateTime = null)
     {
         $this->synced = $dateTime;
     }
@@ -170,7 +170,7 @@ class ScriptoProject extends AbstractEntity
         return $this->synced;
     }
 
-    public function setImported(DateTime $dateTime)
+    public function setImported(DateTime $dateTime = null)
     {
         $this->imported = $dateTime;
     }
