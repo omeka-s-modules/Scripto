@@ -75,6 +75,23 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
         } elseif (isset($query['is_not_edited'])) {
             $qb->andWhere($qb->expr()->isNull('Scripto\Entity\ScriptoMedia.edited'));
         }
+        if (isset($query['is_edited_after_approved'])) {
+            $qb->andWhere($qb->expr()->gt('Scripto\Entity\ScriptoMedia.edited', 'Scripto\Entity\ScriptoMedia.approved'));
+        }
+        if (isset($query['is_edited_after_imported'])) {
+            $aliasItem = $this->createAlias();
+            $qb->innerJoin('Scripto\Entity\ScriptoMedia.scriptoItem', 'Scripto\Entity\ScriptoItem');
+            $aliasProject = $this->createAlias();
+            $qb->innerJoin('Scripto\Entity\ScriptoItem.scriptoProject', $aliasProject);
+            $qb->andWhere($qb->expr()->gt('Scripto\Entity\ScriptoMedia.edited', "$aliasProject.imported"));
+        }
+        if (isset($query['is_synced_after_imported'])) {
+            $aliasItem = $this->createAlias();
+            $qb->innerJoin('Scripto\Entity\ScriptoMedia.scriptoItem', 'Scripto\Entity\ScriptoItem');
+            $aliasProject = $this->createAlias();
+            $qb->innerJoin('Scripto\Entity\ScriptoItem.scriptoProject', $aliasProject);
+            $qb->andWhere($qb->expr()->gt('Scripto\Entity\ScriptoMedia.synced', "$aliasProject.imported"));
+        }
     }
 
     public function validateRequest(Request $request, ErrorStore $errorStore)
