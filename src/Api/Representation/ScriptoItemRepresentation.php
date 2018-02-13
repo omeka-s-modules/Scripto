@@ -65,42 +65,130 @@ class ScriptoItemRepresentation extends AbstractEntityRepresentation
      */
     public function status()
     {
+        $totalCount = $this->mediaCount();
+        if (!$totalCount) {
+            return self::STATUS_APPROVED;
+        }
+        if ($this->isApprovedMediaCount() === $totalCount) {
+            return self::STATUS_APPROVED;
+        }
+        if ($this->isCompletedMediaCount() === $totalCount) {
+            return self::STATUS_COMPLETED;
+        }
+        if ($this->isEditedMediaCount()) {
+            return self::STATUS_IN_PROGRESS;
+        }
+        return self::STATUS_NEW;
+    }
+
+    /**
+     * Get the number of child media.
+     *
+     * @return int
+     */
+    public function mediaCount()
+    {
         $api = $this->getServiceLocator()->get('Omeka\ApiManager');
         $response = $api->search('scripto_media', [
             'scripto_item_id' => $this->id(),
             'limit' => 0,
         ]);
-        $totalCount = $response->getTotalResults();
-        if (!$totalCount) {
-            return self::STATUS_APPROVED;
-        }
+        return $response->getTotalResults();
+    }
+
+    /**
+     * Get the number of child media that are approved.
+     *
+     * @return int
+     */
+    public function isApprovedMediaCount()
+    {
+        $api = $this->getServiceLocator()->get('Omeka\ApiManager');
         $response = $api->search('scripto_media', [
             'scripto_item_id' => $this->id(),
             'is_approved' => true,
             'limit' => 0,
         ]);
-        $approvedCount = $response->getTotalResults();
-        if ($approvedCount === $totalCount) {
-            return self::STATUS_APPROVED;
-        }
+        return $response->getTotalResults();
+    }
+
+    /**
+     * Get the number of child media that are completed.
+     *
+     * @return int
+     */
+    public function isCompletedMediaCount()
+    {
+        $api = $this->getServiceLocator()->get('Omeka\ApiManager');
         $response = $api->search('scripto_media', [
             'scripto_item_id' => $this->id(),
             'is_completed' => true,
             'limit' => 0,
         ]);
-        $completedCount = $response->getTotalResults();
-        if ($completedCount === $totalCount) {
-            return self::STATUS_COMPLETED;
-        }
+        return $response->getTotalResults();
+    }
+
+    /**
+     * Get the number of child media that are edited.
+     *
+     * @return int
+     */
+    public function isEditedMediaCount()
+    {
+        $api = $this->getServiceLocator()->get('Omeka\ApiManager');
         $response = $api->search('scripto_media', [
             'scripto_item_id' => $this->id(),
             'is_edited' => true,
             'limit' => 0,
         ]);
-        $editedCount = $response->getTotalResults();
-        if ($editedCount) {
-            return self::STATUS_IN_PROGRESS;
-        }
-        return self::STATUS_NEW;
+        return $response->getTotalResults();
+    }
+
+    /**
+     * Get the number of child media that have been edited after approved.
+     *
+     * @return int
+     */
+    public function isEditedAfterApprovedMediaCount()
+    {
+        $api = $this->getServiceLocator()->get('Omeka\ApiManager');
+        $response = $api->search('scripto_media', [
+            'scripto_item_id' => $this->id(),
+            'is_edited_after_approved' => true,
+            'limit' => 0,
+        ]);
+        return $response->getTotalResults();
+    }
+
+    /**
+     * Get the number of child media that have been edited after imported.
+     *
+     * @return int
+     */
+    public function isEditedAfterImportedMediaCount()
+    {
+        $api = $this->getServiceLocator()->get('Omeka\ApiManager');
+        $response = $api->search('scripto_media', [
+            'scripto_item_id' => $this->id(),
+            'is_edited_after_imported' => true,
+            'limit' => 0,
+        ]);
+        return $response->getTotalResults();
+    }
+
+    /**
+     * Get the number of child media that have been synced after imported.
+     *
+     * @return int
+     */
+    public function isSyncedAfterImportedMediaCount()
+    {
+        $api = $this->getServiceLocator()->get('Omeka\ApiManager');
+        $response = $api->search('scripto_media', [
+            'scripto_item_id' => $this->id(),
+            'is_synced_after_imported' => true,
+            'limit' => 0,
+        ]);
+        return $response->getTotalResults();
     }
 }

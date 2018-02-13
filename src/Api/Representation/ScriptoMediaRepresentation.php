@@ -98,15 +98,45 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
     public function status()
     {
         if ($this->approved()) {
-            return STATUS_APPROVED;
+            return self::STATUS_APPROVED;
         }
         if ($this->completed()) {
-            return STATUS_COMPLETED;
+            return self::STATUS_COMPLETED;
         }
         if ($this->edited()) {
-            return STATUS_IN_PROGRESS;
+            return self::STATUS_IN_PROGRESS;
         }
-        return STATUS_NEW;
+        return self::STATUS_NEW;
+    }
+
+    /**
+     * Was this media edited after it was approved?
+     *
+     * @return bool
+     */
+    public function isEditedAfterApproved()
+    {
+        return $this->edited() > $this->approved();
+    }
+
+    /**
+     * Was this media edited after it was imported?
+     *
+     * @return bool
+     */
+    public function isEditedAfterImported()
+    {
+        return $this->edited() > $this->resource->getScriptoItem()->getScriptoProject()->getImported();
+    }
+
+    /**
+     * Was this media synced after it was imported?
+     *
+     * @return bool
+     */
+    public function isSyncedAfterImported()
+    {
+        return $this->synced() > $this->resource->getScriptoItem()->getScriptoProject()->getImported();
     }
 
     /**
