@@ -4,7 +4,6 @@ namespace Scripto\Job;
 use DateTime;
 use Omeka\Entity\Value;
 use Scripto\Entity\ScriptoProject;
-use Scripto\Mediawiki\Exception\ParseException;
 
 /**
  * Import text from MediaWiki to Omeka items.
@@ -42,17 +41,12 @@ class ImportText extends ScriptoJob
                 foreach ($sItem->getScriptoMedia() as $sMedia) {
                     // Only import text if the media has been approved.
                     if ($sMedia->getApproved()) {
-                        try {
-                            $mediaText[] = $client->parsePage($sMedia->getMediawikiPageTitle());
-                        } catch (ParseException $e) {
-                            // The MediaWiki page does not exist.
-                            continue;
-                        }
+                        $mediaText[] = $client->parsePage($sMedia->getMediawikiPageTitle());
                     }
                 }
                 if ($mediaText) {
-                    // Strip HTML from text.
-                    $itemText = strip_tags(implode(' ', $mediaText));
+                    // Remove uncreated pages and strip HTML from text.
+                    $itemText = strip_tags(implode(' ', array_filter($mediaText)));
 
                     // Build a new value.
                     $value = new Value;
