@@ -373,7 +373,7 @@ class ApiClient
      *
      * @link https://www.mediawiki.org/wiki/API:Parsing_wikitext
      * @param string $title
-     * @return string The page HTML
+     * @return string|null The page HTML, or null if page does not exist
      */
     public function parsePage($title)
     {
@@ -388,10 +388,10 @@ class ApiClient
             'disableeditsection' => true,
             'disabletoc' => true,
         ]);
-        if (isset($parse['error'])) {
+        if (isset($parse['error']) && 'missingtitle' !== $parse['error']['code']) {
             throw new Exception\ParseException($parse['error']['info']);
         }
-        return $parse['parse']['text'];
+        return isset($parse['parse']['text']) ? $parse['parse']['text'] : null;
     }
 
     /**
