@@ -19,7 +19,7 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
     /**
      * @var array Corresponding MediaWiki page information
      */
-    protected $mwPage;
+    protected $page;
 
     public function getJsonLdType()
     {
@@ -110,43 +110,64 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
     }
 
     /**
+     * Get the title of the corresponding MediaWiki page.
+     *
+     * @return string
+     */
+    public function pageTitle()
+    {
+        return $this->resource->getMediawikiPageTitle();
+    }
+
+    /**
      * Get information about the corresponding MediaWiki page.
      *
      * Caches the information when first called.
      *
      * @return array
      */
-    public function mwPage()
+    public function page()
     {
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
-        if (null === $this->mwPage) {
-            $this->mwPage = $client->queryPage($this->resource->getMediawikiPageTitle());
+        if (null === $this->page) {
+            $this->page = $client->queryPage($this->pageTitle());
         }
-        return $this->mwPage;
+        return $this->page;
     }
 
     /**
-     * Get the most recent text.
+     * Get the most recent wikitext.
      *
-     * @return string
+     * @return string|null
      */
-    public function text()
+    public function pageWikitext()
     {
-        $mwPage = $this->mwPage();
-        return isset($mwPage['revisions'][0]['content']) ? $mwPage['revisions'][0]['content'] : null;
+        $page = $this->page();
+        return isset($page['revisions'][0]['content']) ? $page['revisions'][0]['content'] : null;
     }
 
     /**
-     * Get text revisions.
+     * Get the most recent HTML.
+     *
+     * @return string|null
+     */
+    public function pageHtml()
+    {
+        $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
+        return $client->parsePage($this->pageTitle());
+    }
+
+    /**
+     * Get wikitext revisions.
      *
      * @param int $limit
      * @param int $offset
      * @return array
      */
-    public function revisions($limit = null, $offset = null)
+    public function pageRevisions($limit = null, $offset = null)
     {
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
-        return $client->queryRevisions($this->resource->getMediawikiPageTitle(), $limit, $offset);
+        return $client->queryRevisions($this->pageTitle(), $limit, $offset);
     }
 
     /**
@@ -154,10 +175,10 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
      *
      * @return bool
      */
-    public function mwPageIsCreated()
+    public function pageIsCreated()
     {
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
-        return $client->pageIsCreated($this->mwPage());
+        return $client->pageIsCreated($this->page());
     }
 
     /**
@@ -165,9 +186,9 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
      *
      * @return bool
      */
-    public function mwUserCan($action)
+    public function userCan($action)
     {
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
-        return $client->userCan($this->mwPage(), $action);
+        return $client->userCan($this->page(), $action);
     }
 }
