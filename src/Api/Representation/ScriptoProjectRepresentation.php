@@ -5,6 +5,20 @@ use Omeka\Api\Representation\AbstractEntityRepresentation;
 
 class ScriptoProjectRepresentation extends AbstractEntityRepresentation
 {
+    public function adminUrl($action = null, $canonical = false)
+    {
+        $url = $this->getViewHelper('Url');
+        return $url(
+            'admin/scripto/id',
+            [
+                'controller' => 'project',
+                'action' => $action,
+                'project-id' => $this->id(),
+            ],
+            ['force_canonical' => $canonical]
+        );
+    }
+
     public function getJsonLdType()
     {
         return 'o-module-scripto:Project';
@@ -18,7 +32,7 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
         $synced = $this->synced();
         $imported = $this->imported();
         return [
-            'o:title' => $this->title(),
+            'o-module-scripto:title' => $this->title(),
             'o-module-scripto:description' => $this->description(),
             'o:owner' => $owner ? $owner->getReference() : null,
             'o:item_set' => $itemSet ? $itemSet->getReference() : null,
