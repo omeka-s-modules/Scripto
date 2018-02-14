@@ -18,12 +18,12 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
         $synced = $this->synced();
         $imported = $this->imported();
         return [
-            'o-module-scripto:title' => $this->title(),
+            'o:title' => $this->title(),
             'o-module-scripto:description' => $this->description(),
-            'o-module-scripto:lang' => $this->lang(),
             'o:owner' => $owner ? $owner->getReference() : null,
             'o:item_set' => $itemSet ? $itemSet->getReference() : null,
             'o:property' => $property ? $property->getReference() : null,
+            'o:lang' => $this->lang(),
             'o:created' => $this->getDateTime($this->created()),
             'o-module-scripto:synced' => $synced ? $this->getDateTime($synced) : null,
             'o-module-scripto:imported' => $imported ? $this->getDateTime($imported) : null,

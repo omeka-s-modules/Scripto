@@ -36,8 +36,8 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
         return [
             'o-module-scripto:item' => $this->scriptoItem()->getReference(),
             'o:media' => $this->media()->getReference(),
-            'o-module-scripto:completedBy' => $this->completedBy(),
-            'o-module-scripto:approvedBy' => $approvedBy ? $approvedBy->getReference() : null,
+            'o-module-scripto:completed_by' => $this->completedBy(),
+            'o-module-scripto:approved_by' => $approvedBy ? $approvedBy->getReference() : null,
             'o-module-scripto:synced' => $synced ? $this->getDateTime($synced) : null,
             'o-module-scripto:edited' => $edited ? $this->getDateTime($edited) : null,
             'o-module-scripto:completed' => $completed ? $this->getDateTime($completed) : null,

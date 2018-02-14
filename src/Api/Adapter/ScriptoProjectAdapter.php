@@ -82,11 +82,11 @@ class ScriptoProjectAdapter extends AbstractEntityAdapter
             }
             $entity->setProperty($property);
         }
-        if ($this->shouldHydrate($request, 'o-module-scripto:lang')) {
-            $entity->setLang($request->getValue('o-module-scripto:lang'));
+        if ($this->shouldHydrate($request, 'o:lang')) {
+            $entity->setLang($request->getValue('o:lang'));
         }
-        if ($this->shouldHydrate($request, 'o-module-scripto:title')) {
-            $entity->setTitle($request->getValue('o-module-scripto:title'));
+        if ($this->shouldHydrate($request, 'o:title')) {
+            $entity->setTitle($request->getValue('o:title'));
         }
         if ($this->shouldHydrate($request, 'o-module-scripto:description')) {
             $entity->setDescription($request->getValue('o-module-scripto:description'));
@@ -96,7 +96,7 @@ class ScriptoProjectAdapter extends AbstractEntityAdapter
     public function validateEntity(EntityInterface $entity, ErrorStore $errorStore)
     {
         if (null === $entity->getTitle()) {
-            $errorStore->addError('o-module-scripto:title', 'A Scripto project title must not be null'); // @translate
+            $errorStore->addError('o:title', 'A Scripto project title must not be null'); // @translate
         }
     }
 }
