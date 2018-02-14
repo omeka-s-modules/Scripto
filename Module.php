@@ -97,11 +97,6 @@ SET FOREIGN_KEY_CHECKS=1;
             }
         );
         $sharedEventManager->attach(
-            'Scripto\Entity\ScriptoProject',
-            'entity.persist.post',
-            [$this, 'addItemsToNewProjects']
-        );
-        $sharedEventManager->attach(
             'Scripto\Api\Adapter\ScriptoMediaAdapter',
             'api.hydrate.post',
             [$this, 'editMediawikiPage']
@@ -133,21 +128,6 @@ SET FOREIGN_KEY_CHECKS=1;
             ],
             'read'
         );
-    }
-
-
-    /**
-     * Add all items from the corresponding item set to newly created projects.
-     *
-     * @param Event $event
-     */
-    public function addItemsToNewProjects(Event $event)
-    {
-        $project = $event->getTarget();
-        $dispatcher = $this->getServiceLocator()->get('Omeka\Job\Dispatcher');
-        $dispatcher->dispatch('Scripto\Job\SyncProject', [
-            'scripto_project_id' => $project->getId(),
-        ]);
     }
 
     /**
