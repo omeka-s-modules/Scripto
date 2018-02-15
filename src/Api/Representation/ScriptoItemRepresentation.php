@@ -8,10 +8,10 @@ class ScriptoItemRepresentation extends AbstractEntityRepresentation
     /**
      * Scripto item statuses
      */
-    const STATUS_NEW = 0;
-    const STATUS_IN_PROGRESS = 1;
-    const STATUS_COMPLETED = 2;
-    const STATUS_APPROVED = 3;
+    const STATUS_NEW = 'New'; // @translate
+    const STATUS_IN_PROGRESS = 'In progress'; // @translate
+    const STATUS_COMPLETED = 'Completed'; // @translate
+    const STATUS_APPROVED = 'Approved'; // @translate
 
     public function getJsonLdType()
     {
