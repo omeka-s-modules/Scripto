@@ -91,4 +91,52 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
     {
         return $this->resource->getImported();
     }
+
+
+    /**
+     * Get the number of items in this project.
+     *
+     * @return int
+     */
+    public function itemCount()
+    {
+        $api = $this->getServiceLocator()->get('Omeka\ApiManager');
+        $response = $api->search('scripto_items', [
+            'scripto_project_id' => $this->id(),
+            'limit' => 0,
+        ]);
+        return $response->getTotalResults();
+    }
+
+    /**
+     * Get the number of items in this project that are approved.
+     *
+     * @return int
+     */
+    public function isApprovedItemCount()
+    {
+        $api = $this->getServiceLocator()->get('Omeka\ApiManager');
+        $response = $api->search('scripto_items', [
+            'scripto_project_id' => $this->id(),
+            'is_approved' => true,
+            'limit' => 0,
+        ]);
+        return $response->getTotalResults();
+    }
+
+    /**
+     * Get the number of items in this project that are not approved.
+     *
+     * @return int
+     */
+    public function isNotApprovedItemCount()
+    {
+        $api = $this->getServiceLocator()->get('Omeka\ApiManager');
+        $response = $api->search('scripto_items', [
+            'scripto_project_id' => $this->id(),
+            'is_not_approved' => true,
+            'limit' => 0,
+        ]);
+        return $response->getTotalResults();
+    }
 }
