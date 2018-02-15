@@ -1,0 +1,37 @@
+<h3><?php echo $project->link($project->title()); ?></h3>
+<div class="meta-group">
+    <h4><?php echo $this->translate('Description'); ?></h4>
+    <?php $description = $project->description(); ?>
+    <div class="value"><?php echo $description ? $this->escapeHtml($project->description()) : $this->translate('No description'); ?></div>
+</div>
+<div class="meta-group">
+    <h4><?php echo $this->translate('Owner'); ?></h4>
+    <?php $owner = $project->owner(); ?>
+    <div class="value"><?php echo $owner ? $owner->link($owner->name()) : $this->translate('No owner'); ?></div>
+</div>
+<div class="meta-group">
+    <h4><?php echo $this->translate('Date created'); ?></h4>
+    <div class="value"><?php echo $this->i18n()->dateFormat($project->created(), 'long', 'medium'); ?></div>
+</div>
+<div class="meta-group">
+    <h4><?php echo $this->translate('Last synced'); ?></h4>
+    <?php $synced = $project->synced(); ?>
+    <div class="value"><?php echo $synced ? $this->i18n()->dateFormat($project->synced(), 'long', 'medium') : $this->translate('Not synced'); ?></div>
+</div>
+<div class="meta-group">
+    <h4><?php echo $this->translate('Last imported'); ?></h4>
+    <?php $imported = $project->imported(); ?>
+    <div class="value"><?php echo $imported ? $this->i18n()->dateFormat($project->imported(), 'long', 'medium') : $this->translate('Not imported'); ?></div>
+</div>
+<div class="meta-group">
+    <h4><?php echo $this->translate('Total item count'); ?></h4>
+    <div class="value"><?php echo number_format($project->itemCount()); ?></div>
+</div>
+<div class="meta-group">
+    <h4><?php echo $this->translate('Is approved item count'); ?></h4>
+    <div class="value"><?php echo number_format($project->isApprovedItemCount()); ?></div>
+</div>
+<div class="meta-group">
+    <h4><?php echo $this->translate('Is not approved item count'); ?></h4>
+    <div class="value"><?php echo number_format($project->isNotApprovedItemCount()); ?></div>
+</div>

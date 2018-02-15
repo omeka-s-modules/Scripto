@@ -7,11 +7,6 @@ use Zend\Mvc\Controller\AbstractActionController;
 
 class ProjectController extends AbstractActionController
 {
-    public function browseAction()
-    {
-        exit('Project::browse');
-    }
-
     public function addAction()
     {
         $form = $this->getForm(ScriptoProjectForm::class, [
@@ -41,6 +36,27 @@ class ProjectController extends AbstractActionController
     public function editAction()
     {
         exit('Project::edit');
+    }
+
+    public function browseAction()
+    {
+        $this->setBrowseDefaults('created');
+        $response = $this->api()->search('scripto_projects', $this->params()->fromQuery());
+        $this->paginator($response->getTotalResults(), $this->params()->fromQuery('page'));
+
+        $view = new ViewModel;
+        $view->setVariable('projects', $response->getContent());
+        return $view;
+    }
+
+    public function showDetailsAction()
+    {
+        $response = $this->api()->read('scripto_projects', $this->params('project-id'));
+
+        $view = new ViewModel;
+        $view->setTerminal(true);
+        $view->setVariable('project', $response->getContent());
+        return $view;
     }
 
     public function reviewAction()
