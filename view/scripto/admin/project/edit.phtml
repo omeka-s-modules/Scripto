@@ -2,7 +2,7 @@
 $form->prepare();
 ?>
 
-<?php echo $this->pageTitle($project->title(), 1, $this->translate('Projects'), $this->translate('Edit project')); ?>
+<?php echo $this->pageTitle($this->translate('Edit project'), 1, $this->translate('Scripto'), $project->title()); ?>
 <?php echo $this->form()->openTag($form); ?>
 <div id="page-actions">
     <?php if ($project->userIsAllowed('delete')): ?>
