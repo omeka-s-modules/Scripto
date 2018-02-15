@@ -9,6 +9,13 @@ use Omeka\Stdlib\ErrorStore;
 
 class ScriptoProjectAdapter extends AbstractEntityAdapter
 {
+    protected $sortFields = [
+        'title' => 'title',
+        'date_created' => 'created',
+        'date_synced' => 'synced',
+        'date_imported' => 'imported',
+    ];
+
     public function getResourceName()
     {
         return 'scripto_projects';
