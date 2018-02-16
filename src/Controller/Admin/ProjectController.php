@@ -103,7 +103,16 @@ class ProjectController extends AbstractActionController
         return $view;
     }
 
-    public function reviewAction()
+    public function showAction()
+    {
+        $project = $this->api()->read('scripto_projects', $this->params('project-id'))->getContent();
+
+        $view = new ViewModel;
+        $view->setVariable('project', $project);
+        return $view;
+    }
+
+    public function browseItemsAction()
     {
         $project = $this->api()->read('scripto_projects', $this->params('project-id'))->getContent();
 

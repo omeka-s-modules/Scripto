@@ -47,6 +47,20 @@ return [
                 'resource' => 'Scripto\Controller\Admin\Project',
             ],
         ],
+        'Scripto' => [
+            [
+                'label' => 'Metadata', // @translate
+                'route' => 'admin/scripto/id',
+                'action' => 'show',
+                'useRouteMatch' => true,
+            ],
+            [
+                'label' => 'Items', // @translate
+                'route' => 'admin/scripto/id',
+                'action' => 'browse-items',
+                'useRouteMatch' => true,
+            ],
+        ],
     ],
     'router' => [
         'routes' => [
@@ -82,7 +96,7 @@ return [
                                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                     ],
                                     'defaults' => [
-                                        'action' => 'review',
+                                        'action' => 'show',
                                     ],
                                 ],
                             ],

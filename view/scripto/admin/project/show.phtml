@@ -1,0 +1,50 @@
+<?php $this->htmlElement('body')->appendAttribute('class', 'show'); ?>
+
+<?php echo $this->pageTitle($this->translate('Review project'), 1, $this->translate('Scripto'), $project->title()); ?>
+
+<div id="page-actions">
+    <?php if ($project->userIsAllowed('update')): ?>
+    <?php echo $project->link($this->translate('Edit project'), 'edit', ['class' => 'button']); ?>
+    <?php endif; ?>
+</div>
+
+<nav class="section-nav">
+    <?php echo $this->navigation('Zend\Navigation\Scripto')->menu(); ?>
+</nav>
+
+<div class="property">
+    <h4><?php echo $this->translate('Title'); ?></h4>
+    <div class="value"><?php echo $this->escapeHtml($project->title()); ?></div>
+</div>
+<div class="property">
+    <h4><?php echo $this->translate('Description'); ?></h4>
+    <div class="value"><?php echo $this->escapeHtml($project->description()); ?></div>
+</div>
+<div class="property">
+    <h4><?php echo $this->translate('Item set'); ?></h4>
+    <?php $itemSet = $project->itemSet(); ?>
+    <div class="value"><?php echo $itemSet->link($itemSet->displayTitle()); ?></div>
+</div>
+<div class="property">
+    <h4><?php echo $this->translate('Property'); ?></h4>
+    <?php $property = $project->property(); ?>
+    <div class="value"><?php echo sprintf('%s : %s', $property->vocabulary()->label(), $property->label()); ?></div>
+</div>
+<div class="property">
+    <h4><?php echo $this->translate('Language tag'); ?></h4>
+    <div class="value"><?php echo $this->escapeHtml($project->lang()); ?></div>
+</div>
+<div class="property">
+    <h4><?php echo $this->translate('Date created'); ?></h4>
+    <div class="value"><?php echo $this->i18n()->dateFormat($project->created(), 'long', 'medium'); ?></div>
+</div>
+<div class="property">
+    <h4><?php echo $this->translate('Date synced'); ?></h4>
+    <?php $synced = $project->synced(); ?>
+    <div class="value"><?php echo $synced ? $this->i18n()->dateFormat($project->synced(), 'long', 'medium') : $this->translate('Not synced'); ?></div>
+</div>
+<div class="property">
+    <h4><?php echo $this->translate('Date imported'); ?></h4>
+    <?php $imported = $project->imported(); ?>
+    <div class="value"><?php echo $imported ? $this->i18n()->dateFormat($project->imported(), 'long', 'medium') : $this->translate('Not imported'); ?></div>
+</div>
