@@ -1,6 +1,6 @@
 <?php $this->htmlElement('body')->appendAttribute('class', 'show'); ?>
 
-<?php echo $this->pageTitle($this->translate('Review item'), 1, $this->translate('Scripto'), $sItem->item()->displayTitle()); ?>
+<?php echo $this->pageTitle($this->translate('Review item'), 1, $this->translate('Scripto'), $item->displayTitle()); ?>
 
 <nav class="section-nav">
     <?php echo $this->navigation('Zend\Navigation\ScriptoItem')->menu(); ?>
