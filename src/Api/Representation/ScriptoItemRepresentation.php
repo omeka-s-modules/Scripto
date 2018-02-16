@@ -17,9 +17,8 @@ class ScriptoItemRepresentation extends AbstractEntityRepresentation
     {
         $url = $this->getViewHelper('Url');
         return $url(
-            'admin/scripto/item',
+            'admin/scripto-media',
             [
-                'controller' => 'project',
                 'action' => $action,
                 'project-id' => $this->resource->getScriptoProject()->getId(),
                 'item-id' => $this->resource->getItem()->getId(),

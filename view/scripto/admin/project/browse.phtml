@@ -8,7 +8,7 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
     <?php if ($this->userIsAllowed('Scripto\Api\Adapter\ScriptoProjectAdapter', 'create')): ?>
     <?php echo $this->hyperlink(
         $this->translate('Add new project'),
-        $this->url('admin/scripto/add'),
+        $this->url('admin/scripto-project', ['action' => 'add']),
         ['class' => 'button']
     ); ?>
     <?php endif; ?>

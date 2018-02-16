@@ -6,8 +6,8 @@ use Zend\Mvc\Controller\AbstractActionController;
 
 class MediaController extends AbstractActionController
 {
-    public function reviewAction()
+    public function browseAction()
     {
-        exit('Media::review');
+        exit('Media::browse');
     }
 }

@@ -43,21 +43,21 @@ return [
         'AdminModule' => [
             [
                 'label' => 'Scripto', // @translate
-                'route' => 'admin/scripto',
+                'route' => 'admin/scripto-project',
                 'resource' => 'Scripto\Controller\Admin\Project',
             ],
         ],
         'Scripto' => [
             [
                 'label' => 'Metadata', // @translate
-                'route' => 'admin/scripto/id',
+                'route' => 'admin/scripto-project-id',
                 'action' => 'show',
                 'useRouteMatch' => true,
             ],
             [
                 'label' => 'Items', // @translate
-                'route' => 'admin/scripto/id',
-                'action' => 'browse-items',
+                'route' => 'admin/scripto-item',
+                'action' => 'browse',
                 'useRouteMatch' => true,
             ],
         ],
@@ -67,131 +67,114 @@ return [
             'admin' => [
                 'child_routes' => [
                     'scripto' => [
-                        'type' => 'Literal',
-                        'options' => [
-                            'route' => '/scripto',
-                            'defaults' => [
-                                '__NAMESPACE__' => 'Scripto\Controller\Admin',
-                                'controller' => 'Project',
-                                'action' => 'browse',
-                            ],
-                        ],
-                        'may_terminate' => true,
-                        'child_routes' => [
-                            'add' => [
-                                'type' => 'Literal',
-                                'options' => [
-                                    'route' => '/add',
-                                    'defaults' => [
-                                        'action' => 'add',
-                                    ],
-                                ],
-                            ],
-                            'id' => [
-                                'type' => 'Segment',
-                                'options' => [
-                                    'route' => '/:project-id[/:action]',
-                                    'constraints' => [
-                                        'project-id' => '\d+',
-                                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                    ],
-                                    'defaults' => [
-                                        'action' => 'show',
-                                    ],
-                                ],
-                            ],
-                            'item' => [
-                                'type' => 'Segment',
-                                'options' => [
-                                    'route' => '/:project-id/:item-id[/:action]',
-                                    'constraints' => [
-                                        'project-id' => '\d+',
-                                        'item-id' => '\d+',
-                                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                    ],
-                                    'defaults' => [
-                                        'controller' => 'Item',
-                                        'action' => 'review',
-                                    ],
-                                ],
-                                'may_terminate' => true,
-                                'child_routes' => [
-                                    'media' => [
-                                        'type' => 'Segment',
-                                        'options' => [
-                                            'route' => '/:media-id[/:action]',
-                                            'constraints' => [
-                                                'media-id' => '\d+',
-                                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                            ],
-                                            'defaults' => [
-                                                'controller' => 'Media',
-                                                'action' => 'review',
-                                            ],
-                                        ],
-                                    ],
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-            'scripto' => [
-                'type' => 'Literal',
-                'options' => [
-                    'route' => '/scripto',
-                    'defaults' => [
-                        'controller' => 'Scripto\Controller\Index',
-                        'action' => 'index',
-                    ],
-                ],
-                'may_terminate' => true,
-                'child_routes' => [
-                    'project' => [
                         'type' => 'Segment',
                         'options' => [
-                            'route' => '/:project-id',
+                            'route' => '/scripto[/:action]',
                             'constraints' => [
-                                'project-id' => '\d+',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                             ],
                             'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\Admin',
+                                'controller' => 'index',
+                                'action' => 'index',
+                            ],
+                        ],
+                    ],
+                    'scripto-project' =>  [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/project[/:action]',
+                            'constraints' => [
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\Admin',
+                                'controller' => 'project',
                                 'action' => 'browse',
                             ],
                         ],
-                        'may_terminate' => true,
-                        'child_routes' => [
-                            'item' => [
-                                'type' => 'Segment',
-                                'options' => [
-                                    'route' => '/:item-id',
-                                    'constraints' => [
-                                        'item-id' => '\d+',
-                                    ],
-                                    'defaults' => [
-                                        'action' => 'show',
-                                    ],
-                                ],
-                                'may_terminate' => true,
-                                'child_routes' => [
-                                    'item' => [
-                                        'type' => 'Segment',
-                                        'options' => [
-                                            'route' => '/:media-id',
-                                            'constraints' => [
-                                                'media-id' => '\d+',
-                                            ],
-                                            'defaults' => [
-                                                'action' => 'show',
-                                            ],
-                                        ],
-                                    ],
-                                ],
+                    ],
+                    'scripto-project-id' =>  [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/:project-id[/:action]',
+                            'constraints' => [
+                                'project-id' => '\d+',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\Admin',
+                                'controller' => 'project',
+                                'action' => 'show',
+                            ],
+                        ],
+                    ],
+                    'scripto-item' =>  [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/:project-id/item[/:action]',
+                            'constraints' => [
+                                'project-id' => '\d+',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\Admin',
+                                'controller' => 'item',
+                                'action' => 'browse',
+                            ],
+                        ],
+                    ],
+                    'scripto-item-id' =>  [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/:project-id/:item-id[/:action]',
+                            'constraints' => [
+                                'project-id' => '\d+',
+                                'item-id' => '\d+',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\Admin',
+                                'controller' => 'item',
+                                'action' => 'show',
+                            ],
+                        ],
+                    ],
+                    'scripto-media' =>  [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/:project-id/:item-id/media[/:action]',
+                            'constraints' => [
+                                'project-id' => '\d+',
+                                'item-id' => '\d+',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\Admin',
+                                'controller' => 'media',
+                                'action' => 'browse',
+                            ],
+                        ],
+                    ],
+                    'scripto-media-id' =>  [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/:project-id/:item-id/:media-id[/:action]',
+                            'constraints' => [
+                                'project-id' => '\d+',
+                                'item-id' => '\d+',
+                                'media-id' => '\d+',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\Admin',
+                                'controller' => 'media',
+                                'action' => 'show',
                             ],
                         ],
                     ],
                 ],
             ],
-
         ],
     ],
 ];
