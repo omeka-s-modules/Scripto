@@ -43,8 +43,10 @@ class ItemController extends AbstractActionController
     {
         $project = $this->api()->read('scripto_projects', $this->params('project-id'))->getContent();
         $sItem = $this->api()->searchOne('scripto_items', [
+            'scripto_project_id' => $this->params('project-id'),
             'item_id' => $this->params('item-id'),
         ])->getContent();
+
 
         $view = new ViewModel;
         $view->setVariable('project', $project);
