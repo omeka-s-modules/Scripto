@@ -21,6 +21,21 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
      */
     protected $page;
 
+    public function adminUrl($action = null, $canonical = false)
+    {
+        $url = $this->getViewHelper('Url');
+        return $url(
+            'admin/scripto-media-id',
+            [
+                'action' => $action,
+                'project-id' => $this->resource->getScriptoItem()->getScriptoProject()->getId(),
+                'item-id' => $this->resource->getScriptoItem()->getItem()->getId(),
+                'media-id' => $this->resource->getMedia()->getId(),
+            ],
+            ['force_canonical' => $canonical]
+        );
+    }
+
     public function getJsonLdType()
     {
         return 'o-module-scripto:Media';
