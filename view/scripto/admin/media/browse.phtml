@@ -47,7 +47,6 @@
 <table class="tablesaw" data-tablesaw-mode="stack">
     <thead>
         <tr>
-            <th>#</th>
             <th><?php echo $this->translate('Media title'); ?></th>
             <th><?php echo $this->translate('Last synced'); ?></th>
             <th><?php echo $this->translate('Last edited'); ?></th>
@@ -57,9 +56,8 @@
     <tbody>
     <?php foreach ($sMedia as $sMedia): ?>
         <tr>
-            <td><?php echo $sMedia->position(); ?></td>
             <td>
-                <?php echo $sMedia->link($sMedia->media()->displayTitle()); ?>
+                <?php echo $sMedia->linkPretty(); ?>
                 <ul class="actions">
                     <li><?php echo $this->hyperlink('', '#', [
                         'data-sidebar-content-url' => $sMedia->url('show-details'),

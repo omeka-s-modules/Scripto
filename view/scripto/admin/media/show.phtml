@@ -1,0 +1,57 @@
+<?php $this->htmlElement('body')->appendAttribute('class', 'show'); ?>
+
+<?php echo $this->pageTitle($this->translate('Review media'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
+
+<?php echo $this->sectionNav([
+    'media-metadata' => $this->translate('Metadata'),
+    'media-wikitext' => $this->translate('Wikitext'),
+    'media-html' => $this->translate('HTML'),
+    'media-view' => $this->translate('View media'),
+]); ?>
+
+<div id="media-metadata" class="active section">
+    <div class="property">
+        <h4><?php echo $this->translate('Title'); ?></h4>
+        <div class="value"><?php echo $media->link($media->displayTitle()); ?></div>
+    </div>
+    <div class="property">
+        <h4><?php echo $this->translate('Status'); ?></h4>
+        <div class="value"><?php echo $this->translate($sMedia->status()); ?></div>
+    </div>
+    <div class="property">
+        <h4><?php echo $this->translate('Last synced'); ?></h4>
+        <div class="value"><?php echo $this->i18n()->dateFormat($sMedia->synced(), 'long', 'medium'); ?></div>
+    </div>
+    <div class="property">
+        <h4><?php echo $this->translate('Last edited'); ?></h4>
+        <?php $edited = $sMedia->edited(); ?>
+        <div class="value"><?php echo $edited ? $this->i18n()->dateFormat($sMedia->edited(), 'long', 'medium') : $this->translate('Not edited'); ?></div>
+    </div>
+    <div class="property">
+        <h4><?php echo $this->translate('Date completed'); ?></h4>
+        <?php $completed = $sMedia->completed(); ?>
+        <div class="value"><?php echo $completed ? $this->i18n()->dateFormat($sMedia->completed(), 'long', 'medium') : $this->translate('Not completed'); ?></div>
+    </div>
+    <div class="property">
+        <h4><?php echo $this->translate('Date approved'); ?></h4>
+        <?php $approved = $sMedia->approved(); ?>
+        <div class="value"><?php echo $approved ? $this->i18n()->dateFormat($sMedia->approved(), 'long', 'medium') : $this->translate('Not approved'); ?></div>
+    </div>
+    <div class="property">
+        <h4><?php echo $this->translate('Description'); ?></h4>
+        <?php $description = $media->displayDescription(); ?>
+        <div class="value"><?php echo $description ? $this->escapeHtml($description) : $this->translate('No description'); ?></div>
+    </div>
+</div>
+
+<div id="media-wikitext" class="section">
+    <pre><?php echo $this->escapeHtml($sMedia->pageWikitext()); ?></pre>
+</div>
+
+<div id="media-html" class="section">
+    <?php echo $sMedia->pageHtml(); ?>
+</div>
+
+<div id="media-view" class="section">
+    <?php echo $media->render(); ?>
+</div>
