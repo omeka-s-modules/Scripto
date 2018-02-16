@@ -15,8 +15,11 @@ use Omeka\Stdlib\ErrorStore;
 class ScriptoMediaAdapter extends AbstractEntityAdapter
 {
     protected $sortFields = [
-        'id' => 'id',
         'position' => 'position',
+        'synced' => 'synced',
+        'edited' => 'edited',
+        'completed' => 'completed',
+        'approved' => 'approved',
     ];
 
     public function getResourceName()
