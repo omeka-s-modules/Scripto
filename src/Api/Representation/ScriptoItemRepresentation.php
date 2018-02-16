@@ -13,6 +13,21 @@ class ScriptoItemRepresentation extends AbstractEntityRepresentation
     const STATUS_COMPLETED = 'Completed'; // @translate
     const STATUS_APPROVED = 'Approved'; // @translate
 
+    public function adminUrl($action = null, $canonical = false)
+    {
+        $url = $this->getViewHelper('Url');
+        return $url(
+            'admin/scripto/item',
+            [
+                'controller' => 'project',
+                'action' => $action,
+                'project-id' => $this->resource->getScriptoProject()->getId(),
+                'item-id' => $this->resource->getItem()->getId(),
+            ],
+            ['force_canonical' => $canonical]
+        );
+    }
+
     public function getJsonLdType()
     {
         return 'o-module-scripto:Item';
