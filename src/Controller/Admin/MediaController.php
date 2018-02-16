@@ -34,10 +34,16 @@ class MediaController extends AbstractActionController
             'scripto_project_id' => $this->params('project-id'),
             'item_id' => $this->params('item-id'),
         ])->getContent();
+        if (!$sItem) {
+            return $this->redirect()->toRoute('admin/scripto-project');
+        }
         $sMedia = $this->api()->searchOne('scripto_media', [
             'scripto_item_id' => $sItem->id(),
             'media_id' => $this->params('media-id'),
         ])->getContent();
+        if (!$sMedia) {
+            return $this->redirect()->toRoute('admin/scripto-project');
+        }
 
         $view = new ViewModel;
         $view->setTerminal(true);

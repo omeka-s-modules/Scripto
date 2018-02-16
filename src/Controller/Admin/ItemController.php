@@ -31,6 +31,9 @@ class ItemController extends AbstractActionController
             'scripto_project_id' => $this->params('project-id'),
             'item_id' => $this->params('item-id'),
         ])->getContent();
+        if (!$sItem) {
+            return $this->redirect()->toRoute('admin/scripto-project');
+        }
 
         $view = new ViewModel;
         $view->setTerminal(true);
@@ -45,6 +48,9 @@ class ItemController extends AbstractActionController
             'scripto_project_id' => $this->params('project-id'),
             'item_id' => $this->params('item-id'),
         ])->getContent();
+        if (!$sItem) {
+            return $this->redirect()->toRoute('admin/scripto-project');
+        }
 
         $view = new ViewModel;
         $view->setVariable('sItem', $sItem);
