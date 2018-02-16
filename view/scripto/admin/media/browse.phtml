@@ -6,3 +6,84 @@
     <?php echo $this->navigation('Zend\Navigation\ScriptoItem')->menu(); ?>
 </nav>
 
+<div class="browse-controls">
+    <?php echo $this->pagination(); ?>
+    <?php echo $this->sortSelector([
+        [
+            'label' => $this->translate('Position'),
+            'value' => 'position'
+        ],
+        [
+            'label' => $this->translate('Last synced'),
+            'value' => 'synced'
+        ],
+        [
+            'label' => $this->translate('Last edited'),
+            'value' => 'edited'
+        ],
+        [
+            'label' => $this->translate('Date completed'),
+            'value' => 'completed'
+        ],
+        [
+            'label' => $this->translate('Date approved'),
+            'value' => 'approved'
+        ],
+    ]); ?>
+    <select name="filter">
+        <option value="">All</option>
+        <option value="is_edited">Is edited</option>
+        <option value="is_not_edited">Is not edited</option>
+        <option value="is_edited">Is completed</option>
+        <option value="is_not_completed">Is not completed</option>
+        <option value="is_approved">Is approved</option>
+        <option value="is_not_approved">Is not approved</option>
+        <option value="is_edited_after_approved">Is edited after approved</option>
+        <option value="is_edited_after_imported">Is edited after imported</option>
+        <option value="is_synced_after_imported">Is synced after imported</option>
+    </select>
+</div>
+
+<table class="tablesaw" data-tablesaw-mode="stack">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th><?php echo $this->translate('Media title'); ?></th>
+            <th><?php echo $this->translate('Last synced'); ?></th>
+            <th><?php echo $this->translate('Last edited'); ?></th>
+            <th><?php echo $this->translate('Status'); ?></th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($sMedia as $sMedia): ?>
+        <tr>
+            <td><?php echo $sMedia->position(); ?></td>
+            <td>
+                <?php echo $sMedia->link($sMedia->media()->displayTitle()); ?>
+                <ul class="actions">
+                    <li><?php echo $this->hyperlink('', '#', [
+                        'data-sidebar-content-url' => $sMedia->url('show-details'),
+                        'class' => 'o-icon-more sidebar-content',
+                        'title' => $this->translate('Details'),
+                    ]); ?></li>
+                </ul>
+            </td>
+            <td><?php echo $this->i18n()->dateFormat($sMedia->synced()); ?></td>
+            <td><?php echo $this->i18n()->dateFormat($sMedia->edited()); ?></td>
+            <td><?php echo $this->translate($sMedia->status()); ?></td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+
+<div class="browse-controls">
+    <?php echo $this->pagination(); ?>
+</div>
+
+<div class="sidebar">
+    <?php echo $this->hyperlink('', '#', [
+        'class' => 'sidebar-close o-icon-close',
+        'title' => $this->translate('Close'),
+    ]); ?>
+    <div class="sidebar-content"></div>
+</div>

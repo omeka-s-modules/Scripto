@@ -8,10 +8,12 @@ class MediaController extends AbstractActionController
 {
     public function browseAction()
     {
-        $project = $this->api()->read('scripto_projects', $this->params('project-id'))->getContent();
-        $sItem = $this->api()->searchOne('scripto_items', ['item_id' => $this->params('item-id')])->getContent();
+        $sItem = $this->api()->searchOne('scripto_items', [
+            'scripto_project_id' => $this->params('project-id'),
+            'item_id' => $this->params('item-id'),
+        ])->getContent();
 
-        $this->setBrowseDefaults('position');
+        $this->setBrowseDefaults('position', 'asc');
         $query = array_merge(
             ['scripto_item_id' => $sItem->id()],
             $this->params()->fromQuery()
@@ -21,9 +23,26 @@ class MediaController extends AbstractActionController
         $sMedia = $response->getContent();
 
         $view = new ViewModel;
-        $view->setVariable('project', $project);
         $view->setVariable('sItem', $sItem);
         $view->setVariable('sMedia', $sMedia);
+        return $view;
+    }
+
+    public function showDetailsAction()
+    {
+        $sItem = $this->api()->searchOne('scripto_items', [
+            'scripto_project_id' => $this->params('project-id'),
+            'item_id' => $this->params('item-id'),
+        ])->getContent();
+        $sMedia = $this->api()->searchOne('scripto_media', [
+            'scripto_item_id' => $sItem->id(),
+            'media_id' => $this->params('media-id'),
+        ])->getContent();
+
+        $view = new ViewModel;
+        $view->setTerminal(true);
+        $view->setVariable('sMedia', $sMedia);
+        $view->setVariable('media', $sMedia->media());
         return $view;
     }
 }
