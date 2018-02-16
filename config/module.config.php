@@ -89,10 +89,11 @@ return [
                             'item' => [
                                 'type' => 'Segment',
                                 'options' => [
-                                    'route' => '/:project-id/:item-id',
+                                    'route' => '/:project-id/:item-id[/:action]',
                                     'constraints' => [
                                         'project-id' => '\d+',
                                         'item-id' => '\d+',
+                                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                     ],
                                     'defaults' => [
                                         'controller' => 'Item',
