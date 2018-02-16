@@ -45,7 +45,7 @@
     <?php foreach ($sItems as $sItem): ?>
         <tr>
             <td>
-                <?php echo $sItem->link($sItem->item()->displayTitle()); ?>
+                <?php echo $sItem->linkPretty(); ?>
                 <ul class="actions">
                     <li><?php echo $this->hyperlink('', '#', [
                         'data-sidebar-content-url' => $sItem->url('show-details'),
