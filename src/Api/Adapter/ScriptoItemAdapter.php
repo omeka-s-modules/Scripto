@@ -10,6 +10,11 @@ use Omeka\Stdlib\ErrorStore;
 
 class ScriptoItemAdapter extends AbstractEntityAdapter
 {
+    protected $sortFields = [
+        'synced' => 'synced',
+        'edited' => 'edited',
+    ];
+
     public function getResourceName()
     {
         return 'scripto_items';
