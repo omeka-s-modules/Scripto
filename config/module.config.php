@@ -105,11 +105,10 @@ return [
                                     'media' => [
                                         'type' => 'Segment',
                                         'options' => [
-                                            'route' => '/:media-id',
+                                            'route' => '/:media-id[/:action]',
                                             'constraints' => [
-                                                'project-id' => '\d+',
-                                                'item-id' => '\d+',
                                                 'media-id' => '\d+',
+                                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                             ],
                                             'defaults' => [
                                                 'controller' => 'Media',
