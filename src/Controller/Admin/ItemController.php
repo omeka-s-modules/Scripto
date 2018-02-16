@@ -27,14 +27,29 @@ class ItemController extends AbstractActionController
 
     public function showDetailsAction()
     {
-        $response = $this->api()->searchOne('scripto_items', [
+        $sItem = $this->api()->searchOne('scripto_items', [
             'scripto_project_id' => $this->params('project-id'),
             'item_id' => $this->params('item-id'),
-        ]);
+        ])->getContent();
 
         $view = new ViewModel;
         $view->setTerminal(true);
-        $view->setVariable('sItem', $response->getContent());
+        $view->setVariable('sItem', $sItem);
+        $view->setVariable('item', $sItem->item());
+        return $view;
+    }
+
+    public function showAction()
+    {
+        $project = $this->api()->read('scripto_projects', $this->params('project-id'))->getContent();
+        $sItem = $this->api()->searchOne('scripto_items', [
+            'item_id' => $this->params('item-id'),
+        ])->getContent();
+
+        $view = new ViewModel;
+        $view->setVariable('project', $project);
+        $view->setVariable('sItem', $sItem);
+        $view->setVariable('item', $sItem->item());
         return $view;
     }
 }

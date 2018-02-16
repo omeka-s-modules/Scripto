@@ -47,7 +47,7 @@ return [
                 'resource' => 'Scripto\Controller\Admin\Project',
             ],
         ],
-        'Scripto' => [
+        'ScriptoProject' => [
             [
                 'label' => 'Metadata', // @translate
                 'route' => 'admin/scripto-project-id',
@@ -57,6 +57,20 @@ return [
             [
                 'label' => 'Items', // @translate
                 'route' => 'admin/scripto-item',
+                'action' => 'browse',
+                'useRouteMatch' => true,
+            ],
+        ],
+        'ScriptoItem' => [
+            [
+                'label' => 'Metadata', // @translate
+                'route' => 'admin/scripto-item-id',
+                'action' => 'show',
+                'useRouteMatch' => true,
+            ],
+            [
+                'label' => 'Media', // @translate
+                'route' => 'admin/scripto-media',
                 'action' => 'browse',
                 'useRouteMatch' => true,
             ],

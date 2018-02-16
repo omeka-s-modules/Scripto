@@ -87,19 +87,20 @@ class ProjectController extends AbstractActionController
         $this->setBrowseDefaults('created');
         $response = $this->api()->search('scripto_projects', $this->params()->fromQuery());
         $this->paginator($response->getTotalResults(), $this->params()->fromQuery('page'));
+        $projects = $response->getContent();
 
         $view = new ViewModel;
-        $view->setVariable('projects', $response->getContent());
+        $view->setVariable('projects', $projects);
         return $view;
     }
 
     public function showDetailsAction()
     {
-        $response = $this->api()->read('scripto_projects', $this->params('project-id'));
+        $project = $this->api()->read('scripto_projects', $this->params('project-id'))->getContent();
 
         $view = new ViewModel;
         $view->setTerminal(true);
-        $view->setVariable('project', $response->getContent());
+        $view->setVariable('project', $project);
         return $view;
     }
 
