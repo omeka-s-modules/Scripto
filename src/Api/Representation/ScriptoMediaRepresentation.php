@@ -70,6 +70,11 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
         return $this->getAdapter('media')->getRepresentation($this->resource->getMedia());
     }
 
+    public function position()
+    {
+        return $this->resource->getPosition();
+    }
+
     public function completedBy()
     {
         return $this->resource->getCompletedBy();
