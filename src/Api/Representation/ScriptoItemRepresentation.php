@@ -27,6 +27,25 @@ class ScriptoItemRepresentation extends AbstractEntityRepresentation
         );
     }
 
+    public function linkPretty($thumbnailType = 'square', $titleDefault = null,
+        $action = null, array $attributes = null
+    ) {
+        $item = $this->item();
+        $escape = $this->getViewHelper('escapeHtml');
+        $thumbnail = $this->getViewHelper('thumbnail');
+        $linkContent = sprintf(
+            '%s<span class="resource-name">%s</span>',
+            $thumbnail($item, $thumbnailType),
+            $escape($item->displayTitle($titleDefault))
+        );
+        if (empty($attributes['class'])) {
+            $attributes['class'] = 'resource-link';
+        } else {
+            $attributes['class'] .= ' resource-link';
+        }
+        return $this->linkRaw($linkContent, $action, $attributes);
+    }
+
     public function getJsonLdType()
     {
         return 'o-module-scripto:Item';

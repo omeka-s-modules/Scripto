@@ -36,6 +36,25 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
         );
     }
 
+    public function linkPretty($thumbnailType = 'square', $titleDefault = null,
+        $action = null, array $attributes = null
+    ) {
+        $media = $this->media();
+        $escape = $this->getViewHelper('escapeHtml');
+        $thumbnail = $this->getViewHelper('thumbnail');
+        $linkContent = sprintf(
+            '%s<span class="resource-name">%s</span>',
+            $thumbnail($media, $thumbnailType),
+            $escape($media->displayTitle($titleDefault))
+        );
+        if (empty($attributes['class'])) {
+            $attributes['class'] = 'resource-link';
+        } else {
+            $attributes['class'] .= ' resource-link';
+        }
+        return $this->linkRaw($linkContent, $action, $attributes);
+    }
+
     public function getJsonLdType()
     {
         return 'o-module-scripto:Media';
