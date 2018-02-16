@@ -11,9 +11,9 @@ class ScriptoProjectAdapter extends AbstractEntityAdapter
 {
     protected $sortFields = [
         'title' => 'title',
-        'date_created' => 'created',
-        'date_synced' => 'synced',
-        'date_imported' => 'imported',
+        'created' => 'created',
+        'synced' => 'synced',
+        'imported' => 'imported',
     ];
 
     public function getResourceName()
