@@ -13,7 +13,7 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
             [
                 'controller' => 'project',
                 'action' => $action,
-                'project-id' => $this->id(),
+                'project-id' => $this->resource->getId(),
             ],
             ['force_canonical' => $canonical]
         );
