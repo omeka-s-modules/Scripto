@@ -2,13 +2,21 @@
 
 <?php echo $this->pageTitle($this->translate('Review item'), 1, $this->translate('Scripto'), $item->displayTitle()); ?>
 
+<div id="page-actions">
+    <?php echo $project->link($this->translate('Review project'), 'show', ['class' => 'button']); ?>
+</div>
+
 <nav class="section-nav">
     <?php echo $this->navigation('Zend\Navigation\ScriptoItem')->menu(); ?>
 </nav>
 
 <div class="property">
-    <h4><?php echo $this->translate('Title'); ?></h4>
+    <h4><?php echo $this->translate('Omeka item'); ?></h4>
     <div class="value"><?php echo $item->link($item->displayTitle()); ?></div>
+</div>
+<div class="property">
+    <h4><?php echo $this->translate('Scripto project'); ?></h4>
+    <div class="value"><?php echo $project->link($project->title()); ?></div>
 </div>
 <div class="property">
     <h4><?php echo $this->translate('Description'); ?></h4>

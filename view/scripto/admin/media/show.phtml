@@ -2,6 +2,10 @@
 
 <?php echo $this->pageTitle($this->translate('Review media'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
 
+<div id="page-actions">
+    <?php echo $sItem->link($this->translate('Review item'), 'show', ['class' => 'button']); ?>
+</div>
+
 <?php echo $this->sectionNav([
     'media-metadata' => $this->translate('Metadata'),
     'media-wikitext' => $this->translate('Wikitext'),
@@ -11,8 +15,12 @@
 
 <div id="media-metadata" class="active section">
     <div class="property">
-        <h4><?php echo $this->translate('Title'); ?></h4>
+        <h4><?php echo $this->translate('Omeka media'); ?></h4>
         <div class="value"><?php echo $media->link($media->displayTitle()); ?></div>
+    </div>
+    <div class="property">
+        <h4><?php echo $this->translate('Scripto item'); ?></h4>
+        <div class="value"><?php echo $sItem->link($item->displayTitle()); ?></div>
     </div>
     <div class="property">
         <h4><?php echo $this->translate('Status'); ?></h4>

@@ -69,9 +69,12 @@ class MediaController extends AbstractActionController
             return $this->redirect()->toRoute('admin/scripto-project');
         }
 
+        $sItem = $sMedia->scriptoItem();
         $view = new ViewModel;
         $view->setVariable('sMedia', $sMedia);
         $view->setVariable('media', $sMedia->media());
+        $view->setVariable('sItem', $sItem);
+        $view->setVariable('item', $sItem->item());
         return $view;
     }
 }

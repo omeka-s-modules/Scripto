@@ -2,6 +2,10 @@
 
 <?php echo $this->pageTitle($this->translate('Review item'), 1, $this->translate('Scripto'), $sItem->item()->displayTitle()); ?>
 
+<div id="page-actions">
+    <?php echo $sItem->scriptoProject()->link($this->translate('Review project'), 'show', ['class' => 'button']); ?>
+</div>
+
 <nav class="section-nav">
     <?php echo $this->navigation('Zend\Navigation\ScriptoItem')->menu(); ?>
 </nav>
@@ -47,7 +51,7 @@
 <table class="tablesaw" data-tablesaw-mode="stack">
     <thead>
         <tr>
-            <th><?php echo $this->translate('Media title'); ?></th>
+            <th><?php echo $this->translate('Media'); ?></th>
             <th><?php echo $this->translate('Last synced'); ?></th>
             <th><?php echo $this->translate('Last edited'); ?></th>
             <th><?php echo $this->translate('Status'); ?></th>
