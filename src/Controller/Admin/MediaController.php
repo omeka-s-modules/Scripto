@@ -30,19 +30,9 @@ class MediaController extends AbstractActionController
 
     public function showDetailsAction()
     {
-        $sItem = $this->api()->searchOne('scripto_items', [
-            'scripto_project_id' => $this->params('project-id'),
-            'item_id' => $this->params('item-id'),
-        ])->getContent();
-        if (!$sItem) {
-            return $this->redirect()->toRoute('admin/scripto-project');
-        }
-        $sMedia = $this->api()->searchOne('scripto_media', [
-            'scripto_item_id' => $sItem->id(),
-            'media_id' => $this->params('media-id'),
-        ])->getContent();
+        $sMedia = $this->getScriptoMedia();
         if (!$sMedia) {
-            return $this->redirect()->toRoute('admin/scripto-project');
+            exit;
         }
 
         $view = new ViewModel;
@@ -54,17 +44,7 @@ class MediaController extends AbstractActionController
 
     public function showAction()
     {
-        $sItem = $this->api()->searchOne('scripto_items', [
-            'scripto_project_id' => $this->params('project-id'),
-            'item_id' => $this->params('item-id'),
-        ])->getContent();
-        if (!$sItem) {
-            return $this->redirect()->toRoute('admin/scripto-project');
-        }
-        $sMedia = $this->api()->searchOne('scripto_media', [
-            'scripto_item_id' => $sItem->id(),
-            'media_id' => $this->params('media-id'),
-        ])->getContent();
+        $sMedia = $this->getScriptoMedia();
         if (!$sMedia) {
             return $this->redirect()->toRoute('admin/scripto-project');
         }
@@ -76,5 +56,25 @@ class MediaController extends AbstractActionController
         $view->setVariable('sItem', $sItem);
         $view->setVariable('item', $sItem->item());
         return $view;
+    }
+
+    /**
+     * Get the Scripto media from route parameters.
+     *
+     * @return ScriptoItemRepresentation
+     */
+    protected function getScriptoMedia()
+    {
+        $sItem = $this->api()->searchOne('scripto_items', [
+            'scripto_project_id' => $this->params('project-id'),
+            'item_id' => $this->params('item-id'),
+        ])->getContent();
+        if (!$sItem) {
+            return false;
+        }
+        return $this->api()->searchOne('scripto_media', [
+            'scripto_item_id' => $sItem->id(),
+            'media_id' => $this->params('media-id'),
+        ])->getContent();
     }
 }

@@ -27,12 +27,9 @@ class ItemController extends AbstractActionController
 
     public function showDetailsAction()
     {
-        $sItem = $this->api()->searchOne('scripto_items', [
-            'scripto_project_id' => $this->params('project-id'),
-            'item_id' => $this->params('item-id'),
-        ])->getContent();
+        $sItem = $this->getScriptoItem();
         if (!$sItem) {
-            return $this->redirect()->toRoute('admin/scripto-project');
+            exit;
         }
 
         $view = new ViewModel;
@@ -44,12 +41,9 @@ class ItemController extends AbstractActionController
 
     public function showAction()
     {
-        $sItem = $this->api()->searchOne('scripto_items', [
-            'scripto_project_id' => $this->params('project-id'),
-            'item_id' => $this->params('item-id'),
-        ])->getContent();
+        $sItem = $this->getScriptoItem();
         if (!$sItem) {
-            return $this->redirect()->toRoute('admin/scripto-project');
+            $this->redirect()->toRoute('admin/scripto-project');
         }
 
         $view = new ViewModel;
@@ -57,5 +51,18 @@ class ItemController extends AbstractActionController
         $view->setVariable('item', $sItem->item());
         $view->setVariable('project', $sItem->scriptoProject());
         return $view;
+    }
+
+    /**
+     * Get the Scripto item from route parameters.
+     *
+     * @return ScriptoItemRepresentation
+     */
+    protected function getScriptoItem()
+    {
+        return $this->api()->searchOne('scripto_items', [
+            'scripto_project_id' => $this->params('project-id'),
+            'item_id' => $this->params('item-id'),
+        ])->getContent();
     }
 }
