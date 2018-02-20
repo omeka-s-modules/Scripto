@@ -64,10 +64,10 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'position', 'completedBy', 'approvedBy', 'synced', 'edited', 'completed', 'approved', 'text'];
+            return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'position', 'editedBy', 'completedBy', 'approvedBy', 'synced', 'edited', 'completed', 'approved', 'text'];
         }
 
-        return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'position', 'completedBy', 'approvedBy', 'synced', 'edited', 'completed', 'approved', 'text'];
+        return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'position', 'editedBy', 'completedBy', 'approvedBy', 'synced', 'edited', 'completed', 'approved', 'text'];
     }
 
     /**
@@ -252,6 +252,28 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPosition', []);
 
         return parent::getPosition();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setEditedBy($editedBy)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEditedBy', [$editedBy]);
+
+        return parent::setEditedBy($editedBy);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getEditedBy()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEditedBy', []);
+
+        return parent::getEditedBy();
     }
 
     /**

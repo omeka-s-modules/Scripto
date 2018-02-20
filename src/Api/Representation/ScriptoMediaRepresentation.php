@@ -70,6 +70,7 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
         return [
             'o-module-scripto:item' => $this->scriptoItem()->getReference(),
             'o:media' => $this->media()->getReference(),
+            'o-module-scripto:edited_by' => $this->editedBy(),
             'o-module-scripto:completed_by' => $this->completedBy(),
             'o-module-scripto:approved_by' => $approvedBy ? $approvedBy->getReference() : null,
             'o-module-scripto:synced' => $synced ? $this->getDateTime($synced) : null,
@@ -92,6 +93,11 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
     public function position()
     {
         return $this->resource->getPosition();
+    }
+
+    public function editedBy()
+    {
+        return $this->resource->getEditedBy();
     }
 
     public function completedBy()

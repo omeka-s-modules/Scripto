@@ -59,6 +59,11 @@ class ScriptoMedia extends AbstractEntity
     /**
      * @Column(nullable=true)
      */
+    protected $editedBy;
+
+    /**
+     * @Column(nullable=true)
+     */
     protected $completedBy;
 
     /**
@@ -127,6 +132,16 @@ class ScriptoMedia extends AbstractEntity
     public function getPosition()
     {
         return $this->position;
+    }
+
+    public function setEditedBy($editedBy)
+    {
+        $this->editedBy = $editedBy;
+    }
+
+    public function getEditedBy()
+    {
+        return $this->editedBy;
     }
 
     public function setCompletedBy($completedBy)
