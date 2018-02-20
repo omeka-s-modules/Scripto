@@ -13,17 +13,41 @@
     <?php echo $this->navigation('Zend\Navigation\ScriptoProject')->menu(); ?>
 </nav>
 
-<?php
-$syncForm->setAttribute('action', $this->url(null, ['action' => 'sync'], true));
-echo $this->form($syncForm);
-?>
-
-<?php
-$importForm->setAttribute('action', $this->url(null, ['action' => 'import'], true));
-echo $this->form($importForm);
-?>
-
-<?php
-$unimportForm->setAttribute('action', $this->url(null, ['action' => 'unimport'], true));
-echo $this->form($unimportForm);
-?>
+<div>
+    <h3><?php echo $this->translate('Sync project'); ?></h3>
+    <p><?php echo $this->translate('Synchronize this project with the configured item set. Once synchronized, this project will contain every item in the item set. You should synchronize periodically, any time items are added or removed from the item set, and when item media have been added, removed, or reordered.'); ?></p>
+    <?php
+    $syncForm->setAttribute('action', $this->url(null, ['action' => 'sync'], true));
+    echo $this->form($syncForm);
+    ?>
+</div>
+<hr>
+<div>
+    <h3><?php echo $this->translate('Import project'); ?></h3>
+    <p><?php echo sprintf(
+        $this->translate('Import project transcriptions from MediaWiki into Omeka. This process will aggregate transcriptions from approved Scripto media and save them to their corresponding Omeka items using the configured property and language tag. %s'),
+        sprintf(
+            '<span class="error">%s</span>',
+            $this->translate('Warning: all existing values matching the configured property and language tag will be overwritten or deleted.')
+        )
+    ); ?></p>
+    <?php
+    $importForm->setAttribute('action', $this->url(null, ['action' => 'import'], true));
+    echo $this->form($importForm);
+    ?>
+</div>
+<hr>
+<div>
+    <h3><?php echo $this->translate('Unimport project'); ?></h3>
+    <p><?php echo sprintf(
+        $this->translate('Unimport project transcriptions from Omeka. %s'),
+        sprintf(
+            '<span class="error">%s</span>',
+            $this->translate('Warning: all existing values matching the configured property and language tag will be deleted.')
+        )
+    ); ?></p>
+    <?php
+    $unimportForm->setAttribute('action', $this->url(null, ['action' => 'unimport'], true));
+    echo $this->form($unimportForm);
+    ?>
+</div>
