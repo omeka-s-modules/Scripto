@@ -6,6 +6,7 @@
     <?php if ($project->userIsAllowed('update')): ?>
     <?php echo $project->link($this->translate('Edit project'), 'edit', ['class' => 'button']); ?>
     <?php endif; ?>
+    <?php echo $project->link($this->translate('View projects'), 'browse', ['class' => 'button']); ?>
 </div>
 
 <nav class="section-nav">
