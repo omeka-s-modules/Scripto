@@ -1,0 +1,28 @@
+<?php $this->htmlElement('body')->appendAttribute('class', 'show'); ?>
+
+<?php echo $this->pageTitle($this->translate('Review project'), 1, $this->translate('Scripto'), $project->title()); ?>
+
+<div id="page-actions">
+    <?php if ($project->userIsAllowed('update')): ?>
+    <?php echo $project->link($this->translate('Edit project'), 'edit', ['class' => 'button']); ?>
+    <?php endif; ?>
+</div>
+
+<nav class="section-nav">
+    <?php echo $this->navigation('Zend\Navigation\ScriptoProject')->menu(); ?>
+</nav>
+
+<?php
+$syncForm->setAttribute('action', $this->url(null, ['action' => 'sync'], true));
+echo $this->form($syncForm);
+?>
+
+<?php
+$importForm->setAttribute('action', $this->url(null, ['action' => 'import'], true));
+echo $this->form($importForm);
+?>
+
+<?php
+$unimportForm->setAttribute('action', $this->url(null, ['action' => 'unimport'], true));
+echo $this->form($unimportForm);
+?>

@@ -6,9 +6,9 @@ use Omeka\Entity\Value;
 use Scripto\Entity\ScriptoProject;
 
 /**
- * Import text from MediaWiki to Omeka items.
+ * Import project text from MediaWiki to Omeka items.
  */
-class ImportText extends ScriptoJob
+class ImportProject extends ScriptoJob
 {
     public function perform()
     {

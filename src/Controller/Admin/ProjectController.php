@@ -2,7 +2,13 @@
 namespace Scripto\Controller\Admin;
 
 use Omeka\Form\ConfirmForm;
+use Scripto\Form\ImportProjectForm;
 use Scripto\Form\ScriptoProjectForm;
+use Scripto\Form\SyncProjectForm;
+use Scripto\Form\UnimportProjectForm;
+use Scripto\Job\ImportProject;
+use Scripto\Job\SyncProject;
+use Scripto\Job\UnimportProject;
 use Zend\View\Model\ViewModel;
 use Zend\Mvc\Controller\AbstractActionController;
 
@@ -111,5 +117,68 @@ class ProjectController extends AbstractActionController
         $view = new ViewModel;
         $view->setVariable('project', $project);
         return $view;
+    }
+
+    public function showActionsAction()
+    {
+        $project = $this->api()->read('scripto_projects', $this->params('project-id'))->getContent();
+
+        $view = new ViewModel;
+        $view->setVariable('project', $project);
+        $view->setVariable('syncForm', $this->getForm(SyncProjectForm::class));
+        $view->setVariable('importForm', $this->getForm(ImportProjectForm::class));
+        $view->setVariable('unimportForm', $this->getForm(UnimportProjectForm::class));
+        return $view;
+    }
+
+    public function syncAction()
+    {
+        if ($this->getRequest()->isPost()) {
+            $form = $this->getForm(SyncProjectForm::class);
+            $form->setData($this->getRequest()->getPost());
+            if ($form->isValid()) {
+                $this->jobDispatcher()->dispatch(
+                    SyncProject::class,
+                    ['scripto_project_id' => $this->params('project-id')]
+                );
+                $this->messenger()->addSuccess('Syncing Scripto project. This may take a while.'); // @translate
+                return $this->redirect()->toRoute(null, ['action' => 'show'], true);
+            }
+        }
+        return $this->redirect()->toRoute(null, ['action' => 'browse'], true);
+    }
+
+    public function importAction()
+    {
+        if ($this->getRequest()->isPost()) {
+            $form = $this->getForm(ImportProjectForm::class);
+            $form->setData($this->getRequest()->getPost());
+            if ($form->isValid()) {
+                $this->jobDispatcher()->dispatch(
+                    ImportProject::class,
+                    ['scripto_project_id' => $this->params('project-id')]
+                );
+                $this->messenger()->addSuccess('Importing Scripto project text. This may take a while.'); // @translate
+                return $this->redirect()->toRoute(null, ['action' => 'show'], true);
+            }
+        }
+        return $this->redirect()->toRoute(null, ['action' => 'browse'], true);
+    }
+
+    public function unimportAction()
+    {
+        if ($this->getRequest()->isPost()) {
+            $form = $this->getForm(UnimportProjectForm::class);
+            $form->setData($this->getRequest()->getPost());
+            if ($form->isValid()) {
+                $this->jobDispatcher()->dispatch(
+                    UnimportProject::class,
+                    ['scripto_project_id' => $this->params('project-id')]
+                );
+                $this->messenger()->addSuccess('Unimporting Scripto project text. This may take a while.'); // @translate
+                return $this->redirect()->toRoute(null, ['action' => 'show'], true);
+            }
+        }
+        return $this->redirect()->toRoute(null, ['action' => 'browse'], true);
     }
 }

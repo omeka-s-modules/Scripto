@@ -55,6 +55,12 @@ return [
                 'useRouteMatch' => true,
             ],
             [
+                'label' => 'Actions', // @translate
+                'route' => 'admin/scripto-project-id',
+                'action' => 'show-actions',
+                'useRouteMatch' => true,
+            ],
+            [
                 'label' => 'Items', // @translate
                 'route' => 'admin/scripto-item',
                 'action' => 'browse',

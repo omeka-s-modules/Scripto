@@ -7,9 +7,9 @@ use Scripto\Entity\ScriptoProject;
 use Scripto\Mediawiki\Exception\ParseException;
 
 /**
- * Unimport text from Omeka items.
+ * Unimport project text from Omeka items.
  */
-class UnimportText extends ScriptoJob
+class UnimportProject extends ScriptoJob
 {
     public function perform()
     {
