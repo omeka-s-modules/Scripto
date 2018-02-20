@@ -12,6 +12,8 @@
     <?php echo $this->navigation('Zend\Navigation\ScriptoProject')->menu(); ?>
 </nav>
 
+<?php if ($sItems): ?>
+
 <div class="browse-controls">
     <?php echo $this->pagination(); ?>
     <?php echo $this->sortSelector([
@@ -74,3 +76,16 @@
     ]); ?>
     <div class="sidebar-content"></div>
 </div>
+
+<?php else: ?>
+<div class="no-resources">
+    <p><?php echo sprintf(
+        $this->translate('This Scripto project contains no items. %s'),
+        sprintf(
+            '<a href="%s">%s</a>',
+            $this->url('admin/scripto-project-id', ['controller' => 'project', 'action' => 'show-actions'], true),
+            $this->translate('Do you need to sync the project?')
+        )
+    ); ?></p>
+</div>
+<?php endif; ?>
