@@ -39,12 +39,12 @@
     <div class="value"><?php echo $this->i18n()->dateFormat($project->created(), 'long', 'medium'); ?></div>
 </div>
 <div class="property">
-    <h4><?php echo $this->translate('Date synced'); ?></h4>
+    <h4><?php echo $this->translate('Last synced'); ?></h4>
     <?php $synced = $project->synced(); ?>
     <div class="value"><?php echo $synced ? $this->i18n()->dateFormat($project->synced(), 'long', 'medium') : $this->translate('Not synced'); ?></div>
 </div>
 <div class="property">
-    <h4><?php echo $this->translate('Date imported'); ?></h4>
+    <h4><?php echo $this->translate('Last imported'); ?></h4>
     <?php $imported = $project->imported(); ?>
     <div class="value"><?php echo $imported ? $this->i18n()->dateFormat($project->imported(), 'long', 'medium') : $this->translate('Not imported'); ?></div>
 </div>
