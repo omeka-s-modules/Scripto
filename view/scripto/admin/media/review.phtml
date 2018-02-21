@@ -1,0 +1,20 @@
+<?php $this->htmlElement('body')->appendAttribute('class', 'show'); ?>
+
+<?php echo $this->pageTitle($this->translate('Review media'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
+
+<div id="page-actions">
+    <?php echo $sItem->link($this->translate('Review item'), 'show', ['class' => 'button']); ?>
+</div>
+
+<nav class="section-nav">
+    <?php echo $this->navigation('Zend\Navigation\ScriptoMedia')->menu(); ?>
+</nav>
+
+<div style="display: flex; justify-content: space-evenly;">
+    <div>
+        <?php echo $sMedia->pageHtml(); ?>
+    </div>
+    <div>
+        <?php echo $media->render(); ?>
+    </div>
+</div>

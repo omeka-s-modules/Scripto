@@ -33,6 +33,9 @@ return [
             'Scripto\Controller\Admin\Item' => Scripto\Controller\Admin\ItemController::class,
             'Scripto\Controller\Admin\Media' => Scripto\Controller\Admin\MediaController::class,
         ],
+        'factories' => [
+            'Scripto\Controller\Admin\Revision' => Scripto\Service\Controller\Admin\RevisionControllerFactory::class,
+        ]
     ],
     'view_manager' => [
         'template_path_stack' => [
@@ -77,6 +80,26 @@ return [
             [
                 'label' => 'Media', // @translate
                 'route' => 'admin/scripto-media',
+                'action' => 'browse',
+                'useRouteMatch' => true,
+            ],
+        ],
+        'ScriptoMedia' => [
+            [
+                'label' => 'Metadata', // @translate
+                'route' => 'admin/scripto-media-id',
+                'action' => 'show',
+                'useRouteMatch' => true,
+            ],
+            [
+                'label' => 'Review', // @translate
+                'route' => 'admin/scripto-media-id',
+                'action' => 'review',
+                'useRouteMatch' => true,
+            ],
+            [
+                'label' => 'Revisions', // @translate
+                'route' => 'admin/scripto-revision',
                 'action' => 'browse',
                 'useRouteMatch' => true,
             ],
@@ -189,6 +212,41 @@ return [
                             'defaults' => [
                                 '__NAMESPACE__' => 'Scripto\Controller\Admin',
                                 'controller' => 'media',
+                                'action' => 'show',
+                            ],
+                        ],
+                    ],
+                    'scripto-revision' =>  [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/:project-id/:item-id/:media-id/revision[/:action]',
+                            'constraints' => [
+                                'project-id' => '\d+',
+                                'item-id' => '\d+',
+                                'media-id' => '\d+',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\Admin',
+                                'controller' => 'revision',
+                                'action' => 'browse',
+                            ],
+                        ],
+                    ],
+                    'scripto-revision-id' =>  [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/:project-id/:item-id/:media-id/revision/:revision-id[/:action]',
+                            'constraints' => [
+                                'project-id' => '\d+',
+                                'item-id' => '\d+',
+                                'media-id' => '\d+',
+                                'revision-id' => '\d+',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\Admin',
+                                'controller' => 'revision',
                                 'action' => 'show',
                             ],
                         ],
