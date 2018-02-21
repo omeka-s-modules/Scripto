@@ -333,6 +333,55 @@ class ApiClient
     }
 
     /**
+     * Query page revision by revision ID.
+     *
+     * @param int $revisionId
+     * @return array
+     */
+    public function queryRevision($revisionId)
+    {
+        if (!is_numeric($revisionId)) {
+            throw new Exception\InvalidArgumentException('A revision ID must be numeric');
+        }
+        $query = $this->request([
+            'action' => 'query',
+            'prop' => 'revisions',
+            'revids' => $revisionId,
+            'rvprop' => 'ids|flags|timestamp|user|size|parsedcomment|content',
+        ]);
+        if (isset($query['error'])) {
+            throw new Exception\QueryException($query['error']['info']);
+        }
+        return $query['query']['pages'][0]['revisions'][0];
+    }
+
+    /**
+     * Parse revision wikitext into HTML.
+     *
+     * @link https://www.mediawiki.org/wiki/API:Parsing_wikitext
+     * @param int $revisionId
+     * @return string
+     */
+    public function parseRevision($revisionId)
+    {
+        if (!is_numeric($revisionId)) {
+            throw new Exception\InvalidArgumentException('A revision ID must be numeric');
+        }
+        $parse = $this->request([
+            'action' => 'parse',
+            'oldid' => $revisionId,
+            'prop' => 'text',
+            'disablelimitreport' => true,
+            'disableeditsection' => true,
+            'disabletoc' => true,
+        ]);
+        if (isset($parse['error'])) {
+            throw new Exception\ParseException($parse['error']['info']);
+        }
+        return $parse['parse']['text'];
+    }
+
+    /**
      * Edit or create a page.
      *
      * @link https://www.mediawiki.org/wiki/API:Edit
