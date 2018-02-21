@@ -10,9 +10,8 @@ use Scripto\Job\ImportProject;
 use Scripto\Job\SyncProject;
 use Scripto\Job\UnimportProject;
 use Zend\View\Model\ViewModel;
-use Zend\Mvc\Controller\AbstractActionController;
 
-class ProjectController extends AbstractActionController
+class ProjectController extends AbstractScriptoController
 {
     public function addAction()
     {
@@ -42,7 +41,7 @@ class ProjectController extends AbstractActionController
     public function editAction()
     {
         $form = $this->getForm(ScriptoProjectForm::class);
-        $project = $this->api()->read('scripto_projects', $this->params('project-id'))->getContent();
+        $project = $this->getScriptoRepresentation($this->params('project-id'));
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->params()->fromPost());
@@ -102,7 +101,7 @@ class ProjectController extends AbstractActionController
 
     public function showDetailsAction()
     {
-        $project = $this->api()->read('scripto_projects', $this->params('project-id'))->getContent();
+        $project = $this->getScriptoRepresentation($this->params('project-id'));
 
         $view = new ViewModel;
         $view->setTerminal(true);
@@ -112,7 +111,7 @@ class ProjectController extends AbstractActionController
 
     public function showAction()
     {
-        $project = $this->api()->read('scripto_projects', $this->params('project-id'))->getContent();
+        $project = $this->getScriptoRepresentation($this->params('project-id'));
 
         $view = new ViewModel;
         $view->setVariable('project', $project);
@@ -121,7 +120,7 @@ class ProjectController extends AbstractActionController
 
     public function showActionsAction()
     {
-        $project = $this->api()->read('scripto_projects', $this->params('project-id'))->getContent();
+        $project = $this->getScriptoRepresentation($this->params('project-id'));
 
         $view = new ViewModel;
         $view->setVariable('project', $project);

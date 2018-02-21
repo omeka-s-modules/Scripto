@@ -2,16 +2,15 @@
 namespace Scripto\Controller\Admin;
 
 use Zend\View\Model\ViewModel;
-use Zend\Mvc\Controller\AbstractActionController;
 
-class MediaController extends AbstractActionController
+class MediaController extends AbstractScriptoController
 {
     public function browseAction()
     {
-        $sItem = $this->api()->searchOne('scripto_items', [
-            'scripto_project_id' => $this->params('project-id'),
-            'item_id' => $this->params('item-id'),
-        ])->getContent();
+        $sItem = $this->getScriptoRepresentation(
+            $this->params('project-id'),
+            $this->params('item-id')
+        );
 
         $this->setBrowseDefaults('position', 'asc');
         $query = array_merge(
@@ -30,7 +29,11 @@ class MediaController extends AbstractActionController
 
     public function showDetailsAction()
     {
-        $sMedia = $this->getScriptoMedia();
+        $sMedia = $this->getScriptoRepresentation(
+            $this->params('project-id'),
+            $this->params('item-id'),
+            $this->params('media-id')
+        );
         if (!$sMedia) {
             exit;
         }
@@ -44,7 +47,11 @@ class MediaController extends AbstractActionController
 
     public function showAction()
     {
-        $sMedia = $this->getScriptoMedia();
+        $sMedia = $this->getScriptoRepresentation(
+            $this->params('project-id'),
+            $this->params('item-id'),
+            $this->params('media-id')
+        );
         if (!$sMedia) {
             return $this->redirect()->toRoute('admin/scripto-project');
         }
@@ -58,23 +65,23 @@ class MediaController extends AbstractActionController
         return $view;
     }
 
-    /**
-     * Get the Scripto media from route parameters.
-     *
-     * @return ScriptoItemRepresentation
-     */
-    protected function getScriptoMedia()
+    public function reviewAction()
     {
-        $sItem = $this->api()->searchOne('scripto_items', [
-            'scripto_project_id' => $this->params('project-id'),
-            'item_id' => $this->params('item-id'),
-        ])->getContent();
-        if (!$sItem) {
-            return false;
+        $sMedia = $this->getScriptoRepresentation(
+            $this->params('project-id'),
+            $this->params('item-id'),
+            $this->params('media-id')
+        );
+        if (!$sMedia) {
+            return $this->redirect()->toRoute('admin/scripto-project');
         }
-        return $this->api()->searchOne('scripto_media', [
-            'scripto_item_id' => $sItem->id(),
-            'media_id' => $this->params('media-id'),
-        ])->getContent();
+
+        $sItem = $sMedia->scriptoItem();
+        $view = new ViewModel;
+        $view->setVariable('sMedia', $sMedia);
+        $view->setVariable('media', $sMedia->media());
+        $view->setVariable('sItem', $sItem);
+        $view->setVariable('item', $sItem->item());
+        return $view;
     }
 }

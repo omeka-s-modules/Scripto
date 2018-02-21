@@ -2,13 +2,12 @@
 namespace Scripto\Controller\Admin;
 
 use Zend\View\Model\ViewModel;
-use Zend\Mvc\Controller\AbstractActionController;
 
-class ItemController extends AbstractActionController
+class ItemController extends AbstractScriptoController
 {
     public function browseAction()
     {
-        $project = $this->api()->read('scripto_projects', $this->params('project-id'))->getContent();
+        $project = $this->getScriptoRepresentation($this->params('project-id'));
 
         $this->setBrowseDefaults('synced');
         $query = array_merge(
@@ -27,7 +26,10 @@ class ItemController extends AbstractActionController
 
     public function showDetailsAction()
     {
-        $sItem = $this->getScriptoItem();
+        $sItem = $this->getScriptoRepresentation(
+            $this->params('project-id'),
+            $this->params('item-id')
+        );
         if (!$sItem) {
             exit;
         }
@@ -41,7 +43,10 @@ class ItemController extends AbstractActionController
 
     public function showAction()
     {
-        $sItem = $this->getScriptoItem();
+        $sItem = $this->getScriptoRepresentation(
+            $this->params('project-id'),
+            $this->params('item-id')
+        );
         if (!$sItem) {
             $this->redirect()->toRoute('admin/scripto-project');
         }
@@ -51,18 +56,5 @@ class ItemController extends AbstractActionController
         $view->setVariable('item', $sItem->item());
         $view->setVariable('project', $sItem->scriptoProject());
         return $view;
-    }
-
-    /**
-     * Get the Scripto item from route parameters.
-     *
-     * @return ScriptoItemRepresentation
-     */
-    protected function getScriptoItem()
-    {
-        return $this->api()->searchOne('scripto_items', [
-            'scripto_project_id' => $this->params('project-id'),
-            'item_id' => $this->params('item-id'),
-        ])->getContent();
     }
 }
