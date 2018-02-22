@@ -333,26 +333,42 @@ class ApiClient
     }
 
     /**
-     * Query page revision by revision ID.
+     * Query a page revision.
      *
+     * Includes the revision's child revision ID and latest revision ID.
+     *
+     * @param string $title
      * @param int $revisionId
-     * @return array
      */
-    public function queryRevision($revisionId)
+    public function queryRevision($title, $revisionId)
     {
+        if (!is_string($title)) {
+            throw new Exception\InvalidArgumentException('A title must be a string');
+        }
+        if (strstr($title, '|')) {
+            throw new Exception\InvalidArgumentException('A title must not contain a vertical bar');
+        }
         if (!is_numeric($revisionId)) {
             throw new Exception\InvalidArgumentException('A revision ID must be numeric');
         }
         $query = $this->request([
             'action' => 'query',
             'prop' => 'revisions',
-            'revids' => $revisionId,
+            'titles' => $title,
+            'rvstartid' => $revisionId,
+            'rvdir' => 'newer',
+            'rvlimit' => 2,
             'rvprop' => 'ids|flags|timestamp|user|size|parsedcomment|content',
         ]);
         if (isset($query['error'])) {
             throw new Exception\QueryException($query['error']['info']);
         }
-        return $query['query']['pages'][0]['revisions'][0];
+        $revision = $query['query']['pages'][0]['revisions'][0];
+        $revision['childid'] = isset($query['query']['pages'][0]['revisions'][1])
+            ? $query['query']['pages'][0]['revisions'][1]['revid'] : null;
+        $latestRevision = $this->queryRevisions($title, 1);
+        $revision['latestid'] = $latestRevision[0]['revid'];
+        return $revision;
     }
 
     /**
