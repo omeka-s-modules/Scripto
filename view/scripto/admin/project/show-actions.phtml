@@ -25,12 +25,10 @@
 
     <div style="flex-basis:30%;">
         <h3><?php echo $this->translate('Import project'); ?></h3>
+        <p><?php echo $this->translate('Import project transcriptions from MediaWiki into Omeka. This process will aggregate transcriptions from approved Scripto media and save them to their corresponding Omeka items using the configured property and language tag.'); ?></p>
         <p><?php echo sprintf(
-            $this->translate('Import project transcriptions from MediaWiki into Omeka. This process will aggregate transcriptions from approved Scripto media and save them to their corresponding Omeka items using the configured property and language tag. %s'),
-            sprintf(
-                '<span class="error">%s</span>',
-                $this->translate('Warning: all existing values matching the configured property and language tag will be overwritten or deleted.')
-            )
+            '<span class="error">%s</span>',
+            $this->translate('Warning: all existing values matching the configured property and configured language tag will be overwritten or deleted.')
         ); ?></p>
         <?php
         $importForm->setAttribute('action', $this->url(null, ['action' => 'import'], true));
@@ -40,12 +38,10 @@
 
     <div style="flex-basis:30%;">
         <h3><?php echo $this->translate('Unimport project'); ?></h3>
+        <p><?php echo $this->translate('Unimport project transcriptions from Omeka.'); ?></p>
         <p><?php echo sprintf(
-            $this->translate('Unimport project transcriptions from Omeka. %s'),
-            sprintf(
-                '<span class="error">%s</span>',
-                $this->translate('Warning: all existing values matching the configured property and language tag will be deleted.')
-            )
+            '<span class="error">%s</span>',
+            $this->translate('Warning: all existing values matching the configured property and configured language tag will be deleted.')
         ); ?></p>
         <?php
         $unimportForm->setAttribute('action', $this->url(null, ['action' => 'unimport'], true));
