@@ -10,7 +10,7 @@
 $datetime = new \DateTime($revision['timestamp']);
 echo sprintf(
     $this->translate('Revision as of %s by %s'),
-    $datetime->format('G:i, j F Y'),
+    $datetime->format('G:i:s, j F Y'),
     $revision['user']
 );
 ?></p>
