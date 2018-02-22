@@ -15,4 +15,17 @@ echo sprintf(
 );
 ?></p>
 
+<p><?php echo sprintf(
+    '%s | %s | %s',
+    $revision['parentid']
+        ? $this->hyperlink($this->translate('Older revision'), $this->url(null, ['revision-id' => $revision['parentid']], true))
+        : $this->translate('Older revision'),
+    $revision['childid']
+        ? $this->hyperlink($this->translate('Newer revision'), $this->url(null, ['revision-id' => $revision['childid']], true))
+        : $this->translate('Newer revision'),
+    $revision['latestid'] && $revision['latestid'] !== $revision['revid']
+        ? $this->hyperlink($this->translate('Latest revision'), $this->url(null, ['revision-id' => $revision['latestid']], true))
+        : $this->translate('Latest revision')
+); ?></p>
+
 <?php echo $revisionHtml; ?>

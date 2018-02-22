@@ -51,7 +51,7 @@ class RevisionController extends AbstractScriptoController
         }
 
         $sItem = $sMedia->scriptoItem();
-        $revision = $this->apiClient->queryRevision($this->params('revision-id'));
+        $revision = $this->apiClient->queryRevision($sMedia->pageTitle(), $this->params('revision-id'));
         $revisionHtml = $this->apiClient->parseRevision($this->params('revision-id'));
         $view = new ViewModel;
         $view->setVariable('sMedia', $sMedia);
