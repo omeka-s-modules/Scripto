@@ -19,6 +19,11 @@
     <div class="value"><?php echo $sItem->link($item->displayTitle()); ?></div>
 </div>
 <div class="property">
+    <h4><?php echo $this->translate('MediaWiki page'); ?></h4>
+    <?php $page = $sMedia->page(); ?>
+    <div class="value"><?php echo $this->hyperlink($sMedia->pageTitle(), $page['canonicalurl'], ['target' => '_blank']); ?></div>
+</div>
+<div class="property">
     <h4><?php echo $this->translate('Status'); ?></h4>
     <div class="value"><?php echo $this->translate($sMedia->status()); ?></div>
 </div>
