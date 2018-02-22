@@ -3,7 +3,7 @@
 <?php echo $this->pageTitle($this->translate('Revision'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
 
 <div id="page-actions">
-    <?php echo $sMedia->link($this->translate('Review media'), 'show', ['class' => 'button']); ?>
+    <?php echo $this->hyperlink($this->translate('View revisions'), $this->url('admin/scripto-revision', ['action' => 'browse'], true), ['class' => 'button']); ?>
 </div>
 
 <p><?php
