@@ -251,6 +251,25 @@ return [
                             ],
                         ],
                     ],
+                    'scripto-revision-compare' =>  [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/:project-id/:item-id/:media-id/revision/:from-revision-id/:to-revision-id[/:action]',
+                            'constraints' => [
+                                'project-id' => '\d+',
+                                'item-id' => '\d+',
+                                'media-id' => '\d+',
+                                'from-revision-id' => '\d+',
+                                'to-revision-id' => '\d+',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\Admin',
+                                'controller' => 'revision',
+                                'action' => 'compare',
+                            ],
+                        ],
+                    ],
                 ],
             ],
         ],
