@@ -15,6 +15,10 @@
             $datetime->format('G:i:s, j F Y'),
             $fromRevision['user']
         );
+        echo '<br>';
+        echo $fromRevision['parentid']
+            ? $this->hyperlink($this->translate('Older revision'), $this->url(null, ['from-revision-id' => $fromRevision['parentid'], 'to-revision-id' => $fromRevision['revid']], true))
+            : $this->translate('Older revision');
         ?></td>
         <td colspan="2"><?php
         $datetime = new \DateTime($toRevision['timestamp']);
@@ -23,6 +27,10 @@
             $datetime->format('G:i:s, j F Y'),
             $toRevision['user']
         );
+        echo '<br>';
+        echo $toRevision['childid']
+            ? $this->hyperlink($this->translate('Newer revision'), $this->url(null, ['from-revision-id' => $toRevision['revid'], 'to-revision-id' => $toRevision['childid']], true))
+            : $this->translate('Newer revision');
         ?></td>
     </tr>
     <?php if ($compare): ?>
