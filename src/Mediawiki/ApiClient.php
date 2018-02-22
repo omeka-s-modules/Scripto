@@ -366,8 +366,8 @@ class ApiClient
         $revision = $query['query']['pages'][0]['revisions'][0];
         $revision['childid'] = isset($query['query']['pages'][0]['revisions'][1])
             ? $query['query']['pages'][0]['revisions'][1]['revid'] : null;
-        $latestRevision = $this->queryRevisions($title, 1);
-        $revision['latestid'] = $latestRevision[0]['revid'];
+        $page = $this->queryPage($title);
+        $revision['latestid'] = $page['lastrevid'];
         return $revision;
     }
 
