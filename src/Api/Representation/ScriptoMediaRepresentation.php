@@ -233,7 +233,7 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
     }
 
     /**
-     * Get wikitext revisions.
+     * Get page revisions.
      *
      * @param int $limit
      * @param int $offset
@@ -243,6 +243,18 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
     {
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
         return $client->queryRevisions($this->pageTitle(), $limit, $offset);
+    }
+
+    /**
+     * Get a page revision.
+     *
+     * @param int $revisionId
+     * @return array
+     */
+    public function pageRevision($revisionId)
+    {
+        $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
+        return $client->queryRevision($this->pageTitle(), $revisionId);
     }
 
     /**

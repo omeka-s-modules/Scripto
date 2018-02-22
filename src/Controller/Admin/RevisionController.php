@@ -51,13 +51,11 @@ class RevisionController extends AbstractScriptoController
             return $this->redirect()->toRoute('admin/scripto-project');
         }
 
-        $revision = $this->apiClient->queryRevision($sMedia->pageTitle(), $this->params('revision-id'));
-        $revisionHtml = $this->apiClient->parseRevision($this->params('revision-id'));
         $view = new ViewModel;
         $view->setVariable('sMedia', $sMedia);
         $view->setVariable('media', $sMedia->media());
-        $view->setVariable('revision', $revision);
-        $view->setVariable('revisionHtml', $revisionHtml);
+        $view->setVariable('revision', $sMedia->pageRevision($this->params('revision-id')));
+        $view->setVariable('revisionHtml', $this->apiClient->parseRevision($this->params('revision-id')));
         return $view;
     }
 
@@ -72,15 +70,12 @@ class RevisionController extends AbstractScriptoController
             return $this->redirect()->toRoute('admin/scripto-project');
         }
 
-        $fromRevision = $this->apiClient->queryRevision($sMedia->pageTitle(), $this->params('from-revision-id'));
-        $toRevision = $this->apiClient->queryRevision($sMedia->pageTitle(), $this->params('to-revision-id'));
-        $compare = $this->apiClient->compareRevisions($this->params('from-revision-id'), $this->params('to-revision-id'));
         $view = new ViewModel;
         $view->setVariable('sMedia', $sMedia);
         $view->setVariable('media', $sMedia->media());
-        $view->setVariable('fromRevision', $fromRevision);
-        $view->setVariable('toRevision', $toRevision);
-        $view->setVariable('compare', $compare);
+        $view->setVariable('fromRevision', $sMedia->pageRevision($this->params('from-revision-id')));
+        $view->setVariable('toRevision', $sMedia->pageRevision($this->params('to-revision-id')));
+        $view->setVariable('compare', $this->apiClient->compareRevisions($this->params('from-revision-id'), $this->params('to-revision-id')));
         return $view;
     }
 }
