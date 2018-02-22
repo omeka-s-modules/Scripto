@@ -15,7 +15,7 @@
             $datetime->format('G:i:s, j F Y'),
             $fromRevision['user']
         );
-        echo '<br>';
+        echo sprintf('<br><i>%s</i><br>', $fromRevision['parsedcomment']);
         echo $fromRevision['parentid']
             ? $this->hyperlink($this->translate('Older revision'), $this->url(null, ['from-revision-id' => $fromRevision['parentid'], 'to-revision-id' => $fromRevision['revid']], true))
             : $this->translate('Older revision');
@@ -27,7 +27,7 @@
             $datetime->format('G:i:s, j F Y'),
             $toRevision['user']
         );
-        echo '<br>';
+        echo sprintf('<br><i>%s</i><br>', $toRevision['parsedcomment']);
         echo $toRevision['childid']
             ? $this->hyperlink($this->translate('Newer revision'), $this->url(null, ['from-revision-id' => $toRevision['revid'], 'to-revision-id' => $toRevision['childid']], true))
             : $this->translate('Newer revision');

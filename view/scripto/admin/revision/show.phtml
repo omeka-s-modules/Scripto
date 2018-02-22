@@ -13,9 +13,9 @@ echo sprintf(
     $datetime->format('G:i:s, j F Y'),
     $revision['user']
 );
-?></p>
-
-<p><?php echo sprintf(
+?>
+<br><i><?php echo $revision['parsedcomment']; ?></i><br>
+<?php echo sprintf(
     '%s | %s | %s',
     $revision['parentid']
         ? $this->hyperlink($this->translate('Older revision'), $this->url(null, ['revision-id' => $revision['parentid']], true))
