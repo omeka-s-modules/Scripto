@@ -25,5 +25,9 @@
         );
         ?></td>
     </tr>
+    <?php if ($compare): ?>
     <?php echo $compare; ?>
+    <?php else: ?>
+    <tr><td colspan="4"><?php echo $this->translate('(No difference)'); ?></td></tr>
+    <?php endif; ?>
 </table>
