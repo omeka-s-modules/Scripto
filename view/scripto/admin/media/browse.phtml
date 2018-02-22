@@ -53,6 +53,7 @@
 <table class="tablesaw" data-tablesaw-mode="stack">
     <thead>
         <tr>
+            <th>#</th>
             <th><?php echo $this->translate('Media'); ?></th>
             <th><?php echo $this->translate('Last synced'); ?></th>
             <th><?php echo $this->translate('Last edited'); ?></th>
@@ -60,8 +61,9 @@
         </tr>
     </thead>
     <tbody>
-    <?php foreach ($sMedia as $sMedia): ?>
+    <?php foreach ($sMedia as $index => $sMedia): ?>
         <tr>
+            <td><?php echo $index + 1; ?></td>
             <td>
                 <?php echo $sMedia->linkPretty(); ?>
                 <ul class="actions">
