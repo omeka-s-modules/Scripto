@@ -1,0 +1,29 @@
+<?php $this->htmlElement('body')->appendAttribute('class', 'show'); ?>
+
+<?php echo $this->pageTitle($this->translate('Revision compare'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
+
+<div id="page-actions">
+    <?php echo $sMedia->link($this->translate('Review media'), 'show', ['class' => 'button']); ?>
+</div>
+
+<table>
+    <tr>
+        <td colspan="2"><?php
+        $datetime = new \DateTime($fromRevision['timestamp']);
+        echo sprintf(
+            $this->translate('Revision as of %s by %s'),
+            $datetime->format('G:i:s, j F Y'),
+            $fromRevision['user']
+        );
+        ?></td>
+        <td colspan="2"><?php
+        $datetime = new \DateTime($toRevision['timestamp']);
+        echo sprintf(
+            $this->translate('Revision as of %s by %s'),
+            $datetime->format('G:i:s, j F Y'),
+            $toRevision['user']
+        );
+        ?></td>
+    </tr>
+    <?php echo $compare; ?>
+</table>

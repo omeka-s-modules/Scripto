@@ -15,6 +15,7 @@
 <table class="tablesaw" data-tablesaw-mode="stack">
     <thead>
         <tr>
+            <th><?php echo $this->translate('Compare'); ?></th>
             <th><?php echo $this->translate('Date'); ?></th>
             <th><?php echo $this->translate('User'); ?></th>
             <th><?php echo $this->translate('Size (bytes)'); ?></th>
@@ -22,8 +23,19 @@
         </tr>
     </thead>
     <tbody>
-    <?php foreach ($sMedia->pageRevisions() as $revision): ?>
+    <?php $latestId = $revisions[0]['revid']; ?>
+    <?php foreach ($revisions as $index => $revision): ?>
+    <?php $childId = isset($revisions[$index + 1]) ? $revisions[$index + 1]['revid'] : null; ?>
         <tr>
+            <td><?php echo sprintf(
+                '%s | %s',
+                $latestId !== $revision['revid']
+                    ? $this->hyperlink($this->translate('current'), $this->url('admin/scripto-revision-compare', ['action' => 'compare', 'from-revision-id' => $revision['revid'], 'to-revision-id' => $latestId], true))
+                    : $this->translate('current'),
+                $childId
+                    ? $this->hyperlink($this->translate('previous'), $this->url('admin/scripto-revision-compare', ['action' => 'compare', 'from-revision-id' => $childId, 'to-revision-id' => $revision['revid']], true))
+                    : $this->translate('previous')
+            ); ?></td>
             <td>
                 <?php $datetime = new \DateTime($revision['timestamp']); ?>
                 <?php echo $this->hyperlink(
