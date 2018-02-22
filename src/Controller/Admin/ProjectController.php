@@ -2,6 +2,7 @@
 namespace Scripto\Controller\Admin;
 
 use Omeka\Form\ConfirmForm;
+use Omeka\Stdlib\Message;
 use Scripto\Form\ImportProjectForm;
 use Scripto\Form\ScriptoProjectForm;
 use Scripto\Form\SyncProjectForm;
@@ -136,11 +137,19 @@ class ProjectController extends AbstractScriptoController
             $form = $this->getForm(SyncProjectForm::class);
             $form->setData($this->getRequest()->getPost());
             if ($form->isValid()) {
-                $this->jobDispatcher()->dispatch(
+                $job = $this->jobDispatcher()->dispatch(
                     SyncProject::class,
                     ['scripto_project_id' => $this->params('project-id')]
                 );
-                $this->messenger()->addSuccess('Syncing Scripto project. This may take a while.'); // @translate
+                $message = new Message(
+                    'Syncing Scripto project. This may take a while. %s', // @translate
+                    sprintf(
+                        '<a href="%s">%s</a>',
+                        htmlspecialchars($this->url()->fromRoute('admin/id', ['controller' => 'job', 'id' => $job->getId()])),
+                        $this->translate('See this job for sync progress.')
+                    ));
+                $message->setEscapeHtml(false);
+                $this->messenger()->addSuccess($message);
                 return $this->redirect()->toRoute(null, ['action' => 'show'], true);
             }
         }
@@ -153,11 +162,19 @@ class ProjectController extends AbstractScriptoController
             $form = $this->getForm(ImportProjectForm::class);
             $form->setData($this->getRequest()->getPost());
             if ($form->isValid()) {
-                $this->jobDispatcher()->dispatch(
+                $job = $this->jobDispatcher()->dispatch(
                     ImportProject::class,
                     ['scripto_project_id' => $this->params('project-id')]
                 );
-                $this->messenger()->addSuccess('Importing Scripto project text. This may take a while.'); // @translate
+                $message = new Message(
+                    'Importing Scripto project text. This may take a while. %s', // @translate
+                    sprintf(
+                        '<a href="%s">%s</a>',
+                        htmlspecialchars($this->url()->fromRoute('admin/id', ['controller' => 'job', 'id' => $job->getId()])),
+                        $this->translate('See this job for import progress.')
+                    ));
+                $message->setEscapeHtml(false);
+                $this->messenger()->addSuccess($message);
                 return $this->redirect()->toRoute(null, ['action' => 'show'], true);
             }
         }
@@ -170,11 +187,19 @@ class ProjectController extends AbstractScriptoController
             $form = $this->getForm(UnimportProjectForm::class);
             $form->setData($this->getRequest()->getPost());
             if ($form->isValid()) {
-                $this->jobDispatcher()->dispatch(
+                $job = $this->jobDispatcher()->dispatch(
                     UnimportProject::class,
                     ['scripto_project_id' => $this->params('project-id')]
                 );
-                $this->messenger()->addSuccess('Unimporting Scripto project text. This may take a while.'); // @translate
+                $message = new Message(
+                    'Unimporting Scripto project text. This may take a while. %s', // @translate
+                    sprintf(
+                        '<a href="%s">%s</a>',
+                        htmlspecialchars($this->url()->fromRoute('admin/id', ['controller' => 'job', 'id' => $job->getId()])),
+                        $this->translate('See this job for unimport progress.')
+                    ));
+                $message->setEscapeHtml(false);
+                $this->messenger()->addSuccess($message);
                 return $this->redirect()->toRoute(null, ['action' => 'show'], true);
             }
         }
