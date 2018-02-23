@@ -60,11 +60,14 @@
                 ); ?>
             </td>
             <td><?php echo $this->escapeHtml($revision['user']); ?></td>
-            <td><?php echo sprintf(
+            <td><?php
+            $sizeDiff = $childRevision ? $revision['size'] - $childRevision['size'] : $revision['size'];
+            echo sprintf(
                 '%s bytes (%s)',
-                $revision['size'],
-                $childRevision ? sprintf('%+d', $revision['size'] - $childRevision['size']) : sprintf('+%d', $revision['size'])
-            ); ?></td>
+                number_format($revision['size']),
+                sprintf('%s%s', 0 < $sizeDiff ? '+' : '', number_format($sizeDiff))
+            );
+            ?></td>
             <td><?php echo $revision['parsedcomment']; ?></td>
         </tr>
     <?php endforeach; ?>
