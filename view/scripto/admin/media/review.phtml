@@ -10,11 +10,19 @@
     <?php echo $this->navigation('Zend\Navigation\ScriptoMedia')->menu(); ?>
 </nav>
 
-<div style="display: flex; justify-content: space-evenly;">
-    <div>
-        <?php echo $sMedia->pageHtml(); ?>
-    </div>
-    <div>
-        <?php echo $media->render(); ?>
-    </div>
+<p><?php
+if ($sMedia->edited()) {
+    echo sprintf(
+        $this->translate('Last edited on %s by %s'),
+        $sMedia->edited()->format('G:i, j F Y'),
+        $sMedia->editedBy()
+    );
+} else {
+    echo $this->translate('Not yet edited');
+}
+?></p>
+
+<div style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
+    <textarea style="flex-grow: 0.80;" disabled><?php echo $sMedia->pageWikitext(); ?></textarea>
+    <div><?php echo $media->render(); ?></div>
 </div>
