@@ -3,6 +3,9 @@
 <?php echo $this->pageTitle($this->translate('Review media'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
 
 <div id="page-actions">
+    <?php if ($revisions): ?>
+    <button class="compare-selected" data-url="<?php echo $this->escapeHtml($this->url(null, [], true)); ?>">Compare selected</button>
+    <?php endif; ?>
     <?php echo $sItem->link($this->translate('Review item'), 'show', ['class' => 'button']); ?>
 </div>
 
@@ -16,6 +19,8 @@
     <thead>
         <tr>
             <th><?php echo $this->translate('Compare'); ?></th>
+            <th></th>
+            <th></th>
             <th><?php echo $this->translate('Date'); ?></th>
             <th><?php echo $this->translate('User'); ?></th>
             <th><?php echo $this->translate('Size'); ?></th>
@@ -37,6 +42,17 @@
                     : $this->translate('previous')
             ); ?></td>
             <td>
+                <?php if ($latestId !== $revision['revid']): ?>
+                <input type="radio" name="from-revision-id" value="<?php echo $revision['revid']; ?>">
+                <?php endif; ?>
+            </td>
+            <td>
+                <?php if ($childRevision): ?>
+                <?php $hide = 0 < $index ? ' style="display: none;"' : ''; ?>
+                <input type="radio" name="to-revision-id" value="<?php echo $revision['revid']; ?>"<?php echo $hide; ?>>
+                <?php endif; ?>
+            </td>
+            <td>
                 <?php $datetime = new \DateTime($revision['timestamp']); ?>
                 <?php echo $this->hyperlink(
                     $datetime->format('G:i, j F Y'),
@@ -54,6 +70,32 @@
     <?php endforeach; ?>
     </tbody>
 </table>
+
+<script>
+// Hide and show checkboxes to prevent reverse comparisons (i.e. where
+// from-revision-id is greater than to-revision-id).
+$(document).ready(function() {
+    $('input[name="from-revision-id"]').first().prop('checked', true).change();
+    $('input[name="to-revision-id"]').first().prop('checked', true).change();
+});
+$('input[name="from-revision-id"]').on('change', function() {
+    var thisTr = $(this).closest('tr');
+    thisTr.find('input[name="to-revision-id"]').hide();
+    thisTr.prevAll().find('input[name="to-revision-id"]').show();
+    thisTr.nextAll().find('input[name="to-revision-id"]').hide();
+});
+$('input[name="to-revision-id"]').on('change', function() {
+    var thisTr = $(this).closest('tr');
+    thisTr.find('input[name="from-revision-id"]').hide();
+    thisTr.prevAll().find('input[name="from-revision-id"]').hide();
+    thisTr.nextAll().find('input[name="from-revision-id"]').show();
+});
+$('button.compare-selected').on('click', function(e) {
+    var fromId = $('input[name="from-revision-id"]:checked').val();
+    var toId = $('input[name="to-revision-id"]:checked').val();
+    window.location.href = $(this).data('url') + '/' + fromId + '/' + toId;
+});
+</script>
 
 <?php else: ?>
 <div class="no-resources">
