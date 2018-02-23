@@ -37,9 +37,9 @@ class ScriptoProjectForm extends Form
                 'label' => 'Item set', // @translate
                 'info' => 'Select the item set used to synchronize project items. Once synchronized, this project will contain every item in this item set.', // @translate
                 'empty_option' => '',
+                'show_required' => true,
             ],
             'attributes' => [
-                'required' => true,
                 'class' => 'chosen-select',
                 'data-placeholder' => 'Select an item set', // @translate
             ],
@@ -52,9 +52,9 @@ class ScriptoProjectForm extends Form
                 'label' => 'Property', // @translate
                 'info' => 'Select the property used to store transcriptions. Scripto stores transcriptions in a wiki before they are imported. Importing will copy transcriptions from the wiki into Omeka as values of the selected property.', // @translate
                 'empty_option' => '',
+                'show_required' => true,
             ],
             'attributes' => [
-                'required' => true,
                 'class' => 'chosen-select',
                 'data-placeholder' => 'Select a property', // @translate
             ],
