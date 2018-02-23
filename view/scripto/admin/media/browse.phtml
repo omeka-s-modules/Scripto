@@ -10,8 +10,6 @@
     <?php echo $this->navigation('Zend\Navigation\ScriptoItem')->menu(); ?>
 </nav>
 
-<?php if ($sMedia): ?>
-
 <div class="browse-controls">
     <?php echo $this->pagination(); ?>
     <?php echo $this->sortSelector([
@@ -76,6 +74,8 @@
     ]); ?>
 </div>
 
+<?php if ($sMedia): ?>
+
 <table class="tablesaw" data-tablesaw-mode="stack">
     <thead>
         <tr>
@@ -123,7 +123,7 @@
 <?php else: ?>
 <div class="no-resources">
     <p><?php echo sprintf(
-        $this->translate('This Scripto item has no media. %s'),
+        $this->translate('No Scripto media found. %s'),
         sprintf(
             '<a href="%s">%s</a>',
             $this->url('admin/scripto-project-id', ['controller' => 'project', 'action' => 'show-actions'], true),
