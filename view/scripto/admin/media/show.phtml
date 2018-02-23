@@ -11,17 +11,8 @@
 </nav>
 
 <div class="property">
-    <h4><?php echo $this->translate('Omeka media'); ?></h4>
-    <div class="value"><?php echo $media->link($media->displayTitle()); ?></div>
-</div>
-<div class="property">
     <h4><?php echo $this->translate('Scripto item'); ?></h4>
     <div class="value"><?php echo $sItem->link($item->displayTitle()); ?></div>
-</div>
-<div class="property">
-    <h4><?php echo $this->translate('MediaWiki page'); ?></h4>
-    <?php $page = $sMedia->page(); ?>
-    <div class="value"><?php echo $this->hyperlink($sMedia->pageTitle(), $page['canonicalurl'], ['target' => '_blank']); ?></div>
 </div>
 <div class="property">
     <h4><?php echo $this->translate('Status'); ?></h4>
@@ -60,7 +51,16 @@
     <div class="value"><?php echo $approvedBy ? $approvedBy->link($approvedBy->name()) : $this->translate('Not approved'); ?></div>
 </div>
 <div class="property">
-    <h4><?php echo $this->translate('Description'); ?></h4>
+    <h4><?php echo $this->translate('MediaWiki page'); ?></h4>
+    <?php $page = $sMedia->page(); ?>
+    <div class="value"><?php echo $this->hyperlink($sMedia->pageTitle(), $page['canonicalurl'], ['target' => '_blank']); ?></div>
+</div>
+<div class="property">
+    <h4><?php echo $this->translate('Omeka media'); ?></h4>
+    <div class="value"><?php echo $media->link($media->displayTitle()); ?></div>
+</div>
+<div class="property">
+    <h4><?php echo $this->translate('Omeka media description'); ?></h4>
     <?php $description = $media->displayDescription(); ?>
-    <div class="value"><?php echo $description ? $this->escapeHtml($description) : $this->translate('No description'); ?></div>
+    <div class="value"><?php echo $description ? nl2br($this->escapeHtml($description)) : $this->translate('No description'); ?></div>
 </div>
