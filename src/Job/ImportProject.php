@@ -33,6 +33,13 @@ class ImportProject extends ScriptoJob
         // Iterate all project items.
         $itemIds = $this->getProjectItemIds($project);
         foreach (array_chunk($itemIds, 50, true) as $itemIdsChunk) {
+
+            // Must re-get the Property entity after calling clear() because,
+            // otherwise, the entity manager will see $project->getProperty() as
+            // NULL when hydrating Value. This may be caused by some unusual
+            // treatment of Doctrine proxies during flush().
+            $property = $em->getReference('Omeka\Entity\Property', $project->getProperty()->getId());
+
             foreach ($itemIdsChunk as $sItemId => $itemId) {
                 $sItem = $em->getReference('Scripto\Entity\ScriptoItem', $sItemId);
 
@@ -51,7 +58,7 @@ class ImportProject extends ScriptoJob
                     // Build a new value.
                     $value = new Value;
                     $value->setResource($sItem->getItem());
-                    $value->setProperty($project->getProperty());
+                    $value->setProperty($property);
                     $value->setType('literal');
                     $value->setValue($itemText);
                     $value->setLang($project->getLang());
