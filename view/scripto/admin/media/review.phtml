@@ -15,28 +15,13 @@
     'html' => $this->translate('HTML'),
 ]); ?>
 
-<p><?php
-if ($sMedia->edited()) {
-    echo sprintf(
-        $this->translate('Last edited on %s by %s'),
-        $sMedia->edited()->format('G:i, j F Y'),
-        $sMedia->editedBy()
-    );
-} else {
-    echo $this->translate('Not yet edited');
-}
-?></p>
-
 <div id="wikitext" class="active section">
     <div style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
-        <textarea style="flex-grow: 0.80;" disabled><?php echo $sMedia->pageWikitext(); ?></textarea>
+        <textarea style="flex-grow: 1;" disabled><?php echo $sMedia->pageWikitext(); ?></textarea>
         <div><?php echo $media->render(); ?></div>
     </div>
 </div>
 
 <div id="html" class="section">
-    <div style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
-        <div style="flex-grow: 0.80;"><?php echo $sMedia->pageHtml(); ?></div>
-        <div><?php echo $media->render(); ?></div>
-    </div>
+    <?php echo $sMedia->pageHtml(); ?>
 </div>
