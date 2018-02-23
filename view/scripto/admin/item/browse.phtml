@@ -27,11 +27,16 @@
             'value' => 'edited'
         ],
     ]); ?>
-    <select name="filter">
-        <option value="">All</option>
-        <option value="is_approved">Is approved</option>
-        <option value="is_not_approved">Is not approved</option>
-    </select>
+    <?php echo $this->filterSelector([
+        [
+            'label' => $this->translate('Is approved'),
+            'value' => 'is_approved'
+        ],
+        [
+            'label' => $this->translate('Is not approved'),
+            'value' => 'is_not_approved'
+        ],
+    ]); ?>
 </div>
 
 <table class="tablesaw" data-tablesaw-mode="stack">

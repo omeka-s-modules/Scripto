@@ -36,18 +36,44 @@
             'value' => 'approved'
         ],
     ]); ?>
-    <select name="filter">
-        <option value="">All</option>
-        <option value="is_edited">Is edited</option>
-        <option value="is_not_edited">Is not edited</option>
-        <option value="is_edited">Is completed</option>
-        <option value="is_not_completed">Is not completed</option>
-        <option value="is_approved">Is approved</option>
-        <option value="is_not_approved">Is not approved</option>
-        <option value="is_edited_after_approved">Is edited after approved</option>
-        <option value="is_edited_after_imported">Is edited after imported</option>
-        <option value="is_synced_after_imported">Is synced after imported</option>
-    </select>
+    <?php echo $this->filterSelector([
+        [
+            'label' => $this->translate('Is edited'),
+            'value' => 'is_edited',
+        ],
+        [
+            'label' => $this->translate('Is not edited'),
+            'value' => 'is_not_edited',
+        ],
+        [
+            'label' => $this->translate('Is completed'),
+            'value' => 'is_edited',
+        ],
+        [
+            'label' => $this->translate('Is not completed'),
+            'value' => 'is_not_completed',
+        ],
+        [
+            'label' => $this->translate('Is approved'),
+            'value' => 'is_approved',
+        ],
+        [
+            'label' => $this->translate('Is not approved'),
+            'value' => 'is_not_approved',
+        ],
+        [
+            'label' => $this->translate('Is edited after approved'),
+            'value' => 'is_edited_after_approved',
+        ],
+        [
+            'label' => $this->translate('Is edited after imported'),
+            'value' => 'is_edited_after_imported',
+        ],
+        [
+            'label' => $this->translate('Is synced after imported'),
+            'value' => 'is_synced_after_imported',
+        ],
+    ]); ?>
 </div>
 
 <table class="tablesaw" data-tablesaw-mode="stack">
