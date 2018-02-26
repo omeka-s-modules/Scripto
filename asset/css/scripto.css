@@ -1,0 +1,34 @@
+.browse .scripto-media td:first-child, 
+.browse .scripto-media th:first-child {
+    width: 3em;
+}
+
+.browse .scripto-media td:nth-child(2), 
+.browse .scripto-media th:nth-child(2) {
+    width: 50%;
+}
+
+.browse .scripto-revisions td {
+    width: 100%;
+}
+
+.browse .scripto-revisions td:first-child,
+.browse .scripto-revisions th:first-child {
+    width: auto;
+}
+
+#wikitext textarea {
+    min-height: 400px;
+    flex-grow: 1;
+    margin-right: 24px;
+}
+
+.current-previous {
+    margin-right: 6px;
+}
+
+.from-revision,
+.to-revision {
+    width: 1em;
+    margin: 0 6px;
+}

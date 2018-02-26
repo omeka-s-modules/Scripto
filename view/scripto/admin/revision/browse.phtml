@@ -1,4 +1,7 @@
-<?php $this->htmlElement('body')->appendAttribute('class', 'browse'); ?>
+<?php 
+$this->headLink()->appendStylesheet($this->assetUrl('css/scripto.css', 'Scripto'));
+$this->htmlElement('body')->appendAttribute('class', 'browse'); 
+?>
 
 <?php echo $this->pageTitle($this->translate('Review media'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
 
@@ -15,12 +18,10 @@
 
 <?php if ($revisions): ?>
 
-<table class="tablesaw" data-tablesaw-mode="stack">
+<table class="scripto-revisions tablesaw" data-tablesaw-mode="stack">
     <thead>
         <tr>
             <th><?php echo $this->translate('Compare'); ?></th>
-            <th></th>
-            <th></th>
             <th><?php echo $this->translate('Date'); ?></th>
             <th><?php echo $this->translate('User'); ?></th>
             <th><?php echo $this->translate('Size'); ?></th>
@@ -32,25 +33,29 @@
     <?php foreach ($revisions as $index => $revision): ?>
     <?php $childRevision = isset($revisions[$index + 1]) ? $revisions[$index + 1] : null; ?>
         <tr>
-            <td><?php echo sprintf(
-                '%s | %s',
-                $latestId !== $revision['revid']
-                    ? $this->hyperlink($this->translate('current'), $this->url('admin/scripto-revision-compare', ['action' => 'compare', 'from-revision-id' => $revision['revid'], 'to-revision-id' => $latestId], true))
-                    : $this->translate('current'),
-                $childRevision
-                    ? $this->hyperlink($this->translate('previous'), $this->url('admin/scripto-revision-compare', ['action' => 'compare', 'from-revision-id' => $childRevision['revid'], 'to-revision-id' => $revision['revid']], true))
-                    : $this->translate('previous')
-            ); ?></td>
             <td>
-                <?php if ($latestId !== $revision['revid']): ?>
-                <input type="radio" name="from-revision-id" value="<?php echo $revision['revid']; ?>">
-                <?php endif; ?>
-            </td>
-            <td>
-                <?php if ($childRevision): ?>
-                <?php $hide = 0 < $index ? ' style="display: none;"' : ''; ?>
-                <input type="radio" name="to-revision-id" value="<?php echo $revision['revid']; ?>"<?php echo $hide; ?>>
-                <?php endif; ?>
+                <div class="current-previous">
+                <?php echo sprintf(
+                    '%s | %s',
+                    $latestId !== $revision['revid']
+                        ? $this->hyperlink($this->translate('current'), $this->url('admin/scripto-revision-compare', ['action' => 'compare', 'from-revision-id' => $revision['revid'], 'to-revision-id' => $latestId], true))
+                        : $this->translate('current'),
+                    $childRevision
+                        ? $this->hyperlink($this->translate('previous'), $this->url('admin/scripto-revision-compare', ['action' => 'compare', 'from-revision-id' => $childRevision['revid'], 'to-revision-id' => $revision['revid']], true))
+                        : $this->translate('previous')
+                ); ?>
+                </div>
+                <div class="from-revision">
+                    <?php if ($latestId !== $revision['revid']): ?>
+                    <input type="radio" name="from-revision-id" value="<?php echo $revision['revid']; ?>">
+                    <?php endif; ?>
+                </div>
+                <div class="to-revision">
+                    <?php if ($childRevision): ?>
+                    <?php $hide = 0 < $index ? ' style="display: none;"' : ''; ?>
+                    <input type="radio" name="to-revision-id" value="<?php echo $revision['revid']; ?>"<?php echo $hide; ?>>
+                    <?php endif; ?>
+                </div>
             </td>
             <td>
                 <?php $datetime = new \DateTime($revision['timestamp']); ?>
