@@ -38,11 +38,11 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
                 <?php echo sprintf(
                     '%s | %s',
                     $latestId !== $revision['revid']
-                        ? $this->hyperlink($this->translate('current'), $this->url('admin/scripto-revision-compare', ['action' => 'compare', 'from-revision-id' => $revision['revid'], 'to-revision-id' => $latestId], true))
-                        : $this->translate('current'),
+                        ? $this->hyperlink($this->translate('cur'), $this->url('admin/scripto-revision-compare', ['action' => 'compare', 'from-revision-id' => $revision['revid'], 'to-revision-id' => $latestId], true))
+                        : $this->translate('cur'),
                     $childRevision
-                        ? $this->hyperlink($this->translate('previous'), $this->url('admin/scripto-revision-compare', ['action' => 'compare', 'from-revision-id' => $childRevision['revid'], 'to-revision-id' => $revision['revid']], true))
-                        : $this->translate('previous')
+                        ? $this->hyperlink($this->translate('prev'), $this->url('admin/scripto-revision-compare', ['action' => 'compare', 'from-revision-id' => $childRevision['revid'], 'to-revision-id' => $revision['revid']], true))
+                        : $this->translate('prev')
                 ); ?>
                 </div>
                 <div class="from-revision">
