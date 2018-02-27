@@ -143,4 +143,16 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
             $errorStore->addError('o:media', 'A media must not be null.'); // @translate
         }
     }
+
+    public function preprocessBatchUpdate(array $data, Request $request)
+    {
+        $rawData = $request->getContent();
+        if (isset($rawData['o-module-scripto:is_approved'])) {
+            $data['o-module-scripto:is_approved'] = $rawData['o-module-scripto:is_approved'];
+        }
+        if (isset($rawData['o-module-scripto:is_completed'])) {
+            $data['o-module-scripto:is_completed'] = $rawData['o-module-scripto:is_completed'];
+        }
+        return $data;
+    }
 }

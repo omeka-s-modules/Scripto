@@ -79,10 +79,21 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
 
 <?php if ($sMedia): ?>
 
-<table class="tablesaw scripto-media" data-tablesaw-mode="stack">
+<?php echo $this->form()->openTag($batchForm); ?>
+
+<div class="batch-inputs">
+    <?php echo $this->formElement($batchForm->get('batch-review-action')); ?>
+    <?php echo $this->formElement($batchForm->get('batchreviewmediaform_csrf')); ?>
+    <div class="batch-actions">
+        <button type="button" class="default active" disabled="true"><?php echo $this->translate('Go'); ?></button>
+        <?php echo $this->formElement($batchForm->get('batch-review-submit')); ?>
+    </div>
+</div>
+
+<table class="tablesaw scripto-media batch-edit" data-tablesaw-mode="stack">
     <thead>
         <tr>
-            <th>#</th>
+            <th><input type="checkbox" class="select-all">#</th>
             <th><?php echo $this->translate('Media'); ?></th>
             <th><?php echo $this->translate('Last synced'); ?></th>
             <th><?php echo $this->translate('Last edited'); ?></th>
@@ -92,7 +103,7 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
     <tbody>
     <?php foreach ($sMedia as $index => $sMedia): ?>
         <tr>
-            <td><?php echo $index + 1; ?></td>
+            <td><input type="checkbox" name="resource_ids[]" value="<?php echo $sMedia->id(); ?>"> <?php echo $index + 1; ?></td>
             <td>
                 <?php echo $sMedia->linkPretty(); ?>
                 <ul class="actions">
@@ -110,6 +121,8 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
     <?php endforeach; ?>
     </tbody>
 </table>
+
+<?php echo $this->form()->closeTag(); ?>
 
 <div class="browse-controls">
     <?php echo $this->pagination(); ?>
@@ -135,3 +148,26 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
     ); ?></p>
 </div>
 <?php endif; ?>
+
+<script>
+var batchForm = $('#batch-form');
+var batchSelectedOptions = batchForm.find('option[value$="-selected"]');
+var batchSubmit = batchForm.find('input.batch-review-submit');
+batchForm.on('change', ':checkbox', function(e) {
+    if (batchForm.find(':checkbox:checked').length > 0) {
+        // at least one checkbox is checked
+        batchSelectedOptions.prop('disabled', false);
+    } else {
+        // no checkboxes are checked
+        batchSelectedOptions.prop('disabled', true);
+        batchSubmit.hide();
+    }
+});
+batchForm.on('change', 'select.batch-actions-select', function(e) {
+    if ('default' === $(this).find(':selected').val()) {
+        batchSubmit.hide();
+    } else {
+        batchSubmit.show();
+    }
+});
+</script>
