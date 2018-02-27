@@ -1,17 +1,29 @@
-<?php $this->htmlElement('body')->appendAttribute('class', 'browse'); ?>
+<?php 
+$this->headLink()->appendStylesheet($this->assetUrl('css/scripto.css', 'Scripto'));
+$this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
+$this->htmlElement('body')->appendAttribute('class', 'browse'); 
+?>
 
 <?php echo $this->pageTitle($this->translate('Review project'), 1, $this->translate('Scripto'), $project->title()); ?>
 
 <div id="page-actions">
-    <?php if ($project->userIsAllowed('update')): ?>
-    <?php echo $project->link($this->translate('Edit project'), 'edit', ['class' => 'button']); ?>
-    <?php endif; ?>
-    <?php echo $project->link($this->translate('View projects'), 'browse', ['class' => 'button']); ?>
+    <div id="page-action-menu">
+        <a href="#" class="expand button" aria-label="<?php echo $this->translate('Expand'); ?>"><?php echo $this->translate('Actions'); ?></a>
+        <ul class="collapsible">
+            <li><a href="#" class="sidebar-content" data-sidebar-selector="#project-metadata"><?php echo $this->translate('View project metadata'); ?></a></li>
+            <?php if ($project->userIsAllowed('update')): ?>
+            <li><?php echo $project->link($this->translate('Edit project'), 'edit'); ?></li>
+            <?php endif; ?>
+            <li><a href="#" class="sidebar-content" data-sidebar-selector="#sync-project"><?php echo $this->translate('Sync project'); ?></a></li>
+            <li><a href="#" class="sidebar-content" data-sidebar-selector="#import-project"><?php echo $this->translate('Import project'); ?></a></li>
+            <li><a href="#" class="sidebar-content" data-sidebar-selector="#unimport-project"><?php echo $this->translate('Unimport project'); ?></a></li>
+        </ul>
+    </div>
 </div>
 
-<nav class="section-nav">
-    <?php echo $this->navigation('Zend\Navigation\ScriptoProject')->menu(); ?>
-</nav>
+<div class="breadcrumbs">
+    <?php echo $project->link($this->translate('Projects'), 'browse'); ?> <div class="separator"></div> <span class="current"><?php echo $this->translate('Review project'); ?></span>
+</div>
 
 <div class="browse-controls">
     <?php echo $this->pagination(); ?>
@@ -95,3 +107,83 @@
     ); ?></p>
 </div>
 <?php endif; ?>
+
+<div id="project-metadata" class="sidebar">
+    <?php echo $this->hyperlink('', '#', ['class' => 'sidebar-close o-icon-close', 'title' => $this->translate('Close')]); ?>
+    <h3><?php echo $this->translate('Project Metadata'); ?></h3>
+    <div class="meta-group">
+        <h4><?php echo $this->translate('Title'); ?></h4>
+        <div class="value"><?php echo $this->escapeHtml($project->title()); ?></div>
+    </div>
+    <div class="meta-group">
+        <h4><?php echo $this->translate('Description'); ?></h4>
+        <div class="value"><?php echo $this->escapeHtml($project->description()); ?></div>
+    </div>
+    <div class="meta-group">
+        <h4><?php echo $this->translate('Item set'); ?></h4>
+        <?php $itemSet = $project->itemSet(); ?>
+        <div class="value"><?php echo $itemSet->link($itemSet->displayTitle()); ?></div>
+    </div>
+    <div class="meta-group">
+        <h4><?php echo $this->translate('Property'); ?></h4>
+        <?php $property = $project->property(); ?>
+        <div class="value"><?php echo sprintf('%s : %s', $property->vocabulary()->label(), $property->label()); ?></div>
+    </div>
+    <div class="meta-group">
+        <h4><?php echo $this->translate('Language tag'); ?></h4>
+        <div class="value"><?php echo $this->escapeHtml($project->lang()); ?></div>
+    </div>
+    <div class="meta-group">
+        <h4><?php echo $this->translate('Date created'); ?></h4>
+        <div class="value"><?php echo $this->i18n()->dateFormat($project->created(), 'long', 'medium'); ?></div>
+    </div>
+    <div class="meta-group">
+        <h4><?php echo $this->translate('Last synced'); ?></h4>
+        <?php $synced = $project->synced(); ?>
+        <div class="value"><?php echo $synced ? $this->i18n()->dateFormat($project->synced(), 'long', 'medium') : $this->translate('Not synced'); ?></div>
+    </div>
+    <div class="meta-group">
+        <h4><?php echo $this->translate('Last imported'); ?></h4>
+        <?php $imported = $project->imported(); ?>
+        <div class="value"><?php echo $imported ? $this->i18n()->dateFormat($project->imported(), 'long', 'medium') : $this->translate('Not imported'); ?></div>
+    </div>
+</div>
+
+<div id="sync-project" class="sidebar">
+    <?php echo $this->hyperlink('', '#', ['class' => 'sidebar-close o-icon-close', 'title' => $this->translate('Close')]); ?>
+    <h3><?php echo $this->translate('Sync project'); ?></h3>
+    <p><?php echo $this->translate('Synchronize this project with the configured item set. Once synchronized, this project will contain every item in the item set. You should synchronize periodically, any time items are added or removed from the item set, and when item media have been added, removed, or reordered.'); ?></p>
+    <?php
+    $syncForm->setAttribute('action', $this->url(null, ['action' => 'sync'], true));
+    echo $this->form($syncForm);
+    ?>
+</div>
+
+
+<div id="import-project" class="sidebar">
+    <?php echo $this->hyperlink('', '#', ['class' => 'sidebar-close o-icon-close', 'title' => $this->translate('Close')]); ?>
+    <h3><?php echo $this->translate('Import project'); ?></h3>
+    <p><?php echo $this->translate('Import project transcriptions from MediaWiki into Omeka. This process will aggregate transcriptions from approved Scripto media and save them to their corresponding Omeka items using the configured property and language tag.'); ?></p>
+    <p><?php echo sprintf(
+        '<span class="error">%s</span>',
+        $this->translate('Warning: all existing values matching the configured property and configured language tag will be overwritten or deleted.')
+    ); ?></p>
+    <?php
+    $importForm->setAttribute('action', $this->url(null, ['action' => 'import'], true));
+    echo $this->form($importForm);
+    ?>
+</div>
+
+<div id="unimport-project" class="sidebar">
+    <?php echo $this->hyperlink('', '#', ['class' => 'sidebar-close o-icon-close', 'title' => $this->translate('Close')]); ?>
+    <h3><?php echo $this->translate('Unimport project'); ?></h3>
+    <p><?php echo $this->translate('Unimport project transcriptions from Omeka.'); ?></p>
+    <p><?php echo sprintf(
+        '<span class="error">%s</span>',
+        $this->translate('Warning: all existing values matching the configured property and configured language tag will be deleted.')
+    ); ?></p>
+    <?php
+    $unimportForm->setAttribute('action', $this->url(null, ['action' => 'unimport'], true));
+    echo $this->form($unimportForm);
+    ?>
+</div>

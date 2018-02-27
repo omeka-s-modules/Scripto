@@ -2,6 +2,13 @@
 namespace Scripto\Controller\Admin;
 
 use Zend\View\Model\ViewModel;
+use Scripto\Form\ImportProjectForm;
+use Scripto\Form\ScriptoProjectForm;
+use Scripto\Form\SyncProjectForm;
+use Scripto\Form\UnimportProjectForm;
+use Scripto\Job\ImportProject;
+use Scripto\Job\SyncProject;
+use Scripto\Job\UnimportProject;
 
 class ItemController extends AbstractScriptoController
 {
@@ -20,6 +27,9 @@ class ItemController extends AbstractScriptoController
 
         $view = new ViewModel;
         $view->setVariable('project', $project);
+        $view->setVariable('syncForm', $this->getForm(SyncProjectForm::class));
+        $view->setVariable('importForm', $this->getForm(ImportProjectForm::class));
+        $view->setVariable('unimportForm', $this->getForm(UnimportProjectForm::class));
         $view->setVariable('sItems', $sItems);
         return $view;
     }

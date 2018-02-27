@@ -53,7 +53,7 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
     <?php $owner = $project->owner(); ?>
         <tr>
             <td>
-                <?php echo $project->link($project->title()); ?>
+                <?php echo $project->link($project->title(), 'item'); ?>
                 <ul class="actions">
                     <?php if ($project->userIsAllowed('update')): ?>
                     <li><?php echo $project->link('', 'edit', [
