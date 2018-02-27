@@ -24,31 +24,28 @@
 </div>
 <div class="property">
     <h4><?php echo $this->translate('Last edited'); ?></h4>
-    <?php $edited = $sMedia->edited(); ?>
-    <div class="value"><?php echo $edited ? $this->i18n()->dateFormat($sMedia->edited(), 'long', 'medium') : $this->translate('Not edited'); ?></div>
-</div>
-<div class="property">
-    <h4><?php echo $this->translate('Last edited by'); ?></h4>
-    <div class="value"><?php echo $sMedia->editedBy() ? $sMedia->editedBy() : $this->translate('Not edited'); ?></div>
+    <div class="value"><?php echo $sMedia->edited() ? sprintf(
+        $this->translate('%s by %s'),
+        $this->i18n()->dateFormat($sMedia->edited(), 'long', 'medium'),
+        $sMedia->editedBy()
+    )  : $this->translate('Not edited'); ?></div>
 </div>
 <div class="property">
     <h4><?php echo $this->translate('Last completed'); ?></h4>
-    <?php $completed = $sMedia->completed(); ?>
-    <div class="value"><?php echo $completed ? $this->i18n()->dateFormat($sMedia->completed(), 'long', 'medium') : $this->translate('Not completed'); ?></div>
-</div>
-<div class="property">
-    <h4><?php echo $this->translate('Last completed by'); ?></h4>
-    <div class="value"><?php echo $sMedia->completedBy() ? $sMedia->completedBy() : $this->translate('Not completed'); ?></div>
+    <div class="value"><?php echo $sMedia->completed() ? sprintf(
+        $this->translate('%s by %s'),
+        $this->i18n()->dateFormat($sMedia->completed(), 'long', 'medium'),
+        $sMedia->completedBy()
+    )  : $this->translate('Not completed'); ?></div>
 </div>
 <div class="property">
     <h4><?php echo $this->translate('Last approved'); ?></h4>
-    <?php $approved = $sMedia->approved(); ?>
-    <div class="value"><?php echo $approved ? $this->i18n()->dateFormat($sMedia->approved(), 'long', 'medium') : $this->translate('Not approved'); ?></div>
-</div>
-<div class="property">
-    <h4><?php echo $this->translate('Last approved by'); ?></h4>
     <?php $approvedBy = $sMedia->approvedBy(); ?>
-    <div class="value"><?php echo $approvedBy ? $approvedBy->link($approvedBy->name()) : $this->translate('Not approved'); ?></div>
+    <div class="value"><?php echo $sMedia->approved() ? sprintf(
+        $this->translate('%s by %s'),
+        $this->i18n()->dateFormat($sMedia->approved(), 'long', 'medium'),
+        $approvedBy->link($approvedBy->name())
+    )  : $this->translate('Not approved'); ?></div>
 </div>
 <div class="property">
     <h4><?php echo $this->translate('MediaWiki page'); ?></h4>

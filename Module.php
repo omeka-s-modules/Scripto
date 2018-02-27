@@ -3,6 +3,7 @@ namespace Scripto;
 
 use DateTime;
 use Omeka\Module\AbstractModule;
+use Omeka\Mvc\Exception\RuntimeException as MvcRuntimeException;
 use Scripto\Form\ConfigForm;
 use Zend\EventManager\Event;
 use Zend\EventManager\SharedEventManagerInterface;
@@ -97,6 +98,11 @@ SET FOREIGN_KEY_CHECKS=1;
             }
         );
         $sharedEventManager->attach(
+            '*',
+            'route',
+            [$this, 'checkMediawikiApiUrl']
+        );
+        $sharedEventManager->attach(
             'Scripto\Api\Adapter\ScriptoMediaAdapter',
             'api.hydrate.post',
             [$this, 'editMediawikiPage']
@@ -128,6 +134,30 @@ SET FOREIGN_KEY_CHECKS=1;
             ],
             'read'
         );
+    }
+
+    /**
+     * Check for MediaWiki API URL.
+     *
+     * Blocks access to all Scripto routes if the MediaWiki API URL is not
+     * configured.
+     *
+     * @param Event $event
+     */
+    public function checkMediawikiApiUrl(Event $event)
+    {
+        $routeName = $event->getRouteMatch()->getMatchedRouteName();
+        if (0 !== strpos($routeName, 'admin/scripto')) {
+            // Not a Scripto route.
+            return;
+        }
+        $settings = $this->getServiceLocator()->get('Omeka\Settings');
+        if ($settings->get('scripto_apiurl')) {
+            // MediaWiki API URL exists.
+            return;
+        }
+        $translator = $this->getServiceLocator()->get('MvcTranslator');
+        throw new MvcRuntimeException($translator->translate('Missing Scripto configuration. Cannot access Scripto without the MediaWiki API URL.'));
     }
 
     /**
