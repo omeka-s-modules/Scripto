@@ -3,9 +3,6 @@
 <?php echo $this->pageTitle($this->translate('Revision'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
 
 <div id="page-actions">
-    <?php if ($revision['latestid'] !== $revision['revid']): ?>
-    <?php echo $this->hyperlink($this->translate('Revert to this revision'), $this->url('admin/scripto-revision-id', ['action' => 'revert', 'revision-id' => $revision['revid']], true), ['class' => 'button']); ?>
-    <?php endif; ?>
     <?php echo $this->hyperlink($this->translate('View revisions'), $this->url('admin/scripto-revision', ['action' => 'browse'], true), ['class' => 'button']); ?>
 </div>
 
@@ -19,16 +16,19 @@ echo sprintf(
 ?>
 <br><i><?php echo $revision['parsedcomment']; ?></i><br>
 <?php echo sprintf(
-    '%s | %s | %s',
+    '%s | %s | %s | %s',
     $revision['parentid']
-        ? $this->hyperlink($this->translate('Older revision'), $this->url(null, ['revision-id' => $revision['parentid']], true))
-        : $this->translate('Older revision'),
+        ? $this->hyperlink($this->translate('View older'), $this->url(null, ['revision-id' => $revision['parentid']], true))
+        : $this->translate('View older'),
     $revision['childid']
-        ? $this->hyperlink($this->translate('Newer revision'), $this->url(null, ['revision-id' => $revision['childid']], true))
-        : $this->translate('Newer revision'),
+        ? $this->hyperlink($this->translate('View newer'), $this->url(null, ['revision-id' => $revision['childid']], true))
+        : $this->translate('View newer'),
     $revision['latestid'] && $revision['latestid'] !== $revision['revid']
-        ? $this->hyperlink($this->translate('Latest revision'), $this->url(null, ['revision-id' => $revision['latestid']], true))
-        : $this->translate('Latest revision')
+        ? $this->hyperlink($this->translate('View latest'), $this->url(null, ['revision-id' => $revision['latestid']], true))
+        : $this->translate('View latest'),
+    $revision['latestid'] !== $revision['revid']
+        ? $this->hyperlink($this->translate('Revert'), $this->url('admin/scripto-revision-id', ['action' => 'revert', 'revision-id' => $revision['revid']], true))
+        : $this->translate('Revert')
 ); ?></p>
 
 <?php echo $revisionHtml; ?>
