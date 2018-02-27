@@ -11,9 +11,7 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
         <a href="#" class="expand button" aria-label="<?php echo $this->translate('Expand'); ?>"><?php echo $this->translate('Actions'); ?></a>
         <ul class="collapsible">
             <li><a href="#" class="sidebar-content" data-sidebar-selector="#project-metadata"><?php echo $this->translate('View project metadata'); ?></a></li>
-            <?php if ($project->userIsAllowed('update')): ?>
             <li><?php echo $project->link($this->translate('Edit project'), 'edit'); ?></li>
-            <?php endif; ?>
             <li><a href="#" class="sidebar-content" data-sidebar-selector="#sync-project"><?php echo $this->translate('Sync project'); ?></a></li>
             <li><a href="#" class="sidebar-content" data-sidebar-selector="#import-project"><?php echo $this->translate('Import project'); ?></a></li>
             <li><a href="#" class="sidebar-content" data-sidebar-selector="#unimport-project"><?php echo $this->translate('Unimport project'); ?></a></li>
@@ -22,7 +20,9 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
 </div>
 
 <div class="breadcrumbs">
-    <?php echo $project->link($this->translate('Projects'), 'browse'); ?> <div class="separator"></div> <span class="current"><?php echo $this->translate('Review project'); ?></span>
+    <?php echo $project->link($this->translate('Projects'), 'browse'); ?>
+    <div class="separator"></div>
+    <span class="current"><?php echo $this->translate('Review project'); ?></span>
 </div>
 
 <div class="browse-controls">
@@ -110,7 +110,7 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
 
 <div id="project-metadata" class="sidebar">
     <?php echo $this->hyperlink('', '#', ['class' => 'sidebar-close o-icon-close', 'title' => $this->translate('Close')]); ?>
-    <h3><?php echo $this->translate('Project Metadata'); ?></h3>
+    <h3><?php echo $this->translate('Project metadata'); ?></h3>
     <div class="meta-group">
         <h4><?php echo $this->translate('Title'); ?></h4>
         <div class="value"><?php echo $this->escapeHtml($project->title()); ?></div>
@@ -154,7 +154,7 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
     <h3><?php echo $this->translate('Sync project'); ?></h3>
     <p><?php echo $this->translate('Synchronize this project with the configured item set. Once synchronized, this project will contain every item in the item set. You should synchronize periodically, any time items are added or removed from the item set, and when item media have been added, removed, or reordered.'); ?></p>
     <?php
-    $syncForm->setAttribute('action', $this->url(null, ['action' => 'sync'], true));
+    $syncForm->setAttribute('action', $this->url('admin/scripto-project-id', ['action' => 'sync'], true));
     echo $this->form($syncForm);
     ?>
 </div>
@@ -169,7 +169,7 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
         $this->translate('Warning: all existing values matching the configured property and configured language tag will be overwritten or deleted.')
     ); ?></p>
     <?php
-    $importForm->setAttribute('action', $this->url(null, ['action' => 'import'], true));
+    $importForm->setAttribute('action', $this->url('admin/scripto-project-id', ['action' => 'import'], true));
     echo $this->form($importForm);
     ?>
 </div>
@@ -183,7 +183,7 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
         $this->translate('Warning: all existing values matching the configured property and configured language tag will be deleted.')
     ); ?></p>
     <?php
-    $unimportForm->setAttribute('action', $this->url(null, ['action' => 'unimport'], true));
+    $unimportForm->setAttribute('action', $this->url('admin/scripto-project-id', ['action' => 'unimport'], true));
     echo $this->form($unimportForm);
     ?>
 </div>

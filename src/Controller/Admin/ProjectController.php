@@ -27,7 +27,7 @@ class ProjectController extends AbstractScriptoController
                 $response = $this->api($form)->create('scripto_projects', $formData);
                 if ($response) {
                     $this->messenger()->addSuccess('Scripto project successfully created.'); // @translate
-                    return $this->redirect()->toUrl($response->getContent()->adminUrl());
+                    return $this->redirect()->toRoute('admin/scripto-item', ['action' => 'browse'], true);
                 }
             } else {
                 $this->messenger()->addFormErrors($form);
@@ -53,7 +53,7 @@ class ProjectController extends AbstractScriptoController
                 $response = $this->api($form)->update('scripto_projects', $this->params('project-id'), $formData);
                 if ($response) {
                     $this->messenger()->addSuccess('Scripto project successfully edited.'); // @translate
-                    return $this->redirect()->toUrl($response->getContent()->adminUrl());
+                    return $this->redirect()->toRoute('admin/scripto-item', ['action' => 'browse'], true);
                 }
             } else {
                 $this->messenger()->addFormErrors($form);
@@ -110,27 +110,6 @@ class ProjectController extends AbstractScriptoController
         return $view;
     }
 
-    public function showAction()
-    {
-        $project = $this->getScriptoRepresentation($this->params('project-id'));
-
-        $view = new ViewModel;
-        $view->setVariable('project', $project);
-        return $view;
-    }
-
-    public function showActionsAction()
-    {
-        $project = $this->getScriptoRepresentation($this->params('project-id'));
-
-        $view = new ViewModel;
-        $view->setVariable('project', $project);
-        $view->setVariable('syncForm', $this->getForm(SyncProjectForm::class));
-        $view->setVariable('importForm', $this->getForm(ImportProjectForm::class));
-        $view->setVariable('unimportForm', $this->getForm(UnimportProjectForm::class));
-        return $view;
-    }
-
     public function syncAction()
     {
         if ($this->getRequest()->isPost()) {
@@ -150,10 +129,10 @@ class ProjectController extends AbstractScriptoController
                     ));
                 $message->setEscapeHtml(false);
                 $this->messenger()->addSuccess($message);
-                return $this->redirect()->toRoute(null, ['action' => 'show'], true);
+                return $this->redirect()->toRoute('admin/scripto-item', ['action' => 'browse'], true);
             }
         }
-        return $this->redirect()->toRoute(null, ['action' => 'browse'], true);
+        return $this->redirect()->toRoute('admin/scripto-project', ['action' => 'browse'], true);
     }
 
     public function importAction()
@@ -175,10 +154,10 @@ class ProjectController extends AbstractScriptoController
                     ));
                 $message->setEscapeHtml(false);
                 $this->messenger()->addSuccess($message);
-                return $this->redirect()->toRoute(null, ['action' => 'show'], true);
+                return $this->redirect()->toRoute('admin/scripto-item', ['action' => 'browse'], true);
             }
         }
-        return $this->redirect()->toRoute(null, ['action' => 'browse'], true);
+        return $this->redirect()->toRoute('admin/scripto-project', ['action' => 'browse'], true);
     }
 
     public function unimportAction()
@@ -200,9 +179,9 @@ class ProjectController extends AbstractScriptoController
                     ));
                 $message->setEscapeHtml(false);
                 $this->messenger()->addSuccess($message);
-                return $this->redirect()->toRoute(null, ['action' => 'show'], true);
+                return $this->redirect()->toRoute('admin/scripto-item', ['action' => 'browse'], true);
             }
         }
-        return $this->redirect()->toRoute(null, ['action' => 'browse'], true);
+        return $this->redirect()->toRoute('admin/scripto-project', ['action' => 'browse'], true);
     }
 }

@@ -50,26 +50,6 @@ return [
                 'resource' => 'Scripto\Controller\Admin\Project',
             ],
         ],
-        'ScriptoProject' => [
-            [
-                'label' => 'Metadata', // @translate
-                'route' => 'admin/scripto-project-id',
-                'action' => 'show',
-                'useRouteMatch' => true,
-            ],
-            [
-                'label' => 'Actions', // @translate
-                'route' => 'admin/scripto-project-id',
-                'action' => 'show-actions',
-                'useRouteMatch' => true,
-            ],
-            [
-                'label' => 'Items', // @translate
-                'route' => 'admin/scripto-item',
-                'action' => 'browse',
-                'useRouteMatch' => true,
-            ],
-        ],
         'ScriptoItem' => [
             [
                 'label' => 'Metadata', // @translate
