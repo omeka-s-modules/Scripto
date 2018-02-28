@@ -80,10 +80,15 @@
     z-index: -1;
 }
 
-#page-action-menu ul a {
+#page-action-menu ul a,
+#page-action-menu ul .inactive {
     padding: 6px 12px 5px;
     display: block;
     position: relative;
+}
+
+#page-action-menu ul .inactive {
+    color: #dfdfdf;
 }
 
 #page-action-menu ul a:hover:before {
@@ -96,7 +101,8 @@
     background-color: #dfdfdf;
 }
 
-#page-action-menu ul li:not(:last-child) a {
+#page-action-menu ul li:not(:last-child) a,
+#page-action-menu ul li:not(:last-child) span {
     border-bottom: 1px solid #dfdfdf;
 }
 

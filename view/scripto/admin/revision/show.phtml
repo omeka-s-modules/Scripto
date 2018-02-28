@@ -1,10 +1,33 @@
 <?php 
 $this->headLink()->appendStylesheet($this->assetUrl('css/scripto.css', 'Scripto'));
-$this->headScript()->appendFile($this->assetUrl('js/scripto.css', 'Scripto'));
+$this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
 $this->htmlElement('body')->appendAttribute('class', 'show'); 
 ?>
 
 <?php echo $this->pageTitle($this->translate('Revision'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
+
+<div id="page-actions">
+    <div id="page-action-menu">
+        <a href="#" class="expand button" aria-label="<?php echo $this->translate('Expand'); ?>"><?php echo $this->translate('Actions'); ?></a>
+        <ul class="collapsible">
+        <?php echo sprintf(
+            '<li>%s</li><li>%s</li><li>%s</li><li>%s</li>',
+            $revision['parentid']
+                ? $this->hyperlink($this->translate('View older'), $this->url(null, ['revision-id' => $revision['parentid']], true))
+                : '<span class="inactive">' . $this->translate('View older') . '</span>',
+            $revision['childid']
+                ? $this->hyperlink($this->translate('View newer'), $this->url(null, ['revision-id' => $revision['childid']], true))
+                : '<span class="inactive">' . $this->translate('View newer') . '</span>',
+            $revision['latestid'] && $revision['latestid'] !== $revision['revid']
+                ? $this->hyperlink($this->translate('View latest'), $this->url(null, ['revision-id' => $revision['latestid']], true))
+                : '<span class="inactive">' . $this->translate('View latest') . '</span>',
+            $revision['latestid'] !== $revision['revid']
+                ? '<a href="#" class="sidebar-content" data-sidebar-selector="#revert-revision">' . $this->translate('Revert') . '</a>'
+                : '<span class="inactive">' . $this->translate('Revert') . '</span>'
+        ); ?>
+        </ul>
+    </div>
+</div>
 
 <div class="breadcrumbs">
     <?php echo $this->hyperlink($this->translate('Projects'), $this->url('admin/scripto-project')); ?>
@@ -20,7 +43,8 @@ $this->htmlElement('body')->appendAttribute('class', 'show');
     <span class="current"><?php echo $this->translate('View media revision'); ?></span>
 </div>
 
-<p><?php
+<h3>
+<?php
 $datetime = new \DateTime($revision['timestamp']);
 echo sprintf(
     $this->translate('Revision as of %s by %s'),
@@ -28,24 +52,42 @@ echo sprintf(
     $revision['user']
 );
 ?>
-<br><i><?php echo $revision['parsedcomment']; ?></i><br>
-<?php echo sprintf(
-    '%s | %s | %s | %s',
-    $revision['parentid']
-        ? $this->hyperlink($this->translate('View older'), $this->url(null, ['revision-id' => $revision['parentid']], true))
-        : $this->translate('View older'),
-    $revision['childid']
-        ? $this->hyperlink($this->translate('View newer'), $this->url(null, ['revision-id' => $revision['childid']], true))
-        : $this->translate('View newer'),
-    $revision['latestid'] && $revision['latestid'] !== $revision['revid']
-        ? $this->hyperlink($this->translate('View latest'), $this->url(null, ['revision-id' => $revision['latestid']], true))
-        : $this->translate('View latest'),
-    $revision['latestid'] !== $revision['revid']
-        ? '<a href="#" class="sidebar-content" data-sidebar-selector="#revert-revision">' . $this->translate('Revert') . '</a>'
-        : $this->translate('Revert')
-); ?></p>
+</h3>
 
-<?php echo $revisionHtml; ?>
+<?php echo $this->sectionNav([
+    'revision-html' => $this->translate('HTML'),
+    'revision-diff' => $this->translate('Compare'),
+]); ?>
+
+<div id="revision-html" class="active section">
+    <?php $parsedComment = $revision['parsedcomment']; ?>
+    <?php if ($parsedComment !== ''):?>
+    <p class="parsed-comment"><?php echo $revision['parsedcomment']; ?></p>
+    <?php endif; ?>
+    
+    <?php echo $revisionHtml; ?>
+</div>
+
+<div id="revision-diff" class="section">
+    <table>
+        <tr>
+            <td colspan="2"><?php echo $this->translate('Latest revision'); ?></td>
+            <td colspan="2"><?php
+            $datetime = new \DateTime($revision['timestamp']);
+            echo sprintf(
+                $this->translate('Reverting to revision %s by %s'),
+                $this->hyperlink($datetime->format('G:i:s, j F Y'), $this->url(null, ['action' => 'show'], true)),
+                $revision['user']
+            );
+            ?></td>
+        </tr>
+        <?php if ($compare): ?>
+        <?php echo $compare; ?>
+        <?php else: ?>
+        <tr><td colspan="4"><?php echo $this->translate('(No difference)'); ?></td></tr>
+        <?php endif; ?>
+    </table>
+</div>
 
 <div id="revert-revision" class="sidebar">
     <?php echo $this->hyperlink('', '#', ['class' => 'sidebar-close o-icon-close', 'title' => $this->translate('Close')]); ?>

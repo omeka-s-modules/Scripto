@@ -70,9 +70,12 @@ class RevisionController extends AbstractScriptoController
         }
 
         $view = new ViewModel;
+        $page = $sMedia->page();
+        $latestRevision = $page['revisions'][0];
         $view->setVariable('sMedia', $sMedia);
         $view->setVariable('media', $sMedia->media());
         $view->setVariable('revision', $sMedia->pageRevision($this->params('revision-id')));
+        $view->setVariable('compare', $this->apiClient->compareRevisions($latestRevision['revid'], $revision['revid']));
         $view->setVariable('revisionHtml', $this->apiClient->parseRevision($this->params('revision-id')));
         $view->setVariable('form', $form);
         return $view;
