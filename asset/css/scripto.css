@@ -138,3 +138,80 @@
     font-family: "FontAwesome";
     margin: 0;
 }
+
+#compare-table th {
+    border-bottom: 1px solid #dfdfdf;
+}
+
+#compare-table td {
+    position: relative;
+}
+
+#compare-table [colspan="2"],
+#compare-table td.diff-context:nth-child(2) {
+    border-right: 1px solid #dfdfdf;
+}
+
+#compare-table .diff-marker {
+    width: 36px;
+    vertical-align: top;
+    text-align: center;
+}
+
+#compare-table col.diff-context {
+    border-right: 1px solid #dfdfdf;
+}
+
+#compare-table .diff-addedline {
+    background-color: #cdffcd;
+    color: green;
+}
+
+#compare-table .diff-deletedline {
+    color: #A91919;
+    background-color: #fcc;
+}
+
+#compare-table .diff-deletedline div:before,
+#compare-table .diff-addedline div:before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 100%;
+    width: 36px;
+    text-align: center;
+    line-height: 36px;
+    font-weight: bold;
+}
+
+#compare-table .diff-addedline div:before {
+    content: "+";
+    background-color: #cdffcd;
+}
+
+#compare-table .diff-deletedline div:before {
+    content: "-";
+    background-color: #fcc;
+}
+
+#compare-table ins.diffchange:empty,
+#compare-table del.diffchange:empty {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+#compare-table ins.diffchange:empty {
+    background-color: #0080004f;
+}
+
+
+#compare-table del.diffchange:empty {
+    background-color: #ff000061;
+}
+
+.parsed-comment {
+    font-style: italic;
+}

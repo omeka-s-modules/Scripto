@@ -19,36 +19,71 @@ $this->htmlElement('body')->appendAttribute('class', 'show');
     <span class="current"><?php echo $this->translate('Revision compare'); ?></span>
 </div>
 
-<table>
-    <tr>
-        <td colspan="2"><?php
-        $datetime = new \DateTime($fromRevision['timestamp']);
-        echo sprintf(
-            $this->translate('Revision as of %s by %s'),
-            $datetime->format('G:i:s, j F Y'),
-            $fromRevision['user']
-        );
-        echo sprintf('<br><i>%s</i><br>', $fromRevision['parsedcomment']);
-        echo $fromRevision['parentid']
-            ? $this->hyperlink($this->translate('Older revision'), $this->url(null, ['from-revision-id' => $fromRevision['parentid'], 'to-revision-id' => $fromRevision['revid']], true))
-            : $this->translate('Older revision');
-        ?></td>
-        <td colspan="2"><?php
-        $datetime = new \DateTime($toRevision['timestamp']);
-        echo sprintf(
-            $this->translate('Revision as of %s by %s'),
-            $datetime->format('G:i:s, j F Y'),
-            $toRevision['user']
-        );
-        echo sprintf('<br><i>%s</i><br>', $toRevision['parsedcomment']);
-        echo $toRevision['childid']
-            ? $this->hyperlink($this->translate('Newer revision'), $this->url(null, ['from-revision-id' => $toRevision['revid'], 'to-revision-id' => $toRevision['childid']], true))
-            : $this->translate('Newer revision');
-        ?></td>
-    </tr>
-    <?php if ($compare): ?>
-    <?php echo $compare; ?>
-    <?php else: ?>
-    <tr><td colspan="4"><?php echo $this->translate('(No difference)'); ?></td></tr>
-    <?php endif; ?>
+<table id="compare-table">
+    <colgroup>
+        <col class="diff-marker">
+        <col class="diff-context">
+        <col class="diff-marker">
+        <col class="diff-context">
+    </colgroup>
+    <thead>
+        <tr>
+            <th colspan="2">
+                <div class="revision-timestamp">
+                <?php 
+                $datetime = new \DateTime($fromRevision['timestamp']);
+                $parsedComment = $toRevision['parsedcomment'];
+                echo sprintf(
+                    $this->translate('Revision as of %s by %s'),
+                    $datetime->format('G:i:s, j F Y'),
+                    $fromRevision['user']
+                );
+                ?>
+                </div>
+                <?php 
+                if ($parsedComment !== '') {
+                    echo sprintf('<div class="parsed-comment">%s</div>', $parsedComment);
+                }
+                ?>
+                <div class="older">
+                <?php
+                echo $fromRevision['parentid']
+                    ? $this->hyperlink($this->translate('Older revision'), $this->url(null, ['from-revision-id' => $fromRevision['parentid'], 'to-revision-id' => $fromRevision['revid']], true))
+                    : $this->translate('Older revision');
+                ?>
+                </div>
+                </th>
+                <th colspan="2">
+                <div class="revision-timestamp">
+                <?php
+                $datetime = new \DateTime($toRevision['timestamp']);
+                echo sprintf(
+                    $this->translate('Revision as of %s by %s'),
+                    $datetime->format('G:i:s, j F Y'),
+                    $toRevision['user']
+                );
+                ?>
+                </div>
+                <?php 
+                if ($parsedComment !== '') {
+                    echo sprintf('<div class="parsed-comment">%s</div>', $parsedComment);
+                }
+                ?>
+                <div class="newer">
+                <?php 
+                echo $toRevision['childid']
+                    ? $this->hyperlink($this->translate('Newer revision'), $this->url(null, ['from-revision-id' => $toRevision['revid'], 'to-revision-id' => $toRevision['childid']], true))
+                    : $this->translate('Newer revision');
+                ?>
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if ($compare): ?>
+        <?php echo $compare; ?>
+        <?php else: ?>
+        <tr><td colspan="4"><?php echo $this->translate('(No difference)'); ?></td></tr>
+        <?php endif; ?>
+    </tbody>
 </table>
