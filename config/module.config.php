@@ -50,26 +50,6 @@ return [
                 'resource' => 'Scripto\Controller\Admin\Project',
             ],
         ],
-        'ScriptoMedia' => [
-            [
-                'label' => 'Metadata', // @translate
-                'route' => 'admin/scripto-media-id',
-                'action' => 'show',
-                'useRouteMatch' => true,
-            ],
-            [
-                'label' => 'Review', // @translate
-                'route' => 'admin/scripto-media-id',
-                'action' => 'review',
-                'useRouteMatch' => true,
-            ],
-            [
-                'label' => 'Revisions', // @translate
-                'route' => 'admin/scripto-revision',
-                'action' => 'browse',
-                'useRouteMatch' => true,
-            ],
-        ],
     ],
     'router' => [
         'routes' => [
