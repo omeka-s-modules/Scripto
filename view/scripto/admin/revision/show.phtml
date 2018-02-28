@@ -41,8 +41,18 @@ echo sprintf(
         ? $this->hyperlink($this->translate('View latest'), $this->url(null, ['revision-id' => $revision['latestid']], true))
         : $this->translate('View latest'),
     $revision['latestid'] !== $revision['revid']
-        ? $this->hyperlink($this->translate('Revert'), $this->url('admin/scripto-revision-id', ['action' => 'revert', 'revision-id' => $revision['revid']], true))
+        ? '<a href="#" class="sidebar-content" data-sidebar-selector="#revert-revision">' . $this->translate('Revert') . '</a>'
         : $this->translate('Revert')
 ); ?></p>
 
 <?php echo $revisionHtml; ?>
+
+<div id="revert-revision" class="sidebar">
+    <?php echo $this->hyperlink('', '#', ['class' => 'sidebar-close o-icon-close', 'title' => $this->translate('Close')]); ?>
+    <h3><?php echo $this->translate('Revert revision'); ?></h3>
+    <p class="error"><?php echo $this->translate('Warning: You are reverting to an out-of-date revision. Any changes made since this revision will be lost.'); ?></p>
+    <?php echo $this->form()->openTag($form); ?>
+    <button><?php echo $this->translate('Confirm reversion'); ?></button>
+    <?php echo $this->formElement($form->get('revertrevisionform_csrf')); ?>
+    <?php echo $this->form()->closeTag(); ?>
+</div>
