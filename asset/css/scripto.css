@@ -1,10 +1,13 @@
 .browse .scripto-media td:first-child, 
 .browse .scripto-media th:first-child {
+    width: 36px;
+}
+
+.browse .scripto-media .row-number {
     width: 3em;
 }
 
-.browse .scripto-media td:nth-child(2), 
-.browse .scripto-media th:nth-child(2) {
+.browse .scripto-media .row-title {
     width: 50%;
 }
 
