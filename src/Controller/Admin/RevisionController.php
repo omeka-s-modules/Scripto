@@ -52,12 +52,12 @@ class RevisionController extends AbstractScriptoController
             return $this->redirect()->toRoute('admin/scripto-project');
         }
 
-        $form = $this->getForm(RevertRevisionForm::class);
+        $revertForm = $this->getForm(RevertRevisionForm::class);
         $revision = $sMedia->pageRevision($this->params('revision-id'));
 
         if ($this->getRequest()->isPost()) {
-            $form->setData($this->params()->fromPost());
-            if ($form->isValid()) {
+            $revertForm->setData($this->params()->fromPost());
+            if ($revertForm->isValid()) {
                 $data = ['o-module-scripto:text' => $revision['content']];
                 $response = $this->api()->update('scripto_media', $sMedia->id(), $data, ['isPartial' => true]);
                 if ($response) {
@@ -65,19 +65,19 @@ class RevisionController extends AbstractScriptoController
                     return $this->redirect()->toRoute('admin/scripto-revision', ['action' => 'browse'], true);
                 }
             } else {
-                $this->messenger()->addFormErrors($form);
+                $this->messenger()->addFormErrors($revertForm);
             }
         }
 
-        $view = new ViewModel;
         $page = $sMedia->page();
         $latestRevision = $page['revisions'][0];
+        $view = new ViewModel;
         $view->setVariable('sMedia', $sMedia);
         $view->setVariable('media', $sMedia->media());
-        $view->setVariable('revision', $sMedia->pageRevision($this->params('revision-id')));
-        $view->setVariable('compare', $this->apiClient->compareRevisions($latestRevision['revid'], $revision['revid']));
+        $view->setVariable('revision', $revision);
+        $view->setVariable('revisionWikitext', $revision['content']);
         $view->setVariable('revisionHtml', $this->apiClient->parseRevision($this->params('revision-id')));
-        $view->setVariable('form', $form);
+        $view->setVariable('revertForm', $revertForm);
         return $view;
     }
 

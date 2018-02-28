@@ -12,9 +12,9 @@ $this->htmlElement('body')->appendAttribute('class', 'show');
     <div class="separator"></div>
     <?php echo $this->hyperlink($this->translate('Review item'), $this->url('admin/scripto-item-id', ['action' => 'show'], true)); ?>
     <div class="separator"></div>
-    <?php echo $this->hyperlink($this->translate('Review media'), $this->url('admin/scripto-media-id', ['action' => 'review'], true)); ?>
+    <?php echo $this->hyperlink($this->translate('Review media'), $this->url('admin/scripto-media-id', ['action' => 'show'], true)); ?>
     <div class="separator"></div>
-    <?php echo $this->hyperlink($this->translate('View media revisions'), $this->url('admin/scripto-media-id', ['action' => 'revision'], true)); ?>
+    <?php echo $this->hyperlink($this->translate('View media revisions'), $this->url('admin/scripto-revision', ['action' => 'browse'], true)); ?>
     <div class="separator"></div>
     <span class="current"><?php echo $this->translate('Revision compare'); ?></span>
 </div>

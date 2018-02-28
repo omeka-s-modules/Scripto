@@ -43,8 +43,9 @@ $this->htmlElement('body')->appendAttribute('class', 'show');
 </div>
 
 <div id="scripto-media-metadata" class="sidebar">
+    <?php echo $this->hyperlink('', '#', ['class' => 'sidebar-close o-icon-close', 'title' => $this->translate('Close')]); ?>
     <?php echo $this->thumbnail($media, 'square'); ?>
-    <h3><?php echo $sMedia->link($media->displayTitle()); ?></h3>
+    <h3><?php echo $media->displayTitle(); ?></h3>
     <div class="meta-group">
         <h4><?php echo $this->translate('Status'); ?></h4>
         <div class="value"><?php echo $this->translate($sMedia->status()); ?></div>

@@ -52,7 +52,7 @@ class MediaController extends AbstractScriptoController
         return $view;
     }
 
-    public function reviewAction()
+    public function showAction()
     {
         $sMedia = $this->getScriptoRepresentation(
             $this->params('project-id'),

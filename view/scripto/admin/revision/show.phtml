@@ -36,9 +36,9 @@ $this->htmlElement('body')->appendAttribute('class', 'show');
     <div class="separator"></div>
     <?php echo $this->hyperlink($this->translate('Review item'), $this->url('admin/scripto-item-id', ['action' => 'show'], true)); ?>
     <div class="separator"></div>
-    <?php echo $this->hyperlink($this->translate('Review media'), $this->url('admin/scripto-media-id', ['action' => 'review'], true)); ?>
+    <?php echo $this->hyperlink($this->translate('Review media'), $this->url('admin/scripto-media-id', ['action' => 'show'], true)); ?>
     <div class="separator"></div>
-    <?php echo $this->hyperlink($this->translate('View media revisions'), $this->url('admin/scripto-media-id', ['action' => 'revision'], true)); ?>
+    <?php echo $this->hyperlink($this->translate('View media revisions'), $this->url('admin/scripto-revision', ['action' => 'browse'], true)); ?>
     <div class="separator"></div>
     <span class="current"><?php echo $this->translate('View media revision'); ?></span>
 </div>
@@ -55,46 +55,24 @@ echo sprintf(
 </h3>
 
 <?php echo $this->sectionNav([
-    'revision-html' => $this->translate('HTML'),
-    'revision-diff' => $this->translate('Compare'),
+    'wikitext' => $this->translate('Wikitext'),
+    'html' => $this->translate('HTML'),
 ]); ?>
 
-<div id="revision-html" class="active section">
-    <?php $parsedComment = $revision['parsedcomment']; ?>
-    <?php if ($parsedComment !== ''):?>
-    <p class="parsed-comment"><?php echo $revision['parsedcomment']; ?></p>
-    <?php endif; ?>
-    
-    <?php echo $revisionHtml; ?>
+<div id="wikitext" class="active section">
+    <div style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
+        <textarea disabled><?php echo $revisionWikitext; ?></textarea>
+        <div><?php echo $media->render(); ?></div>
+    </div>
 </div>
 
-<div id="revision-diff" class="section">
-    <table>
-        <tr>
-            <td colspan="2"><?php echo $this->translate('Latest revision'); ?></td>
-            <td colspan="2"><?php
-            $datetime = new \DateTime($revision['timestamp']);
-            echo sprintf(
-                $this->translate('Reverting to revision %s by %s'),
-                $this->hyperlink($datetime->format('G:i:s, j F Y'), $this->url(null, ['action' => 'show'], true)),
-                $revision['user']
-            );
-            ?></td>
-        </tr>
-        <?php if ($compare): ?>
-        <?php echo $compare; ?>
-        <?php else: ?>
-        <tr><td colspan="4"><?php echo $this->translate('(No difference)'); ?></td></tr>
-        <?php endif; ?>
-    </table>
+<div id="html" class="section">
+    <?php echo $revisionHtml; ?>
 </div>
 
 <div id="revert-revision" class="sidebar">
     <?php echo $this->hyperlink('', '#', ['class' => 'sidebar-close o-icon-close', 'title' => $this->translate('Close')]); ?>
-    <h3><?php echo $this->translate('Revert revision'); ?></h3>
+    <h3><?php echo $this->translate('Revert to this revision'); ?></h3>
     <p class="error"><?php echo $this->translate('Warning: You are reverting to an out-of-date revision. Any changes made since this revision will be lost.'); ?></p>
-    <?php echo $this->form()->openTag($form); ?>
-    <button><?php echo $this->translate('Confirm reversion'); ?></button>
-    <?php echo $this->formElement($form->get('revertrevisionform_csrf')); ?>
-    <?php echo $this->form()->closeTag(); ?>
+    <?php echo $this->form($revertForm); ?>
 </div>

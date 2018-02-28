@@ -178,7 +178,7 @@ return [
                             'defaults' => [
                                 '__NAMESPACE__' => 'Scripto\Controller\Admin',
                                 'controller' => 'media',
-                                'action' => 'review',
+                                'action' => 'show',
                             ],
                         ],
                     ],
