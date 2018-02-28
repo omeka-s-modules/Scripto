@@ -110,6 +110,11 @@ class ProjectController extends AbstractScriptoController
         return $view;
     }
 
+    public function showAction()
+    {
+        return $this->redirect()->toRoute('admin/scripto-item', ['action' => 'browse'], true);
+    }
+
     public function syncAction()
     {
         if ($this->getRequest()->isPost()) {

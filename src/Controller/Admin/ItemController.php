@@ -3,12 +3,8 @@ namespace Scripto\Controller\Admin;
 
 use Zend\View\Model\ViewModel;
 use Scripto\Form\ImportProjectForm;
-use Scripto\Form\ScriptoProjectForm;
 use Scripto\Form\SyncProjectForm;
 use Scripto\Form\UnimportProjectForm;
-use Scripto\Job\ImportProject;
-use Scripto\Job\SyncProject;
-use Scripto\Job\UnimportProject;
 
 class ItemController extends AbstractScriptoController
 {

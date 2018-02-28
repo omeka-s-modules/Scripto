@@ -9,7 +9,7 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
     {
         $url = $this->getViewHelper('Url');
         return $url(
-            $action ? 'admin/scripto-project-id' : 'admin/scripto-item',
+            'admin/scripto-project-id',
             [
                 'action' => $action,
                 'project-id' => $this->resource->getId(),
