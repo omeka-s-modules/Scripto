@@ -1,17 +1,30 @@
 <?php 
 $this->headLink()->appendStylesheet($this->assetUrl('css/scripto.css', 'Scripto'));
+$this->headScript()->appendFile($this->assetUrl('js/scripto.css', 'Scripto'));
 $this->htmlElement('body')->appendAttribute('class', 'show'); 
 ?>
 
 <?php echo $this->pageTitle($this->translate('Review media'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
 
 <div id="page-actions">
-    <?php echo $sItem->link($this->translate('Review item'), 'show', ['class' => 'button']); ?>
+    <div id="page-action-menu">
+        <a href="#" class="expand button" aria-label="<?php echo $this->translate('Expand'); ?>"><?php echo $this->translate('Actions'); ?></a>
+        <ul class="collapsible">
+            <li><a href="#" class="sidebar-content" data-sidebar-selector="#scripto-media-metadata"><?php echo $this->translate('View media metadata'); ?></a></li>
+            <li><?php echo $this->hyperlink($this->translate('View media revisions'), $this->url('admin/scripto-media-id', ['action' => 'revision'], true)); ?></li>
+        </ul>
+    </div>
 </div>
 
-<nav class="section-nav">
-    <?php echo $this->navigation('Zend\Navigation\ScriptoMedia')->menu(); ?>
-</nav>
+<div class="breadcrumbs">
+    <?php echo $this->hyperlink($this->translate('Projects'), $this->url('admin/scripto-project')); ?>
+    <div class="separator"></div>
+    <?php echo $this->hyperlink($this->translate('Review project'), $this->url('admin/scripto-project-id', ['action' => 'show'], true)); ?>
+    <div class="separator"></div>
+    <?php echo $this->hyperlink($this->translate('Review item'), $this->url('admin/scripto-item-id', ['action' => 'show'], true)); ?>
+    <div class="separator"></div>
+    <span class="current"><?php echo $this->translate('Review media'); ?></span>
+</div>
 
 <?php echo $this->sectionNav([
     'wikitext' => $this->translate('Wikitext'),
@@ -27,4 +40,37 @@ $this->htmlElement('body')->appendAttribute('class', 'show');
 
 <div id="html" class="section">
     <?php echo $sMedia->pageHtml(); ?>
+</div>
+
+<div id="scripto-media-metadata" class="sidebar">
+    <?php echo $this->thumbnail($media, 'square'); ?>
+    <h3><?php echo $sMedia->link($media->displayTitle()); ?></h3>
+    <div class="meta-group">
+        <h4><?php echo $this->translate('Status'); ?></h4>
+        <div class="value"><?php echo $this->translate($sMedia->status()); ?></div>
+    </div>
+    <div class="meta-group">
+        <h4><?php echo $this->translate('Last synced'); ?></h4>
+        <div class="value"><?php echo $this->i18n()->dateFormat($sMedia->synced(), 'long', 'medium'); ?></div>
+    </div>
+    <div class="meta-group">
+        <h4><?php echo $this->translate('Last edited'); ?></h4>
+        <?php $edited = $sMedia->edited(); ?>
+        <div class="value"><?php echo $edited ? $this->i18n()->dateFormat($sMedia->edited(), 'long', 'medium') : $this->translate('Not edited'); ?></div>
+    </div>
+    <div class="meta-group">
+        <h4><?php echo $this->translate('Last completed'); ?></h4>
+        <?php $completed = $sMedia->completed(); ?>
+        <div class="value"><?php echo $completed ? $this->i18n()->dateFormat($sMedia->completed(), 'long', 'medium') : $this->translate('Not completed'); ?></div>
+    </div>
+    <div class="meta-group">
+        <h4><?php echo $this->translate('Last approved'); ?></h4>
+        <?php $approved = $sMedia->approved(); ?>
+        <div class="value"><?php echo $approved ? $this->i18n()->dateFormat($sMedia->approved(), 'long', 'medium') : $this->translate('Not approved'); ?></div>
+    </div>
+    <div class="meta-group">
+        <h4><?php echo $this->translate('Description'); ?></h4>
+        <?php $description = $media->displayDescription(); ?>
+        <div class="value"><?php echo $description ? $this->escapeHtml($description) : $this->translate('No description'); ?></div>
+    </div>
 </div>

@@ -1,9 +1,22 @@
-<?php $this->htmlElement('body')->appendAttribute('class', 'show'); ?>
+<?php 
+$this->headLink()->appendStylesheet($this->assetUrl('css/scripto.css', 'Scripto'));
+$this->htmlElement('body')->appendAttribute('class', 'show'); 
+?>
 
 <?php echo $this->pageTitle($this->translate('Revision compare'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
 
-<div id="page-actions">
-    <?php echo $this->hyperlink($this->translate('View revisions'), $this->url('admin/scripto-revision', ['action' => 'browse'], true), ['class' => 'button']); ?>
+<div class="breadcrumbs">
+    <?php echo $this->hyperlink($this->translate('Projects'), $this->url('admin/scripto-project')); ?>
+    <div class="separator"></div>
+    <?php echo $this->hyperlink($this->translate('Review project'), $this->url('admin/scripto-project-id', ['action' => 'show'], true)); ?>
+    <div class="separator"></div>
+    <?php echo $this->hyperlink($this->translate('Review item'), $this->url('admin/scripto-item-id', ['action' => 'show'], true)); ?>
+    <div class="separator"></div>
+    <?php echo $this->hyperlink($this->translate('Review media'), $this->url('admin/scripto-media-id', ['action' => 'review'], true)); ?>
+    <div class="separator"></div>
+    <?php echo $this->hyperlink($this->translate('View media revisions'), $this->url('admin/scripto-media-id', ['action' => 'revision'], true)); ?>
+    <div class="separator"></div>
+    <span class="current"><?php echo $this->translate('Revision compare'); ?></span>
 </div>
 
 <table>

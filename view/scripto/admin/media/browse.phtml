@@ -115,7 +115,7 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
         <tr>
             <td><input type="checkbox" name="resource_ids[]" value="<?php echo $sMedia->id(); ?>"> <?php echo $index + 1; ?></td>
             <td>
-                <?php echo $sMedia->linkPretty(); ?>
+                <?php echo $sMedia->linkPretty('square', null, 'review'); ?>
                 <ul class="actions">
                     <li><?php echo $this->hyperlink('', '#', [
                         'data-sidebar-content-url' => $sMedia->url('show-details'),
