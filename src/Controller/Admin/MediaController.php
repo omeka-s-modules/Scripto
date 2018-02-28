@@ -28,6 +28,8 @@ class MediaController extends AbstractScriptoController
         $view = new ViewModel;
         $view->setVariable('sItem', $sItem);
         $view->setVariable('sMedia', $sMedia);
+        $view->setVariable('project', $sItem->scriptoProject());
+        $view->setVariable('item', $sItem->item());
         $view->setVariable('batchForm', $batchForm);
         return $view;
     }

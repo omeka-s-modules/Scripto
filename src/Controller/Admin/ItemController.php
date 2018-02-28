@@ -49,18 +49,6 @@ class ItemController extends AbstractScriptoController
 
     public function showAction()
     {
-        $sItem = $this->getScriptoRepresentation(
-            $this->params('project-id'),
-            $this->params('item-id')
-        );
-        if (!$sItem) {
-            $this->redirect()->toRoute('admin/scripto-project');
-        }
-
-        $view = new ViewModel;
-        $view->setVariable('sItem', $sItem);
-        $view->setVariable('item', $sItem->item());
-        $view->setVariable('project', $sItem->scriptoProject());
-        return $view;
+        return $this->redirect()->toRoute('admin/scripto-media', ['action' => 'browse'], true);
     }
 }
