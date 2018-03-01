@@ -226,3 +226,29 @@
 .parsed-comment {
     font-style: italic;
 }
+
+#reviewer-form .field {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #dfdfdf;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+}
+
+#reviewer-form .field:last-child {
+    border-bottom: 0;
+}
+
+#reviewer-form label {
+    width: calc(100% - 2em);
+    margin-bottom: 0;
+}
+
+#reviewer-form label:after {
+    content: none;
+}
+
+#approval-history table,
+#completion-history table {
+    background-color: #fff;
+}

@@ -13,10 +13,37 @@ $this->htmlElement('body')->appendAttribute('class', 'show');
             <li><a href="#" class="sidebar-content" data-sidebar-selector="#scripto-media-metadata"><?php echo $this->translate('View media metadata'); ?></a></li>
             <li><?php echo $this->hyperlink($this->translate('Browse revisions'), $this->url('admin/scripto-media-id', ['action' => 'revision'], true)); ?></li>
         </ul>
+        <button type="submit"><?php echo $this->translate('Save'); ?></button>
     </div>
 </div>
 
 <?php echo $this->scriptoBreadcrumbs(); ?>
+
+<div class="sidebar always-open" id="reviewer-form">
+    <h3><?php echo $this->translate('Review media'); ?></h3>
+    <div class="field">
+        <label for="media-approval-status"><?php echo $this->translate('Approval status'); ?></label>
+        <input type="checkbox" name="media-approval-status" id="media-approval-status" checked>
+        <div class="history">
+            <span class="last-approved"><?php echo sprintf($this->translate('Last approved on %s by %s.'), 'Jan 16, 2018', 'jsafley'); ?></span>
+            <a href="#" class="sidebar-content" data-sidebar-selector="#approval-history"><?php echo $this->translate('View history'); ?></a>
+        </div>
+    </div>
+    
+    <div class="field">
+        <label for="media-completion-status"><?php echo $this->translate('Completion status'); ?></label>
+        <input type="checkbox" name="media-completion-status" id="media-completion-status" checked>
+        <div class="history">
+            <span class="last-completed"><?php echo sprintf($this->translate('Marked complete on %s by %s.'), 'Jan 12, 2018', 'knguyen'); ?></span>
+            <a href="#" class="sidebar-content" data-sidebar-selector="#completion-history"><?php echo $this->translate('View history'); ?></a>
+        </div>
+    </div>
+    
+    <div class="field">
+        <label for="media-protected-status"><?php echo $this->translate('Protected?'); ?></label>
+        <input type="checkbox" name="media-protected-status" id="media-completion-status" checked>
+    </div>
+</div>
 
 <?php echo $this->sectionNav([
     'wikitext' => $this->translate('Wikitext'),
@@ -36,3 +63,64 @@ $this->htmlElement('body')->appendAttribute('class', 'show');
     <?php echo $this->hyperlink('', '#', ['class' => 'sidebar-close o-icon-close', 'title' => $this->translate('Close')]); ?>
     <?php echo $this->partial('scripto/admin/media/show-details') ?>
 </div>
+
+<div id="approval-history" class="sidebar">
+    <?php echo $this->hyperlink('', '#', ['class' => 'sidebar-close o-icon-close', 'title' => $this->translate('Close')]); ?>
+    <h3><?php echo $this->translate('Approval history'); ?></h3>
+    <table class="tablesaw tablesaw-stack" data-tablesaw-mode="stack">
+        <thead>
+            <tr>
+                <th><?php echo $this->translate('Status'); ?></th>
+                <th><?php echo $this->translate('Date'); ?></th>
+                <th><?php echo $this->translate('User'); ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><?php echo $this->translate('Approved'); ?></td>
+                <td><?php echo $this->translate('Jan 13, 2018'); ?></td>
+                <td><?php echo $this->translate('jsafley'); ?></td>
+            </tr>
+            <tr>
+                <td><?php echo $this->translate('Not approved'); ?></td>
+                <td><?php echo $this->translate('Jan 14, 2018'); ?></td>
+                <td><?php echo $this->translate('jsafley'); ?></td>
+            </tr>
+            <tr>
+                <td><?php echo $this->translate('Approved'); ?></td>
+                <td><?php echo $this->translate('Jan 16, 2018'); ?></td>
+                <td><?php echo $this->translate('jsafley'); ?></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="completion-history" class="sidebar">
+    <?php echo $this->hyperlink('', '#', ['class' => 'sidebar-close o-icon-close', 'title' => $this->translate('Close')]); ?>
+    <h3><?php echo $this->translate('Completion history'); ?></h3>
+    <table class="tablesaw tablesaw-stack" data-tablesaw-mode="stack">
+        <thead>
+            <tr>
+                <th><?php echo $this->translate('Status'); ?></th>
+                <th><?php echo $this->translate('Date'); ?></th>
+                <th><?php echo $this->translate('User'); ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><?php echo $this->translate('Completed'); ?></td>
+                <td><?php echo $this->translate('Jan 13, 2018'); ?></td>
+                <td><?php echo $this->translate('knguyen'); ?></td>
+            </tr>
+            <tr>
+                <td><?php echo $this->translate('In progress'); ?></td>
+                <td><?php echo $this->translate('Jan 14, 2018'); ?></td>
+                <td><?php echo $this->translate('jsafley'); ?></td>
+            </tr>
+            <tr>
+                <td><?php echo $this->translate('Completed'); ?></td>
+                <td><?php echo $this->translate('Jan 16, 2018'); ?></td>
+                <td><?php echo $this->translate('knguyen'); ?></td>
+            </tr>
+        </tbody>
+    </table></div>
