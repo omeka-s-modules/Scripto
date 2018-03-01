@@ -42,6 +42,11 @@ return [
             OMEKA_PATH . '/modules/Scripto/view',
         ],
     ],
+    'view_helpers' => [
+        'factories' => [
+            'scriptoBreadcrumbs' => Scripto\Service\ViewHelper\ScriptoBreadcrumbsFactory::class,
+        ],
+    ],
     'navigation' => [
         'AdminModule' => [
             [

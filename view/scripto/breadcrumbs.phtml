@@ -1,0 +1,65 @@
+<?php $route = $routeMatch->getMatchedRouteName(); ?>
+<div class="breadcrumbs">
+
+    <?php echo $this->hyperlink($this->translate('Projects'), $this->url('admin/scripto-project')); ?>
+
+    <?php if ('admin/scripto-item' === $route): ?>
+    <div class="separator"></div>
+    <?php echo $this->translate('Review project'); ?>
+    <?php elseif (in_array($route, ['admin/scripto-media', 'admin/scripto-media-id', 'admin/scripto-revision', 'admin/scripto-revision-id', 'admin/scripto-revision-compare'])): ?>
+    <div class="separator"></div>
+    <?php echo $this->hyperlink($this->translate('Review project'), $this->url('admin/scripto-item', [
+        'action' => 'browse',
+        'project-id' => $routeMatch->getParam('project-id'),
+    ])); ?>
+    <?php endif; ?>
+
+    <?php if ('admin/scripto-media' === $route): ?>
+    <div class="separator"></div>
+    <?php echo $this->translate('Review item'); ?>
+    <?php elseif (in_array($route, ['admin/scripto-media-id', 'admin/scripto-revision', 'admin/scripto-revision-id', 'admin/scripto-revision-compare'])): ?>
+    <div class="separator"></div>
+    <?php echo $this->hyperlink($this->translate('Review item'), $this->url('admin/scripto-media', [
+        'action' => 'browse',
+        'project-id' => $routeMatch->getParam('project-id'),
+        'item-id' => $routeMatch->getParam('item-id'),
+    ])); ?>
+    <?php endif; ?>
+
+    <?php if ('admin/scripto-media-id' === $route): ?>
+    <div class="separator"></div>
+    <?php echo $this->translate('Review media'); ?>
+    <?php elseif (in_array($route, ['admin/scripto-revision', 'admin/scripto-revision-id', 'admin/scripto-revision-compare'])): ?>
+    <div class="separator"></div>
+    <?php echo $this->hyperlink($this->translate('Review media'), $this->url('admin/scripto-media-id', [
+        'action' => 'show',
+        'project-id' => $routeMatch->getParam('project-id'),
+        'item-id' => $routeMatch->getParam('item-id'),
+        'media-id' => $routeMatch->getParam('media-id'),
+    ])); ?>
+    <?php endif; ?>
+
+    <?php if ('admin/scripto-revision' === $route): ?>
+    <div class="separator"></div>
+    <?php echo $this->translate('View media revisions'); ?>
+    <?php elseif (in_array($route, ['admin/scripto-revision-id', 'admin/scripto-revision-compare'])): ?>
+    <div class="separator"></div>
+    <?php echo $this->hyperlink($this->translate('View media revisions'), $this->url('admin/scripto-revision', [
+        'action' => 'browse',
+        'project-id' => $routeMatch->getParam('project-id'),
+        'item-id' => $routeMatch->getParam('item-id'),
+        'media-id' => $routeMatch->getParam('media-id'),
+    ])); ?>
+    <?php endif; ?>
+
+    <?php if ('admin/scripto-revision-id' === $routeMatch->getMatchedRouteName()): ?>
+    <div class="separator"></div>
+    <?php echo $this->translate('View media revision'); ?>
+    <?php endif; ?>
+
+    <?php if ('admin/scripto-revision-compare' === $routeMatch->getMatchedRouteName()): ?>
+    <div class="separator"></div>
+    <?php echo $this->translate('Revision compare'); ?>
+    <?php endif; ?>
+
+</div>
