@@ -34,34 +34,5 @@ $this->htmlElement('body')->appendAttribute('class', 'show');
 
 <div id="scripto-media-metadata" class="sidebar">
     <?php echo $this->hyperlink('', '#', ['class' => 'sidebar-close o-icon-close', 'title' => $this->translate('Close')]); ?>
-    <?php echo $this->thumbnail($media, 'square'); ?>
-    <h3><?php echo $media->displayTitle(); ?></h3>
-    <div class="meta-group">
-        <h4><?php echo $this->translate('Status'); ?></h4>
-        <div class="value"><?php echo $this->translate($sMedia->status()); ?></div>
-    </div>
-    <div class="meta-group">
-        <h4><?php echo $this->translate('Last synced'); ?></h4>
-        <div class="value"><?php echo $this->i18n()->dateFormat($sMedia->synced(), 'long', 'medium'); ?></div>
-    </div>
-    <div class="meta-group">
-        <h4><?php echo $this->translate('Last edited'); ?></h4>
-        <?php $edited = $sMedia->edited(); ?>
-        <div class="value"><?php echo $edited ? $this->i18n()->dateFormat($sMedia->edited(), 'long', 'medium') : $this->translate('Not edited'); ?></div>
-    </div>
-    <div class="meta-group">
-        <h4><?php echo $this->translate('Last completed'); ?></h4>
-        <?php $completed = $sMedia->completed(); ?>
-        <div class="value"><?php echo $completed ? $this->i18n()->dateFormat($sMedia->completed(), 'long', 'medium') : $this->translate('Not completed'); ?></div>
-    </div>
-    <div class="meta-group">
-        <h4><?php echo $this->translate('Last approved'); ?></h4>
-        <?php $approved = $sMedia->approved(); ?>
-        <div class="value"><?php echo $approved ? $this->i18n()->dateFormat($sMedia->approved(), 'long', 'medium') : $this->translate('Not approved'); ?></div>
-    </div>
-    <div class="meta-group">
-        <h4><?php echo $this->translate('Description'); ?></h4>
-        <?php $description = $media->displayDescription(); ?>
-        <div class="value"><?php echo $description ? $this->escapeHtml($description) : $this->translate('No description'); ?></div>
-    </div>
+    <?php echo $this->partial('scripto/admin/media/show-details') ?>
 </div>

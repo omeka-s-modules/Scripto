@@ -157,33 +157,7 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
 
 <div id="scripto-item-metadata" class="sidebar">
     <?php echo $this->hyperlink('', '#', ['class' => 'sidebar-close o-icon-close', 'title' => $this->translate('Close')]); ?>
-    <h3><?php echo $this->translate('Item metadata'); ?></h3>
-    <div class="meta-group">
-        <h4><?php echo $this->translate('Scripto project'); ?></h4>
-        <div class="value"><?php echo $project->link($project->title()); ?></div>
-    </div>
-    <div class="meta-group">
-        <h4><?php echo $this->translate('Status'); ?></h4>
-        <div class="value"><?php echo $this->translate($sItem->status()); ?></div>
-    </div>
-    <div class="meta-group">
-        <h4><?php echo $this->translate('Date synced'); ?></h4>
-        <div class="value"><?php echo $this->i18n()->dateFormat($sItem->synced(), 'long', 'medium'); ?></div>
-    </div>
-    <div class="meta-group">
-        <h4><?php echo $this->translate('Last edited'); ?></h4>
-        <?php $edited = $sItem->edited(); ?>
-        <div class="value"><?php echo $edited ? $this->i18n()->dateFormat($sItem->edited(), 'long', 'medium') : $this->translate('Not edited'); ?></div>
-    </div>
-    <div class="meta-group">
-        <h4><?php echo $this->translate('Omeka item'); ?></h4>
-        <div class="value"><?php echo $item->link($item->displayTitle()); ?></div>
-    </div>
-    <div class="meta-group">
-        <h4><?php echo $this->translate('Omeka item description'); ?></h4>
-        <?php $description = $item->displayDescription(); ?>
-        <div class="value"><?php echo $description ? nl2br($this->escapeHtml($description)) : $this->translate('No description'); ?></div>
-    </div>
+    <?php echo $this->partial('scripto/admin/item/show-details') ?>
 </div>
 
 <script>

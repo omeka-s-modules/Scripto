@@ -1,8 +1,26 @@
-<h3><?php echo $project->link($project->title()); ?></h3>
+<h3><?php echo $this->translate('Project metadata'); ?></h3>
+<div class="meta-group">
+    <h4><?php echo $this->translate('Project'); ?></h4>
+    <div class="value"><?php echo $project->link($project->title()); ?></div>
+</div>
 <div class="meta-group">
     <h4><?php echo $this->translate('Description'); ?></h4>
     <?php $description = $project->description(); ?>
     <div class="value"><?php echo $description ? $this->escapeHtml($project->description()) : $this->translate('No description'); ?></div>
+</div>
+<div class="meta-group">
+    <h4><?php echo $this->translate('Item set'); ?></h4>
+    <?php $itemSet = $project->itemSet(); ?>
+    <div class="value"><?php echo $itemSet->link($itemSet->displayTitle()); ?></div>
+</div>
+<div class="meta-group">
+    <h4><?php echo $this->translate('Property'); ?></h4>
+    <?php $property = $project->property(); ?>
+    <div class="value"><?php echo sprintf('%s : %s', $property->vocabulary()->label(), $property->label()); ?></div>
+</div>
+<div class="meta-group">
+    <h4><?php echo $this->translate('Language tag'); ?></h4>
+    <div class="value"><?php echo $this->escapeHtml($project->lang()); ?></div>
 </div>
 <div class="meta-group">
     <h4><?php echo $this->translate('Owner'); ?></h4>

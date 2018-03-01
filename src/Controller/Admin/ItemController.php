@@ -43,6 +43,7 @@ class ItemController extends AbstractScriptoController
         $view = new ViewModel;
         $view->setTerminal(true);
         $view->setVariable('sItem', $sItem);
+        $view->setVariable('project', $sItem->scriptoProject());
         $view->setVariable('item', $sItem->item());
         return $view;
     }

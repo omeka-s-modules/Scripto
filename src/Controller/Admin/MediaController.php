@@ -45,10 +45,14 @@ class MediaController extends AbstractScriptoController
             exit;
         }
 
+        $sItem = $sMedia->scriptoItem();
         $view = new ViewModel;
         $view->setTerminal(true);
         $view->setVariable('sMedia', $sMedia);
         $view->setVariable('media', $sMedia->media());
+        $view->setVariable('sItem', $sItem);
+        $view->setVariable('item', $sItem->item());
+        $view->setVariable('project', $sItem->scriptoProject());
         return $view;
     }
 
@@ -69,6 +73,7 @@ class MediaController extends AbstractScriptoController
         $view->setVariable('media', $sMedia->media());
         $view->setVariable('sItem', $sItem);
         $view->setVariable('item', $sItem->item());
+        $view->setVariable('project', $sItem->scriptoProject());
         return $view;
     }
 
