@@ -1,17 +1,12 @@
 <?php 
 $this->headLink()->appendStylesheet($this->assetUrl('css/scripto.css', 'Scripto'));
+$this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
 $this->htmlElement('body')->appendAttribute('class', 'browse'); 
 ?>
 
-<?php echo $this->pageTitle($this->translate('Review media'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
+<?php echo $this->pageTitle($this->translate('Revision browse'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
 
-<div id="page-actions">
-    <?php echo $sItem->link($this->translate('Review item'), 'show', ['class' => 'button']); ?>
-</div>
-
-<nav class="section-nav">
-    <?php echo $this->navigation('Zend\Navigation\ScriptoMedia')->menu(); ?>
-</nav>
+<?php echo $this->scriptoBreadcrumbs(); ?>
 
 <?php if ($revisions): ?>
 

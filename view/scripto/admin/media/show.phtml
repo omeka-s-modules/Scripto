@@ -1,63 +1,67 @@
-<?php $this->htmlElement('body')->appendAttribute('class', 'show'); ?>
+<?php 
+$this->headLink()->appendStylesheet($this->assetUrl('css/scripto.css', 'Scripto'));
+$this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
+$this->htmlElement('body')->appendAttribute('class', 'show'); 
+?>
 
-<?php echo $this->pageTitle($this->translate('Review media'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
+<?php echo $this->pageTitle($this->translate('Media review'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
 
 <div id="page-actions">
-    <?php echo $sItem->link($this->translate('Review item'), 'show', ['class' => 'button']); ?>
+    <div id="page-action-menu">
+        <a href="#" class="expand button" aria-label="<?php echo $this->translate('Expand'); ?>"><?php echo $this->translate('Actions'); ?></a>
+        <ul class="collapsible">
+            <li><a href="#" class="sidebar-content" data-sidebar-selector="#scripto-media-metadata"><?php echo $this->translate('View media metadata'); ?></a></li>
+            <li><?php echo $this->hyperlink($this->translate('Browse revisions'), $this->url('admin/scripto-media-id', ['action' => 'revision'], true)); ?></li>
+        </ul>
+    </div>
 </div>
 
-<nav class="section-nav">
-    <?php echo $this->navigation('Zend\Navigation\ScriptoMedia')->menu(); ?>
-</nav>
+<?php echo $this->scriptoBreadcrumbs(); ?>
 
-<div class="property">
-    <h4><?php echo $this->translate('Scripto item'); ?></h4>
-    <div class="value"><?php echo $sItem->link($item->displayTitle()); ?></div>
+<?php echo $this->sectionNav([
+    'wikitext' => $this->translate('Wikitext'),
+    'html' => $this->translate('HTML'),
+]); ?>
+
+<div id="wikitext" class="active section">
+    <textarea disabled><?php echo $sMedia->pageWikitext(); ?></textarea>
+    <?php echo $media->render(); ?>
 </div>
-<div class="property">
-    <h4><?php echo $this->translate('Status'); ?></h4>
-    <div class="value"><?php echo $this->translate($sMedia->status()); ?></div>
+
+<div id="html" class="section">
+    <?php echo $sMedia->pageHtml(); ?>
 </div>
-<div class="property">
-    <h4><?php echo $this->translate('Last synced'); ?></h4>
-    <div class="value"><?php echo $this->i18n()->dateFormat($sMedia->synced(), 'long', 'medium'); ?></div>
-</div>
-<div class="property">
-    <h4><?php echo $this->translate('Last edited'); ?></h4>
-    <div class="value"><?php echo $sMedia->edited() ? sprintf(
-        $this->translate('%s by %s'),
-        $this->i18n()->dateFormat($sMedia->edited(), 'long', 'medium'),
-        $sMedia->editedBy()
-    )  : $this->translate('Not edited'); ?></div>
-</div>
-<div class="property">
-    <h4><?php echo $this->translate('Last completed'); ?></h4>
-    <div class="value"><?php echo $sMedia->completed() ? sprintf(
-        $this->translate('%s by %s'),
-        $this->i18n()->dateFormat($sMedia->completed(), 'long', 'medium'),
-        $sMedia->completedBy()
-    )  : $this->translate('Not completed'); ?></div>
-</div>
-<div class="property">
-    <h4><?php echo $this->translate('Last approved'); ?></h4>
-    <?php $approvedBy = $sMedia->approvedBy(); ?>
-    <div class="value"><?php echo $sMedia->approved() ? sprintf(
-        $this->translate('%s by %s'),
-        $this->i18n()->dateFormat($sMedia->approved(), 'long', 'medium'),
-        $approvedBy->link($approvedBy->name())
-    )  : $this->translate('Not approved'); ?></div>
-</div>
-<div class="property">
-    <h4><?php echo $this->translate('MediaWiki page'); ?></h4>
-    <?php $page = $sMedia->page(); ?>
-    <div class="value"><?php echo $this->hyperlink($sMedia->pageTitle(), $page['canonicalurl'], ['target' => '_blank']); ?></div>
-</div>
-<div class="property">
-    <h4><?php echo $this->translate('Omeka media'); ?></h4>
-    <div class="value"><?php echo $media->link($media->displayTitle()); ?></div>
-</div>
-<div class="property">
-    <h4><?php echo $this->translate('Omeka media description'); ?></h4>
-    <?php $description = $media->displayDescription(); ?>
-    <div class="value"><?php echo $description ? nl2br($this->escapeHtml($description)) : $this->translate('No description'); ?></div>
+
+<div id="scripto-media-metadata" class="sidebar">
+    <?php echo $this->hyperlink('', '#', ['class' => 'sidebar-close o-icon-close', 'title' => $this->translate('Close')]); ?>
+    <?php echo $this->thumbnail($media, 'square'); ?>
+    <h3><?php echo $media->displayTitle(); ?></h3>
+    <div class="meta-group">
+        <h4><?php echo $this->translate('Status'); ?></h4>
+        <div class="value"><?php echo $this->translate($sMedia->status()); ?></div>
+    </div>
+    <div class="meta-group">
+        <h4><?php echo $this->translate('Last synced'); ?></h4>
+        <div class="value"><?php echo $this->i18n()->dateFormat($sMedia->synced(), 'long', 'medium'); ?></div>
+    </div>
+    <div class="meta-group">
+        <h4><?php echo $this->translate('Last edited'); ?></h4>
+        <?php $edited = $sMedia->edited(); ?>
+        <div class="value"><?php echo $edited ? $this->i18n()->dateFormat($sMedia->edited(), 'long', 'medium') : $this->translate('Not edited'); ?></div>
+    </div>
+    <div class="meta-group">
+        <h4><?php echo $this->translate('Last completed'); ?></h4>
+        <?php $completed = $sMedia->completed(); ?>
+        <div class="value"><?php echo $completed ? $this->i18n()->dateFormat($sMedia->completed(), 'long', 'medium') : $this->translate('Not completed'); ?></div>
+    </div>
+    <div class="meta-group">
+        <h4><?php echo $this->translate('Last approved'); ?></h4>
+        <?php $approved = $sMedia->approved(); ?>
+        <div class="value"><?php echo $approved ? $this->i18n()->dateFormat($sMedia->approved(), 'long', 'medium') : $this->translate('Not approved'); ?></div>
+    </div>
+    <div class="meta-group">
+        <h4><?php echo $this->translate('Description'); ?></h4>
+        <?php $description = $media->displayDescription(); ?>
+        <div class="value"><?php echo $description ? $this->escapeHtml($description) : $this->translate('No description'); ?></div>
+    </div>
 </div>

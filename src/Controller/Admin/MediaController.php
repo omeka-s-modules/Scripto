@@ -28,6 +28,8 @@ class MediaController extends AbstractScriptoController
         $view = new ViewModel;
         $view->setVariable('sItem', $sItem);
         $view->setVariable('sMedia', $sMedia);
+        $view->setVariable('project', $sItem->scriptoProject());
+        $view->setVariable('item', $sItem->item());
         $view->setVariable('batchForm', $batchForm);
         return $view;
     }
@@ -51,26 +53,6 @@ class MediaController extends AbstractScriptoController
     }
 
     public function showAction()
-    {
-        $sMedia = $this->getScriptoRepresentation(
-            $this->params('project-id'),
-            $this->params('item-id'),
-            $this->params('media-id')
-        );
-        if (!$sMedia) {
-            return $this->redirect()->toRoute('admin/scripto-project');
-        }
-
-        $sItem = $sMedia->scriptoItem();
-        $view = new ViewModel;
-        $view->setVariable('sMedia', $sMedia);
-        $view->setVariable('media', $sMedia->media());
-        $view->setVariable('sItem', $sItem);
-        $view->setVariable('item', $sItem->item());
-        return $view;
-    }
-
-    public function reviewAction()
     {
         $sMedia = $this->getScriptoRepresentation(
             $this->params('project-id'),

@@ -1,10 +1,13 @@
 .browse .scripto-media td:first-child, 
 .browse .scripto-media th:first-child {
+    width: 36px;
+}
+
+.browse .scripto-media .row-number {
     width: 3em;
 }
 
-.browse .scripto-media td:nth-child(2), 
-.browse .scripto-media th:nth-child(2) {
+.browse .scripto-media .row-title {
     width: 50%;
 }
 
@@ -17,10 +20,21 @@
     width: auto;
 }
 
+#wikitext.active {
+    display: flex; 
+    justify-content: space-between; 
+    flex-wrap: wrap;
+}
+
 #wikitext textarea {
     min-height: 400px;
     flex-grow: 1;
     margin-right: 24px;
+    max-width: calc(50% - 12px);
+}
+
+#wikitext .media-render {
+    max-width: calc(50% - 12px);
 }
 
 .current-previous {
@@ -31,4 +45,184 @@
 .to-revision {
     width: 1em;
     margin: 0 6px;
+}
+
+#page-action-menu {
+    display: inline-block;
+    position: relative;
+}
+
+#page-action-menu ul {
+    display: none;
+    list-style: none;
+    border: 1px solid #dfdfdf;
+    background-color: #fff;
+    border-radius: 3px;
+    text-align: left;
+    padding: 0;
+    position: relative;
+    box-shadow: 0 0 5px #dfdfdf;
+    position: absolute;
+    right: 0;
+    width: auto;
+    white-space: nowrap;
+    margin: 12px 0;
+}
+
+#page-action-menu ul:before {
+    content: "";
+    position: absolute;
+    bottom: calc(100% - 1px);
+    right: 12px;
+    width: 0;
+    height: 0;
+    border-bottom: 12px solid #fff;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+}
+
+#page-action-menu ul:after {
+    content: "";
+    position: absolute;
+    bottom: calc(100% - 1px);
+    right: 11px;
+    width: 0;
+    height: 0;
+    border-bottom: 14px solid #dfdfdf;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    z-index: -1;
+}
+
+#page-action-menu ul a,
+#page-action-menu ul .inactive {
+    padding: 6px 12px 5px;
+    display: block;
+    position: relative;
+}
+
+#page-action-menu ul .inactive {
+    color: #dfdfdf;
+}
+
+#page-action-menu ul a:hover:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-color: #dfdfdf;
+}
+
+#page-action-menu ul li:not(:last-child) a,
+#page-action-menu ul li:not(:last-child) span {
+    border-bottom: 1px solid #dfdfdf;
+}
+
+#page-action-menu .expand:after {
+    content: "\f0d7";
+}
+
+#page-action-menu .expand:after,
+#page-action-menu .collapse:after {
+    margin-left: 6px;
+}
+
+#page-action-menu .collapse + .collapsible {
+    overflow: visible;
+    display: block;
+}
+
+.breadcrumbs > *:not(:last-child):after {
+    content: none;
+}
+
+.breadcrumbs .separator {
+    display: inline-block;
+    margin: 0 6px;
+    color: #000;
+}
+
+.breadcrumbs .separator:after {
+    content: "\f0da";
+    font-family: "FontAwesome";
+    margin: 0;
+}
+
+#compare-table th {
+    border-bottom: 1px solid #dfdfdf;
+}
+
+#compare-table td {
+    position: relative;
+}
+
+#compare-table [colspan="2"],
+#compare-table td.diff-context:nth-child(2) {
+    border-right: 1px solid #dfdfdf;
+}
+
+#compare-table .diff-marker {
+    width: 36px;
+    vertical-align: top;
+    text-align: center;
+}
+
+#compare-table col.diff-context {
+    border-right: 1px solid #dfdfdf;
+}
+
+#compare-table .diff-addedline {
+    background-color: #cdffcd;
+    color: green;
+}
+
+#compare-table .diff-deletedline {
+    color: #A91919;
+    background-color: #fcc;
+}
+
+#compare-table .diff-deletedline div:before,
+#compare-table .diff-addedline div:before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 100%;
+    width: 36px;
+    text-align: center;
+    line-height: 36px;
+    font-weight: bold;
+}
+
+#compare-table .diff-addedline div:before {
+    content: "+";
+    background-color: #cdffcd;
+}
+
+#compare-table .diff-deletedline div:before {
+    content: "-";
+    background-color: #fcc;
+}
+
+#compare-table ins.diffchange:empty,
+#compare-table del.diffchange:empty {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+#compare-table ins.diffchange:empty {
+    background-color: #0080004f;
+}
+
+
+#compare-table del.diffchange:empty {
+    background-color: #ff000061;
+}
+
+.parsed-comment {
+    font-style: italic;
 }

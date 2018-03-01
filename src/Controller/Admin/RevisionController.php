@@ -52,11 +52,32 @@ class RevisionController extends AbstractScriptoController
             return $this->redirect()->toRoute('admin/scripto-project');
         }
 
+        $revertForm = $this->getForm(RevertRevisionForm::class);
+        $revision = $sMedia->pageRevision($this->params('revision-id'));
+
+        if ($this->getRequest()->isPost()) {
+            $revertForm->setData($this->params()->fromPost());
+            if ($revertForm->isValid()) {
+                $data = ['o-module-scripto:text' => $revision['content']];
+                $response = $this->api()->update('scripto_media', $sMedia->id(), $data, ['isPartial' => true]);
+                if ($response) {
+                    $this->messenger()->addSuccess('Scripto media revision successfully reverted.'); // @translate
+                    return $this->redirect()->toRoute('admin/scripto-revision', ['action' => 'browse'], true);
+                }
+            } else {
+                $this->messenger()->addFormErrors($revertForm);
+            }
+        }
+
+        $page = $sMedia->page();
+        $latestRevision = $page['revisions'][0];
         $view = new ViewModel;
         $view->setVariable('sMedia', $sMedia);
         $view->setVariable('media', $sMedia->media());
-        $view->setVariable('revision', $sMedia->pageRevision($this->params('revision-id')));
+        $view->setVariable('revision', $revision);
+        $view->setVariable('revisionWikitext', $revision['content']);
         $view->setVariable('revisionHtml', $this->apiClient->parseRevision($this->params('revision-id')));
+        $view->setVariable('revertForm', $revertForm);
         return $view;
     }
 
