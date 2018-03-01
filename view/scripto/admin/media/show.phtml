@@ -4,14 +4,14 @@ $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
 $this->htmlElement('body')->appendAttribute('class', 'show'); 
 ?>
 
-<?php echo $this->pageTitle($this->translate('Review media'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
+<?php echo $this->pageTitle($this->translate('Media review'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
 
 <div id="page-actions">
     <div id="page-action-menu">
         <a href="#" class="expand button" aria-label="<?php echo $this->translate('Expand'); ?>"><?php echo $this->translate('Actions'); ?></a>
         <ul class="collapsible">
             <li><a href="#" class="sidebar-content" data-sidebar-selector="#scripto-media-metadata"><?php echo $this->translate('View media metadata'); ?></a></li>
-            <li><?php echo $this->hyperlink($this->translate('View media revisions'), $this->url('admin/scripto-media-id', ['action' => 'revision'], true)); ?></li>
+            <li><?php echo $this->hyperlink($this->translate('Browse revisions'), $this->url('admin/scripto-media-id', ['action' => 'revision'], true)); ?></li>
         </ul>
     </div>
 </div>

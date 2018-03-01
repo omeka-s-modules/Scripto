@@ -4,7 +4,7 @@ $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
 $this->htmlElement('body')->appendAttribute('class', 'show'); 
 ?>
 
-<?php echo $this->pageTitle($this->translate('Revision'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
+<?php echo $this->pageTitle($this->translate('Revision show'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
 
 <div id="page-actions">
     <div id="page-action-menu">
@@ -22,8 +22,8 @@ $this->htmlElement('body')->appendAttribute('class', 'show');
                 ? $this->hyperlink($this->translate('View latest'), $this->url(null, ['revision-id' => $revision['latestid']], true))
                 : '<span class="inactive">' . $this->translate('View latest') . '</span>',
             $revision['latestid'] !== $revision['revid']
-                ? '<a href="#" class="sidebar-content" data-sidebar-selector="#revert-revision">' . $this->translate('Revert') . '</a>'
-                : '<span class="inactive">' . $this->translate('Revert') . '</span>'
+                ? '<a href="#" class="sidebar-content" data-sidebar-selector="#revert-revision">' . $this->translate('Revert to this revision') . '</a>'
+                : '<span class="inactive">' . $this->translate('Revert to this revision') . '</span>'
         ); ?>
         </ul>
     </div>
