@@ -24,10 +24,8 @@ $this->htmlElement('body')->appendAttribute('class', 'show');
 ]); ?>
 
 <div id="wikitext" class="active section">
-    <div style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
-        <textarea disabled><?php echo $sMedia->pageWikitext(); ?></textarea>
-        <div><?php echo $media->render(); ?></div>
-    </div>
+    <textarea disabled><?php echo $sMedia->pageWikitext(); ?></textarea>
+    <?php echo $media->render(); ?>
 </div>
 
 <div id="html" class="section">

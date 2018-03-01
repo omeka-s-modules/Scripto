@@ -20,10 +20,21 @@
     width: auto;
 }
 
+#wikitext.active {
+    display: flex; 
+    justify-content: space-between; 
+    flex-wrap: wrap;
+}
+
 #wikitext textarea {
     min-height: 400px;
     flex-grow: 1;
     margin-right: 24px;
+    max-width: calc(50% - 12px);
+}
+
+#wikitext .media-render {
+    max-width: calc(50% - 12px);
 }
 
 .current-previous {
