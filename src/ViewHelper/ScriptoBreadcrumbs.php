@@ -1,17 +1,32 @@
 <?php
 namespace Scripto\ViewHelper;
 
+use  Zend\Router\Http\RouteMatch;
 use Zend\View\Helper\AbstractHelper;
 
+/**
+ * View helper used to render Scripto admin interface breadcrumbs.
+ */
 class ScriptoBreadcrumbs extends AbstractHelper
 {
+    /**
+     * @var RouteMatch
+     */
     protected $routeMatch;
 
-    public function __construct($routeMatch)
+    /**
+     * @param RouteMatch $routeMatch
+     */
+    public function __construct(RouteMatch $routeMatch)
     {
         $this->routeMatch = $routeMatch;
     }
 
+    /**
+     * Render Scripto admin interface breadcrumbs
+     *
+     * @return string
+     */
     public function __invoke()
     {
         $bc = [];
