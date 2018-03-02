@@ -23,21 +23,48 @@
 <div class="meta-group">
     <h4><?php echo $this->translate('Last edited'); ?></h4>
     <?php $edited = $sMedia->edited(); ?>
-    <div class="value"><?php echo $edited ? $this->i18n()->dateFormat($sMedia->edited(), 'long', 'medium') : $this->translate('Not edited'); ?></div>
+    <div class="value"><?php echo $edited
+        ? sprintf('%s by %s', $this->i18n()->dateFormat($sMedia->edited(), 'long', 'medium'), $sMedia->editedBy())
+        : $this->translate('Not edited'); ?></div>
 </div>
 <div class="meta-group">
     <h4><?php echo $this->translate('Last completed'); ?></h4>
     <?php $completed = $sMedia->completed(); ?>
-    <div class="value"><?php echo $completed ? $this->i18n()->dateFormat($sMedia->completed(), 'long', 'medium') : $this->translate('Not completed'); ?></div>
+    <div class="value"><?php echo $completed
+        ? sprintf('%s by %s', $this->i18n()->dateFormat($sMedia->completed(), 'long', 'medium'), $sMedia->completedBy())
+        : $this->translate('Not completed'); ?></div>
 </div>
 <div class="meta-group">
     <h4><?php echo $this->translate('Last approved'); ?></h4>
-    <?php $approved = $sMedia->approved(); ?>
-    <div class="value"><?php echo $approved ? $this->i18n()->dateFormat($sMedia->approved(), 'long', 'medium') : $this->translate('Not approved'); ?></div>
+    <?php
+    $approved = $sMedia->approved();
+    $approvedBy = $sMedia->approvedBy();
+    ?>
+    <div class="value"><?php echo $approved
+        ? sprintf(
+            '%s by %s',
+            $this->i18n()->dateFormat($sMedia->approved(), 'long', 'medium'),
+            $approvedBy
+                ? $approvedBy->link($approvedBy->name())
+                : $this->translate('Unknown')
+            )
+        : $this->translate('Not approved'); ?></div>
+</div>
+<div class="meta-group">
+    <h4><?php echo $this->translate('MediaWiki page'); ?></h4>
+    <?php $page = $sMedia->page(); ?>
+    <div class="value"><?php echo $this->hyperlink($sMedia->pageTitle(), $page['fullurl']); ?></div>
+</div>
+<div class="meta-group">
+    <h4><?php echo $this->translate('Omeka media'); ?></h4>
+    <div class="value"><?php echo $media->link($media->displayTitle()); ?></div>
+</div>
+<div class="meta-group">
+    <h4><?php echo $this->translate('Omeka item'); ?></h4>
+    <div class="value"><?php echo $item->link($item->displayTitle()); ?></div>
 </div>
 <div class="meta-group">
     <h4><?php echo $this->translate('Description'); ?></h4>
     <?php $description = $media->displayDescription(); ?>
     <div class="value"><?php echo $description ? $this->escapeHtml($description) : $this->translate('No description'); ?></div>
 </div>
-

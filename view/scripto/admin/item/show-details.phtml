@@ -37,6 +37,10 @@
     <div class="value"><?php echo number_format($sItem->isEditedMediaCount()); ?></div>
 </div>
 <div class="meta-group">
+    <h4><?php echo $this->translate('Omeka item'); ?></h4>
+    <div class="value"><?php echo $item->link($item->displayTitle()); ?></div>
+</div>
+<div class="meta-group">
     <h4><?php echo $this->translate('Description'); ?></h4>
     <?php $description = $item->displayDescription(); ?>
     <div class="value"><?php echo $description ? nl2br($this->escapeHtml($description)) : $this->translate('No description'); ?></div>
