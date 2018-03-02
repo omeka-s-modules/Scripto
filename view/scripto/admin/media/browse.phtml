@@ -116,6 +116,7 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
                     <li><?php echo $this->hyperlink('', '#', [
                         'data-sidebar-content-url' => $sMedia->url('show-details'),
                         'class' => 'o-icon-more sidebar-content',
+                        'data-sidebar-selector' => '#show-details',
                         'title' => $this->translate('Details'),
                     ]); ?></li>
                 </ul>
@@ -134,7 +135,7 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
     <?php echo $this->pagination(); ?>
 </div>
 
-<div class="sidebar">
+<div id="show-details" class="sidebar">
     <?php echo $this->hyperlink('', '#', [
         'class' => 'sidebar-close o-icon-close',
         'title' => $this->translate('Close'),
