@@ -20,21 +20,135 @@
     width: auto;
 }
 
-#wikitext.active {
-    display: flex; 
-    justify-content: space-between; 
-    flex-wrap: wrap;
+.layout {
+    display: inline-flex;
+    align-items: center;
 }
 
-#wikitext textarea {
+.layout label {
+    display: inline-block;
+    margin-right: 6px;
+}
+
+.layout button {
+    margin-bottom: 0;
+    box-shadow: none;
+    border: 1px solid #dfdfdf;
+    position: relative;
+}
+
+.layout button:hover {
+    z-index: 1;
+    box-shadow: none !important;
+}
+
+.layout button:not(:disabled):hover {
+    border: 1px solid #999;
+}
+
+.layout .horizontal {
+    border-radius: 3px 0 0 3px;
+}
+
+.layout .vertical {
+    border-radius: 0 3px 3px 0;
+    margin-left: -1px;
+}
+
+.wikitext-flex {
+    display: flex; 
+    width: 100%;
+    flex-wrap: wrap;
+    margin-top: 12px;
+ }
+
+.horizontal .wikitext-flex {
+    justify-content: space-between; 
+}
+
+.horizontal .wikitext-flex textarea {
     min-height: 400px;
     flex-grow: 1;
-    margin-right: 24px;
-    max-width: calc(50% - 12px);
+    margin-right: 12px;
 }
 
-#wikitext .media-render {
-    max-width: calc(50% - 12px);
+.horizontal .wikitext-flex textarea,
+.horizontal .wikitext-flex .panzoom-container {
+    max-width: calc(50% - 6px);
+}
+
+.vertical .wikitext-flex textarea,
+.vertical .wikitext-flex .panzoom-container {
+    width: 100%;
+}
+
+.vertical .wikitext-flex textarea {
+    order: 2;
+    min-height: 35vh;
+}
+
+.vertical .wikitext-flex .panzoom-container {
+    order: 1;
+    margin-bottom: 24px;
+    height: 35vh;
+}
+
+.wikitext-flex .panzoom-container {
+    border: 1px solid #dfdfdf;
+}
+
+.featherlight .featherlight-content {
+    width: 95%;
+    margin: 0;
+    max-height: none;
+    padding: 12px 12px 0;
+}
+
+.featherlight-content .wikitext-featherlight {
+    height: calc(100% - 48px);
+}
+
+.wikitext-featherlight h3,
+.featherlight-content .full-screen {
+    display: none;
+    position: relative;
+}
+
+.wikitext-featherlight h3:after {
+    content: "";
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    left: -12px;
+    bottom: -12px;
+    background-color: rgba(0,0,0,.08);
+}
+
+.featherlight-content .wikitext-featherlight h3 {
+    display: block;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+button.featherlight-close-icon.featherlight-close {
+    border: 0;
+    box-shadow: none;
+    background-color: transparent;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    margin: 6px 6px 0;
+}
+
+button.full-screen {
+    margin: 0 24px 0 0;
+}
+
+button.full-screen:after {
+    content: "\f24d";
+    font-family: "FontAwesome";
+    display: inline-block;
+    margin-left: 6px;
 }
 
 .current-previous {
