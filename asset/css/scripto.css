@@ -226,3 +226,61 @@
 .parsed-comment {
     font-style: italic;
 }
+
+/* Login bar */
+
+#scripto-login {
+    display: flex;
+    font-size: 14px;
+    line-height: 21px;
+    background-color: #0000000a;
+    border-radius: 3px;
+    padding: 6px;
+    margin: 0 0 12px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#scripto-login h3,
+#scripto-login input,
+#scripto-login button {
+    font-size: 14px;
+    line-height: 21px;
+    margin: 0;
+}
+
+#scripto-login h3 {
+    margin-right: auto;
+}
+
+#scripto-login input,
+#scripto-login button {
+    padding: 0 6px;
+    height: 21px;
+    min-height: 0;
+}
+
+#scripto-login .field {
+    display: inline-flex;
+    background: transparent;
+    align-items: center;
+    width: auto;
+    padding: 0;
+    margin: 0 12px 0 0;
+}
+
+#scripto-login .field-meta,
+#scripto-login .inputs {
+    padding: 0;
+    line-height: 21px;
+    width: auto;
+}
+
+#scripto-login .field-meta {
+    text-align: right;
+}
+
+#scripto-login label {
+    padding: 0 6px 0 0;
+    max-width: none;
+}

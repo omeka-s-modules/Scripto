@@ -28,12 +28,12 @@ return [
     'controllers' => [
         'invokables' => [
             'Scripto\Controller\Index' => Scripto\Controller\IndexController::class,
-            'Scripto\Controller\Admin\Index' => Scripto\Controller\Admin\IndexController::class,
             'Scripto\Controller\Admin\Project' => Scripto\Controller\Admin\ProjectController::class,
             'Scripto\Controller\Admin\Item' => Scripto\Controller\Admin\ItemController::class,
             'Scripto\Controller\Admin\Media' => Scripto\Controller\Admin\MediaController::class,
         ],
         'factories' => [
+            'Scripto\Controller\Admin\Index' => Scripto\Service\Controller\Admin\IndexControllerFactory::class,
             'Scripto\Controller\Admin\Revision' => Scripto\Service\Controller\Admin\RevisionControllerFactory::class,
         ]
     ],
@@ -45,6 +45,7 @@ return [
     'view_helpers' => [
         'factories' => [
             'scriptoBreadcrumbs' => Scripto\Service\ViewHelper\ScriptoBreadcrumbsFactory::class,
+            'scriptoAuth' => Scripto\Service\ViewHelper\ScriptoAuthFactory::class,
         ],
     ],
     'navigation' => [

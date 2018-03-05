@@ -1,7 +1,7 @@
 <?php 
 $this->headLink()->appendStylesheet($this->assetUrl('css/scripto.css', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
-$this->htmlElement('body')->appendAttribute('class', 'browse'); 
+$this->htmlElement('body')->appendAttribute('class', 'browse');
 ?>
 
 <?php echo $this->pageTitle($this->translate('Project review'), 1, $this->translate('Scripto'), $project->title()); ?>
@@ -18,6 +18,8 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
         </ul>
     </div>
 </div>
+
+<?php echo $this->scriptoAuth()->loginBar(); ?>
 
 <?php echo $this->scriptoBreadcrumbs(); ?>
 
