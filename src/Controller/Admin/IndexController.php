@@ -2,6 +2,7 @@
 namespace Scripto\Controller\Admin;
 
 use Scripto\Form\ScriptoLoginForm;
+use Scripto\Form\ScriptoLogoutForm;
 use Scripto\Mediawiki\ApiClient;
 use Scripto\Mediawiki\Exception\ClientloginException;
 use Zend\View\Model\ViewModel;
@@ -48,11 +49,17 @@ class IndexController extends AbstractScriptoController
 
     public function logoutAction()
     {
-        $this->apiClient->logout();
-        $this->messenger()->addSuccess($this->translate('Successfully logged out of Scripto.'));
-        $redirect = $this->getRequest()->getQuery('redirect');
-        if ($redirect) {
-            return $this->redirect()->toUrl($redirect);
+        if ($this->getRequest()->isPost()) {
+            $form = $this->getForm(ScriptoLogoutForm::class);
+            $form->setData($this->getRequest()->getPost());
+            if ($form->isValid()) {
+                $this->apiClient->logout();
+                $this->messenger()->addSuccess($this->translate('Successfully logged out of Scripto.'));
+            }
+            $redirect = $this->getRequest()->getQuery('redirect');
+            if ($redirect) {
+                return $this->redirect()->toUrl($redirect);
+            }
         }
         return $this->redirect()->toRoute('admin/scripto-project', ['action' => 'browse']);
     }
