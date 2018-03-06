@@ -128,6 +128,60 @@ class ApiClient
     }
 
     /**
+     * Query page revisions by a named user.
+     *
+     * @link https://www.mediawiki.org/wiki/API:Usercontribs
+     * @param string $name User name
+     * @param int $limit
+     * @param int $offset
+     * @return array
+     */
+    public function queryUserContributions($name, $offset = null, $limit = null)
+    {
+        if (!is_string($name)) {
+            throw new Exception\InvalidArgumentException('A name must be a string');
+        }
+        if (strstr($name, '|')) {
+            throw new Exception\InvalidArgumentException('A name must not contain a vertical bar');
+        }
+
+        $userContributions = [];
+        $continue = false;
+        do {
+            $request = [
+                'action' => 'query',
+                'list' => 'usercontribs',
+                'ucuser' => $name,
+                'uclimit' => 500,
+                'ucprop' => 'ids|title|flags|timestamp|size|parsedcomment',
+            ];
+            if ($continue) {
+                // The previous iteration returned a continue query.
+                $request['continue'] = $query['continue']['continue'];
+                $request['uccontinue'] = $query['continue']['uccontinue'];
+            }
+            $query = $this->request($request);
+            if (isset($query['error'])) {
+                throw new Exception\QueryException($query['error']['info']);
+            }
+            // Only return Scripto contributions.
+            $userContributions = array_merge($userContributions, array_filter(
+                $query['query']['usercontribs'],
+                function ($value) {
+                    return preg_match('/^\d+:\d+:\d+$/', $value['title']);
+                }
+            ));
+            $continue = isset($query['continue']);
+        } while ($continue);
+
+        // We get all user contributions before slicing out what was requested
+        // because the API does not provide a conventional limit/offset query.
+        // This way is rather unoptimized but it offers a simpler and more
+        // predictable interface with only a minor speed reduction.
+        return array_slice($userContributions, $offset, $limit);
+    }
+
+    /**
      * Query information about named users.
      *
      * @link https://www.mediawiki.org/wiki/API:Users
