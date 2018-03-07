@@ -12,7 +12,17 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
 
 <?php if ($revisions): ?>
 
-<button class="compare-selected" data-url="<?php echo $this->escapeHtml($this->url(null, [], true)); ?>">Compare selected</button>
+<div class="browse-controls">
+    <span>
+        <span><?php echo sprintf(
+            '%s | %s',
+            $this->hyperlink($this->translate('First page'), $this->url(null, [], true)),
+            $this->hyperlink($this->translate('Next page'), $this->url(null, [], ['query' => ['continue' => $continue]], true))
+        ); ?></span>
+        <button class="compare-selected" data-url="<?php echo $this->escapeHtml($this->url(null, [], true)); ?>">Compare selected</button>
+    </span>
+</div>
+
 
 <table class="scripto-revisions tablesaw" data-tablesaw-mode="stack">
     <thead>
@@ -56,13 +66,13 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
             <td>
                 <?php $datetime = new \DateTime($revision['timestamp']); ?>
                 <?php echo $this->hyperlink(
-                    $datetime->format('G:i, j F Y'),
+                    $datetime->format('G:i:s, j F Y'),
                     $this->url('admin/scripto-revision-id', ['action' => 'show', 'revision-id' => $revision['revid']], true)
                 ); ?>
             </td>
             <td><?php echo $this->escapeHtml($revision['user']); ?></td>
             <td><?php
-            $sizeDiff = $childRevision ? $revision['size'] - $childRevision['size'] : $revision['size'];
+            $sizeDiff = $childRevision ? $revision['size'] - $childRevision['size'] : 0;
             echo sprintf(
                 '%s bytes (%s)',
                 number_format($revision['size']),

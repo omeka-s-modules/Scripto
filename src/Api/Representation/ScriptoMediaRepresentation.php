@@ -236,13 +236,13 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
      * Get page revisions.
      *
      * @param int $limit
-     * @param int $offset
+     * @param string $continue
      * @return array
      */
-    public function pageRevisions($limit = null, $offset = null)
+    public function pageRevisions($limit, $continue = null)
     {
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
-        return $client->queryRevisions($this->pageTitle(), $limit, $offset);
+        return $client->queryRevisions($this->pageTitle(), $limit, $continue);
     }
 
     /**

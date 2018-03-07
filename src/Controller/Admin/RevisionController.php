@@ -18,12 +18,17 @@ class RevisionController extends AbstractScriptoController
         }
 
         $sItem = $sMedia->scriptoItem();
+        $response = $sMedia->pageRevisions(100, $this->params()->fromQuery('continue'));
+        $revisions = $response['query']['pages'][0]['revisions'];
+        $continue = isset($response['continue']) ? $response['continue']['rvcontinue'] : null;
+
         $view = new ViewModel;
         $view->setVariable('sMedia', $sMedia);
         $view->setVariable('media', $sMedia->media());
-        $view->setVariable('revisions', $sMedia->pageRevisions());
         $view->setVariable('sItem', $sItem);
         $view->setVariable('item', $sItem->item());
+        $view->setVariable('revisions', $revisions);
+        $view->setVariable('continue', $continue);
         return $view;
     }
 
