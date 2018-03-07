@@ -23,9 +23,9 @@ class ItemController extends AbstractScriptoController
 
         $view = new ViewModel;
         $view->setVariable('project', $project);
-        $view->setVariable('syncForm', $this->getForm(SyncProjectForm::class));
-        $view->setVariable('importForm', $this->getForm(ImportProjectForm::class));
-        $view->setVariable('unimportForm', $this->getForm(UnimportProjectForm::class));
+        $view->setVariable('syncForm', $this->getForm(SyncProjectForm::class, ['project' => $project]));
+        $view->setVariable('importForm', $this->getForm(ImportProjectForm::class, ['project' => $project]));
+        $view->setVariable('unimportForm', $this->getForm(UnimportProjectForm::class, ['project' => $project]));
         $view->setVariable('sItems', $sItems);
         return $view;
     }

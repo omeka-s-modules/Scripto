@@ -14,5 +14,11 @@ class ImportProjectForm extends Form
                 'value' => 'Import project', // @translate
             ],
         ]);
+
+        // Disable the submit button if the project has no property.
+        $project = $this->getOption('project');
+        if ($project && !$project->property()) {
+            $this->get('submit')->setAttribute('disabled', true);
+        }
     }
 }
