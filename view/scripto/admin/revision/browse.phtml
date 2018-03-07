@@ -17,12 +17,14 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
         <span><?php echo sprintf(
             '%s | %s',
             $this->hyperlink($this->translate('First page'), $this->url(null, [], true)),
-            $this->hyperlink($this->translate('Next page'), $this->url(null, [], ['query' => ['continue' => $continue]], true))
+            $continue ? $this->hyperlink(
+                $this->translate('Next page'),
+                $this->url(null, [], ['query' => ['continue' => $continue]], true)
+            ) : $this->translate('Next page')
         ); ?></span>
         <button class="compare-selected" data-url="<?php echo $this->escapeHtml($this->url(null, [], true)); ?>">Compare selected</button>
     </span>
 </div>
-
 
 <table class="scripto-revisions tablesaw" data-tablesaw-mode="stack">
     <thead>
