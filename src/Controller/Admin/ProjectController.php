@@ -60,8 +60,8 @@ class ProjectController extends AbstractScriptoController
             }
         } else {
             $data = $project->jsonSerialize();
-            $data['o:item_set'] = $data['o:item_set']->id();
-            $data['o:property'] = $data['o:property']->id();
+            $data['o:item_set'] = $data['o:item_set'] ? $data['o:item_set']->id() : null;
+            $data['o:property'] = $data['o:property'] ? $data['o:property']->id() : null;
             $form->setData($data);
         }
 
