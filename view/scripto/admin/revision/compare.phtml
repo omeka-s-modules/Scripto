@@ -26,7 +26,7 @@ $this->htmlElement('body')->appendAttribute('class', 'show');
                 echo sprintf(
                     $this->translate('Revision as of %s by %s'),
                     $datetime->format('G:i:s, j F Y'),
-                    $fromRevision['user']
+                    $this->hyperlink($fromRevision['user'], $this->url('admin/scripto-user-id', ['user-id' => $fromRevision['user']]))
                 );
                 ?>
                 </div>
@@ -50,7 +50,7 @@ $this->htmlElement('body')->appendAttribute('class', 'show');
                 echo sprintf(
                     $this->translate('Revision as of %s by %s'),
                     $datetime->format('G:i:s, j F Y'),
-                    $toRevision['user']
+                    $this->hyperlink($toRevision['user'], $this->url('admin/scripto-user-id', ['user-id' => $toRevision['user']]))
                 );
                 ?>
                 </div>

@@ -1,0 +1,53 @@
+<?php
+$this->headLink()->appendStylesheet($this->assetUrl('css/scripto.css', 'Scripto'));
+$this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
+$this->htmlElement('body')->appendAttribute('class', 'browse');
+?>
+
+<?php echo $this->pageTitle($this->translate('User contributions'), 1, $this->translate('Scripto'), $user['name']); ?>
+
+<div class="browse-controls">
+    <span><?php echo sprintf(
+        '%s | %s',
+        $this->hyperlink($this->translate('First page'), $this->url(null, [], true)),
+        $continue ? $this->hyperlink(
+            $this->translate('Next page'),
+            $this->url(null, [], ['query' => ['continue' => $continue]], true)
+        ) : $this->translate('Next page')
+    ); ?></span>
+</div>
+
+<table class="scripto-revisions tablesaw" data-tablesaw-mode="stack">
+    <thead>
+        <tr>
+            <th><?php echo $this->translate('Date'); ?></th>
+            <th><?php echo $this->translate('Project'); ?></th>
+            <th><?php echo $this->translate('Size'); ?></th>
+            <th><?php echo $this->translate('Flags'); ?></th>
+            <th><?php echo $this->translate('Comment'); ?></th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($userCons as $userCon): ?>
+    <?php $date = (new \DateTime($userCon['timestamp']))->format('G:i:s, j F Y'); ?>
+        <tr>
+            <td><?php echo isset($userCon['scripto_revision_url'])
+                ? $this->hyperlink($date, $userCon['scripto_revision_url'])
+                : $date; ?></td>
+            <td><?php echo isset($userCon['scripto_project'])
+                ? $userCon['scripto_project']->link($userCon['scripto_project']->title())
+                : 'n/a'; ?></td>
+            <td><?php echo sprintf(
+                '%s bytes (%s)',
+                number_format($userCon['size']),
+                sprintf('%s%s', 0 < $userCon['sizediff'] ? '+' : '', number_format($userCon['sizediff']))
+            ); ?></td>
+            <td>
+                <?php echo $userCon['new'] ? sprintf('(%s)', $this->translate('new page')) : null; ?>
+                <?php echo $userCon['top'] ? sprintf('(%s)', $this->translate('current revision')) : null; ?>
+            </td>
+            <td><i><?php echo $userCon['parsedcomment']; ?></i></td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>

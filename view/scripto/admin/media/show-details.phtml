@@ -24,15 +24,21 @@
     <h4><?php echo $this->translate('Last edited'); ?></h4>
     <?php $edited = $sMedia->edited(); ?>
     <div class="value"><?php echo $edited
-        ? sprintf('%s by %s', $this->i18n()->dateFormat($sMedia->edited(), 'long', 'medium'), $sMedia->editedBy())
-        : $this->translate('Not edited'); ?></div>
+        ? sprintf(
+            '%s by %s',
+            $this->i18n()->dateFormat($sMedia->edited(), 'long', 'medium'),
+            $this->hyperlink($sMedia->editedBy(), $this->url('admin/scripto-user-id', ['user-id' => $sMedia->editedBy()]))
+        ) : $this->translate('Not edited'); ?></div>
 </div>
 <div class="meta-group">
     <h4><?php echo $this->translate('Last completed'); ?></h4>
     <?php $completed = $sMedia->completed(); ?>
     <div class="value"><?php echo $completed
-        ? sprintf('%s by %s', $this->i18n()->dateFormat($sMedia->completed(), 'long', 'medium'), $sMedia->completedBy())
-        : $this->translate('Not completed'); ?></div>
+        ? sprintf(
+            '%s by %s',
+            $this->i18n()->dateFormat($sMedia->completed(), 'long', 'medium'),
+            $this->hyperlink($sMedia->completedBy(), $this->url('admin/scripto-user-id', ['user-id' => $sMedia->completedBy()]))
+        ) : $this->translate('Not completed'); ?></div>
 </div>
 <div class="meta-group">
     <h4><?php echo $this->translate('Last approved'); ?></h4>

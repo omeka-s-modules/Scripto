@@ -29,6 +29,7 @@ return [
         'invokables' => [
             'Scripto\Controller\Index' => Scripto\Controller\IndexController::class,
             'Scripto\Controller\Admin\Index' => Scripto\Controller\Admin\IndexController::class,
+            'Scripto\Controller\Admin\User' => Scripto\Controller\Admin\UserController::class,
             'Scripto\Controller\Admin\Project' => Scripto\Controller\Admin\ProjectController::class,
             'Scripto\Controller\Admin\Item' => Scripto\Controller\Admin\ItemController::class,
             'Scripto\Controller\Admin\Media' => Scripto\Controller\Admin\MediaController::class,
@@ -75,6 +76,17 @@ return [
                                 '__NAMESPACE__' => 'Scripto\Controller\Admin',
                                 'controller' => 'index',
                                 'action' => 'index',
+                            ],
+                        ],
+                    ],
+                    'scripto-user-id' =>  [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/user/:user-id',
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\Admin',
+                                'controller' => 'user',
+                                'action' => 'show',
                             ],
                         ],
                     ],
