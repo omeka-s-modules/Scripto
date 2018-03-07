@@ -27,7 +27,7 @@ class ProjectController extends AbstractScriptoController
                 $response = $this->api($form)->create('scripto_projects', $formData);
                 if ($response) {
                     $this->messenger()->addSuccess('Scripto project successfully created.'); // @translate
-                    return $this->redirect()->toRoute('admin/scripto-item', ['action' => 'browse'], true);
+                    return $this->redirect()->toUrl($response->getContent()->url());
                 }
             } else {
                 $this->messenger()->addFormErrors($form);
@@ -53,7 +53,7 @@ class ProjectController extends AbstractScriptoController
                 $response = $this->api($form)->update('scripto_projects', $this->params('project-id'), $formData);
                 if ($response) {
                     $this->messenger()->addSuccess('Scripto project successfully edited.'); // @translate
-                    return $this->redirect()->toRoute('admin/scripto-item', ['action' => 'browse'], true);
+                    return $this->redirect()->toUrl($response->getContent()->url());
                 }
             } else {
                 $this->messenger()->addFormErrors($form);
