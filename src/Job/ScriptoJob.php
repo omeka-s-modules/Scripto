@@ -2,6 +2,7 @@
 namespace Scripto\Job;
 
 use Omeka\Job\AbstractJob;
+use Omeka\Job\Exception;
 use Scripto\Entity\ScriptoProject;
 
 abstract class ScriptoJob extends AbstractJob
@@ -26,15 +27,19 @@ abstract class ScriptoJob extends AbstractJob
     }
 
     /**
-     * Unimport text.
+     * Unimport project text.
      *
      * Deletes all text that was previously imported to the items in the Scripto
      * project matching the project's property and language.
      *
      * @param ScriptoProject $project
      */
-    public function unimportText(ScriptoProject $project)
+    public function unimportProject(ScriptoProject $project)
     {
+        if (!$project->getProperty()) {
+            throw new Exception\RuntimeException('Cannot unimport a project without a property.');
+        }
+
         $em = $this->getServiceLocator()->get('Omeka\EntityManager');
         $itemIds = $this->getProjectItemIds($project);
         $qb = $em->createQueryBuilder();

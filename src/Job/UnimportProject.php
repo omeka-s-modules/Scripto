@@ -15,6 +15,6 @@ class UnimportProject extends ScriptoJob
     {
         $em = $this->getServiceLocator()->get('Omeka\EntityManager');
         $project = $em->find('Scripto\Entity\ScriptoProject', $this->getArg('scripto_project_id'));
-        $this->unimportText($project);
+        $this->unimportProject($project);
     }
 }
