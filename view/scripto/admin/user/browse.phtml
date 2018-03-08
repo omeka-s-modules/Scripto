@@ -1,0 +1,49 @@
+<?php
+$this->headLink()->appendStylesheet($this->assetUrl('css/scripto.css', 'Scripto'));
+$this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
+$this->htmlElement('body')->appendAttribute('class', 'browse');
+?>
+
+<?php echo $this->pageTitle($this->translate('User browse'), 1, $this->translate('Scripto')); ?>
+
+<?php echo $this->scriptoAuth()->loginBar(); ?>
+
+<div class="browse-controls">
+    <span><?php echo sprintf(
+        '%s | %s',
+        $this->hyperlink($this->translate('First page'), $this->url(null, [], true)),
+        $continue ? $this->hyperlink(
+            $this->translate('Next page'),
+            $this->url(null, [], ['query' => ['continue' => $continue]], true)
+        ) : $this->translate('Next page')
+    ); ?></span>
+</div>
+
+<table class="tablesaw" data-tablesaw-mode="stack">
+    <thead>
+        <tr>
+            <th><?php echo $this->translate('Name'); ?></th>
+            <th><?php echo $this->translate('Edit count'); ?></th>
+            <th><?php echo $this->translate('Date created'); ?></th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($users as $user): ?>
+    <?php
+    $datetime = new \DateTime($user['registration']);
+    $groups = array_filter([
+        in_array('sysop', $user['groups']) ? $this->translate('administrator') : null,
+        in_array('bureaucrat', $user['groups']) ? $this->translate('bureaucrat') : null,
+    ]);
+    ?>
+        <tr>
+            <td>
+                <?php echo $this->hyperlink($user['name'], $this->url('admin/scripto-user-id', ['user-id' => $user['name']], true)); ?>
+                <?php echo $groups ? sprintf(' (%s)', implode(', ', $groups)) : null; ?>
+            </td>
+            <td><?php echo number_format($user['editcount']); ?></td>
+            <td><?php echo $this->i18n()->dateFormat($datetime, 'medium', 'short') ?></td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>

@@ -79,6 +79,20 @@ return [
                             ],
                         ],
                     ],
+                    'scripto-user' =>  [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/user[/:action]',
+                            'constraints' => [
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\Admin',
+                                'controller' => 'user',
+                                'action' => 'browse',
+                            ],
+                        ],
+                    ],
                     'scripto-user-id' =>  [
                         'type' => 'Segment',
                         'options' => [

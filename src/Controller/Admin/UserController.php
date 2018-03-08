@@ -5,6 +5,18 @@ use Zend\View\Model\ViewModel;
 
 class UserController extends AbstractScriptoController
 {
+    public function browseAction()
+    {
+        $response = $this->scriptoApiClient()->queryAllUsers(100, $this->params()->fromQuery('continue'));
+        $users = $response['query']['allusers'];
+        $continue = isset($response['continue']) ? $response['continue']['aufrom'] : null;
+
+        $view = new ViewModel;
+        $view->setVariable('users', $users);
+        $view->setVariable('continue', $continue);
+        return $view;
+    }
+
     public function showAction()
     {
         $userName = $this->params('user-id');
