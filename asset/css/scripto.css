@@ -13,11 +13,20 @@
 
 .browse .scripto-revisions td {
     width: 100%;
+    vertical-align: top;
 }
 
 .browse .scripto-revisions td:first-child,
 .browse .scripto-revisions th:first-child {
     width: auto;
+}
+
+.browse .scripto-revisions th.comment {
+    width: 40%;
+}
+
+.mediawiki-pagination {
+    margin: 0 auto 0 12px;
 }
 
 #wikitext.active {
