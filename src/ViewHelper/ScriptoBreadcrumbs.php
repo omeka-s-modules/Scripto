@@ -33,7 +33,20 @@ class ScriptoBreadcrumbs extends AbstractHelper
         $view = $this->getView();
         $routeName = $this->routeMatch->getMatchedRouteName();
 
-        $bc[] = $view->hyperlink($view->translate('Project browse'), $view->url('admin/scripto-project'));
+        if ('admin/scripto' === $routeName) {
+            $bc[] = $view->translate('Dashboard');
+        } else {
+            $bc[] = $view->hyperlink($view->translate('Dashboard'), $view->url('admin/scripto'));
+        }
+
+        if ('admin/scripto-project' === $routeName) {
+            $bc[] = $view->translate('Project browse');
+        } elseif (in_array($routeName, ['admin/scripto-item', 'admin/scripto-media', 'admin/scripto-media-id', 'admin/scripto-revision', 'admin/scripto-revision-id', 'admin/scripto-revision-compare'])) {
+            $bc[] = $view->hyperlink(
+                $view->translate('Project browse'),
+                $view->url('admin/scripto-project')
+            );
+        }
 
         if ('admin/scripto-item' === $routeName) {
             $bc[] = $view->translate('Project review');

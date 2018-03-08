@@ -4,10 +4,44 @@ namespace Scripto\Controller\Admin;
 use Scripto\Form\ScriptoLoginForm;
 use Scripto\Form\ScriptoLogoutForm;
 use Scripto\Mediawiki\Exception\ClientloginException;
+use Zend\Authentication\AuthenticationService;
 use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractScriptoController
 {
+    /**
+     * @var AuthenticationService
+     */
+    protected $auth;
+
+    /**
+     * @param AuthenticationService $auth
+     */
+    public function __construct(AuthenticationService $auth)
+    {
+        $this->auth = $auth;
+    }
+
+    public function indexAction()
+    {
+        $userInfo = $this->scriptoApiClient()->getUserInfo();
+        $user = $this->scriptoApiClient()->queryUser($userInfo['name']);
+
+        $response = $this->scriptoApiClient()->queryUserContributions($userInfo['name'], 20);
+        $userCons = $this->prepareUserContributions($response['query']['usercontribs']);
+
+        $projects = $this->api()->search('scripto_projects', [
+            'limit' => 20,
+            'owner_id' => $this->auth->getIdentity()->getId(),
+        ])->getContent();
+
+        $view = new ViewModel;
+        $view->setVariable('user', $user);
+        $view->setVariable('userCons', $userCons);
+        $view->setVariable('projects', $projects);
+        return $view;
+    }
+
     public function loginAction()
     {
         if ($this->getRequest()->isPost()) {

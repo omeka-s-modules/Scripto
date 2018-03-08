@@ -24,24 +24,7 @@ class UserController extends AbstractScriptoController
 
         $user = $this->scriptoApiClient()->queryUser($userName);
         $response = $this->scriptoApiClient()->queryUserContributions($userName, 100, $continue);
-
-        $userCons = $response['query']['usercontribs'];
-        foreach ($userCons as $key => $userCon) {
-            if (preg_match('/^\d+:\d+:\d+$/', $userCon['title'])) {
-                list($projectId, $itemId, $mediaId) = explode(':', $userCon['title']);
-                $sMedia = $this->getScriptoRepresentation($projectId, $itemId, $mediaId);
-                if ($sMedia) {
-                    $userCons[$key]['scripto_project'] = $sMedia->scriptoItem()->scriptoProject();
-                    $userCons[$key]['scripto_revision_url'] = $this->url()->fromRoute('admin/scripto-revision-id', [
-                        'project-id' => $projectId,
-                        'item-id' => $itemId,
-                        'media-id' => $mediaId,
-                        'revision-id' => $userCon['revid'],
-                    ]);
-                }
-            }
-        }
-
+        $userCons = $this->prepareUserContributions($response['query']['usercontribs']);
         $continue = isset($response['continue']) ? $response['continue']['uccontinue'] : null;
 
         $view = new ViewModel;

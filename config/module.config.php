@@ -28,12 +28,14 @@ return [
     'controllers' => [
         'invokables' => [
             'Scripto\Controller\Index' => Scripto\Controller\IndexController::class,
-            'Scripto\Controller\Admin\Index' => Scripto\Controller\Admin\IndexController::class,
             'Scripto\Controller\Admin\User' => Scripto\Controller\Admin\UserController::class,
             'Scripto\Controller\Admin\Project' => Scripto\Controller\Admin\ProjectController::class,
             'Scripto\Controller\Admin\Item' => Scripto\Controller\Admin\ItemController::class,
             'Scripto\Controller\Admin\Media' => Scripto\Controller\Admin\MediaController::class,
             'Scripto\Controller\Admin\Revision' => Scripto\Controller\Admin\RevisionController::class,
+        ],
+        'factories' => [
+            'Scripto\Controller\Admin\Index' => Scripto\Service\Controller\Admin\IndexControllerFactory::class,
         ],
     ],
     'controller_plugins' => [
@@ -56,7 +58,7 @@ return [
         'AdminModule' => [
             [
                 'label' => 'Scripto', // @translate
-                'route' => 'admin/scripto-project',
+                'route' => 'admin/scripto',
                 'resource' => 'Scripto\Controller\Admin\Project',
             ],
         ],

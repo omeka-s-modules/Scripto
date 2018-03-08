@@ -53,4 +53,30 @@ class AbstractScriptoController extends AbstractActionController
 
         return $sMedia;
     }
+
+    /**
+     * Prepare user contributions for rendering.
+     *
+     * @param array $userCons
+     * @return array
+     */
+    public function prepareUserContributions(array $userCons)
+    {
+        foreach ($userCons as $key => $userCon) {
+            if (preg_match('/^\d+:\d+:\d+$/', $userCon['title'])) {
+                list($projectId, $itemId, $mediaId) = explode(':', $userCon['title']);
+                $sMedia = $this->getScriptoRepresentation($projectId, $itemId, $mediaId);
+                if ($sMedia) {
+                    $userCons[$key]['scripto_project'] = $sMedia->scriptoItem()->scriptoProject();
+                    $userCons[$key]['scripto_revision_url'] = $this->url()->fromRoute('admin/scripto-revision-id', [
+                        'project-id' => $projectId,
+                        'item-id' => $itemId,
+                        'media-id' => $mediaId,
+                        'revision-id' => $userCon['revid'],
+                    ]);
+                }
+            }
+        }
+        return $userCons;
+    }
 }
