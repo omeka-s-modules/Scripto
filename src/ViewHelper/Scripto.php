@@ -59,7 +59,10 @@ class Scripto extends AbstractHelper
             ));
             return sprintf(
                 '<div id="scripto-login"><h3>%s</h3>%s</div>',
-                sprintf($view->translate('Logged in to Scripto (%s)'),  $userInfo['name']),
+                sprintf(
+                    $view->translate('Logged in to Scripto as %s'),
+                    $view->hyperlink($userInfo['name'], $view->url('admin/scripto-user-id', ['user-id' => $userInfo['name']]))
+                ),
                 $view->form($form)
             );
         } else {
