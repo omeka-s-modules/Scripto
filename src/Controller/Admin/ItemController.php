@@ -1,6 +1,7 @@
 <?php
 namespace Scripto\Controller\Admin;
 
+use Omeka\Stdlib\Message;
 use Zend\View\Model\ViewModel;
 use Scripto\Form\ImportProjectForm;
 use Scripto\Form\SyncProjectForm;
@@ -20,6 +21,29 @@ class ItemController extends AbstractScriptoController
         $response = $this->api()->search('scripto_items', $query);
         $this->paginator($response->getTotalResults(), $this->params()->fromQuery('page'));
         $sItems = $response->getContent();
+
+        if (!$project->itemSet()) {
+            $message = new Message(
+                'This project has no item set. %s', // @translate
+                sprintf(
+                    '<a href="%s">%s</a>',
+                    htmlspecialchars($project->adminUrl('edit')),
+                    $this->translate('Set an item set here.')
+                ));
+            $message->setEscapeHtml(false);
+            $this->messenger()->addError($message);
+        }
+        if (!$project->property()) {
+            $message = new Message(
+                'This project has no property. %s', // @translate
+                sprintf(
+                    '<a href="%s">%s</a>',
+                    htmlspecialchars($project->adminUrl('edit')),
+                    $this->translate('Set a property here.')
+                ));
+            $message->setEscapeHtml(false);
+            $this->messenger()->addError($message);
+        }
 
         $view = new ViewModel;
         $view->setVariable('project', $project);
