@@ -5,9 +5,9 @@ $this->htmlElement('body')->appendAttribute('class', 'show');
 
 <?php echo $this->pageTitle($this->translate('Revision compare'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
 
-<?php echo $this->scriptoAuth()->loginBar(); ?>
+<?php echo $this->scripto()->adminLoginBar(); ?>
 
-<?php echo $this->scriptoBreadcrumbs(); ?>
+<?php echo $this->scripto()->adminBreadcrumbs(); ?>
 
 <table id="compare-table">
     <colgroup>

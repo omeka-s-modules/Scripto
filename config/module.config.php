@@ -50,8 +50,7 @@ return [
     ],
     'view_helpers' => [
         'factories' => [
-            'scriptoBreadcrumbs' => Scripto\Service\ViewHelper\ScriptoBreadcrumbsFactory::class,
-            'scriptoAuth' => Scripto\Service\ViewHelper\ScriptoAuthFactory::class,
+            'scripto' => Scripto\Service\ViewHelper\ScriptoFactory::class,
         ],
     ],
     'navigation' => [

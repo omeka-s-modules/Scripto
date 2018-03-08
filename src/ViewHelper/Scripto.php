@@ -1,25 +1,80 @@
 <?php
 namespace Scripto\ViewHelper;
 
-use  Zend\Router\Http\RouteMatch;
+use Scripto\Form\ScriptoLoginForm;
+use Scripto\Form\ScriptoLogoutForm;
+use Scripto\Mediawiki\ApiClient;
+use Zend\Form\Element;
+use Zend\Router\Http\RouteMatch;
+use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\View\Helper\AbstractHelper;
 
 /**
- * View helper used to render Scripto admin interface breadcrumbs.
+ * View helper used to render Scripto template elements.
  */
-class ScriptoBreadcrumbs extends AbstractHelper
+class Scripto extends AbstractHelper
 {
+    /**
+     * @var ApiClient
+     */
+    protected $client;
+
+    /**
+     * @var ServiceLocatorInterface
+     */
+    protected $formElementManager;
+
     /**
      * @var RouteMatch
      */
     protected $routeMatch;
 
     /**
+     * @param ApiClient $client
+     * @param ServiceLocatorInterface $formElementManager
      * @param RouteMatch $routeMatch
      */
-    public function __construct(RouteMatch $routeMatch)
+    public function __construct(ApiClient $client, ServiceLocatorInterface $formElementManager, RouteMatch $routeMatch)
     {
+        $this->client = $client;
+        $this->formElementManager = $formElementManager;
         $this->routeMatch = $routeMatch;
+    }
+
+    /**
+     * Return the Scripto login and logout bar.
+     *
+     * @return string
+     */
+    public function adminLoginBar()
+    {
+        $view = $this->getView();
+        if ($this->client->userIsLoggedIn()) {
+            $userInfo = $this->client->getUserInfo();
+            $form = $this->formElementManager->get(ScriptoLogoutForm::class);
+            $form->setAttribute('action', $view->url(
+                'admin/scripto',
+                ['action' => 'logout'],
+                ['query' => ['redirect' => $this->getCurrentUrl()]]
+            ));
+            return sprintf(
+                '<div id="scripto-login"><h3>%s</h3>%s</div>',
+                sprintf($view->translate('Logged in to Scripto (%s)'),  $userInfo['name']),
+                $view->form($form)
+            );
+        } else {
+            $form = $this->formElementManager->get(ScriptoLoginForm::class);
+            $form->setAttribute('action', $view->url(
+                'admin/scripto',
+                ['action' => 'login'],
+                ['query' => ['redirect' => $this->getCurrentUrl()]]
+            ));
+            return sprintf(
+                '<div id="scripto-login"><h3>%s</h3>%s</div>',
+                $view->translate('Log in to Scripto'),
+                $view->form($form)
+            );
+        }
     }
 
     /**
@@ -27,7 +82,7 @@ class ScriptoBreadcrumbs extends AbstractHelper
      *
      * @return string
      */
-    public function __invoke()
+    public function adminBreadcrumbs()
     {
         $bc = [];
         $view = $this->getView();
@@ -110,5 +165,38 @@ class ScriptoBreadcrumbs extends AbstractHelper
         }
 
         return sprintf('<div class="breadcrumbs">%s</div>', implode('<div class="separator"></div>', $bc));
+    }
+
+    /**
+     * Render Scripto MediaWiki pagination.
+     *
+     * @return string
+     */
+    public function adminMediawikiPagination()
+    {
+        $view = $this->getView();
+        return sprintf(
+            '<span class="mediawiki-pagination">%s | %s</span>',
+            $view->hyperlink($view->translate('First page'), $view->url(null, [], true)),
+            $view->continue ? $view->hyperlink(
+                $view->translate('Next page'),
+                $view->url(null, [], ['query' => ['continue' => $view->continue]], true)
+            ) : $view->translate('Next page')
+        );
+    }
+
+    /**
+     * Get the current URL, including query string.
+     *
+     * @return string
+     */
+    public function getCurrentUrl()
+    {
+        $view = $this->getView();
+        return sprintf(
+            '%s?%s',
+            $view->url(null, [], true),
+            http_build_query($view->params()->fromQuery())
+        );
     }
 }
