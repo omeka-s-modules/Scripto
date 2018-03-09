@@ -167,21 +167,27 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
     /**
      * Was this media edited after it was imported?
      *
+     * Returns false if the project has not been imported.
+     *
      * @return bool
      */
     public function isEditedAfterImported()
     {
-        return $this->edited() > $this->resource->getScriptoItem()->getScriptoProject()->getImported();
+        $imported = $this->resource->getScriptoItem()->getScriptoProject()->getImported();
+        return $imported ? $this->edited() > $imported : false;
     }
 
     /**
      * Was this media synced after it was imported?
      *
+     * Returns false if the project has not been imported.
+     *
      * @return bool
      */
     public function isSyncedAfterImported()
     {
-        return $this->synced() > $this->resource->getScriptoItem()->getScriptoProject()->getImported();
+        $imported = $this->resource->getScriptoItem()->getScriptoProject()->getImported();
+        return $imported ? $this->synced() > $imported : false;
     }
 
     /**
