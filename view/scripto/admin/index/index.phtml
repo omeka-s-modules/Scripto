@@ -20,7 +20,12 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto dashboard');
 
 <div class="dashboard-row">
     <div class="recent-contributions panel">
-        <h4><?php echo $this->translate('Your recent contributions'); ?> <?php echo $this->hyperlink($this->translate('View all'), $this->url('admin/scripto-user-id', ['user-id' => $user['name']]), ['class' => 'button']); ?></h4>
+        <h4>
+            <?php echo $this->translate('Your recent contributions'); ?>
+            <?php if (!isset($user['invalid'])): ?>
+            <?php echo $this->hyperlink($this->translate('View all your contributions'), $this->url('admin/scripto-user-id', ['user-id' => $user['name']]), ['class' => 'button']); ?>
+            <?php endif; ?>
+        </h4>
         <?php if (!isset($user['invalid']) && $userCons): ?>
         <ul>
         <?php foreach ($userCons as $userCon): ?>
@@ -37,7 +42,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto dashboard');
         <?php endif; ?>
     </div>
     <div class="recent-projects panel">
-        <h4><?php echo $this->translate('Your recent projects'); ?> <?php echo $this->hyperlink($this->translate('View all'), $this->url('admin/scripto-project'), ['class' => 'button']); ?></h4>
+        <h4><?php echo $this->translate('Your projects'); ?> <?php echo $this->hyperlink($this->translate('View all projects'), $this->url('admin/scripto-project'), ['class' => 'button']); ?></h4>
         <?php if ($projects): ?>
         <ul>
         <?php foreach ($projects as $project): ?>
