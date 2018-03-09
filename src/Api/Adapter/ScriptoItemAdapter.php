@@ -66,7 +66,7 @@ class ScriptoItemAdapter extends AbstractEntityAdapter
                 ->andWhere("$alias.scriptoItem = Scripto\Entity\ScriptoItem.id")
                 ->andWhere("$alias.approved IS NULL");
             $qb->andWhere($qb->expr()->not($qb->expr()->exists($subQb->getDQL())));
-        } elseif (isset($query['is_not_approved'])) {
+        } elseif (isset($query['is_not_approved']) || isset($query['is_in_progress']) || isset($query['is_new'])) {
             // Get all not approved Scripto items. An item is "not approved" if
             // at least one child media is not marked as approved.
             $alias = $this->createAlias();
@@ -76,6 +76,20 @@ class ScriptoItemAdapter extends AbstractEntityAdapter
                 ->andWhere("$alias.scriptoItem = Scripto\Entity\ScriptoItem.id")
                 ->andWhere("$alias.approved IS NULL");
             $qb->andWhere($qb->expr()->exists($subQb->getDQL()));
+        }
+
+        if (isset($query['is_in_progress'])) {
+            // Get all in progress Scripto items. An item is "in progress" if
+            // a) at least one child media is not marked as approved, and b)
+            // at least one child media has been edited. Note that an "in
+            // progress" item can be marked as "In progress" and "Completed".
+            $qb->andWhere($qb->expr()->isNotNull('Scripto\Entity\ScriptoItem.edited'));
+        } elseif (isset($query['is_new'])) {
+            // Get all new Scripto items. An item is "new" if a) at least one
+            // child media is not marked as approved, and b) no child media has
+            // been edited. Note that media can be not edited but marked as
+            // completed, so a "new" item can be marked as "New" and "Completed".
+            $qb->andWhere($qb->expr()->isNull('Scripto\Entity\ScriptoItem.edited'));
         }
     }
 
