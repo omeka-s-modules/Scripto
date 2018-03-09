@@ -1,7 +1,7 @@
 <?php
 $this->headLink()->appendStylesheet($this->assetUrl('css/scripto.css', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
-$this->htmlElement('body')->appendAttribute('class', 'browse');
+$this->htmlElement('body')->appendAttribute('class', 'scripto user browse');
 ?>
 
 <?php echo $this->pageTitle($this->translate('User browse'), 1, $this->translate('Scripto')); ?>
@@ -19,7 +19,7 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
         <tr>
             <th><?php echo $this->translate('Name'); ?></th>
             <th><?php echo $this->translate('Edit count'); ?></th>
-            <th><?php echo $this->translate('Date created'); ?></th>
+            <th class="comment"><?php echo $this->translate('Date created'); ?></th>
         </tr>
     </thead>
     <tbody>
@@ -34,7 +34,7 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
         <tr>
             <td>
                 <?php echo $this->hyperlink($user['name'], $this->url('admin/scripto-user-id', ['user-id' => $user['name']], true)); ?>
-                <?php echo $groups ? sprintf(' (%s)', implode(', ', $groups)) : null; ?>
+                <span class="flags"><?php echo $groups ? sprintf(' (%s)', implode(', ', $groups)) : null; ?></span>
             </td>
             <td><?php echo number_format($user['editcount']); ?></td>
             <td><?php echo $this->i18n()->dateFormat($datetime, 'medium', 'short') ?></td>
