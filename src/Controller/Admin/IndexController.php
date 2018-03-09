@@ -31,7 +31,8 @@ class IndexController extends AbstractScriptoController
         $userCons = $this->prepareUserContributions($response['query']['usercontribs']);
 
         $projects = $this->api()->search('scripto_projects', [
-            'limit' => 20,
+            'sort_by' => 'created',
+            'sort_order' => 'desc',
             'owner_id' => $this->auth->getIdentity()->getId(),
         ])->getContent();
 
