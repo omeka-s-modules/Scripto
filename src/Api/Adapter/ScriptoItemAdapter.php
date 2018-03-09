@@ -91,6 +91,12 @@ class ScriptoItemAdapter extends AbstractEntityAdapter
             // completed, so a "new" item can be marked as "New" and "Completed".
             $qb->andWhere($qb->expr()->isNull('Scripto\Entity\ScriptoItem.edited'));
         }
+
+        if (isset($query['is_edited_after_imported'])) {
+            $alias = $this->createAlias();
+            $qb->innerJoin('Scripto\Entity\ScriptoItem.scriptoProject', $alias);
+            $qb->andWhere($qb->expr()->gt('Scripto\Entity\ScriptoItem.edited', "$alias.imported"));
+        }
     }
 
     public function validateRequest(Request $request, ErrorStore $errorStore)
