@@ -30,6 +30,62 @@ class Scripto extends AbstractHelper
     protected $routeMatch;
 
     /**
+     * @var array Breadcrumbs route map
+     */
+    protected $bcRouteMap = [
+        'admin/scripto' => [
+            'breadcrumbs' => [],
+            'text' => 'Dashboard', // @translate
+            'params' => [],
+        ],
+        'admin/scripto-user' => [
+            'breadcrumbs' => ['admin/scripto'],
+            'text' => 'User browse', // @translate
+            'params' => [],
+        ],
+        'admin/scripto-user-id' => [
+            'breadcrumbs' => ['admin/scripto', 'admin/scripto-user'],
+            'text' => 'User show', // @translate
+            'params' => ['user-id'],
+        ],
+        'admin/scripto-project' => [
+            'breadcrumbs' => ['admin/scripto'],
+            'text' => 'Project browse', // @translate
+            'params' => [],
+        ],
+        'admin/scripto-item' => [
+            'breadcrumbs' => ['admin/scripto', 'admin/scripto-project'],
+            'text' => 'Project review', // @translate
+            'params' => ['project-id'],
+        ],
+        'admin/scripto-media' => [
+            'breadcrumbs' => ['admin/scripto', 'admin/scripto-project', 'admin/scripto-item'],
+            'text' => 'Item review', // @translate
+            'params' => ['project-id', 'item-id'],
+        ],
+        'admin/scripto-media-id' => [
+            'breadcrumbs' => ['admin/scripto', 'admin/scripto-project', 'admin/scripto-item', 'admin/scripto-media'],
+            'text' => 'Media review', // @translate
+            'params' => ['project-id', 'item-id', 'media-id'],
+        ],
+        'admin/scripto-revision' => [
+            'breadcrumbs' => ['admin/scripto', 'admin/scripto-project', 'admin/scripto-item', 'admin/scripto-media', 'admin/scripto-media-id'],
+            'text' => 'Revision browse', // @translate
+            'params' => ['project-id', 'item-id', 'media-id'],
+        ],
+        'admin/scripto-revision-id' => [
+            'breadcrumbs' => ['admin/scripto', 'admin/scripto-project', 'admin/scripto-item', 'admin/scripto-media', 'admin/scripto-media-id', 'admin/scripto-revision'],
+            'text' => 'Revision show', // @translate
+            'params' => ['project-id', 'item-id', 'media-id', 'revision-id'],
+        ],
+        'admin/scripto-revision-compare' => [
+            'breadcrumbs' => ['admin/scripto', 'admin/scripto-project', 'admin/scripto-item', 'admin/scripto-media', 'admin/scripto-media-id', 'admin/scripto-revision'],
+            'text' => 'Revision compare', // @translate
+            'params' => ['project-id', 'item-id', 'media-id', 'to-revision-id', 'from-revision-id'],
+        ],
+    ];
+
+    /**
      * @param ApiClient $client
      * @param ServiceLocatorInterface $formElementManager
      * @param RouteMatch $routeMatch
@@ -90,83 +146,17 @@ class Scripto extends AbstractHelper
         $bc = [];
         $view = $this->getView();
         $routeName = $this->routeMatch->getMatchedRouteName();
-
-        if ('admin/scripto' === $routeName) {
-            $bc[] = $view->translate('Dashboard');
-        } else {
-            $bc[] = $view->hyperlink($view->translate('Dashboard'), $view->url('admin/scripto'));
+        if (!isset($this->bcRouteMap[$routeName])) {
+            return;
         }
-
-        if ('admin/scripto-project' === $routeName) {
-            $bc[] = $view->translate('Project browse');
-        } elseif (in_array($routeName, ['admin/scripto-item', 'admin/scripto-media', 'admin/scripto-media-id', 'admin/scripto-revision', 'admin/scripto-revision-id', 'admin/scripto-revision-compare'])) {
-            $bc[] = $view->hyperlink(
-                $view->translate('Project browse'),
-                $view->url('admin/scripto-project')
-            );
+        foreach ($this->bcRouteMap[$routeName]['breadcrumbs'] as $bcRoute) {
+            $params = [];
+            foreach ($this->bcRouteMap[$bcRoute]['params'] as $bcParam) {
+                $params[$bcParam] = $this->routeMatch->getParam($bcParam);
+            }
+            $bc[] = $view->hyperlink($this->bcRouteMap[$bcRoute]['text'], $view->url($bcRoute, $params));
         }
-
-        if ('admin/scripto-item' === $routeName) {
-            $bc[] = $view->translate('Project review');
-        } elseif (in_array($routeName, ['admin/scripto-media', 'admin/scripto-media-id', 'admin/scripto-revision', 'admin/scripto-revision-id', 'admin/scripto-revision-compare'])) {
-            $bc[] = $view->hyperlink(
-                $view->translate('Project review'),
-                $view->url('admin/scripto-item', [
-                    'action' => 'browse',
-                    'project-id' => $this->routeMatch->getParam('project-id'),
-                ])
-            );
-        }
-
-        if ('admin/scripto-media' === $routeName) {
-            $bc[] = $view->translate('Item review');
-        } elseif (in_array($routeName, ['admin/scripto-media-id', 'admin/scripto-revision', 'admin/scripto-revision-id', 'admin/scripto-revision-compare'])) {
-            $bc[] = $view->hyperlink(
-                $view->translate('Item review'),
-                $view->url('admin/scripto-media', [
-                    'action' => 'browse',
-                    'project-id' => $this->routeMatch->getParam('project-id'),
-                    'item-id' => $this->routeMatch->getParam('item-id'),
-                ])
-            );
-        }
-
-        if ('admin/scripto-media-id' === $routeName) {
-            $bc[] = $view->translate('Media review');
-        } elseif (in_array($routeName, ['admin/scripto-revision', 'admin/scripto-revision-id', 'admin/scripto-revision-compare'])) {
-            $bc[] = $view->hyperlink(
-                $view->translate('Media review'),
-                $view->url('admin/scripto-media-id', [
-                    'action' => 'show',
-                    'project-id' => $this->routeMatch->getParam('project-id'),
-                    'item-id' => $this->routeMatch->getParam('item-id'),
-                    'media-id' => $this->routeMatch->getParam('media-id'),
-                ])
-            );
-        }
-
-        if ('admin/scripto-revision' === $routeName) {
-            $bc[] = $view->translate('Revision browse');
-        } elseif (in_array($routeName, ['admin/scripto-revision-id', 'admin/scripto-revision-compare'])) {
-            $bc[] = $view->hyperlink(
-                $view->translate('Revision browse'),
-                $view->url('admin/scripto-revision', [
-                    'action' => 'browse',
-                    'project-id' => $this->routeMatch->getParam('project-id'),
-                    'item-id' => $this->routeMatch->getParam('item-id'),
-                    'media-id' => $this->routeMatch->getParam('media-id'),
-                ])
-            );
-        }
-
-        if ('admin/scripto-revision-id' === $routeName) {
-            $bc[] = $view->translate('Revision show');
-        }
-
-        if ('admin/scripto-revision-compare' === $routeName) {
-            $bc[] = $view->translate('Revision compare');
-        }
-
+        $bc[] = $view->translate($this->bcRouteMap[$routeName]['text']);
         return sprintf('<div class="breadcrumbs">%s</div>', implode('<div class="separator"></div>', $bc));
     }
 
