@@ -1,6 +1,7 @@
 <?php
 namespace Scripto\Controller\Admin;
 
+use Omeka\Api\Exception\NotFoundException;
 use Zend\Mvc\Controller\AbstractActionController;
 
 class AbstractScriptoController extends AbstractActionController
@@ -21,7 +22,11 @@ class AbstractScriptoController extends AbstractActionController
             return false;
         }
 
-        $project = $this->api()->read('scripto_projects', $projectId)->getContent();
+        try {
+            $project = $this->api()->read('scripto_projects', $projectId)->getContent();
+        } catch (NotFoundException $e) {
+            return false;
+        }
 
         if (!$itemId && !$mediaId) {
             return $project;
