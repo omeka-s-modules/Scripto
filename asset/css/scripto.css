@@ -329,7 +329,8 @@
 }
 
 .scripto.dashboard .panel li,
-.scripto.dashboard .panel h4 {
+.scripto.dashboard .panel h4,
+.scripto.dashboard .panel p {
     padding: 6px 6px 5px;
     margin: 0;
 }
