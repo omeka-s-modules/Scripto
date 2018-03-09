@@ -1,7 +1,7 @@
 <?php
 $this->headLink()->appendStylesheet($this->assetUrl('css/scripto.css', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
-$this->htmlElement('body')->appendAttribute('class', 'browse');
+$this->htmlElement('body')->appendAttribute('class', 'scripto user browse');
 ?>
 
 <?php echo $this->pageTitle($this->translate('User contributions'), 1, $this->translate('Scripto'), $user['name']); ?>
@@ -22,7 +22,7 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
             <th><?php echo $this->translate('Date'); ?></th>
             <th><?php echo $this->translate('Project'); ?></th>
             <th><?php echo $this->translate('Size'); ?></th>
-            <th><?php echo $this->translate('Comment'); ?></th>
+            <th class="comment"><?php echo $this->translate('Comment'); ?></th>
         </tr>
     </thead>
     <tbody>
@@ -37,7 +37,7 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
         <tr>
             <td>
                 <?php echo isset($userCon['scripto_revision_url']) ? $this->hyperlink($date, $userCon['scripto_revision_url']) : $date; ?>
-                <?php echo $flags ? sprintf(' (%s)', implode(', ', $flags)) : null; ?>
+                <span class="flags"><?php echo $flags ? sprintf(' (%s)', implode(', ', $flags)) : null; ?></span>
             </td>
             <td><?php echo isset($userCon['scripto_project'])
                 ? $userCon['scripto_project']->link($userCon['scripto_project']->title())

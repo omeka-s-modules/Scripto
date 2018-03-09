@@ -21,7 +21,7 @@
     width: auto;
 }
 
-.browse .scripto-revisions th.comment {
+.scripto.browse th.comment {
     width: 40%;
 }
 
@@ -329,7 +329,8 @@
 }
 
 .scripto.dashboard .panel li,
-.scripto.dashboard .panel h4 {
+.scripto.dashboard .panel h4,
+.scripto.dashboard .panel p {
     padding: 6px 6px 5px;
     margin: 0;
 }
@@ -337,4 +338,23 @@
 .scripto.dashboard .panel h4,
 .scripto.dashboard .panel li:not(:last-child) {
     border-bottom: 1px solid #dfdfdf;
+}
+
+/* User/browse */
+
+.scripto.user.browse td {
+    vertical-align: top;
+}
+
+.scripto.user.browse td:first-child, 
+.scripto.user.browse th:first-child {
+    width: auto;
+}
+
+.scripto.user.browse table.tablesaw td:first-child a {
+    white-space: nowrap;
+}
+
+.scripto.user.browse .tablesaw-cell-content {
+    flex-wrap: wrap;
 }
