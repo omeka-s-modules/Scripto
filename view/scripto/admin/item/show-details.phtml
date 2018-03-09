@@ -37,6 +37,18 @@
     <div class="value"><?php echo number_format($sItem->isEditedMediaCount()); ?></div>
 </div>
 <div class="meta-group">
+    <h4><?php echo $this->translate('Is edited after approved media count'); ?></h4>
+    <div class="value"><?php echo number_format($sItem->isEditedAfterApprovedMediaCount()); ?></div>
+</div>
+<div class="meta-group">
+    <h4><?php echo $this->translate('Is edited after imported media count'); ?></h4>
+    <div class="value"><?php echo number_format($sItem->isEditedAfterImportedMediaCount()); ?></div>
+</div>
+<div class="meta-group">
+    <h4><?php echo $this->translate('Is synced after imported media count'); ?></h4>
+    <div class="value"><?php echo number_format($sItem->isSyncedAfterImportedMediaCount()); ?></div>
+</div>
+<div class="meta-group">
     <h4><?php echo $this->translate('Omeka item'); ?></h4>
     <div class="value"><?php echo $item->link($item->displayTitle()); ?></div>
 </div>
