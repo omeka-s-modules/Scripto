@@ -45,7 +45,7 @@ class Scripto extends AbstractHelper
         ],
         'admin/scripto-user-id' => [
             'breadcrumbs' => ['admin/scripto', 'admin/scripto-user'],
-            'text' => 'User show', // @translate
+            'text' => 'User contributions', // @translate
             'params' => ['user-id'],
         ],
         'admin/scripto-project' => [
