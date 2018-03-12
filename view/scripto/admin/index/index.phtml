@@ -11,6 +11,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto dashboard');
         <a href="#" class="expand button" aria-label="<?php echo $this->translate('Expand'); ?>"><?php echo $this->translate('Actions'); ?></a>
         <ul class="collapsible">
             <li><?php echo $this->hyperlink($this->translate('Browse projects'), $this->url('admin/scripto-project')); ?></li>
+            <li><?php echo $this->hyperlink($this->translate('Add new project'), $this->url('admin/scripto-project', ['action' => 'add'])); ?></li>
             <li><?php echo $this->hyperlink($this->translate('Browse users'), $this->url('admin/scripto-user')); ?></li>
         </ul>
     </div>
