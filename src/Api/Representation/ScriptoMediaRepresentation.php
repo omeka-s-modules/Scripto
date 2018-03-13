@@ -131,6 +131,28 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
     }
 
     /**
+     * Get the previous Scripto media.
+     *
+     * @return ScriptoMediaRepresentation|null
+     */
+    public function previousScriptoMedia()
+    {
+        $previous = $this->getAdapter()->getPreviousScriptoMedia($this->resource);
+        return $this->getAdapter()->getRepresentation($previous);
+    }
+
+    /**
+     * Get the next Scripto media.
+     *
+     * @return ScriptoMediaRepresentation|null
+     */
+    public function nextScriptoMedia()
+    {
+        $next = $this->getAdapter()->getNextScriptoMedia($this->resource);
+        return $this->getAdapter()->getRepresentation($next);
+    }
+
+    /**
      * Return the status of this media.
      *
      * - APPROVED: this Scripto media is approved (flagged by admin)

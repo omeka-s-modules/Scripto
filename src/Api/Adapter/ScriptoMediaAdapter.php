@@ -8,6 +8,7 @@ use Omeka\Api\Exception;
 use Omeka\Api\Request;
 use Omeka\Entity\EntityInterface;
 use Omeka\Stdlib\ErrorStore;
+use Scripto\Entity\ScriptoMedia;
 
 /**
  * Scripto media adapter
@@ -154,5 +155,57 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
             $data['o-module-scripto:is_completed'] = $rawData['o-module-scripto:is_completed'];
         }
         return $data;
+    }
+
+    /**
+     * Get the previous Scripto media.
+     *
+     * @param ScriptoMedia
+     * @return ScriptoMediaRepresentation|null
+     */
+    public function getPreviousScriptoMedia(ScriptoMedia $sMedia)
+    {
+        $query = $this->getEntityManager()->createQuery('
+            SELECT sm
+            FROM Scripto\Entity\ScriptoMedia sm
+            JOIN sm.scriptoItem si
+            WHERE si = :scripto_item
+            AND sm.position < :position
+            ORDER BY sm.position DESC
+        ')->setParameters([
+            'scripto_item' => $sMedia->getScriptoItem(),
+            'position' => $sMedia->getPosition(),
+        ])->setMaxResults(1);
+        try {
+            return $query->getSingleResult();
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }
+    }
+
+    /**
+     * Get the next Scripto media.
+     *
+     * @param ScriptoMedia
+     * @return ScriptoMediaRepresentation|null
+     */
+    public function getNextScriptoMedia(ScriptoMedia $sMedia)
+    {
+        $query = $this->getEntityManager()->createQuery('
+            SELECT sm
+            FROM Scripto\Entity\ScriptoMedia sm
+            JOIN sm.scriptoItem si
+            WHERE si = :scripto_item
+            AND sm.position > :position
+            ORDER BY sm.position ASC
+        ')->setParameters([
+            'scripto_item' => $sMedia->getScriptoItem(),
+            'position' => $sMedia->getPosition(),
+        ])->setMaxResults(1);
+        try {
+            return $query->getSingleResult();
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }
     }
 }
