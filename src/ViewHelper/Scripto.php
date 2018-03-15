@@ -45,7 +45,7 @@ class Scripto extends AbstractHelper
         ],
         'admin/scripto-user-id' => [
             'breadcrumbs' => ['admin/scripto', 'admin/scripto-user'],
-            'text' => 'User contributions', // @translate
+            'text' => 'User', // @translate
             'params' => ['user-id'],
         ],
         'admin/scripto-project' => [
@@ -114,11 +114,10 @@ class Scripto extends AbstractHelper
                 ['query' => ['redirect' => $this->getCurrentUrl()]]
             ));
             return sprintf(
-                '<div id="scripto-login"><h3>%s</h3>%s</div>',
-                sprintf(
-                    $view->translate('Logged in to Scripto as %s'),
-                    $view->hyperlink($userInfo['name'], $view->url('admin/scripto-user-id', ['user-id' => $userInfo['name']]))
-                ),
+                '<div id="scripto-login"><h3>%s | %s | %s</h3>%s</div>',
+                sprintf($view->translate('Logged in to Scripto as %s'), $userInfo['name']),
+                $view->hyperlink($view->translate('Your contributions'), $view->url('admin/scripto-user-id', ['user-id' => $userInfo['name']])),
+                $view->hyperlink($view->translate('Your watchlist'), $view->url('admin/scripto-user-id', ['action' => 'watchlist', 'user-id' => $userInfo['name']])),
                 $view->form($form)
             );
         } else {

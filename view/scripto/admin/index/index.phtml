@@ -20,28 +20,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto dashboard');
 <?php echo $this->scripto()->adminLoginBar(); ?>
 
 <div class="dashboard-row">
-    <div class="recent-contributions panel">
-        <h4>
-            <?php echo $this->translate('Your recent contributions'); ?>
-            <?php if (!isset($user['invalid'])): ?>
-            <?php echo $this->hyperlink($this->translate('View all your contributions'), $this->url('admin/scripto-user-id', ['user-id' => $user['name']]), ['class' => 'button']); ?>
-            <?php endif; ?>
-        </h4>
-        <?php if (!isset($user['invalid']) && $userCons): ?>
-        <ul>
-        <?php foreach ($userCons as $userCon): ?>
-            <?php $date = (new \DateTime($userCon['timestamp']))->format('G:i:s, j F Y'); ?>
-            <li>
-                <?php echo isset($userCon['scripto_revision_url']) ? $this->hyperlink($date, $userCon['scripto_revision_url']) : $date; ?>
-                <?php echo sprintf('(%s%s)', 0 < $userCon['sizediff'] ? '+' : '', number_format($userCon['sizediff'])); ?>
-                <i><?php echo $userCon['parsedcomment']; ?></i>
-            </li>
-        <?php endforeach; ?>
-        </ul>
-        <?php else: ?>
-        <p><?php echo $this->translate('No contributions found. Do you need to log in to Scripto?'); ?></p>
-        <?php endif; ?>
-    </div>
+
     <div class="recent-projects panel">
         <h4><?php echo $this->translate('Your projects'); ?> <?php echo $this->hyperlink($this->translate('View all projects'), $this->url('admin/scripto-project'), ['class' => 'button']); ?></h4>
         <?php if ($projects): ?>
@@ -61,4 +40,44 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto dashboard');
         ); ?></p>
         <?php endif; ?>
     </div>
+
+    <div class="recent-contributions panel">
+        <h4>
+            <?php echo $this->translate('Your recent contributions'); ?>
+            <?php if (!isset($user['invalid'])): ?>
+            <?php echo $this->hyperlink($this->translate('View all your contributions'), $this->url('admin/scripto-user-id', ['user-id' => $user['name']]), ['class' => 'button']); ?>
+            <?php endif; ?>
+        </h4>
+        <?php if (!isset($user['invalid']) && $userCons): ?>
+        <ul>
+        <?php foreach ($userCons as $userCon): ?>
+            <?php
+            $date = $this->i18n()->dateFormat($userCon['timestamp'], 'short', 'short');
+            $sMedia = isset($userCon['scripto_media']) ? $userCon['scripto_media'] : null;
+            $sItem = $sMedia ? $sMedia->scriptoItem() : null;
+            $project = $sItem ? $sItem->scriptoProject() : null;
+            ?>
+            <li>
+                <?php echo sprintf(
+                    '%s (%s)',
+                    $sMedia
+                        ? $this->hyperlink($sItem->item()->displayTitle(), $this->url('admin/scripto-revision-id', [
+                            'project-id' => $project->id(),
+                            'item-id' => $sItem->item()->id(),
+                            'media-id' => $sMedia->media()->id(),
+                            'revision-id' => $userCon['revid'],
+                        ]))
+                        : $userCon['title'],
+                    $date
+                ); ?>
+                <?php echo sprintf('(%s%s)', 0 < $userCon['sizediff'] ? '+' : '', number_format($userCon['sizediff'])); ?>
+                <i><?php echo $userCon['parsedcomment']; ?></i>
+            </li>
+        <?php endforeach; ?>
+        </ul>
+        <?php else: ?>
+        <p><?php echo $this->translate('No contributions found. Do you need to log in to Scripto?'); ?></p>
+        <?php endif; ?>
+    </div>
+
 </div>

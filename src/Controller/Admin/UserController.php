@@ -17,19 +17,46 @@ class UserController extends AbstractScriptoController
         return $view;
     }
 
-    public function showAction()
+    public function contributionsAction()
     {
         $userName = $this->params('user-id');
         $continue = $this->params()->fromQuery('continue');
 
         $user = $this->scriptoApiClient()->queryUser($userName);
         $response = $this->scriptoApiClient()->queryUserContributions($userName, 100, $continue);
-        $userCons = $this->prepareUserContributions($response['query']['usercontribs']);
+        $userCons = $this->prepareMediawikiList($response['query']['usercontribs']);
         $continue = isset($response['continue']) ? $response['continue']['uccontinue'] : null;
 
         $view = new ViewModel;
         $view->setVariable('user', $user);
         $view->setVariable('userCons', $userCons);
+        $view->setVariable('continue', $continue);
+        return $view;
+    }
+
+    public function watchlistAction()
+    {
+        if (!$this->scriptoApiClient()->userIsLoggedIn()) {
+            // User must be logged in.
+            return $this->redirect()->toRoute('admin/scripto');
+        }
+        $userName = $this->params('user-id');
+        $currentUser = $this->scriptoApiClient()->getUserInfo();
+        if ($userName !== $currentUser['name']) {
+            // Logged in user must be current user.
+            return $this->redirect()->toRoute('admin/scripto-user-id', ['user-id' => $currentUser['name'], 'action' => 'watchlist']);
+        }
+
+        $hoursAgo = $this->params()->fromQuery('hours-ago', 72); // 3 days
+        $continue = $this->params()->fromQuery('continue');
+
+        $response = $this->scriptoApiClient()->queryWatchlist($hoursAgo, 10, $continue);
+        $watchlist = $this->prepareMediawikiList($response['query']['watchlist']);
+        $continue = isset($response['continue']) ? $response['continue']['wlcontinue'] : null;
+
+        $view = new ViewModel;
+        $view->setVariable('user', $this->scriptoApiClient()->queryUser($userName));
+        $view->setVariable('watchlist', $watchlist);
         $view->setVariable('continue', $continue);
         return $view;
     }

@@ -1,6 +1,7 @@
 <?php
 namespace Scripto\Mediawiki;
 
+use DateTime;
 use Scripto\Mediawiki\Exception;
 use Zend\Http\Client as HttpClient;
 use Zend\Http\Request;
@@ -337,6 +338,46 @@ class ApiClient
         ];
         if ($continue) {
             $request['rvcontinue'] = $continue;
+        }
+        $query = $this->request($request);
+        if (isset($query['error'])) {
+            throw new Exception\QueryException($query['error']['info']);
+        }
+        return $query;
+    }
+
+    /**
+     * Query the current user's watchlist.
+     *
+     * @link https://www.mediawiki.org/wiki/API:Watchlist
+     * @param int $endHours How many hours ago to end listing
+     * @param int $limit
+     * @param string $continue
+     * @return array
+     */
+    public function queryWatchlist($hoursAgo, $limit, $continue = null)
+    {
+        if (!is_numeric($hoursAgo)) {
+            throw new Exception\InvalidArgumentException('Hours ago must be numeric');
+        }
+        if (!is_numeric($limit)) {
+            throw new Exception\InvalidArgumentException('A limit must be numeric');
+        }
+        if (isset($continue) && !is_string($continue)) {
+            throw new Exception\InvalidArgumentException('A continue must be a string');
+        }
+
+        $request = [
+            'action' => 'query',
+            'list' => 'watchlist',
+            'wlend' => strtotime(sprintf('-%s hour', $hoursAgo)),
+            'wllimit' => $limit,
+            'wlnamespace' => 0,
+            'wltype' => 'edit',
+            'wlprop' => 'ids|title|flags|user|userid|parsedcomment|timestamp|sizes|loginfo',
+        ];
+        if ($continue) {
+            $request['wlcontinue'] = $continue;
         }
         $query = $this->request($request);
         if (isset($query['error'])) {

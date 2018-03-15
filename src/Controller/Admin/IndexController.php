@@ -28,7 +28,7 @@ class IndexController extends AbstractScriptoController
         $user = $this->scriptoApiClient()->queryUser($userInfo['name']);
 
         $response = $this->scriptoApiClient()->queryUserContributions($userInfo['name'], 20);
-        $userCons = $this->prepareUserContributions($response['query']['usercontribs']);
+        $userCons = $this->prepareMediawikiList($response['query']['usercontribs']);
 
         $projects = $this->api()->search('scripto_projects', [
             'sort_by' => 'created',

@@ -33,7 +33,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto user browse');
     ?>
         <tr>
             <td>
-                <?php echo $this->hyperlink($user['name'], $this->url('admin/scripto-user-id', ['user-id' => $user['name']], true)); ?>
+                <?php echo $this->hyperlink($user['name'], $this->url('admin/scripto-user-id', ['user-id' => $user['name']])); ?>
                 <span class="flags"><?php echo $groups ? sprintf(' (%s)', implode(', ', $groups)) : null; ?></span>
             </td>
             <td><?php echo number_format($user['editcount']); ?></td>

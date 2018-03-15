@@ -1,0 +1,58 @@
+<?php
+$this->headLink()->appendStylesheet($this->assetUrl('css/scripto.css', 'Scripto'));
+$this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
+$this->htmlElement('body')->appendAttribute('class', 'scripto user browse');
+?>
+
+<?php echo $this->pageTitle($this->translate('User watchlist'), 1, $this->translate('Scripto'), $user['name']); ?>
+
+<?php echo $this->scripto()->adminLoginBar(); ?>
+
+<?php echo $this->scripto()->adminBreadcrumbs(); ?>
+
+<div class="browse-controls">
+    <?php echo $this->scripto()->adminMediawikiPagination(); ?>
+    <label>Period of time to display: <select name="hours-ago">
+        <option value="72">3 days</option>
+    </select></label>
+</div>
+
+<?php if ($watchlist): ?>
+
+<table class="tablesaw" data-tablesaw-mode="stack">
+    <thead>
+        <tr>
+            <th><?php echo $this->translate('Date'); ?></th>
+            <th><?php echo $this->translate('Item'); ?></th>
+            <th><?php echo $this->translate('Project'); ?></th>
+            <th><?php echo $this->translate('User'); ?></th>
+            <th><?php echo $this->translate('Size'); ?></th>
+            <th class="comment"><?php echo $this->translate('Comment'); ?></th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($watchlist as $page): ?>
+    <?php
+    $date = $page['timestamp']->format('G:i:s, j F Y');
+    $sizeDiff = $page['newlen'] - $page['oldlen'];
+    $sMedia = isset($page['scripto_media']) ? $page['scripto_media'] : null;
+    $sItem = $sMedia ? $sMedia->scriptoItem() : null;
+    $project = $sItem ? $sItem->scriptoProject() : null;
+    ?>
+        <tr>
+            <td><?php echo $sMedia ? $sMedia->link($date) : $page['title']; ?></td>
+            <td><?php echo $sItem ? $sItem->link($sItem->item()->displayTitle()) : $this->translate('n/a'); ?></td>
+            <td><?php echo $project ? $project->link($project->title()) : $this->translate('n/a'); ?></td>
+            <td><?php echo $this->hyperlink($page['user'], $this->url('admin/scripto-user-id', ['user-id' => $page['user']])); ?></td>
+            <td><?php echo sprintf('%s bytes (%s)', number_format($page['newlen']), sprintf('%s%s', 0 < $sizeDiff ? '+' : '', number_format($sizeDiff))); ?></td>
+            <td><i><?php echo $page['parsedcomment']; ?></i></td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+
+<?php else: ?>
+<div class="no-resources">
+    <p><?php echo $this->translate('No watchlist pages found.'); ?></p>
+</div>
+<?php endif; ?>

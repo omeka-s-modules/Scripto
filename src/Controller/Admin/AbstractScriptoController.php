@@ -1,6 +1,7 @@
 <?php
 namespace Scripto\Controller\Admin;
 
+use DateTime;
 use Omeka\Api\Exception\NotFoundException;
 use Zend\Mvc\Controller\AbstractActionController;
 
@@ -60,28 +61,23 @@ class AbstractScriptoController extends AbstractActionController
     }
 
     /**
-     * Prepare user contributions for rendering.
+     * Prepare a MediaWiki list for rendering.
      *
-     * @param array $userCons
+     * @param array $list
      * @return array
      */
-    public function prepareUserContributions(array $userCons)
+    public function prepareMediawikiList(array $list)
     {
-        foreach ($userCons as $key => $userCon) {
-            if (preg_match('/^\d+:\d+:\d+$/', $userCon['title'])) {
-                list($projectId, $itemId, $mediaId) = explode(':', $userCon['title']);
+        foreach ($list as $key => $row) {
+            if (preg_match('/^\d+:\d+:\d+$/', $row['title'])) {
+                list($projectId, $itemId, $mediaId) = explode(':', $row['title']);
                 $sMedia = $this->getScriptoRepresentation($projectId, $itemId, $mediaId);
                 if ($sMedia) {
-                    $userCons[$key]['scripto_project'] = $sMedia->scriptoItem()->scriptoProject();
-                    $userCons[$key]['scripto_revision_url'] = $this->url()->fromRoute('admin/scripto-revision-id', [
-                        'project-id' => $projectId,
-                        'item-id' => $itemId,
-                        'media-id' => $mediaId,
-                        'revision-id' => $userCon['revid'],
-                    ]);
+                    $list[$key]['scripto_media'] = $sMedia;
                 }
             }
+            $list[$key]['timestamp'] = new DateTime($row['timestamp']);
         }
-        return $userCons;
+        return $list;
     }
 }
