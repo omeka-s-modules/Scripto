@@ -644,6 +644,7 @@ class ApiClient
             'logintoken' => $query['query']['tokens']['logintoken'],
             'username' => $username,
             'password' => $password,
+            'rememberMe' => true,
         ]);
         if (isset($clientlogin['error'])) {
             throw new Exception\ClientloginException($clientlogin['error']['info']);
