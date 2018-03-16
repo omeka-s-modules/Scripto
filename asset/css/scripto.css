@@ -21,6 +21,10 @@
     width: auto;
 }
 
+.browse .browse-controls {
+    justify-content: flex-end;
+}
+
 .scripto.browse th.comment {
     width: 40%;
 }
