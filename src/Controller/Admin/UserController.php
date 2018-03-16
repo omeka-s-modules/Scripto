@@ -47,16 +47,17 @@ class UserController extends AbstractScriptoController
             return $this->redirect()->toRoute('admin/scripto-user-id', ['user-id' => $currentUser['name'], 'action' => 'watchlist']);
         }
 
-        $hoursAgo = $this->params()->fromQuery('hours-ago', 72); // 3 days
+        $hours = $this->params()->fromQuery('hours', 72); // 3 days
         $continue = $this->params()->fromQuery('continue');
 
-        $response = $this->scriptoApiClient()->queryWatchlist($hoursAgo, 10, $continue);
+        $response = $this->scriptoApiClient()->queryWatchlist($hours, 10, $continue);
         $watchlist = $this->prepareMediawikiList($response['query']['watchlist']);
         $continue = isset($response['continue']) ? $response['continue']['wlcontinue'] : null;
 
         $view = new ViewModel;
         $view->setVariable('user', $this->scriptoApiClient()->queryUser($userName));
         $view->setVariable('watchlist', $watchlist);
+        $view->setVariable('hours', $hours);
         $view->setVariable('continue', $continue);
         return $view;
     }

@@ -355,10 +355,10 @@ class ApiClient
      * @param string $continue
      * @return array
      */
-    public function queryWatchlist($hoursAgo, $limit, $continue = null)
+    public function queryWatchlist($hours, $limit, $continue = null)
     {
-        if (!is_numeric($hoursAgo)) {
-            throw new Exception\InvalidArgumentException('Hours ago must be numeric');
+        if (!is_numeric($hours)) {
+            throw new Exception\InvalidArgumentException('Hours must be numeric');
         }
         if (!is_numeric($limit)) {
             throw new Exception\InvalidArgumentException('A limit must be numeric');
@@ -370,7 +370,7 @@ class ApiClient
         $request = [
             'action' => 'query',
             'list' => 'watchlist',
-            'wlend' => strtotime(sprintf('-%s hour', $hoursAgo)),
+            'wlend' => strtotime(sprintf('-%s hour', $hours)),
             'wllimit' => $limit,
             'wlnamespace' => 0,
             'wltype' => 'edit',

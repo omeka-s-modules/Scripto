@@ -2,6 +2,15 @@
 $this->headLink()->appendStylesheet($this->assetUrl('css/scripto.css', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
 $this->htmlElement('body')->appendAttribute('class', 'browse');
+$timePeriods = [
+    6 => $this->translate('6 hours'),
+    12 => $this->translate('12 hours'),
+    24 => $this->translate('1 day'),
+    72 => $this->translate('3 days'),
+    168 => $this->translate('7 days'),
+    720 => $this->translate('30 days'),
+    2160 => $this->translate('90 days'),
+];
 ?>
 
 <?php echo $this->pageTitle($this->translate('User watchlist'), 1, $this->translate('Scripto'), $user['name']); ?>
@@ -12,9 +21,12 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
 
 <div class="browse-controls">
     <?php echo $this->scripto()->adminMediawikiPagination(); ?>
-    <label>Period of time to display: <select name="hours-ago">
-        <option value="72">3 days</option>
-    </select></label>
+    <label for="time-period"><?php echo $this->translate('Period of time to display:'); ?></label>
+    <select id="time-period" name="hours" data-url="<?php echo $this->escapeHtml($this->url(null, [], true)); ?>">
+        <?php foreach ($timePeriods as $key => $value): ?>
+        <option value="<?php echo $key; ?>"<?php echo $key == $hours ? ' selected="selected"' : null; ?>><?php echo $value; ?></option>
+        <?php endforeach; ?>
+    </select>
 </div>
 
 <?php if ($watchlist): ?>
@@ -64,3 +76,12 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
     <p><?php echo $this->translate('No watchlist pages found.'); ?></p>
 </div>
 <?php endif; ?>
+
+<script>
+// Handle a time period selection.
+$('#time-period').on('change', function() {
+    var thisSelect = $(this);
+    var params = {'hours': thisSelect.val()};
+    window.location.href = thisSelect.data('url') + '?' + $.param(params);
+});
+</script>
