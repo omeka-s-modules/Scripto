@@ -30,8 +30,12 @@ class IndexController extends AbstractScriptoController
         $response = $this->scriptoApiClient()->queryUserContributions($userInfo['name'], 20);
         $userCons = $this->prepareMediawikiList($response['query']['usercontribs']);
 
-        $response = $this->scriptoApiClient()->queryWatchlist(72, 10);
-        $watchlist = $this->prepareMediawikiList($response['query']['watchlist']);
+        if ($this->scriptoApiClient()->userIsLoggedIn()) {
+            $response = $this->scriptoApiClient()->queryWatchlist(72, 10);
+            $watchlist = $this->prepareMediawikiList($response['query']['watchlist']);
+        } else {
+            $watchlist = [];
+        }
 
         $projects = $this->api()->search('scripto_projects', [
             'sort_by' => 'created',
