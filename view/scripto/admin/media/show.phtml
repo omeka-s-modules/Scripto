@@ -10,7 +10,6 @@ $this->htmlElement('body')->appendAttribute('class', 'show');
     <div id="page-action-menu">
         <a href="#" class="expand button" aria-label="<?php echo $this->translate('Expand'); ?>"><?php echo $this->translate('Actions'); ?></a>
         <ul class="collapsible">
-            <li><a href="#" class="sidebar-content" data-sidebar-selector="#scripto-media-metadata"><?php echo $this->translate('View media metadata'); ?></a></li>
             <li><?php echo $this->hyperlink($this->translate('Browse revisions'), $this->url('admin/scripto-media-id', ['action' => 'revision'], true)); ?></li>
         </ul>
     </div>
@@ -52,7 +51,6 @@ $next = $sMedia->nextScriptoMedia();
     <?php echo $sMedia->pageHtml(); ?>
 </div>
 
-<div id="scripto-media-metadata" class="sidebar">
-    <?php echo $this->hyperlink('', '#', ['class' => 'sidebar-close o-icon-close', 'title' => $this->translate('Close')]); ?>
+<div id="scripto-media-metadata" class="sidebar always-open">
     <?php echo $this->partial('scripto/admin/media/show-details') ?>
 </div>
