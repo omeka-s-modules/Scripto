@@ -25,12 +25,21 @@
     justify-content: flex-end;
 }
 
+.browse nav.pagination {
+    margin-right: auto;
+}
+
 .scripto.browse th.comment {
     width: 40%;
 }
 
 .mediawiki-pagination {
     margin: 0 auto 0 12px;
+}
+
+.show nav.pagination {
+    float: right;
+    margin: 6px 0 0;
 }
 
 #wikitext.active {
