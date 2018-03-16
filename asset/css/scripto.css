@@ -320,11 +320,12 @@
 .scripto.dashboard .panel {
     border: 1px solid #dfdfdf;
     border-radius: 3px;
-    margin: 0 0 24px;
+    margin: 0 0 12px;
     width: 100%;
     padding: 0;
     float: none;
     page-break-inside: avoid;
+    display: inline-block;
 }
 
 .scripto.dashboard .panel .button {
