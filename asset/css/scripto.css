@@ -310,18 +310,17 @@
 /* Dashboard */
 
 .scripto.dashboard .dashboard-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
+    columns: 2;
 }
 
 .scripto.dashboard .panel {
     border: 1px solid #dfdfdf;
     border-radius: 3px;
     margin: 0 0 24px;
-    width: calc(50% - 6px);
+    width: 100%;
     padding: 0;
+    float: none;
+    page-break-inside: avoid;
 }
 
 .scripto.dashboard .panel .button {
