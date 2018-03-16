@@ -365,10 +365,6 @@
     width: auto;
 }
 
-.scripto.user.browse table.tablesaw td:first-child a {
-    white-space: nowrap;
-}
-
 .scripto.user.browse .tablesaw-cell-content {
     flex-wrap: wrap;
 }
