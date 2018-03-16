@@ -34,7 +34,7 @@
 }
 
 .mediawiki-pagination {
-    margin: 0 auto 0 12px;
+    margin: 0 auto 12px 0;
 }
 
 .show nav.pagination {
