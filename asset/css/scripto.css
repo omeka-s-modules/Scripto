@@ -33,6 +33,10 @@
     width: 25%;
 }
 
+.compare-selected {
+    margin-right: 12px;
+}
+
 .mediawiki-pagination {
     margin: 0 auto 12px 0;
 }
