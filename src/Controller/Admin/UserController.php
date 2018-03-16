@@ -50,7 +50,7 @@ class UserController extends AbstractScriptoController
         $hours = $this->params()->fromQuery('hours', 72); // 3 days
         $continue = $this->params()->fromQuery('continue');
 
-        $response = $this->scriptoApiClient()->queryWatchlist($hours, 10, $continue);
+        $response = $this->scriptoApiClient()->queryWatchlist($hours, 100, $continue);
         $watchlist = $this->prepareMediawikiList($response['query']['watchlist']);
         $continue = isset($response['continue']) ? $response['continue']['wlcontinue'] : null;
 
