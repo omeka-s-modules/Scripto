@@ -30,6 +30,9 @@ class IndexController extends AbstractScriptoController
         $response = $this->scriptoApiClient()->queryUserContributions($userInfo['name'], 20);
         $userCons = $this->prepareMediawikiList($response['query']['usercontribs']);
 
+        $response = $this->scriptoApiClient()->queryWatchlist(72, 10);
+        $watchlist = $this->prepareMediawikiList($response['query']['watchlist']);
+
         $projects = $this->api()->search('scripto_projects', [
             'sort_by' => 'created',
             'sort_order' => 'desc',
@@ -39,6 +42,7 @@ class IndexController extends AbstractScriptoController
         $view = new ViewModel;
         $view->setVariable('user', $user);
         $view->setVariable('userCons', $userCons);
+        $view->setVariable('watchlist', $watchlist);
         $view->setVariable('projects', $projects);
         return $view;
     }
