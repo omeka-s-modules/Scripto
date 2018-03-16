@@ -27,11 +27,11 @@ class IndexController extends AbstractScriptoController
         $userInfo = $this->scriptoApiClient()->getUserInfo();
         $user = $this->scriptoApiClient()->queryUser($userInfo['name']);
 
-        $response = $this->scriptoApiClient()->queryUserContributions($userInfo['name'], 20);
+        $response = $this->scriptoApiClient()->queryUserContributions($userInfo['name'], 10);
         $userCons = $this->prepareMediawikiList($response['query']['usercontribs']);
 
         if ($this->scriptoApiClient()->userIsLoggedIn()) {
-            $response = $this->scriptoApiClient()->queryWatchlist(72, 20);
+            $response = $this->scriptoApiClient()->queryWatchlist(720, 10); // 30 days
             $watchlist = $this->prepareMediawikiList($response['query']['watchlist']);
         } else {
             $watchlist = [];

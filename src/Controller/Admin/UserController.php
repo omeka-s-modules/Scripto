@@ -47,7 +47,7 @@ class UserController extends AbstractScriptoController
             return $this->redirect()->toRoute('admin/scripto-user-id', ['user-id' => $currentUser['name'], 'action' => 'watchlist']);
         }
 
-        $hours = $this->params()->fromQuery('hours', 72); // 3 days
+        $hours = $this->params()->fromQuery('hours', 720); // 30 days
         $continue = $this->params()->fromQuery('continue');
 
         $response = $this->scriptoApiClient()->queryWatchlist($hours, 100, $continue);
