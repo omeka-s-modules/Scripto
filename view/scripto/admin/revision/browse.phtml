@@ -4,7 +4,7 @@ $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
 $this->htmlElement('body')->appendAttribute('class', 'scripto browse revision');
 ?>
 
-<?php echo $this->pageTitle($this->translate('Revision browse'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
+<?php echo $this->pageTitle($this->translate('Revision history'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
 
 <?php echo $this->scripto()->adminLoginBar(); ?>
 

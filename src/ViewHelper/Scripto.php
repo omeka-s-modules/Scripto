@@ -70,7 +70,7 @@ class Scripto extends AbstractHelper
         ],
         'admin/scripto-revision' => [
             'breadcrumbs' => ['admin/scripto', 'admin/scripto-project', 'admin/scripto-item', 'admin/scripto-media', 'admin/scripto-media-id'],
-            'text' => 'Revision browse', // @translate
+            'text' => 'Revision history', // @translate
             'params' => ['project-id', 'item-id', 'media-id'],
         ],
         'admin/scripto-revision-id' => [
