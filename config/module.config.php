@@ -94,14 +94,25 @@ return [
                             ],
                         ],
                     ],
-                    'scripto-user-id' =>  [
+                    'scripto-user-contributions' =>  [
                         'type' => 'Segment',
                         'options' => [
-                            'route' => '/scripto/user/:user-id[/:action]',
+                            'route' => '/scripto/user/:user-id/contributions',
                             'defaults' => [
                                 '__NAMESPACE__' => 'Scripto\Controller\Admin',
                                 'controller' => 'user',
                                 'action' => 'contributions',
+                            ],
+                        ],
+                    ],
+                    'scripto-user-watchlist' =>  [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/user/:user-id/watchlist',
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\Admin',
+                                'controller' => 'user',
+                                'action' => 'watchlist',
                             ],
                         ],
                     ],

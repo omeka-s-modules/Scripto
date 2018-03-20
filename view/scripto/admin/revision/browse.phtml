@@ -63,7 +63,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto browse revision');
                     $this->url('admin/scripto-revision-id', ['action' => 'show', 'revision-id' => $revision['revid']], true)
                 ); ?>
             </td>
-            <td><?php echo $this->hyperlink($revision['user'], $this->url('admin/scripto-user-id', ['user-id' => $revision['user']])); ?></td>
+            <td><?php echo $this->hyperlink($revision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $revision['user']])); ?></td>
             <td><?php
             $sizeDiff = $childRevision ? $revision['size'] - $childRevision['size'] : 0;
             echo sprintf(

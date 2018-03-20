@@ -49,7 +49,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto dashboard');
         <h4>
             <?php echo $this->translate('Your recent contributions'); ?>
             <?php if (!isset($user['invalid'])): ?>
-            <?php echo $this->hyperlink($this->translate('View your contributions'), $this->url('admin/scripto-user-id', ['user-id' => $user['name']]), ['class' => 'button']); ?>
+            <?php echo $this->hyperlink($this->translate('View your contributions'), $this->url('admin/scripto-user-contributions', ['user-id' => $user['name']]), ['class' => 'button']); ?>
             <?php endif; ?>
         </h4>
         <?php if (!isset($user['invalid']) && $userCons): ?>
@@ -109,7 +109,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto dashboard');
         <h4>
             <?php echo $this->translate('Your recent watchlist'); ?>
             <?php if (!isset($user['invalid'])): ?>
-            <?php echo $this->hyperlink($this->translate('View your watchlist'), $this->url('admin/scripto-user-id', ['action' => 'watchlist', 'user-id' => $user['name']]), ['class' => 'button']); ?>
+            <?php echo $this->hyperlink($this->translate('View your watchlist'), $this->url('admin/scripto-user-watchlist', ['user-id' => $user['name']]), ['class' => 'button']); ?>
             <?php endif; ?>
         </h4>
         <?php if (!isset($user['invalid']) && $watchlist): ?>

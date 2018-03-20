@@ -43,9 +43,14 @@ class Scripto extends AbstractHelper
             'text' => 'User browse', // @translate
             'params' => [],
         ],
-        'admin/scripto-user-id' => [
+        'admin/scripto-user-contributions' => [
             'breadcrumbs' => ['admin/scripto', 'admin/scripto-user'],
-            'text' => 'User', // @translate
+            'text' => 'User contributions', // @translate
+            'params' => ['user-id'],
+        ],
+        'admin/scripto-user-watchlist' => [
+            'breadcrumbs' => ['admin/scripto', 'admin/scripto-user'],
+            'text' => 'User watchlist', // @translate
             'params' => ['user-id'],
         ],
         'admin/scripto-project' => [
@@ -106,6 +111,7 @@ class Scripto extends AbstractHelper
     {
         $view = $this->getView();
         if ($this->client->userIsLoggedIn()) {
+            $routeName = $this->routeMatch->getMatchedRouteName();
             $userInfo = $this->client->getUserInfo();
             $form = $this->formElementManager->get(ScriptoLogoutForm::class);
             $form->setAttribute('action', $view->url(
@@ -116,9 +122,15 @@ class Scripto extends AbstractHelper
             return sprintf(
                 '<div id="scripto-login"><h3>%s | %s | %s | %s</h3>%s</div>',
                 sprintf($view->translate('Logged in to Scripto as %s'), $userInfo['name']),
-                $view->hyperlink($view->translate('Dashboard'), $view->url('admin/scripto')),
-                $view->hyperlink($view->translate('Contributions'), $view->url('admin/scripto-user-id', ['user-id' => $userInfo['name']])),
-                $view->hyperlink($view->translate('Watchlist'), $view->url('admin/scripto-user-id', ['action' => 'watchlist', 'user-id' => $userInfo['name']])),
+                'admin/scripto' === $routeName
+                    ? $view->translate('Dashboard')
+                    : $view->hyperlink($view->translate('Dashboard'), $view->url('admin/scripto')),
+                'admin/scripto-user-contributions' === $routeName
+                    ? $view->translate('Contributions')
+                    : $view->hyperlink($view->translate('Contributions'), $view->url('admin/scripto-user-contributions', ['user-id' => $userInfo['name']])),
+                'admin/scripto-user-watchlist' === $routeName
+                    ? $view->translate('Watchlist')
+                    : $view->hyperlink($view->translate('Watchlist'), $view->url('admin/scripto-user-watchlist', ['user-id' => $userInfo['name']])),
                 $view->form($form)
             );
         } else {

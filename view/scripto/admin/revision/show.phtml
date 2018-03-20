@@ -39,7 +39,7 @@ $datetime = new \DateTime($revision['timestamp']);
 echo sprintf(
     $this->translate('Revision as of %s by %s'),
     $datetime->format('G:i:s, j F Y'),
-    $this->hyperlink($revision['user'], $this->url('admin/scripto-user-id', ['user-id' => $revision['user']]))
+    $this->hyperlink($revision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $revision['user']]))
 );
 ?>
 </h3>
