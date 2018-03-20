@@ -64,7 +64,27 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto dashboard');
             <li>
                 <?php if ($sMedia): ?>
                 <?php echo sprintf(
-                    '%s (%s) %s (%s) <i>%s</i>',
+                    '%s (%s) (%s | %s) %s (%s) <i>%s</i>',
+                    $this->hyperlink($sItem->item()->displayTitle(), $this->url('admin/scripto-media-id', [
+                        'project-id' => $project->id(),
+                        'item-id' => $sItem->item()->id(),
+                        'media-id' => $sMedia->media()->id(),
+                    ])),
+                    sprintf($this->translate('media #%s'), $sMedia->position()),
+                    $userCon['parentid']
+                        ? $this->hyperlink($this->translate('diff'), $this->url('admin/scripto-revision-compare', [
+                            'project-id' => $project->id(),
+                            'item-id' => $sItem->item()->id(),
+                            'media-id' => $sMedia->media()->id(),
+                            'from-revision-id' => $userCon['parentid'],
+                            'to-revision-id' => $userCon['revid'],
+                        ]))
+                        : $this->translate('diff'),
+                    $this->hyperlink($this->translate('hist'), $this->url('admin/scripto-revision', [
+                        'project-id' => $project->id(),
+                        'item-id' => $sItem->item()->id(),
+                        'media-id' => $sMedia->media()->id(),
+                    ])),
                     $this->hyperlink($date, $this->url('admin/scripto-revision-id', [
                         'project-id' => $project->id(),
                         'item-id' => $sItem->item()->id(),
@@ -72,12 +92,10 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto dashboard');
                         'revision-id' => $userCon['revid'],
                     ])),
                     sprintf('%s%s', 0 < $userCon['sizediff'] ? '+' : '', number_format($userCon['sizediff'])),
-                    $sItem->item()->displayTitle(),
-                    sprintf($this->translate('media #%s'), $sMedia->position()),
                     $userCon['parsedcomment']
                 ); ?>
                 <?php else: ?>
-                <?php echo sprintf('%s: %s', $date, $userCon['title']); ?>
+                <?php echo sprintf('%s: %s', $userCon['title'], $date); ?>
                 <?php endif; ?>
             </li>
         <?php endforeach; ?>
@@ -107,20 +125,38 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto dashboard');
             <li>
                 <?php if ($sMedia): ?>
                 <?php echo sprintf(
-                    '%s (%s) %s (%s) <i>%s</i>',
-                    $this->hyperlink($sItem->item()->displayTitle(), $this->url('admin/scripto-revision-id', [
+                    '%s (%s) (%s | %s) %s (%s) <i>%s</i>',
+                    $this->hyperlink($sItem->item()->displayTitle(), $this->url('admin/scripto-media-id', [
+                        'project-id' => $project->id(),
+                        'item-id' => $sItem->item()->id(),
+                        'media-id' => $sMedia->media()->id(),
+                    ])),
+                    sprintf($this->translate('media #%s'), $sMedia->position()),
+                    $page['old_revid']
+                        ? $this->hyperlink($this->translate('diff'), $this->url('admin/scripto-revision-compare', [
+                            'project-id' => $project->id(),
+                            'item-id' => $sItem->item()->id(),
+                            'media-id' => $sMedia->media()->id(),
+                            'from-revision-id' => $page['old_revid'],
+                            'to-revision-id' => $page['revid'],
+                        ]))
+                        : $this->translate('diff'),
+                    $this->hyperlink($this->translate('hist'), $this->url('admin/scripto-revision', [
+                        'project-id' => $project->id(),
+                        'item-id' => $sItem->item()->id(),
+                        'media-id' => $sMedia->media()->id(),
+                    ])),
+                    $this->hyperlink($date, $this->url('admin/scripto-revision-id', [
                         'project-id' => $project->id(),
                         'item-id' => $sItem->item()->id(),
                         'media-id' => $sMedia->media()->id(),
                         'revision-id' => $page['revid'],
                     ])),
-                    sprintf($this->translate('media #%s'), $sMedia->position()),
-                    $date,
                     sprintf('%s%s', 0 < $sizeDiff ? '+' : '', number_format($sizeDiff)),
                     $page['parsedcomment']
                 ); ?>
                 <?php else: ?>
-                <?php echo sprintf('%s: %s', $date, $userCon['title']); ?>
+                <?php echo sprintf('%s: %s', $date, $page['title']); ?>
                 <?php endif; ?>
             </li>
         <?php endforeach; ?>
