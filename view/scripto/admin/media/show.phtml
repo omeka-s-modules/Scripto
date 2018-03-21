@@ -85,12 +85,24 @@ $next = $sMedia->nextScriptoMedia();
             <textarea disabled><?php echo $sMedia->pageWikitext(); ?></textarea>
             <div class="panzoom-container">
                 <?php echo $media->render(['link' => null]); ?>
+                <div class="zoom-controls">
+                    <button class="zoom-in" aria-label="<?php echo $this->translate('Zoom in'); ?>" title="<?php echo $this->translate('Zoom in'); ?>"></button>
+                    <button class="zoom-out" aria-label="<?php echo $this->translate('Zoom out'); ?>" title="<?php echo $this->translate('Zoom out'); ?>"></button>
+                    <button class="rotate-right" aria-label="<?php echo $this->translate('Rotate right'); ?>" title="<?php echo $this->translate('Rotate right'); ?>"></button>
+                    <button class="rotate-left" aria-label="<?php echo $this->translate('Rotate left'); ?>" title="<?php echo $this->translate('Rotate left'); ?>"></button>
+                    <button class="reset"><?php echo $this->translate('Reset'); ?></button>
+                </div>
             </div>
         </div>
         <script>
-        (function() {
-            $('#wikitext .media-render').panzoom();
-        })();
+        (function($) {
+            var $zoomContainer = $('.panzoom-container');
+            $('#wikitext .media-render').panzoom({
+                $zoomIn: $zoomContainer.find(".zoom-in"),
+                $zoomOut: $zoomContainer.find(".zoom-out"),
+                $reset: $zoomContainer.find(".reset")
+            });
+        })(jQuery);
         </script>
     </div>
 </div>
