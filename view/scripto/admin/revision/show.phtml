@@ -1,7 +1,7 @@
 <?php 
 $this->headLink()->appendStylesheet($this->assetUrl('css/scripto.css', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
-$this->htmlElement('body')->appendAttribute('class', 'show'); 
+$this->htmlElement('body')->appendAttribute('class', 'scripto revision show'); 
 ?>
 
 <?php echo $this->pageTitle($this->translate('Revision show'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
@@ -29,7 +29,9 @@ $this->htmlElement('body')->appendAttribute('class', 'show');
     </div>
 </div>
 
-<?php echo $this->scriptoBreadcrumbs(); ?>
+<?php echo $this->scripto()->adminLoginBar(); ?>
+
+<?php echo $this->scripto()->adminBreadcrumbs(); ?>
 
 <h3>
 <?php
@@ -37,7 +39,7 @@ $datetime = new \DateTime($revision['timestamp']);
 echo sprintf(
     $this->translate('Revision as of %s by %s'),
     $datetime->format('G:i:s, j F Y'),
-    $revision['user']
+    $this->hyperlink($revision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $revision['user']]))
 );
 ?>
 </h3>

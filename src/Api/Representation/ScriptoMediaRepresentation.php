@@ -131,6 +131,28 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
     }
 
     /**
+     * Get the previous Scripto media.
+     *
+     * @return ScriptoMediaRepresentation|null
+     */
+    public function previousScriptoMedia()
+    {
+        $previous = $this->getAdapter()->getPreviousScriptoMedia($this->resource);
+        return $this->getAdapter()->getRepresentation($previous);
+    }
+
+    /**
+     * Get the next Scripto media.
+     *
+     * @return ScriptoMediaRepresentation|null
+     */
+    public function nextScriptoMedia()
+    {
+        $next = $this->getAdapter()->getNextScriptoMedia($this->resource);
+        return $this->getAdapter()->getRepresentation($next);
+    }
+
+    /**
      * Return the status of this media.
      *
      * - APPROVED: this Scripto media is approved (flagged by admin)
@@ -167,21 +189,27 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
     /**
      * Was this media edited after it was imported?
      *
+     * Returns false if the project has not been imported.
+     *
      * @return bool
      */
     public function isEditedAfterImported()
     {
-        return $this->edited() > $this->resource->getScriptoItem()->getScriptoProject()->getImported();
+        $imported = $this->resource->getScriptoItem()->getScriptoProject()->getImported();
+        return $imported ? $this->edited() > $imported : false;
     }
 
     /**
      * Was this media synced after it was imported?
      *
+     * Returns false if the project has not been imported.
+     *
      * @return bool
      */
     public function isSyncedAfterImported()
     {
-        return $this->synced() > $this->resource->getScriptoItem()->getScriptoProject()->getImported();
+        $imported = $this->resource->getScriptoItem()->getScriptoProject()->getImported();
+        return $imported ? $this->synced() > $imported : false;
     }
 
     /**
@@ -236,13 +264,13 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
      * Get page revisions.
      *
      * @param int $limit
-     * @param int $offset
+     * @param string $continue
      * @return array
      */
-    public function pageRevisions($limit = null, $offset = null)
+    public function pageRevisions($limit, $continue = null)
     {
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
-        return $client->queryRevisions($this->pageTitle(), $limit, $offset);
+        return $client->queryRevisions($this->pageTitle(), $limit, $continue);
     }
 
     /**

@@ -28,14 +28,20 @@ return [
     'controllers' => [
         'invokables' => [
             'Scripto\Controller\Index' => Scripto\Controller\IndexController::class,
-            'Scripto\Controller\Admin\Index' => Scripto\Controller\Admin\IndexController::class,
+            'Scripto\Controller\Admin\User' => Scripto\Controller\Admin\UserController::class,
             'Scripto\Controller\Admin\Project' => Scripto\Controller\Admin\ProjectController::class,
             'Scripto\Controller\Admin\Item' => Scripto\Controller\Admin\ItemController::class,
             'Scripto\Controller\Admin\Media' => Scripto\Controller\Admin\MediaController::class,
+            'Scripto\Controller\Admin\Revision' => Scripto\Controller\Admin\RevisionController::class,
         ],
         'factories' => [
-            'Scripto\Controller\Admin\Revision' => Scripto\Service\Controller\Admin\RevisionControllerFactory::class,
-        ]
+            'Scripto\Controller\Admin\Index' => Scripto\Service\Controller\Admin\IndexControllerFactory::class,
+        ],
+    ],
+    'controller_plugins' => [
+        'factories' => [
+            'scriptoApiClient' => Scripto\Service\ControllerPlugin\ScriptoApiClientFactory::class,
+        ],
     ],
     'view_manager' => [
         'template_path_stack' => [
@@ -44,14 +50,14 @@ return [
     ],
     'view_helpers' => [
         'factories' => [
-            'scriptoBreadcrumbs' => Scripto\Service\ViewHelper\ScriptoBreadcrumbsFactory::class,
+            'scripto' => Scripto\Service\ViewHelper\ScriptoFactory::class,
         ],
     ],
     'navigation' => [
         'AdminModule' => [
             [
                 'label' => 'Scripto', // @translate
-                'route' => 'admin/scripto-project',
+                'route' => 'admin/scripto',
                 'resource' => 'Scripto\Controller\Admin\Project',
             ],
         ],
@@ -71,6 +77,42 @@ return [
                                 '__NAMESPACE__' => 'Scripto\Controller\Admin',
                                 'controller' => 'index',
                                 'action' => 'index',
+                            ],
+                        ],
+                    ],
+                    'scripto-user' =>  [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/user',
+                            'constraints' => [
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\Admin',
+                                'controller' => 'user',
+                                'action' => 'browse',
+                            ],
+                        ],
+                    ],
+                    'scripto-user-contributions' =>  [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/user/:user-id/contributions',
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\Admin',
+                                'controller' => 'user',
+                                'action' => 'contributions',
+                            ],
+                        ],
+                    ],
+                    'scripto-user-watchlist' =>  [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/user/:user-id/watchlist',
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\Admin',
+                                'controller' => 'user',
+                                'action' => 'watchlist',
                             ],
                         ],
                     ],

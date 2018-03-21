@@ -3,6 +3,7 @@ namespace Scripto\Job;
 
 use DateTime;
 use Omeka\Entity\Value;
+use Omeka\Job\Exception;
 use Scripto\Entity\ScriptoProject;
 
 /**
@@ -14,21 +15,25 @@ class ImportProject extends ScriptoJob
     {
         $em = $this->getServiceLocator()->get('Omeka\EntityManager');
         $project = $em->find('Scripto\Entity\ScriptoProject', $this->getArg('scripto_project_id'));
-        $this->importText($project);
+        $this->importProject($project);
     }
 
     /**
-     * Import text from MediaWiki to Omeka items.
+     * Import project text from MediaWiki to Omeka items.
      *
      * @param ScriptoProject $project
      */
-    public function importText(ScriptoProject $project)
+    public function importProject(ScriptoProject $project)
     {
+        if (!$project->getProperty()) {
+            throw new Exception\RuntimeException('Cannot import a project without a property.');
+        }
+
         $em = $this->getServiceLocator()->get('Omeka\EntityManager');
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
 
         // First, unimport all project texts.
-        $this->unimportText($project);
+        $this->unimportProject($project);
 
         // Iterate all project items.
         $itemIds = $this->getProjectItemIds($project);

@@ -1,6 +1,7 @@
 <?php
 namespace Scripto\Mediawiki;
 
+use DateTime;
 use Scripto\Mediawiki\Exception;
 use Zend\Http\Client as HttpClient;
 use Zend\Http\Request;
@@ -128,6 +129,47 @@ class ApiClient
     }
 
     /**
+     * Query page revisions by a named user.
+     *
+     * @link https://www.mediawiki.org/wiki/API:Usercontribs
+     * @param string $name User name
+     * @param int $limit
+     * @param string $continue
+     * @return array
+     */
+    public function queryUserContributions($name, $limit, $continue = null)
+    {
+        if (!is_string($name)) {
+            throw new Exception\InvalidArgumentException('A name must be a string');
+        }
+        if (strstr($name, '|')) {
+            throw new Exception\InvalidArgumentException('A name must not contain a vertical bar');
+        }
+        if (!is_numeric($limit)) {
+            throw new Exception\InvalidArgumentException('A limit must be numeric');
+        }
+        if (isset($continue) && !is_string($continue)) {
+            throw new Exception\InvalidArgumentException('A continue must be a string');
+        }
+
+        $request = [
+            'action' => 'query',
+            'list' => 'usercontribs',
+            'ucuser' => $name,
+            'uclimit' => $limit,
+            'ucprop' => 'ids|title|flags|timestamp|size|sizediff|parsedcomment',
+        ];
+        if ($continue) {
+            $request['uccontinue'] = $continue;
+        }
+        $query = $this->request($request);
+        if (isset($query['error'])) {
+            throw new Exception\QueryException($query['error']['info']);
+        }
+        return $query;
+    }
+
+    /**
      * Query information about named users.
      *
      * @link https://www.mediawiki.org/wiki/API:Users
@@ -165,45 +207,32 @@ class ApiClient
      *
      * @link https://www.mediawiki.org/wiki/API:Allusers
      * @param int $limit
-     * @param int $offset
+     * @param string $continue
      * @return array
      */
-    public function queryAllUsers($offset = null, $limit = null)
+    public function queryAllUsers($limit, $continue = null)
     {
-        if (isset($limit) && !is_numeric($limit)) {
+        if (!is_numeric($limit)) {
             throw new Exception\InvalidArgumentException('A limit must be numeric');
         }
-        if (isset($offset) && !is_numeric($offset)) {
-            throw new Exception\InvalidArgumentException('An offset must be numeric');
+        if (isset($continue) && !is_string($continue)) {
+            throw new Exception\InvalidArgumentException('A continue must be a string');
         }
 
-        $users = [];
-        $continue = false;
-        do {
-            $request = [
-                'action' => 'query',
-                'list' => 'allusers',
-                'aulimit' => 500,
-                'auprop' => 'blockinfo|groups|implicitgroups|rights|editcount|registration',
-            ];
-            if ($continue) {
-                // The previous iteration returned a continue query.
-                $request['continue'] = $query['continue']['continue'];
-                $request['aufrom'] = $query['continue']['aufrom'];
-            }
-            $query = $this->request($request);
-            if (isset($query['error'])) {
-                throw new Exception\QueryException($query['error']['info']);
-            }
-            $users = array_merge($users, $query['query']['allusers']);
-            $continue = isset($query['continue']);
-        } while ($continue);
-
-        // We get all users before slicing out what was requested because the
-        // API does not provide a conventional limit/offset query. This way is
-        // rather unoptimized but it offers a simpler and more predictable
-        // interface with only a minor speed reduction.
-        return array_slice($users, $offset, $limit);
+        $request = [
+            'action' => 'query',
+            'list' => 'allusers',
+            'aulimit' => $limit,
+            'auprop' => 'blockinfo|groups|implicitgroups|rights|editcount|registration',
+        ];
+        if ($continue) {
+            $request['aufrom'] = $continue;
+        }
+        $query = $this->request($request);
+        if (isset($query['error'])) {
+            throw new Exception\QueryException($query['error']['info']);
+        }
+        return $query;
     }
 
     /**
@@ -282,10 +311,10 @@ class ApiClient
      * @link https://www.mediawiki.org/wiki/API:Revisions
      * @param string $title
      * @param int $limit
-     * @param int $offset
+     * @param string $continue
      * @return array
      */
-    public function queryRevisions($title, $limit = null, $offset = null)
+    public function queryRevisions($title, $limit, $continue = null)
     {
         if (!is_string($title)) {
             throw new Exception\InvalidArgumentException('A title must be a string');
@@ -293,43 +322,68 @@ class ApiClient
         if (strstr($title, '|')) {
             throw new Exception\InvalidArgumentException('A title must not contain a vertical bar');
         }
-        if (isset($limit) && !is_numeric($limit)) {
+        if (!is_numeric($limit)) {
             throw new Exception\InvalidArgumentException('A limit must be numeric');
         }
-        if (isset($offset) && !is_numeric($offset)) {
-            throw new Exception\InvalidArgumentException('An offset must be numeric');
+        if (isset($continue) && !is_string($continue)) {
+            throw new Exception\InvalidArgumentException('A continue must be a string');
         }
 
-        $revisions = [];
-        $continue = false;
-        do {
-            $request = [
-                'action' => 'query',
-                'prop' => 'revisions',
-                'titles' => $title,
-                'rvprop' => 'ids|flags|timestamp|user|size|parsedcomment',
-                'rvlimit' => 'max',
-            ];
-            if ($continue) {
-                // The previous iteration returned a continue query.
-                $request['continue'] = $query['continue']['continue'];
-                $request['rvcontinue'] = $query['continue']['rvcontinue'];
-            }
-            $query = $this->request($request);
-            if (isset($query['error'])) {
-                throw new Exception\QueryException($query['error']['info']);
-            }
-            if (isset($query['query']['pages'][0]['revisions'])) {
-                $revisions = array_merge($revisions, $query['query']['pages'][0]['revisions']);
-            }
-            $continue = isset($query['continue']);
-        } while ($continue);
+        $request = [
+            'action' => 'query',
+            'prop' => 'revisions',
+            'titles' => $title,
+            'rvlimit' => $limit,
+            'rvprop' => 'ids|flags|timestamp|user|size|parsedcomment',
+        ];
+        if ($continue) {
+            $request['rvcontinue'] = $continue;
+        }
+        $query = $this->request($request);
+        if (isset($query['error'])) {
+            throw new Exception\QueryException($query['error']['info']);
+        }
+        return $query;
+    }
 
-        // We get all revisions before slicing out what was requested because
-        // the API does not provide a conventional limit/offset query. This way
-        // is rather unoptimized but it offers a simpler and more predictable
-        // interface with only a minor speed reduction.
-        return array_slice($revisions, $offset, $limit);
+    /**
+     * Query the current user's watchlist.
+     *
+     * @link https://www.mediawiki.org/wiki/API:Watchlist
+     * @param int $endHours How many hours ago to end listing
+     * @param int $limit
+     * @param string $continue
+     * @return array
+     */
+    public function queryWatchlist($hours, $limit, $continue = null)
+    {
+        if (!is_numeric($hours)) {
+            throw new Exception\InvalidArgumentException('Hours must be numeric');
+        }
+        if (!is_numeric($limit)) {
+            throw new Exception\InvalidArgumentException('A limit must be numeric');
+        }
+        if (isset($continue) && !is_string($continue)) {
+            throw new Exception\InvalidArgumentException('A continue must be a string');
+        }
+
+        $request = [
+            'action' => 'query',
+            'list' => 'watchlist',
+            'wlend' => strtotime(sprintf('-%s hour', $hours)),
+            'wllimit' => $limit,
+            'wlnamespace' => 0,
+            'wltype' => 'edit|new',
+            'wlprop' => 'ids|title|flags|user|userid|parsedcomment|timestamp|sizes|loginfo',
+        ];
+        if ($continue) {
+            $request['wlcontinue'] = $continue;
+        }
+        $query = $this->request($request);
+        if (isset($query['error'])) {
+            throw new Exception\QueryException($query['error']['info']);
+        }
+        return $query;
     }
 
     /**
@@ -590,6 +644,7 @@ class ApiClient
             'logintoken' => $query['query']['tokens']['logintoken'],
             'username' => $username,
             'password' => $password,
+            'rememberMe' => true,
         ]);
         if (isset($clientlogin['error'])) {
             throw new Exception\ClientloginException($clientlogin['error']['info']);

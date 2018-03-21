@@ -14,5 +14,11 @@ class SyncProjectForm extends Form
                 'value' => 'Sync project', // @translate
             ],
         ]);
+
+        // Disable the submit button if the project has no item set.
+        $project = $this->getOption('project');
+        if ($project && !$project->itemSet()) {
+            $this->get('submit')->setAttribute('disabled', true);
+        }
     }
 }

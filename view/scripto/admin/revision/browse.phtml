@@ -1,16 +1,21 @@
 <?php 
 $this->headLink()->appendStylesheet($this->assetUrl('css/scripto.css', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
-$this->htmlElement('body')->appendAttribute('class', 'browse'); 
+$this->htmlElement('body')->appendAttribute('class', 'scripto browse revision');
 ?>
 
-<?php echo $this->pageTitle($this->translate('Revision browse'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
+<?php echo $this->pageTitle($this->translate('Revision history'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
 
-<?php echo $this->scriptoBreadcrumbs(); ?>
+<?php echo $this->scripto()->adminLoginBar(); ?>
+
+<?php echo $this->scripto()->adminBreadcrumbs(); ?>
 
 <?php if ($revisions): ?>
 
-<button class="compare-selected" data-url="<?php echo $this->escapeHtml($this->url(null, [], true)); ?>">Compare selected</button>
+<div class="browse-controls">
+    <button class="compare-selected" data-url="<?php echo $this->escapeHtml($this->url(null, [], true)); ?>">Compare selected</button>
+    <?php echo $this->scripto()->adminMediawikiPagination(); ?>
+</div>
 
 <table class="scripto-revisions tablesaw" data-tablesaw-mode="stack">
     <thead>
@@ -19,7 +24,7 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
             <th><?php echo $this->translate('Date'); ?></th>
             <th><?php echo $this->translate('User'); ?></th>
             <th><?php echo $this->translate('Size'); ?></th>
-            <th><?php echo $this->translate('Comment'); ?></th>
+            <th class="comment"><?php echo $this->translate('Comment'); ?></th>
         </tr>
     </thead>
     <tbody>
@@ -54,13 +59,13 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
             <td>
                 <?php $datetime = new \DateTime($revision['timestamp']); ?>
                 <?php echo $this->hyperlink(
-                    $datetime->format('G:i, j F Y'),
+                    $datetime->format('G:i:s, j F Y'),
                     $this->url('admin/scripto-revision-id', ['action' => 'show', 'revision-id' => $revision['revid']], true)
                 ); ?>
             </td>
-            <td><?php echo $this->escapeHtml($revision['user']); ?></td>
+            <td><?php echo $this->hyperlink($revision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $revision['user']])); ?></td>
             <td><?php
-            $sizeDiff = $childRevision ? $revision['size'] - $childRevision['size'] : $revision['size'];
+            $sizeDiff = $childRevision ? $revision['size'] - $childRevision['size'] : 0;
             echo sprintf(
                 '%s bytes (%s)',
                 number_format($revision['size']),

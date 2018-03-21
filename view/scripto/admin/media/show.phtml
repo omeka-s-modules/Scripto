@@ -4,7 +4,7 @@ $this->headLink()->appendStylesheet($this->assetUrl('css/scripto.css', 'Scripto'
 $this->headScript()->appendFile($this->assetUrl('vendor/jquery-panzoom/jquery.panzoom.min.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('vendor/featherlight/featherlight.min.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
-$this->htmlElement('body')->appendAttribute('class', 'show'); 
+$this->htmlElement('body')->appendAttribute('class', 'scripto media show');
 ?>
 
 <?php echo $this->pageTitle($this->translate('Media review'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
@@ -13,14 +13,33 @@ $this->htmlElement('body')->appendAttribute('class', 'show');
     <div id="page-action-menu">
         <a href="#" class="expand button" aria-label="<?php echo $this->translate('Expand'); ?>"><?php echo $this->translate('Actions'); ?></a>
         <ul class="collapsible">
-            <li><a href="#" class="sidebar-content" data-sidebar-selector="#scripto-media-metadata"><?php echo $this->translate('View media metadata'); ?></a></li>
-            <li><?php echo $this->hyperlink($this->translate('Browse revisions'), $this->url('admin/scripto-media-id', ['action' => 'revision'], true)); ?></li>
+            <li><?php echo $this->hyperlink($this->translate('Browse revision history'), $this->url('admin/scripto-media-id', ['action' => 'revision'], true)); ?></li>
         </ul>
         <button type="submit"><?php echo $this->translate('Save'); ?></button>
     </div>
 </div>
 
-<?php echo $this->scriptoBreadcrumbs(); ?>
+<?php echo $this->scripto()->adminLoginBar(); ?>
+
+<?php echo $this->scripto()->adminBreadcrumbs(); ?>
+
+<?php
+$previous = $sMedia->previousScriptoMedia();
+$next = $sMedia->nextScriptoMedia();
+?>
+<nav class="pagination" role="navigation">
+    <?php if ($previous): ?>
+    <?php echo $this->hyperlink('', $previous->adminUrl(), ['class' => 'previous o-icon-prev button', 'title' => $this->translate('Previous')]); ?>
+    <?php else: ?>
+    <span class="previous o-icon-prev button inactive"></span>
+    <?php endif; ?>
+    <?php if ($next): ?>
+    <?php echo $this->hyperlink('', $next->adminUrl(), ['class' => 'next o-icon-next button', 'title' => $this->translate('Next')]); ?>
+    <?php else: ?>
+    <span class="next o-icon-next button inactive"></span>
+    <?php endif; ?>
+    <span class="row-count"><?php echo sprintf($this->translate('%s of %s'), $sMedia->position(), $sMedia->scriptoItem()->mediaCount()); ?></span>
+</nav>
 
 <div class="sidebar always-open" id="reviewer-form">
     <h3><?php echo $this->translate('Review media'); ?></h3>
@@ -80,8 +99,7 @@ $this->htmlElement('body')->appendAttribute('class', 'show');
     <?php echo $sMedia->pageHtml(); ?>
 </div>
 
-<div id="scripto-media-metadata" class="sidebar">
-    <?php echo $this->hyperlink('', '#', ['class' => 'sidebar-close o-icon-close', 'title' => $this->translate('Close')]); ?>
+<div id="scripto-media-metadata" class="sidebar always-open">
     <?php echo $this->partial('scripto/admin/media/show-details') ?>
 </div>
 

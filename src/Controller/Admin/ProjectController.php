@@ -27,7 +27,7 @@ class ProjectController extends AbstractScriptoController
                 $response = $this->api($form)->create('scripto_projects', $formData);
                 if ($response) {
                     $this->messenger()->addSuccess('Scripto project successfully created.'); // @translate
-                    return $this->redirect()->toRoute('admin/scripto-item', ['action' => 'browse'], true);
+                    return $this->redirect()->toUrl($response->getContent()->url());
                 }
             } else {
                 $this->messenger()->addFormErrors($form);
@@ -53,15 +53,15 @@ class ProjectController extends AbstractScriptoController
                 $response = $this->api($form)->update('scripto_projects', $this->params('project-id'), $formData);
                 if ($response) {
                     $this->messenger()->addSuccess('Scripto project successfully edited.'); // @translate
-                    return $this->redirect()->toRoute('admin/scripto-item', ['action' => 'browse'], true);
+                    return $this->redirect()->toUrl($response->getContent()->url());
                 }
             } else {
                 $this->messenger()->addFormErrors($form);
             }
         } else {
             $data = $project->jsonSerialize();
-            $data['o:item_set'] = $data['o:item_set']->id();
-            $data['o:property'] = $data['o:property']->id();
+            $data['o:item_set'] = $data['o:item_set'] ? $data['o:item_set']->id() : null;
+            $data['o:property'] = $data['o:property'] ? $data['o:property']->id() : null;
             $form->setData($data);
         }
 

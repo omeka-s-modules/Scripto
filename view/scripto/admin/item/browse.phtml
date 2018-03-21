@@ -1,7 +1,7 @@
 <?php 
 $this->headLink()->appendStylesheet($this->assetUrl('css/scripto.css', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
-$this->htmlElement('body')->appendAttribute('class', 'browse'); 
+$this->htmlElement('body')->appendAttribute('class', 'scripto project review item browse');
 ?>
 
 <?php echo $this->pageTitle($this->translate('Project review'), 1, $this->translate('Scripto'), $project->title()); ?>
@@ -10,7 +10,6 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
     <div id="page-action-menu">
         <a href="#" class="expand button" aria-label="<?php echo $this->translate('Expand'); ?>"><?php echo $this->translate('Actions'); ?></a>
         <ul class="collapsible">
-            <li><a href="#" class="sidebar-content" data-sidebar-selector="#project-metadata"><?php echo $this->translate('View project metadata'); ?></a></li>
             <li><?php echo $project->link($this->translate('Edit project'), 'edit'); ?></li>
             <li><a href="#" class="sidebar-content" data-sidebar-selector="#sync-project"><?php echo $this->translate('Sync project'); ?></a></li>
             <li><a href="#" class="sidebar-content" data-sidebar-selector="#import-project"><?php echo $this->translate('Import project'); ?></a></li>
@@ -19,7 +18,9 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
     </div>
 </div>
 
-<?php echo $this->scriptoBreadcrumbs(); ?>
+<?php echo $this->scripto()->adminLoginBar(); ?>
+
+<?php echo $this->scripto()->adminBreadcrumbs(); ?>
 
 <div class="browse-controls">
     <?php echo $this->pagination(); ?>
@@ -41,6 +42,18 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
         [
             'label' => $this->translate('Is not approved'),
             'value' => 'is_not_approved'
+        ],
+        [
+            'label' => $this->translate('Is in progress'),
+            'value' => 'is_in_progress'
+        ],
+        [
+            'label' => $this->translate('Is new'),
+            'value' => 'is_new'
+        ],
+        [
+            'label' => $this->translate('Is edited after imported'),
+            'value' => 'is_edited_after_imported',
         ],
     ]); ?>
 </div>
@@ -66,6 +79,7 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
                     <li><?php echo $this->hyperlink('', '#', [
                         'data-sidebar-content-url' => $sItem->url('show-details'),
                         'class' => 'o-icon-more sidebar-content',
+                        'data-sidebar-selector' => '#show-details',
                         'title' => $this->translate('Details'),
                     ]); ?></li>
                 </ul>
@@ -83,7 +97,17 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
     <?php echo $this->pagination(); ?>
 </div>
 
-<div class="sidebar">
+<?php else: ?>
+<div class="no-resources">
+    <p><?php echo $this->translate('No Scripto items found. Do you need to sync the project?'); ?></p>
+</div>
+<?php endif; ?>
+
+<div id="project-metadata" class="sidebar always-open">
+    <?php echo $this->partial('scripto/admin/project/show-details') ?>
+</div>
+
+<div id="show-details" class="sidebar">
     <?php echo $this->hyperlink('', '#', [
         'class' => 'sidebar-close o-icon-close',
         'title' => $this->translate('Close'),
@@ -91,27 +115,12 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
     <div class="sidebar-content"></div>
 </div>
 
-<?php else: ?>
-<div class="no-resources">
-    <p><?php echo sprintf(
-        $this->translate('No Scripto items found. %s'),
-        sprintf(
-            '<a href="%s">%s</a>',
-            $this->url('admin/scripto-project-id', ['controller' => 'project', 'action' => 'show-actions'], true),
-            $this->translate('Do you need to sync the project?')
-        )
-    ); ?></p>
-</div>
-<?php endif; ?>
-
-<div id="project-metadata" class="sidebar">
-    <?php echo $this->hyperlink('', '#', ['class' => 'sidebar-close o-icon-close', 'title' => $this->translate('Close')]); ?>
-    <?php echo $this->partial('scripto/admin/project/show-details') ?>
-</div>
-
 <div id="sync-project" class="sidebar">
     <?php echo $this->hyperlink('', '#', ['class' => 'sidebar-close o-icon-close', 'title' => $this->translate('Close')]); ?>
     <h3><?php echo $this->translate('Sync project'); ?></h3>
+    <?php if (!$project->itemSet()): ?>
+    <p class="error"><?php echo $this->translate('This project has no item set. Set an item set to enable syncing.'); ?></p>
+    <?php endif; ?>
     <p><?php echo $this->translate('Synchronize this project with the configured item set. Once synchronized, this project will contain every item in the item set. You should synchronize periodically, any time items are added or removed from the item set, and when item media have been added, removed, or reordered.'); ?></p>
     <?php
     $syncForm->setAttribute('action', $this->url('admin/scripto-project-id', ['action' => 'sync'], true));
@@ -119,10 +128,12 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
     ?>
 </div>
 
-
 <div id="import-project" class="sidebar">
     <?php echo $this->hyperlink('', '#', ['class' => 'sidebar-close o-icon-close', 'title' => $this->translate('Close')]); ?>
     <h3><?php echo $this->translate('Import project'); ?></h3>
+    <?php if (!$project->property()): ?>
+    <p class="error"><?php echo $this->translate('This project has no property. Set a property to enable importing.'); ?></p>
+    <?php endif; ?>
     <p><?php echo $this->translate('Import project transcriptions from MediaWiki into Omeka. This process will aggregate transcriptions from approved Scripto media and save them to their corresponding Omeka items using the configured property and language tag.'); ?></p>
     <p><?php echo sprintf(
         '<span class="error">%s</span>',
@@ -137,6 +148,9 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
 <div id="unimport-project" class="sidebar">
     <?php echo $this->hyperlink('', '#', ['class' => 'sidebar-close o-icon-close', 'title' => $this->translate('Close')]); ?>
     <h3><?php echo $this->translate('Unimport project'); ?></h3>
+    <?php if (!$project->property()): ?>
+    <p class="error"><?php echo $this->translate('This project has no property. Set a property to enable unimporting.'); ?></p>
+    <?php endif; ?>
     <p><?php echo $this->translate('Unimport project transcriptions from Omeka.'); ?></p>
     <p><?php echo sprintf(
         '<span class="error">%s</span>',

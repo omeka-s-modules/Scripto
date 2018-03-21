@@ -1,6 +1,8 @@
 <?php
 namespace Scripto\Controller\Admin;
 
+use DateTime;
+use Omeka\Api\Exception\NotFoundException;
 use Zend\Mvc\Controller\AbstractActionController;
 
 class AbstractScriptoController extends AbstractActionController
@@ -21,7 +23,11 @@ class AbstractScriptoController extends AbstractActionController
             return false;
         }
 
-        $project = $this->api()->read('scripto_projects', $projectId)->getContent();
+        try {
+            $project = $this->api()->read('scripto_projects', $projectId)->getContent();
+        } catch (NotFoundException $e) {
+            return false;
+        }
 
         if (!$itemId && !$mediaId) {
             return $project;
@@ -52,5 +58,26 @@ class AbstractScriptoController extends AbstractActionController
         }
 
         return $sMedia;
+    }
+
+    /**
+     * Prepare a MediaWiki list for rendering.
+     *
+     * @param array $list
+     * @return array
+     */
+    public function prepareMediawikiList(array $list)
+    {
+        foreach ($list as $key => $row) {
+            if (preg_match('/^\d+:\d+:\d+$/', $row['title'])) {
+                list($projectId, $itemId, $mediaId) = explode(':', $row['title']);
+                $sMedia = $this->getScriptoRepresentation($projectId, $itemId, $mediaId);
+                if ($sMedia) {
+                    $list[$key]['scripto_media'] = $sMedia;
+                }
+            }
+            $list[$key]['timestamp'] = new DateTime($row['timestamp']);
+        }
+        return $list;
     }
 }

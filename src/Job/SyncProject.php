@@ -4,6 +4,7 @@ namespace Scripto\Job;
 use DateTime;
 use Omeka\Entity\Item;
 use Omeka\Entity\Media;
+use Omeka\Job\Exception;
 use Scripto\Entity\ScriptoItem;
 use Scripto\Entity\ScriptoMedia;
 use Scripto\Entity\ScriptoProject;
@@ -27,6 +28,10 @@ class SyncProject extends ScriptoJob
      */
     public function syncProject(ScriptoProject $project)
     {
+        if (!$project->getItemSet()) {
+            throw new Exception\RuntimeException('Cannot sync a project without an item set.');
+        }
+
         $this->syncProjectItems($project);
         $this->syncProjectMedia($project);
 

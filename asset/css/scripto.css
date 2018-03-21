@@ -13,6 +13,7 @@
 
 .browse .scripto-revisions td {
     width: 100%;
+    vertical-align: top;
 }
 
 .browse .scripto-revisions td:first-child,
@@ -61,6 +62,33 @@
     flex-wrap: wrap;
     margin-top: 12px;
  }
+
+.browse .browse-controls {
+    justify-content: flex-end;
+}
+
+.browse nav.pagination {
+    margin-right: auto;
+}
+
+.scripto.browse th.comment {
+    width: 25%;
+}
+
+.compare-selected {
+    margin-right: 12px;
+}
+
+.mediawiki-pagination {
+    margin: 0 auto 12px 0;
+}
+
+.show nav.pagination {
+    float: right;
+    margin: 6px 0 0;
+    position: relative;
+    z-index: 1;
+}
 
 .horizontal .wikitext-flex {
     justify-content: space-between; 
@@ -260,7 +288,7 @@ button.full-screen:after {
 
 .breadcrumbs .separator:after {
     content: "\f0da";
-    font-family: "FontAwesome";
+    font-family: "Font Awesome 5 Free";
     margin: 0;
 }
 
@@ -365,4 +393,124 @@ button.full-screen:after {
 #approval-history table,
 #completion-history table {
     background-color: #fff;
+}
+
+/* Login bar */
+
+#scripto-login {
+    display: flex;
+    font-size: 14px;
+    line-height: 21px;
+    background-color: #0000000a;
+    border-radius: 3px;
+    padding: 6px;
+    margin: 0 0 12px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#scripto-login h3,
+#scripto-login input,
+#scripto-login button {
+    font-size: 14px;
+    line-height: 21px;
+    margin: 0;
+}
+
+#scripto-login h3 {
+    margin-right: auto;
+}
+
+#scripto-login input,
+#scripto-login button {
+    padding: 0 6px;
+    height: 21px;
+    min-height: 0;
+}
+
+#scripto-login .field {
+    display: inline-flex;
+    background: transparent;
+    align-items: center;
+    width: auto;
+    padding: 0;
+    margin: 0 12px 0 0;
+}
+
+#scripto-login .field-meta,
+#scripto-login .inputs {
+    padding: 0;
+    line-height: 21px;
+    width: auto;
+}
+
+#scripto-login .field-meta {
+    text-align: right;
+}
+
+#scripto-login label {
+    padding: 0 6px 0 0;
+    max-width: none;
+}
+
+/* Dashboard */
+
+.scripto.dashboard .dashboard-row {
+    columns: 2;
+}
+
+.scripto.dashboard .panel {
+    border: 1px solid #dfdfdf;
+    border-radius: 3px;
+    margin: 0 0 12px;
+    width: 100%;
+    padding: 0;
+    float: none;
+    page-break-inside: avoid;
+    display: inline-block;
+}
+
+.scripto.dashboard .panel .button {
+    min-height: 0;
+    padding: 0 6px;
+    font-size: 14px;
+    margin: 0;
+    font-weight: normal;
+}
+
+.scripto.dashboard .panel ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.scripto.dashboard .panel h4 {
+    background-color: rgba(0,0,0,.04);
+}
+
+.scripto.dashboard .panel li,
+.scripto.dashboard .panel h4,
+.scripto.dashboard .panel p {
+    padding: 6px 6px 5px;
+    margin: 0;
+}
+
+.scripto.dashboard .panel h4,
+.scripto.dashboard .panel li:not(:last-child) {
+    border-bottom: 1px solid #dfdfdf;
+}
+
+/* User/browse */
+
+.scripto.user.browse td {
+    vertical-align: top;
+}
+
+.scripto.user.browse td:first-child, 
+.scripto.user.browse th:first-child {
+    width: auto;
+}
+
+.scripto.user.browse .tablesaw-cell-content {
+    flex-wrap: wrap;
 }

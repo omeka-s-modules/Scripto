@@ -1,0 +1,169 @@
+<?php
+$this->headLink()->appendStylesheet($this->assetUrl('css/scripto.css', 'Scripto'));
+$this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
+$this->htmlElement('body')->appendAttribute('class', 'scripto dashboard');
+?>
+
+<?php echo $this->pageTitle($this->translate('Dashboard'), 1, $this->translate('Scripto')); ?>
+
+<div id="page-actions">
+    <div id="page-action-menu">
+        <a href="#" class="expand button" aria-label="<?php echo $this->translate('Expand'); ?>"><?php echo $this->translate('Actions'); ?></a>
+        <ul class="collapsible">
+            <li><?php echo $this->hyperlink($this->translate('Browse projects'), $this->url('admin/scripto-project')); ?></li>
+            <li><?php echo $this->hyperlink($this->translate('Add new project'), $this->url('admin/scripto-project', ['action' => 'add'])); ?></li>
+            <li><?php echo $this->hyperlink($this->translate('Browse users'), $this->url('admin/scripto-user')); ?></li>
+        </ul>
+    </div>
+</div>
+
+<?php echo $this->scripto()->adminLoginBar(); ?>
+
+<div class="dashboard-row">
+
+    <div class="recent-projects panel">
+        <h4><?php echo $this->translate('Your projects'); ?> <?php echo $this->hyperlink($this->translate('View all projects'), $this->url('admin/scripto-project'), ['class' => 'button']); ?></h4>
+        <?php if ($projects): ?>
+        <ul>
+        <?php foreach ($projects as $project): ?>
+            <li><?php echo sprintf(
+                '%s (%s)',
+                $project->link($project->title()),
+                sprintf($this->translate('%s items'), number_format($project->itemCount()))
+            ); ?></li>
+        <?php endforeach; ?>
+        </ul>
+        <?php else: ?>
+        <p><?php echo sprintf(
+            $this->translate('No projects found. %s'),
+            sprintf(
+                '<a href="%s">%s</a>',
+                $this->escapeHtml($this->url('admin/scripto-project', ['action' => 'add'])),
+                $this->translate('Add a project here.')
+            )
+        ); ?></p>
+        <?php endif; ?>
+    </div>
+
+    <div class="recent-contributions panel">
+        <h4>
+            <?php echo $this->translate('Your recent contributions'); ?>
+            <?php if (!isset($user['invalid'])): ?>
+            <?php echo $this->hyperlink($this->translate('View your contributions'), $this->url('admin/scripto-user-contributions', ['user-id' => $user['name']]), ['class' => 'button']); ?>
+            <?php endif; ?>
+        </h4>
+        <?php if (!isset($user['invalid']) && $userCons): ?>
+        <ul>
+        <?php foreach ($userCons as $userCon): ?>
+            <?php
+            $date = $this->i18n()->dateFormat($userCon['timestamp'], 'short', 'short');
+            $sMedia = isset($userCon['scripto_media']) ? $userCon['scripto_media'] : null;
+            $sItem = $sMedia ? $sMedia->scriptoItem() : null;
+            $project = $sItem ? $sItem->scriptoProject() : null;
+            ?>
+            <li>
+                <?php if ($sMedia): ?>
+                <?php echo sprintf(
+                    '%s (%s) (%s | %s) %s (%s) <i>%s</i>',
+                    $this->hyperlink($sItem->item()->displayTitle(), $this->url('admin/scripto-media-id', [
+                        'project-id' => $project->id(),
+                        'item-id' => $sItem->item()->id(),
+                        'media-id' => $sMedia->media()->id(),
+                    ])),
+                    sprintf($this->translate('media #%s'), $sMedia->position()),
+                    $userCon['parentid']
+                        ? $this->hyperlink($this->translate('diff'), $this->url('admin/scripto-revision-compare', [
+                            'project-id' => $project->id(),
+                            'item-id' => $sItem->item()->id(),
+                            'media-id' => $sMedia->media()->id(),
+                            'from-revision-id' => $userCon['parentid'],
+                            'to-revision-id' => $userCon['revid'],
+                        ]))
+                        : $this->translate('diff'),
+                    $this->hyperlink($this->translate('hist'), $this->url('admin/scripto-revision', [
+                        'project-id' => $project->id(),
+                        'item-id' => $sItem->item()->id(),
+                        'media-id' => $sMedia->media()->id(),
+                    ])),
+                    $this->hyperlink($date, $this->url('admin/scripto-revision-id', [
+                        'project-id' => $project->id(),
+                        'item-id' => $sItem->item()->id(),
+                        'media-id' => $sMedia->media()->id(),
+                        'revision-id' => $userCon['revid'],
+                    ])),
+                    sprintf('%s%s', 0 < $userCon['sizediff'] ? '+' : '', number_format($userCon['sizediff'])),
+                    $userCon['parsedcomment']
+                ); ?>
+                <?php else: ?>
+                <?php echo sprintf('%s: %s', $userCon['title'], $date); ?>
+                <?php endif; ?>
+            </li>
+        <?php endforeach; ?>
+        </ul>
+        <?php else: ?>
+        <p><?php echo $this->translate('No contributions found. Do you need to log in to Scripto?'); ?></p>
+        <?php endif; ?>
+    </div>
+
+    <div class="recent-watchlist panel">
+        <h4>
+            <?php echo $this->translate('Your recent watchlist'); ?>
+            <?php if (!isset($user['invalid'])): ?>
+            <?php echo $this->hyperlink($this->translate('View your watchlist'), $this->url('admin/scripto-user-watchlist', ['user-id' => $user['name']]), ['class' => 'button']); ?>
+            <?php endif; ?>
+        </h4>
+        <?php if (!isset($user['invalid']) && $watchlist): ?>
+        <ul>
+        <?php foreach ($watchlist as $page): ?>
+            <?php
+            $date = $this->i18n()->dateFormat($page['timestamp'], 'short', 'short');
+            $sizeDiff = $page['newlen'] - $page['oldlen'];
+            $sMedia = isset($page['scripto_media']) ? $page['scripto_media'] : null;
+            $sItem = $sMedia ? $sMedia->scriptoItem() : null;
+            $project = $sItem ? $sItem->scriptoProject() : null;
+            ?>
+            <li>
+                <?php if ($sMedia): ?>
+                <?php echo sprintf(
+                    '%s (%s) (%s | %s) %s (%s) <i>%s</i>',
+                    $this->hyperlink($sItem->item()->displayTitle(), $this->url('admin/scripto-media-id', [
+                        'project-id' => $project->id(),
+                        'item-id' => $sItem->item()->id(),
+                        'media-id' => $sMedia->media()->id(),
+                    ])),
+                    sprintf($this->translate('media #%s'), $sMedia->position()),
+                    $page['old_revid']
+                        ? $this->hyperlink($this->translate('diff'), $this->url('admin/scripto-revision-compare', [
+                            'project-id' => $project->id(),
+                            'item-id' => $sItem->item()->id(),
+                            'media-id' => $sMedia->media()->id(),
+                            'from-revision-id' => $page['old_revid'],
+                            'to-revision-id' => $page['revid'],
+                        ]))
+                        : $this->translate('diff'),
+                    $this->hyperlink($this->translate('hist'), $this->url('admin/scripto-revision', [
+                        'project-id' => $project->id(),
+                        'item-id' => $sItem->item()->id(),
+                        'media-id' => $sMedia->media()->id(),
+                    ])),
+                    $this->hyperlink($date, $this->url('admin/scripto-revision-id', [
+                        'project-id' => $project->id(),
+                        'item-id' => $sItem->item()->id(),
+                        'media-id' => $sMedia->media()->id(),
+                        'revision-id' => $page['revid'],
+                    ])),
+                    sprintf('%s%s', 0 < $sizeDiff ? '+' : '', number_format($sizeDiff)),
+                    $page['parsedcomment']
+                ); ?>
+                <?php else: ?>
+                <?php echo sprintf('%s: %s', $date, $page['title']); ?>
+                <?php endif; ?>
+            </li>
+        <?php endforeach; ?>
+        </ul>
+        <?php else: ?>
+        <p><?php echo $this->translate('No watchlist found. Do you need to log in to Scripto?'); ?></p>
+        <?php endif; ?>
+    </div>
+
+</div>

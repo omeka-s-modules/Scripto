@@ -1,21 +1,14 @@
 <?php
 $this->headLink()->appendStylesheet($this->assetUrl('css/scripto.css', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
-$this->htmlElement('body')->appendAttribute('class', 'browse'); 
+$this->htmlElement('body')->appendAttribute('class', 'scripto item review media browse');
 ?>
 
 <?php echo $this->pageTitle($this->translate('Item review'), 1, $this->translate('Scripto'), $sItem->item()->displayTitle()); ?>
 
-<div id="page-actions">
-    <div id="page-action-menu">
-        <a href="#" class="expand button" aria-label="<?php echo $this->translate('Expand'); ?>"><?php echo $this->translate('Actions'); ?></a>
-        <ul class="collapsible">
-            <li><a href="#" class="sidebar-content" data-sidebar-selector="#scripto-item-metadata"><?php echo $this->translate('View item metadata'); ?></a></li>
-        </ul>
-    </div>
-</div>
+<?php echo $this->scripto()->adminLoginBar(); ?>
 
-<?php echo $this->scriptoBreadcrumbs(); ?>
+<?php echo $this->scripto()->adminBreadcrumbs(); ?>
 
 <div class="browse-controls">
     <?php echo $this->pagination(); ?>
@@ -116,6 +109,7 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
                     <li><?php echo $this->hyperlink('', '#', [
                         'data-sidebar-content-url' => $sMedia->url('show-details'),
                         'class' => 'o-icon-more sidebar-content',
+                        'data-sidebar-selector' => '#show-details',
                         'title' => $this->translate('Details'),
                     ]); ?></li>
                 </ul>
@@ -134,30 +128,22 @@ $this->htmlElement('body')->appendAttribute('class', 'browse');
     <?php echo $this->pagination(); ?>
 </div>
 
-<div class="sidebar">
+<?php else: ?>
+<div class="no-resources">
+    <p><?php echo $this->translate('No Scripto media found. Do you need to sync the project?'); ?></p>
+</div>
+<?php endif; ?>
+
+<div id="scripto-item-metadata" class="sidebar always-open">
+    <?php echo $this->partial('scripto/admin/item/show-details') ?>
+</div>
+
+<div id="show-details" class="sidebar">
     <?php echo $this->hyperlink('', '#', [
         'class' => 'sidebar-close o-icon-close',
         'title' => $this->translate('Close'),
     ]); ?>
     <div class="sidebar-content"></div>
-</div>
-
-<?php else: ?>
-<div class="no-resources">
-    <p><?php echo sprintf(
-        $this->translate('No Scripto media found. %s'),
-        sprintf(
-            '<a href="%s">%s</a>',
-            $this->url('admin/scripto-project-id', ['controller' => 'project', 'action' => 'show-actions'], true),
-            $this->translate('Do you need to sync the project?')
-        )
-    ); ?></p>
-</div>
-<?php endif; ?>
-
-<div id="scripto-item-metadata" class="sidebar">
-    <?php echo $this->hyperlink('', '#', ['class' => 'sidebar-close o-icon-close', 'title' => $this->translate('Close')]); ?>
-    <?php echo $this->partial('scripto/admin/item/show-details') ?>
 </div>
 
 <script>

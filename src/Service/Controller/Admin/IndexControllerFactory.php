@@ -2,13 +2,13 @@
 namespace Scripto\Service\Controller\Admin;
 
 use Interop\Container\ContainerInterface;
-use Scripto\Controller\Admin\RevisionController;
+use Scripto\Controller\Admin\IndexController;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
-class RevisionControllerFactory implements FactoryInterface
+class IndexControllerFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $services, $requestedName, array $options = null)
     {
-        return new RevisionController($services->get('Scripto\Mediawiki\ApiClient'));
+        return new IndexController($services->get('Omeka\AuthenticationService'));
     }
 }

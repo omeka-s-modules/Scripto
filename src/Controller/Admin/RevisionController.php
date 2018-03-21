@@ -2,24 +2,10 @@
 namespace Scripto\Controller\Admin;
 
 use Scripto\Form\RevertRevisionForm;
-use Scripto\Mediawiki\ApiClient;
 use Zend\View\Model\ViewModel;
 
 class RevisionController extends AbstractScriptoController
 {
-    /**
-     * @var ApiClient
-     */
-    protected $apiClient;
-
-    /**
-     * @param ApiClient $apiClient
-     */
-    public function __construct(ApiClient $apiClient)
-    {
-        $this->apiClient = $apiClient;
-    }
-
     public function browseAction()
     {
         $sMedia = $this->getScriptoRepresentation(
@@ -32,12 +18,17 @@ class RevisionController extends AbstractScriptoController
         }
 
         $sItem = $sMedia->scriptoItem();
+        $response = $sMedia->pageRevisions(100, $this->params()->fromQuery('continue'));
+        $revisions = $response['query']['pages'][0]['revisions'];
+        $continue = isset($response['continue']) ? $response['continue']['rvcontinue'] : null;
+
         $view = new ViewModel;
         $view->setVariable('sMedia', $sMedia);
         $view->setVariable('media', $sMedia->media());
-        $view->setVariable('revisions', $sMedia->pageRevisions());
         $view->setVariable('sItem', $sItem);
         $view->setVariable('item', $sItem->item());
+        $view->setVariable('revisions', $revisions);
+        $view->setVariable('continue', $continue);
         return $view;
     }
 
@@ -76,7 +67,7 @@ class RevisionController extends AbstractScriptoController
         $view->setVariable('media', $sMedia->media());
         $view->setVariable('revision', $revision);
         $view->setVariable('revisionWikitext', $revision['content']);
-        $view->setVariable('revisionHtml', $this->apiClient->parseRevision($this->params('revision-id')));
+        $view->setVariable('revisionHtml', $this->scriptoApiClient()->parseRevision($this->params('revision-id')));
         $view->setVariable('revertForm', $revertForm);
         return $view;
     }
@@ -115,7 +106,7 @@ class RevisionController extends AbstractScriptoController
         $view->setVariable('sMedia', $sMedia);
         $view->setVariable('media', $sMedia->media());
         $view->setVariable('revision', $revision);
-        $view->setVariable('compare', $this->apiClient->compareRevisions($latestRevision['revid'], $revision['revid']));
+        $view->setVariable('compare', $this->scriptoApiClient()->compareRevisions($latestRevision['revid'], $revision['revid']));
         $view->setVariable('form', $form);
         return $view;
     }
@@ -136,7 +127,7 @@ class RevisionController extends AbstractScriptoController
         $view->setVariable('media', $sMedia->media());
         $view->setVariable('fromRevision', $sMedia->pageRevision($this->params('from-revision-id')));
         $view->setVariable('toRevision', $sMedia->pageRevision($this->params('to-revision-id')));
-        $view->setVariable('compare', $this->apiClient->compareRevisions($this->params('from-revision-id'), $this->params('to-revision-id')));
+        $view->setVariable('compare', $this->scriptoApiClient()->compareRevisions($this->params('from-revision-id'), $this->params('to-revision-id')));
         return $view;
     }
 }

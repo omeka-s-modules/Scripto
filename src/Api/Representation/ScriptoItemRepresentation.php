@@ -115,6 +115,17 @@ class ScriptoItemRepresentation extends AbstractEntityRepresentation
     }
 
     /**
+     * Was this item edited after it was imported?
+     *
+     * @return bool
+     */
+    public function isEditedAfterImported()
+    {
+        $imported = $this->resource->getScriptoProject()->getImported();
+        return $imported ? $this->edited() > $imported : false;
+    }
+
+    /**
      * Get the number of child media.
      *
      * @return int
