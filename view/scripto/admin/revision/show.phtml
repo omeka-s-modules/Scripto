@@ -24,6 +24,17 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto revision show');
 
 <?php echo $this->scripto()->adminBreadcrumbs(); ?>
 
+<h3>
+<?php
+$datetime = new \DateTime($revision['timestamp']);
+echo sprintf(
+    $this->translate('Revision as of %s by %s'),
+    $datetime->format('G:i:s, j F Y'),
+    $this->hyperlink($revision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $revision['user']]))
+);
+?>
+</h3>
+
 <nav class="pagination" role="navigation">
     <?php if ($revision['parentid']): ?>
     <?php echo $this->hyperlink('', $this->url(null, ['revision-id' => $revision['parentid']], true), ['class' => 'previous o-icon-prev button', 'title' => $this->translate('Older revision')]); ?>
@@ -36,22 +47,11 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto revision show');
     <span class="next o-icon-next button inactive"></span>
     <?php endif; ?>
     <?php if ($revision['latestid'] && $revision['latestid'] !== $revision['revid']): ?>
-    <?php echo $this->hyperlink('', $this->url(null, ['revision-id' => $revision['latestid']], true), ['class' => 'next o-icon-next button', 'title' => $this->translate('Latest revision')]); ?>
+    <?php echo $this->hyperlink('', $this->url(null, ['revision-id' => $revision['latestid']], true), ['class' => 'next o-icon-last button', 'title' => $this->translate('Latest revision')]); ?>
     <?php else: ?>
-    <span class="next o-icon-next button inactive"></span>
+    <span class="next o-icon-last button inactive"></span>
     <?php endif; ?>
 </nav>
-
-<h3>
-<?php
-$datetime = new \DateTime($revision['timestamp']);
-echo sprintf(
-    $this->translate('Revision as of %s by %s'),
-    $datetime->format('G:i:s, j F Y'),
-    $this->hyperlink($revision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $revision['user']]))
-);
-?>
-</h3>
 
 <?php echo $this->sectionNav([
     'wikitext' => $this->translate('Wikitext'),
