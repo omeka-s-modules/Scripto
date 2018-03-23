@@ -1,7 +1,7 @@
 <?php
 namespace Scripto\Controller\Admin;
 
-use Scripto\Form\BatchReviewMediaForm;
+use Scripto\Form\BatchMediaForm;
 use Zend\View\Model\ViewModel;
 
 class MediaController extends AbstractScriptoController
@@ -22,8 +22,9 @@ class MediaController extends AbstractScriptoController
         $this->paginator($response->getTotalResults(), $this->params()->fromQuery('page'));
         $sMedia = $response->getContent();
 
-        $batchForm = $this->getForm(BatchReviewMediaForm::class, [
-            'formaction' => (string) $this->url()->fromRoute(null, ['action' => 'batch-review'], true),
+        $batchForm = $this->getForm(BatchMediaForm::class, [
+            'batch-review-formaction' => (string) $this->url()->fromRoute(null, ['action' => 'batch-review'], true),
+            'batch-manage-formaction' => (string) $this->url()->fromRoute(null, ['action' => 'batch-manage'], true),
         ]);
         $view = new ViewModel;
         $view->setVariable('sItem', $sItem);
@@ -80,7 +81,7 @@ class MediaController extends AbstractScriptoController
     public function batchReviewAction()
     {
         if ($this->getRequest()->isPost()) {
-            $form = $this->getForm(BatchReviewMediaForm::class);
+            $form = $this->getForm(BatchMediaForm::class);
             $form->setData($this->getRequest()->getPost());
             if ($form->isValid()) {
                 $action = $this->params()->fromPost('batch-review-action');
@@ -107,7 +108,26 @@ class MediaController extends AbstractScriptoController
                 $dataValue = in_array($action, $positiveActions) ? true : false;
 
                 $this->api()->batchUpdate('scripto_media', $sMediaIds, [$dataKey => $dataValue]);
-                $this->messenger()->addSuccess('Scripto media successfully edited'); // @translate
+                $this->messenger()->addSuccess('Scripto media successfully reviewed'); // @translate
+                return $this->redirect()->toRoute(null, ['action' => 'browse'], true);
+            }
+        }
+        return $this->redirect()->toRoute(null, ['action' => 'browse'], true);
+    }
+
+    public function batchManageAction()
+    {
+        if ($this->getRequest()->isPost()) {
+            $form = $this->getForm(BatchMediaForm::class);
+            $form->setData($this->getRequest()->getPost());
+            if ($form->isValid()) {
+                $action = $this->params()->fromPost('batch-review-action');
+
+                // @todo handle the batch-manage-media form
+
+                // @todo pass mediawiki api client into BatchMediaForm to limit manage actions according to user authorizizations
+
+                $this->messenger()->addSuccess('Scripto media successfully managed'); // @translate
                 return $this->redirect()->toRoute(null, ['action' => 'browse'], true);
             }
         }
