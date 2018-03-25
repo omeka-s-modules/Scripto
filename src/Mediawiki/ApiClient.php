@@ -513,19 +513,25 @@ class ApiClient
             'meta' => 'tokens',
             'type' => 'watch',
         ]);
-        $request = [
-            'action' => 'watch',
-            'titles' => $titles,
-            'token' => $query['query']['tokens']['watchtoken'],
-        ];
-        if ($unwatch) {
-            $request['unwatch'] = true;
+
+        $allWatch = [];
+        // The API limits titles to 50 per query.
+        foreach (array_chunk($titles, 50) as $titleChunk) {
+            $request = [
+                'action' => 'watch',
+                'titles' => implode('|', $titleChunk),
+                'token' => $query['query']['tokens']['watchtoken'],
+            ];
+            if ($unwatch) {
+                $request['unwatch'] = true;
+            }
+            $watch = $this->request($request);
+            if (isset($watch['error'])) {
+                throw new Exception\WatchException($watch['error']['info']);
+            }
+            $allWatch = array_merge($allWatch, $watch['watch']);
         }
-        $watch = $this->request($request);
-        if (isset($watch['error'])) {
-            throw new Exception\WatchException($watch['error']['info']);
-        }
-        return $watch['watch'];
+        return $allWatch;
     }
 
     /**
