@@ -548,20 +548,27 @@ class ApiClient
     }
 
     /**
-     * Protect or protect a page.
+     * Protect or unprotect pages.
+     *
+     * Note that the MediaWiki API does not natively provide batch protections.
      *
      * @link https://www.mediawiki.org/wiki/API:Protect
      * @param string $title
      * @param string $protections
      * @return array
      */
-    public function protectPage($title, $protections)
+    public function protectPages(array $titles, $protections)
     {
-        if (!is_string($title)) {
-            throw new Exception\InvalidArgumentException('Page title must be a string');
+        if (count($titles) !== count(array_unique($titles))) {
+            throw new Exception\InvalidArgumentException('Titles must be unique');
         }
-        if (strstr($title, '|')) {
-            throw new Exception\InvalidArgumentException('A title must not contain a vertical bar');
+        foreach ($titles as $title) {
+            if (!is_string($title)) {
+                throw new Exception\InvalidArgumentException('A title must be a string');
+            }
+            if (strstr($title, '|')) {
+                throw new Exception\InvalidArgumentException('A title must not contain a vertical bar');
+            }
         }
         if (!is_string($protections)) {
             throw new Exception\InvalidArgumentException('Protections must be a string');
@@ -571,16 +578,34 @@ class ApiClient
             'meta' => 'tokens',
             'type' => 'csrf',
         ]);
-        $protect = $this->request([
-            'action' => 'protect',
-            'title' => $title,
-            'protections' => $protections,
-            'token' => $query['query']['tokens']['csrftoken'],
-        ]);
-        if (isset($protect['error'])) {
-            throw new Exception\ProtectException($protect['error']['info']);
+
+        $allProtect = [];
+        foreach ($titles as $title) {
+            $protect = $this->request([
+                'action' => 'protect',
+                'title' => $title,
+                'protections' => $protections,
+                'token' => $query['query']['tokens']['csrftoken'],
+            ]);
+            if (isset($protect['error'])) {
+                throw new Exception\ProtectException($protect['error']['info']);
+            }
+            $allProtect = array_merge($allProtect, $protect['protect']);
         }
-        return $protect['protect'];
+        return $allProtect;
+    }
+
+    /**
+     * Protect or unprotect  a page.
+     *
+     * @link https://www.mediawiki.org/wiki/API:Protect
+     * @param string $title
+     * @param string $protections
+     * @return array
+     */
+    public function protectPage($title, $protections)
+    {
+        return $this->protectPages([$title], $protections)[0];
     }
 
     /**
