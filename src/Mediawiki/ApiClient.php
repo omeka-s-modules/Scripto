@@ -492,10 +492,10 @@ class ApiClient
      *
      * @link https://www.mediawiki.org/wiki/API:Watch
      * @param array $titles
-     * @param bool $unwatch Set to true to unwatch the page
+     * @param bool $watch Set to true to watch, false to unwatch
      * @return array
      */
-    public function watchPages(array $titles, $unwatch = false)
+    public function watchAction(array $titles, $watch)
     {
         if (count($titles) !== count(array_unique($titles))) {
             throw new Exception\InvalidArgumentException('Titles must be unique');
@@ -522,7 +522,7 @@ class ApiClient
                 'titles' => implode('|', $titleChunk),
                 'token' => $query['query']['tokens']['watchtoken'],
             ];
-            if ($unwatch) {
+            if (!$watch) {
                 $request['unwatch'] = true;
             }
             $watch = $this->request($request);
@@ -535,16 +535,47 @@ class ApiClient
     }
 
     /**
-     * Watch or unwatch a page.
+     * Watch pages.
      *
-     * @link https://www.mediawiki.org/wiki/API:Watch
-     * @param string $title
-     * @param bool $unwatch Set to true to unwatch the page
+     * @param array $titles
      * @return array
      */
-    public function watchPage($title, $unwatch = false)
+    public function watchPages(array $titles)
     {
-        return $this->watchPages([$title], $unwatch)[0];
+        return $this->watchAction($titles, true);
+    }
+
+    /**
+     * Unwatch pages.
+     *
+     * @param array $titles
+     * @return array
+     */
+    public function unwatchPages(array $titles)
+    {
+        return $this->watchAction($titles, false);
+    }
+
+    /**
+     * Watch a page.
+     *
+     * @param string $title
+     * @return array
+     */
+    public function watchPage($title)
+    {
+        return $this->watchAction([$title], true)[0];
+    }
+
+    /**
+     * Unwatch a page.
+     *
+     * @param string $title
+     * @return array
+     */
+    public function unwatchPage($title)
+    {
+        return $this->watchAction([$title], false)[0];
     }
 
     /**
@@ -596,7 +627,7 @@ class ApiClient
     }
 
     /**
-     * Protect or unprotect  a page.
+     * Protect or unprotect a page.
      *
      * @link https://www.mediawiki.org/wiki/API:Protect
      * @param string $title
