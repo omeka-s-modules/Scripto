@@ -234,7 +234,7 @@ button.full-screen {
 
 button.full-screen:after {
     content: "\f24d";
-    font-family: "FontAwesome";
+    font-family: "Font Awesome 5 Free";
     display: inline-block;
     margin-left: 6px;
 }
