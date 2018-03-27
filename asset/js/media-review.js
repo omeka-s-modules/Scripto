@@ -11,7 +11,6 @@
             var b = values[1];
             var angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
         } else { var angle = 0; }
-        console.log(angle);
         return (angle < 0) ? angle + 360 : angle;
     }
 
@@ -27,13 +26,23 @@
                 $('#wikitext .media-render').panzoom('destroy');
             },
             afterOpen: function() {
-                $('.featherlight-content .media-render').panzoom();
+                var $zoomContainer = $('.featherlight-content');
+                $('.featherlight-content .media-render').panzoom({
+                    $zoomIn: $zoomContainer.find(".zoom-in"),
+                    $zoomOut: $zoomContainer.find(".zoom-out"),
+                    $reset: $zoomContainer.find(".reset")
+                });
             },
             beforeClose: function() {
                 $('.featherlight-content .media-render').panzoom('destroy');
             },
             afterClose: function() {
-                $('#wikitext .media-render').panzoom();
+                var $zoomContainer = $('#wikitext');
+                $('#wikitext .media-render').panzoom({
+                    $zoomIn: $zoomContainer.find(".zoom-in"),
+                    $zoomOut: $zoomContainer.find(".zoom-out"),
+                    $reset: $zoomContainer.find(".reset")
+                });
             }
         });
 
