@@ -457,6 +457,7 @@ button.full-screen:after {
 
 #reviewer-form .field:last-child {
     border-bottom: 0;
+    padding-bottom: 0;
 }
 
 #reviewer-form label {
