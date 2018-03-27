@@ -28,7 +28,7 @@
 
 .layout label {
     display: inline-block;
-    margin-right: 6px;
+    margin-right: 12px;
 }
 
 .layout button {
@@ -36,6 +36,12 @@
     box-shadow: none;
     border: 1px solid #dfdfdf;
     position: relative;
+    width: 38px;
+}
+
+.layout button:after {
+    font-family: "Font Awesome 5 Free";
+    display: inline-block;
 }
 
 .layout button:hover {
@@ -51,9 +57,17 @@
     border-radius: 3px 0 0 3px;
 }
 
+.layout .horizontal:after {
+    content: "\f337";
+}
+
 .layout .vertical {
     border-radius: 0 3px 3px 0;
     margin-left: -1px;
+}
+
+.layout .vertical:after {
+    content: "\f338";
 }
 
 .wikitext-flex {
