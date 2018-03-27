@@ -470,7 +470,7 @@ class ApiClient
         $query = $this->request([
             'action' => 'query',
             'meta' => 'tokens',
-            'type' => 'csrf'
+            'type' => 'csrf',
         ]);
         $page = $this->queryPage($title);
         $edit = $this->request([
@@ -485,6 +485,96 @@ class ApiClient
             throw new Exception\EditException($edit['error']['info']);
         }
         return $edit['edit'];
+    }
+
+    /**
+     * Watch or unwatch pages.
+     *
+     * @link https://www.mediawiki.org/wiki/API:Watch
+     * @param array $titles
+     * @param bool $unwatch Set to true to unwatch the page
+     * @return array
+     */
+    public function watchPages(array $titles, $unwatch = false)
+    {
+        if (count($titles) !== count(array_unique($titles))) {
+            throw new Exception\InvalidArgumentException('Titles must be unique');
+        }
+        foreach ($titles as $title) {
+            if (!is_string($title)) {
+                throw new Exception\InvalidArgumentException('A title must be a string');
+            }
+            if (strstr($title, '|')) {
+                throw new Exception\InvalidArgumentException('A title must not contain a vertical bar');
+            }
+        }
+        $query = $this->request([
+            'action' => 'query',
+            'meta' => 'tokens',
+            'type' => 'watch',
+        ]);
+        $request = [
+            'action' => 'watch',
+            'titles' => $titles,
+            'token' => $query['query']['tokens']['watchtoken'],
+        ];
+        if ($unwatch) {
+            $request['unwatch'] = true;
+        }
+        $watch = $this->request($request);
+        if (isset($watch['error'])) {
+            throw new Exception\WatchException($watch['error']['info']);
+        }
+        return $watch['watch'];
+    }
+
+    /**
+     * Watch or unwatch a page.
+     *
+     * @link https://www.mediawiki.org/wiki/API:Watch
+     * @param string $title
+     * @param bool $unwatch Set to true to unwatch the page
+     * @return array
+     */
+    public function watchPage($title, $unwatch = false)
+    {
+        return $this->watchPages([$title], $unwatch)[0];
+    }
+
+    /**
+     * Protect or protect a page.
+     *
+     * @link https://www.mediawiki.org/wiki/API:Protect
+     * @param string $title
+     * @param string $protections
+     * @return array
+     */
+    public function protectPage($title, $protections)
+    {
+        if (!is_string($title)) {
+            throw new Exception\InvalidArgumentException('Page title must be a string');
+        }
+        if (strstr($title, '|')) {
+            throw new Exception\InvalidArgumentException('A title must not contain a vertical bar');
+        }
+        if (!is_string($protections)) {
+            throw new Exception\InvalidArgumentException('Protections must be a string');
+        }
+        $query = $this->request([
+            'action' => 'query',
+            'meta' => 'tokens',
+            'type' => 'csrf',
+        ]);
+        $protect = $this->request([
+            'action' => 'protect',
+            'title' => $title,
+            'protections' => $protections,
+            'token' => $query['query']['tokens']['csrftoken'],
+        ]);
+        if (isset($protect['error'])) {
+            throw new Exception\ProtectException($protect['error']['info']);
+        }
+        return $protect['protect'];
     }
 
     /**
@@ -602,7 +692,7 @@ class ApiClient
         $query = $this->request([
             'action' => 'query',
             'meta' => 'tokens',
-            'type' => 'createaccount'
+            'type' => 'createaccount',
         ]);
         $createaccount = $this->request([
             'action' => 'createaccount',
@@ -636,7 +726,7 @@ class ApiClient
         $query = $this->request([
             'action' => 'query',
             'meta' => 'tokens',
-            'type' => 'login'
+            'type' => 'login',
         ]);
         $clientlogin = $this->request([
             'action' => 'clientlogin',
