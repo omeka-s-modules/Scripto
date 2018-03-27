@@ -6,6 +6,8 @@ $this->headScript()->appendFile($this->assetUrl('vendor/featherlight/featherligh
 $this->headScript()->appendFile($this->assetUrl('js/media-review.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
 $this->htmlElement('body')->appendAttribute('class', 'scripto media show');
+$mediaType = $media->mediaType();
+$mediaIsImage = ((strpos($mediaType, 'image')) !== false);
 ?>
 
 <?php echo $this->pageTitle($media->displayTitle(), 1, $this->translate('Scripto'), $this->translate('Media review')); ?>
@@ -59,8 +61,9 @@ $next = $sMedia->nextScriptoMedia();
         </div>
         <div class="wikitext-flex">
             <textarea disabled><?php echo $sMedia->pageWikitext(); ?></textarea>
-            <div class="panzoom-container">
+            <div class="panzoom-container <?php echo ($mediaIsImage) ? 'image' : ''; ?>">
                 <?php echo $media->render(['link' => null]); ?>
+                <?php if ($mediaIsImage): ?>
                 <div class="zoom-controls">
                     <button class="zoom-in" aria-label="<?php echo $this->translate('Zoom in'); ?>" title="<?php echo $this->translate('Zoom in'); ?>"></button>
                     <button class="zoom-out" aria-label="<?php echo $this->translate('Zoom out'); ?>" title="<?php echo $this->translate('Zoom out'); ?>"></button>
@@ -68,8 +71,10 @@ $next = $sMedia->nextScriptoMedia();
                     <button class="rotate-left" aria-label="<?php echo $this->translate('Rotate left'); ?>" title="<?php echo $this->translate('Rotate left'); ?>"></button>
                     <button class="reset"><?php echo $this->translate('Reset'); ?></button>
                 </div>
+                <?php endif; ?>
             </div>
         </div>
+        <?php if ($mediaIsImage): ?>
         <script>
         (function($) {
             var $zoomContainer = $('.panzoom-container');
@@ -80,6 +85,7 @@ $next = $sMedia->nextScriptoMedia();
             });
         })(jQuery);
         </script>
+        <?php endif; ?>
     </div>
 </div>
 

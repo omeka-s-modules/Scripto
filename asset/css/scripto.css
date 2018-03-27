@@ -120,7 +120,7 @@
 
 .horizontal .wikitext-flex textarea,
 .horizontal .wikitext-flex .panzoom-container {
-    max-width: calc(50% - 6px);
+    width: calc(50% - 6px);
 }
 
 .vertical .wikitext-flex textarea,

@@ -21,51 +21,55 @@
     }
 
     $(document).ready(function() {
-        var storedPanzoomStyle = '';
-        var storedRotateStyle = '';
-        $('.full-screen').featherlight('.wikitext-featherlight', {
-            beforeOpen: function() {
-                $('#wikitext .media-render').panzoom('destroy');
-            },
-            afterOpen: function() {
-                var $zoomContainer = $('.featherlight-content');
-                $('.featherlight-content .media-render').panzoom({
-                    $zoomIn: $zoomContainer.find(".zoom-in"),
-                    $zoomOut: $zoomContainer.find(".zoom-out"),
-                    $reset: $zoomContainer.find(".reset")
-                });
-            },
-            beforeClose: function() {
-                storedPanzoomStyle = $('.featherlight-content .media-render').attr('style');
-                storedRotateStyle = $('.featherlight-content .panzoom-container img').attr('style');
-                $('.featherlight-content .media-render').panzoom('destroy');
-                $('#wikitext .media-render').attr('style', storedPanzoomStyle);
-                $('#wikitext .panzoom-container img').attr('style', storedRotateStyle);
-            },
-            afterClose: function() {
-                var $zoomContainer = $('#wikitext');
-                $('#wikitext .media-render').panzoom({
-                    $zoomIn: $zoomContainer.find(".zoom-in"),
-                    $zoomOut: $zoomContainer.find(".zoom-out"),
-                    $reset: $zoomContainer.find(".reset")
-                });
-            }
-        });
-
-        $('.panzoom-container').on('click', '.rotate-left', function() {
-            var panzoomImg = $(this).parents('.panzoom-container').find('img');
-            setRotation(panzoomImg, 'left');
-        });
-
-        $('.panzoom-container').on('click', '.rotate-right', function() {
-            var panzoomImg = $(this).parents('.panzoom-container').find('img');
-            setRotation(panzoomImg, 'right');
-        });
-
-        $('.panzoom-container').on('click', '.reset', function() {
-            var panzoomImg = $(this).parents('.panzoom-container').find('img');
-            panzoomImg.css('transform', 'none');
-        });
+        if ($('.image.panzoom-container').length > 0) {
+            var storedPanzoomStyle = '';
+            var storedRotateStyle = '';
+            $('.full-screen').featherlight('.wikitext-featherlight', {
+                beforeOpen: function() {
+                    $('#wikitext .media-render').panzoom('destroy');
+                },
+                afterOpen: function() {
+                    var $zoomContainer = $('.featherlight-content');
+                    $('.featherlight-content .media-render').panzoom({
+                        $zoomIn: $zoomContainer.find(".zoom-in"),
+                        $zoomOut: $zoomContainer.find(".zoom-out"),
+                        $reset: $zoomContainer.find(".reset")
+                    });
+                },
+                beforeClose: function() {
+                    storedPanzoomStyle = $('.featherlight-content .media-render').attr('style');
+                    storedRotateStyle = $('.featherlight-content .panzoom-container img').attr('style');
+                    $('.featherlight-content .media-render').panzoom('destroy');
+                    $('#wikitext .media-render').attr('style', storedPanzoomStyle);
+                    $('#wikitext .panzoom-container img').attr('style', storedRotateStyle);
+                },
+                afterClose: function() {
+                    var $zoomContainer = $('#wikitext');
+                    $('#wikitext .media-render').panzoom({
+                        $zoomIn: $zoomContainer.find(".zoom-in"),
+                        $zoomOut: $zoomContainer.find(".zoom-out"),
+                        $reset: $zoomContainer.find(".reset")
+                    });
+                }
+            });
+    
+            $('.panzoom-container').on('click', '.rotate-left', function() {
+                var panzoomImg = $(this).parents('.panzoom-container').find('img');
+                setRotation(panzoomImg, 'left');
+            });
+    
+            $('.panzoom-container').on('click', '.rotate-right', function() {
+                var panzoomImg = $(this).parents('.panzoom-container').find('img');
+                setRotation(panzoomImg, 'right');
+            });
+    
+            $('.panzoom-container').on('click', '.reset', function() {
+                var panzoomImg = $(this).parents('.panzoom-container').find('img');
+                panzoomImg.css('transform', 'none');
+            });
+        } else {
+            $('.full-screen').featherlight('.wikitext-featherlight');
+        }
     });
 
 })(jQuery)
