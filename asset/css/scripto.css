@@ -206,7 +206,7 @@
 .featherlight .featherlight-content {
     width: 95%;
     margin: 0;
-    max-height: none;
+    height: 95%;
     padding: 12px 12px 0;
 }
 
@@ -244,6 +244,15 @@ button.featherlight-close-icon.featherlight-close {
     height: 36px;
     line-height: 36px;
     margin: 6px 6px 0;
+}
+
+.featherlight-content .horizontal .wikitext-flex {
+    height: calc(100% - 54px);
+}
+
+.featherlight-content .horizontal .wikitext-flex textarea,
+.featherlight-content .horizontal .wikitext-flex .panzoom-container {
+    min-height: 100%;
 }
 
 button.full-screen {
