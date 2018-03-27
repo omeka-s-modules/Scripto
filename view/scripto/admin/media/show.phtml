@@ -42,35 +42,10 @@ $next = $sMedia->nextScriptoMedia();
     <span class="row-count"><?php echo sprintf($this->translate('%s of %s'), $sMedia->position(), $sMedia->scriptoItem()->mediaCount()); ?></span>
 </nav>
 
-<div class="sidebar always-open" id="reviewer-form">
-    <h3><?php echo $this->translate('Review media'); ?></h3>
-    <div class="field">
-        <label for="media-approval-status"><?php echo $this->translate('Approval status'); ?></label>
-        <input type="checkbox" name="media-approval-status" id="media-approval-status" checked>
-        <div class="history">
-            <span class="last-approved"><?php echo sprintf($this->translate('Last approved on %s by %s.'), 'Jan 16, 2018', 'jsafley'); ?></span>
-            <a href="#" class="sidebar-content" data-sidebar-selector="#approval-history"><?php echo $this->translate('View history'); ?></a>
-        </div>
-    </div>
-    
-    <div class="field">
-        <label for="media-completion-status"><?php echo $this->translate('Completion status'); ?></label>
-        <input type="checkbox" name="media-completion-status" id="media-completion-status" checked>
-        <div class="history">
-            <span class="last-completed"><?php echo sprintf($this->translate('Marked complete on %s by %s.'), 'Jan 12, 2018', 'knguyen'); ?></span>
-            <a href="#" class="sidebar-content" data-sidebar-selector="#completion-history"><?php echo $this->translate('View history'); ?></a>
-        </div>
-    </div>
-    
-    <div class="field">
-        <label for="media-protected-status"><?php echo $this->translate('Protected?'); ?></label>
-        <input type="checkbox" name="media-protected-status" id="media-completion-status" checked>
-    </div>
-</div>
-
 <?php echo $this->sectionNav([
     'wikitext' => $this->translate('Wikitext'),
     'html' => $this->translate('HTML'),
+    'metadata' => $this->translate('Metadata'),
 ]); ?>
 
 <div id="wikitext" class="active section">
@@ -112,8 +87,107 @@ $next = $sMedia->nextScriptoMedia();
     <?php echo $sMedia->pageHtml(); ?>
 </div>
 
-<div id="scripto-media-metadata" class="sidebar always-open">
-    <?php echo $this->partial('scripto/admin/media/show-details') ?>
+<div id="metadata" class="section">
+    <div class="property">
+        <h4><?php echo $this->translate('Media'); ?></h4>
+        <div class="value"><?php echo $sMedia->link($media->displayTitle()); ?></div>
+    </div>
+    <div class="property">
+        <h4><?php echo $this->translate('Item'); ?></h4>
+        <div class="value"><?php echo $sItem->link($item->displayTitle()); ?></div>
+    </div>
+    <div class="property">
+        <h4><?php echo $this->translate('Project'); ?></h4>
+        <div class="value"><?php echo $project->link($project->title()); ?></div>
+    </div>
+    <div class="property">
+        <h4><?php echo $this->translate('Status'); ?></h4>
+        <div class="value"><?php echo $this->translate($sMedia->status()); ?></div>
+    </div>
+    <div class="property">
+        <h4><?php echo $this->translate('Last synced'); ?></h4>
+        <div class="value"><?php echo $this->i18n()->dateFormat($sMedia->synced(), 'long', 'medium'); ?></div>
+    </div>
+    <div class="property">
+        <h4><?php echo $this->translate('Last edited'); ?></h4>
+        <?php $edited = $sMedia->edited(); ?>
+        <div class="value"><?php echo $edited
+            ? sprintf(
+                '%s by %s',
+                $this->i18n()->dateFormat($sMedia->edited(), 'long', 'medium'),
+                $this->hyperlink($sMedia->editedBy(), $this->url('admin/scripto-user-contributions', ['user-id' => $sMedia->editedBy()]))
+            ) : $this->translate('Not edited'); ?></div>
+    </div>
+    <div class="property">
+        <h4><?php echo $this->translate('Last completed'); ?></h4>
+        <?php $completed = $sMedia->completed(); ?>
+        <div class="value"><?php echo $completed
+            ? sprintf(
+                '%s by %s',
+                $this->i18n()->dateFormat($sMedia->completed(), 'long', 'medium'),
+                $this->hyperlink($sMedia->completedBy(), $this->url('admin/scripto-user-contributions', ['user-id' => $sMedia->completedBy()]))
+            ) : $this->translate('Not completed'); ?></div>
+    </div>
+    <div class="property">
+        <h4><?php echo $this->translate('Last approved'); ?></h4>
+        <?php
+        $approved = $sMedia->approved();
+        $approvedBy = $sMedia->approvedBy();
+        ?>
+        <div class="value"><?php echo $approved
+            ? sprintf(
+                '%s by %s',
+                $this->i18n()->dateFormat($sMedia->approved(), 'long', 'medium'),
+                $approvedBy
+                    ? $approvedBy->link($approvedBy->name())
+                    : $this->translate('Unknown')
+                )
+            : $this->translate('Not approved'); ?></div>
+    </div>
+    <div class="property">
+        <h4><?php echo $this->translate('MediaWiki page'); ?></h4>
+        <?php $page = $sMedia->page(); ?>
+        <div class="value"><?php echo $this->hyperlink($sMedia->pageTitle(), $page['fullurl']); ?></div>
+    </div>
+    <div class="property">
+        <h4><?php echo $this->translate('Omeka media'); ?></h4>
+        <div class="value"><?php echo $media->link($media->displayTitle()); ?></div>
+    </div>
+    <div class="property">
+        <h4><?php echo $this->translate('Omeka item'); ?></h4>
+        <div class="value"><?php echo $item->link($item->displayTitle()); ?></div>
+    </div>
+    <div class="property">
+        <h4><?php echo $this->translate('Description'); ?></h4>
+        <?php $description = $media->displayDescription(); ?>
+        <div class="value"><?php echo $description ? $this->escapeHtml($description) : $this->translate('No description'); ?></div>
+    </div>
+</div>
+
+<div class="sidebar always-open" id="reviewer-form">
+    <h3><?php echo $this->translate('Review media'); ?></h3>
+    <div class="field">
+        <label for="media-approval-status"><?php echo $this->translate('Approval status'); ?></label>
+        <input type="checkbox" name="media-approval-status" id="media-approval-status" checked>
+        <div class="history">
+            <span class="last-approved"><?php echo sprintf($this->translate('Last approved on %s by %s.'), 'Jan 16, 2018', 'jsafley'); ?></span>
+            <a href="#" class="sidebar-content" data-sidebar-selector="#approval-history"><?php echo $this->translate('View history'); ?></a>
+        </div>
+    </div>
+    
+    <div class="field">
+        <label for="media-completion-status"><?php echo $this->translate('Completion status'); ?></label>
+        <input type="checkbox" name="media-completion-status" id="media-completion-status" checked>
+        <div class="history">
+            <span class="last-completed"><?php echo sprintf($this->translate('Marked complete on %s by %s.'), 'Jan 12, 2018', 'knguyen'); ?></span>
+            <a href="#" class="sidebar-content" data-sidebar-selector="#completion-history"><?php echo $this->translate('View history'); ?></a>
+        </div>
+    </div>
+    
+    <div class="field">
+        <label for="media-protected-status"><?php echo $this->translate('Protected?'); ?></label>
+        <input type="checkbox" name="media-protected-status" id="media-completion-status" checked>
+    </div>
 </div>
 
 <div id="approval-history" class="sidebar">
