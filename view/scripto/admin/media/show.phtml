@@ -8,7 +8,7 @@ $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
 $this->htmlElement('body')->appendAttribute('class', 'scripto media show');
 ?>
 
-<?php echo $this->pageTitle($this->translate('Media review'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
+<?php echo $this->pageTitle($media->displayTitle(), 1, $this->translate('Scripto'), $this->translate('Media review')); ?>
 
 <div id="page-actions">
     <div id="page-action-menu">
