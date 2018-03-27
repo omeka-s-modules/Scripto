@@ -16,30 +16,40 @@ class BatchMediaForm extends Form
             'options' => [
                 'value_options' => [
                     'default' => 'Batch review actions', // @translate
-                    [
-                        'value' => 'approve-selected',
-                        'label' => 'Mark selected as approved', // @translate
-                        'attributes' => ['disabled' => true],
+                    'review-selected' => [
+                            'label' => 'Selected media', // @translate
+                            'options' => [
+                            [
+                                'value' => 'approve-selected',
+                                'label' => 'Mark as approved (selected)', // @translate
+                                'attributes' => ['disabled' => true],
+                            ],
+                            [
+                                'value' => 'unapprove-selected',
+                                'label' => 'Mark as not approved (selected)', // @translate
+                                'attributes' => ['disabled' => true],
+                            ],
+                            [
+                                'value' => 'complete-selected',
+                                'label' => 'Mark as completed (selected)', // @translate
+                                'attributes' => ['disabled' => true],
+                            ],
+                            [
+                                'value' => 'uncomplete-selected',
+                                'label' => 'Mark as incomplete (selected)', // @translate
+                                'attributes' => ['disabled' => true],
+                            ],
+                        ],
                     ],
-                    [
-                        'value' => 'unapprove-selected',
-                        'label' => 'Mark selected as not approved', // @translate
-                        'attributes' => ['disabled' => true],
+                    'review-all' => [
+                        'label' => 'All media', // @translate
+                        'options' => [
+                            'approve-all' => 'Mark as approved (all)', // @translate
+                            'unapprove-all' => 'Mark as not approved (all)', // @translate
+                            'complete-all' => 'Mark as completed (all)', // @translate
+                            'uncomplete-all' => 'Mark as incomplete (all)', // @translate
+                        ],
                     ],
-                    [
-                        'value' => 'complete-selected',
-                        'label' => 'Mark selected as completed', // @translate
-                        'attributes' => ['disabled' => true],
-                    ],
-                    [
-                        'value' => 'uncomplete-selected',
-                        'label' => 'Mark selected as incomplete', // @translate
-                        'attributes' => ['disabled' => true],
-                    ],
-                    'approve-all' => 'Mark all as approved', // @translate
-                    'unapprove-all' => 'Mark all as not approved', // @translate
-                    'complete-all' => 'Mark all as completed', // @translate
-                    'uncomplete-all' => 'Mark all as incomplete', // @translate
                 ],
             ],
             'attributes' => [
@@ -53,30 +63,46 @@ class BatchMediaForm extends Form
             'options' => [
                 'value_options' => [
                     'default' => 'Batch manage actions', // @translate
-                    [
-                        'value' => 'watch-selected',
-                        'label' => 'Watch selected', // @translate
-                        'attributes' => ['disabled' => true],
+                    'manage-selected' => [
+                        'label' => 'Selected media', // @translate
+                        'options' => [
+                            [
+                                'value' => 'watch-selected',
+                                'label' => 'Add to your watchlist (selected)', // @translate
+                                'attributes' => ['disabled' => true],
+                            ],
+                            [
+                                'value' => 'unwatch-selected',
+                                'label' => 'Remove from your watchlist (selected)', // @translate
+                                'attributes' => ['disabled' => true],
+                            ],
+                            [
+                                'value' => 'restrict-admin-selected',
+                                'label' => 'Restrict editing to admins (selected)', // @translate
+                                'attributes' => ['disabled' => true],
+                            ],
+                            [
+                                'value' => 'restrict-user-selected',
+                                'label' => 'Restrict editing to logged in users (selected)', // @translate
+                                'attributes' => ['disabled' => true],
+                            ],
+                            [
+                                'value' => 'open-selected',
+                                'label' => 'Open editing to all users (selected)', // @translate
+                                'attributes' => ['disabled' => true],
+                            ],
+                        ],
                     ],
-                    [
-                        'value' => 'unwatch-selected',
-                        'label' => 'Unwatch selected', // @translate
-                        'attributes' => ['disabled' => true],
+                    'manage-all' => [
+                        'label' => 'All media', // @translate
+                        // Note that we're not providing batch-all options to
+                        // restrict or open editing because the MediaWiki API
+                        // has no batch protection feature.
+                        'options' => [
+                            'watch-all' => 'Add to your watchlist (all)', // @translate
+                            'unwatch-all' => 'Remove from your watchlist (all)', // @translate
+                        ],
                     ],
-                    [
-                        'value' => 'protect-selected',
-                        'label' => 'Protect selected', // @translate
-                        'attributes' => ['disabled' => true],
-                    ],
-                    [
-                        'value' => 'unprotect-selected',
-                        'label' => 'Unprotect selected', // @translate
-                        'attributes' => ['disabled' => true],
-                    ],
-                    'watch-all' => 'Watch all', // @translate
-                    'unwatch-all' => 'Unwatch all', // @translate
-                    'protect-all' => 'Protect all', // @translate
-                    'unprotect-all' => 'Unprotect all', // @translate
                 ],
             ],
             'attributes' => [

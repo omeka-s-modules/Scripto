@@ -2,6 +2,11 @@
 $this->headLink()->appendStylesheet($this->assetUrl('css/scripto.css', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
 $this->htmlElement('body')->appendAttribute('class', 'scripto item review media browse');
+$restrictionLevels = [
+    'all' => $this->translate('Open'),
+    'autoconfirmed' => $this->translate('User only'),
+    'sysop' => $this->translate('Admin only'),
+];
 ?>
 
 <?php echo $this->pageTitle($this->translate('Item review'), 1, $this->translate('Scripto'), $sItem->item()->displayTitle()); ?>
@@ -98,9 +103,9 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto item review media 
             <th class="row-select"><input type="checkbox" class="select-all"></th>
             <th class="row-number">#</th>
             <th class="row-title"><?php echo $this->translate('Media'); ?></th>
-            <th><?php echo $this->translate('Last synced'); ?></th>
             <th><?php echo $this->translate('Last edited'); ?></th>
             <th><?php echo $this->translate('Status'); ?></th>
+            <th><?php echo $this->translate('Restriction'); ?></th>
         </tr>
     </thead>
     <tbody>
@@ -119,9 +124,9 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto item review media 
                     ]); ?></li>
                 </ul>
             </td>
-            <td><?php echo $this->i18n()->dateFormat($sMedia->synced()); ?></td>
             <td><?php echo $this->i18n()->dateFormat($sMedia->edited()); ?></td>
             <td><?php echo $this->translate($sMedia->status()); ?></td>
+            <td><?php echo $restrictionLevels[$sMedia->restrictionLevel()]; ?></td>
         </tr>
     <?php endforeach; ?>
     </tbody>
