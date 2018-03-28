@@ -191,11 +191,11 @@ class Scripto extends AbstractHelper
                 $view->translate('Next page'),
                 $view->url(null, [], ['query' => ['continue' => $view->continue]], true),
                 [
-                    'class' => 'last o-icon-last button', 
-                    'title' => $view->translate('Last page'), 
-                    'aria-label' => $view->translate('Last page')
+                    'class' => 'next o-icon-next button', 
+                    'title' => $view->translate('Next page'), 
+                    'aria-label' => $view->translate('Next page')
                 ]
-            ) : '<span class="last o-icon-last button inactive"></span>'
+            ) : '<span class="next o-icon-next button inactive"></span>'
         );
     }
 
