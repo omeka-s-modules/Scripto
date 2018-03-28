@@ -187,15 +187,13 @@ class Scripto extends AbstractHelper
                 'title' => $view->translate('First page'), 
                 'aria-label' => $view->translate('First page')
             ]),
-            $view->continue ? $view->hyperlink(
-                $view->translate('Next page'),
-                $view->url(null, [], ['query' => ['continue' => $view->continue]], true),
-                [
+            $view->continue
+                ? $view->hyperlink('', $view->url(null, [], ['query' => ['continue' => $view->continue]], true), [
                     'class' => 'next o-icon-next button', 
                     'title' => $view->translate('Next page'), 
                     'aria-label' => $view->translate('Next page')
-                ]
-            ) : '<span class="next o-icon-next button inactive"></span>'
+                ])
+                : '<span class="next o-icon-next button inactive"></span>'
         );
     }
 
