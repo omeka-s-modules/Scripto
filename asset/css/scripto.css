@@ -34,18 +34,22 @@
 }
 
 .compare-selected {
-    margin-right: 12px;
+    margin: 6px auto 6px 0;
 }
 
-.mediawiki-pagination {
-    margin: 0 auto 12px 0;
-}
-
-.show nav.pagination {
+.revision nav.pagination {
     float: right;
     margin: 6px 0 0;
     position: relative;
     z-index: 1;
+}
+
+.revision nav.pagination .button:first-child {
+    border-radius: 3px 0 0 3px;
+}
+
+.revision nav.pagination .button:last-child {
+    border-radius: 0 3px 3px 0;
 }
 
 #wikitext.active {
