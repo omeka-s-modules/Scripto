@@ -86,6 +86,32 @@ class ApiClient
     }
 
     /**
+     * Get this page's protection level given a protection type.
+     *
+     * @param string $type "create", "edit", "move"
+     * @return string "sysop", "autoconfirmed", "all" (for no protections)
+     */
+    public function getPageProtectionLevel($title, $type)
+    {
+        if (is_string($title)) {
+            $page = $this->queryPage($title);
+        } elseif (is_array($title)) {
+            $page = $title;
+        } else {
+            throw new Exception\InvalidArgumentException('A title must be a string or an array');
+        }
+        if (!is_string($type)) {
+            throw new Exception\InvalidArgumentException('A protection type must be a string');
+        }
+        foreach ($page['protection'] as $protection) {
+            if ($type === $protection['type']) {
+                return $protection['level'];
+            }
+        }
+        return 'all';
+    }
+
+    /**
      * Can the user perform this action on this page?
      *
      * Find the available actions in self::queryPages() under intestactions.
@@ -115,6 +141,17 @@ class ApiClient
     public function userIsLoggedIn()
     {
         return isset($this->userInfo) ? (bool) $this->userInfo['id'] : false;
+    }
+
+    /**
+     * Is the current user in the provided group?
+     *
+     * @param string $group
+     * @return bool
+     */
+    public function userIsInGroup($group)
+    {
+        return isset($this->userInfo) ? in_array($group, $this->userInfo['groups']) : false;
     }
 
     /**
@@ -275,7 +312,7 @@ class ApiClient
                 'action' => 'query',
                 'prop' => 'info|revisions',
                 'titles' => implode('|', $titleChunk),
-                'inprop' => 'protection|url',
+                'inprop' => 'watched|protection|url',
                 'rvprop' => 'content|ids|flags|timestamp|comment|user',
                 'intestactions' => 'read|edit|createpage|createtalk|protect|rollback',
             ]);
@@ -492,10 +529,10 @@ class ApiClient
      *
      * @link https://www.mediawiki.org/wiki/API:Watch
      * @param array $titles
-     * @param bool $unwatch Set to true to unwatch the page
+     * @param bool $watch Set to true to watch, false to unwatch
      * @return array
      */
-    public function watchPages(array $titles, $unwatch = false)
+    public function watchAction(array $titles, $watch)
     {
         if (count($titles) !== count(array_unique($titles))) {
             throw new Exception\InvalidArgumentException('Titles must be unique');
@@ -513,68 +550,135 @@ class ApiClient
             'meta' => 'tokens',
             'type' => 'watch',
         ]);
-        $request = [
-            'action' => 'watch',
-            'titles' => $titles,
-            'token' => $query['query']['tokens']['watchtoken'],
-        ];
-        if ($unwatch) {
-            $request['unwatch'] = true;
+
+        $allWatch = [];
+        // The API limits titles to 50 per query.
+        foreach (array_chunk($titles, 50) as $titleChunk) {
+            $request = [
+                'action' => 'watch',
+                'titles' => implode('|', $titleChunk),
+                'token' => $query['query']['tokens']['watchtoken'],
+            ];
+            if (!$watch) {
+                $request['unwatch'] = true;
+            }
+            $watch = $this->request($request);
+            if (isset($watch['error'])) {
+                throw new Exception\WatchException($watch['error']['info']);
+            }
+            $allWatch = array_merge($allWatch, $watch['watch']);
         }
-        $watch = $this->request($request);
-        if (isset($watch['error'])) {
-            throw new Exception\WatchException($watch['error']['info']);
-        }
-        return $watch['watch'];
+        return $allWatch;
     }
 
     /**
-     * Watch or unwatch a page.
+     * Watch pages.
      *
-     * @link https://www.mediawiki.org/wiki/API:Watch
-     * @param string $title
-     * @param bool $unwatch Set to true to unwatch the page
+     * @param array $titles
      * @return array
      */
-    public function watchPage($title, $unwatch = false)
+    public function watchPages(array $titles)
     {
-        return $this->watchPages([$title], $unwatch)[0];
+        return $this->watchAction($titles, true);
     }
 
     /**
-     * Protect or protect a page.
+     * Unwatch pages.
+     *
+     * @param array $titles
+     * @return array
+     */
+    public function unwatchPages(array $titles)
+    {
+        return $this->watchAction($titles, false);
+    }
+
+    /**
+     * Watch a page.
+     *
+     * @param string $title
+     * @return array
+     */
+    public function watchPage($title)
+    {
+        return $this->watchAction([$title], true)[0];
+    }
+
+    /**
+     * Unwatch a page.
+     *
+     * @param string $title
+     * @return array
+     */
+    public function unwatchPage($title)
+    {
+        return $this->watchAction([$title], false)[0];
+    }
+
+    /**
+     * Protect or unprotect pages.
+     *
+     * Note that the MediaWiki API does not natively provide batch protections.
      *
      * @link https://www.mediawiki.org/wiki/API:Protect
      * @param string $title
-     * @param string $protections
+     * @param string $type "edit", "move", "create"
+     * @param string $level "sysop", "autoconfirmed", "all"
      * @return array
      */
-    public function protectPage($title, $protections)
+    public function protectPages(array $titles, $type, $level)
     {
-        if (!is_string($title)) {
-            throw new Exception\InvalidArgumentException('Page title must be a string');
+        if (count($titles) !== count(array_unique($titles))) {
+            throw new Exception\InvalidArgumentException('Titles must be unique');
         }
-        if (strstr($title, '|')) {
-            throw new Exception\InvalidArgumentException('A title must not contain a vertical bar');
+        foreach ($titles as $title) {
+            if (!is_string($title)) {
+                throw new Exception\InvalidArgumentException('A title must be a string');
+            }
+            if (strstr($title, '|')) {
+                throw new Exception\InvalidArgumentException('A title must not contain a vertical bar');
+            }
         }
-        if (!is_string($protections)) {
-            throw new Exception\InvalidArgumentException('Protections must be a string');
+        if (!is_string($type)) {
+            throw new Exception\InvalidArgumentException('Protection type must be a string');
+        }
+        if (!is_string($level)) {
+            throw new Exception\InvalidArgumentException('Protection level must be a string');
         }
         $query = $this->request([
             'action' => 'query',
             'meta' => 'tokens',
             'type' => 'csrf',
         ]);
-        $protect = $this->request([
-            'action' => 'protect',
-            'title' => $title,
-            'protections' => $protections,
-            'token' => $query['query']['tokens']['csrftoken'],
-        ]);
-        if (isset($protect['error'])) {
-            throw new Exception\ProtectException($protect['error']['info']);
+
+        $allProtect = [];
+        foreach ($titles as $title) {
+            $protect = $this->request([
+                'action' => 'protect',
+                'title' => $title,
+                'protections' => sprintf('%s=%s', $type, $level),
+                'token' => $query['query']['tokens']['csrftoken'],
+            ]);
+            if (isset($protect['error'])) {
+                throw new Exception\ProtectException($protect['error']['info']);
+            }
+            $allProtect = array_merge($allProtect, $protect['protect']);
         }
-        return $protect['protect'];
+        return $allProtect;
+    }
+
+    /**
+     * Protect or unprotect a page.
+     *
+     * @link https://www.mediawiki.org/wiki/API:Protect
+     * @param string $title
+     * @param string $type "edit", "move", "create"
+     * @param string $level "sysop", "autoconfirmed", "all"
+     * @return array
+     */
+    public function protectPage($title, $type, $level)
+    {
+        return $this->protectPages([$title], $type, $level)[0];
     }
 
     /**
@@ -662,6 +766,7 @@ class ApiClient
         $query = $this->request([
             'action' => 'query',
             'meta' => 'userinfo',
+            'uiprop' => 'realname|email|registrationdate|editcount|groups|implicitgroups',
         ]);
         return $query['query']['userinfo'];
     }

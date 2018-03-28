@@ -2,6 +2,11 @@
 $this->headLink()->appendStylesheet($this->assetUrl('css/scripto.css', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
 $this->htmlElement('body')->appendAttribute('class', 'scripto item review media browse');
+$restrictionLevels = [
+    'all' => $this->translate('Open'),
+    'autoconfirmed' => $this->translate('User only'),
+    'sysop' => $this->translate('Admin only'),
+];
 ?>
 
 <?php echo $this->pageTitle($this->translate('Item review'), 1, $this->translate('Scripto'), $sItem->item()->displayTitle()); ?>
@@ -79,12 +84,19 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto item review media 
 <?php echo $this->form()->openTag($batchForm); ?>
 
 <div class="batch-inputs">
-    <?php echo $this->formElement($batchForm->get('batch-review-action')); ?>
-    <?php echo $this->formElement($batchForm->get('batchreviewmediaform_csrf')); ?>
     <div class="batch-actions">
+        <?php echo $this->formElement($batchForm->get('batch-review-action')); ?>
         <button type="button" class="default active" disabled="true"><?php echo $this->translate('Go'); ?></button>
         <?php echo $this->formElement($batchForm->get('batch-review-submit')); ?>
     </div>
+    <?php if ($this->scripto()->userIsLoggedIn()): ?>
+    <div class="batch-actions">
+        <?php echo $this->formElement($batchForm->get('batch-manage-action')); ?>
+        <button type="button" class="default active" disabled="true"><?php echo $this->translate('Go'); ?></button>
+        <?php echo $this->formElement($batchForm->get('batch-manage-submit')); ?>
+    </div>
+    <?php endif; ?>
+    <?php echo $this->formElement($batchForm->get('csrf')); ?>
 </div>
 
 <table class="tablesaw scripto-media batch-edit" data-tablesaw-mode="stack">
@@ -93,9 +105,9 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto item review media 
             <th class="row-select"><input type="checkbox" class="select-all"></th>
             <th class="row-number">#</th>
             <th class="row-title"><?php echo $this->translate('Media'); ?></th>
-            <th><?php echo $this->translate('Last synced'); ?></th>
             <th><?php echo $this->translate('Last edited'); ?></th>
             <th><?php echo $this->translate('Status'); ?></th>
+            <th><?php echo $this->translate('Restriction'); ?></th>
         </tr>
     </thead>
     <tbody>
@@ -114,9 +126,9 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto item review media 
                     ]); ?></li>
                 </ul>
             </td>
-            <td><?php echo $this->i18n()->dateFormat($sMedia->synced()); ?></td>
             <td><?php echo $this->i18n()->dateFormat($sMedia->edited()); ?></td>
             <td><?php echo $this->translate($sMedia->status()); ?></td>
+            <td><?php echo $restrictionLevels[$sMedia->restrictionLevel()]; ?></td>
         </tr>
     <?php endforeach; ?>
     </tbody>
@@ -148,23 +160,33 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto item review media 
 
 <script>
 var batchForm = $('#batch-form');
-var batchSelectedOptions = batchForm.find('option[value$="-selected"]');
-var batchSubmit = batchForm.find('input.batch-review-submit');
+var batchSelects = batchForm.find('select.batch-review-select, select.batch-manage-select');
+var batchSelectedOptions = batchSelects.find('option[value$="-selected"]');
+
 batchForm.on('change', ':checkbox', function(e) {
     if (batchForm.find(':checkbox:checked').length > 0) {
         // at least one checkbox is checked
         batchSelectedOptions.prop('disabled', false);
     } else {
         // no checkboxes are checked
+        batchSelects.val('default');
         batchSelectedOptions.prop('disabled', true);
-        batchSubmit.hide();
+        batchForm.find('input.batch-submit').hide();
+        batchForm.find('button.default').show();
     }
 });
-batchForm.on('change', 'select.batch-actions-select', function(e) {
-    if ('default' === $(this).find(':selected').val()) {
-        batchSubmit.hide();
+
+batchSelects.on('change', function(e) {
+    var thisSelect = $(this);
+    var batchActionsDiv = thisSelect.closest('.batch-actions');
+    var defaultButton = batchActionsDiv.find('button.default');
+    var submitButton = batchActionsDiv.find('input.batch-submit');
+    if ('default' === thisSelect.find(':selected').val()) {
+        defaultButton.show();
+        submitButton.hide();
     } else {
-        batchSubmit.show();
+        defaultButton.hide();
+        submitButton.show();
     }
 });
 </script>
