@@ -1,10 +1,16 @@
 <?php 
+$this->headLink()->appendStylesheet($this->assetUrl('vendor/featherlight/featherlight.min.css', 'Scripto'));
 $this->headLink()->appendStylesheet($this->assetUrl('css/scripto.css', 'Scripto'));
+$this->headScript()->appendFile($this->assetUrl('vendor/jquery-panzoom/jquery.panzoom.min.js', 'Scripto'));
+$this->headScript()->appendFile($this->assetUrl('vendor/featherlight/featherlight.min.js', 'Scripto'));
+$this->headScript()->appendFile($this->assetUrl('js/media-review.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
 $this->htmlElement('body')->appendAttribute('class', 'scripto media show');
+$mediaType = $media->mediaType();
+$mediaIsImage = ((strpos($mediaType, 'image')) !== false);
 ?>
 
-<?php echo $this->pageTitle($this->translate('Media review'), 1, $this->translate('Scripto'), $media->displayTitle()); ?>
+<?php echo $this->pageTitle($media->displayTitle(), 1, $this->translate('Scripto'), $this->translate('Media review')); ?>
 
 <div id="page-actions">
     <div id="page-action-menu">
@@ -12,6 +18,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto media show');
         <ul class="collapsible">
             <li><?php echo $this->hyperlink($this->translate('Browse revision history'), $this->url('admin/scripto-media-id', ['action' => 'revision'], true)); ?></li>
         </ul>
+        <button type="submit"><?php echo $this->translate('Save'); ?></button>
     </div>
 </div>
 
@@ -43,14 +50,141 @@ $next = $sMedia->nextScriptoMedia();
 ]); ?>
 
 <div id="wikitext" class="active section">
-    <textarea disabled><?php echo $sMedia->pageWikitext(); ?></textarea>
-    <?php echo $media->render(); ?>
+    <div class="wikitext-featherlight horizontal">
+        <h3><?php echo $media->displayTitle(); ?></h3>
+        <button class="full-screen"><?php echo $this->translate('Go full screen'); ?></button>
+        <div class="layout">
+            <label><?php echo $this->translate('Layout'); ?></label>
+            <button name="horizontal" class="horizontal active" aria-label="<?php echo $this->translate('Horizontal view'); ?>" title="<?php echo $this->translate('Horizontal view'); ?>" disabled></button>
+            <button name="vertical" class="vertical" aria-label="<?php echo $this->translate('Vertical view'); ?>" title="<?php echo $this->translate('Vertical view'); ?>"></button>
+        </div>
+        <div class="wikitext-flex">
+            <textarea disabled><?php echo $sMedia->pageWikitext(); ?></textarea>
+            <div class="panzoom-container <?php echo ($mediaIsImage) ? 'image' : ''; ?>">
+                <?php echo $media->render(['link' => null]); ?>
+                <?php if ($mediaIsImage): ?>
+                <div class="zoom-controls">
+                    <button class="zoom-in" aria-label="<?php echo $this->translate('Zoom in'); ?>" title="<?php echo $this->translate('Zoom in'); ?>"></button>
+                    <button class="zoom-out" aria-label="<?php echo $this->translate('Zoom out'); ?>" title="<?php echo $this->translate('Zoom out'); ?>"></button>
+                    <button class="rotate-right" aria-label="<?php echo $this->translate('Rotate right'); ?>" title="<?php echo $this->translate('Rotate right'); ?>"></button>
+                    <button class="rotate-left" aria-label="<?php echo $this->translate('Rotate left'); ?>" title="<?php echo $this->translate('Rotate left'); ?>"></button>
+                    <button class="reset"><?php echo $this->translate('Reset'); ?></button>
+                </div>
+                <?php endif; ?>
+            </div>
+        </div>
+        <?php if ($mediaIsImage): ?>
+        <script>
+        (function($) {
+            var $zoomContainer = $('.panzoom-container');
+            $('#wikitext .media-render').panzoom({
+                $zoomIn: $zoomContainer.find(".zoom-in"),
+                $zoomOut: $zoomContainer.find(".zoom-out"),
+                $reset: $zoomContainer.find(".reset")
+            });
+        })(jQuery);
+        </script>
+        <?php endif; ?>
+    </div>
 </div>
 
 <div id="html" class="section">
     <?php echo $sMedia->pageHtml(); ?>
 </div>
 
-<div id="scripto-media-metadata" class="sidebar always-open">
-    <?php echo $this->partial('scripto/admin/media/show-details') ?>
+<div class="sidebar always-open" id="reviewer-form">
+    <h3><?php echo $this->translate(sprintf('Review media: "%s"', $media->displayTitle())); ?></h3>
+    <div class="review-fields">
+        <div class="field">
+            <label for="media-approval-status"><?php echo $this->translate('Approval status'); ?></label>
+            <input type="checkbox" name="media-approval-status" id="media-approval-status" checked>
+            <div class="history">
+                <span class="last-approved"><?php echo sprintf($this->translate('Last approved on %s by %s.'), 'Jan 16, 2018', 'jsafley'); ?></span>
+            </div>
+        </div>
+        <div class="field">
+            <label for="media-completion-status"><?php echo $this->translate('Completion status'); ?></label>
+            <input type="checkbox" name="media-completion-status" id="media-completion-status" checked>
+            <div class="history">
+                <span class="last-completed"><?php echo sprintf($this->translate('Marked complete on %s by %s.'), 'Jan 12, 2018', 'knguyen'); ?></span>
+            </div>
+        </div>
+        <div class="field">
+            <label for="media-protected-status"><?php echo $this->translate('Protected?'); ?></label>
+            <input type="checkbox" name="media-protected-status" id="media-completion-status" checked>
+        </div>
+    </div>
+    <h3><?php echo $this->translate('Metadata'); ?></h3>
+    <div class="metadata">
+        <div class="meta-group">
+            <h4><?php echo $this->translate('Item'); ?></h4>
+            <div class="value"><?php echo $sItem->link($item->displayTitle()); ?></div>
+        </div>
+        <div class="meta-group">
+            <h4><?php echo $this->translate('Project'); ?></h4>
+            <div class="value"><?php echo $project->link($project->title()); ?></div>
+        </div>
+        <div class="meta-group">
+            <h4><?php echo $this->translate('Status'); ?></h4>
+            <div class="value"><?php echo $this->translate($sMedia->status()); ?></div>
+        </div>
+        <div class="meta-group">
+            <h4><?php echo $this->translate('Last synced'); ?></h4>
+            <div class="value"><?php echo $this->i18n()->dateFormat($sMedia->synced(), 'long', 'medium'); ?></div>
+        </div>
+        <div class="meta-group">
+            <h4><?php echo $this->translate('Last edited'); ?></h4>
+            <?php $edited = $sMedia->edited(); ?>
+            <div class="value"><?php echo $edited
+                ? sprintf(
+                    '%s by %s',
+                    $this->i18n()->dateFormat($sMedia->edited(), 'long', 'medium'),
+                    $this->hyperlink($sMedia->editedBy(), $this->url('admin/scripto-user-contributions', ['user-id' => $sMedia->editedBy()]))
+                ) : $this->translate('Not edited'); ?></div>
+        </div>
+        <div class="meta-group">
+            <h4><?php echo $this->translate('Last completed'); ?></h4>
+            <?php $completed = $sMedia->completed(); ?>
+            <div class="value"><?php echo $completed
+                ? sprintf(
+                    '%s by %s',
+                    $this->i18n()->dateFormat($sMedia->completed(), 'long', 'medium'),
+                    $this->hyperlink($sMedia->completedBy(), $this->url('admin/scripto-user-contributions', ['user-id' => $sMedia->completedBy()]))
+                ) : $this->translate('Not completed'); ?></div>
+        </div>
+        <div class="meta-group">
+            <h4><?php echo $this->translate('Last approved'); ?></h4>
+            <?php
+            $approved = $sMedia->approved();
+            $approvedBy = $sMedia->approvedBy();
+            ?>
+            <div class="value"><?php echo $approved
+                ? sprintf(
+                    '%s by %s',
+                    $this->i18n()->dateFormat($sMedia->approved(), 'long', 'medium'),
+                    $approvedBy
+                        ? $approvedBy->link($approvedBy->name())
+                        : $this->translate('Unknown')
+                    )
+                : $this->translate('Not approved'); ?></div>
+        </div>
+        <div class="meta-group">
+            <h4><?php echo $this->translate('MediaWiki page'); ?></h4>
+            <?php $page = $sMedia->page(); ?>
+            <div class="value"><?php echo $this->hyperlink($sMedia->pageTitle(), $page['fullurl']); ?></div>
+        </div>
+        <div class="meta-group">
+            <h4><?php echo $this->translate('Omeka media'); ?></h4>
+            <div class="value"><?php echo $media->link($media->displayTitle()); ?></div>
+        </div>
+        <div class="meta-group">
+            <h4><?php echo $this->translate('Omeka item'); ?></h4>
+            <div class="value"><?php echo $item->link($item->displayTitle()); ?></div>
+        </div>
+        <div class="meta-group">
+            <h4><?php echo $this->translate('Description'); ?></h4>
+            <?php $description = $media->displayDescription(); ?>
+            <div class="value"><?php echo $description ? $this->escapeHtml($description) : $this->translate('No description'); ?></div>
+        </div>
+    </div>
 </div>

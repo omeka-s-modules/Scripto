@@ -1,3 +1,7 @@
+.scripto div[role="main"]>h1:first-of-type .title {
+    max-width: 50%;
+}
+
 .browse .scripto-media td:first-child, 
 .browse .scripto-media th:first-child {
     width: 36px;
@@ -20,6 +24,62 @@
 .browse .scripto-revisions th:first-child {
     width: auto;
 }
+
+.layout {
+    display: inline-flex;
+    align-items: center;
+}
+
+.layout label {
+    display: inline-block;
+    margin-right: 12px;
+}
+
+.layout button {
+    margin-bottom: 0;
+    box-shadow: none;
+    border: 1px solid #dfdfdf;
+    position: relative;
+    width: 38px;
+}
+
+.layout button:after {
+    font-family: "Font Awesome 5 Free";
+    display: inline-block;
+}
+
+.layout button:hover {
+    z-index: 1;
+    box-shadow: none !important;
+}
+
+.layout button:not(:disabled):hover {
+    border: 1px solid #999;
+}
+
+.layout .horizontal {
+    border-radius: 3px 0 0 3px;
+}
+
+.layout .horizontal:after {
+    content: "\f337";
+}
+
+.layout .vertical {
+    border-radius: 0 3px 3px 0;
+    margin-left: -1px;
+}
+
+.layout .vertical:after {
+    content: "\f338";
+}
+
+.wikitext-flex {
+    display: flex; 
+    width: 100%;
+    flex-wrap: wrap;
+    margin-top: 12px;
+ }
 
 .browse .browse-controls {
     justify-content: flex-end;
@@ -48,21 +108,162 @@
     z-index: 1;
 }
 
-#wikitext.active {
-    display: flex; 
+.horizontal .wikitext-flex {
     justify-content: space-between; 
-    flex-wrap: wrap;
 }
 
-#wikitext textarea {
+.horizontal .wikitext-flex textarea {
     min-height: 400px;
     flex-grow: 1;
-    margin-right: 24px;
-    max-width: calc(50% - 12px);
+    margin-right: 12px;
 }
 
-#wikitext .media-render {
-    max-width: calc(50% - 12px);
+.horizontal .wikitext-flex textarea,
+.horizontal .wikitext-flex .panzoom-container {
+    width: calc(50% - 6px);
+}
+
+.vertical .wikitext-flex textarea,
+.vertical .wikitext-flex .panzoom-container {
+    width: 100%;
+}
+
+.vertical .wikitext-flex textarea {
+    order: 2;
+    min-height: 35vh;
+}
+
+.vertical .wikitext-flex .panzoom-container {
+    order: 1;
+    margin-bottom: 24px;
+    height: 35vh;
+}
+
+.wikitext-flex .panzoom-container {
+    border: 1px solid #dfdfdf;
+}
+
+.zoom-controls {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 1;
+    display: flex;
+}
+
+.zoom-controls button {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+    margin-left: -1px;
+    box-shadow: none;
+    border: 1px solid #dfdfdf;
+    min-height: 0;
+    padding: 3px 6px;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.zoom-controls button:first-child {
+    border-radius: 3px 0 0 3px;
+}
+
+.zoom-controls button:last-child {
+    border-radius: 0 3px 3px 0;
+}
+
+.zoom-controls button:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #fff;
+    z-index: -1;
+}
+
+.zoom-controls button:before {
+    font-family: "Font Awesome 5 Free";
+}
+
+.zoom-in:before {
+    content: "\f00e";
+}
+
+.zoom-out:before {
+    content: "\f010";
+}
+
+.rotate-left:before {
+    content: "\f2ea";
+}
+
+.rotate-right:before {
+    content: "\f2f9";
+}
+
+.featherlight .featherlight-content {
+    width: 95%;
+    margin: 0;
+    height: 95%;
+    padding: 12px 12px 0;
+}
+
+.featherlight-content .wikitext-featherlight {
+    height: calc(100% - 48px);
+}
+
+.wikitext-featherlight h3,
+.featherlight-content .full-screen {
+    display: none;
+    position: relative;
+}
+
+.wikitext-featherlight h3:after {
+    content: "";
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    left: -12px;
+    bottom: -12px;
+    background-color: rgba(0,0,0,.08);
+}
+
+.featherlight-content .wikitext-featherlight h3 {
+    display: block;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+button.featherlight-close-icon.featherlight-close {
+    border: 0;
+    box-shadow: none;
+    background-color: transparent;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    margin: 6px 6px 0;
+}
+
+.featherlight-content .horizontal .wikitext-flex {
+    height: calc(100% - 54px);
+}
+
+.featherlight-content .horizontal .wikitext-flex textarea,
+.featherlight-content .horizontal .wikitext-flex .panzoom-container {
+    min-height: 100%;
+}
+
+button.full-screen {
+    margin: 0 24px 0 0;
+}
+
+button.full-screen:after {
+    content: "\f24d";
+    font-family: "Font Awesome 5 Free";
+    display: inline-block;
+    margin-left: 6px;
 }
 
 .current-previous {
@@ -253,6 +454,33 @@
 
 .parsed-comment {
     font-style: italic;
+}
+
+#reviewer-form .field {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #dfdfdf;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+}
+
+#reviewer-form .field:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+#reviewer-form label {
+    width: calc(100% - 2em);
+    margin-bottom: 0;
+}
+
+#reviewer-form label:after {
+    content: none;
+}
+
+#approval-history table,
+#completion-history table {
+    background-color: #fff;
 }
 
 /* Login bar */
