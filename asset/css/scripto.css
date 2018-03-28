@@ -160,6 +160,14 @@
     border: 1px solid #dfdfdf;
 }
 
+.wikitext-flex .media-render {
+    margin-bottom: 0;
+}
+
+.wikitext-flex .media-render img {
+    vertical-align: bottom;
+}
+
 .zoom-controls {
     position: absolute;
     top: 12px;
