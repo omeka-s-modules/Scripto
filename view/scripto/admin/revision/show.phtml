@@ -11,16 +11,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto revision show');
         <a href="#" class="expand button" aria-label="<?php echo $this->translate('Expand'); ?>"><?php echo $this->translate('Actions'); ?></a>
         <ul class="collapsible">
         <?php echo sprintf(
-            '<li>%s</li><li>%s</li><li>%s</li><li>%s</li>',
-            $revision['parentid']
-                ? $this->hyperlink($this->translate('View older'), $this->url(null, ['revision-id' => $revision['parentid']], true))
-                : '<span class="inactive">' . $this->translate('View older') . '</span>',
-            $revision['childid']
-                ? $this->hyperlink($this->translate('View newer'), $this->url(null, ['revision-id' => $revision['childid']], true))
-                : '<span class="inactive">' . $this->translate('View newer') . '</span>',
-            $revision['latestid'] && $revision['latestid'] !== $revision['revid']
-                ? $this->hyperlink($this->translate('View latest'), $this->url(null, ['revision-id' => $revision['latestid']], true))
-                : '<span class="inactive">' . $this->translate('View latest') . '</span>',
+            '<li>%s</li>',
             $revision['latestid'] !== $revision['revid']
                 ? '<a href="#" class="sidebar-content" data-sidebar-selector="#revert-revision">' . $this->translate('Revert to this revision') . '</a>'
                 : '<span class="inactive">' . $this->translate('Revert to this revision') . '</span>'
@@ -43,6 +34,24 @@ echo sprintf(
 );
 ?>
 </h3>
+
+<nav class="pagination" role="navigation">
+    <?php if ($revision['parentid']): ?>
+    <?php echo $this->hyperlink('', $this->url(null, ['revision-id' => $revision['parentid']], true), ['class' => 'previous o-icon-prev button', 'title' => $this->translate('Older revision')]); ?>
+    <?php else: ?>
+    <span class="previous o-icon-prev button inactive"></span>
+    <?php endif; ?>
+    <?php if ($revision['childid']): ?>
+    <?php echo $this->hyperlink('', $this->url(null, ['revision-id' => $revision['childid']], true), ['class' => 'next o-icon-next button', 'title' => $this->translate('Newer revision')]); ?>
+    <?php else: ?>
+    <span class="next o-icon-next button inactive"></span>
+    <?php endif; ?>
+    <?php if ($revision['latestid'] && $revision['latestid'] !== $revision['revid']): ?>
+    <?php echo $this->hyperlink('', $this->url(null, ['revision-id' => $revision['latestid']], true), ['class' => 'next o-icon-last button', 'title' => $this->translate('Latest revision')]); ?>
+    <?php else: ?>
+    <span class="next o-icon-last button inactive"></span>
+    <?php endif; ?>
+</nav>
 
 <?php echo $this->sectionNav([
     'wikitext' => $this->translate('Wikitext'),

@@ -181,12 +181,19 @@ class Scripto extends AbstractHelper
     {
         $view = $this->getView();
         return sprintf(
-            '<span class="mediawiki-pagination">%s | %s</span>',
-            $view->hyperlink($view->translate('First page'), $view->url(null, [], true)),
-            $view->continue ? $view->hyperlink(
-                $view->translate('Next page'),
-                $view->url(null, [], ['query' => ['continue' => $view->continue]], true)
-            ) : $view->translate('Next page')
+            '<nav class="pagination" role="navigation">%s%s</nav>',
+            $view->hyperlink('', $view->url(null, [], true), [
+                'class' => 'first o-icon-first button', 
+                'title' => $view->translate('First page'), 
+                'aria-label' => $view->translate('First page')
+            ]),
+            $view->continue
+                ? $view->hyperlink('', $view->url(null, [], ['query' => ['continue' => $view->continue]], true), [
+                    'class' => 'next o-icon-next button', 
+                    'title' => $view->translate('Next page'), 
+                    'aria-label' => $view->translate('Next page')
+                ])
+                : '<span class="next o-icon-next button inactive"></span>'
         );
     }
 

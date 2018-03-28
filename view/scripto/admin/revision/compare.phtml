@@ -9,6 +9,23 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto revision compare')
 
 <?php echo $this->scripto()->adminBreadcrumbs(); ?>
 
+<nav class="pagination" role="navigation">
+    <?php if ($fromRevision['parentid']): ?>
+    <?php echo $this->hyperlink('', $this->url(null, ['from-revision-id' => $fromRevision['parentid'], 'to-revision-id' => $fromRevision['revid']], true), ['class' => 'previous o-icon-prev button', 'title' => $this->translate('Older revision')]); ?>
+    <?php else: ?>
+    <span class="previous o-icon-prev button inactive"></span>
+    <?php endif; ?>
+    <?php if ($toRevision['childid']): ?>
+    <?php echo $this->hyperlink('', $this->url(null, ['from-revision-id' => $toRevision['revid'], 'to-revision-id' => $toRevision['childid']], true), ['class' => 'next o-icon-next button', 'title' => $this->translate('Newer revision')]); ?>
+    <?php else: ?>
+    <span class="next o-icon-next button inactive"></span>
+    <?php endif; ?>
+</nav>
+
+<?php
+$fromDatetime = new \DateTime($fromRevision['timestamp']);
+$toDatetime = new \DateTime($toRevision['timestamp']);
+?>
 <table id="compare-table">
     <colgroup>
         <col class="diff-marker">
@@ -19,53 +36,24 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto revision compare')
     <thead>
         <tr>
             <th colspan="2">
-                <div class="revision-timestamp">
-                <?php 
-                $datetime = new \DateTime($fromRevision['timestamp']);
-                $parsedComment = $toRevision['parsedcomment'];
-                echo sprintf(
+                <div class="revision-timestamp"><?php echo sprintf(
                     $this->translate('Revision as of %s by %s'),
-                    $datetime->format('G:i:s, j F Y'),
+                    $fromDatetime->format('G:i:s, j F Y'),
                     $this->hyperlink($fromRevision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $fromRevision['user']]))
-                );
-                ?>
-                </div>
-                <?php 
-                if ($parsedComment !== '') {
-                    echo sprintf('<div class="parsed-comment">%s</div>', $parsedComment);
-                }
-                ?>
-                <div class="older">
-                <?php
-                echo $fromRevision['parentid']
-                    ? $this->hyperlink($this->translate('Older revision'), $this->url(null, ['from-revision-id' => $fromRevision['parentid'], 'to-revision-id' => $fromRevision['revid']], true))
-                    : $this->translate('Older revision');
-                ?>
-                </div>
-                </th>
-                <th colspan="2">
-                <div class="revision-timestamp">
-                <?php
-                $datetime = new \DateTime($toRevision['timestamp']);
-                echo sprintf(
+                ); ?></div>
+                <?php if ($fromRevision['parsedcomment']): ?>
+                <div class="parsed-comment"><?php $fromRevision['parsedcomment'] ?></div>
+                <?php endif; ?>
+            </th>
+            <th colspan="2">
+                <div class="revision-timestamp"><?php echo sprintf(
                     $this->translate('Revision as of %s by %s'),
-                    $datetime->format('G:i:s, j F Y'),
+                    $toDatetime->format('G:i:s, j F Y'),
                     $this->hyperlink($toRevision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $toRevision['user']]))
-                );
-                ?>
-                </div>
-                <?php 
-                if ($parsedComment !== '') {
-                    echo sprintf('<div class="parsed-comment">%s</div>', $parsedComment);
-                }
-                ?>
-                <div class="newer">
-                <?php 
-                echo $toRevision['childid']
-                    ? $this->hyperlink($this->translate('Newer revision'), $this->url(null, ['from-revision-id' => $toRevision['revid'], 'to-revision-id' => $toRevision['childid']], true))
-                    : $this->translate('Newer revision');
-                ?>
-                </div>
+                ); ?></div>
+                <?php if ($toRevision['parsedcomment']): ?>
+                <div class="parsed-comment"><?php $toRevision['parsedcomment'] ?></div>
+                <?php endif; ?>
             </th>
         </tr>
     </thead>
