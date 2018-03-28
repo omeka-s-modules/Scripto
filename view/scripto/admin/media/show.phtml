@@ -59,7 +59,9 @@ $next = $sMedia->nextScriptoMedia();
             <button name="vertical" class="vertical" aria-label="<?php echo $this->translate('Vertical view'); ?>" title="<?php echo $this->translate('Vertical view'); ?>"></button>
         </div>
         <div class="wikitext-flex">
-            <textarea disabled><?php echo $sMedia->pageWikitext(); ?></textarea>
+            <div class="textarea-flex">
+                <textarea disabled><?php echo $sMedia->pageWikitext(); ?></textarea>
+            </div>
             <div class="panzoom-container <?php echo ($mediaIsImage) ? 'image' : ''; ?>">
                 <?php echo $media->render(['link' => null]); ?>
                 <?php if ($mediaIsImage): ?>

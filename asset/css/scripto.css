@@ -79,6 +79,7 @@
     width: 100%;
     flex-wrap: wrap;
     margin-top: 12px;
+    min-height: 400px;
  }
 
 .browse .browse-controls {
@@ -122,23 +123,29 @@
     width: 100%;
 }
 
-.horizontal .wikitext-flex textarea {
-    min-height: 400px;
-    flex-grow: 1;
+.horizontal .wikitext-flex .textarea-flex {
+    display: flex;
     margin-right: 12px;
+    flex-direction: column;
 }
 
-.horizontal .wikitext-flex textarea,
+.wikitext-flex .textarea-flex textarea {
+    width: 100%;
+    min-height: 100%;
+    flex: 1;
+}
+
+.horizontal .wikitext-flex .textarea-flex,
 .horizontal .wikitext-flex .panzoom-container {
     width: calc(50% - 6px);
 }
 
-.vertical .wikitext-flex textarea,
+.vertical .wikitext-flex .textarea-flex,
 .vertical .wikitext-flex .panzoom-container {
     width: 100%;
 }
 
-.vertical .wikitext-flex textarea {
+.vertical .wikitext-flex .textarea-flex {
     order: 2;
     min-height: 35vh;
 }
@@ -260,7 +267,7 @@ button.featherlight-close-icon.featherlight-close {
     height: calc(100% - 54px);
 }
 
-.featherlight-content .horizontal .wikitext-flex textarea,
+.featherlight-content .horizontal .wikitext-flex .textarea-flex,
 .featherlight-content .horizontal .wikitext-flex .panzoom-container {
     min-height: 100%;
 }
