@@ -89,12 +89,14 @@ $restrictionLevels = [
         <button type="button" class="default active" disabled="true"><?php echo $this->translate('Go'); ?></button>
         <?php echo $this->formElement($batchForm->get('batch-review-submit')); ?>
     </div>
+    <?php if ($this->scripto()->userIsLoggedIn()): ?>
     <div class="batch-actions">
         <?php echo $this->formElement($batchForm->get('batch-manage-action')); ?>
         <button type="button" class="default active" disabled="true"><?php echo $this->translate('Go'); ?></button>
         <?php echo $this->formElement($batchForm->get('batch-manage-submit')); ?>
     </div>
-    <?php echo $this->formElement($batchForm->get('batchmediaform_csrf')); ?>
+    <?php endif; ?>
+    <?php echo $this->formElement($batchForm->get('csrf')); ?>
 </div>
 
 <table class="tablesaw scripto-media batch-edit" data-tablesaw-mode="stack">

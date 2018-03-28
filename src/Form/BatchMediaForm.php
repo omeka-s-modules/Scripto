@@ -1,10 +1,16 @@
 <?php
 namespace Scripto\Form;
 
+use Scripto\Mediawiki\ApiClient;
 use Zend\Form\Form;
 
 class BatchMediaForm extends Form
 {
+    /**
+     * @var ApiClient
+     */
+    protected $client;
+
     public function init()
     {
         $this->setAttribute('id', 'batch-form');
@@ -57,6 +63,44 @@ class BatchMediaForm extends Form
             ],
         ]);
 
+        $selectedOptions = [];
+        $allOptions = [];
+
+        // User must be logged in to add pages to their watchlist.
+        if ($this->client->userIsLoggedIn()) {
+            $selectedOptions[] = [
+                'value' => 'watch-selected',
+                'label' => 'Add to your watchlist (selected)', // @translate
+                'attributes' => ['disabled' => true],
+            ];
+            $selectedOptions[] = [
+                'value' => 'unwatch-selected',
+                'label' => 'Remove from your watchlist (selected)', // @translate
+                'attributes' => ['disabled' => true],
+            ];
+            $allOptions['watch-all'] = 'Add to your watchlist (all)'; // @translate
+            $allOptions['unwatch-all'] = 'Remove from your watchlist (all)'; // @translate
+        }
+
+        // Users must be sysop to restrict and open editing.
+        if ($this->client->userIsInGroup('sysop')) {
+            $selectedOptions[] = [
+                'value' => 'restrict-admin-selected',
+                'label' => 'Restrict editing to admins (selected)', // @translate
+                'attributes' => ['disabled' => true],
+            ];
+            $selectedOptions[] = [
+                'value' => 'restrict-user-selected',
+                'label' => 'Restrict editing to logged in users (selected)', // @translate
+                'attributes' => ['disabled' => true],
+            ];
+            $selectedOptions[] = [
+                'value' => 'open-selected',
+                'label' => 'Open editing to all users (selected)', // @translate
+                'attributes' => ['disabled' => true],
+            ];
+        }
+
         $this->add([
             'type' => 'select',
             'name' => 'batch-manage-action',
@@ -65,43 +109,14 @@ class BatchMediaForm extends Form
                     'default' => 'Batch manage actions', // @translate
                     'manage-selected' => [
                         'label' => 'Selected media', // @translate
-                        'options' => [
-                            [
-                                'value' => 'watch-selected',
-                                'label' => 'Add to your watchlist (selected)', // @translate
-                                'attributes' => ['disabled' => true],
-                            ],
-                            [
-                                'value' => 'unwatch-selected',
-                                'label' => 'Remove from your watchlist (selected)', // @translate
-                                'attributes' => ['disabled' => true],
-                            ],
-                            [
-                                'value' => 'restrict-admin-selected',
-                                'label' => 'Restrict editing to admins (selected)', // @translate
-                                'attributes' => ['disabled' => true],
-                            ],
-                            [
-                                'value' => 'restrict-user-selected',
-                                'label' => 'Restrict editing to logged in users (selected)', // @translate
-                                'attributes' => ['disabled' => true],
-                            ],
-                            [
-                                'value' => 'open-selected',
-                                'label' => 'Open editing to all users (selected)', // @translate
-                                'attributes' => ['disabled' => true],
-                            ],
-                        ],
+                        'options' => $selectedOptions,
                     ],
                     'manage-all' => [
                         'label' => 'All media', // @translate
                         // Note that we're not providing batch-all options to
                         // restrict or open editing because the MediaWiki API
                         // has no batch protection feature.
-                        'options' => [
-                            'watch-all' => 'Add to your watchlist (all)', // @translate
-                            'unwatch-all' => 'Remove from your watchlist (all)', // @translate
-                        ],
+                        'options' => $allOptions,
                     ],
                 ],
             ],
@@ -129,5 +144,15 @@ class BatchMediaForm extends Form
                 'formaction' => $this->getOption('batch-manage-formaction'),
             ],
         ]);
+    }
+
+    /**
+     * Set the MediaWiki API client.
+     *
+     * @param ApiClient $client
+     */
+    public function setApiClient(ApiClient $client)
+    {
+        $this->client = $client;
     }
 }

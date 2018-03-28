@@ -103,6 +103,16 @@ class Scripto extends AbstractHelper
     }
 
     /**
+     * Is the current MediaWiki user logged in?
+     *
+     * @return bool
+     */
+    public function userIsLoggedIn()
+    {
+        return $this->client->userIsLoggedIn();
+    }
+
+    /**
      * Return the Scripto login and logout bar.
      *
      * @return string

@@ -144,6 +144,17 @@ class ApiClient
     }
 
     /**
+     * Is the current user in the provided group?
+     *
+     * @param string $group
+     * @return bool
+     */
+    public function userIsInGroup($group)
+    {
+        return isset($this->userInfo) ? in_array($group, $this->userInfo['groups']) : false;
+    }
+
+    /**
      * Query information about a named user.
      *
      * @param string $name User name
@@ -755,6 +766,7 @@ class ApiClient
         $query = $this->request([
             'action' => 'query',
             'meta' => 'userinfo',
+            'uiprop' => 'realname|email|registrationdate|editcount|groups|implicitgroups',
         ]);
         return $query['query']['userinfo'];
     }
