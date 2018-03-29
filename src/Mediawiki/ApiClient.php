@@ -86,12 +86,12 @@ class ApiClient
     }
 
     /**
-     * Get this page's protection level given a protection type.
+     * Get this page's protection data given a protection type.
      *
      * @param string $type "create", "edit", "move"
-     * @return string "sysop", "autoconfirmed", "all" (for no protections)
+     * @return array|null Returns null if there are no protections for the type
      */
-    public function getPageProtectionLevel($title, $type)
+    public function getPageProtection($title, $type)
     {
         if (is_string($title)) {
             $page = $this->queryPage($title);
@@ -105,10 +105,10 @@ class ApiClient
         }
         foreach ($page['protection'] as $protection) {
             if ($type === $protection['type']) {
-                return $protection['level'];
+                return $protection;
             }
         }
-        return 'all';
+        return null;
     }
 
     /**
@@ -624,9 +624,10 @@ class ApiClient
      * @param string $title
      * @param string $type "edit", "move", "create"
      * @param string $level "sysop", "autoconfirmed", "all"
+     * @param string $expiry
      * @return array
      */
-    public function protectPages(array $titles, $type, $level)
+    public function protectPages(array $titles, $type, $level, $expiry)
     {
         if (count($titles) !== count(array_unique($titles))) {
             throw new Exception\InvalidArgumentException('Titles must be unique');
@@ -645,6 +646,9 @@ class ApiClient
         if (!is_string($level)) {
             throw new Exception\InvalidArgumentException('Protection level must be a string');
         }
+        if (!is_string($expiry)) {
+            throw new Exception\InvalidArgumentException('Protection expiry must be a string');
+        }
         $query = $this->request([
             'action' => 'query',
             'meta' => 'tokens',
@@ -657,6 +661,7 @@ class ApiClient
                 'action' => 'protect',
                 'title' => $title,
                 'protections' => sprintf('%s=%s', $type, $level),
+                'expiry' => $expiry,
                 'token' => $query['query']['tokens']['csrftoken'],
             ]);
             if (isset($protect['error'])) {
@@ -674,11 +679,12 @@ class ApiClient
      * @param string $title
      * @param string $type "edit", "move", "create"
      * @param string $level "sysop", "autoconfirmed", "all"
+     * @param string $expiry
      * @return array
      */
-    public function protectPage($title, $type, $level)
+    public function protectPage($title, $type, $level, $expiry)
     {
-        return $this->protectPages([$title], $type, $level)[0];
+        return $this->protectPages([$title], $type, $level, $expiry)[0];
     }
 
     /**

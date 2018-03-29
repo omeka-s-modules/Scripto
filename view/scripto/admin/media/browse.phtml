@@ -2,11 +2,6 @@
 $this->headLink()->appendStylesheet($this->assetUrl('css/scripto.css', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
 $this->htmlElement('body')->appendAttribute('class', 'scripto item review media browse');
-$restrictionLevels = [
-    'all' => $this->translate('Open'),
-    'autoconfirmed' => $this->translate('User only'),
-    'sysop' => $this->translate('Admin only'),
-];
 ?>
 
 <?php echo $this->pageTitle($this->translate('Item review'), 1, $this->translate('Scripto'), $sItem->item()->displayTitle()); ?>
@@ -85,15 +80,16 @@ $restrictionLevels = [
 
 <div class="batch-inputs">
     <div class="batch-actions">
-        <?php echo $this->formElement($batchForm->get('batch-review-action')); ?>
-        <button type="button" class="default active" disabled="true"><?php echo $this->translate('Go'); ?></button>
-        <?php echo $this->formElement($batchForm->get('batch-review-submit')); ?>
-    </div>
-    <?php if ($this->scripto()->userIsLoggedIn()): ?>
-    <div class="batch-actions">
         <?php echo $this->formElement($batchForm->get('batch-manage-action')); ?>
         <button type="button" class="default active" disabled="true"><?php echo $this->translate('Go'); ?></button>
         <?php echo $this->formElement($batchForm->get('batch-manage-submit')); ?>
+    </div>
+    <?php if ($this->scripto()->userIsLoggedIn()): ?>
+    <div class="batch-actions">
+        <?php echo $this->formElement($batchForm->get('batch-protect-action')); ?>
+        <?php echo $this->formElement($batchForm->get('batch-protect-expiry')); ?>
+        <button type="button" class="default active" disabled="true"><?php echo $this->translate('Go'); ?></button>
+        <?php echo $this->formElement($batchForm->get('batch-protect-submit')); ?>
     </div>
     <?php endif; ?>
     <?php echo $this->formElement($batchForm->get('csrf')); ?>
@@ -128,7 +124,20 @@ $restrictionLevels = [
             </td>
             <td><?php echo $this->i18n()->dateFormat($sMedia->edited()); ?></td>
             <td><?php echo $this->translate($sMedia->status()); ?></td>
-            <td><?php echo $restrictionLevels[$sMedia->restrictionLevel()]; ?></td>
+            <td>
+                <?php
+                $editProtection = $sMedia->editProtection();
+                if ($editProtection) {
+                    if ('autoconfirmed' === $editProtection['level']) {
+                        echo $this->translate('User only');
+                    } elseif ('sysop' === $editProtection['level']) {
+                        echo $this->translate('Admin only');
+                    }
+                } else {
+                    echo $this->translate('Open');
+                }
+                ?>
+            </td>
         </tr>
     <?php endforeach; ?>
     </tbody>
@@ -160,33 +169,53 @@ $restrictionLevels = [
 
 <script>
 var batchForm = $('#batch-form');
-var batchSelects = batchForm.find('select.batch-review-select, select.batch-manage-select');
-var batchSelectedOptions = batchSelects.find('option[value$="-selected"]');
+var batchManageSelect = $('#batch-manage-select');
+var batchProtectSelect = $('#batch-protect-select');
+var batchProtectExpirySelect = $('#batch-protect-expiry-select');
 
 batchForm.on('change', ':checkbox', function(e) {
     if (batchForm.find(':checkbox:checked').length > 0) {
         // at least one checkbox is checked
-        batchSelectedOptions.prop('disabled', false);
+        batchManageSelect.find('option[value$="-selected"]').prop('disabled', false);
+        batchProtectSelect.find('option').prop('disabled', false);
     } else {
         // no checkboxes are checked
-        batchSelects.val('default');
-        batchSelectedOptions.prop('disabled', true);
+        batchManageSelect.val('');
+        batchManageSelect.find('option[value$="-selected"]').prop('disabled', true);
+
+        batchProtectSelect.val('');
+        batchProtectSelect.find('option').prop('disabled', true);
+
+        batchProtectExpirySelect.val('');
+        batchProtectExpirySelect.find('option').prop('disabled', true);
+
         batchForm.find('input.batch-submit').hide();
         batchForm.find('button.default').show();
     }
 });
 
-batchSelects.on('change', function(e) {
+batchManageSelect.add(batchProtectSelect).on('change', function(e) {
     var thisSelect = $(this);
     var batchActionsDiv = thisSelect.closest('.batch-actions');
     var defaultButton = batchActionsDiv.find('button.default');
     var submitButton = batchActionsDiv.find('input.batch-submit');
-    if ('default' === thisSelect.find(':selected').val()) {
+    if ('' === thisSelect.find(':selected').val()) {
         defaultButton.show();
         submitButton.hide();
+        if ('batch-protect-select' === thisSelect.attr('id'))  {
+            batchProtectExpirySelect.find('option').prop('disabled', true);
+        }
     } else {
         defaultButton.hide();
         submitButton.show();
+        if ('batch-protect-select' === thisSelect.attr('id')) {
+            if ('' === thisSelect.val() || 'all' === thisSelect.val()) {
+                batchProtectExpirySelect.val('');
+                batchProtectExpirySelect.find('option').prop('disabled', true);
+            } else {
+                batchProtectExpirySelect.find('option').prop('disabled', false);
+            }
+        }
     }
 });
 </script>

@@ -319,17 +319,17 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
     }
 
     /**
-     * Get the user level at which the corresponding MediaWiki page can be edited.
+     * Get edit protection data from the corresponding MediaWiki page.
      *
      * Note that, unlike MediaWiki, Scripto does not differentiate between
      * "create" and "edit" protection types when restricting access to a page.
      *
-     * @return string "sysop", "autoconfirmed", "all" (for no restrictions)
+     * @return array|null
      */
-    public function restrictionLevel()
+    public function editProtection()
     {
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
         $type = $this->pageIsCreated() ? 'edit' : 'create';
-        return $client->getPageProtectionLevel($this->page(), $type);
+        return $client->getPageProtection($this->page(), $type);
     }
 }

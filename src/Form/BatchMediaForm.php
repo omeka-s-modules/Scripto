@@ -16,55 +16,34 @@ class BatchMediaForm extends Form
         $this->setAttribute('id', 'batch-form');
         $this->setAttribute('class', 'disable-unsaved-warning');
 
-        $this->add([
-            'type' => 'select',
-            'name' => 'batch-review-action',
-            'options' => [
-                'value_options' => [
-                    'default' => 'Batch review actions', // @translate
-                    'review-selected' => [
-                            'label' => 'Selected media', // @translate
-                            'options' => [
-                            [
-                                'value' => 'approve-selected',
-                                'label' => 'Mark as approved (selected)', // @translate
-                                'attributes' => ['disabled' => true],
-                            ],
-                            [
-                                'value' => 'unapprove-selected',
-                                'label' => 'Mark as not approved (selected)', // @translate
-                                'attributes' => ['disabled' => true],
-                            ],
-                            [
-                                'value' => 'complete-selected',
-                                'label' => 'Mark as completed (selected)', // @translate
-                                'attributes' => ['disabled' => true],
-                            ],
-                            [
-                                'value' => 'uncomplete-selected',
-                                'label' => 'Mark as incomplete (selected)', // @translate
-                                'attributes' => ['disabled' => true],
-                            ],
-                        ],
-                    ],
-                    'review-all' => [
-                        'label' => 'All media', // @translate
-                        'options' => [
-                            'approve-all' => 'Mark as approved (all)', // @translate
-                            'unapprove-all' => 'Mark as not approved (all)', // @translate
-                            'complete-all' => 'Mark as completed (all)', // @translate
-                            'uncomplete-all' => 'Mark as incomplete (all)', // @translate
-                        ],
-                    ],
-                ],
+        $allOptions = [
+            'approve-all' => 'Mark as approved (all)', // @translate
+            'unapprove-all' => 'Mark as not approved (all)', // @translate
+            'complete-all' => 'Mark as completed (all)', // @translate
+            'uncomplete-all' => 'Mark as incomplete (all)', // @translate
+        ];
+        $selectedOptions = [
+            [
+                'value' => 'approve-selected',
+                'label' => 'Mark as approved (selected)', // @translate
+                'attributes' => ['disabled' => true],
             ],
-            'attributes' => [
-                'class' => 'batch-review-select',
+            [
+                'value' => 'unapprove-selected',
+                'label' => 'Mark as not approved (selected)', // @translate
+                'attributes' => ['disabled' => true],
             ],
-        ]);
-
-        $selectedOptions = [];
-        $allOptions = [];
+            [
+                'value' => 'complete-selected',
+                'label' => 'Mark as completed (selected)', // @translate
+                'attributes' => ['disabled' => true],
+            ],
+            [
+                'value' => 'uncomplete-selected',
+                'label' => 'Mark as incomplete (selected)', // @translate
+                'attributes' => ['disabled' => true],
+            ],
+        ];
 
         // User must be logged in to add pages to their watchlist.
         if ($this->client->userIsLoggedIn()) {
@@ -82,56 +61,109 @@ class BatchMediaForm extends Form
             $allOptions['unwatch-all'] = 'Remove from your watchlist (all)'; // @translate
         }
 
-        // Users must be sysop to restrict and open editing.
-        if ($this->client->userIsInGroup('sysop')) {
-            $selectedOptions[] = [
-                'value' => 'restrict-admin-selected',
-                'label' => 'Restrict editing to admins (selected)', // @translate
-                'attributes' => ['disabled' => true],
-            ];
-            $selectedOptions[] = [
-                'value' => 'restrict-user-selected',
-                'label' => 'Restrict editing to logged in users (selected)', // @translate
-                'attributes' => ['disabled' => true],
-            ];
-            $selectedOptions[] = [
-                'value' => 'open-selected',
-                'label' => 'Open editing to all users (selected)', // @translate
-                'attributes' => ['disabled' => true],
-            ];
-        }
-
         $this->add([
             'type' => 'select',
             'name' => 'batch-manage-action',
             'options' => [
+                'empty_option' => 'Batch manage actions:', // @translate
                 'value_options' => [
-                    'default' => 'Batch manage actions', // @translate
+                    'manage-all' => [
+                        'label' => 'All media', // @translate
+                        'options' => $allOptions,
+                    ],
                     'manage-selected' => [
                         'label' => 'Selected media', // @translate
                         'options' => $selectedOptions,
                     ],
-                    'manage-all' => [
-                        'label' => 'All media', // @translate
-                        // Note that we're not providing batch-all options to
-                        // restrict or open editing because the MediaWiki API
-                        // has no batch protection feature.
-                        'options' => $allOptions,
-                    ],
                 ],
             ],
             'attributes' => [
-                'class' => 'batch-manage-select',
+                'id' => 'batch-manage-select',
             ],
         ]);
 
         $this->add([
-            'type' => 'submit',
-            'name' => 'batch-review-submit',
+            'type' => 'select',
+            'name' => 'batch-protect-action',
+            'options' => [
+                'empty_option' => 'Batch protection actions:', // @translate
+                'value_options' => [
+                    [
+                        'value' => 'all',
+                        'label' => 'Allow all users (selected)', // @translate
+                        'attributes' => ['disabled' => true],
+                    ],
+                    [
+                        'value' => 'autoconfirmed',
+                        'label' => 'Allow only confirmed users (selected)', // @translate
+                        'attributes' => ['disabled' => true],
+                    ],
+                    [
+                        'value' => 'sysop',
+                        'label' => 'Allow only administrators (selected)', // @translate
+                        'attributes' => ['disabled' => true],
+                    ],
+                ],
+            ],
             'attributes' => [
-                'class' => 'batch-submit',
-                'value' => 'Go', // @translate
-                'formaction' => $this->getOption('batch-review-formaction'),
+                'id' => 'batch-protect-select',
+            ],
+        ]);
+        $this->add([
+            'type' => 'select',
+            'name' => 'batch-protect-expiry',
+            'options' => [
+                'empty_option' => 'Expires:', // @translate
+                'value_options' => [
+                    [
+                        'value' => 'indefinite',
+                        'label' => 'indefinitely', // @translate
+                        'attributes' => ['disabled' => true],
+                    ],
+                    [
+                        'value' => '1 hour',
+                        'label' => 'for 1 hour', // @translate
+                        'attributes' => ['disabled' => true],
+                    ],
+                    [
+                        'value' => '1 day',
+                        'label' => 'for 1 day', // @translate
+                        'attributes' => ['disabled' => true],
+                    ],
+                    [
+                        'value' => '1 week',
+                        'label' => 'for 1 week', // @translate
+                        'attributes' => ['disabled' => true],
+                    ],
+                    [
+                        'value' => '2 weeks',
+                        'label' => 'for 2 weeks', // @translate
+                        'attributes' => ['disabled' => true],
+                    ],
+                    [
+                        'value' => '1 month',
+                        'label' => 'for 1 month', // @translate
+                        'attributes' => ['disabled' => true],
+                    ],
+                    [
+                        'value' => '3 months',
+                        'label' => 'for 3 months', // @translate
+                        'attributes' => ['disabled' => true],
+                    ],
+                    [
+                        'value' => '6 months',
+                        'label' => 'for 6 months', // @translate
+                        'attributes' => ['disabled' => true],
+                    ],
+                    [
+                        'value' => '1 year',
+                        'label' => 'for 1 year', // @translate
+                        'attributes' => ['disabled' => true],
+                    ],
+                ],
+            ],
+            'attributes' => [
+                'id' => 'batch-protect-expiry-select',
             ],
         ]);
 
@@ -143,6 +175,30 @@ class BatchMediaForm extends Form
                 'value' => 'Go', // @translate
                 'formaction' => $this->getOption('batch-manage-formaction'),
             ],
+        ]);
+
+        $this->add([
+            'type' => 'submit',
+            'name' => 'batch-protect-submit',
+            'attributes' => [
+                'class' => 'batch-submit',
+                'value' => 'Go', // @translate
+                'formaction' => $this->getOption('batch-protect-formaction'),
+            ],
+        ]);
+
+        $inputFilter = $this->getInputFilter();
+        $inputFilter->add([
+            'name' => 'batch-manage-action',
+            'allow_empty' => true,
+        ]);
+        $inputFilter->add([
+            'name' => 'batch-protect-action',
+            'allow_empty' => true,
+        ]);
+        $inputFilter->add([
+            'name' => 'batch-protect-expiry',
+            'allow_empty' => true,
         ]);
     }
 
