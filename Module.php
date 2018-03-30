@@ -42,6 +42,29 @@ ALTER TABLE scripto_project ADD CONSTRAINT FK_E39E5108960278D7 FOREIGN KEY (item
 ALTER TABLE scripto_project ADD CONSTRAINT FK_E39E5108549213EC FOREIGN KEY (property_id) REFERENCES property (id) ON DELETE SET NULL;
 SET FOREIGN_KEY_CHECKS=1;
 ');
+
+        // Import the Scripto vocabulary if it doesn't already exist.
+        $api = $services->get('Omeka\ApiManager');
+        $response = $api->search('vocabularies', [
+            'namespace_uri' => 'http://scripto.org/vocab#',
+            'limit' => 0,
+        ]);
+        if (0 === $response->getTotalResults()) {
+            $importer = $services->get('Omeka\RdfImporter');
+            $importer->import(
+                'file',
+                [
+                    'o:namespace_uri' => 'http://scripto.org/vocab#',
+                    'o:prefix' => 'scripto',
+                    'o:label' => 'Scripto',
+                    'o:comment' =>  null,
+                ],
+                [
+                    'file' => __DIR__ . '/vocabs/scripto.n3',
+                    'format' => 'turtle',
+                ]
+            );
+        }
     }
 
     public function uninstall(ServiceLocatorInterface $services)
@@ -55,6 +78,8 @@ SET FOREIGN_KEY_CHECKS=1;
 ');
         $settings = $this->getServiceLocator()->get('Omeka\Settings');
         $settings->delete('scripto_apiurl');
+
+        // Note that we do not delete the Scripto vocabulary.
     }
 
     public function getConfigForm(PhpRenderer $renderer)
@@ -174,7 +199,7 @@ SET FOREIGN_KEY_CHECKS=1;
     public function editMediawikiPage(Event $event)
     {
         $sMedia = $event->getParam('entity');
-        if (!is_string($sMedia->getText())) {
+        if (!is_string($sMedia->getContent())) {
             // No need to edit the MediaWiki page if text is null.
             return;
         }
@@ -199,7 +224,7 @@ SET FOREIGN_KEY_CHECKS=1;
             ));
         }
 
-        $result = $client->editPage($pageTitle, $sMedia->getText());
+        $result = $client->editPage($pageTitle, $sMedia->getContent());
 
         if (!isset($result['nochange'])) {
             // Update edited user and datetime only if there was a change.

@@ -97,7 +97,7 @@ class ScriptoMedia extends AbstractEntity
      */
     protected $approved;
 
-    protected $text;
+    protected $content;
 
     public function getId()
     {
@@ -205,26 +205,26 @@ class ScriptoMedia extends AbstractEntity
     }
 
     /**
-     * Set Scripto media text.
+     * Set Scripto media content (transcription, translation, etc.).
      *
-     * Note that text is stored in MediaWiki, not Omeka. We use this setter to
-     * store text until persisting it using the Media API client.
+     * Note that content is stored in MediaWiki, not Omeka. We use this setter
+     * to store content until persisting it using the MediaWiki API client.
      *
-     * @param string $text
+     * @param string $content
      */
-    public function setText($text)
+    public function setContent($content)
     {
-        $this->text = $text;
+        $this->content = $content;
     }
 
     /**
-     * Get the Scripto media text.
+     * Get the Scripto media content.
      *
      * @return string
      */
-    public function getText()
+    public function getContent()
     {
-        return $this->text;
+        return $this->content;
     }
 
     /**

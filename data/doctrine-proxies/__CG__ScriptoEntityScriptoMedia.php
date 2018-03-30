@@ -64,10 +64,10 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'position', 'editedBy', 'completedBy', 'approvedBy', 'synced', 'edited', 'completed', 'approved', 'text'];
+            return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'position', 'editedBy', 'completedBy', 'approvedBy', 'synced', 'edited', 'completed', 'approved', 'content'];
         }
 
-        return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'position', 'editedBy', 'completedBy', 'approvedBy', 'synced', 'edited', 'completed', 'approved', 'text'];
+        return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'position', 'editedBy', 'completedBy', 'approvedBy', 'synced', 'edited', 'completed', 'approved', 'content'];
     }
 
     /**
@@ -411,23 +411,23 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
     /**
      * {@inheritDoc}
      */
-    public function setText($text)
+    public function setContent($content)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setText', [$text]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setContent', [$content]);
 
-        return parent::setText($text);
+        return parent::setContent($content);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getText()
+    public function getContent()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getText', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getContent', []);
 
-        return parent::getText();
+        return parent::getContent();
     }
 
     /**

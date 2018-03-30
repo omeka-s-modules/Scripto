@@ -132,7 +132,7 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
             }
         }
 
-        $entity->setText($request->getValue('o-module-scripto:text'));
+        $entity->setContent($request->getValue('o-module-scripto:content'));
     }
 
     public function validateEntity(EntityInterface $entity, ErrorStore $errorStore)
