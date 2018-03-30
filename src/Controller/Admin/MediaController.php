@@ -162,7 +162,7 @@ class MediaController extends AbstractScriptoController
             $form->setData($this->getRequest()->getPost());
             if ($form->isValid()) {
                 $action = $this->params()->fromPost('batch-protect-action');
-                $expiry = $this->params()->fromPost('batch-protect-expiry') ?: 'indefinite';
+                $expiry = $this->params()->fromPost('batch-protect-expiry') ?: 'never';
 
                 $titles = ['created' => [], 'not_created' => []];
                 $sMediaIds = $this->params()->fromPost('resource_ids', []);

@@ -86,7 +86,7 @@ class BatchMediaForm extends Form
             'type' => 'select',
             'name' => 'batch-protect-action',
             'options' => [
-                'empty_option' => 'Batch protection actions:', // @translate
+                'empty_option' => 'Batch edit protection actions:', // @translate
                 'value_options' => [
                     [
                         'value' => 'all',
@@ -116,48 +116,48 @@ class BatchMediaForm extends Form
                 'empty_option' => 'Expires:', // @translate
                 'value_options' => [
                     [
-                        'value' => 'indefinite',
-                        'label' => 'indefinitely', // @translate
+                        'value' => 'never',
+                        'label' => 'never', // @translate
                         'attributes' => ['disabled' => true],
                     ],
                     [
                         'value' => '1 hour',
-                        'label' => 'for 1 hour', // @translate
+                        'label' => '1 hour', // @translate
                         'attributes' => ['disabled' => true],
                     ],
                     [
                         'value' => '1 day',
-                        'label' => 'for 1 day', // @translate
+                        'label' => '1 day', // @translate
                         'attributes' => ['disabled' => true],
                     ],
                     [
                         'value' => '1 week',
-                        'label' => 'for 1 week', // @translate
+                        'label' => '1 week', // @translate
                         'attributes' => ['disabled' => true],
                     ],
                     [
                         'value' => '2 weeks',
-                        'label' => 'for 2 weeks', // @translate
+                        'label' => '2 weeks', // @translate
                         'attributes' => ['disabled' => true],
                     ],
                     [
                         'value' => '1 month',
-                        'label' => 'for 1 month', // @translate
+                        'label' => '1 month', // @translate
                         'attributes' => ['disabled' => true],
                     ],
                     [
                         'value' => '3 months',
-                        'label' => 'for 3 months', // @translate
+                        'label' => '3 months', // @translate
                         'attributes' => ['disabled' => true],
                     ],
                     [
                         'value' => '6 months',
-                        'label' => 'for 6 months', // @translate
+                        'label' => '6 months', // @translate
                         'attributes' => ['disabled' => true],
                     ],
                     [
                         'value' => '1 year',
-                        'label' => 'for 1 year', // @translate
+                        'label' => '1 year', // @translate
                         'attributes' => ['disabled' => true],
                     ],
                 ],

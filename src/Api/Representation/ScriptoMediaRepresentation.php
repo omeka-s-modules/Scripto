@@ -330,6 +330,24 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
     {
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
         $type = $this->pageIsCreated() ? 'edit' : 'create';
-        return $client->getPageProtection($this->page(), $type);
+        $editProtection = $client->getPageProtection($this->page(), $type);
+        if ($editProtection) {
+            if ('autoconfirmed' === $editProtection['level']) {
+                $editProtection['label'] = 'Confirmed only'; // @translate
+            } elseif ('sysop' === $editProtection['level']) {
+                $editProtection['label'] = 'Admin only'; // @translate
+            }
+        } else {
+            $editProtection = [
+                'type' => $type,
+                'level' => 'all',
+                'expiry' => 'infinity',
+                'label' => 'Open to all', // @translate
+            ];
+        }
+        $editProtection['expiry'] = 'infinity' === $editProtection['expiry']
+            ? null
+            : new \DateTime($editProtection['expiry']);
+        return $editProtection;
     }
 }

@@ -17,6 +17,19 @@
     <div class="value"><?php echo $this->translate($sMedia->status()); ?></div>
 </div>
 <div class="meta-group">
+    <h4><?php echo $this->translate('Edit protection'); ?></h4>
+    <div class="value"><?php
+        $editProtection = $sMedia->editProtection();
+        echo sprintf(
+            '%s; expiring %s',
+            $this->translate($editProtection['label']),
+            $editProtection['expiry']
+                ? $this->i18n()->dateFormat($editProtection['expiry'], 'short', 'short')
+                : $this->translate('never')
+        );
+    ?></div>
+</div>
+<div class="meta-group">
     <h4><?php echo $this->translate('Last synced'); ?></h4>
     <div class="value"><?php echo $this->i18n()->dateFormat($sMedia->synced(), 'long', 'medium'); ?></div>
 </div>

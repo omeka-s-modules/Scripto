@@ -103,7 +103,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto item review media 
             <th class="row-title"><?php echo $this->translate('Media'); ?></th>
             <th><?php echo $this->translate('Last edited'); ?></th>
             <th><?php echo $this->translate('Status'); ?></th>
-            <th><?php echo $this->translate('Restriction'); ?></th>
+            <th><?php echo $this->translate('Edit protection'); ?></th>
         </tr>
     </thead>
     <tbody>
@@ -127,15 +127,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto item review media 
             <td>
                 <?php
                 $editProtection = $sMedia->editProtection();
-                if ($editProtection) {
-                    if ('autoconfirmed' === $editProtection['level']) {
-                        echo $this->translate('User only');
-                    } elseif ('sysop' === $editProtection['level']) {
-                        echo $this->translate('Admin only');
-                    }
-                } else {
-                    echo $this->translate('Open');
-                }
+                echo $this->translate($editProtection['label']);
                 ?>
             </td>
         </tr>
