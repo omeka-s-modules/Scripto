@@ -50,7 +50,7 @@ class ScriptoProjectForm extends Form
             'type' => PropertySelect::class,
             'options' => [
                 'label' => 'Property', // @translate
-                'info' => 'Select the property used to store transcriptions. Scripto stores transcriptions in a wiki before they are imported. Importing will copy transcriptions from the wiki into Omeka as values of the selected property.', // @translate
+                'info' => 'Select the property used to store resource content. Scripto stores content in a wiki before it is imported. Importing will copy content from the wiki into Omeka as values of the selected property.', // @translate
                 'empty_option' => '',
                 'show_required' => true,
             ],
@@ -65,7 +65,7 @@ class ScriptoProjectForm extends Form
             'type' => 'text',
             'options' => [
                 'label' => 'Language tag', // @translate
-                'info' => 'Enter the language of the transcriptions using an IETF language tag. Note that existing property values using the same language tag will be overwritten during import.', // @translate
+                'info' => 'Enter the language of the resource content using an IETF language tag. Note that existing property values using the same language tag will be overwritten during import.', // @translate
             ],
         ]);
     }
