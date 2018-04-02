@@ -63,12 +63,10 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto project browse');
             <td>
                 <?php echo $project->link($project->title()); ?>
                 <ul class="actions">
-                    <?php if ($project->userIsAllowed('update')): ?>
                     <li><?php echo $project->link('', 'edit', [
                         'class' => 'o-icon-edit',
                         'title' => $this->translate('Edit'),
                     ]) ?></li>
-                    <?php endif; ?>
                     <li><?php echo $this->hyperlink('', '#', [
                         'data-sidebar-content-url' => $project->url('show-details'),
                         'class' => 'o-icon-more sidebar-content',
