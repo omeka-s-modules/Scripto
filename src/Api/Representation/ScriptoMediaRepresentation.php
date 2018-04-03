@@ -345,9 +345,9 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
                 'label' => 'Open to all', // @translate
             ];
         }
-        $editProtection['expiry'] = 'infinity' === $editProtection['expiry']
-            ? null
-            : new \DateTime($editProtection['expiry']);
+        if ('infinity' === $editProtection['expiry']) {
+            $editProtection['expiry'] = null;
+        }
         return $editProtection;
     }
 }

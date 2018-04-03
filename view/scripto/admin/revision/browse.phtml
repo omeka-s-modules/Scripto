@@ -57,9 +57,8 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto browse revision no
                 </div>
             </td>
             <td>
-                <?php $datetime = new \DateTime($revision['timestamp']); ?>
                 <?php echo $this->hyperlink(
-                    $datetime->format('G:i:s, j F Y'),
+                    $revision['timestamp']->format('G:i:s, j F Y'),
                     $this->url('admin/scripto-revision-id', ['action' => 'show', 'revision-id' => $revision['revid']], true)
                 ); ?>
             </td>

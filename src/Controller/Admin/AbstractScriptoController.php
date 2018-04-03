@@ -1,7 +1,6 @@
 <?php
 namespace Scripto\Controller\Admin;
 
-use DateTime;
 use Omeka\Api\Exception\NotFoundException;
 use Zend\Mvc\Controller\AbstractActionController;
 
@@ -76,7 +75,6 @@ class AbstractScriptoController extends AbstractActionController
                     $list[$key]['scripto_media'] = $sMedia;
                 }
             }
-            $list[$key]['timestamp'] = new DateTime($row['timestamp']);
         }
         return $list;
     }

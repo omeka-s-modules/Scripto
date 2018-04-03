@@ -9,10 +9,11 @@ class ApiClientFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $services, $requestedName, array $options = null)
     {
+        $settings = $services->get('Omeka\Settings');
         return new ApiClient(
             $services->get('Omeka\HttpClient'),
-            $services->get('Omeka\Settings')->get('scripto_apiurl'),
-            $services->get('ViewHelperManager')->get('ServerUrl')->__invoke()
+            $settings->get('scripto_apiurl'),
+            $settings->get('time_zone', 'UTC')
         );
     }
 }

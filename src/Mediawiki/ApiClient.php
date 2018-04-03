@@ -2,6 +2,7 @@
 namespace Scripto\Mediawiki;
 
 use DateTime;
+use DateTimeZone;
 use Scripto\Mediawiki\Exception;
 use Zend\Http\Client as HttpClient;
 use Zend\Http\Request;
@@ -23,6 +24,13 @@ class ApiClient
      * @var string
      */
     protected $apiUrl;
+
+    /**
+     * Omeka time zone
+     *
+     * @var string
+     */
+    protected $timeZone;
 
     /**
      * @var Container
@@ -48,11 +56,13 @@ class ApiClient
      *
      * @param HttpClient $client
      * @param string $apiUrl
+     * @param string $timeZone
      */
-    public function __construct(HttpClient $httpClient, $apiUrl)
+    public function __construct(HttpClient $httpClient, $apiUrl, $timeZone)
     {
         $this->httpClient = $httpClient;
         $this->apiUrl = $apiUrl;
+        $this->timeZone = $timeZone;
 
         // Retrieve persisted MediaWiki cookies and add them to the HTTP client.
         $this->session = new Container('ScriptoMediawiki');
@@ -203,6 +213,12 @@ class ApiClient
         if (isset($query['error'])) {
             throw new Exception\QueryException($query['error']['info']);
         }
+        // Set timestamps to DateTime objects adjusted to Omeka's time zone.
+        foreach ($query['query']['usercontribs'] as $index => $userContrib) {
+            $dateTime = new DateTime($userContrib['timestamp']);
+            $dateTime->setTimezone(new DateTimeZone($this->timeZone));
+            $query['query']['usercontribs'][$index]['timestamp'] = $dateTime;
+        }
         return $query;
     }
 
@@ -268,6 +284,11 @@ class ApiClient
         $query = $this->request($request);
         if (isset($query['error'])) {
             throw new Exception\QueryException($query['error']['info']);
+        }
+        foreach ($query['query']['allusers'] as $index => $user) {
+            $dateTime = new DateTime($user['registration']);
+            $dateTime->setTimezone(new DateTimeZone($this->timeZone));
+            $query['query']['allusers'][$index]['registration'] = $dateTime;
         }
         return $query;
     }
@@ -339,6 +360,14 @@ class ApiClient
                 }
             }
         }
+        // Set timestamps to DateTime objects adjusted to Omeka's time zone.
+        foreach ($pages as $pageIndex => $page) {
+            foreach ($page['protection'] as $protectionIndex => $protection) {
+                $dateTime = new DateTime($protection['expiry']);
+                $dateTime->setTimezone(new DateTimeZone($this->timeZone));
+                $pages[$pageIndex]['protection'][$protectionIndex]['expiry'] = $dateTime;
+            }
+        }
         return $pages;
     }
 
@@ -380,6 +409,12 @@ class ApiClient
         if (isset($query['error'])) {
             throw new Exception\QueryException($query['error']['info']);
         }
+        // Set timestamps to DateTime objects adjusted to Omeka's time zone.
+        foreach ($query['query']['pages'][0]['revisions'] as $index => $revision) {
+            $dateTime = new DateTime($revision['timestamp']);
+            $dateTime->setTimezone(new DateTimeZone($this->timeZone));
+            $query['query']['pages'][0]['revisions'][$index]['timestamp'] = $dateTime;
+        }
         return $query;
     }
 
@@ -420,6 +455,12 @@ class ApiClient
         if (isset($query['error'])) {
             throw new Exception\QueryException($query['error']['info']);
         }
+        // Set timestamps to DateTime objects adjusted to Omeka's time zone.
+        foreach ($query['query']['watchlist'] as $index => $userContrib) {
+            $dateTime = new DateTime($userContrib['timestamp']);
+            $dateTime->setTimezone(new DateTimeZone($this->timeZone));
+            $query['query']['watchlist'][$index]['timestamp'] = $dateTime;
+        }
         return $query;
     }
 
@@ -459,6 +500,12 @@ class ApiClient
             ? $query['query']['pages'][0]['revisions'][1]['revid'] : null;
         $page = $this->queryPage($title);
         $revision['latestid'] = $page['lastrevid'];
+
+        // Set timestamp to DateTime object adjusted to Omeka's time zone.
+        $dateTime = new DateTime($revision['timestamp']);
+        $dateTime->setTimezone(new DateTimeZone($this->timeZone));
+        $revision['timestamp'] = $dateTime;
+
         return $revision;
     }
 
@@ -515,8 +562,6 @@ class ApiClient
             'title' => $title,
             'text' => $text,
             'token' => $query['query']['tokens']['csrftoken'],
-            // Use the timestamp of the base revision to detect edit conflicts.
-            'basetimestamp' => isset($page['revisions']) ? $page['revisions'][0]['timestamp'] : null,
         ]);
         if (isset($edit['error'])) {
             throw new Exception\EditException($edit['error']['info']);

@@ -25,7 +25,6 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto user browse');
     <tbody>
     <?php foreach ($users as $user): ?>
     <?php
-    $datetime = new \DateTime($user['registration']);
     $groups = array_filter([
         in_array('sysop', $user['groups']) ? $this->translate('administrator') : null,
         in_array('bureaucrat', $user['groups']) ? $this->translate('bureaucrat') : null,
@@ -37,7 +36,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto user browse');
                 <span class="flags"><?php echo $groups ? sprintf(' (%s)', implode(', ', $groups)) : null; ?></span>
             </td>
             <td><?php echo number_format($user['editcount']); ?></td>
-            <td><?php echo $this->i18n()->dateFormat($datetime, 'medium', 'short') ?></td>
+            <td><?php echo $this->i18n()->dateFormat($user['registration'], 'medium', 'short'); ?></td>
         </tr>
     <?php endforeach; ?>
     </tbody>

@@ -22,10 +22,9 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto revision show');
 
 <h3>
 <?php
-$datetime = new \DateTime($revision['timestamp']);
 echo sprintf(
     $this->translate('Revision as of %s by %s'),
-    $datetime->format('G:i:s, j F Y'),
+    $revision['timestamp']->format('G:i:s, j F Y'),
     $this->hyperlink($revision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $revision['user']]))
 );
 ?>

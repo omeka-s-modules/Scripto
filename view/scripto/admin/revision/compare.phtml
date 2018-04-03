@@ -22,10 +22,6 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto revision compare n
     <?php endif; ?>
 </nav>
 
-<?php
-$fromDatetime = new \DateTime($fromRevision['timestamp']);
-$toDatetime = new \DateTime($toRevision['timestamp']);
-?>
 <table id="compare-table">
     <colgroup>
         <col class="diff-marker">
@@ -38,7 +34,7 @@ $toDatetime = new \DateTime($toRevision['timestamp']);
             <th colspan="2">
                 <div class="revision-timestamp"><?php echo sprintf(
                     $this->translate('Revision as of %s by %s'),
-                    $fromDatetime->format('G:i:s, j F Y'),
+                    $fromRevision['timestamp']->format('G:i:s, j F Y'),
                     $this->hyperlink($fromRevision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $fromRevision['user']]))
                 ); ?></div>
                 <?php if ($fromRevision['parsedcomment']): ?>
@@ -48,7 +44,7 @@ $toDatetime = new \DateTime($toRevision['timestamp']);
             <th colspan="2">
                 <div class="revision-timestamp"><?php echo sprintf(
                     $this->translate('Revision as of %s by %s'),
-                    $toDatetime->format('G:i:s, j F Y'),
+                    $toRevision['timestamp']->format('G:i:s, j F Y'),
                     $this->hyperlink($toRevision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $toRevision['user']]))
                 ); ?></div>
                 <?php if ($toRevision['parsedcomment']): ?>
