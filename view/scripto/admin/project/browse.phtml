@@ -8,13 +8,11 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto project browse');
 
 <div id="page-actions">
     <div id="page-action-menu">
-        <a href="#" class="expand button" aria-label="<?php echo $this->translate('Expand'); ?>"><?php echo $this->translate('Actions'); ?></a>
-        <ul class="collapsible">
-            <li><?php echo $this->hyperlink(
-                $this->translate('Add new project'),
-                $this->url('admin/scripto-project', ['action' => 'add'])
-            ); ?></li>
-        </ul>
+      <?php echo $this->hyperlink(
+          $this->translate('Add new project'),
+          $this->url('admin/scripto-project', ['action' => 'add']),
+          ['class' => 'button']
+      ); ?>
     </div>
 </div>
 
