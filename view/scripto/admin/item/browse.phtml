@@ -4,7 +4,7 @@ $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
 $this->htmlElement('body')->appendAttribute('class', 'scripto project review item browse');
 ?>
 
-<?php echo $this->pageTitle($this->translate('Project review'), 1, $this->translate('Scripto'), $project->title()); ?>
+<?php echo $this->pageTitle($project->title(), 1, $this->translate(sprintf('Scripto: %s', 'Project')), $this->translate('Review')); ?>
 
 <div id="page-actions">
     <div id="page-action-menu">

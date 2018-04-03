@@ -40,7 +40,7 @@ class Scripto extends AbstractHelper
         ],
         'admin/scripto-user' => [
             'breadcrumbs' => ['admin/scripto'],
-            'text' => 'User browse', // @translate
+            'text' => 'Users', // @translate
             'params' => [],
         ],
         'admin/scripto-user-contributions' => [
@@ -55,37 +55,37 @@ class Scripto extends AbstractHelper
         ],
         'admin/scripto-project' => [
             'breadcrumbs' => ['admin/scripto'],
-            'text' => 'Project browse', // @translate
+            'text' => 'Projects', // @translate
             'params' => [],
         ],
         'admin/scripto-item' => [
             'breadcrumbs' => ['admin/scripto', 'admin/scripto-project'],
-            'text' => 'Project review', // @translate
+            'text' => 'Review project', // @translate
             'params' => ['project-id'],
         ],
         'admin/scripto-media' => [
             'breadcrumbs' => ['admin/scripto', 'admin/scripto-project', 'admin/scripto-item'],
-            'text' => 'Item review', // @translate
+            'text' => 'Review item', // @translate
             'params' => ['project-id', 'item-id'],
         ],
         'admin/scripto-media-id' => [
             'breadcrumbs' => ['admin/scripto', 'admin/scripto-project', 'admin/scripto-item', 'admin/scripto-media'],
-            'text' => 'Media review', // @translate
+            'text' => 'Review media', // @translate
             'params' => ['project-id', 'item-id', 'media-id'],
         ],
         'admin/scripto-revision' => [
             'breadcrumbs' => ['admin/scripto', 'admin/scripto-project', 'admin/scripto-item', 'admin/scripto-media', 'admin/scripto-media-id'],
-            'text' => 'Revision history', // @translate
+            'text' => 'Revisions', // @translate
             'params' => ['project-id', 'item-id', 'media-id'],
         ],
         'admin/scripto-revision-id' => [
             'breadcrumbs' => ['admin/scripto', 'admin/scripto-project', 'admin/scripto-item', 'admin/scripto-media', 'admin/scripto-media-id', 'admin/scripto-revision'],
-            'text' => 'Revision show', // @translate
+            'text' => 'Show revision', // @translate
             'params' => ['project-id', 'item-id', 'media-id', 'revision-id'],
         ],
         'admin/scripto-revision-compare' => [
             'breadcrumbs' => ['admin/scripto', 'admin/scripto-project', 'admin/scripto-item', 'admin/scripto-media', 'admin/scripto-media-id', 'admin/scripto-revision'],
-            'text' => 'Revision compare', // @translate
+            'text' => 'Compare revisions', // @translate
             'params' => ['project-id', 'item-id', 'media-id', 'to-revision-id', 'from-revision-id'],
         ],
     ];

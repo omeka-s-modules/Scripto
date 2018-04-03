@@ -10,7 +10,7 @@ $mediaType = $media->mediaType();
 $mediaIsImage = ((strpos($mediaType, 'image')) !== false);
 ?>
 
-<?php echo $this->pageTitle($media->displayTitle(), 1, $this->translate('Scripto'), $this->translate('Media review')); ?>
+<?php echo $this->pageTitle($media->displayTitle(), 1, $this->translate(sprintf('Scripto: %s', 'Media')), $this->translate('Review')); ?>
 
 <div id="page-actions">
     <div id="page-action-menu">

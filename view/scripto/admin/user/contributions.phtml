@@ -4,7 +4,7 @@ $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
 $this->htmlElement('body')->appendAttribute('class', 'scripto user contribution browse');
 ?>
 
-<?php echo $this->pageTitle($this->translate('User contributions'), 1, $this->translate('Scripto'), $user['name']); ?>
+<?php echo $this->pageTitle($user['name'], 1, $this->translate(sprintf('Scripto: %s', 'User')), $this->translate('Contributions')); ?>
 
 <?php echo $this->scripto()->adminLoginBar(); ?>
 

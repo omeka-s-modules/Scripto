@@ -3,7 +3,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto project edit');
 $form->prepare();
 ?>
 
-<?php echo $this->pageTitle($this->translate('Edit project'), 1, $this->translate('Scripto'), $project->title()); ?>
+<?php echo $this->pageTitle($project->title(), 1, $this->translate(sprintf('Scripto: %s', 'Project')), $this->translate('Edit')); ?>
 <?php echo $this->form()->openTag($form); ?>
 <div id="page-actions">
     <a href="#" class="delete button"><?php echo $this->translate('Delete'); ?></a>
