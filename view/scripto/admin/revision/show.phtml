@@ -8,15 +8,11 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto revision show');
 
 <div id="page-actions">
     <div id="page-action-menu">
-        <a href="#" class="expand button" aria-label="<?php echo $this->translate('Expand'); ?>"><?php echo $this->translate('Actions'); ?></a>
-        <ul class="collapsible">
         <?php echo sprintf(
-            '<li>%s</li>',
             $revision['latestid'] !== $revision['revid']
-                ? '<a href="#" class="sidebar-content" data-sidebar-selector="#revert-revision">' . $this->translate('Revert to this revision') . '</a>'
-                : '<span class="inactive">' . $this->translate('Revert to this revision') . '</span>'
+                ? '<a href="#" class="sidebar-content button" data-sidebar-selector="#revert-revision">' . $this->translate('Revert to this revision') . '</a>'
+                : '<span class="inactive button">' . $this->translate('Revert to this revision') . '</span>'
         ); ?>
-        </ul>
     </div>
 </div>
 

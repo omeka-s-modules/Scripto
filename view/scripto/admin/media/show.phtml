@@ -14,9 +14,7 @@ $mediaIsImage = ((strpos($mediaType, 'image')) !== false);
 
 <div id="page-actions">
     <div id="page-action-menu">
-        <a href="#" class="expand button" aria-label="<?php echo $this->translate('Expand'); ?>"><?php echo $this->translate('Actions'); ?></a>
-        <ul class="collapsible">
-            <li><?php echo $this->hyperlink($this->translate('Browse revision history'), $this->url('admin/scripto-media-id', ['action' => 'revision'], true)); ?></li>
+        <?php echo $this->hyperlink($this->translate('Revision history'), $this->url('admin/scripto-media-id', ['action' => 'revision'], true), ['class' => 'button']); ?>
         </ul>
         <button type="submit"><?php echo $this->translate('Save'); ?></button>
     </div>
