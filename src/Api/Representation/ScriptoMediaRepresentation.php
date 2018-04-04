@@ -1,6 +1,7 @@
 <?php
 namespace Scripto\Api\Representation;
 
+use DateTime;
 use Omeka\Api\Adapter\AdapterInterface;
 use Omeka\Api\Representation\AbstractResourceRepresentation;
 use Scripto\Api\ScriptoMediaResource;
@@ -319,35 +320,40 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
     }
 
     /**
-     * Get edit protection data from the corresponding MediaWiki page.
+     * Get edit access data from the corresponding MediaWiki page.
      *
      * Note that, unlike MediaWiki, Scripto does not differentiate between
      * "create" and "edit" protection types when restricting access to a page.
      *
      * @return array|null
      */
-    public function editProtection()
+    public function editAccess()
     {
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
         $type = $this->pageIsCreated() ? 'edit' : 'create';
-        $editProtection = $client->getPageProtection($this->page(), $type);
-        if ($editProtection) {
-            if ('autoconfirmed' === $editProtection['level']) {
-                $editProtection['label'] = 'Confirmed only'; // @translate
-            } elseif ('sysop' === $editProtection['level']) {
-                $editProtection['label'] = 'Admin only'; // @translate
+        $editAccess = $client->getPageProtection($this->page(), $type);
+
+        if ($editAccess) {
+            if ('autoconfirmed' === $editAccess['level']) {
+                $editAccess['label'] = 'Confirmed only'; // @translate
             }
+            if ('sysop' === $editAccess['level']) {
+                $editAccess['label'] = 'Admin only'; // @translate
+            }
+            // This protection has expired if the expiry date comes before the
+            // current date.
+            $editAccess['expired'] = $editAccess['expiry']
+                ? $editAccess['expiry'] < new DateTime('now')
+                : false;
         } else {
-            $editProtection = [
+            $editAccess = [
                 'type' => $type,
                 'level' => 'all',
-                'expiry' => 'infinity',
+                'expiry' => null,
+                'expired' => true,
                 'label' => 'Open to all', // @translate
             ];
         }
-        if ('infinity' === $editProtection['expiry']) {
-            $editProtection['expiry'] = null;
-        }
-        return $editProtection;
+        return $editAccess;
     }
 }

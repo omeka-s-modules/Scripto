@@ -12,17 +12,21 @@ $mediaIsImage = ((strpos($mediaType, 'image')) !== false);
 
 <?php echo $this->pageTitle($media->displayTitle(), 1, $this->translate(sprintf('Scripto: %s', 'Media')), $this->translate('Review')); ?>
 
+<?php echo $this->scripto()->adminLoginBar(); ?>
+
+<?php echo $this->scripto()->adminBreadcrumbs(); ?>
+
+<?php echo $this->form()->openTag($form); ?>
+<?php echo $this->formElement($form->get('mediaform_csrf')); ?>
+
 <div id="page-actions">
     <div id="page-action-menu">
+        <?php echo $this->formCheckbox($form->get('is_watched')); ?>
         <?php echo $this->hyperlink($this->translate('Revision history'), $this->url('admin/scripto-media-id', ['action' => 'revision'], true), ['class' => 'button']); ?>
         </ul>
         <button type="submit"><?php echo $this->translate('Save'); ?></button>
     </div>
 </div>
-
-<?php echo $this->scripto()->adminLoginBar(); ?>
-
-<?php echo $this->scripto()->adminBreadcrumbs(); ?>
 
 <?php
 $previous = $sMedia->previousScriptoMedia();
@@ -93,25 +97,48 @@ $next = $sMedia->nextScriptoMedia();
 </div>
 
 <div class="sidebar always-open" id="reviewer-form">
-    <h3><?php echo $this->translate(sprintf('Review media: "%s"', $media->displayTitle())); ?></h3>
+    <h3>Review media</h3>
     <div class="review-fields">
+        <?php
+        $completed = $sMedia->completed();
+        $completedBy = $sMedia->completedBy();
+        ?>
         <div class="field">
-            <label for="media-approval-status"><?php echo $this->translate('Approval status'); ?></label>
-            <input type="checkbox" name="media-approval-status" id="media-approval-status" checked>
-            <div class="history">
-                <span class="last-approved"><?php echo sprintf($this->translate('Last approved on %s by %s.'), 'Jan 16, 2018', 'jsafley'); ?></span>
+            <label for="completed"><?php echo $this->translate('Completed'); ?></label>
+            <?php echo $this->formCheckbox($form->get('is_completed')); ?>
+            <?php if ($completed): ?>
+            <div>
+                <?php echo sprintf(
+                    $this->translate('Last completed %s by %s'),
+                    $this->i18n()->dateFormat($completed, 'medium', 'short'),
+                    $this->hyperlink($completedBy, $this->url('admin/scripto-user-contributions', ['user-id' => $completedBy]))
+                ); ?>
             </div>
+            <?php endif; ?>
         </div>
         <div class="field">
-            <label for="media-completion-status"><?php echo $this->translate('Completion status'); ?></label>
-            <input type="checkbox" name="media-completion-status" id="media-completion-status" checked>
-            <div class="history">
-                <span class="last-completed"><?php echo sprintf($this->translate('Marked complete on %s by %s.'), 'Jan 12, 2018', 'knguyen'); ?></span>
-            </div>
+            <label for="protection_level"><?php echo $this->translate('Protection'); ?></label>
+            <?php echo $this->formSelect($form->get('protection_level')); ?>
+            <?php echo $this->formSelect($form->get('protection_expiry')); ?>
         </div>
+        <?php
+        $approved = $sMedia->approved();
+        $approvedBy = $sMedia->approvedBy();
+        ?>
         <div class="field">
-            <label for="media-protected-status"><?php echo $this->translate('Protected?'); ?></label>
-            <input type="checkbox" name="media-protected-status" id="media-completion-status" checked>
+            <label for="approved"><?php echo $this->translate('Approved'); ?></label>
+            <?php echo $this->formCheckbox($form->get('is_approved')); ?>
+            <?php if ($approved): ?>
+            <div>
+                <?php echo sprintf(
+                    $this->translate('Last approved %s by %s'),
+                    $this->i18n()->dateFormat($approved, 'medium', 'short'),
+                    $approvedBy
+                        ? $approvedBy->link($approvedBy->name())
+                        : $this->translate('Unknown')
+                    ); ?>
+            </div>
+            <?php endif; ?>
         </div>
     </div>
     <h3><?php echo $this->translate('Metadata'); ?></h3>
@@ -188,3 +215,5 @@ $next = $sMedia->nextScriptoMedia();
         </div>
     </div>
 </div>
+
+<?php echo $this->form()->closeTag(); ?>

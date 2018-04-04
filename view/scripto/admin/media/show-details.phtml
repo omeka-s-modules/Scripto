@@ -19,12 +19,12 @@
 <div class="meta-group">
     <h4><?php echo $this->translate('Edit protection'); ?></h4>
     <div class="value"><?php
-        $editProtection = $sMedia->editProtection();
+        $editAccess = $sMedia->editAccess();
         echo sprintf(
             '%s; expiring %s',
-            $this->translate($editProtection['label']),
-            $editProtection['expiry']
-                ? $this->i18n()->dateFormat($editProtection['expiry'], 'short', 'short')
+            $this->translate($editAccess['label']),
+            $editAccess['expiry']
+                ? $this->i18n()->dateFormat($editAccess['expiry'], 'short', 'short')
                 : $this->translate('never')
         );
     ?></div>

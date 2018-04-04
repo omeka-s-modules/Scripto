@@ -2,6 +2,7 @@
 namespace Scripto\Controller\Admin;
 
 use Scripto\Form\BatchMediaForm;
+use Scripto\Form\MediaForm;
 use Zend\View\Model\ViewModel;
 
 class MediaController extends AbstractScriptoController
@@ -68,6 +69,69 @@ class MediaController extends AbstractScriptoController
             return $this->redirect()->toRoute('admin/scripto-project');
         }
 
+        $form = $this->getForm(MediaForm::class);
+        $editAccess = $sMedia->editAccess();
+
+        if ($this->getRequest()->isPost()) {
+            $form->setData($this->getRequest()->getPost());
+            if ($form->isValid()) {
+                $formData = $form->getData();
+
+                // Update MediaWiki data.
+                if ('' === $formData['protection_expiry']) {
+                    // Use existing expiration date.
+                    $protectionExpiry = $editAccess['expiry']
+                        ? $editAccess['expiry']->format('c')
+                        : 'infinite';
+                } else {
+                    // Use selected expiration date.
+                    $protectionExpiry = $formData['protection_expiry'];
+                }
+                $this->scriptoApiClient()->protectPage(
+                    $sMedia->pageTitle(),
+                    $sMedia->pageIsCreated() ? 'edit' : 'create',
+                    $formData['protection_level'],
+                    $protectionExpiry
+                );
+                if ($formData['is_watched']) {
+                    $this->scriptoApiClient()->watchPage($sMedia->pageTitle());
+                } else {
+                    $this->scriptoApiClient()->unwatchPage($sMedia->pageTitle());
+                }
+
+                // Update Scripto media.
+                $data = [
+                    'o-module-scripto:is_completed' => $formData['is_completed'],
+                    'o-module-scripto:is_approved' => $formData['is_approved'],
+                ];
+                $response = $this->api($form)->update('scripto_media', $sMedia->id(), $data);
+                if ($response) {
+                    $this->messenger()->addSuccess('Scripto media successfully updated.'); // @translate
+                    return $this->redirect()->toUrl($response->getContent()->url());
+                }
+
+            } else {
+                $this->messenger()->addFormErrors($form);
+            }
+        }
+
+        // Set form data.
+        $data = [
+            'is_completed' => (bool) $sMedia->completed(),
+            'is_approved' => (bool) $sMedia->approved(),
+            'is_watched' => $sMedia->isWatched(),
+        ];
+        if (!$editAccess['expired']) {
+            $data['protection_level'] = $editAccess['level'];
+            $form->get('protection_expiry')->setEmptyOption(sprintf(
+                $this->translate('Existing expiration time: %s'),
+                $editAccess['expiry']
+                    ? $editAccess['expiry']->format('G:i, j F Y')
+                    : 'infinite'
+            ));
+        }
+        $form->setData($data);
+
         $sItem = $sMedia->scriptoItem();
         $view = new ViewModel;
         $view->setVariable('sMedia', $sMedia);
@@ -75,6 +139,7 @@ class MediaController extends AbstractScriptoController
         $view->setVariable('sItem', $sItem);
         $view->setVariable('item', $sItem->item());
         $view->setVariable('project', $sItem->scriptoProject());
+        $view->setVariable('form', $form);
         return $view;
     }
 
