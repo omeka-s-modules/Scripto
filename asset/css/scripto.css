@@ -512,6 +512,10 @@ button.full-screen:after {
     margin-top: 6px;
 }
 
+#reviewer-form select[name="protection_expiry"] {
+    display: none;
+}
+
 #approval-history table,
 #completion-history table {
     background-color: #fff;

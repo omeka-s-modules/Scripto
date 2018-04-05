@@ -70,6 +70,22 @@
         } else {
             $('.full-screen').featherlight('.wikitext-featherlight');
         }
+
+        function toggleExpirationSelect(protectionSelect) {
+            var expirySelect = $('[name="protection_expiry"]');
+            var currentValue = protectionSelect.find('option:selected').val();
+            if (currentValue && currentValue != "all") {
+                expirySelect.show();
+            } else {  
+                expirySelect.hide();
+            }
+        }
+
+        var protectionSelect = $('[name="protection_level"]');
+        toggleExpirationSelect(protectionSelect);
+        protectionSelect.on('change', function() {
+            toggleExpirationSelect($(this));
+        });
     });
 
 })(jQuery)
