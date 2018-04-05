@@ -703,7 +703,7 @@ class ApiClient
             'type' => 'csrf',
         ]);
 
-        $allProtect = [];
+        $protects = [];
         foreach ($titles as $title) {
             $protect = $this->request([
                 'action' => 'protect',
@@ -715,9 +715,9 @@ class ApiClient
             if (isset($protect['error'])) {
                 throw new Exception\ProtectException($protect['error']['info']);
             }
-            $allProtect = array_merge($allProtect, $protect['protect']);
+            $protects[] = $protect['protect'];
         }
-        return $allProtect;
+        return $protects;
     }
 
     /**
