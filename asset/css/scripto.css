@@ -491,20 +491,25 @@ button.full-screen:after {
     border-bottom: 1px solid #dfdfdf;
     padding-bottom: 12px;
     margin-bottom: 12px;
+    align-items: center;
 }
 
 #reviewer-form .field:last-child {
     border-bottom: 0;
-    padding-bottom: 0;
 }
 
 #reviewer-form label {
     width: calc(100% - 2em);
     margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 #reviewer-form label:after {
     content: none;
+}
+
+#reviewer-form select {
+    margin-top: 6px;
 }
 
 #approval-history table,
