@@ -106,7 +106,7 @@ $next = $sMedia->nextScriptoMedia();
         $completedBy = $sMedia->completedBy();
         ?>
         <div class="field">
-            <label for="completed"><?php echo $this->translate('Completed'); ?></label>
+            <label for="is_completed"><?php echo $this->translate('Completed'); ?></label>
             <?php echo $this->formCheckbox($form->get('is_completed')); ?>
             <?php if ($completed): ?>
             <div>
@@ -130,7 +130,7 @@ $next = $sMedia->nextScriptoMedia();
         $approvedBy = $sMedia->approvedBy();
         ?>
         <div class="field">
-            <label for="approved"><?php echo $this->translate('Approved'); ?></label>
+            <label for="is_approved"><?php echo $this->translate('Approved'); ?></label>
             <?php echo $this->formCheckbox($form->get('is_approved')); ?>
             <?php if ($approved): ?>
             <div>
