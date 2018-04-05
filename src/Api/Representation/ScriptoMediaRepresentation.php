@@ -316,7 +316,7 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
     public function isWatched()
     {
         $page = $this->page();
-        return (bool) $page['watched'];
+        return isset($page['watched']) ? $page['watched'] : false;
     }
 
     /**
