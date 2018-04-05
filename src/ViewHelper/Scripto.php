@@ -17,7 +17,7 @@ class Scripto extends AbstractHelper
     /**
      * @var ApiClient
      */
-    protected $client;
+    protected $apiClient;
 
     /**
      * @var ServiceLocatorInterface
@@ -91,25 +91,25 @@ class Scripto extends AbstractHelper
     ];
 
     /**
-     * @param ApiClient $client
+     * @param ApiClient $apiClient
      * @param ServiceLocatorInterface $formElementManager
      * @param RouteMatch $routeMatch
      */
-    public function __construct(ApiClient $client, ServiceLocatorInterface $formElementManager, RouteMatch $routeMatch)
+    public function __construct(ApiClient $apiClient, ServiceLocatorInterface $formElementManager, RouteMatch $routeMatch)
     {
-        $this->client = $client;
+        $this->apiClient = $apiClient;
         $this->formElementManager = $formElementManager;
         $this->routeMatch = $routeMatch;
     }
 
     /**
-     * Is the current MediaWiki user logged in?
+     * Get the MediaWiki API client.
      *
-     * @return bool
+     * @return ApiClient
      */
-    public function userIsLoggedIn()
+    public function apiClient()
     {
-        return $this->client->userIsLoggedIn();
+        return $this->apiClient;
     }
 
     /**
@@ -120,9 +120,9 @@ class Scripto extends AbstractHelper
     public function adminLoginBar()
     {
         $view = $this->getView();
-        if ($this->client->userIsLoggedIn()) {
+        if ($this->apiClient->userIsLoggedIn()) {
             $routeName = $this->routeMatch->getMatchedRouteName();
-            $userInfo = $this->client->getUserInfo();
+            $userInfo = $this->apiClient->getUserInfo();
             $form = $this->formElementManager->get(ScriptoLogoutForm::class);
             $form->setAttribute('action', $view->url(
                 'admin/scripto',

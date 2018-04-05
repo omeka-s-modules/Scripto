@@ -21,7 +21,7 @@ $mediaIsImage = ((strpos($mediaType, 'image')) !== false);
 
 <div id="page-actions">
     <div id="page-action-menu">
-        <?php if ($this->scripto()->userIsLoggedIn()): ?>
+        <?php if ($this->scripto()->apiClient()->userIsLoggedIn()): ?>
         <?php echo $this->formCheckbox($form->get('is_watched')); ?>
         <?php endif; ?>
         <?php echo $this->hyperlink($this->translate('Revision history'), $this->url('admin/scripto-media-id', ['action' => 'revision'], true), ['class' => 'button']); ?>
