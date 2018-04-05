@@ -1,6 +1,7 @@
 <?php 
 $this->headLink()->appendStylesheet($this->assetUrl('vendor/featherlight/featherlight.min.css', 'Scripto'));
 $this->headLink()->appendStylesheet($this->assetUrl('css/scripto.css', 'Scripto'));
+$this->headLink()->appendStylesheet('https://use.fontawesome.com/releases/v5.0.9/css/all.css');
 $this->headScript()->appendFile($this->assetUrl('vendor/jquery-panzoom/jquery.panzoom.min.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('vendor/featherlight/featherlight.min.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/media-review.js', 'Scripto'));
@@ -22,7 +23,12 @@ $mediaIsImage = ((strpos($mediaType, 'image')) !== false);
 <div id="page-actions">
     <div id="page-action-menu">
         <?php if ($this->scripto()->userIsLoggedIn()): ?>
-        <?php echo $this->formCheckbox($form->get('is_watched')); ?>
+        <?php if($sMedia->isWatched()): ?>
+        <a href="#" class="watchlist button watched" aria-label="<?php echo $this->translate('Stop watching media'); ?>" title="<?php echo $this->translate('Stop watching media'); ?>"></a>
+        <?php else: ?>
+        <a href="#" class="watchlist button" aria-label="<?php echo $this->translate('Watch media'); ?>" title="<?php echo $this->translate('Watch media'); ?>"></a>
+        <?php endif; ?>
+        <?php echo $this->formHidden($form->get('is_watched')); ?>
         <?php endif; ?>
         <?php echo $this->hyperlink($this->translate('Revision history'), $this->url('admin/scripto-media-id', ['action' => 'revision'], true), ['class' => 'button']); ?>
         </ul>

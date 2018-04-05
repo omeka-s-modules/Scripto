@@ -50,6 +50,7 @@
 .layout button:after {
     font-family: "Font Awesome 5 Free";
     display: inline-block;
+    font-weight: 900;
 }
 
 .layout button:hover {
@@ -214,6 +215,7 @@
 
 .zoom-controls button:before {
     font-family: "Font Awesome 5 Free";
+    font-weight: 900;
 }
 
 .zoom-in:before {
@@ -406,6 +408,7 @@ button.full-screen:after {
     content: "\f0da";
     font-family: "Font Awesome 5 Free";
     margin: 0;
+    font-weight: 900;
 }
 
 #compare-table th {
@@ -483,6 +486,22 @@ button.full-screen:after {
 
 .parsed-comment {
     font-style: italic;
+}
+
+.watchlist.button,
+.watchlist.button:hover {
+    background-color: transparent;
+    box-shadow: none !important;
+}
+
+.watchlist.button:before {
+    content: "\f005";
+    font-family: "Font Awesome 5 Free";
+    font-weight: regular;
+}
+
+.watched.watchlist.button:before {
+    font-weight: 900;
 }
 
 #reviewer-form .field {
