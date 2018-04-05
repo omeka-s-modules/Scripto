@@ -70,6 +70,38 @@
         } else {
             $('.full-screen').featherlight('.wikitext-featherlight');
         }
+
+        function toggleExpirationSelect(protectionSelect) {
+            var expirySelect = $('[name="protection_expiry"]');
+            var currentValue = protectionSelect.find('option:selected').val();
+            if (currentValue && currentValue != "all") {
+                expirySelect.show();
+            } else {  
+                expirySelect.hide();
+            }
+        }
+
+        var protectionSelect = $('[name="protection_level"]');
+        toggleExpirationSelect(protectionSelect);
+        protectionSelect.on('change', function() {
+            toggleExpirationSelect($(this));
+        });
+
+        $('#content').on('click', '.watchlist.button', function(e) {
+            e.preventDefault();
+            var watchlistIcon = $(this);
+            $(this).toggleClass('watched')
+            var watchlistHiddenValue = $(this).next('[type="hidden"]');
+            if (watchlistHiddenValue.val() == 0) {
+                watchlistIcon.attr('aria-label', Omeka.jsTranslate('Watch media'));
+                watchlistIcon.attr('title', Omeka.jsTranslate('Watch media'));
+                watchlistHiddenValue.attr('value', 1);
+            } else {
+                watchlistIcon.attr('aria-label', Omeka.jsTranslate('Stop watching media'));
+                watchlistIcon.attr('title', Omeka.jsTranslate('Stop watching media'));
+                watchlistHiddenValue.attr('value', 0);
+            }
+        });
     });
 
 })(jQuery)

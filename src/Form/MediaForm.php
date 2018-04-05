@@ -65,11 +65,10 @@ class MediaForm extends Form
             ],
         ]);
         $this->add([
-            'type' => 'checkbox',
+            'type' => 'hidden',
             'name' => 'is_watched',
             'options' => [
                 'label' => 'Watchlist', // @translate
-                'use_hidden_element' => true,
                 'checked_value' => '1',
                 'unchecked_value' => '0',
             ],
