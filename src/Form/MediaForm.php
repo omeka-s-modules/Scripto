@@ -81,7 +81,15 @@ class MediaForm extends Form
 
         $inputFilter = $this->getInputFilter();
         $inputFilter->add([
+            'name' => 'protection_level',
+            'allow_empty' => true,
+        ]);
+        $inputFilter->add([
             'name' => 'protection_expiry',
+            'allow_empty' => true,
+        ]);
+        $inputFilter->add([
+            'name' => 'is_watched',
             'allow_empty' => true,
         ]);
     }

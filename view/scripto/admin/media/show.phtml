@@ -21,7 +21,9 @@ $mediaIsImage = ((strpos($mediaType, 'image')) !== false);
 
 <div id="page-actions">
     <div id="page-action-menu">
+        <?php if ($this->scripto()->userIsLoggedIn()): ?>
         <?php echo $this->formCheckbox($form->get('is_watched')); ?>
+        <?php endif; ?>
         <?php echo $this->hyperlink($this->translate('Revision history'), $this->url('admin/scripto-media-id', ['action' => 'revision'], true), ['class' => 'button']); ?>
         </ul>
         <button type="submit"><?php echo $this->translate('Save'); ?></button>
@@ -116,11 +118,13 @@ $next = $sMedia->nextScriptoMedia();
             </div>
             <?php endif; ?>
         </div>
+        <?php if ($sMedia->userCan('protect')): ?>
         <div class="field">
             <label for="protection_level"><?php echo $this->translate('Protection'); ?></label>
             <?php echo $this->formSelect($form->get('protection_level')); ?>
             <?php echo $this->formSelect($form->get('protection_expiry')); ?>
         </div>
+        <?php endif; ?>
         <?php
         $approved = $sMedia->approved();
         $approvedBy = $sMedia->approvedBy();

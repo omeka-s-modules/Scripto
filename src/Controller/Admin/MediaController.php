@@ -78,25 +78,29 @@ class MediaController extends AbstractScriptoController
                 $formData = $form->getData();
 
                 // Update MediaWiki data.
-                if ('' === $formData['protection_expiry']) {
-                    // Use existing expiration date.
-                    $protectionExpiry = $editAccess['expiry']
-                        ? $editAccess['expiry']->format('c')
-                        : 'infinite';
-                } else {
-                    // Use selected expiration date.
-                    $protectionExpiry = $formData['protection_expiry'];
+                if ($sMedia->userCan('protect')) {
+                    if ('' === $formData['protection_expiry']) {
+                        // Use existing expiration date.
+                        $protectionExpiry = $editAccess['expiry']
+                            ? $editAccess['expiry']->format('c')
+                            : 'infinite';
+                    } else {
+                        // Use selected expiration date.
+                        $protectionExpiry = $formData['protection_expiry'];
+                    }
+                    $this->scriptoApiClient()->protectPage(
+                        $sMedia->pageTitle(),
+                        $sMedia->pageIsCreated() ? 'edit' : 'create',
+                        $formData['protection_level'],
+                        $protectionExpiry
+                    );
                 }
-                $this->scriptoApiClient()->protectPage(
-                    $sMedia->pageTitle(),
-                    $sMedia->pageIsCreated() ? 'edit' : 'create',
-                    $formData['protection_level'],
-                    $protectionExpiry
-                );
-                if ($formData['is_watched']) {
-                    $this->scriptoApiClient()->watchPage($sMedia->pageTitle());
-                } else {
-                    $this->scriptoApiClient()->unwatchPage($sMedia->pageTitle());
+                if ($this->scriptoApiClient()->userIsLoggedIn()) {
+                    if ($formData['is_watched']) {
+                        $this->scriptoApiClient()->watchPage($sMedia->pageTitle());
+                    } else {
+                        $this->scriptoApiClient()->unwatchPage($sMedia->pageTitle());
+                    }
                 }
 
                 // Update Scripto media.
