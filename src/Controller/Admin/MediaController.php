@@ -13,6 +13,9 @@ class MediaController extends AbstractScriptoController
             $this->params('project-id'),
             $this->params('item-id')
         );
+        if (!$sItem) {
+            return $this->redirect()->toRoute('admin/scripto-project');
+        }
 
         $this->setBrowseDefaults('position', 'asc');
         $query = array_merge(
@@ -23,16 +26,11 @@ class MediaController extends AbstractScriptoController
         $this->paginator($response->getTotalResults(), $this->params()->fromQuery('page'));
         $sMedia = $response->getContent();
 
-        $batchForm = $this->getForm(BatchMediaForm::class, [
-            'batch-manage-formaction' => (string) $this->url()->fromRoute(null, ['action' => 'batch-manage'], true),
-            'batch-protect-formaction' => (string) $this->url()->fromRoute(null, ['action' => 'batch-protect'], true),
-        ]);
         $view = new ViewModel;
         $view->setVariable('sItem', $sItem);
         $view->setVariable('sMedia', $sMedia);
         $view->setVariable('project', $sItem->scriptoProject());
         $view->setVariable('item', $sItem->item());
-        $view->setVariable('batchForm', $batchForm);
         return $view;
     }
 
@@ -147,111 +145,175 @@ class MediaController extends AbstractScriptoController
         return $view;
     }
 
-    public function batchManageAction()
+    public function batchEditAction()
     {
-        if ($this->getRequest()->isPost()) {
-            $form = $this->getForm(BatchMediaForm::class);
-            $form->setData($this->getRequest()->getPost());
+        if (!$this->getRequest()->isPost()) {
+            return $this->redirect()->toRoute(null, ['action' => 'browse'], true);
+        }
+
+        $sItem = $this->getScriptoRepresentation(
+            $this->params('project-id'),
+            $this->params('item-id')
+        );
+        if (!$sItem) {
+            return $this->redirect()->toRoute('admin/scripto-project');
+        }
+
+        $sMediaIds = $this->params()->fromPost('resource_ids', []);
+
+        $sMedias = [];
+        foreach ($sMediaIds as $sMediaId) {
+            $sMedias[] = $this->api()->read('scripto_media', $sMediaId)->getContent();
+        }
+
+        $form = $this->getForm(BatchMediaForm::class);
+
+        if ($this->params()->fromPost('batch_edit')) {
+            $form->setData($this->params()->fromPost());
             if ($form->isValid()) {
-                $action = $this->params()->fromPost('batch-manage-action');
+                $formData = $form->getData();
 
-                $reviewActions = [
-                    'approve-all', 'approve-selected',
-                    'unapprove-all', 'unapprove-selected',
-                    'complete-all', 'complete-selected',
-                    'uncomplete-all', 'uncomplete-selected',
-                ];
-                $watchActions = [
-                    'watch-all', 'unwatch-all',
-                    'watch-selected', 'unwatch-selected',
-                ];
-                $allActions = [
-                    'approve-all', 'unapprove-all',
-                    'complete-all', 'uncomplete-all',
-                    'watch-all', 'unwatch-all',
-                ];
-                $approvalActions = [
-                    'approve-all', 'approve-selected',
-                    'unapprove-all', 'unapprove-selected',
-                ];
-                $positiveActions = [
-                    'approve-all', 'approve-selected',
-                    'complete-all', 'complete-selected',
-                ];
-
-                // Get the Scripto media IDs.
-                $sMediaIds = $this->params()->fromPost('resource_ids', []);
-                if (in_array($action, $allActions)) {
-                    $sItem = $this->getScriptoRepresentation(
-                        $this->params('project-id'),
-                        $this->params('item-id')
-                    );
-                    $sMediaIds = $this->api()->search(
-                        'scripto_media',
-                        ['scripto_item_id' => $sItem->id()],
-                        ['returnScalar' => 'id']
-                    )->getContent();
-                }
-
-                // Handle review actions.
-                if (in_array($action, $reviewActions)) {
-                    $dataKey = in_array($action, $approvalActions)
-                        ? 'o-module-scripto:is_approved'
-                        : 'o-module-scripto:is_completed';
-                    $this->api()->batchUpdate(
-                        'scripto_media',
-                        $sMediaIds,
-                        [$dataKey => in_array($action, $positiveActions)]
-                    );
-                // Handle watch actions.
-                } elseif (in_array($action, $watchActions)) {
+                // Update MediaWiki data.
+                if ($this->scriptoApiClient()->userIsLoggedIn()) {
                     $titles = [];
-                    foreach ($sMediaIds as $sMediaId) {
-                        $sMedia = $this->api()->read('scripto_media', $sMediaId)->getContent();
+                    foreach ($sMedias as $sMedia) {
                         $titles[] = $sMedia->pageTitle();
                     }
-                    if (in_array($action, ['watch-all', 'watch-selected'])) {
+                    if ('1' === $formData['is_watched']) {
                         $this->scriptoApiClient()->watchPages($titles);
-                    } elseif (in_array($action, ['unwatch-all', 'unwatch-selected'])) {
+                    } elseif ('0' === $formData['is_watched']) {
+                        $this->scriptoApiClient()->unwatchPages($titles);
+                    }
+                }
+                if ($formData['protection_level'] && $this->scriptoApiClient()->userIsInGroup('sysop')) {
+                    foreach ($sMedias as $sMedia) {
+                        $this->scriptoApiClient()->protectPage(
+                            $sMedia->pageTitle(),
+                            $sMedia->pageIsCreated() ? 'edit' : 'create',
+                            $formData['protection_level'],
+                            $formData['protection_expiry']
+                        );
+                    }
+                }
+
+                // Update Scripto media.
+                $data = [];
+                if ('1' === $formData['is_completed']) {
+                    $data['o-module-scripto:is_completed'] = true;
+                } elseif ('0' === $formData['is_completed']) {
+                    $data['o-module-scripto:is_completed'] = false;
+                }
+                if ('1' === $formData['is_approved']) {
+                    $data['o-module-scripto:is_approved'] = true;
+                } elseif ('0' === $formData['is_approved']) {
+                    $data['o-module-scripto:is_approved'] = false;
+                }
+                if ($data) {
+                    $sMediaIds = [];
+                    foreach ($sMedias as $sMedia) {
+                        $sMediaIds[] = $sMedia->id();
+                    }
+                    $this->api()->batchUpdate('scripto_media', $sMediaIds, $data);
+                }
+
+                $this->messenger()->addSuccess('Scripto media successfully edited'); // @translate
+                return $this->redirect()->toRoute(null, ['action' => 'browse'], true);
+            } else {
+                $this->messenger()->addFormErrors($form);
+            }
+        }
+
+        $view = new ViewModel;
+        $view->setVariable('sItem', $sItem);
+        $view->setVariable('sMedias', $sMedias);
+        $view->setVariable('form', $form);
+        return $view;
+    }
+
+    public function batchEditAllAction()
+    {
+        if (!$this->getRequest()->isPost()) {
+            return $this->redirect()->toRoute(null, ['action' => 'browse'], true);
+        }
+
+        $sItem = $this->getScriptoRepresentation(
+            $this->params('project-id'),
+            $this->params('item-id')
+        );
+        if (!$sItem) {
+            return $this->redirect()->toRoute('admin/scripto-project');
+        }
+
+        // Note that we synchronously process a batch-edit with the request
+        // instead of dispatching an asynchronous job (as is typical for
+        // potentially large processes). This is because MediaWiki's API:Watch
+        // and API:Protect require the user to be logged in, which is impossible
+        // in a job.
+        $query = json_decode($this->params()->fromPost('query', []), true);
+        unset(
+            $query['limit'], $query['offset'],
+            $query['page'], $query['per_page'],
+            $query['sort_by'], $query['sort_order']
+        );
+        $query['scripto_item_id'] = $sItem->id();
+        $response = $this->api()->search('scripto_media', $query);
+        $sMedias = $response->getContent();
+
+        $form = $this->getForm(BatchMediaForm::class);
+
+        if ($this->params()->fromPost('batch_edit')) {
+            $form->setData($this->params()->fromPost());
+            if ($form->isValid()) {
+                $formData = $form->getData();
+
+                // Update MediaWiki data. Note that we don't allow users to
+                // modify protection status because the MediaWiki API doesn't
+                // provide batch protections. Individual requests to API:Protect
+                // are relatively slow and will compound with many requests.
+                if ($this->scriptoApiClient()->userIsLoggedIn()) {
+                    $titles = [];
+                    foreach ($sMedias as $sMedia) {
+                        $titles[] = $sMedia->pageTitle();
+                    }
+                    if ('1' === $formData['is_watched']) {
+                        $this->scriptoApiClient()->watchPages($titles);
+                    } elseif ('0' === $formData['is_watched']) {
                         $this->scriptoApiClient()->unwatchPages($titles);
                     }
                 }
 
-                $this->messenger()->addSuccess('Scripto media successfully reviewed'); // @translate
-                return $this->redirect()->toRoute(null, ['action' => 'browse'], true);
-            }
-        }
-        return $this->redirect()->toRoute(null, ['action' => 'browse'], true);
-    }
-
-    public function batchProtectAction()
-    {
-        if ($this->getRequest()->isPost()) {
-            $form = $this->getForm(BatchMediaForm::class);
-            $form->setData($this->getRequest()->getPost());
-            if ($form->isValid()) {
-                $action = $this->params()->fromPost('batch-protect-action');
-                $expiry = $this->params()->fromPost('batch-protect-expiry') ?: 'never';
-
-                $titles = ['created' => [], 'not_created' => []];
-                $sMediaIds = $this->params()->fromPost('resource_ids', []);
-                foreach ($sMediaIds as $sMediaId) {
-                    $sMedia = $this->api()->read('scripto_media', $sMediaId)->getContent();
-                    $title = $sMedia->pageTitle();
-                    if ($sMedia->pageIsCreated()) {
-                        $titles['created'][] = $title;
-                    } else {
-                        $titles['not_created'][] = $title;
+                // Update Scripto media.
+                $data = [];
+                if ('1' === $formData['is_completed']) {
+                    $data['o-module-scripto:is_completed'] = true;
+                } elseif ('0' === $formData['is_completed']) {
+                    $data['o-module-scripto:is_completed'] = false;
+                }
+                if ('1' === $formData['is_approved']) {
+                    $data['o-module-scripto:is_approved'] = true;
+                } elseif ('0' === $formData['is_approved']) {
+                    $data['o-module-scripto:is_approved'] = false;
+                }
+                if ($data) {
+                    $sMediaIds = [];
+                    foreach ($sMedias as $sMedia) {
+                        $sMediaIds[] = $sMedia->id();
                     }
+                    $this->api()->batchUpdate('scripto_media', $sMediaIds, $data);
                 }
 
-                $this->scriptoApiClient()->protectPages($titles['created'], 'edit', $action, $expiry);
-                $this->scriptoApiClient()->protectPages($titles['not_created'], 'create', $action, $expiry);
-
-                $this->messenger()->addSuccess('Scripto media successfully protected'); // @translate
+                $this->messenger()->addSuccess('Scripto media successfully edited'); // @translate
                 return $this->redirect()->toRoute(null, ['action' => 'browse'], true);
+            } else {
+                $this->messenger()->addFormErrors($form);
             }
         }
-        return $this->redirect()->toRoute(null, ['action' => 'browse'], true);
+
+        $view = new ViewModel;
+        $view->setVariable('sItem', $sItem);
+        $view->setVariable('query', $query);
+        $view->setVariable('count', $response->getTotalResults());
+        $view->setVariable('form', $form);
+        return $view;
     }
 }

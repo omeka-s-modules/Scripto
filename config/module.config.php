@@ -22,7 +22,6 @@ return [
     ],
     'form_elements' => [
         'factories' => [
-            'Scripto\Form\BatchMediaForm' => Scripto\Service\Form\BatchMediaFormFactory::class,
             'Scripto\Form\ConfigForm' => Scripto\Service\Form\ConfigFormFactory::class,
         ],
     ],

@@ -6,209 +6,105 @@ use Zend\Form\Form;
 
 class BatchMediaForm extends Form
 {
-    /**
-     * @var ApiClient
-     */
-    protected $client;
-
     public function init()
     {
-        $this->setAttribute('id', 'batch-form');
-        $this->setAttribute('class', 'disable-unsaved-warning');
-
-        $allOptions = [
-            'approve-all' => 'Mark as approved (all)', // @translate
-            'unapprove-all' => 'Mark as not approved (all)', // @translate
-            'complete-all' => 'Mark as completed (all)', // @translate
-            'uncomplete-all' => 'Mark as incomplete (all)', // @translate
-        ];
-        $selectedOptions = [
-            [
-                'value' => 'approve-selected',
-                'label' => 'Mark as approved (selected)', // @translate
-                'attributes' => ['disabled' => true],
-            ],
-            [
-                'value' => 'unapprove-selected',
-                'label' => 'Mark as not approved (selected)', // @translate
-                'attributes' => ['disabled' => true],
-            ],
-            [
-                'value' => 'complete-selected',
-                'label' => 'Mark as completed (selected)', // @translate
-                'attributes' => ['disabled' => true],
-            ],
-            [
-                'value' => 'uncomplete-selected',
-                'label' => 'Mark as incomplete (selected)', // @translate
-                'attributes' => ['disabled' => true],
-            ],
-        ];
-
-        // User must be logged in to add pages to their watchlist.
-        if ($this->client->userIsLoggedIn()) {
-            $selectedOptions[] = [
-                'value' => 'watch-selected',
-                'label' => 'Add to your watchlist (selected)', // @translate
-                'attributes' => ['disabled' => true],
-            ];
-            $selectedOptions[] = [
-                'value' => 'unwatch-selected',
-                'label' => 'Remove from your watchlist (selected)', // @translate
-                'attributes' => ['disabled' => true],
-            ];
-            $allOptions['watch-all'] = 'Add to your watchlist (all)'; // @translate
-            $allOptions['unwatch-all'] = 'Remove from your watchlist (all)'; // @translate
-        }
-
         $this->add([
-            'type' => 'select',
-            'name' => 'batch-manage-action',
+            'name' => 'is_completed',
+            'type' => 'radio',
             'options' => [
-                'empty_option' => 'Batch manage actions:', // @translate
+                'label' => 'Completion status', // @translate
                 'value_options' => [
-                    'manage-all' => [
-                        'label' => 'All media', // @translate
-                        'options' => $allOptions,
-                    ],
-                    'manage-selected' => [
-                        'label' => 'Selected media', // @translate
-                        'options' => $selectedOptions,
-                    ],
+                    '1' => 'Complete', // @translate
+                    '0' => 'Incomplete', // @translate
+                    '' => '[No change]', // @translate
                 ],
             ],
             'attributes' => [
-                'id' => 'batch-manage-select',
+                'value' => '',
             ],
         ]);
-
         $this->add([
-            'type' => 'select',
-            'name' => 'batch-protect-action',
+            'name' => 'is_approved',
+            'type' => 'radio',
             'options' => [
-                'empty_option' => 'Batch edit protection actions:', // @translate
+                'label' => 'Approval status', // @translate
                 'value_options' => [
-                    [
-                        'value' => 'all',
-                        'label' => 'Allow all users (selected)', // @translate
-                        'attributes' => ['disabled' => true],
-                    ],
-                    [
-                        'value' => 'autoconfirmed',
-                        'label' => 'Allow only confirmed users (selected)', // @translate
-                        'attributes' => ['disabled' => true],
-                    ],
-                    [
-                        'value' => 'sysop',
-                        'label' => 'Allow only administrators (selected)', // @translate
-                        'attributes' => ['disabled' => true],
-                    ],
+                    '1' => 'Approved', // @translate
+                    '0' => 'Not approved', // @translate
+                    '' => '[No change]', // @translate
                 ],
             ],
             'attributes' => [
-                'id' => 'batch-protect-select',
+                'value' => '',
             ],
         ]);
         $this->add([
             'type' => 'select',
-            'name' => 'batch-protect-expiry',
+            'name' => 'protection_level',
             'options' => [
-                'empty_option' => 'Expires:', // @translate
+                'label' => 'Protection level', // @translate
+                'empty_option' => '[No change]', // @translate
                 'value_options' => [
-                    [
-                        'value' => 'never',
-                        'label' => 'never', // @translate
-                        'attributes' => ['disabled' => true],
-                    ],
-                    [
-                        'value' => '1 hour',
-                        'label' => '1 hour', // @translate
-                        'attributes' => ['disabled' => true],
-                    ],
-                    [
-                        'value' => '1 day',
-                        'label' => '1 day', // @translate
-                        'attributes' => ['disabled' => true],
-                    ],
-                    [
-                        'value' => '1 week',
-                        'label' => '1 week', // @translate
-                        'attributes' => ['disabled' => true],
-                    ],
-                    [
-                        'value' => '2 weeks',
-                        'label' => '2 weeks', // @translate
-                        'attributes' => ['disabled' => true],
-                    ],
-                    [
-                        'value' => '1 month',
-                        'label' => '1 month', // @translate
-                        'attributes' => ['disabled' => true],
-                    ],
-                    [
-                        'value' => '3 months',
-                        'label' => '3 months', // @translate
-                        'attributes' => ['disabled' => true],
-                    ],
-                    [
-                        'value' => '6 months',
-                        'label' => '6 months', // @translate
-                        'attributes' => ['disabled' => true],
-                    ],
-                    [
-                        'value' => '1 year',
-                        'label' => '1 year', // @translate
-                        'attributes' => ['disabled' => true],
-                    ],
+                    'all' => 'Allow all users', // @translate
+                    'autoconfirmed' => 'Allow only confirmed users', // @translate
+                    'sysop' => 'Allow only administrators', // @translate
+                ],
+            ],
+        ]);
+        $this->add([
+            'type' => 'select',
+            'name' => 'protection_expiry',
+            'options' => [
+                'label' => 'Protection expiry', // @translate
+                'value_options' => [
+                    'infinite' => 'infinite', // @translate
+                    '1 hour' => '1 hour', // @translate
+                    '1 day' => '1 day', // @translate
+                    '1 week' => '1 week', // @translate
+                    '2 weeks' => '2 weeks', // @translate
+                    '1 month' => '1 month', // @translate
+                    '3 months' => '3 months', // @translate
+                    '6 months' => '6 months', // @translate
+                    '1 year' => '1 year', // @translate
+                ],
+            ],
+        ]);
+        $this->add([
+            'name' => 'is_watched',
+            'type' => 'radio',
+            'options' => [
+                'label' => 'Watchlist status', // @translate
+                'value_options' => [
+                    '1' => 'Watch', // @translate
+                    '0' => 'Unwatch', // @translate
+                    '' => '[No change]', // @translate
                 ],
             ],
             'attributes' => [
-                'id' => 'batch-protect-expiry-select',
-            ],
-        ]);
-
-        $this->add([
-            'type' => 'submit',
-            'name' => 'batch-manage-submit',
-            'attributes' => [
-                'class' => 'batch-submit',
-                'value' => 'Go', // @translate
-                'formaction' => $this->getOption('batch-manage-formaction'),
-            ],
-        ]);
-
-        $this->add([
-            'type' => 'submit',
-            'name' => 'batch-protect-submit',
-            'attributes' => [
-                'class' => 'batch-submit',
-                'value' => 'Go', // @translate
-                'formaction' => $this->getOption('batch-protect-formaction'),
+                'value' => '',
             ],
         ]);
 
         $inputFilter = $this->getInputFilter();
         $inputFilter->add([
-            'name' => 'batch-manage-action',
+            'name' => 'is_completed',
             'allow_empty' => true,
         ]);
         $inputFilter->add([
-            'name' => 'batch-protect-action',
+            'name' => 'is_approved',
             'allow_empty' => true,
         ]);
         $inputFilter->add([
-            'name' => 'batch-protect-expiry',
+            'name' => 'protection_level',
             'allow_empty' => true,
         ]);
-    }
-
-    /**
-     * Set the MediaWiki API client.
-     *
-     * @param ApiClient $client
-     */
-    public function setApiClient(ApiClient $client)
-    {
-        $this->client = $client;
+        $inputFilter->add([
+            'name' => 'protection_expiry',
+            'allow_empty' => true,
+        ]);
+        $inputFilter->add([
+            'name' => 'is_watched',
+            'allow_empty' => true,
+        ]);
     }
 }

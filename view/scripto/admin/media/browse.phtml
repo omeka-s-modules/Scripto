@@ -76,23 +76,20 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto item review media 
 
 <?php if ($sMedia): ?>
 
-<?php echo $this->form()->openTag($batchForm); ?>
+<form method="post" id="batch-form" class="disable-unsaved-warning">
 
 <div class="batch-inputs">
+    <select class="batch-actions-select">
+        <option value="default"><?php echo $this->translate('Batch actions'); ?></option>
+        <option value="update-selected" disabled="true"><?php echo $this->translate('Edit selected'); ?></option>
+        <option value="update-all"><?php echo $this->translate('Edit all'); ?></option>
+    </select>
     <div class="batch-actions">
-        <?php echo $this->formElement($batchForm->get('batch-manage-action')); ?>
         <button type="button" class="default active" disabled="true"><?php echo $this->translate('Go'); ?></button>
-        <?php echo $this->formElement($batchForm->get('batch-manage-submit')); ?>
+        <input type="submit" class="update-selected" name="update_selected" value="<?php echo $this->translate('Go'); ?>" formaction="<?php echo $this->escapeHtml($this->url(null, ['action' => 'batch-edit'], true)); ?>">
+        <input type="submit" class="update-all" name="update_all" value="<?php echo $this->translate('Go'); ?>" formaction="<?php echo $this->escapeHtml($this->url(null, ['action' => 'batch-edit-all'], true)); ?>">
+        <input type="hidden" name="query" class="batch-query" value="<?php echo $this->escapeHtml(json_encode($this->params()->fromQuery())); ?>">
     </div>
-    <?php if ($this->scripto()->userIsLoggedIn()): ?>
-    <div class="batch-actions">
-        <?php echo $this->formElement($batchForm->get('batch-protect-action')); ?>
-        <?php echo $this->formElement($batchForm->get('batch-protect-expiry')); ?>
-        <button type="button" class="default active" disabled="true"><?php echo $this->translate('Go'); ?></button>
-        <?php echo $this->formElement($batchForm->get('batch-protect-submit')); ?>
-    </div>
-    <?php endif; ?>
-    <?php echo $this->formElement($batchForm->get('csrf')); ?>
 </div>
 
 <table class="tablesaw scripto-media batch-edit" data-tablesaw-mode="stack">
@@ -130,7 +127,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto item review media 
     </tbody>
 </table>
 
-<?php echo $this->form()->closeTag(); ?>
+</form>
 
 <div class="browse-controls">
     <?php echo $this->pagination(); ?>
@@ -153,56 +150,3 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto item review media 
     ]); ?>
     <div class="sidebar-content"></div>
 </div>
-
-<script>
-var batchForm = $('#batch-form');
-var batchManageSelect = $('#batch-manage-select');
-var batchProtectSelect = $('#batch-protect-select');
-var batchProtectExpirySelect = $('#batch-protect-expiry-select');
-
-batchForm.on('change', ':checkbox', function(e) {
-    if (batchForm.find(':checkbox:checked').length > 0) {
-        // at least one checkbox is checked
-        batchManageSelect.find('option[value$="-selected"]').prop('disabled', false);
-        batchProtectSelect.find('option').prop('disabled', false);
-    } else {
-        // no checkboxes are checked
-        batchManageSelect.val('');
-        batchManageSelect.find('option[value$="-selected"]').prop('disabled', true);
-
-        batchProtectSelect.val('');
-        batchProtectSelect.find('option').prop('disabled', true);
-
-        batchProtectExpirySelect.val('');
-        batchProtectExpirySelect.find('option').prop('disabled', true);
-
-        batchForm.find('input.batch-submit').hide();
-        batchForm.find('button.default').show();
-    }
-});
-
-batchManageSelect.add(batchProtectSelect).on('change', function(e) {
-    var thisSelect = $(this);
-    var batchActionsDiv = thisSelect.closest('.batch-actions');
-    var defaultButton = batchActionsDiv.find('button.default');
-    var submitButton = batchActionsDiv.find('input.batch-submit');
-    if ('' === thisSelect.find(':selected').val()) {
-        defaultButton.show();
-        submitButton.hide();
-        if ('batch-protect-select' === thisSelect.attr('id'))  {
-            batchProtectExpirySelect.find('option').prop('disabled', true);
-        }
-    } else {
-        defaultButton.hide();
-        submitButton.show();
-        if ('batch-protect-select' === thisSelect.attr('id')) {
-            if ('' === thisSelect.val() || 'all' === thisSelect.val()) {
-                batchProtectExpirySelect.val('');
-                batchProtectExpirySelect.find('option').prop('disabled', true);
-            } else {
-                batchProtectExpirySelect.find('option').prop('disabled', false);
-            }
-        }
-    }
-});
-</script>
