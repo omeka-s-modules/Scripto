@@ -4,7 +4,7 @@ namespace Scripto\Form;
 use Scripto\Mediawiki\ApiClient;
 use Zend\Form\Form;
 
-class BatchMediaForm extends Form
+class MediaBatchForm extends Form
 {
     public function init()
     {

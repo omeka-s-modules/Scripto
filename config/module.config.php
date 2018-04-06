@@ -22,7 +22,7 @@ return [
     ],
     'form_elements' => [
         'factories' => [
-            'Scripto\Form\ConfigForm' => Scripto\Service\Form\ConfigFormFactory::class,
+            'Scripto\Form\ModuleConfigForm' => Scripto\Service\Form\ModuleConfigFormFactory::class,
         ],
     ],
     'controllers' => [

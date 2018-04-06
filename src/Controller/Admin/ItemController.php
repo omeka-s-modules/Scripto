@@ -2,9 +2,9 @@
 namespace Scripto\Controller\Admin;
 
 use Omeka\Stdlib\Message;
-use Scripto\Form\ImportProjectForm;
-use Scripto\Form\SyncProjectForm;
-use Scripto\Form\UnimportProjectForm;
+use Scripto\Form\ProjectImportForm;
+use Scripto\Form\ProjectUnimportForm;
+use Scripto\Form\ProjectSyncForm;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
@@ -48,9 +48,9 @@ class ItemController extends AbstractActionController
 
         $view = new ViewModel;
         $view->setVariable('project', $project);
-        $view->setVariable('syncForm', $this->getForm(SyncProjectForm::class, ['project' => $project]));
-        $view->setVariable('importForm', $this->getForm(ImportProjectForm::class, ['project' => $project]));
-        $view->setVariable('unimportForm', $this->getForm(UnimportProjectForm::class, ['project' => $project]));
+        $view->setVariable('syncForm', $this->getForm(ProjectSyncForm::class, ['project' => $project]));
+        $view->setVariable('importForm', $this->getForm(ProjectImportForm::class, ['project' => $project]));
+        $view->setVariable('unimportForm', $this->getForm(ProjectUnimportForm::class, ['project' => $project]));
         $view->setVariable('sItems', $sItems);
         return $view;
     }

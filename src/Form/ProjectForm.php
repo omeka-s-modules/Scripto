@@ -5,7 +5,7 @@ use Zend\Form\Form;
 use Omeka\Form\Element\ItemSetSelect;
 use Omeka\Form\Element\PropertySelect;
 
-class ScriptoProjectForm extends Form
+class ProjectForm extends Form
 {
     public function init()
     {

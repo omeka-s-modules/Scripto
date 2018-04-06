@@ -3,10 +3,10 @@ namespace Scripto\Controller\Admin;
 
 use Omeka\Form\ConfirmForm;
 use Omeka\Stdlib\Message;
-use Scripto\Form\ImportProjectForm;
-use Scripto\Form\ScriptoProjectForm;
-use Scripto\Form\SyncProjectForm;
-use Scripto\Form\UnimportProjectForm;
+use Scripto\Form\ProjectForm;
+use Scripto\Form\ProjectImportForm;
+use Scripto\Form\ProjectUnimportForm;
+use Scripto\Form\ProjectSyncForm;
 use Scripto\Job\ImportProject;
 use Scripto\Job\SyncProject;
 use Scripto\Job\UnimportProject;
@@ -17,7 +17,7 @@ class ProjectController extends AbstractActionController
 {
     public function addAction()
     {
-        $form = $this->getForm(ScriptoProjectForm::class);
+        $form = $this->getForm(ProjectForm::class);
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->params()->fromPost());
@@ -42,7 +42,7 @@ class ProjectController extends AbstractActionController
 
     public function editAction()
     {
-        $form = $this->getForm(ScriptoProjectForm::class);
+        $form = $this->getForm(ProjectForm::class);
         $project = $this->scripto()->getRepresentation($this->params('project-id'));
 
         if ($this->getRequest()->isPost()) {
@@ -119,7 +119,7 @@ class ProjectController extends AbstractActionController
     public function syncAction()
     {
         if ($this->getRequest()->isPost()) {
-            $form = $this->getForm(SyncProjectForm::class);
+            $form = $this->getForm(ProjectSyncForm::class);
             $form->setData($this->getRequest()->getPost());
             if ($form->isValid()) {
                 $job = $this->jobDispatcher()->dispatch(
@@ -144,7 +144,7 @@ class ProjectController extends AbstractActionController
     public function importAction()
     {
         if ($this->getRequest()->isPost()) {
-            $form = $this->getForm(ImportProjectForm::class);
+            $form = $this->getForm(ProjectImportForm::class);
             $form->setData($this->getRequest()->getPost());
             if ($form->isValid()) {
                 $job = $this->jobDispatcher()->dispatch(
@@ -169,7 +169,7 @@ class ProjectController extends AbstractActionController
     public function unimportAction()
     {
         if ($this->getRequest()->isPost()) {
-            $form = $this->getForm(UnimportProjectForm::class);
+            $form = $this->getForm(ProjectUnimportForm::class);
             $form->setData($this->getRequest()->getPost());
             if ($form->isValid()) {
                 $job = $this->jobDispatcher()->dispatch(

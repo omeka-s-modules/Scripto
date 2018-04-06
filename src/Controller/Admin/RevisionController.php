@@ -1,7 +1,7 @@
 <?php
 namespace Scripto\Controller\Admin;
 
-use Scripto\Form\RevertRevisionForm;
+use Scripto\Form\RevisionRevertForm;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
@@ -44,7 +44,7 @@ class RevisionController extends AbstractActionController
             return $this->redirect()->toRoute('admin/scripto-project');
         }
 
-        $revertForm = $this->getForm(RevertRevisionForm::class);
+        $revertForm = $this->getForm(RevisionRevertForm::class);
         $revision = $sMedia->pageRevision($this->params('revision-id'));
 
         if ($this->getRequest()->isPost()) {

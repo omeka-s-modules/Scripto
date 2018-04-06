@@ -3,7 +3,7 @@ namespace Scripto\Form;
 
 use Zend\Form\Form;
 
-class ImportProjectForm extends Form
+class ProjectUnimportForm extends Form
 {
     public function init()
     {
@@ -11,7 +11,7 @@ class ImportProjectForm extends Form
             'name' => 'submit',
             'type' => 'submit',
             'attributes' => [
-                'value' => 'Import project', // @translate
+                'value' => 'Unimport project', // @translate
             ],
         ]);
 

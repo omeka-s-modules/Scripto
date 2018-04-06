@@ -4,7 +4,7 @@ namespace Scripto;
 use DateTime;
 use Omeka\Module\AbstractModule;
 use Omeka\Mvc\Exception\RuntimeException as MvcRuntimeException;
-use Scripto\Form\ConfigForm;
+use Scripto\Form\ModuleConfigForm;
 use Zend\EventManager\Event;
 use Zend\EventManager\SharedEventManagerInterface;
 use Zend\Mvc\Controller\AbstractController;
@@ -85,7 +85,7 @@ SET FOREIGN_KEY_CHECKS=1;
     public function getConfigForm(PhpRenderer $renderer)
     {
         $settings = $this->getServiceLocator()->get('Omeka\Settings');
-        $form = $this->getServiceLocator()->get('FormElementManager')->get('Scripto\Form\ConfigForm');
+        $form = $this->getServiceLocator()->get('FormElementManager')->get('Scripto\Form\ModuleConfigForm');
         $form->init();
         $form->setData([
             'apiurl' => $settings->get('scripto_apiurl'),
@@ -96,7 +96,7 @@ SET FOREIGN_KEY_CHECKS=1;
     public function handleConfigForm(AbstractController $controller)
     {
         $settings = $this->getServiceLocator()->get('Omeka\Settings');
-        $form = $this->getServiceLocator()->get('FormElementManager')->get('Scripto\Form\ConfigForm');
+        $form = $this->getServiceLocator()->get('FormElementManager')->get('Scripto\Form\ModuleConfigForm');
         $form->init();
         $form->setData($controller->params()->fromPost());
         if ($form->isValid()) {

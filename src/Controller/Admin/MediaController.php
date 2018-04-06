@@ -1,7 +1,7 @@
 <?php
 namespace Scripto\Controller\Admin;
 
-use Scripto\Form\BatchMediaForm;
+use Scripto\Form\MediaBatchForm;
 use Scripto\Form\MediaForm;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
@@ -167,7 +167,7 @@ class MediaController extends AbstractActionController
             $sMedias[] = $this->api()->read('scripto_media', $sMediaId)->getContent();
         }
 
-        $form = $this->getForm(BatchMediaForm::class);
+        $form = $this->getForm(MediaBatchForm::class);
 
         if ($this->params()->fromPost('batch_edit')) {
             $form->setData($this->params()->fromPost());
@@ -260,7 +260,7 @@ class MediaController extends AbstractActionController
         $response = $this->api()->search('scripto_media', $query);
         $sMedias = $response->getContent();
 
-        $form = $this->getForm(BatchMediaForm::class);
+        $form = $this->getForm(MediaBatchForm::class);
 
         if ($this->params()->fromPost('batch_edit')) {
             $form->setData($this->params()->fromPost());

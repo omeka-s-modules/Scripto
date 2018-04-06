@@ -3,7 +3,7 @@ namespace Scripto\Form;
 
 use Zend\Form\Form;
 
-class UnimportProjectForm extends Form
+class ProjectSyncForm extends Form
 {
     public function init()
     {
@@ -11,13 +11,13 @@ class UnimportProjectForm extends Form
             'name' => 'submit',
             'type' => 'submit',
             'attributes' => [
-                'value' => 'Unimport project', // @translate
+                'value' => 'Sync project', // @translate
             ],
         ]);
 
-        // Disable the submit button if the project has no property.
+        // Disable the submit button if the project has no item set.
         $project = $this->getOption('project');
-        if ($project && !$project->property()) {
+        if ($project && !$project->itemSet()) {
             $this->get('submit')->setAttribute('disabled', true);
         }
     }

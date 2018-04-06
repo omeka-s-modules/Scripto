@@ -6,12 +6,17 @@ use Zend\Form\Form;
 use Zend\Http\Client as HttpClient;
 use Zend\Validator\Callback;
 
-class ConfigForm extends Form
+class ModuleConfigForm extends Form
 {
     /**
      * @var HttpClient
      */
     protected $httpClient;
+
+    /**
+     * @var string
+     */
+    protected $timeZone;
 
     public function init()
     {
@@ -64,7 +69,7 @@ class ConfigForm extends Form
     public function apiUrlIsValid($apiUrl, $context)
     {
         try {
-            $client = new ApiClient($this->httpClient, $apiUrl);
+            $client = new ApiClient($this->httpClient, $apiUrl, $this->timeZone);
         } catch (\Exception $e) {
             return false;
         }
@@ -72,12 +77,14 @@ class ConfigForm extends Form
     }
 
     /**
-     * Set the HTTP client.
+     * Set the MediaWiki API client dependencies.
      *
      * @param HttpClient $httpClient
+     * @param string $timeZone
      */
-    public function setHttpClient(HttpClient $httpClient)
+    public function setApiClientDependencies(HttpClient $httpClient, $timeZone)
     {
         $this->httpClient = $httpClient;
+        $this->timeZone = $timeZone;
     }
 }
