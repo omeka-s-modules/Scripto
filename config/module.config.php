@@ -40,7 +40,7 @@ return [
     ],
     'controller_plugins' => [
         'factories' => [
-            'scriptoApiClient' => Scripto\Service\ControllerPlugin\ScriptoApiClientFactory::class,
+            'scripto' => Scripto\Service\ControllerPlugin\ScriptoFactory::class,
         ],
     ],
     'view_manager' => [

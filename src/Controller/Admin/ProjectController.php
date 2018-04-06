@@ -10,9 +10,10 @@ use Scripto\Form\UnimportProjectForm;
 use Scripto\Job\ImportProject;
 use Scripto\Job\SyncProject;
 use Scripto\Job\UnimportProject;
+use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class ProjectController extends AbstractScriptoController
+class ProjectController extends AbstractActionController
 {
     public function addAction()
     {
@@ -42,7 +43,7 @@ class ProjectController extends AbstractScriptoController
     public function editAction()
     {
         $form = $this->getForm(ScriptoProjectForm::class);
-        $project = $this->getScriptoRepresentation($this->params('project-id'));
+        $project = $this->scripto()->getRepresentation($this->params('project-id'));
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->params()->fromPost());
@@ -102,7 +103,7 @@ class ProjectController extends AbstractScriptoController
 
     public function showDetailsAction()
     {
-        $project = $this->getScriptoRepresentation($this->params('project-id'));
+        $project = $this->scripto()->getRepresentation($this->params('project-id'));
 
         $view = new ViewModel;
         $view->setTerminal(true);

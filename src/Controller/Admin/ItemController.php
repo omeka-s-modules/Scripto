@@ -2,16 +2,17 @@
 namespace Scripto\Controller\Admin;
 
 use Omeka\Stdlib\Message;
-use Zend\View\Model\ViewModel;
 use Scripto\Form\ImportProjectForm;
 use Scripto\Form\SyncProjectForm;
 use Scripto\Form\UnimportProjectForm;
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
 
-class ItemController extends AbstractScriptoController
+class ItemController extends AbstractActionController
 {
     public function browseAction()
     {
-        $project = $this->getScriptoRepresentation($this->params('project-id'));
+        $project = $this->scripto()->getRepresentation($this->params('project-id'));
 
         $this->setBrowseDefaults('synced');
         $query = array_merge(
@@ -56,7 +57,7 @@ class ItemController extends AbstractScriptoController
 
     public function showDetailsAction()
     {
-        $sItem = $this->getScriptoRepresentation(
+        $sItem = $this->scripto()->getRepresentation(
             $this->params('project-id'),
             $this->params('item-id')
         );

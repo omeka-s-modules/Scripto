@@ -1,11 +1,38 @@
 <?php
-namespace Scripto\Controller\Admin;
+namespace Scripto\ControllerPlugin;
 
 use Omeka\Api\Exception\NotFoundException;
-use Zend\Mvc\Controller\AbstractActionController;
+use Scripto\Mediawiki\ApiClient;
+use Zend\Mvc\Controller\Plugin\AbstractPlugin;
 
-class AbstractScriptoController extends AbstractActionController
+/**
+ * Controller plugin used for Scripto-specific functionality.
+ */
+class Scripto extends AbstractPlugin
 {
+    /**
+     * @var ApiClient
+     */
+    protected $apiClient;
+
+    /**
+     * @param ApiClient $apiClient
+     */
+    public function __construct(ApiClient $apiClient)
+    {
+        $this->apiClient = $apiClient;
+    }
+
+    /**
+     * Return Scripto's MediaWiki API client.
+     *
+     * @return ApiClient
+     */
+    public function apiClient()
+    {
+        return $this->apiClient;
+    }
+
     /**
      * Get a Scripto representation.
      *
@@ -15,15 +42,17 @@ class AbstractScriptoController extends AbstractActionController
      *
      * @return ScriptoProjectRepresentation|ScriptoItemRepresentation|ScriptoMediaRepresentation
      */
-    protected function getScriptoRepresentation($projectId, $itemId = null, $mediaId = null)
+    public function getRepresentation($projectId, $itemId = null, $mediaId = null)
     {
+        $controller = $this->getController();
+
         if (!$itemId && $mediaId) {
             // An item ID must accompany a media ID.
             return false;
         }
 
         try {
-            $project = $this->api()->read('scripto_projects', $projectId)->getContent();
+            $project = $controller->api()->read('scripto_projects', $projectId)->getContent();
         } catch (NotFoundException $e) {
             return false;
         }
@@ -32,7 +61,7 @@ class AbstractScriptoController extends AbstractActionController
             return $project;
         }
         
-        $sItem = $this->api()->searchOne('scripto_items', [
+        $sItem = $controller->api()->searchOne('scripto_items', [
             'scripto_project_id' => $project->id(),
             'item_id' => $itemId,
         ])->getContent();
@@ -46,7 +75,7 @@ class AbstractScriptoController extends AbstractActionController
             return $sItem;
         }
 
-        $sMedia = $this->api()->searchOne('scripto_media', [
+        $sMedia = $controller->api()->searchOne('scripto_media', [
             'scripto_item_id' => $sItem->id(),
             'media_id' => $mediaId,
         ])->getContent();
@@ -70,7 +99,7 @@ class AbstractScriptoController extends AbstractActionController
         foreach ($list as $key => $row) {
             if (preg_match('/^\d+:\d+:\d+$/', $row['title'])) {
                 list($projectId, $itemId, $mediaId) = explode(':', $row['title']);
-                $sMedia = $this->getScriptoRepresentation($projectId, $itemId, $mediaId);
+                $sMedia = $this->getRepresentation($projectId, $itemId, $mediaId);
                 if ($sMedia) {
                     $list[$key]['scripto_media'] = $sMedia;
                 }

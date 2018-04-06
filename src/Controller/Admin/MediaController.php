@@ -3,13 +3,14 @@ namespace Scripto\Controller\Admin;
 
 use Scripto\Form\BatchMediaForm;
 use Scripto\Form\MediaForm;
+use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class MediaController extends AbstractScriptoController
+class MediaController extends AbstractActionController
 {
     public function browseAction()
     {
-        $sItem = $this->getScriptoRepresentation(
+        $sItem = $this->scripto()->getRepresentation(
             $this->params('project-id'),
             $this->params('item-id')
         );
@@ -36,7 +37,7 @@ class MediaController extends AbstractScriptoController
 
     public function showDetailsAction()
     {
-        $sMedia = $this->getScriptoRepresentation(
+        $sMedia = $this->scripto()->getRepresentation(
             $this->params('project-id'),
             $this->params('item-id'),
             $this->params('media-id')
@@ -58,7 +59,7 @@ class MediaController extends AbstractScriptoController
 
     public function showAction()
     {
-        $sMedia = $this->getScriptoRepresentation(
+        $sMedia = $this->scripto()->getRepresentation(
             $this->params('project-id'),
             $this->params('item-id'),
             $this->params('media-id')
@@ -86,18 +87,18 @@ class MediaController extends AbstractScriptoController
                         // Use selected expiration date.
                         $protectionExpiry = $formData['protection_expiry'];
                     }
-                    $this->scriptoApiClient()->protectPage(
+                    $this->scripto()->apiClient()->protectPage(
                         $sMedia->pageTitle(),
                         $sMedia->pageIsCreated() ? 'edit' : 'create',
                         $formData['protection_level'],
                         $protectionExpiry
                     );
                 }
-                if ($this->scriptoApiClient()->userIsLoggedIn()) {
+                if ($this->scripto()->apiClient()->userIsLoggedIn()) {
                     if ($formData['is_watched']) {
-                        $this->scriptoApiClient()->watchPage($sMedia->pageTitle());
+                        $this->scripto()->apiClient()->watchPage($sMedia->pageTitle());
                     } else {
-                        $this->scriptoApiClient()->unwatchPage($sMedia->pageTitle());
+                        $this->scripto()->apiClient()->unwatchPage($sMedia->pageTitle());
                     }
                 }
 
@@ -151,7 +152,7 @@ class MediaController extends AbstractScriptoController
             return $this->redirect()->toRoute(null, ['action' => 'browse'], true);
         }
 
-        $sItem = $this->getScriptoRepresentation(
+        $sItem = $this->scripto()->getRepresentation(
             $this->params('project-id'),
             $this->params('item-id')
         );
@@ -174,20 +175,20 @@ class MediaController extends AbstractScriptoController
                 $formData = $form->getData();
 
                 // Update MediaWiki data.
-                if ($this->scriptoApiClient()->userIsLoggedIn()) {
+                if ($this->scripto()->apiClient()->userIsLoggedIn()) {
                     $titles = [];
                     foreach ($sMedias as $sMedia) {
                         $titles[] = $sMedia->pageTitle();
                     }
                     if ('1' === $formData['is_watched']) {
-                        $this->scriptoApiClient()->watchPages($titles);
+                        $this->scripto()->apiClient()->watchPages($titles);
                     } elseif ('0' === $formData['is_watched']) {
-                        $this->scriptoApiClient()->unwatchPages($titles);
+                        $this->scripto()->apiClient()->unwatchPages($titles);
                     }
                 }
-                if ($formData['protection_level'] && $this->scriptoApiClient()->userIsInGroup('sysop')) {
+                if ($formData['protection_level'] && $this->scripto()->apiClient()->userIsInGroup('sysop')) {
                     foreach ($sMedias as $sMedia) {
-                        $this->scriptoApiClient()->protectPage(
+                        $this->scripto()->apiClient()->protectPage(
                             $sMedia->pageTitle(),
                             $sMedia->pageIsCreated() ? 'edit' : 'create',
                             $formData['protection_level'],
@@ -236,7 +237,7 @@ class MediaController extends AbstractScriptoController
             return $this->redirect()->toRoute(null, ['action' => 'browse'], true);
         }
 
-        $sItem = $this->getScriptoRepresentation(
+        $sItem = $this->scripto()->getRepresentation(
             $this->params('project-id'),
             $this->params('item-id')
         );
@@ -270,15 +271,15 @@ class MediaController extends AbstractScriptoController
                 // modify protection status because the MediaWiki API doesn't
                 // provide batch protections. Individual requests to API:Protect
                 // are relatively slow and will compound with many requests.
-                if ($this->scriptoApiClient()->userIsLoggedIn()) {
+                if ($this->scripto()->apiClient()->userIsLoggedIn()) {
                     $titles = [];
                     foreach ($sMedias as $sMedia) {
                         $titles[] = $sMedia->pageTitle();
                     }
                     if ('1' === $formData['is_watched']) {
-                        $this->scriptoApiClient()->watchPages($titles);
+                        $this->scripto()->apiClient()->watchPages($titles);
                     } elseif ('0' === $formData['is_watched']) {
-                        $this->scriptoApiClient()->unwatchPages($titles);
+                        $this->scripto()->apiClient()->unwatchPages($titles);
                     }
                 }
 

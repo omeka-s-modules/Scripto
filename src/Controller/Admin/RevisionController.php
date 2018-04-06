@@ -2,13 +2,14 @@
 namespace Scripto\Controller\Admin;
 
 use Scripto\Form\RevertRevisionForm;
+use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class RevisionController extends AbstractScriptoController
+class RevisionController extends AbstractActionController
 {
     public function browseAction()
     {
-        $sMedia = $this->getScriptoRepresentation(
+        $sMedia = $this->scripto()->getRepresentation(
             $this->params('project-id'),
             $this->params('item-id'),
             $this->params('media-id')
@@ -34,7 +35,7 @@ class RevisionController extends AbstractScriptoController
 
     public function showAction()
     {
-        $sMedia = $this->getScriptoRepresentation(
+        $sMedia = $this->scripto()->getRepresentation(
             $this->params('project-id'),
             $this->params('item-id'),
             $this->params('media-id')
@@ -67,14 +68,14 @@ class RevisionController extends AbstractScriptoController
         $view->setVariable('media', $sMedia->media());
         $view->setVariable('revision', $revision);
         $view->setVariable('revisionWikitext', $revision['content']);
-        $view->setVariable('revisionHtml', $this->scriptoApiClient()->parseRevision($this->params('revision-id')));
+        $view->setVariable('revisionHtml', $this->scripto()->apiClient()->parseRevision($this->params('revision-id')));
         $view->setVariable('revertForm', $revertForm);
         return $view;
     }
 
     public function compareAction()
     {
-        $sMedia = $this->getScriptoRepresentation(
+        $sMedia = $this->scripto()->getRepresentation(
             $this->params('project-id'),
             $this->params('item-id'),
             $this->params('media-id')
@@ -88,7 +89,7 @@ class RevisionController extends AbstractScriptoController
         $view->setVariable('media', $sMedia->media());
         $view->setVariable('fromRevision', $sMedia->pageRevision($this->params('from-revision-id')));
         $view->setVariable('toRevision', $sMedia->pageRevision($this->params('to-revision-id')));
-        $view->setVariable('compare', $this->scriptoApiClient()->compareRevisions($this->params('from-revision-id'), $this->params('to-revision-id')));
+        $view->setVariable('compare', $this->scripto()->apiClient()->compareRevisions($this->params('from-revision-id'), $this->params('to-revision-id')));
         return $view;
     }
 }

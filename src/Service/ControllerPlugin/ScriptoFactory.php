@@ -2,13 +2,13 @@
 namespace Scripto\Service\ControllerPlugin;
 
 use Interop\Container\ContainerInterface;
-use Scripto\ControllerPlugin\ScriptoApiClient;
+use Scripto\ControllerPlugin\Scripto;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
-class ScriptoApiClientFactory implements FactoryInterface
+class ScriptoFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $services, $requestedName, array $options = null)
     {
-        return new ScriptoApiClient($services->get('Scripto\Mediawiki\ApiClient'));
+        return new Scripto($services->get('Scripto\Mediawiki\ApiClient'));
     }
 }

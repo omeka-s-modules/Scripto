@@ -5,9 +5,10 @@ use Scripto\Form\ScriptoLoginForm;
 use Scripto\Form\ScriptoLogoutForm;
 use Scripto\Mediawiki\Exception\ClientloginException;
 use Zend\Authentication\AuthenticationService;
+use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class IndexController extends AbstractScriptoController
+class IndexController extends AbstractActionController
 {
     /**
      * @var AuthenticationService
@@ -24,15 +25,15 @@ class IndexController extends AbstractScriptoController
 
     public function indexAction()
     {
-        $userInfo = $this->scriptoApiClient()->getUserInfo();
-        $user = $this->scriptoApiClient()->queryUser($userInfo['name']);
+        $userInfo = $this->scripto()->apiClient()->getUserInfo();
+        $user = $this->scripto()->apiClient()->queryUser($userInfo['name']);
 
-        $response = $this->scriptoApiClient()->queryUserContributions($userInfo['name'], 10);
-        $userCons = $this->prepareMediawikiList($response['query']['usercontribs']);
+        $response = $this->scripto()->apiClient()->queryUserContributions($userInfo['name'], 10);
+        $userCons = $this->scripto()->prepareMediawikiList($response['query']['usercontribs']);
 
-        if ($this->scriptoApiClient()->userIsLoggedIn()) {
-            $response = $this->scriptoApiClient()->queryWatchlist(720, 20); // 30 days
-            $watchlist = $this->prepareMediawikiList($response['query']['watchlist']);
+        if ($this->scripto()->apiClient()->userIsLoggedIn()) {
+            $response = $this->scripto()->apiClient()->queryWatchlist(720, 20); // 30 days
+            $watchlist = $this->scripto()->prepareMediawikiList($response['query']['watchlist']);
         } else {
             $watchlist = [];
         }
@@ -59,7 +60,7 @@ class IndexController extends AbstractScriptoController
             if ($form->isValid()) {
                 $formData = $form->getData();
                 try {
-                    $this->scriptoApiClient()->login(
+                    $this->scripto()->apiClient()->login(
                         $formData['scripto-username'],
                         $formData['scripto-password']
                     );
@@ -82,7 +83,7 @@ class IndexController extends AbstractScriptoController
             $form = $this->getForm(ScriptoLogoutForm::class);
             $form->setData($this->getRequest()->getPost());
             if ($form->isValid()) {
-                $this->scriptoApiClient()->logout();
+                $this->scripto()->apiClient()->logout();
                 $this->messenger()->addSuccess($this->translate('Successfully logged out of Scripto.'));
             }
             $redirect = $this->getRequest()->getQuery('redirect');

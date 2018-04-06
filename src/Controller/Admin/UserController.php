@@ -1,13 +1,14 @@
 <?php
 namespace Scripto\Controller\Admin;
 
+use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class UserController extends AbstractScriptoController
+class UserController extends AbstractActionController
 {
     public function browseAction()
     {
-        $response = $this->scriptoApiClient()->queryAllUsers(100, $this->params()->fromQuery('continue'));
+        $response = $this->scripto()->apiClient()->queryAllUsers(100, $this->params()->fromQuery('continue'));
         $users = $response['query']['allusers'];
         $continue = isset($response['continue']) ? $response['continue']['aufrom'] : null;
 
@@ -22,9 +23,9 @@ class UserController extends AbstractScriptoController
         $userName = $this->params('user-id');
         $continue = $this->params()->fromQuery('continue');
 
-        $user = $this->scriptoApiClient()->queryUser($userName);
-        $response = $this->scriptoApiClient()->queryUserContributions($userName, 100, $continue);
-        $userCons = $this->prepareMediawikiList($response['query']['usercontribs']);
+        $user = $this->scripto()->apiClient()->queryUser($userName);
+        $response = $this->scripto()->apiClient()->queryUserContributions($userName, 100, $continue);
+        $userCons = $this->scripto()->prepareMediawikiList($response['query']['usercontribs']);
         $continue = isset($response['continue']) ? $response['continue']['uccontinue'] : null;
 
         $view = new ViewModel;
@@ -36,12 +37,12 @@ class UserController extends AbstractScriptoController
 
     public function watchlistAction()
     {
-        if (!$this->scriptoApiClient()->userIsLoggedIn()) {
+        if (!$this->scripto()->apiClient()->userIsLoggedIn()) {
             // User must be logged in.
             return $this->redirect()->toRoute('admin/scripto');
         }
         $userName = $this->params('user-id');
-        $currentUser = $this->scriptoApiClient()->getUserInfo();
+        $currentUser = $this->scripto()->apiClient()->getUserInfo();
         if ($userName !== $currentUser['name']) {
             // Logged in user must be current user.
             return $this->redirect()->toRoute('admin/scripto-user-watchlist', ['user-id' => $currentUser['name']]);
@@ -50,12 +51,12 @@ class UserController extends AbstractScriptoController
         $hours = $this->params()->fromQuery('hours', 720); // 30 days
         $continue = $this->params()->fromQuery('continue');
 
-        $response = $this->scriptoApiClient()->queryWatchlist($hours, 100, $continue);
-        $watchlist = $this->prepareMediawikiList($response['query']['watchlist']);
+        $response = $this->scripto()->apiClient()->queryWatchlist($hours, 100, $continue);
+        $watchlist = $this->scripto()->prepareMediawikiList($response['query']['watchlist']);
         $continue = isset($response['continue']) ? $response['continue']['wlcontinue'] : null;
 
         $view = new ViewModel;
-        $view->setVariable('user', $this->scriptoApiClient()->queryUser($userName));
+        $view->setVariable('user', $this->scripto()->apiClient()->queryUser($userName));
         $view->setVariable('watchlist', $watchlist);
         $view->setVariable('hours', $hours);
         $view->setVariable('continue', $continue);
