@@ -20,7 +20,6 @@ class RevisionController extends AbstractActionController
 
         $sItem = $sMedia->scriptoItem();
         $response = $sMedia->pageRevisions(100, $this->params()->fromQuery('continue'));
-        $revisions = $response['query']['pages'][0]['revisions'];
         $continue = isset($response['continue']) ? $response['continue']['rvcontinue'] : null;
 
         $view = new ViewModel;
@@ -28,7 +27,6 @@ class RevisionController extends AbstractActionController
         $view->setVariable('media', $sMedia->media());
         $view->setVariable('sItem', $sItem);
         $view->setVariable('item', $sItem->item());
-        $view->setVariable('revisions', $revisions);
         $view->setVariable('continue', $continue);
         return $view;
     }

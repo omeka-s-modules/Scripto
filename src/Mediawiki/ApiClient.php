@@ -413,10 +413,12 @@ class ApiClient
             throw new Exception\QueryException($query['error']['info']);
         }
         // Set timestamps to DateTime objects adjusted to Omeka's time zone.
-        foreach ($query['query']['pages'][0]['revisions'] as $index => $revision) {
-            $dateTime = new DateTime($revision['timestamp']);
-            $dateTime->setTimezone(new DateTimeZone($this->timeZone));
-            $query['query']['pages'][0]['revisions'][$index]['timestamp'] = $dateTime;
+        if (isset($query['query']['pages'][0]['revisions'])) {
+            foreach ($query['query']['pages'][0]['revisions'] as $index => $revision) {
+                $dateTime = new DateTime($revision['timestamp']);
+                $dateTime->setTimezone(new DateTimeZone($this->timeZone));
+                $query['query']['pages'][0]['revisions'][$index]['timestamp'] = $dateTime;
+            }
         }
         return $query;
     }
