@@ -111,7 +111,7 @@ class SyncProject extends ScriptoJob
             $sMediaIdsToRetain = [];
             $position = 1;
             // Iterate all media assigned to the item.
-            foreach ($this->getAllItemMedia($item) as $media) {
+            foreach ($this->getAllItemMedia($item, $project) as $media) {
                 $sMedia = $this->getScriptoMediaEntity($project, $item, $media);
                 if ($sMedia) {
                     // Scripto media already exists.
@@ -191,9 +191,11 @@ class SyncProject extends ScriptoJob
      * This method provides an abstraction for implementations that need to
      * change which media are mapped to an item.
      *
+     * @param Item $item
+     * @param ScriptoProject $project
      * @return array
      */
-    public function getAllItemMedia(Item $item)
+    public function getAllItemMedia(Item $item, ScriptoProject $project)
     {
         return $item->getMedia();
     }
