@@ -57,6 +57,7 @@ $next = $sMedia->nextScriptoMedia();
 <?php echo $this->sectionNav([
     'wikitext' => $this->translate('Wikitext'),
     'html' => $this->translate('HTML'),
+    'media-metadata' => $this->translate('Omeka media metadata'),
 ]); ?>
 
 <div id="wikitext" class="active section">
@@ -102,6 +103,26 @@ $next = $sMedia->nextScriptoMedia();
 
 <div id="html" class="section">
     <?php echo $sMedia->pageHtml(); ?>
+</div>
+
+<div id="media-metadata" class="section">
+    <?php
+    $resourceClass = $media->resourceClass();
+    $values = $media->displayValues();
+    ?>
+    <?php if ($resourceClass || $values): ?>
+    <?php if ($resourceClass): ?>
+    <div class="meta-group">
+        <h4><?php echo $this->translate('Class'); ?></h4>
+        <div class="value"><?php echo $resourceClass->label(); ?></div>
+    </div>
+    <?php endif; ?>
+    <?php echo $values; ?>
+    <?php else: ?>
+    <div class="no-resources">
+        <p><?php echo $this->translate('The Omeka media has no metadata.'); ?></p>
+    </div>
+    <?php endif; ?>
 </div>
 
 <div class="sidebar always-open" id="reviewer-form">
@@ -151,79 +172,7 @@ $next = $sMedia->nextScriptoMedia();
             <?php endif; ?>
         </div>
     </div>
-    <h3><?php echo $this->translate('Metadata'); ?></h3>
-    <div class="metadata">
-        <div class="meta-group">
-            <h4><?php echo $this->translate('Item'); ?></h4>
-            <div class="value"><?php echo $sItem->link($item->displayTitle()); ?></div>
-        </div>
-        <div class="meta-group">
-            <h4><?php echo $this->translate('Project'); ?></h4>
-            <div class="value"><?php echo $project->link($project->title()); ?></div>
-        </div>
-        <div class="meta-group">
-            <h4><?php echo $this->translate('Status'); ?></h4>
-            <div class="value"><?php echo $this->translate($sMedia->status()); ?></div>
-        </div>
-        <div class="meta-group">
-            <h4><?php echo $this->translate('Last synced'); ?></h4>
-            <div class="value"><?php echo $this->i18n()->dateFormat($sMedia->synced(), 'long', 'medium'); ?></div>
-        </div>
-        <div class="meta-group">
-            <h4><?php echo $this->translate('Last edited'); ?></h4>
-            <?php $edited = $sMedia->edited(); ?>
-            <div class="value"><?php echo $edited
-                ? sprintf(
-                    '%s by %s',
-                    $this->i18n()->dateFormat($sMedia->edited(), 'long', 'medium'),
-                    $this->hyperlink($sMedia->editedBy(), $this->url('admin/scripto-user-contributions', ['user-id' => $sMedia->editedBy()]))
-                ) : $this->translate('Not edited'); ?></div>
-        </div>
-        <div class="meta-group">
-            <h4><?php echo $this->translate('Last completed'); ?></h4>
-            <?php $completed = $sMedia->completed(); ?>
-            <div class="value"><?php echo $completed
-                ? sprintf(
-                    '%s by %s',
-                    $this->i18n()->dateFormat($sMedia->completed(), 'long', 'medium'),
-                    $this->hyperlink($sMedia->completedBy(), $this->url('admin/scripto-user-contributions', ['user-id' => $sMedia->completedBy()]))
-                ) : $this->translate('Not completed'); ?></div>
-        </div>
-        <div class="meta-group">
-            <h4><?php echo $this->translate('Last approved'); ?></h4>
-            <?php
-            $approved = $sMedia->approved();
-            $approvedBy = $sMedia->approvedBy();
-            ?>
-            <div class="value"><?php echo $approved
-                ? sprintf(
-                    '%s by %s',
-                    $this->i18n()->dateFormat($sMedia->approved(), 'long', 'medium'),
-                    $approvedBy
-                        ? $approvedBy->link($approvedBy->name())
-                        : $this->translate('Unknown')
-                    )
-                : $this->translate('Not approved'); ?></div>
-        </div>
-        <div class="meta-group">
-            <h4><?php echo $this->translate('MediaWiki page'); ?></h4>
-            <?php $page = $sMedia->page(); ?>
-            <div class="value"><?php echo $this->hyperlink($sMedia->pageTitle(), $page['fullurl']); ?></div>
-        </div>
-        <div class="meta-group">
-            <h4><?php echo $this->translate('Omeka media'); ?></h4>
-            <div class="value"><?php echo $media->link($media->displayTitle()); ?></div>
-        </div>
-        <div class="meta-group">
-            <h4><?php echo $this->translate('Omeka item'); ?></h4>
-            <div class="value"><?php echo $item->link($item->displayTitle()); ?></div>
-        </div>
-        <div class="meta-group">
-            <h4><?php echo $this->translate('Description'); ?></h4>
-            <?php $description = $media->displayDescription(); ?>
-            <div class="value"><?php echo $description ? $this->escapeHtml($description) : $this->translate('No description'); ?></div>
-        </div>
-    </div>
+    <?php echo $this->partial('show-details'); ?>
 </div>
 
 <?php echo $this->form()->closeTag(); ?>
