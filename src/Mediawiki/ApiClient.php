@@ -334,7 +334,7 @@ class ApiClient
                 'prop' => 'info|revisions',
                 'titles' => implode('|', $titleChunk),
                 'inprop' => 'watched|protection|url',
-                'rvprop' => 'content|ids|flags|timestamp|comment|user',
+                'rvprop' => 'content|ids|flags|timestamp|parsedcomment|user',
                 'intestactions' => 'read|edit|createpage|createtalk|protect|rollback',
             ]);
             if (isset($query['error'])) {
