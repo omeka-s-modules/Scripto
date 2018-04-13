@@ -500,6 +500,18 @@ class ApiClient
         if (isset($query['error'])) {
             throw new Exception\QueryException($query['error']['info']);
         }
+        if (!isset($query['query']['pages'][0]['revisions'])) {
+            // The revision exists, but it is not a revision of this page. The
+            // revision ID is likely more than the highest ID of this page.
+            throw new Exception\QueryException('Invalid page revision');
+        }
+        $resultRevisionId = $query['query']['pages'][0]['revisions'][0]['revid'];
+        if ($resultRevisionId != $revisionId) {
+            // The revision exists, but it is not a revision of this page. The
+            // revision ID is likely less than the lowest ID of this page.
+            throw new Exception\QueryException('Invalid page revision');
+        }
+        print_r($query);exit;
         $revision = $query['query']['pages'][0]['revisions'][0];
         $revision['childid'] = isset($query['query']['pages'][0]['revisions'][1])
             ? $query['query']['pages'][0]['revisions'][1]['revid'] : null;
