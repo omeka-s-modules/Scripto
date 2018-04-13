@@ -362,10 +362,12 @@ class ApiClient
         }
         // Set timestamps to DateTime objects adjusted to Omeka's time zone.
         foreach ($pages as $pageIndex => $page) {
-            foreach ($page['revisions'] as $revisionIndex => $revision) {
-                $dateTime = new DateTime($revision['timestamp']);
-                $dateTime->setTimezone(new DateTimeZone($this->timeZone));
-                $pages[$pageIndex]['revisions'][$revisionIndex]['timestamp'] = $dateTime;
+            if (isset($page['revisions'])) {
+                foreach ($page['revisions'] as $revisionIndex => $revision) {
+                    $dateTime = new DateTime($revision['timestamp']);
+                    $dateTime->setTimezone(new DateTimeZone($this->timeZone));
+                    $pages[$pageIndex]['revisions'][$revisionIndex]['timestamp'] = $dateTime;
+                }
             }
             foreach ($page['protection'] as $protectionIndex => $protection) {
                 $expiry = null;
