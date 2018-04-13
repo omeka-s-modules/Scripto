@@ -68,6 +68,13 @@ class MediaController extends AbstractActionController
             return $this->redirect()->toRoute('admin/scripto-project');
         }
 
+        try {
+            $revision = $sMedia->pageRevision($this->params('revision-id'));
+            $revisionId = isset($revision['revid']) ? $revision['revid'] : null;
+        } catch (\Scripto\Mediawiki\Exception\QueryException $e) {
+            return $this->redirect()->toRoute('admin/scripto-project');
+        }
+
         $form = $this->getForm(MediaForm::class);
         $editAccess = $sMedia->editAccess();
 
@@ -143,6 +150,9 @@ class MediaController extends AbstractActionController
         $view->setVariable('item', $sItem->item());
         $view->setVariable('project', $sItem->scriptoProject());
         $view->setVariable('form', $form);
+        $view->setVariable('revision', $revision);
+        $view->setVariable('revisionWikitext', $sMedia->pageWikitext($revisionId));
+        $view->setVariable('revisionHtml', $sMedia->pageHtml($revisionId));
         return $view;
     }
 

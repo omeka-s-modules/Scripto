@@ -30,11 +30,49 @@ $mediaIsImage = ((strpos($mediaType, 'image')) !== false);
         <?php endif; ?>
         <?php echo $this->formHidden($form->get('is_watched')); ?>
         <?php endif; ?>
-        <?php echo $this->hyperlink($this->translate('Revision history'), $this->url('admin/scripto-media-id', ['action' => 'revision'], true), ['class' => 'button']); ?>
-        </ul>
+        <?php if ($revision && ($revision['latestid'] !== $revision['revid'])): ?>
+        <a href="#" class="sidebar-content button" data-sidebar-selector="#revert-revision"><?php echo $this->translate('Revert'); ?></a>
+        <?php endif; ?>
+        <?php echo $this->hyperlink($this->translate('Revision history'), $this->url('admin/scripto-revision', ['action' => 'browse'], true), ['class' => 'button']); ?>
         <button type="submit"><?php echo $this->translate('Save'); ?></button>
     </div>
 </div>
+
+<?php if ($revision): ?>
+<h4>
+    <?php if ($revision['latestid'] === $revision['revid']): ?>
+    <?php echo sprintf(
+        'You are viewing the latest revision: %s by %s.',
+        $this->i18n()->dateFormat($revision['timestamp'], 'medium', 'short'),
+        $this->hyperlink($revision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $revision['user']]))
+    ); ?>
+    <?php else: ?>
+    <?php echo sprintf(
+        'You are viewing an out-of-date revision: %s by %s.',
+        $this->i18n()->dateFormat($revision['timestamp'], 'medium', 'short'),
+        $this->hyperlink($revision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $revision['user']]))
+    ); ?>
+    <?php endif; ?>
+</h4>
+<?php endif; ?>
+
+<nav class="pagination" role="navigation">
+    <?php if ($revision['parentid']): ?>
+    <?php echo $this->hyperlink('', $this->url(null, ['revision-id' => $revision['parentid']], true), ['class' => 'previous o-icon-prev button', 'title' => $this->translate('Older revision')]); ?>
+    <?php else: ?>
+    <span class="previous o-icon-prev button inactive"></span>
+    <?php endif; ?>
+    <?php if ($revision['childid']): ?>
+    <?php echo $this->hyperlink('', $this->url(null, ['revision-id' => $revision['childid']], true), ['class' => 'next o-icon-next button', 'title' => $this->translate('Newer revision')]); ?>
+    <?php else: ?>
+    <span class="next o-icon-next button inactive"></span>
+    <?php endif; ?>
+    <?php if ($revision['latestid'] && $revision['latestid'] !== $revision['revid']): ?>
+    <?php echo $this->hyperlink('', $this->url(null, ['revision-id' => $revision['latestid']], true), ['class' => 'next o-icon-last button', 'title' => $this->translate('Latest revision')]); ?>
+    <?php else: ?>
+    <span class="next o-icon-last button inactive"></span>
+    <?php endif; ?>
+</nav>
 
 <?php
 $previous = $sMedia->previousScriptoMedia();
@@ -71,7 +109,7 @@ $next = $sMedia->nextScriptoMedia();
         </div>
         <div class="wikitext-flex">
             <div class="textarea-flex">
-                <textarea disabled><?php echo $sMedia->pageWikitext(); ?></textarea>
+                <textarea disabled><?php echo $revisionWikitext; ?></textarea>
             </div>
             <div class="panzoom-container <?php echo ($mediaIsImage) ? 'image' : ''; ?>">
                 <?php echo $media->render(['link' => null]); ?>
@@ -102,7 +140,7 @@ $next = $sMedia->nextScriptoMedia();
 </div>
 
 <div id="html" class="section">
-    <?php echo $sMedia->pageHtml(); ?>
+    <?php echo $revisionHtml; ?>
 </div>
 
 <div id="media-metadata" class="section">
@@ -176,3 +214,10 @@ $next = $sMedia->nextScriptoMedia();
 </div>
 
 <?php echo $this->form()->closeTag(); ?>
+
+<div id="revert-revision" class="sidebar">
+    <?php echo $this->hyperlink('', '#', ['class' => 'sidebar-close o-icon-close', 'title' => $this->translate('Close')]); ?>
+    <h3><?php echo $this->translate('Revert to this revision'); ?></h3>
+    <p class="error"><?php echo $this->translate('Warning: You are reverting to an out-of-date revision. Any changes made since this revision will be lost.'); ?></p>
+    <?php /* echo $this->form($revertForm); */ ?>
+</div>
