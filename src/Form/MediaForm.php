@@ -76,7 +76,13 @@ class MediaForm extends Form
                 'id' => 'is_watched',
             ],
         ]);
-
+        $this->add([
+            'name' => 'submit_mediaform',
+            'type' => 'submit',
+            'attributes' => [
+                'value' => 'Save', // @translate
+            ],
+        ]);
 
         $inputFilter = $this->getInputFilter();
         $inputFilter->add([

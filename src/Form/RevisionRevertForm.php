@@ -8,7 +8,7 @@ class RevisionRevertForm extends Form
     public function init()
     {
         $this->add([
-            'name' => 'submit',
+            'name' => 'submit_revisionrevertform',
             'type' => 'submit',
             'attributes' => [
                 'value' => 'Confirm reversion', // @translate

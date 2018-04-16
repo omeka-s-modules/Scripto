@@ -512,15 +512,19 @@ class ApiClient
             // revision ID is likely more than the highest ID of this page.
             throw new Exception\QueryException('Invalid page revision');
         }
-        $resultRevisionId = $query['query']['pages'][0]['revisions'][0]['revid'];
-        if ($resultRevisionId != $revisionId) {
+        $revisions = $query['query']['pages'][0]['revisions'];
+        $revision = $revisions[0];
+        if ($revision['revid'] != $revisionId) {
             // The revision exists, but it is not a revision of this page. The
             // revision ID is likely less than the lowest ID of this page.
             throw new Exception\QueryException('Invalid page revision');
         }
-        $revision = $query['query']['pages'][0]['revisions'][0];
-        $revision['childid'] = isset($query['query']['pages'][0]['revisions'][1])
+
+        // Set the child revision ID.
+        $revision['childid'] = isset($revisions[1])
             ? $query['query']['pages'][0]['revisions'][1]['revid'] : null;
+
+        // Set the latest revision ID.
         $page = $this->queryPage($title);
         $revision['latestid'] = $page['lastrevid'];
 

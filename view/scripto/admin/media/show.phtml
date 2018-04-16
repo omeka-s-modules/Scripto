@@ -17,8 +17,8 @@ $mediaIsImage = ((strpos($mediaType, 'image')) !== false);
 
 <?php echo $this->scripto()->adminBreadcrumbs(); ?>
 
-<?php echo $this->form()->openTag($form); ?>
-<?php echo $this->formElement($form->get('mediaform_csrf')); ?>
+<?php echo $this->form()->openTag($mediaForm); ?>
+<?php echo $this->formElement($mediaForm->get('mediaform_csrf')); ?>
 
 <div id="page-actions">
     <div id="page-action-menu">
@@ -28,51 +28,11 @@ $mediaIsImage = ((strpos($mediaType, 'image')) !== false);
         <?php else: ?>
         <a href="#" class="watchlist button" aria-label="<?php echo $this->translate('Watch media'); ?>" title="<?php echo $this->translate('Watch media'); ?>"></a>
         <?php endif; ?>
-        <?php echo $this->formHidden($form->get('is_watched')); ?>
+        <?php echo $this->formHidden($mediaForm->get('is_watched')); ?>
         <?php endif; ?>
-        <?php if ($revision && ($revision['latestid'] !== $revision['revid'])): ?>
-        <a href="#" class="sidebar-content button" data-sidebar-selector="#revert-revision"><?php echo $this->translate('Revert'); ?></a>
-        <?php endif; ?>
-        <?php echo $this->hyperlink($this->translate('Revision history'), $this->url('admin/scripto-revision', ['action' => 'browse'], true), ['class' => 'button']); ?>
-        <button type="submit"><?php echo $this->translate('Save'); ?></button>
+        <?php echo $this->formSubmit($mediaForm->get('submit_mediaform')); ?>
     </div>
 </div>
-
-<?php if ($revision): ?>
-<h4>
-    <?php if ($revision['latestid'] === $revision['revid']): ?>
-    <?php echo sprintf(
-        'You are viewing the latest revision: %s by %s.',
-        $this->i18n()->dateFormat($revision['timestamp'], 'medium', 'short'),
-        $this->hyperlink($revision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $revision['user']]))
-    ); ?>
-    <?php else: ?>
-    <?php echo sprintf(
-        'You are viewing an out-of-date revision: %s by %s.',
-        $this->i18n()->dateFormat($revision['timestamp'], 'medium', 'short'),
-        $this->hyperlink($revision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $revision['user']]))
-    ); ?>
-    <?php endif; ?>
-</h4>
-<?php endif; ?>
-
-<nav class="pagination" role="navigation">
-    <?php if ($revision['parentid']): ?>
-    <?php echo $this->hyperlink('', $this->url(null, ['revision-id' => $revision['parentid']], true), ['class' => 'previous o-icon-prev button', 'title' => $this->translate('Older revision')]); ?>
-    <?php else: ?>
-    <span class="previous o-icon-prev button inactive"></span>
-    <?php endif; ?>
-    <?php if ($revision['childid']): ?>
-    <?php echo $this->hyperlink('', $this->url(null, ['revision-id' => $revision['childid']], true), ['class' => 'next o-icon-next button', 'title' => $this->translate('Newer revision')]); ?>
-    <?php else: ?>
-    <span class="next o-icon-next button inactive"></span>
-    <?php endif; ?>
-    <?php if ($revision['latestid'] && $revision['latestid'] !== $revision['revid']): ?>
-    <?php echo $this->hyperlink('', $this->url(null, ['revision-id' => $revision['latestid']], true), ['class' => 'next o-icon-last button', 'title' => $this->translate('Latest revision')]); ?>
-    <?php else: ?>
-    <span class="next o-icon-last button inactive"></span>
-    <?php endif; ?>
-</nav>
 
 <?php
 $previous = $sMedia->previousScriptoMedia();
@@ -164,7 +124,58 @@ $next = $sMedia->nextScriptoMedia();
 </div>
 
 <div class="sidebar always-open" id="reviewer-form">
-    <h3>Review media</h3>
+
+    <!-- Revision section -->
+    <?php if ($revision): ?>
+    <h3>
+        <?php if ($revision['latestid'] === $revision['revid']): ?>
+        <?php echo $this->translate('Revision — latest'); ?>
+        <?php else: ?>
+        <?php echo $this->translate('Revision — out-of-date'); ?>
+        <?php endif; ?>
+    </h3>
+    <nav>
+        <?php if ($revision['parentid']): ?>
+        <?php echo $this->hyperlink('', $this->url(null, ['revision-id' => $revision['parentid']], true), ['class' => 'previous o-icon-prev button', 'title' => $this->translate('Older revision')]); ?>
+        <?php else: ?>
+        <span class="previous o-icon-prev button inactive"></span>
+        <?php endif; ?>
+        <?php if ($revision['childid']): ?>
+        <?php echo $this->hyperlink('', $this->url(null, ['revision-id' => $revision['childid']], true), ['class' => 'next o-icon-next button', 'title' => $this->translate('Newer revision')]); ?>
+        <?php else: ?>
+        <span class="next o-icon-next button inactive"></span>
+        <?php endif; ?>
+        <?php if ($revision['latestid'] && $revision['latestid'] !== $revision['revid']): ?>
+        <?php echo $this->hyperlink('', $this->url(null, ['revision-id' => $revision['latestid']], true), ['class' => 'next o-icon-last button', 'title' => $this->translate('Latest revision')]); ?>
+        <?php else: ?>
+        <span class="next o-icon-last button inactive"></span>
+        <?php endif; ?>
+    </nav>
+    <div class="meta-group">
+        <div class="revision-timestamp">
+            <?php echo sprintf(
+                $this->translate('%s by %s.'),
+                $revision['timestamp']->format('G:i:s, j F Y'),
+                $this->hyperlink($revision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $revision['user']]))
+            ); ?>
+        </div>
+        <?php if ($revision['parsedcomment']): ?>
+        <div class="parsed-comment"><?php echo $revision['parsedcomment'] ?></div>
+        <?php endif; ?>
+        <div><?php echo $this->hyperlink($this->translate('View revision history'), $this->url('admin/scripto-revision', ['action' => 'browse'], true), ['class' => 'button']); ?></div>
+        <?php if (($latestRevision['revid'] !== $revision['revid']) && ($latestRevision['content'] !== $revision['content'])): ?>
+        <div><?php echo $this->hyperlink($this->translate('Revert to this revision'), '#', ['class' => 'sidebar-content button', 'data-sidebar-selector' => '#revert-revision']); ?></div>
+        <?php endif; ?>
+    </div>
+    <?php else: ?>
+    <h3><?php echo $this->translate('Revision'); ?></h3>
+    <div class="meta-group">
+        <?php echo $this->translate('There are no revisions.'); ?>
+    </div>
+    <?php endif; ?>
+
+    <!-- Review section -->
+    <h3><?php echo $this->translate('Review media'); ?></h3>
     <div class="review-fields">
         <?php
         $completed = $sMedia->completed();
@@ -172,7 +183,7 @@ $next = $sMedia->nextScriptoMedia();
         ?>
         <div class="field">
             <label for="is_completed"><?php echo $this->translate('Completed'); ?></label>
-            <?php echo $this->formCheckbox($form->get('is_completed')); ?>
+            <?php echo $this->formCheckbox($mediaForm->get('is_completed')); ?>
             <?php if ($completed): ?>
             <div>
                 <?php echo sprintf(
@@ -186,8 +197,8 @@ $next = $sMedia->nextScriptoMedia();
         <?php if ($sMedia->userCan('protect')): ?>
         <div class="field">
             <label for="protection_level"><?php echo $this->translate('Protection'); ?></label>
-            <?php echo $this->formSelect($form->get('protection_level')); ?>
-            <?php echo $this->formSelect($form->get('protection_expiry')); ?>
+            <?php echo $this->formSelect($mediaForm->get('protection_level')); ?>
+            <?php echo $this->formSelect($mediaForm->get('protection_expiry')); ?>
         </div>
         <?php endif; ?>
         <?php
@@ -196,7 +207,7 @@ $next = $sMedia->nextScriptoMedia();
         ?>
         <div class="field">
             <label for="is_approved"><?php echo $this->translate('Approved'); ?></label>
-            <?php echo $this->formCheckbox($form->get('is_approved')); ?>
+            <?php echo $this->formCheckbox($mediaForm->get('is_approved')); ?>
             <?php if ($approved): ?>
             <div>
                 <?php echo sprintf(
@@ -210,6 +221,8 @@ $next = $sMedia->nextScriptoMedia();
             <?php endif; ?>
         </div>
     </div>
+
+    <!-- Metadata section -->
     <?php echo $this->partial('show-details'); ?>
 </div>
 
@@ -219,5 +232,5 @@ $next = $sMedia->nextScriptoMedia();
     <?php echo $this->hyperlink('', '#', ['class' => 'sidebar-close o-icon-close', 'title' => $this->translate('Close')]); ?>
     <h3><?php echo $this->translate('Revert to this revision'); ?></h3>
     <p class="error"><?php echo $this->translate('Warning: You are reverting to an out-of-date revision. Any changes made since this revision will be lost.'); ?></p>
-    <?php /* echo $this->form($revertForm); */ ?>
+    <?php echo $this->form($revertForm); ?>
 </div>

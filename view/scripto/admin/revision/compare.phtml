@@ -38,7 +38,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto revision compare n
                     $this->hyperlink($fromRevision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $fromRevision['user']]))
                 ); ?></div>
                 <?php if ($fromRevision['parsedcomment']): ?>
-                <div class="parsed-comment"><?php $fromRevision['parsedcomment'] ?></div>
+                <div class="parsed-comment"><?php echo $fromRevision['parsedcomment'] ?></div>
                 <?php endif; ?>
             </th>
             <th colspan="2">
@@ -48,7 +48,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto revision compare n
                     $this->hyperlink($toRevision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $toRevision['user']]))
                 ); ?></div>
                 <?php if ($toRevision['parsedcomment']): ?>
-                <div class="parsed-comment"><?php $toRevision['parsedcomment'] ?></div>
+                <div class="parsed-comment"><?php echo $toRevision['parsedcomment'] ?></div>
                 <?php endif; ?>
             </th>
         </tr>
