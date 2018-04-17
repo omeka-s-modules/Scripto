@@ -504,6 +504,43 @@ button.full-screen:after {
     font-weight: 900;
 }
 
+#reviewer-form .old-revision,
+#reviewer-form .current-revision {
+    font-size: 14px;
+    line-height: 21px;
+    padding: 0 6px;
+    text-transform: uppercase;
+    float: right;
+}
+
+#reviewer-form .old-revision {
+    background-color: #f4b4b4;
+    color: #A91919;
+}
+
+#reviewer-form .current-revision {
+    background-color: #cdffcd;
+    color: green;
+}
+
+#reviewer-form .pagination {
+    margin-bottom: 12px;
+}
+
+#reviewer-form .pagination .button {
+    width: 24px;
+    padding: 0;
+}
+
+#reviewer-form .pagination .next.button {
+    margin-right: -1px;
+    border-radius: 0;
+}
+
+#reviewer-form .pagination .last.button {
+    border-radius: 0 3px 3px 0;
+}
+
 #reviewer-form .field {
     display: flex;
     flex-wrap: wrap;
@@ -515,6 +552,12 @@ button.full-screen:after {
 
 #reviewer-form .field:last-child {
     border-bottom: 0;
+}
+
+#reviewer-form .value .field {
+    border-bottom: 0;
+    padding-bottom: 0;
+    margin: 6px 0 0 0;
 }
 
 #reviewer-form label {
