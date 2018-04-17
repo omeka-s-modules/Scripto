@@ -30,6 +30,13 @@ $mediaIsImage = ((strpos($mediaType, 'image')) !== false);
         <?php endif; ?>
         <?php echo $this->formHidden($mediaForm->get('is_watched')); ?>
         <?php endif; ?>
+        <a href="#" class="expand button" aria-label="<?php echo $this->translate('Expand'); ?>"><?php echo $this->translate('Actions'); ?></a>
+        <ul class="collapsible">
+            <li><?php echo $this->hyperlink($this->translate('View revision history'), $this->url('admin/scripto-revision', ['action' => 'browse'], true)); ?></li>
+            <?php if (($latestRevision['revid'] !== $revision['revid']) && ($latestRevision['content'] !== $revision['content'])): ?>
+            <li><?php echo $this->hyperlink($this->translate('Revert to this revision'), '#', ['class' => 'sidebar-content', 'data-sidebar-selector' => '#revert-revision']); ?></li>
+            <?php endif; ?>
+        </ul>
         <?php echo $this->formSubmit($mediaForm->get('submit_mediaform')); ?>
     </div>
 </div>
@@ -161,10 +168,6 @@ $next = $sMedia->nextScriptoMedia();
         </div>
         <?php if ($revision['parsedcomment']): ?>
         <div class="parsed-comment"><?php echo $revision['parsedcomment'] ?></div>
-        <?php endif; ?>
-        <div><?php echo $this->hyperlink($this->translate('View revision history'), $this->url('admin/scripto-revision', ['action' => 'browse'], true), ['class' => 'button']); ?></div>
-        <?php if (($latestRevision['revid'] !== $revision['revid']) && ($latestRevision['content'] !== $revision['content'])): ?>
-        <div><?php echo $this->hyperlink($this->translate('Revert to this revision'), '#', ['class' => 'sidebar-content button', 'data-sidebar-selector' => '#revert-revision']); ?></div>
         <?php endif; ?>
     </div>
     <?php else: ?>
