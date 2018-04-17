@@ -286,13 +286,19 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
     public function pageRevision($revisionId = null)
     {
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
-        if ($revisionId) {
-            return $client->queryRevision($this->pageTitle(), $revisionId);
-        } else {
-            // Get the latest revision if no revision ID given.
+        if (null === $revisionId) {
+            // Get the latest revision.
             $page = $this->page();
-            $revisionId = isset($page['revisions'][0]['revid']) ? $page['revisions'][0]['revid'] : null;
-            return $revisionId ? $client->queryRevision($this->pageTitle(), $revisionId) : null;
+            if (isset($page['revisions'][0]['revid'])) {
+                // Use the more expressive queryRevision() instead of relying on queryPage().
+                return $client->queryRevision($this->pageTitle(), $page['revisions'][0]['revid']);
+            } else {
+                // This media has not been created (no revisions).
+                return null;
+            }
+        } else {
+            // Get a specific revision.
+            return $client->queryRevision($this->pageTitle(), $revisionId);
         }
     }
 
