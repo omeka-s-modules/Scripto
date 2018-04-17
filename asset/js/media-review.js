@@ -102,6 +102,8 @@
                 watchlistHiddenValue.attr('value', 0);
             }
         });
+
+        $('#content').off('click', '.sidebar .pagination a');
     });
 
 })(jQuery)
