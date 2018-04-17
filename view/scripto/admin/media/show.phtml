@@ -132,15 +132,8 @@ $next = $sMedia->nextScriptoMedia();
 
 <div class="sidebar always-open" id="reviewer-form">
 
-    <!-- Revision section -->
+    <h3><?php echo $this->translate('Review media'); ?></h3>
     <?php if ($revision): ?>
-    <h3>
-        <?php if ($revision['latestid'] === $revision['revid']): ?>
-        <?php echo $this->translate('Revision — latest'); ?>
-        <?php else: ?>
-        <?php echo $this->translate('Revision — out-of-date'); ?>
-        <?php endif; ?>
-    </h3>
     <nav>
         <?php if ($revision['parentid']): ?>
         <?php echo $this->hyperlink('', $this->url(null, ['revision-id' => $revision['parentid']], true), ['class' => 'previous o-icon-prev button', 'title' => $this->translate('Older revision')]); ?>
@@ -158,10 +151,17 @@ $next = $sMedia->nextScriptoMedia();
         <span class="next o-icon-last button inactive"></span>
         <?php endif; ?>
     </nav>
+    <?php endif; ?>
+
+    <?php if ($revision): ?>
     <div class="meta-group">
-        <div class="revision-timestamp">
+        <h4><?php echo $this->translate('Revision'); ?></h4>
+        <div class="value">
             <?php echo sprintf(
-                $this->translate('%s by %s.'),
+                $this->translate('%s: %s by %s.'),
+                ($revision['latestid'] === $revision['revid'])
+                    ? '<span style="font-weight: bold; color: green;">' . $this->translate('Latest') . '</span>'
+                    : '<span style="font-weight: bold; color: red;">' . $this->translate('Out-of-date') . '</span>',
                 $revision['timestamp']->format('G:i:s, j F Y'),
                 $this->hyperlink($revision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $revision['user']]))
             ); ?>
@@ -171,14 +171,12 @@ $next = $sMedia->nextScriptoMedia();
         <?php endif; ?>
     </div>
     <?php else: ?>
-    <h3><?php echo $this->translate('Revision'); ?></h3>
     <div class="meta-group">
-        <?php echo $this->translate('There are no revisions.'); ?>
+        <h4><?php echo $this->translate('Revision'); ?></h4>
+        <div class="value"><?php echo $this->translate('There are no revisions.'); ?></div>
     </div>
     <?php endif; ?>
 
-    <!-- Review section -->
-    <h3><?php echo $this->translate('Review media'); ?></h3>
     <div class="review-fields">
         <?php
         $completed = $sMedia->completed();
