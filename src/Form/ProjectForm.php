@@ -18,6 +18,7 @@ class ProjectForm extends Form
             ],
             'attributes' => [
                 'required' => true,
+                'id' => 'o-module-scripto-title',
             ],
         ]);
 
@@ -27,6 +28,9 @@ class ProjectForm extends Form
             'options' => [
                 'label' => 'Description', // @translate
                 'info' => 'Enter the description of this project.', // @translate
+            ],
+            'attributes' => [
+                'id' => 'o-module-scripto-description',
             ],
         ]);
 
@@ -42,6 +46,7 @@ class ProjectForm extends Form
             'attributes' => [
                 'class' => 'chosen-select',
                 'data-placeholder' => 'Select an item set', // @translate
+                'id' => 'o-item-set',
             ],
         ]);
 
@@ -57,6 +62,7 @@ class ProjectForm extends Form
             'attributes' => [
                 'class' => 'chosen-select',
                 'data-placeholder' => 'Select a property', // @translate
+                'id' => 'o-property',
             ],
         ]);
 
@@ -66,6 +72,9 @@ class ProjectForm extends Form
             'options' => [
                 'label' => 'Language tag', // @translate
                 'info' => 'Enter the language of the resource content using an IETF language tag. Note that existing property values using the same language tag will be overwritten during import.', // @translate
+            ],
+            'attributes' => [
+                'id' => 'o-lang',
             ],
         ]);
     }

@@ -29,6 +29,7 @@ class ModuleConfigForm extends Form
             ],
             'attributes' => [
                 'required' => true,
+                'id' => 'apiurl',
             ],
         ]);
 

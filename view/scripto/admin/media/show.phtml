@@ -78,7 +78,7 @@ $next = $sMedia->nextScriptoMedia();
         </div>
         <div class="wikitext-flex">
             <div class="textarea-flex">
-                <textarea disabled><?php echo $revisionWikitext; ?></textarea>
+                <textarea disabled aria-label="<?php echo $this->translate('Wikitext'); ?>"><?php echo $revisionWikitext; ?></textarea>
             </div>
             <div class="panzoom-container <?php echo ($mediaIsImage) ? 'image' : ''; ?>">
                 <?php echo $media->render(['link' => null]); ?>

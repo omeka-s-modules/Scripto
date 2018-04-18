@@ -45,6 +45,9 @@ class MediaForm extends Form
                     'sysop' => 'Allow only administrators', // @translate
                 ],
             ],
+            'attributes' => [
+                'id' => 'protection_level',
+            ],
         ]);
         $this->add([
             'type' => 'select',
