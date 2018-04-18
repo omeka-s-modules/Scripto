@@ -3,6 +3,8 @@ namespace Scripto\Controller\Admin;
 
 use Scripto\Form\MediaBatchForm;
 use Scripto\Form\MediaForm;
+use Scripto\Form\RevisionRevertForm;
+use Scripto\Mediawiki\Exception\QueryException;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
@@ -68,13 +70,38 @@ class MediaController extends AbstractActionController
             return $this->redirect()->toRoute('admin/scripto-project');
         }
 
-        $form = $this->getForm(MediaForm::class);
-        $editAccess = $sMedia->editAccess();
+        try {
+            $revision = $sMedia->pageRevision($this->params('revision-id'));
+        } catch (QueryException $e) {
+            // Invalid revision ID
+            return $this->redirect()->toRoute('admin/scripto-project');
+        }
 
-        if ($this->getRequest()->isPost()) {
-            $form->setData($this->getRequest()->getPost());
-            if ($form->isValid()) {
-                $formData = $form->getData();
+        $revertForm = $this->getForm(RevisionRevertForm::class);
+        $mediaForm = $this->getForm(MediaForm::class);
+        $editAccess = $sMedia->editAccess();
+        $postData = $this->getRequest()->getPost();
+
+        // Handle the revision revert form.
+        if ($this->getRequest()->isPost() && isset($postData['submit_revisionrevertform'])) {
+            $revertForm->setData($postData);
+            if ($revertForm->isValid()) {
+                $data = ['o-module-scripto:content' => $revision['content']];
+                $response = $this->api()->update('scripto_media', $sMedia->id(), $data, ['isPartial' => true]);
+                if ($response) {
+                    $this->messenger()->addSuccess('Scripto media revision successfully reverted.'); // @translate
+                    return $this->redirect()->toRoute(null, ['revision-id' => null], true);
+                }
+            } else {
+                $this->messenger()->addFormErrors($revertForm);
+            }
+        }
+
+        // Handle the media form.
+        if ($this->getRequest()->isPost() && isset($postData['submit_mediaform'])) {
+            $mediaForm->setData($postData);
+            if ($mediaForm->isValid()) {
+                $formData = $mediaForm->getData();
 
                 // Update MediaWiki data.
                 if ($sMedia->userCan('protect')) {
@@ -107,18 +134,18 @@ class MediaController extends AbstractActionController
                     'o-module-scripto:is_completed' => $formData['is_completed'],
                     'o-module-scripto:is_approved' => $formData['is_approved'],
                 ];
-                $response = $this->api($form)->update('scripto_media', $sMedia->id(), $data);
+                $response = $this->api($mediaForm)->update('scripto_media', $sMedia->id(), $data);
                 if ($response) {
                     $this->messenger()->addSuccess('Scripto media successfully updated.'); // @translate
                     return $this->redirect()->toUrl($response->getContent()->url());
                 }
 
             } else {
-                $this->messenger()->addFormErrors($form);
+                $this->messenger()->addFormErrors($mediaForm);
             }
         }
 
-        // Set form data.
+        // Set media form data.
         $data = [
             'is_completed' => (bool) $sMedia->completed(),
             'is_approved' => (bool) $sMedia->approved(),
@@ -126,23 +153,29 @@ class MediaController extends AbstractActionController
         ];
         if (!$editAccess['expired']) {
             $data['protection_level'] = $editAccess['level'];
-            $form->get('protection_expiry')->setEmptyOption(sprintf(
+            $mediaForm->get('protection_expiry')->setEmptyOption(sprintf(
                 $this->translate('Existing expiration time: %s'),
                 $editAccess['expiry']
                     ? $editAccess['expiry']->format('G:i, j F Y')
                     : 'infinite'
             ));
         }
-        $form->setData($data);
+        $mediaForm->setData($data);
 
         $sItem = $sMedia->scriptoItem();
+        $revisionId = isset($revision['revid']) ? $revision['revid'] : null;
         $view = new ViewModel;
         $view->setVariable('sMedia', $sMedia);
         $view->setVariable('media', $sMedia->media());
         $view->setVariable('sItem', $sItem);
         $view->setVariable('item', $sItem->item());
         $view->setVariable('project', $sItem->scriptoProject());
-        $view->setVariable('form', $form);
+        $view->setVariable('mediaForm', $mediaForm);
+        $view->setVariable('revertForm', $revertForm);
+        $view->setVariable('revision', $revision);
+        $view->setVariable('latestRevision', $sMedia->pageRevision());
+        $view->setVariable('revisionWikitext', $sMedia->pageWikitext($revisionId));
+        $view->setVariable('revisionHtml', $sMedia->pageHtml($revisionId));
         return $view;
     }
 

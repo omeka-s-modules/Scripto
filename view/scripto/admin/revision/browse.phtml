@@ -59,7 +59,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto browse revision no
             <td>
                 <?php echo $this->hyperlink(
                     $revision['timestamp']->format('G:i:s, j F Y'),
-                    $this->url('admin/scripto-revision-id', ['action' => 'show', 'revision-id' => $revision['revid']], true)
+                    $this->url('admin/scripto-media-id', ['action' => 'show', 'revision-id' => $revision['revid']], true)
                 ); ?>
             </td>
             <td><?php echo $this->hyperlink($revision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $revision['user']])); ?></td>

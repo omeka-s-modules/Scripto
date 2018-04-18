@@ -78,11 +78,6 @@ class Scripto extends AbstractHelper
             'text' => 'Revisions', // @translate
             'params' => ['project-id', 'item-id', 'media-id'],
         ],
-        'admin/scripto-revision-id' => [
-            'breadcrumbs' => ['admin/scripto', 'admin/scripto-project', 'admin/scripto-item', 'admin/scripto-media', 'admin/scripto-media-id', 'admin/scripto-revision'],
-            'text' => 'Show revision', // @translate
-            'params' => ['project-id', 'item-id', 'media-id', 'revision-id'],
-        ],
         'admin/scripto-revision-compare' => [
             'breadcrumbs' => ['admin/scripto', 'admin/scripto-project', 'admin/scripto-item', 'admin/scripto-media', 'admin/scripto-media-id', 'admin/scripto-revision'],
             'text' => 'Compare revisions', // @translate

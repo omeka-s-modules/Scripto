@@ -240,25 +240,28 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
     }
 
     /**
-     * Get the most recent wikitext.
+     * Get page wikitext.
      *
+     * @param int $revisionId
      * @return string|null
      */
-    public function pageWikitext()
+    public function pageWikitext($revisionId = null)
     {
-        $page = $this->page();
-        return isset($page['revisions'][0]['content']) ? $page['revisions'][0]['content'] : null;
+        $revision = $this->pageRevision($revisionId);
+        return $revision ? $revision['content'] : null;
     }
 
     /**
-     * Get the most recent HTML.
+     * Get page HTML.
      *
+     * @param int $revisionId
      * @return string|null
      */
-    public function pageHtml()
+    public function pageHtml($revisionId = null)
     {
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
-        return $client->parsePage($this->pageTitle());
+        $revision = $this->pageRevision($revisionId);
+        return $revision ? $client->parseRevision($revision['revid']) : null;
     }
 
     /**
@@ -275,15 +278,28 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
     }
 
     /**
-     * Get a page revision.
+     * Get the latest revision or an earlier one given a revision ID.
      *
-     * @param int $revisionId
-     * @return array
+     * @param int|null $revisionId
+     * @return array|null
      */
-    public function pageRevision($revisionId)
+    public function pageRevision($revisionId = null)
     {
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
-        return $client->queryRevision($this->pageTitle(), $revisionId);
+        if (null === $revisionId) {
+            // Get the latest revision.
+            $page = $this->page();
+            if (isset($page['revisions'][0]['revid'])) {
+                // Use the more expressive queryRevision() instead of relying on queryPage().
+                return $client->queryRevision($this->pageTitle(), $page['revisions'][0]['revid']);
+            } else {
+                // This media has not been created (no revisions).
+                return null;
+            }
+        } else {
+            // Get a specific revision.
+            return $client->queryRevision($this->pageTitle(), $revisionId);
+        }
     }
 
     /**

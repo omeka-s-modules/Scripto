@@ -195,12 +195,12 @@ return [
                     'scripto-media-id' =>  [
                         'type' => 'Segment',
                         'options' => [
-                            'route' => '/scripto/:project-id/:item-id/:media-id[/:action]',
+                            'route' => '/scripto/:project-id/:item-id/:media-id[/:revision-id]',
                             'constraints' => [
                                 'project-id' => '\d+',
                                 'item-id' => '\d+',
                                 'media-id' => '\d+',
-                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'revision-id' => '\d+',
                             ],
                             'defaults' => [
                                 '__NAMESPACE__' => 'Scripto\Controller\Admin',
@@ -223,24 +223,6 @@ return [
                                 '__NAMESPACE__' => 'Scripto\Controller\Admin',
                                 'controller' => 'revision',
                                 'action' => 'browse',
-                            ],
-                        ],
-                    ],
-                    'scripto-revision-id' =>  [
-                        'type' => 'Segment',
-                        'options' => [
-                            'route' => '/scripto/:project-id/:item-id/:media-id/revision/:revision-id[/:action]',
-                            'constraints' => [
-                                'project-id' => '\d+',
-                                'item-id' => '\d+',
-                                'media-id' => '\d+',
-                                'revision-id' => '\d+',
-                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ],
-                            'defaults' => [
-                                '__NAMESPACE__' => 'Scripto\Controller\Admin',
-                                'controller' => 'revision',
-                                'action' => 'show',
                             ],
                         ],
                     ],

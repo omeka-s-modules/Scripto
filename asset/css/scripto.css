@@ -504,6 +504,27 @@ button.full-screen:after {
     font-weight: 900;
 }
 
+#reviewer-form .pagination {
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+    float: right;
+    width: auto;
+}
+
+#reviewer-form .revision h3 {
+    margin-bottom: 0;
+}
+
+#reviewer-form .pagination .next.button {
+    margin-right: -1px;
+    border-radius: 0;
+}
+
+#reviewer-form .pagination .last.button {
+    border-radius: 0 3px 3px 0;
+}
+
 #reviewer-form .field {
     display: flex;
     flex-wrap: wrap;
@@ -515,6 +536,12 @@ button.full-screen:after {
 
 #reviewer-form .field:last-child {
     border-bottom: 0;
+}
+
+#reviewer-form .value .field {
+    border-bottom: 0;
+    padding-bottom: 0;
+    margin: 6px 0 0 0;
 }
 
 #reviewer-form label {
@@ -532,6 +559,10 @@ button.full-screen:after {
 }
 
 #reviewer-form select[name="protection_expiry"] {
+    display: none;
+}
+
+#reviewer-form img {
     display: none;
 }
 

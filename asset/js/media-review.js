@@ -102,6 +102,9 @@
                 watchlistHiddenValue.attr('value', 0);
             }
         });
+
+        // Remove sidebar click event so revision pagination reloads the page. 
+        $('#content').off('click', '.sidebar .pagination a');
     });
 
 })(jQuery)
