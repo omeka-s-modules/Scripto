@@ -57,14 +57,39 @@ class ScriptoMedia extends AbstractEntity
     protected $position;
 
     /**
+     * @Column(type="datetime")
+     */
+    protected $synced;
+
+    /**
+     * @Column(type="datetime", nullable=true)
+     */
+    protected $edited;
+
+    /**
      * @Column(nullable=true)
      */
     protected $editedBy;
 
     /**
+     * @Column(type="datetime", nullable=true)
+     */
+    protected $completed;
+
+    /**
      * @Column(nullable=true)
      */
     protected $completedBy;
+
+    /**
+     * @Column(type="integer", nullable=true)
+     */
+    protected $completedRevision;
+
+    /**
+     * @Column(type="datetime", nullable=true)
+     */
+    protected $approved;
 
     /**
      * @ManyToOne(
@@ -78,24 +103,9 @@ class ScriptoMedia extends AbstractEntity
     protected $approvedBy;
 
     /**
-     * @Column(type="datetime")
+     * @Column(type="integer", nullable=true)
      */
-    protected $synced;
-
-    /**
-     * @Column(type="datetime", nullable=true)
-     */
-    protected $edited;
-
-    /**
-     * @Column(type="datetime", nullable=true)
-     */
-    protected $completed;
-
-    /**
-     * @Column(type="datetime", nullable=true)
-     */
-    protected $approved;
+    protected $approvedRevision;
 
     protected $content;
 
@@ -134,36 +144,6 @@ class ScriptoMedia extends AbstractEntity
         return $this->position;
     }
 
-    public function setEditedBy($editedBy)
-    {
-        $this->editedBy = $editedBy;
-    }
-
-    public function getEditedBy()
-    {
-        return $this->editedBy;
-    }
-
-    public function setCompletedBy($completedBy)
-    {
-        $this->completedBy = $completedBy;
-    }
-
-    public function getCompletedBy()
-    {
-        return $this->completedBy;
-    }
-
-    public function setApprovedBy(User $approvedBy = null)
-    {
-        $this->approvedBy = $approvedBy;
-    }
-
-    public function getApprovedBy()
-    {
-        return $this->approvedBy;
-    }
-
     public function setSynced(DateTime $dateTime)
     {
         $this->synced = $dateTime;
@@ -184,6 +164,16 @@ class ScriptoMedia extends AbstractEntity
         return $this->edited;
     }
 
+    public function setEditedBy($editedBy)
+    {
+        $this->editedBy = $editedBy;
+    }
+
+    public function getEditedBy()
+    {
+        return $this->editedBy;
+    }
+
     public function setCompleted(DateTime $dateTime = null)
     {
         $this->completed = $dateTime;
@@ -192,6 +182,26 @@ class ScriptoMedia extends AbstractEntity
     public function getCompleted()
     {
         return $this->completed;
+    }
+
+    public function setCompletedBy($completedBy)
+    {
+        $this->completedBy = $completedBy;
+    }
+
+    public function getCompletedBy()
+    {
+        return $this->completedBy;
+    }
+
+    public function setCompletedRevision($completedRevision)
+    {
+        $this->completedRevision = $completedRevision;
+    }
+
+    public function getCompletedRevision()
+    {
+        return $this->completedRevision;
     }
 
     public function setApproved(DateTime $dateTime = null)
@@ -204,7 +214,27 @@ class ScriptoMedia extends AbstractEntity
         return $this->approved;
     }
 
-    /**
+    public function setApprovedBy(User $approvedBy = null)
+    {
+        $this->approvedBy = $approvedBy;
+    }
+
+    public function getApprovedBy()
+    {
+        return $this->approvedBy;
+    }
+
+     public function setApprovedRevision($approvedRevision)
+    {
+        $this->approvedRevision = $approvedRevision;
+    }
+
+    public function getApprovedRevision()
+    {
+        return $this->approvedRevision;
+    }
+
+   /**
      * Set Scripto media content (transcription, translation, etc.).
      *
      * Note that content is stored in MediaWiki, not Omeka. We use this setter
@@ -237,7 +267,7 @@ class ScriptoMedia extends AbstractEntity
      * We use the IDs of Omeka entities (instead of the IDs of the corresponding
      * Scripto entities) so the pages are recoverable should an item be
      * accidentally removed from the project. It also allows for a possible
-     * future feature of reconstitution of projects should the they be deleted.
+     * future feature of reconstitution of projects should they be deleted.
      *
      * @return string
      */

@@ -71,13 +71,16 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
         return [
             'o-module-scripto:item' => $this->scriptoItem()->getReference(),
             'o:media' => $this->media()->getReference(),
-            'o-module-scripto:edited_by' => $this->editedBy(),
-            'o-module-scripto:completed_by' => $this->completedBy(),
-            'o-module-scripto:approved_by' => $approvedBy ? $approvedBy->getReference() : null,
+            'o:position' => $this->position(),
             'o-module-scripto:synced' => $synced ? $this->getDateTime($synced) : null,
             'o-module-scripto:edited' => $edited ? $this->getDateTime($edited) : null,
+            'o-module-scripto:edited_by' => $this->editedBy(),
             'o-module-scripto:completed' => $completed ? $this->getDateTime($completed) : null,
+            'o-module-scripto:completed_by' => $this->completedBy(),
+            'o-module-scripto:completed_revision' => $this->completedRevision(),
             'o-module-scripto:approved' => $approved ? $this->getDateTime($approved) : null,
+            'o-module-scripto:approved_by' => $approvedBy ? $approvedBy->getReference() : null,
+            'o-module-scripto:approved_revision' => $this->approvedRevision(),
         ];
     }
 
@@ -96,21 +99,6 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
         return $this->resource->getPosition();
     }
 
-    public function editedBy()
-    {
-        return $this->resource->getEditedBy();
-    }
-
-    public function completedBy()
-    {
-        return $this->resource->getCompletedBy();
-    }
-
-    public function approvedBy()
-    {
-        return $this->getAdapter('users')->getRepresentation($this->resource->getApprovedBy());
-    }
-
     public function synced()
     {
         return $this->resource->getSynced();
@@ -121,14 +109,39 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
         return $this->resource->getEdited();
     }
 
+    public function editedBy()
+    {
+        return $this->resource->getEditedBy();
+    }
+
     public function completed()
     {
         return $this->resource->getCompleted();
     }
 
+    public function completedBy()
+    {
+        return $this->resource->getCompletedBy();
+    }
+
+    public function completedRevision()
+    {
+        return $this->resource->getCompletedRevision();
+    }
+
     public function approved()
     {
         return $this->resource->getApproved();
+    }
+
+    public function approvedBy()
+    {
+        return $this->getAdapter('users')->getRepresentation($this->resource->getApprovedBy());
+    }
+
+    public function approvedRevision()
+    {
+        return $this->resource->getApprovedRevision();
     }
 
     /**
