@@ -31,14 +31,10 @@ $oldRevision = ($latestRevision['revid'] !== $revision['revid']) && ($latestRevi
         <?php endif; ?>
         <?php echo $this->formHidden($mediaForm->get('is_watched')); ?>
         <?php endif; ?>
-<<<<<<< HEAD
-        <?php echo $this->hyperlink($this->translate('View revision history'), $this->url('admin/scripto-revision', ['action' => 'browse'], true), ['class' => 'button']); ?>
-=======
         <?php echo $this->hyperlink($this->translate('View history'), $this->url('admin/scripto-revision', ['action' => 'browse'], true), ['class' => 'button']); ?>
         <?php if ($oldRevision): ?>
             <?php echo $this->hyperlink($this->translate('Revert to this revision'), '#', ['class' => 'sidebar-content button', 'data-sidebar-selector' => '#revert-revision']); ?>
         <?php else: ?>
->>>>>>> Only show one form submission on media review.
         <?php echo $this->formSubmit($mediaForm->get('submit_mediaform')); ?>
         <?php endif; ?>
 
