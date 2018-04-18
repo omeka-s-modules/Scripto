@@ -10,19 +10,6 @@ class MediaForm extends Form
     {
         $this->add([
             'type' => 'checkbox',
-            'name' => 'revert',
-            'options' => [
-                'label' => 'Revert to this revision', // @translate
-                'use_hidden_element' => true,
-                'checked_value' => '1',
-                'unchecked_value' => '0',
-            ],
-            'attributes' => [
-                'id' => 'revert',
-            ],
-        ]);
-        $this->add([
-            'type' => 'checkbox',
             'name' => 'is_completed',
             'options' => [
                 'label' => 'Completed', // @translate
