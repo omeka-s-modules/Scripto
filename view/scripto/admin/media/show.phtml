@@ -9,7 +9,9 @@ $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
 $this->htmlElement('body')->appendAttribute('class', 'scripto media show');
 $mediaType = $media->mediaType();
 $mediaIsImage = ((strpos($mediaType, 'image')) !== false);
-$oldRevision = ($latestRevision['revid'] !== $revision['revid']) && ($latestRevision['content'] !== $revision['content']);
+
+$isLatestRevision = ($latestRevision['revid'] === $revision['revid']);
+$hasIdenticalContent = ($latestRevision['content'] === $revision['content']);
 ?>
 
 <?php echo $this->pageTitle($media->displayTitle(), 1, $this->translate(sprintf('Scripto: %s', 'Media')), $this->translate('Review')); ?>
@@ -32,10 +34,10 @@ $oldRevision = ($latestRevision['revid'] !== $revision['revid']) && ($latestRevi
         <?php echo $this->formHidden($mediaForm->get('is_watched')); ?>
         <?php endif; ?>
         <?php echo $this->hyperlink($this->translate('View history'), $this->url('admin/scripto-revision', ['action' => 'browse'], true), ['class' => 'button']); ?>
-        <?php if ($oldRevision): ?>
-            <?php echo $this->hyperlink($this->translate('Revert to this revision'), '#', ['class' => 'sidebar-content button', 'data-sidebar-selector' => '#revert-revision']); ?>
-        <?php else: ?>
+        <?php if ($isLatestRevision): ?>
         <?php echo $this->formSubmit($mediaForm->get('submit_mediaform')); ?>
+        <?php elseif (!$hasIdenticalContent): ?>
+        <?php echo $this->hyperlink($this->translate('Revert to this revision'), '#', ['class' => 'sidebar-content button', 'data-sidebar-selector' => '#revert-revision']); ?>
         <?php endif; ?>
 
     </div>
@@ -131,6 +133,8 @@ $next = $sMedia->nextScriptoMedia();
 </div>
 
 <div class="sidebar always-open" id="reviewer-form">
+
+    <!-- Revision section -->
     <div class="revision meta-group">
         <nav role="navigation" class="pagination">
             <?php if ($revision['parentid']): ?>
@@ -167,7 +171,9 @@ $next = $sMedia->nextScriptoMedia();
             <div class="value"><?php echo $this->translate('There are no revisions.'); ?></div>
         <?php endif; ?>
     </div>
-    <?php if(!$oldRevision): ?>
+
+    <!-- Review section -->
+    <?php if ($isLatestRevision): ?>
     <div class="meta-group">
         <h3><?php echo $this->translate('Review media'); ?></h3>
         <div class="review-fields">
@@ -217,6 +223,7 @@ $next = $sMedia->nextScriptoMedia();
     </div>
     </div>
     <?php endif; ?>
+
     <!-- Metadata section -->
     <?php echo $this->partial('show-details'); ?>
 </div>
