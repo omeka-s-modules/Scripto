@@ -34,6 +34,31 @@ class MediaForm extends Form
             ],
         ]);
         $this->add([
+            'type' => 'checkbox',
+            'name' => 'toggle_approved',
+            'options' => [
+                'label' => 'Toggle approved', // @translate
+                'use_hidden_element' => true,
+                'checked_value' => '1',
+                'unchecked_value' => '0',
+            ],
+            'attributes' => [
+                'id' => 'toggle_approved',
+            ],
+        ]);
+        $this->add([
+            'type' => 'select',
+            'name' => 'approved_action',
+            'options' => [
+                'label' => 'Approved action', // @translate
+                'empty_option' => 'Select action:', // @translate
+                'value_options' => [
+                    'approved' => 'Mark this revision as approved', // @translate
+                    'not_approved' => 'Mark media as not approved', // @translate
+                ],
+            ],
+        ]);
+        $this->add([
             'type' => 'select',
             'name' => 'protection_level',
             'options' => [
@@ -85,6 +110,14 @@ class MediaForm extends Form
         ]);
         $inputFilter->add([
             'name' => 'complete_action',
+            'required' => false,
+        ]);
+        $inputFilter->add([
+            'name' => 'toggle_approved',
+            'required' => false,
+        ]);
+        $inputFilter->add([
+            'name' => 'approved_action',
             'required' => false,
         ]);
         $inputFilter->add([

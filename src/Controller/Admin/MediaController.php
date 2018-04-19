@@ -141,6 +141,16 @@ class MediaController extends AbstractActionController
                 } elseif ('not_complete' === $formData['complete_action']) {
                     $data['o-module-scripto:is_completed'] = false;
                 }
+                if ($formData['toggle_approved']) {
+                    $data['o-module-scripto:is_approved'] = $sMedia->approved() ? false : true;
+                    $data['o-module-scripto:approved_revision'] = $revision ? $revision['revid'] : null;
+                }
+                if ('approved' === $formData['approved_action']) {
+                    $data['o-module-scripto:is_approved'] = true;
+                    $data['o-module-scripto:approved_revision'] = $revision ? $revision['revid'] : null;
+                } elseif ('not_approved' === $formData['approved_action']) {
+                    $data['o-module-scripto:is_approved'] = false;
+                }
                 $response = $this->api($mediaForm)->update('scripto_media', $sMedia->id(), $data);
 
                 $this->messenger()->addSuccess('Scripto media successfully updated.'); // @translate

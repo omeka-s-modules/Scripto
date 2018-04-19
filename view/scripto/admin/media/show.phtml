@@ -219,6 +219,52 @@ $next = $sMedia->nextScriptoMedia();
             <?php echo $this->formCheckbox($mediaForm->get('toggle_complete')); ?>
         </div>
         <?php endif; ?>
+        <?php if ($sMedia->approved()): ?>
+        <div>
+            <?php echo sprintf(
+                $this->translate('%s: %s by %s'),
+                sprintf('<span style="color: green;">%s</span>', $this->translate('Approved')),
+                $sMedia->approved()->format('G:i, j F Y'),
+                null === $sMedia->approvedBy()
+                    ? $this->translate('[Unknown]')
+                    : $sMedia->approvedBy()->link($sMedia->approvedBy()->name())
+            ); ?>
+        </div>
+        <?php if ($revision): ?>
+        <?php if ($revision['revid'] === $sMedia->approvedRevision()): ?>
+        <!-- marked as approved + page is created + this is approved revision -->
+        <div class="field">
+            <?php echo $this->translate('This revision marked as approved.'); ?>
+            <label for="toggle_approved"><?php echo $this->translate('Mark media as not approved'); ?></label>
+            <?php echo $this->formCheckbox($mediaForm->get('toggle_approved')); ?>
+        </div>
+        <?php else: ?>
+        <!-- marked as approved + page is created + this is not approved revision -->
+        <div class="field">
+            <?php echo sprintf(
+                $this->translate('Another revision marked as approved. [%s]'),
+                $this->hyperlink($this->translate('view revision'), $this->url(null, ['revision-id' => $sMedia->approvedRevision()], true))
+            ); ?>
+            <?php echo $this->formSelect($mediaForm->get('approved_action')); ?>
+        </div>
+        <?php endif; ?>
+        <?php else: ?>
+        <!-- marked as approved + page is not created -->
+        <div class="field">
+            <label for="toggle_approved"><?php echo $this->translate('Mark media as not approved'); ?></label>
+            <?php echo $this->formCheckbox($mediaForm->get('toggle_approved')); ?>
+        </div>
+        <?php endif; ?>
+        <?php else: ?>
+        <!-- marked as not approved -->
+        <div class="field">
+            <span style="color: red;"><?php echo $this->translate('Not approved'); ?></span>
+            <label for="toggle_approved"><?php echo $revision
+                ? $this->translate('Mark this revision as approved')
+                : $this->translate('Mark media as approved'); ?></label>
+            <?php echo $this->formCheckbox($mediaForm->get('toggle_approved')); ?>
+        </div>
+        <?php endif; ?>
     </div>
 
     <?php if ($sMedia->userCan('protect')): ?>
