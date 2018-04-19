@@ -10,28 +10,27 @@ class MediaForm extends Form
     {
         $this->add([
             'type' => 'checkbox',
-            'name' => 'is_completed',
+            'name' => 'toggle_complete',
             'options' => [
-                'label' => 'Completed', // @translate
+                'label' => 'Toggle complete', // @translate
                 'use_hidden_element' => true,
                 'checked_value' => '1',
                 'unchecked_value' => '0',
             ],
             'attributes' => [
-                'id' => 'is_completed',
+                'id' => 'toggle_complete',
             ],
         ]);
         $this->add([
-            'type' => 'checkbox',
-            'name' => 'is_approved',
+            'type' => 'select',
+            'name' => 'complete_action',
             'options' => [
-                'label' => 'Approved', // @translate
-                'use_hidden_element' => true,
-                'checked_value' => '1',
-                'unchecked_value' => '0',
-            ],
-            'attributes' => [
-                'id' => 'is_approved',
+                'label' => 'Complete action', // @translate
+                'empty_option' => 'Select action:', // @translate
+                'value_options' => [
+                    'complete' => 'Mark this revision as complete', // @translate
+                    'not_complete' => 'Mark media as not complete', // @translate
+                ],
             ],
         ]);
         $this->add([
@@ -70,14 +69,6 @@ class MediaForm extends Form
         $this->add([
             'type' => 'hidden',
             'name' => 'is_watched',
-            'options' => [
-                'label' => 'Watchlist', // @translate
-                'checked_value' => '1',
-                'unchecked_value' => '0',
-            ],
-            'attributes' => [
-                'id' => 'is_watched',
-            ],
         ]);
         $this->add([
             'name' => 'submit_mediaform',
@@ -88,6 +79,14 @@ class MediaForm extends Form
         ]);
 
         $inputFilter = $this->getInputFilter();
+        $inputFilter->add([
+            'name' => 'toggle_complete',
+            'required' => false,
+        ]);
+        $inputFilter->add([
+            'name' => 'complete_action',
+            'required' => false,
+        ]);
         $inputFilter->add([
             'name' => 'protection_level',
             'allow_empty' => true,

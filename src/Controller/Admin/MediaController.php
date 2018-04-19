@@ -130,15 +130,21 @@ class MediaController extends AbstractActionController
                 }
 
                 // Update Scripto media.
-                $data = [
-                    'o-module-scripto:is_completed' => $formData['is_completed'],
-                    'o-module-scripto:is_approved' => $formData['is_approved'],
-                ];
-                $response = $this->api($mediaForm)->update('scripto_media', $sMedia->id(), $data);
-                if ($response) {
-                    $this->messenger()->addSuccess('Scripto media successfully updated.'); // @translate
-                    return $this->redirect()->toUrl($response->getContent()->url());
+                $data = [];
+                if ($formData['toggle_complete']) {
+                    $data['o-module-scripto:is_completed'] = $sMedia->completed() ? false : true;
+                    $data['o-module-scripto:completed_revision'] = $revision ? $revision['revid'] : null;
                 }
+                if ('complete' === $formData['complete_action']) {
+                    $data['o-module-scripto:is_completed'] = true;
+                    $data['o-module-scripto:completed_revision'] = $revision ? $revision['revid'] : null;
+                } elseif ('not_complete' === $formData['complete_action']) {
+                    $data['o-module-scripto:is_completed'] = false;
+                }
+                $response = $this->api($mediaForm)->update('scripto_media', $sMedia->id(), $data);
+
+                $this->messenger()->addSuccess('Scripto media successfully updated.'); // @translate
+                return $this->redirect()->toRoute(null, [], true);
 
             } else {
                 $this->messenger()->addFormErrors($mediaForm);
@@ -147,8 +153,6 @@ class MediaController extends AbstractActionController
 
         // Set media form data.
         $data = [
-            'is_completed' => (bool) $sMedia->completed(),
-            'is_approved' => (bool) $sMedia->approved(),
             'is_watched' => $sMedia->isWatched(),
         ];
         if (!$editAccess['expired']) {
@@ -165,6 +169,8 @@ class MediaController extends AbstractActionController
         $sItem = $sMedia->scriptoItem();
         $revisionId = isset($revision['revid']) ? $revision['revid'] : null;
         $view = new ViewModel;
+        $view->setVariable('revision', $revision);
+        $view->setVariable('latestRevision', $sMedia->pageLatestRevision());
         $view->setVariable('sMedia', $sMedia);
         $view->setVariable('media', $sMedia->media());
         $view->setVariable('sItem', $sItem);
@@ -172,10 +178,6 @@ class MediaController extends AbstractActionController
         $view->setVariable('project', $sItem->scriptoProject());
         $view->setVariable('mediaForm', $mediaForm);
         $view->setVariable('revertForm', $revertForm);
-        $view->setVariable('revision', $revision);
-        $view->setVariable('latestRevision', $sMedia->pageRevision());
-        $view->setVariable('revisionWikitext', $sMedia->pageWikitext($revisionId));
-        $view->setVariable('revisionHtml', $sMedia->pageHtml($revisionId));
         return $view;
     }
 

@@ -124,9 +124,29 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
         return $this->resource->getCompletedBy();
     }
 
+    /**
+     * Get the completed revision.
+     *
+     * Returns false if this media is marked as not complete. Returns the
+     * revision ID if set. Returns the latest revision ID if the revision ID is
+     * not set. Returns null if the page is not created (no revisions).
+     *
+     * @return int|null|false
+     */
     public function completedRevision()
     {
-        return $this->resource->getCompletedRevision();
+        if (!$this->completed()) {
+            return false;
+        }
+        $revisionId = $this->resource->getCompletedRevision();
+        if ($revisionId) {
+            return $revisionId;
+        }
+        $latestRevision = $this->pageLatestRevision();
+        if ($latestRevision) {
+            return $latestRevision['revid'];
+        }
+        return null;
     }
 
     public function approved()
@@ -253,6 +273,19 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
     }
 
     /**
+     * Get the latest revision from cached page.
+     *
+     * Use self::pageRevision() for more comprehensive revision info.
+     *
+     * @return array
+     */
+    public function pageLatestRevision()
+    {
+        $page = $this->page();
+        return isset($page['revisions'][0]) ? $page['revisions'][0] : null;
+    }
+
+    /**
      * Get page wikitext.
      *
      * @param int $revisionId
@@ -293,6 +326,9 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
     /**
      * Get the latest revision or an earlier one given a revision ID.
      *
+     * When getting the latest revision, use this method instead of
+     * self::latestRevision() for more comprehensive revision info.
+     *
      * @param int|null $revisionId
      * @return array|null
      */
@@ -301,14 +337,10 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
         if (null === $revisionId) {
             // Get the latest revision.
-            $page = $this->page();
-            if (isset($page['revisions'][0]['revid'])) {
-                // Use the more expressive queryRevision() instead of relying on queryPage().
-                return $client->queryRevision($this->pageTitle(), $page['revisions'][0]['revid']);
-            } else {
-                // This media has not been created (no revisions).
-                return null;
-            }
+            $latestRevision = $this->pageLatestRevision();
+            return $latestRevision
+                ? $client->queryRevision($this->pageTitle(), $latestRevision['revid'])
+                : null; // page not created (no revisions)
         } else {
             // Get a specific revision.
             return $client->queryRevision($this->pageTitle(), $revisionId);

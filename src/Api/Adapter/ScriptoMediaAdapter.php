@@ -110,25 +110,25 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
         $setIsApproved = $request->getValue('o-module-scripto:is_approved');
 
         if (null !== $setIsCompleted) {
-            if ($setIsCompleted && !$entity->getCompleted()) {
-                // Set as completed only if the entity is set as not completed.
+            if ($setIsCompleted) {
                 $entity->setCompleted(new DateTime('now'));
                 $entity->setCompletedBy($mwUser['name']);
-            } elseif (!$setIsCompleted && $entity->getCompleted()) {
-                // Set as not completed only if the entity is set as completed.
+                $entity->setCompletedRevision($request->getValue('o-module-scripto:completed_revision'));
+            } else {
                 $entity->setCompleted(null);
-                $entity->setCompletedBy($mwUser['name']);
+                $entity->setCompletedBy(null);
+                $entity->setCompletedRevision(null);
             }
         }
         if (null !== $setIsApproved) {
-            if ($setIsApproved && !$entity->getApproved()) {
-                // Set as approved only if the entity is set as not approved.
+            if ($setIsApproved) {
                 $entity->setApproved(new DateTime('now'));
                 $entity->setApprovedBy($oUser);
-            } elseif (!$setIsApproved && $entity->getApproved()) {
-                // Set as not approved only if the entity is set as approved.
+                $entity->setApprovedRevision($request->getValue('o-module-scripto:approved_revision'));
+            } else {
                 $entity->setApproved(null);
-                $entity->setApprovedBy($oUser);
+                $entity->setApprovedBy(null);
+                $entity->setApprovedRevision(null);
             }
         }
 

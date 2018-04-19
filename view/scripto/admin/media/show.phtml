@@ -9,9 +9,6 @@ $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
 $this->htmlElement('body')->appendAttribute('class', 'scripto media show');
 $mediaType = $media->mediaType();
 $mediaIsImage = ((strpos($mediaType, 'image')) !== false);
-
-$isLatestRevision = ($latestRevision['revid'] === $revision['revid']);
-$hasIdenticalContent = ($latestRevision['content'] === $revision['content']);
 ?>
 
 <?php echo $this->pageTitle($media->displayTitle(), 1, $this->translate(sprintf('Scripto: %s', 'Media')), $this->translate('Review')); ?>
@@ -33,13 +30,8 @@ $hasIdenticalContent = ($latestRevision['content'] === $revision['content']);
         <?php endif; ?>
         <?php echo $this->formHidden($mediaForm->get('is_watched')); ?>
         <?php endif; ?>
-        <?php echo $this->hyperlink($this->translate('View history'), $this->url('admin/scripto-revision', ['action' => 'browse'], true), ['class' => 'button']); ?>
-        <?php if ($isLatestRevision): ?>
+        <?php echo $this->hyperlink($this->translate('Revision history'), $this->url('admin/scripto-revision', ['action' => 'browse'], true), ['class' => 'button']); ?></li>
         <?php echo $this->formSubmit($mediaForm->get('submit_mediaform')); ?>
-        <?php elseif (!$hasIdenticalContent): ?>
-        <?php echo $this->hyperlink($this->translate('Revert to this revision'), '#', ['class' => 'sidebar-content button', 'data-sidebar-selector' => '#revert-revision']); ?>
-        <?php endif; ?>
-
     </div>
 </div>
 
@@ -78,7 +70,7 @@ $next = $sMedia->nextScriptoMedia();
         </div>
         <div class="wikitext-flex">
             <div class="textarea-flex">
-                <textarea disabled aria-label="<?php echo $this->translate('Wikitext'); ?>"><?php echo $revisionWikitext; ?></textarea>
+                <textarea disabled aria-label="<?php echo $this->translate('Wikitext'); ?>"><?php echo $sMedia->pageWikitext($revision['revid']); ?></textarea>
             </div>
             <div class="panzoom-container <?php echo ($mediaIsImage) ? 'image' : ''; ?>">
                 <?php echo $media->render(['link' => null]); ?>
@@ -109,7 +101,7 @@ $next = $sMedia->nextScriptoMedia();
 </div>
 
 <div id="html" class="section">
-    <?php echo $revisionHtml; ?>
+    <?php echo $sMedia->pageHtml($revision['revid']); ?>
 </div>
 
 <div id="media-metadata" class="section">
@@ -153,74 +145,90 @@ $next = $sMedia->nextScriptoMedia();
             <span class="last o-icon-last button inactive"></span>
             <?php endif; ?>
         </nav>
-        <h3><?php echo $this->translate('Revision'); ?></h3>
+        <h3><?php echo $this->translate('This revision'); ?></h3>
         <?php if ($revision): ?>
-            <div class="value"><?php echo sprintf(
-                $this->translate('%s: %s by %s.'),
-                ($revision['latestid'] === $revision['revid'])
-                    ? '<span style="font-weight: bold; color: green;">' . $this->translate('Latest') . '</span>'
-                    : '<span style="font-weight: bold; color: red;">' . $this->translate('Out-of-date') . '</span>',
-                $revision['timestamp']->format('G:i:s, j F Y'),
-                $this->hyperlink($revision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $revision['user']]))
-            ); ?>
-            <?php if ($revision['parsedcomment']): ?>
-            <div class="parsed-comment"><?php echo $revision['parsedcomment'] ?></div>
-            <?php endif; ?>
+            <div class="value">
+                <?php echo sprintf(
+                    $this->translate('%s: %s by %s'),
+                    ($latestRevision && ($latestRevision['revid'] === $revision['revid']))
+                        ? sprintf('<span style="color: green;">%s</span>', $this->translate('Latest'))
+                        : sprintf('<span style="color: red;">%s</span>', $this->translate('Out-of-date')),
+                    $revision['timestamp']->format('G:i, j F Y'),
+                    $this->hyperlink($revision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $revision['user']]))
+                ); ?>
+                <?php if ($revision['parsedcomment']): ?>
+                <div class="parsed-comment"><?php echo $revision['parsedcomment'] ?></div>
+                <?php endif; ?>
             </div>
+            <?php if ($latestRevision && ($latestRevision['content'] !== $revision['content'])): ?>
+            <div class="value">
+                <?php echo $this->hyperlink($this->translate('Revert to this revision.'), '#', ['class' => 'sidebar-content', 'data-sidebar-selector' => '#revert-revision']); ?>
+            </div>
+            <?php endif; ?>
         <?php else: ?>
             <div class="value"><?php echo $this->translate('There are no revisions.'); ?></div>
         <?php endif; ?>
     </div>
 
     <!-- Review section -->
-    <?php if ($isLatestRevision): ?>
     <div class="meta-group">
-        <h3><?php echo $this->translate('Review media'); ?></h3>
-        <div class="review-fields">
-        <?php
-        $completed = $sMedia->completed();
-        $completedBy = $sMedia->completedBy();
-        ?>
-        <div class="field">
-            <label for="is_completed"><?php echo $this->translate('Completed'); ?></label>
-            <?php echo $this->formCheckbox($mediaForm->get('is_completed')); ?>
-            <?php if ($completed): ?>
-            <div>
-                <?php echo sprintf(
-                    $this->translate('Last completed %s by %s'),
-                    $this->i18n()->dateFormat($completed, 'medium', 'short'),
-                    $this->hyperlink($completedBy, $this->url('admin/scripto-user-contributions', ['user-id' => $completedBy]))
-                ); ?>
-            </div>
-            <?php endif; ?>
+        <h3><?php echo $this->translate('Review status'); ?></h3>
+        <?php if ($sMedia->completed()): ?>
+        <div>
+            <?php echo sprintf(
+                $this->translate('%s: %s by %s'),
+                sprintf('<span style="color: green;">%s</span>', $this->translate('Completed')),
+                $sMedia->completed()->format('G:i, j F Y'),
+                null === $sMedia->completedBy()
+                    ? $this->translate('[Unknown]')
+                    : $this->hyperlink($sMedia->completedBy(), $this->url('admin/scripto-user-contributions', ['user-id' => $sMedia->completedBy()]))
+            ); ?>
         </div>
-        <?php if ($sMedia->userCan('protect')): ?>
+        <?php if ($revision): ?>
+        <?php if ($revision['revid'] === $sMedia->completedRevision()): ?>
+        <!-- marked as complete + page is created + this is completed revision -->
         <div class="field">
-            <label for="protection_level"><?php echo $this->translate('Protection'); ?></label>
+            <?php echo $this->translate('This revision marked as complete.'); ?>
+            <label for="toggle_complete"><?php echo $this->translate('Mark media as not complete'); ?></label>
+            <?php echo $this->formCheckbox($mediaForm->get('toggle_complete')); ?>
+        </div>
+        <?php else: ?>
+        <!-- marked as complete + page is created + this is not completed revision -->
+        <div class="field">
+            <?php echo sprintf(
+                $this->translate('Another revision marked as complete. [%s]'),
+                $this->hyperlink($this->translate('view revision'), $this->url(null, ['revision-id' => $sMedia->completedRevision()], true))
+            ); ?>
+            <?php echo $this->formSelect($mediaForm->get('complete_action')); ?>
+        </div>
+        <?php endif; ?>
+        <?php else: ?>
+        <!-- marked as complete + page is not created -->
+        <div class="field">
+            <label for="toggle_complete"><?php echo $this->translate('Mark media as not complete'); ?></label>
+            <?php echo $this->formCheckbox($mediaForm->get('toggle_complete')); ?>
+        </div>
+        <?php endif; ?>
+        <?php else: ?>
+        <!-- marked as not complete -->
+        <div class="field">
+            <span style="color: red;"><?php echo $this->translate('Not completed'); ?></span>
+            <label for="toggle_complete"><?php echo $revision
+                ? $this->translate('Mark this revision as complete')
+                : $this->translate('Mark media as complete'); ?></label>
+            <?php echo $this->formCheckbox($mediaForm->get('toggle_complete')); ?>
+        </div>
+        <?php endif; ?>
+    </div>
+
+    <?php if ($sMedia->userCan('protect')): ?>
+    <!-- Protection section -->
+    <div class="meta-group">
+        <h3><?php echo $this->translate('Edit protection'); ?></h3>
+        <div class="field">
             <?php echo $this->formSelect($mediaForm->get('protection_level')); ?>
             <?php echo $this->formSelect($mediaForm->get('protection_expiry')); ?>
         </div>
-        <?php endif; ?>
-        <?php
-        $approved = $sMedia->approved();
-        $approvedBy = $sMedia->approvedBy();
-        ?>
-        <div class="field">
-            <label for="is_approved"><?php echo $this->translate('Approved'); ?></label>
-            <?php echo $this->formCheckbox($mediaForm->get('is_approved')); ?>
-            <?php if ($approved): ?>
-            <div>
-                <?php echo sprintf(
-                    $this->translate('Last approved %s by %s'),
-                    $this->i18n()->dateFormat($approved, 'medium', 'short'),
-                    $approvedBy
-                        ? $approvedBy->link($approvedBy->name())
-                        : $this->translate('Unknown')
-                    ); ?>
-            </div>
-            <?php endif; ?>
-        </div>
-    </div>
     </div>
     <?php endif; ?>
 

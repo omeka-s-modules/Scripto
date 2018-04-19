@@ -50,7 +50,9 @@
         ? sprintf(
             '%s by %s',
             $this->i18n()->dateFormat($sMedia->completed(), 'long', 'medium'),
-            $this->hyperlink($sMedia->completedBy(), $this->url('admin/scripto-user-contributions', ['user-id' => $sMedia->completedBy()]))
+            null === $sMedia->completedBy()
+                ? $this->translate('[Unknown]')
+                : $this->hyperlink($sMedia->completedBy(), $this->url('admin/scripto-user-contributions', ['user-id' => $sMedia->completedBy()]))
         ) : $this->translate('Not completed'); ?></div>
 </div>
 <div class="meta-group">
