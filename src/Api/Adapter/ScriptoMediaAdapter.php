@@ -9,6 +9,7 @@ use Omeka\Api\Request;
 use Omeka\Entity\EntityInterface;
 use Omeka\Stdlib\ErrorStore;
 use Scripto\Entity\ScriptoMedia;
+use Scripto\Mediawiki\Exception as MediaWikiException;
 
 /**
  * Scripto media adapter
@@ -137,11 +138,26 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
 
     public function validateEntity(EntityInterface $entity, ErrorStore $errorStore)
     {
+        $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
         if (null === $entity->getScriptoItem()) {
             $errorStore->addError('o-module-scripto:item', 'A Scripto item must not be null.'); // @translate
         }
         if (null === $entity->getMedia()) {
             $errorStore->addError('o:media', 'A media must not be null.'); // @translate
+        }
+        if (null !== $entity->getCompletedRevision()) {
+            try {
+                $client->queryRevision($entity->getMediawikiPageTitle(), $entity->getCompletedRevision());
+            } catch (MediaWikiException\QueryException $e) {
+                $errorStore->addError('o-module-scripto:completed_revision', 'Invalid completed revision ID.'); // @translate
+            }
+        }
+        if (null !== $entity->getApprovedRevision()) {
+            try {
+                $client->queryRevision($entity->getMediawikiPageTitle(), $entity->getApprovedRevision());
+            } catch (MediaWikiException\QueryException $e) {
+                $errorStore->addError('o-module-scripto:approved_revision', 'Invalid approved revision ID.'); // @translate
+            }
         }
     }
 
