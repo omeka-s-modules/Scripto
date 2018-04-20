@@ -27,9 +27,9 @@ abstract class ScriptoJob extends AbstractJob
     }
 
     /**
-     * Unimport project text.
+     * Unimport project content.
      *
-     * Deletes all text that was previously imported to the items in the Scripto
+     * Deletes all content that was previously imported to the items in the Scripto
      * project matching the project's property and language.
      *
      * @param ScriptoProject $project
@@ -57,6 +57,5 @@ abstract class ScriptoJob extends AbstractJob
         // Set the project as not imported.
         $project->setImported(null);
         $em->flush();
-
     }
 }

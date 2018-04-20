@@ -7,7 +7,7 @@ use Omeka\Job\Exception;
 use Scripto\Entity\ScriptoProject;
 
 /**
- * Import project text from MediaWiki to Omeka items.
+ * Import project content from MediaWiki to Omeka items.
  */
 class ImportProject extends ScriptoJob
 {
@@ -19,7 +19,7 @@ class ImportProject extends ScriptoJob
     }
 
     /**
-     * Import project text from MediaWiki to Omeka items.
+     * Import project content from MediaWiki to Omeka items.
      *
      * @param ScriptoProject $project
      */
@@ -32,7 +32,7 @@ class ImportProject extends ScriptoJob
         $em = $this->getServiceLocator()->get('Omeka\EntityManager');
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
 
-        // First, unimport all project texts.
+        // First, unimport all project contents.
         $this->unimportProject($project);
 
         // Iterate all project items.
@@ -49,23 +49,27 @@ class ImportProject extends ScriptoJob
                 $sItem = $em->getReference('Scripto\Entity\ScriptoItem', $sItemId);
 
                 // Iterate all item media.
-                $mediaText = [];
+                $mediaContent = [];
                 foreach ($sItem->getScriptoMedia() as $sMedia) {
-                    // Only import text if the media has been approved.
+                    // Only import content if the media has been approved.
                     if ($sMedia->getApproved()) {
-                        $mediaText[] = $client->parsePage($sMedia->getMediawikiPageTitle());
+                        $mediaContent[] = $sMedia->getApprovedRevision()
+                            // Get content from the specified revision.
+                            ? $client->parseRevision($sMedia->getApprovedRevision())
+                            // Get content from the latest revision.
+                            : $client->parsePage($sMedia->getMediawikiPageTitle());
                     }
                 }
-                if ($mediaText) {
-                    // Remove uncreated pages and strip HTML from text.
-                    $itemText = strip_tags(implode(' ', array_filter($mediaText)));
+                if ($mediaContent) {
+                    // Remove uncreated pages and strip HTML from content.
+                    $itemContent = strip_tags(implode(' ', array_filter($mediaContent)));
 
                     // Build a new value.
                     $value = new Value;
                     $value->setResource($sItem->getItem());
                     $value->setProperty($property);
                     $value->setType('literal');
-                    $value->setValue($itemText);
+                    $value->setValue($itemContent);
                     $value->setLang($project->getLang());
 
                     $em->persist($value);
