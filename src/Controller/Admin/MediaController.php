@@ -152,10 +152,12 @@ class MediaController extends AbstractActionController
                     $data['o-module-scripto:is_approved'] = false;
                 }
                 $response = $this->api($mediaForm)->update('scripto_media', $sMedia->id(), $data);
-
-                $this->messenger()->addSuccess('Scripto media successfully updated.'); // @translate
+                if ($response) {
+                    $this->messenger()->addSuccess('Scripto media successfully updated.'); // @translate
+                } else {
+                    $this->messenger()->addFormErrors($mediaForm);
+                }
                 return $this->redirect()->toRoute(null, [], true);
-
             } else {
                 $this->messenger()->addFormErrors($mediaForm);
             }
