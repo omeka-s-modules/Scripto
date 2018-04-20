@@ -159,11 +159,30 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
         return $this->getAdapter('users')->getRepresentation($this->resource->getApprovedBy());
     }
 
+    /**
+     * Get the approved revision.
+     *
+     * Returns false if this media is marked as not approved. Returns the
+     * revision ID if set. Returns the latest revision ID if the revision ID is
+     * not set. Returns null if the page is not created (no revisions).
+     *
+     * @return int|null|false
+     */
     public function approvedRevision()
     {
-        return $this->resource->getApprovedRevision();
+        if (!$this->approved()) {
+            return false;
+        }
+        $revisionId = $this->resource->getApprovedRevision();
+        if ($revisionId) {
+            return $revisionId;
+        }
+        $latestRevision = $this->pageLatestRevision();
+        if ($latestRevision) {
+            return $latestRevision['revid'];
+        }
+        return null;
     }
-
     /**
      * Get the previous Scripto media.
      *
