@@ -102,7 +102,11 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto dashboard');
         <?php endforeach; ?>
         </ul>
         <?php else: ?>
+        <?php if ($this->scripto()->apiClient()->userIsLoggedIn()): ?>
+        <p><?php echo $this->translate('No contributions found.'); ?></p>
+        <?php else: ?>
         <p><?php echo $this->translate('No contributions found. Do you need to log in to Scripto?'); ?></p>
+        <?php endif; ?>
         <?php endif; ?>
     </div>
 
@@ -164,7 +168,11 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto dashboard');
         <?php endforeach; ?>
         </ul>
         <?php else: ?>
+        <?php if ($this->scripto()->apiClient()->userIsLoggedIn()): ?>
+        <p><?php echo $this->translate('No watchlist found.'); ?></p>
+        <?php else: ?>
         <p><?php echo $this->translate('No watchlist found. Do you need to log in to Scripto?'); ?></p>
+        <?php endif; ?>
         <?php endif; ?>
     </div>
 
