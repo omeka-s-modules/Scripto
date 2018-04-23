@@ -51,9 +51,12 @@ class ModuleConfigForm extends Form
                     'name' => 'Callback',
                     'options' => [
                         'messages' => [
-                            Callback::INVALID_VALUE => 'The provided MediaWiki API URL is not valid.', // @translate
+                            Callback::INVALID_VALUE => sprintf(
+                                'Invalid MediaWiki API. The URL must resolve to a MediaWiki API endpoint and the MediaWiki version must be %s or greater.', // @translate
+                                ApiClient::MINIMUM_VERSION
+                            )
                         ],
-                        'callback' => [$this, 'apiUrlIsValid']
+                        'callback' => [$this, 'apiIsValid']
                     ],
                 ],
             ],
@@ -61,20 +64,29 @@ class ModuleConfigForm extends Form
     }
 
     /**
-     * Is the MediaWiki API URL valid?
+     * Is the MediaWiki API valid?
      *
      * @param string $apiUrl
      * @param array $context
      * @return bool
      */
-    public function apiUrlIsValid($apiUrl, $context)
+    public function apiIsValid($apiUrl, $context)
     {
         try {
             $client = new ApiClient($this->httpClient, $apiUrl, $this->timeZone);
         } catch (\Exception $e) {
+            // Not a resolvable URL
             return false;
         }
-        return is_array($client->getSiteInfo());
+        if (!is_array($client->getSiteInfo())) {
+            // Not a MediaWiki API endpoint
+            return false;
+        }
+        if (version_compare($client->getVersion(), ApiClient::MINIMUM_VERSION, '<')) {
+            // The MediaWiki version is invalid
+            return false;
+        }
+        return true;
     }
 
     /**

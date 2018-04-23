@@ -14,6 +14,11 @@ use Zend\Session\Container;
 class ApiClient
 {
     /**
+     * The MediaWiki minimum version.
+     */
+    const MINIMUM_VERSION = '1.30.0';
+
+    /**
      * @var HttpClient
      */
     protected $httpClient;
@@ -831,6 +836,18 @@ class ApiClient
     public function getSiteInfo()
     {
         return $this->siteInfo;
+    }
+
+    /**
+     * Get the MediaWiki version.
+     *
+     * @return string
+     */
+    public function getVersion()
+    {
+        $generator = $this->getSiteInfo()['generator'];
+        preg_match('/^mediawiki (\d\.\d+\.\d+)/i', $generator, $matches);
+        return $matches ? $matches[1] : false;
     }
 
     /**
