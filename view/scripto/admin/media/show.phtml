@@ -196,9 +196,8 @@ $next = $sMedia->nextScriptoMedia();
         <!-- marked as complete + page is created + this is not completed revision -->
         <div class="field">
             <?php echo sprintf(
-                $this->translate('Another revision marked as complete. (%s | %s)'),
-                $this->hyperlink($this->translate('rev'), $this->url(null, ['revision-id' => $sMedia->completedRevision()], true)),
-                $this->hyperlink($this->translate('diff'), $this->url('admin/scripto-revision-compare', ['action' => null, 'from-revision-id' => $sMedia->completedRevision(), 'to-revision-id' => $revision['revid']], true))
+                $this->translate('Another revision marked as complete. [%s]'),
+                $this->hyperlink($this->translate('view revision'), $this->url(null, ['revision-id' => $sMedia->completedRevision()], true))
             ); ?>
             <?php echo $this->formSelect($mediaForm->get('complete_action')); ?>
         </div>
@@ -243,10 +242,8 @@ $next = $sMedia->nextScriptoMedia();
         <!-- marked as approved + page is created + this is not approved revision -->
         <div class="field">
             <?php echo sprintf(
-                $this->translate('Another revision marked as approved. (%s | %s)'),
-                $this->hyperlink($this->translate('rev'), $this->url(null, ['revision-id' => $sMedia->approvedRevision()], true)),
-                $this->hyperlink($this->translate('diff'), $this->url('admin/scripto-revision-compare', ['action' => null, 'from-revision-id' => $sMedia->approvedRevision(), 'to-revision-id' => $revision['revid']], true))
-
+                $this->translate('Another revision marked as approved. [%s]'),
+                $this->hyperlink($this->translate('view revision'), $this->url(null, ['revision-id' => $sMedia->approvedRevision()], true))
             ); ?>
             <?php echo $this->formSelect($mediaForm->get('approved_action')); ?>
         </div>
