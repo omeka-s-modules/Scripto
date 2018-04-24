@@ -195,12 +195,13 @@ return [
                     'scripto-media-id' =>  [
                         'type' => 'Segment',
                         'options' => [
-                            'route' => '/scripto/:project-id/:item-id/:media-id[/:revision-id]',
+                            'route' => '/scripto/:project-id/:item-id/:media-id[/:revision-id][/:action]',
                             'constraints' => [
                                 'project-id' => '\d+',
                                 'item-id' => '\d+',
                                 'media-id' => '\d+',
                                 'revision-id' => '\d+',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                             ],
                             'defaults' => [
                                 '__NAMESPACE__' => 'Scripto\Controller\Admin',
