@@ -284,9 +284,19 @@ $next = $sMedia->nextScriptoMedia();
 
 <?php echo $this->form()->closeTag(); ?>
 
+<?php if ($revision): ?>
 <div id="revert-revision" class="sidebar">
     <?php echo $this->hyperlink('', '#', ['class' => 'sidebar-close o-icon-close', 'title' => $this->translate('Close')]); ?>
     <h3><?php echo $this->translate('Revert to this revision'); ?></h3>
-    <p class="error"><?php echo $this->translate('Warning: You are reverting to an out-of-date revision. Any changes made since this revision will be lost.'); ?></p>
+    <p><?php echo sprintf(
+        $this->translate('%s: You are reverting to an out-of-date revision. Any changes made since this revision will be lost, including changes that may be constructive. Note that this revert will not affect which revisions are marked as completed or approved.'),
+        sprintf('<span style="color: red;">%s</span>', 'Warning')
+    ); ?></p>
+    <p><?php echo $this->hyperlink(
+        $this->translate('Verify changes before confirming this reversion.'),
+        $this->url('admin/scripto-revision-compare', ['action' => null, 'from-revision-id' => $latestRevision['revid'], 'to-revision-id' => $revision['revid']], true),
+        ['target' => '_blank']
+    ); ?></p>
     <?php echo $this->form($revertForm); ?>
 </div>
+<?php endif; ?>
