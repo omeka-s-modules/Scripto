@@ -61,6 +61,12 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto browse revision no
                     $revision['timestamp']->format('G:i:s, j F Y'),
                     $this->url('admin/scripto-media-id', ['action' => 'show', 'revision-id' => $revision['revid']], true)
                 ); ?>
+                <?php if ($revision['revid'] === $sMedia->completedRevision()): ?>
+                <div style="color: green;">This revision marked as completed.</div>
+                <?php endif; ?>
+                <?php if ($revision['revid'] === $sMedia->approvedRevision()): ?>
+                <div style="color: green;">This revision marked as approved.</div>
+                <?php endif; ?>
             </td>
             <td><?php echo $this->hyperlink($revision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $revision['user']])); ?></td>
             <td><?php
