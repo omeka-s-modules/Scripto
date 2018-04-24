@@ -24,9 +24,22 @@
     vertical-align: top;
 }
 
+.browse .scripto-revisions td .tablesaw-cell-content {
+    flex-wrap: wrap;
+}
+
 .browse .scripto-revisions td:first-child,
 .browse .scripto-revisions th:first-child {
     width: auto;
+}
+
+.browse .scripto-revisions .green {
+    color: green;
+    background-color:#cdffcd;
+    border-radius: 2px;
+    padding: 3px 6px;
+    width: 100%;
+    margin: 6px 0;
 }
 
 .layout {
