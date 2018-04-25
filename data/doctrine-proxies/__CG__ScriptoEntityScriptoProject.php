@@ -64,10 +64,10 @@ class ScriptoProject extends \Scripto\Entity\ScriptoProject implements \Doctrine
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'owner', 'itemSet', 'property', 'lang', 'title', 'description', 'created', 'synced', 'imported'];
+            return ['__isInitialized__', 'id', 'owner', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'created', 'synced', 'imported'];
         }
 
-        return ['__isInitialized__', 'id', 'owner', 'itemSet', 'property', 'lang', 'title', 'description', 'created', 'synced', 'imported'];
+        return ['__isInitialized__', 'id', 'owner', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'created', 'synced', 'imported'];
     }
 
     /**
@@ -274,6 +274,28 @@ class ScriptoProject extends \Scripto\Entity\ScriptoProject implements \Doctrine
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getLang', []);
 
         return parent::getLang();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setImportTarget($importTarget)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setImportTarget', [$importTarget]);
+
+        return parent::setImportTarget($importTarget);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getImportTarget()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getImportTarget', []);
+
+        return parent::getImportTarget();
     }
 
     /**

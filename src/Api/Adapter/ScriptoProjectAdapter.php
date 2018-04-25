@@ -98,6 +98,9 @@ class ScriptoProjectAdapter extends AbstractEntityAdapter
         if ($this->shouldHydrate($request, 'o-module-scripto:description')) {
             $entity->setDescription($request->getValue('o-module-scripto:description'));
         }
+        if ($this->shouldHydrate($request, 'o-module-scripto:import_target')) {
+            $entity->setImportTarget($request->getValue('o-module-scripto:import_target'));
+        }
     }
 
     public function validateEntity(EntityInterface $entity, ErrorStore $errorStore)

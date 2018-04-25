@@ -37,6 +37,7 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
             'o:item_set' => $itemSet ? $itemSet->getReference() : null,
             'o:property' => $property ? $property->getReference() : null,
             'o:lang' => $this->lang(),
+            'o-module-scripto:import_target' => $this->importTarget(),
             'o:created' => $this->getDateTime($this->created()),
             'o-module-scripto:synced' => $synced ? $this->getDateTime($synced) : null,
             'o-module-scripto:imported' => $imported ? $this->getDateTime($imported) : null,
@@ -66,6 +67,11 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
         return $this->resource->getLang();
     }
 
+    public function importTarget()
+    {
+        return $this->resource->getImportTarget();
+    }
+
     public function title()
     {
         return $this->resource->getTitle();
@@ -90,7 +96,6 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
     {
         return $this->resource->getImported();
     }
-
 
     /**
      * Get the number of items in this project.

@@ -55,7 +55,7 @@ class ProjectForm extends Form
             'type' => PropertySelect::class,
             'options' => [
                 'label' => 'Property', // @translate
-                'info' => 'Select the property used to store resource content. Scripto stores content in a wiki before it is imported. Importing will copy content from the wiki into Omeka as values of the selected property.', // @translate
+                'info' => 'Select the property used to store imported resource content. Scripto stores content in a wiki before it is imported. Importing will copy content from the wiki into Omeka as values of the selected property.', // @translate
                 'empty_option' => '',
                 'show_required' => true,
             ],
@@ -71,10 +71,47 @@ class ProjectForm extends Form
             'type' => 'text',
             'options' => [
                 'label' => 'Language tag', // @translate
-                'info' => 'Enter the language of the resource content using an IETF language tag. Note that existing property values using the same language tag will be overwritten during import.', // @translate
+                'info' => 'Enter the language of the resource content using an IETF language tag.', // @translate
             ],
             'attributes' => [
                 'id' => 'o-lang',
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'o-module-scripto:import_target',
+            'type' => 'select',
+            'options' => [
+                'label' => 'Import target', // @translate
+                'info' => 'Select the target resource(s) where imported content will be stored.',
+                'empty_option' => 'Item and media', // @translate
+                'value_options' => [
+                    'item' => 'Item', // @translate
+                    'media' => 'Media', // @translate
+                ],
+            ],
+        ]);
+
+        $inputFilter = $this->getInputFilter();
+        $inputFilter->add([
+            'name' => 'o-module-scripto:description',
+            'required' => false,
+            'filters' => [
+                ['name' => 'toNull'],
+            ],
+        ]);
+        $inputFilter->add([
+            'name' => 'o:lang',
+            'required' => false,
+            'filters' => [
+                ['name' => 'toNull'],
+            ],
+        ]);
+        $inputFilter->add([
+            'name' => 'o-module-scripto:import_target',
+            'allow_empty' => true,
+            'filters' => [
+                ['name' => 'toNull'],
             ],
         ]);
     }

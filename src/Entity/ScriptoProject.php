@@ -61,6 +61,11 @@ class ScriptoProject extends AbstractEntity
     protected $lang;
 
     /**
+     * @Column(nullable=true)
+     */
+    protected $importTarget;
+
+    /**
      * @Column
      */
     protected $title;
@@ -128,6 +133,16 @@ class ScriptoProject extends AbstractEntity
     public function getLang()
     {
         return $this->lang;
+    }
+
+    public function setImportTarget($importTarget)
+    {
+        $this->importTarget = $importTarget;
+    }
+
+    public function getImportTarget()
+    {
+        return $this->importTarget;
     }
 
     public function setTitle($title)
