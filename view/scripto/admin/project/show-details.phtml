@@ -23,6 +23,18 @@
     <div class="value"><?php echo $this->escapeHtml($project->lang()); ?></div>
 </div>
 <div class="meta-group">
+    <h4><?php echo $this->translate('Import target'); ?></h4>
+    <div class="value">
+        <?php if ('media' === $project->importTarget()): ?>
+        <?php echo $this->translate('Media'); ?>
+        <?php elseif ('item' === $project->importTarget()): ?>
+        <?php echo $this->translate('Item'); ?>
+        <?php else: ?>
+        <?php echo $this->translate('Item and media'); ?>
+        <?php endif; ?>
+    </div>
+</div>
+<div class="meta-group">
     <h4><?php echo $this->translate('Owner'); ?></h4>
     <?php $owner = $project->owner(); ?>
     <div class="value"><?php echo $owner ? $owner->link($owner->name()) : $this->translate('No owner'); ?></div>
