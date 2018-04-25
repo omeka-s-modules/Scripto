@@ -151,8 +151,8 @@ $next = $sMedia->nextScriptoMedia();
                 <?php echo sprintf(
                     $this->translate('%s: %s by %s'),
                     ($latestRevision && ($latestRevision['revid'] === $revision['revid']))
-                        ? sprintf('<span style="color: green;">%s</span>', $this->translate('Latest'))
-                        : sprintf('<span style="color: red;">%s</span>', $this->translate('Out-of-date')),
+                        ? sprintf('<span class="green">%s</span>', $this->translate('Latest'))
+                        : sprintf('<span class="red">%s</span>', $this->translate('Out-of-date')),
                     $revision['timestamp']->format('G:i, j F Y'),
                     $this->hyperlink($revision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $revision['user']]))
                 ); ?>
@@ -177,7 +177,7 @@ $next = $sMedia->nextScriptoMedia();
         <div>
             <?php echo sprintf(
                 $this->translate('%s: %s by %s'),
-                sprintf('<span style="color: green;">%s</span>', $this->translate('Completed')),
+                sprintf('<span class="green">%s</span>', $this->translate('Completed')),
                 $sMedia->completed()->format('G:i, j F Y'),
                 null === $sMedia->completedBy()
                     ? $this->translate('[Unknown]')
@@ -212,7 +212,7 @@ $next = $sMedia->nextScriptoMedia();
         <?php else: ?>
         <!-- marked as not complete -->
         <div class="field">
-            <span style="color: red;"><?php echo $this->translate('Not completed'); ?></span>
+            <span class="red"><?php echo $this->translate('Not completed'); ?></span>
             <label for="toggle_complete"><?php echo $revision
                 ? $this->translate('Mark this revision as complete')
                 : $this->translate('Mark media as complete'); ?></label>
@@ -223,7 +223,7 @@ $next = $sMedia->nextScriptoMedia();
         <div>
             <?php echo sprintf(
                 $this->translate('%s: %s by %s'),
-                sprintf('<span style="color: green;">%s</span>', $this->translate('Approved')),
+                sprintf('<span class="green">%s</span>', $this->translate('Approved')),
                 $sMedia->approved()->format('G:i, j F Y'),
                 null === $sMedia->approvedBy()
                     ? $this->translate('[Unknown]')
@@ -258,7 +258,7 @@ $next = $sMedia->nextScriptoMedia();
         <?php else: ?>
         <!-- marked as not approved -->
         <div class="field">
-            <span style="color: red;"><?php echo $this->translate('Not approved'); ?></span>
+            <span class="red"><?php echo $this->translate('Not approved'); ?></span>
             <label for="toggle_approved"><?php echo $revision
                 ? $this->translate('Mark this revision as approved')
                 : $this->translate('Mark media as approved'); ?></label>
@@ -290,7 +290,7 @@ $next = $sMedia->nextScriptoMedia();
     <h3><?php echo $this->translate('Revert to this revision'); ?></h3>
     <p><?php echo sprintf(
         $this->translate('%s: You are reverting to an out-of-date revision. Any changes made since this revision will be lost, including changes that may be constructive. Note that this revert will not affect which revisions are marked as completed or approved.'),
-        sprintf('<span style="color: red;">%s</span>', 'Warning')
+        sprintf('<span class="red">%s</span>', 'Warning')
     ); ?></p>
     <p><?php echo $this->hyperlink(
         $this->translate('Verify changes before confirming this reversion.'),

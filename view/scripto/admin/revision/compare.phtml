@@ -55,18 +55,18 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto revision compare n
         <tr>
             <th colspan="2">
                 <?php if ($fromRevision['revid'] === $sMedia->completedRevision()): ?>
-                <div style="color: green;">This revision marked as completed.</div>
+                <div class="green">This revision marked as completed.</div>
                 <?php endif; ?>
                 <?php if ($fromRevision['revid'] === $sMedia->approvedRevision()): ?>
-                <div style="color: green;">This revision marked as approved.</div>
+                <div class="green">This revision marked as approved.</div>
                 <?php endif; ?>
             </th>
             <th colspan="2">
                 <?php if ($toRevision['revid'] === $sMedia->completedRevision()): ?>
-                <div style="color: green;">This revision marked as completed.</div>
+                <div class="green">This revision marked as completed.</div>
                 <?php endif; ?>
                 <?php if ($toRevision['revid'] === $sMedia->approvedRevision()): ?>
-                <div style="color: green;">This revision marked as approved.</div>
+                <div class="green">This revision marked as approved.</div>
                 <?php endif; ?>
             </th>
         </tr>
