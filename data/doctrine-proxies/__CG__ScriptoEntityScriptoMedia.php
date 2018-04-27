@@ -64,10 +64,10 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'position', 'synced', 'edited', 'editedBy', 'completed', 'completedBy', 'completedRevision', 'approved', 'approvedBy', 'approvedRevision', 'parsedContent', 'content'];
+            return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'position', 'synced', 'edited', 'editedBy', 'completed', 'completedBy', 'completedRevision', 'approved', 'approvedBy', 'approvedRevision', 'importedContent', 'content'];
         }
 
-        return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'position', 'synced', 'edited', 'editedBy', 'completed', 'completedBy', 'completedRevision', 'approved', 'approvedBy', 'approvedRevision', 'parsedContent', 'content'];
+        return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'position', 'synced', 'edited', 'editedBy', 'completed', 'completedBy', 'completedRevision', 'approved', 'approvedBy', 'approvedRevision', 'importedContent', 'content'];
     }
 
     /**
@@ -455,23 +455,23 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
     /**
      * {@inheritDoc}
      */
-    public function setParsedContent($parsedContent)
+    public function setImportedContent($importedContent)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setParsedContent', [$parsedContent]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setImportedContent', [$importedContent]);
 
-        return parent::setParsedContent($parsedContent);
+        return parent::setImportedContent($importedContent);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getParsedContent()
+    public function getImportedContent()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getParsedContent', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getImportedContent', []);
 
-        return parent::getParsedContent();
+        return parent::getImportedContent();
     }
 
     /**

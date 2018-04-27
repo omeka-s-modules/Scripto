@@ -110,7 +110,7 @@ class ScriptoMedia extends AbstractEntity
     /**
      * @Column(type="text", nullable=true)
      */
-    protected $parsedContent;
+    protected $importedContent;
 
     protected $content;
 
@@ -239,14 +239,14 @@ class ScriptoMedia extends AbstractEntity
         return $this->approvedRevision;
     }
 
-    public function setParsedContent($parsedContent)
+    public function setImportedContent($importedContent)
     {
-        $this->parsedContent = $parsedContent;
+        $this->importedContent = $importedContent;
     }
 
-    public function getParsedContent()
+    public function getImportedContent()
     {
-        return $this->parsedContent;
+        return $this->importedContent;
     }
 
    /**

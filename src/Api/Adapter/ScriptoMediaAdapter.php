@@ -97,6 +97,9 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
             $qb->innerJoin('Scripto\Entity\ScriptoItem.scriptoProject', $aliasProject);
             $qb->andWhere($qb->expr()->gt('Scripto\Entity\ScriptoMedia.synced', "$aliasProject.imported"));
         }
+        if (isset($query['has_imported_content'])) {
+            $qb->andWhere($qb->expr()->isNotNull('Scripto\Entity\ScriptoMedia.importedContent'));
+        }
     }
 
     public function validateRequest(Request $request, ErrorStore $errorStore)

@@ -81,7 +81,7 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
             'o-module-scripto:approved' => $approved ? $this->getDateTime($approved) : null,
             'o-module-scripto:approved_by' => $approvedBy ? $approvedBy->getReference() : null,
             'o-module-scripto:approved_revision' => $this->approvedRevision(),
-            'o-module-scripto:parsed_content' => $this->parsedContent(),
+            'o-module-scripto:imported_content' => $this->importedContent(),
         ];
     }
 
@@ -185,9 +185,9 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
         return null;
     }
 
-    public function parsedContent()
+    public function importedContent()
     {
-        return $this->resource->getParsedContent();
+        return $this->resource->getImportedContent();
     }
 
     /**
