@@ -113,13 +113,23 @@ SET FOREIGN_KEY_CHECKS=1;
         $sharedEventManager->attach(
             '*',
             'sql_filter.resource_visibility',
+            // Users can view Scripto items and Scripto media only if they have
+            // permission to view the related Omeka item or Omeka media.
             function (Event $event) {
-                // Users can view Scripto items and Scripto media only if they
-                // have permission to view the related Omeka item or Omeka media.
                 $relatedEntities = $event->getParam('relatedEntities');
                 $relatedEntities['Scripto\Entity\ScriptoItem'] = 'item_id';
                 $relatedEntities['Scripto\Entity\ScriptoMedia'] = 'media_id';
                 $event->setParam('relatedEntities', $relatedEntities);
+            }
+        );
+        $sharedEventManager->attach(
+            '*',
+            'api.context',
+            // Add the Scripto term definition.
+            function (Event $event) {
+                $context = $event->getParam('context');
+                $context['o-module-scripto'] = 'http://omeka.org/s/vocabs/module/scripto#';
+                $event->setParam('context', $context);
             }
         );
         $sharedEventManager->attach(
