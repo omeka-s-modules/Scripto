@@ -81,6 +81,7 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
             'o-module-scripto:approved' => $approved ? $this->getDateTime($approved) : null,
             'o-module-scripto:approved_by' => $approvedBy ? $approvedBy->getReference() : null,
             'o-module-scripto:approved_revision' => $this->approvedRevision(),
+            'o-module-scripto:parsed_content' => $this->parsedContent(),
         ];
     }
 
@@ -183,6 +184,12 @@ class ScriptoMediaRepresentation extends AbstractResourceRepresentation
         }
         return null;
     }
+
+    public function parsedContent()
+    {
+        return $this->resource->getParsedContent();
+    }
+
     /**
      * Get the previous Scripto media.
      *

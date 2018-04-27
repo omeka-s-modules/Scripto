@@ -49,9 +49,6 @@ abstract class ScriptoJob extends AbstractJob
     /**
      * Unimport project content.
      *
-     * Deletes all content that was previously imported to the items in the Scripto
-     * project matching the project's property and language.
-     *
      * @param ScriptoProject $project
      */
     public function unimportProject(ScriptoProject $project)
@@ -62,21 +59,35 @@ abstract class ScriptoJob extends AbstractJob
 
         $em = $this->getServiceLocator()->get('Omeka\EntityManager');
         $itemIds = $this->getProjectItemIds($project);
+        $mediaIds = $this->getProjectMediaIds($project);
 
         // Get resource IDs depending on the project's import target.
-        if ('item' === $project->getImportTarget()) {
-            $resourceIds = $this->getProjectItemIds($project);
-        } elseif ('media' === $project->getImportTarget()) {
-            $resourceIds = $this->getProjectMediaIds($project);
-        } else {
-            $resourceIds = array_merge(
-                $this->getProjectItemIds($project),
-                $this->getProjectMediaIds($project)
-            );
+        switch ($project->getImportTarget()) {
+            case 'item':
+                $resourceIds = $itemIds;
+                break;
+            case 'media':
+                $resourceIds = $mediaIds;
+                break;
+            default:
+                $resourceIds = array_merge($itemIds, $mediaIds);
         }
 
-        // Prevent slow execution by deleting in chunks.
-        foreach (array_chunk($resourceIds, 100, true) as $resourceIdsChunk) {
+        // Delete all the project's Scripto media HTML. Prevent slow execution
+        // by deleting in chunks.
+        $sMediaIds = array_keys($mediaIds);
+        foreach (array_chunk($sMediaIds, 100) as $sMediaIdsChunk) {
+            $qb = $em->createQueryBuilder();
+            $qb->update('Scripto\Entity\ScriptoMedia', 'sm')
+                ->set('sm.parsedContent', ':null')
+                ->andWhere($qb->expr()->in('sm.id', $sMediaIdsChunk))
+                ->setParameter('null', null)
+                ->getQuery()->execute();
+        }
+
+        // Delete all resource values that match the project's property and
+        // language. Prevent slow execution by deleting in chunks.
+        foreach (array_chunk($resourceIds, 100) as $resourceIdsChunk) {
             $qb = $em->createQueryBuilder();
             $qb->delete('Omeka\Entity\Value', 'v')
                 ->andWhere($qb->expr()->in('v.resource', $resourceIdsChunk))

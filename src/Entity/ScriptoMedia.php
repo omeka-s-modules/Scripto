@@ -107,6 +107,11 @@ class ScriptoMedia extends AbstractEntity
      */
     protected $approvedRevision;
 
+    /**
+     * @Column(type="text", nullable=true)
+     */
+    protected $parsedContent;
+
     protected $content;
 
     public function getId()
@@ -234,11 +239,22 @@ class ScriptoMedia extends AbstractEntity
         return $this->approvedRevision;
     }
 
+    public function setParsedContent($parsedContent)
+    {
+        $this->parsedContent = $parsedContent;
+    }
+
+    public function getParsedContent()
+    {
+        return $this->parsedContent;
+    }
+
    /**
      * Set Scripto media content (transcription, translation, etc.).
      *
-     * Note that content is stored in MediaWiki, not Omeka. We use this setter
-     * to store content until persisting it using the MediaWiki API client.
+     * Note that content is stored as wikitext in MediaWiki, not Omeka. We use
+     * this setter to store content until persisting it using the MediaWiki API
+     * client.
      *
      * @param string $content
      */

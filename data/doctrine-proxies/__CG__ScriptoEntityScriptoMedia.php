@@ -64,10 +64,10 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'position', 'synced', 'edited', 'editedBy', 'completed', 'completedBy', 'completedRevision', 'approved', 'approvedBy', 'approvedRevision', 'content'];
+            return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'position', 'synced', 'edited', 'editedBy', 'completed', 'completedBy', 'completedRevision', 'approved', 'approvedBy', 'approvedRevision', 'parsedContent', 'content'];
         }
 
-        return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'position', 'synced', 'edited', 'editedBy', 'completed', 'completedBy', 'completedRevision', 'approved', 'approvedBy', 'approvedRevision', 'content'];
+        return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'position', 'synced', 'edited', 'editedBy', 'completed', 'completedBy', 'completedRevision', 'approved', 'approvedBy', 'approvedRevision', 'parsedContent', 'content'];
     }
 
     /**
@@ -450,6 +450,28 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getApprovedRevision', []);
 
         return parent::getApprovedRevision();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setParsedContent($parsedContent)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setParsedContent', [$parsedContent]);
+
+        return parent::setParsedContent($parsedContent);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getParsedContent()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getParsedContent', []);
+
+        return parent::getParsedContent();
     }
 
     /**
