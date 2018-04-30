@@ -15,7 +15,7 @@ class RevisionController extends AbstractActionController
             $this->params('media-id')
         );
         if (!$sMedia) {
-            return $this->redirect()->toRoute('admin/scripto-project');
+            return $this->redirect()->toRoute('admin/scripto');
         }
 
         $sItem = $sMedia->scriptoItem();
@@ -42,7 +42,7 @@ class RevisionController extends AbstractActionController
             $this->params('media-id')
         );
         if (!$sMedia) {
-            return $this->redirect()->toRoute('admin/scripto-project');
+            return $this->redirect()->toRoute('admin/scripto');
         }
 
         $view = new ViewModel;

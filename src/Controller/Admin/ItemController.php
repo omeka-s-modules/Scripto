@@ -13,6 +13,9 @@ class ItemController extends AbstractActionController
     public function browseAction()
     {
         $project = $this->scripto()->getRepresentation($this->params('project-id'));
+        if (!$project) {
+            return $this->redirect()->toRoute('admin/scripto');
+        }
 
         $this->setBrowseDefaults('synced');
         $query = array_merge(

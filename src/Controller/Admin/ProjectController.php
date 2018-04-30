@@ -44,6 +44,9 @@ class ProjectController extends AbstractActionController
     {
         $form = $this->getForm(ProjectForm::class);
         $project = $this->scripto()->getRepresentation($this->params('project-id'));
+        if (!$project) {
+            return $this->redirect()->toRoute('admin/scripto');
+        }
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->params()->fromPost());
@@ -104,6 +107,9 @@ class ProjectController extends AbstractActionController
     public function showDetailsAction()
     {
         $project = $this->scripto()->getRepresentation($this->params('project-id'));
+        if (!$project) {
+            exit;
+        }
 
         $view = new ViewModel;
         $view->setTerminal(true);

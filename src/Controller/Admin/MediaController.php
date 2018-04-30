@@ -17,7 +17,7 @@ class MediaController extends AbstractActionController
             $this->params('item-id')
         );
         if (!$sItem) {
-            return $this->redirect()->toRoute('admin/scripto-project');
+            return $this->redirect()->toRoute('admin/scripto');
         }
 
         $this->setBrowseDefaults('position', 'asc');
@@ -67,14 +67,14 @@ class MediaController extends AbstractActionController
             $this->params('media-id')
         );
         if (!$sMedia) {
-            return $this->redirect()->toRoute('admin/scripto-project');
+            return $this->redirect()->toRoute('admin/scripto');
         }
 
         try {
             $revision = $sMedia->pageRevision($this->params('revision-id'));
         } catch (QueryException $e) {
             // Invalid revision ID
-            return $this->redirect()->toRoute('admin/scripto-project');
+            return $this->redirect()->toRoute('admin/scripto');
         }
 
         $revertForm = $this->getForm(RevisionRevertForm::class);
@@ -204,7 +204,7 @@ class MediaController extends AbstractActionController
             $this->params('item-id')
         );
         if (!$sItem) {
-            return $this->redirect()->toRoute('admin/scripto-project');
+            return $this->redirect()->toRoute('admin/scripto');
         }
 
         $sMediaIds = $this->params()->fromPost('resource_ids', []);
@@ -289,7 +289,7 @@ class MediaController extends AbstractActionController
             $this->params('item-id')
         );
         if (!$sItem) {
-            return $this->redirect()->toRoute('admin/scripto-project');
+            return $this->redirect()->toRoute('admin/scripto');
         }
 
         // Note that we synchronously process a batch-edit with the request
