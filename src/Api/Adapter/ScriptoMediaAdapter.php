@@ -100,6 +100,19 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
         if (isset($query['has_imported_content'])) {
             $qb->andWhere($qb->expr()->isNotNull('Scripto\Entity\ScriptoMedia.importedContent'));
         }
+        if (isset($query['search'])) {
+            // Filter by search query. Equivalent to property=null, type=in.
+            $value = $query['search'];
+            $mediaAlias = $this->createAlias();
+            $valueAlias = $this->createAlias();
+            $param = $this->createNamedParameter($qb, "%$value%");
+            $qb->leftJoin('Scripto\Entity\ScriptoMedia.media', $mediaAlias)
+                ->leftJoin("$mediaAlias.values", $valueAlias)
+                ->andWhere($qb->expr()->orX(
+                    $qb->expr()->like("$valueAlias.value", $param),
+                    $qb->expr()->like("$valueAlias.uri", $param)
+                ));
+        }
     }
 
     public function validateRequest(Request $request, ErrorStore $errorStore)

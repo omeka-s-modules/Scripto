@@ -97,6 +97,20 @@ class ScriptoItemAdapter extends AbstractEntityAdapter
             $qb->innerJoin('Scripto\Entity\ScriptoItem.scriptoProject', $alias);
             $qb->andWhere($qb->expr()->gt('Scripto\Entity\ScriptoItem.edited', "$alias.imported"));
         }
+
+        if (isset($query['search'])) {
+            // Filter by search query. Equivalent to property=null, type=in.
+            $value = $query['search'];
+            $itemAlias = $this->createAlias();
+            $valueAlias = $this->createAlias();
+            $param = $this->createNamedParameter($qb, "%$value%");
+            $qb->leftJoin('Scripto\Entity\ScriptoItem.item', $itemAlias)
+                ->leftJoin("$itemAlias.values", $valueAlias)
+                ->andWhere($qb->expr()->orX(
+                    $qb->expr()->like("$valueAlias.value", $param),
+                    $qb->expr()->like("$valueAlias.uri", $param)
+                ));
+        }
     }
 
     public function validateRequest(Request $request, ErrorStore $errorStore)
