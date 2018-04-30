@@ -203,6 +203,21 @@ class Scripto extends AbstractHelper
     }
 
     /**
+     * Render an admin search box for filtering items and media.
+     *
+     * @return string
+     */
+    public function adminSearchBox()
+    {
+        $view = $this->getView();
+        return sprintf(
+            '<form><input type="text" name="search" value="%s"><button type="submit">%s</button></form>',
+            $view->escapeHtml($view->params()->fromQuery('search')),
+            $view->translate('Search')
+        );
+    }
+
+    /**
      * Get the current URL, including query string.
      *
      * @return string

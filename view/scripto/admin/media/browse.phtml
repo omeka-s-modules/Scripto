@@ -10,6 +10,8 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto item show review m
 
 <?php echo $this->scripto()->adminBreadcrumbs(); ?>
 
+<?php echo $this->scripto()->adminSearchBox(); ?>
+
 <?php echo $this->sectionNav([
     'item-media' => $this->translate('Media'),
     'item-metadata' => $this->translate('Omeka item metadata'),
