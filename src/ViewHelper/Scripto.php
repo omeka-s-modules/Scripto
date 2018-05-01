@@ -211,8 +211,9 @@ class Scripto extends AbstractHelper
     {
         $view = $this->getView();
         return sprintf(
-            '<form><input type="text" name="search" value="%s"><button type="submit">%s</button></form>',
+            '<form id="scripto-search"><input type="text" name="search" value="%s" aria-label="%s"><button type="submit" aria-label="%s" class="o-icon-search"></button></form>',
             $view->escapeHtml($view->params()->fromQuery('search')),
+            $view->translate('Query'),
             $view->translate('Search')
         );
     }

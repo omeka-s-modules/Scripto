@@ -100,11 +100,55 @@
  }
 
 .browse .browse-controls {
-    justify-content: flex-end;
+    justify-content: space-between;
+    width: 100%;
+    clear: both;
+}
+
+.browse .browse-controls > * {
+    width: 50%;
+}
+
+.browse .browse-controls > *:nth-child(2n) {
+    text-align: right;
+}
+
+#scripto-search {
+    order: 1;
+}
+
+#scripto-search input[type="text"] {
+    border-right: 0;
+}
+
+#scripto-search button {
+    border-radius: 0 3px 3px 0;
+    vertical-align: top;
+}
+
+.browse .sorting {
+    order: 2;
+    text-align: right;
 }
 
 .browse nav.pagination {
-    margin-right: auto;
+    display: flex;
+    order: 3;
+}
+
+.project.browse:not(.review) nav.pagination {
+    order: 1;
+}
+
+.browse nav.pagination form, 
+.browse nav.pagination .button, 
+.browse nav.pagination .row-count {
+    float: none;
+}
+
+.browse .filtering {
+    order: 4;
+    margin-left: 0;
 }
 
 .scripto.browse th.comment {
