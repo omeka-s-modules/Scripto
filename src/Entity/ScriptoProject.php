@@ -76,6 +76,11 @@ class ScriptoProject extends AbstractEntity
     protected $description;
 
     /**
+     * @Column(type="text", nullable=true)
+     */
+    protected $guidelines;
+
+    /**
      * @Column(type="datetime")
      */
     protected $created;
@@ -163,6 +168,16 @@ class ScriptoProject extends AbstractEntity
     public function getDescription()
     {
         return $this->description;
+    }
+
+    public function setGuidelines($guidelines)
+    {
+        $this->guidelines = $guidelines;
+    }
+
+    public function getGuidelines()
+    {
+        return $this->guidelines;
     }
 
     public function setCreated(DateTime $dateTime)

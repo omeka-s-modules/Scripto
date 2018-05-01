@@ -64,10 +64,10 @@ class ScriptoProject extends \Scripto\Entity\ScriptoProject implements \Doctrine
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'owner', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'created', 'synced', 'imported'];
+            return ['__isInitialized__', 'id', 'owner', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'guidelines', 'created', 'synced', 'imported'];
         }
 
-        return ['__isInitialized__', 'id', 'owner', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'created', 'synced', 'imported'];
+        return ['__isInitialized__', 'id', 'owner', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'guidelines', 'created', 'synced', 'imported'];
     }
 
     /**
@@ -340,6 +340,28 @@ class ScriptoProject extends \Scripto\Entity\ScriptoProject implements \Doctrine
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDescription', []);
 
         return parent::getDescription();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setGuidelines($guidelines)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setGuidelines', [$guidelines]);
+
+        return parent::setGuidelines($guidelines);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getGuidelines()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getGuidelines', []);
+
+        return parent::getGuidelines();
     }
 
     /**

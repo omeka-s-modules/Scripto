@@ -33,6 +33,7 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
         return [
             'o-module-scripto:title' => $this->title(),
             'o-module-scripto:description' => $this->description(),
+            'o-module-scripto:guidelines' => $this->guidelines(),
             'o:owner' => $owner ? $owner->getReference() : null,
             'o:item_set' => $itemSet ? $itemSet->getReference() : null,
             'o:property' => $property ? $property->getReference() : null,
@@ -80,6 +81,11 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
     public function description()
     {
         return $this->resource->getDescription();
+    }
+
+    public function guidelines()
+    {
+        return $this->resource->getGuidelines();
     }
 
     public function created()

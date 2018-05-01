@@ -35,6 +35,18 @@ class ProjectForm extends Form
         ]);
 
         $this->add([
+            'name' => 'o-module-scripto:guidelines',
+            'type' => 'textarea',
+            'options' => [
+                'label' => 'Guidelines', // @translate
+                'info' => 'Enter guidelines for producing content for this project.', // @translate
+            ],
+            'attributes' => [
+                'id' => 'o-module-scripto-guidelines',
+            ],
+        ]);
+
+        $this->add([
             'name' => 'o:item_set',
             'type' => ItemSetSelect::class,
             'options' => [
@@ -95,6 +107,13 @@ class ProjectForm extends Form
         $inputFilter = $this->getInputFilter();
         $inputFilter->add([
             'name' => 'o-module-scripto:description',
+            'required' => false,
+            'filters' => [
+                ['name' => 'toNull'],
+            ],
+        ]);
+        $inputFilter->add([
+            'name' => 'o-module-scripto:guidelines',
             'required' => false,
             'filters' => [
                 ['name' => 'toNull'],

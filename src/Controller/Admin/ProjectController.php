@@ -2,6 +2,7 @@
 namespace Scripto\Controller\Admin;
 
 use Omeka\Form\ConfirmForm;
+use Omeka\Stdlib\HtmlPurifier;
 use Omeka\Stdlib\Message;
 use Scripto\Form\ProjectForm;
 use Scripto\Form\ProjectImportForm;
@@ -15,6 +16,16 @@ use Zend\View\Model\ViewModel;
 
 class ProjectController extends AbstractActionController
 {
+    /**
+     * @var HtmlPurifier
+     */
+    protected $htmlPurifier;
+
+    public function __construct(HtmlPurifier $htmlPurifier)
+    {
+        $this->htmlPurifier = $htmlPurifier;
+    }
+
     public function addAction()
     {
         $form = $this->getForm(ProjectForm::class);
@@ -25,6 +36,7 @@ class ProjectController extends AbstractActionController
                 $formData = $form->getData();
                 $formData['o:item_set'] = ['o:id' => $formData['o:item_set']];
                 $formData['o:property'] = ['o:id' => $formData['o:property']];
+                $formData['o-module-scripto:guidelines'] = $this->htmlPurifier->purify($formData['o-module-scripto:guidelines']);
                 $response = $this->api($form)->create('scripto_projects', $formData);
                 if ($response) {
                     $this->messenger()->addSuccess('Scripto project successfully created.'); // @translate
@@ -54,6 +66,7 @@ class ProjectController extends AbstractActionController
                 $formData = $form->getData();
                 $formData['o:item_set'] = ['o:id' => $formData['o:item_set']];
                 $formData['o:property'] = ['o:id' => $formData['o:property']];
+                $formData['o-module-scripto:guidelines'] = $this->htmlPurifier->purify($formData['o-module-scripto:guidelines']);
                 $response = $this->api($form)->update('scripto_projects', $this->params('project-id'), $formData);
                 if ($response) {
                     $this->messenger()->addSuccess('Scripto project successfully edited.'); // @translate

@@ -29,13 +29,13 @@ return [
         'invokables' => [
             'Scripto\Controller\Index' => Scripto\Controller\IndexController::class,
             'Scripto\Controller\Admin\User' => Scripto\Controller\Admin\UserController::class,
-            'Scripto\Controller\Admin\Project' => Scripto\Controller\Admin\ProjectController::class,
             'Scripto\Controller\Admin\Item' => Scripto\Controller\Admin\ItemController::class,
             'Scripto\Controller\Admin\Media' => Scripto\Controller\Admin\MediaController::class,
             'Scripto\Controller\Admin\Revision' => Scripto\Controller\Admin\RevisionController::class,
         ],
         'factories' => [
             'Scripto\Controller\Admin\Index' => Scripto\Service\Controller\Admin\IndexControllerFactory::class,
+            'Scripto\Controller\Admin\Project' => Scripto\Service\Controller\Admin\ProjectControllerFactory::class,
         ],
     ],
     'controller_plugins' => [
