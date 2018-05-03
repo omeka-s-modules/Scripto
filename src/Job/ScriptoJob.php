@@ -79,7 +79,7 @@ abstract class ScriptoJob extends AbstractJob
         foreach (array_chunk($sMediaIds, 100) as $sMediaIdsChunk) {
             $qb = $em->createQueryBuilder();
             $qb->update('Scripto\Entity\ScriptoMedia', 'sm')
-                ->set('sm.importedContent', ':null')
+                ->set('sm.importedHtml', ':null')
                 ->andWhere($qb->expr()->in('sm.id', $sMediaIdsChunk))
                 ->setParameter('null', null)
                 ->getQuery()->execute();

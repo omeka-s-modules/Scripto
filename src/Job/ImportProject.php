@@ -73,7 +73,7 @@ class ImportProject extends ScriptoJob
                         continue;
                     }
                     // Set the HTML to the Scripto media.
-                    $sMedia->setImportedContent($mediaHtml);
+                    $sMedia->setImportedHtml($mediaHtml);
                     $itemValue[] = $mediaValue;
                     if ('item' !== $project->getImportTarget()) {
                         // Build a new media value.

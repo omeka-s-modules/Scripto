@@ -110,9 +110,9 @@ class ScriptoMedia extends AbstractEntity
     /**
      * @Column(type="text", nullable=true)
      */
-    protected $importedContent;
+    protected $importedHtml;
 
-    protected $content;
+    protected $wikitext;
 
     public function getId()
     {
@@ -239,18 +239,18 @@ class ScriptoMedia extends AbstractEntity
         return $this->approvedRevision;
     }
 
-    public function setImportedContent($importedContent)
+    public function setImportedHtml($importedHtml)
     {
-        $this->importedContent = $importedContent;
+        $this->importedHtml = $importedHtml;
     }
 
-    public function getImportedContent()
+    public function getImportedHtml()
     {
-        return $this->importedContent;
+        return $this->importedHtml;
     }
 
    /**
-     * Set Scripto media content (transcription, translation, etc.).
+     * Set Scripto media wikitext (transcription, translation, etc.).
      *
      * Note that content is stored as wikitext in MediaWiki, not Omeka. We use
      * this setter to store content until persisting it using the MediaWiki API
@@ -258,19 +258,19 @@ class ScriptoMedia extends AbstractEntity
      *
      * @param string $content
      */
-    public function setContent($content)
+    public function setWikitext($wikitext)
     {
-        $this->content = $content;
+        $this->wikitext = $wikitext;
     }
 
     /**
-     * Get the Scripto media content.
+     * Get the Scripto media wikitext.
      *
      * @return string
      */
-    public function getContent()
+    public function getWikitext()
     {
-        return $this->content;
+        return $this->wikitext;
     }
 
     /**

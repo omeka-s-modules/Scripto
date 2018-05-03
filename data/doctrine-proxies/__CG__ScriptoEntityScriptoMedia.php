@@ -64,10 +64,10 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'position', 'synced', 'edited', 'editedBy', 'completed', 'completedBy', 'completedRevision', 'approved', 'approvedBy', 'approvedRevision', 'importedContent', 'content'];
+            return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'position', 'synced', 'edited', 'editedBy', 'completed', 'completedBy', 'completedRevision', 'approved', 'approvedBy', 'approvedRevision', 'importedHtml', 'wikitext'];
         }
 
-        return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'position', 'synced', 'edited', 'editedBy', 'completed', 'completedBy', 'completedRevision', 'approved', 'approvedBy', 'approvedRevision', 'importedContent', 'content'];
+        return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'position', 'synced', 'edited', 'editedBy', 'completed', 'completedBy', 'completedRevision', 'approved', 'approvedBy', 'approvedRevision', 'importedHtml', 'wikitext'];
     }
 
     /**
@@ -455,45 +455,45 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
     /**
      * {@inheritDoc}
      */
-    public function setImportedContent($importedContent)
+    public function setImportedHtml($importedHtml)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setImportedContent', [$importedContent]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setImportedHtml', [$importedHtml]);
 
-        return parent::setImportedContent($importedContent);
+        return parent::setImportedHtml($importedHtml);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getImportedContent()
+    public function getImportedHtml()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getImportedContent', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getImportedHtml', []);
 
-        return parent::getImportedContent();
+        return parent::getImportedHtml();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setContent($content)
+    public function setWikitext($wikitext)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setContent', [$content]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setWikitext', [$wikitext]);
 
-        return parent::setContent($content);
+        return parent::setWikitext($wikitext);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getContent()
+    public function getWikitext()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getContent', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getWikitext', []);
 
-        return parent::getContent();
+        return parent::getWikitext();
     }
 
     /**

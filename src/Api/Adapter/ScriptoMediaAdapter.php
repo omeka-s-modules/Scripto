@@ -97,8 +97,8 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
             $qb->innerJoin('Scripto\Entity\ScriptoItem.scriptoProject', $aliasProject);
             $qb->andWhere($qb->expr()->gt('Scripto\Entity\ScriptoMedia.synced', "$aliasProject.imported"));
         }
-        if (isset($query['has_imported_content'])) {
-            $qb->andWhere($qb->expr()->isNotNull('Scripto\Entity\ScriptoMedia.importedContent'));
+        if (isset($query['has_imported_html'])) {
+            $qb->andWhere($qb->expr()->isNotNull('Scripto\Entity\ScriptoMedia.importedHtml'));
         }
         if (isset($query['search'])) {
             // Filter by search query. Equivalent to property=null, type=in.
@@ -149,7 +149,7 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
             }
         }
 
-        $entity->setContent($request->getValue('o-module-scripto:content'));
+        $entity->setWikitext($request->getValue('o-module-scripto:wikitext'));
     }
 
     public function validateEntity(EntityInterface $entity, ErrorStore $errorStore)
