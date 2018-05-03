@@ -67,7 +67,7 @@ class ProjectForm extends Form
             'type' => PropertySelect::class,
             'options' => [
                 'label' => 'Property', // @translate
-                'info' => 'Select the property used to store imported resource content. Scripto stores content in a wiki before it is imported. Importing will copy content from the wiki into Omeka as values of the selected property.', // @translate
+                'info' => 'Select the property used to store imported resource content. Scripto stores content in a wiki before it is imported. Importing will copy approved content from the wiki into Omeka as values of the selected property.', // @translate
                 'empty_option' => '',
                 'show_required' => true,
             ],

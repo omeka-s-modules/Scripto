@@ -96,6 +96,9 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto project browse');
 
 <?php else: ?>
 <div class="no-resources">
-    <p><?php echo $this->translate('Omeka could not find any Scripto projects.'); ?></p>
+    <p><?php echo sprintf(
+        $this->translate('No Scripto projects found. %s'),
+        $this->hyperlink($this->translate('Add a new project.'), $this->url('admin/scripto-project', ['action' => 'add']))
+    ); ?></p>
 </div>
 <?php endif; ?>

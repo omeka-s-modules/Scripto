@@ -100,7 +100,11 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto project review ite
 
 <?php else: ?>
 <div class="no-resources">
-    <p><?php echo $this->translate('No Scripto items found. Do you need to sync the project?'); ?></p>
+    <p>
+        <?php echo $this->translate('No Scripto items found. Do you need to sync the project?'); ?>
+        <br>
+        <?php echo $this->translate('If you have recently synced, the sync job has likely not finished.'); ?>
+    </p>
 </div>
 <?php endif; ?>
 
@@ -135,7 +139,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto project review ite
     <?php if (!$project->property()): ?>
     <p class="error"><?php echo $this->translate('This project has no property. Set a property to enable importing.'); ?></p>
     <?php endif; ?>
-    <p><?php echo $this->translate('Import project content from MediaWiki into Omeka. This process will aggregate content from approved Scripto media and save it to their corresponding Omeka resources using the configured import target, property, and language tag.'); ?></p>
+    <p><?php echo $this->translate('Import project content into Omeka. Scripto stores content in a wiki before it is imported. Importing will copy approved content from the wiki into Omeka so that it can be viewed and searched.'); ?></p>
     <p><?php echo sprintf(
         $this->translate('%s: All existing values matching the configured import target, property, and language tag will be overwritten or deleted.'),
         sprintf('<span style="color: red;">%s</span>', 'Warning')
