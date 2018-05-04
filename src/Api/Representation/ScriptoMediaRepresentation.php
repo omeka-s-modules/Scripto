@@ -3,11 +3,11 @@ namespace Scripto\Api\Representation;
 
 use DateTime;
 use Omeka\Api\Adapter\AdapterInterface;
-use Omeka\Api\Representation\AbstractResourceRepresentation;
+use Omeka\Api\Representation\AbstractEntityRepresentation;
 use Scripto\Api\ScriptoMediaResource;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class ScriptoMediaRepresentation extends AbstractResourceRepresentation
+class ScriptoMediaRepresentation extends AbstractEntityRepresentation
 {
     /**
      * Scripto media statuses

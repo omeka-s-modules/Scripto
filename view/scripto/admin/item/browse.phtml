@@ -6,6 +6,9 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto project review ite
 
 <?php echo $this->pageTitle($project->title(), 1, $this->translate(sprintf('Scripto: %s', 'Project')), $this->translate('Review')); ?>
 
+<?php
+if ($project->userIsAllowed('update')):
+?>
 <div id="page-actions">
     <div id="page-action-menu">
         <a href="#" class="expand button" aria-label="<?php echo $this->translate('Expand'); ?>"><?php echo $this->translate('Actions'); ?></a>
@@ -17,6 +20,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto project review ite
         </ul>
     </div>
 </div>
+<?php endif; ?>
 
 <?php echo $this->scripto()->adminLoginBar(); ?>
 

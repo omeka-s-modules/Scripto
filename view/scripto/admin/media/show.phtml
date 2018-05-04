@@ -160,10 +160,12 @@ $next = $sMedia->nextScriptoMedia();
                 <div class="parsed-comment"><?php echo $revision['parsedcomment'] ?></div>
                 <?php endif; ?>
             </div>
+            <?php if ($sMedia->userIsAllowed('update')): ?>
             <?php if ($latestRevision && ($latestRevision['content'] !== $revision['content'])): ?>
             <div class="value">
                 <?php echo $this->hyperlink($this->translate('Revert to this revision.'), '#', ['class' => 'sidebar-content', 'data-sidebar-selector' => '#revert-revision']); ?>
             </div>
+            <?php endif; ?>
             <?php endif; ?>
         <?php else: ?>
             <div class="value"><?php echo $this->translate('There are no revisions.'); ?></div>
@@ -171,6 +173,7 @@ $next = $sMedia->nextScriptoMedia();
     </div>
 
     <!-- Review section -->
+    <?php if ($sMedia->userIsAllowed('update')): ?>
     <div class="meta-group">
         <h3><?php echo $this->translate('Review status'); ?></h3>
         <?php if ($sMedia->completed()): ?>
@@ -266,6 +269,7 @@ $next = $sMedia->nextScriptoMedia();
         </div>
         <?php endif; ?>
     </div>
+    <?php endif; ?>
 
     <?php if ($sMedia->userCan('protect')): ?>
     <!-- Protection section -->

@@ -64,10 +64,10 @@ class ScriptoProject extends \Scripto\Entity\ScriptoProject implements \Doctrine
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'owner', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'guidelines', 'created', 'synced', 'imported'];
+            return ['__isInitialized__', 'id', 'owner', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'guidelines', 'reviewers', 'created', 'synced', 'imported'];
         }
 
-        return ['__isInitialized__', 'id', 'owner', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'guidelines', 'created', 'synced', 'imported'];
+        return ['__isInitialized__', 'id', 'owner', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'guidelines', 'reviewers', 'created', 'synced', 'imported'];
     }
 
     /**
@@ -362,6 +362,28 @@ class ScriptoProject extends \Scripto\Entity\ScriptoProject implements \Doctrine
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getGuidelines', []);
 
         return parent::getGuidelines();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setReviewers($reviewers)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setReviewers', [$reviewers]);
+
+        return parent::setReviewers($reviewers);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getReviewers()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getReviewers', []);
+
+        return parent::getReviewers();
     }
 
     /**

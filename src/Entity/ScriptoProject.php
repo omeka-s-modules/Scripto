@@ -81,6 +81,11 @@ class ScriptoProject extends AbstractEntity
     protected $guidelines;
 
     /**
+     * @Column(type="text", nullable=true)
+     */
+    protected $reviewers;
+
+    /**
      * @Column(type="datetime")
      */
     protected $created;
@@ -178,6 +183,28 @@ class ScriptoProject extends AbstractEntity
     public function getGuidelines()
     {
         return $this->guidelines;
+    }
+
+    public function setReviewers($reviewers)
+    {
+        $this->reviewers = $reviewers;
+    }
+
+    public function getReviewers()
+    {
+        return $this->reviewers;
+    }
+
+    /**
+     * Is an Omeka user a reviewer of this project?
+     *
+     * @param string $email
+     * @return bool
+     */
+    public function isReviewer($email)
+    {
+        $reviewers = explode(PHP_EOL, $this->getReviewers());
+        return in_array($email, $reviewers);
     }
 
     public function setCreated(DateTime $dateTime)

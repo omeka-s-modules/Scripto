@@ -5,6 +5,7 @@ use DateTime;
 use Omeka\Module\AbstractModule;
 use Omeka\Mvc\Exception\RuntimeException as MvcRuntimeException;
 use Scripto\Form\ModuleConfigForm;
+use Scripto\PermissionsAssertion\UserCanReviewAssertion;
 use Zend\EventManager\Event;
 use Zend\EventManager\SharedEventManagerInterface;
 use Zend\Mvc\Controller\AbstractController;
@@ -23,6 +24,12 @@ class Module extends AbstractModule
     {
         parent::onBootstrap($event);
         $this->addAclRules();
+
+        // Set the corresponding visibility rules on Scripto resources.
+        $em = $this->getServiceLocator()->get('Omeka\EntityManager');
+        $filter = $em->getFilters()->getFilter('resource_visibility');
+        $filter->addRelatedEntity('Scripto\Entity\ScriptoItem', 'item_id');
+        $filter->addRelatedEntity('Scripto\Entity\ScriptoMedia', 'media_id');
     }
 
     public function install(ServiceLocatorInterface $services)
@@ -31,7 +38,7 @@ class Module extends AbstractModule
 SET FOREIGN_KEY_CHECKS=0;
 CREATE TABLE scripto_media (id INT AUTO_INCREMENT NOT NULL, scripto_item_id INT NOT NULL, media_id INT NOT NULL, approved_by_id INT DEFAULT NULL, position INT NOT NULL, synced DATETIME NOT NULL, edited DATETIME DEFAULT NULL, edited_by VARCHAR(255) DEFAULT NULL, completed DATETIME DEFAULT NULL, completed_by VARCHAR(255) DEFAULT NULL, completed_revision INT DEFAULT NULL, approved DATETIME DEFAULT NULL, approved_revision INT DEFAULT NULL, imported_html LONGTEXT DEFAULT NULL, INDEX IDX_28ABA038DE42D3B8 (scripto_item_id), INDEX IDX_28ABA038EA9FDD75 (media_id), INDEX IDX_28ABA0382D234F6A (approved_by_id), UNIQUE INDEX UNIQ_28ABA038DE42D3B8EA9FDD75 (scripto_item_id, media_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB;
 CREATE TABLE scripto_item (id INT AUTO_INCREMENT NOT NULL, scripto_project_id INT NOT NULL, item_id INT NOT NULL, synced DATETIME NOT NULL, edited DATETIME DEFAULT NULL, INDEX IDX_2A827D37DC45463D (scripto_project_id), INDEX IDX_2A827D37126F525E (item_id), UNIQUE INDEX UNIQ_2A827D37DC45463D126F525E (scripto_project_id, item_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB;
-CREATE TABLE scripto_project (id INT AUTO_INCREMENT NOT NULL, owner_id INT DEFAULT NULL, item_set_id INT DEFAULT NULL, property_id INT DEFAULT NULL, lang VARCHAR(255) DEFAULT NULL, import_target VARCHAR(255) DEFAULT NULL, title VARCHAR(255) NOT NULL, description LONGTEXT DEFAULT NULL, guidelines LONGTEXT DEFAULT NULL, created DATETIME NOT NULL, synced DATETIME DEFAULT NULL, imported DATETIME DEFAULT NULL, INDEX IDX_E39E51087E3C61F9 (owner_id), INDEX IDX_E39E5108960278D7 (item_set_id), INDEX IDX_E39E5108549213EC (property_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB;
+CREATE TABLE scripto_project (id INT AUTO_INCREMENT NOT NULL, owner_id INT DEFAULT NULL, item_set_id INT DEFAULT NULL, property_id INT DEFAULT NULL, lang VARCHAR(255) DEFAULT NULL, import_target VARCHAR(255) DEFAULT NULL, title VARCHAR(255) NOT NULL, description LONGTEXT DEFAULT NULL, guidelines LONGTEXT DEFAULT NULL, reviewers LONGTEXT DEFAULT NULL, created DATETIME NOT NULL, synced DATETIME DEFAULT NULL, imported DATETIME DEFAULT NULL, INDEX IDX_E39E51087E3C61F9 (owner_id), INDEX IDX_E39E5108960278D7 (item_set_id), INDEX IDX_E39E5108549213EC (property_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB;
 ALTER TABLE scripto_media ADD CONSTRAINT FK_28ABA038DE42D3B8 FOREIGN KEY (scripto_item_id) REFERENCES scripto_item (id) ON DELETE CASCADE;
 ALTER TABLE scripto_media ADD CONSTRAINT FK_28ABA038EA9FDD75 FOREIGN KEY (media_id) REFERENCES media (id) ON DELETE CASCADE;
 ALTER TABLE scripto_media ADD CONSTRAINT FK_28ABA0382D234F6A FOREIGN KEY (approved_by_id) REFERENCES user (id) ON DELETE SET NULL;
@@ -112,18 +119,6 @@ SET FOREIGN_KEY_CHECKS=1;
     {
         $sharedEventManager->attach(
             '*',
-            'sql_filter.resource_visibility',
-            // Users can view Scripto items and Scripto media only if they have
-            // permission to view the related Omeka item or Omeka media.
-            function (Event $event) {
-                $relatedEntities = $event->getParam('relatedEntities');
-                $relatedEntities['Scripto\Entity\ScriptoItem'] = 'item_id';
-                $relatedEntities['Scripto\Entity\ScriptoMedia'] = 'media_id';
-                $event->setParam('relatedEntities', $relatedEntities);
-            }
-        );
-        $sharedEventManager->attach(
-            '*',
             'api.context',
             // Add the Scripto term definition.
             function (Event $event) {
@@ -149,17 +144,58 @@ SET FOREIGN_KEY_CHECKS=1;
      */
     protected function addAclRules()
     {
-        // Everyone has general access to the Scripto resources.
         $acl = $this->getServiceLocator()->get('Omeka\Acl');
+
+        // Set controller/action privileges.
+        $acl->allow(
+            null,
+            'Scripto\Controller\Admin\Index',
+            ['index', 'login', 'logout']
+        );
+        $acl->allow(
+            null,
+            'Scripto\Controller\Admin\User',
+            ['contributions', 'watchlist']
+        );
+        $acl->allow(
+            null,
+            'Scripto\Controller\Admin\Project',
+            ['browse', 'show-details', 'show']
+        );
+        $acl->allow(
+            null,
+            'Scripto\Controller\Admin\Item',
+            ['browse', 'show-details', 'show']
+        );
+        $acl->allow(
+            null,
+            'Scripto\Controller\Admin\Media',
+            ['browse', 'show-details', 'show']
+        );
+        $acl->allow(
+            null,
+            'Scripto\Controller\Admin\Revision',
+            ['browse', 'compare']
+        );
+
+        // Set API adapter privileges.
         $acl->allow(
             null,
             [
                 'Scripto\Api\Adapter\ScriptoProjectAdapter',
                 'Scripto\Api\Adapter\ScriptoItemAdapter',
-                'Scripto\Api\Adapter\ScriptoMediaAdapter',
-            ]
+            ],
+            ['search', 'read']
         );
-        // Everyone can read the Scripto entities.
+        $acl->allow(
+            null,
+            [
+                'Scripto\Api\Adapter\ScriptoMediaAdapter',
+            ],
+            ['search', 'read', 'update']
+        );
+
+        // Set entity privileges.
         $acl->allow(
             null,
             [
@@ -168,6 +204,12 @@ SET FOREIGN_KEY_CHECKS=1;
                 'Scripto\Entity\ScriptoMedia',
             ],
             'read'
+        );
+        $acl->allow(
+            null,
+            'Scripto\Entity\ScriptoMedia',
+            ['update'],
+            new UserCanReviewAssertion
         );
     }
 

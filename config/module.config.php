@@ -58,7 +58,8 @@ return [
             [
                 'label' => 'Scripto', // @translate
                 'route' => 'admin/scripto',
-                'resource' => 'Scripto\Controller\Admin\Project',
+                'resource' => 'Scripto\Controller\Admin\Index',
+                'privilege' => 'index',
             ],
         ],
     ],
