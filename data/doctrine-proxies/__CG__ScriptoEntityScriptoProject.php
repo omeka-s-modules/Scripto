@@ -389,6 +389,17 @@ class ScriptoProject extends \Scripto\Entity\ScriptoProject implements \Doctrine
     /**
      * {@inheritDoc}
      */
+    public function isReviewer($email)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'isReviewer', [$email]);
+
+        return parent::isReviewer($email);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setCreated(\DateTime $dateTime)
     {
 

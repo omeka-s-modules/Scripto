@@ -81,7 +81,7 @@ class ScriptoProject extends AbstractEntity
     protected $guidelines;
 
     /**
-     * @Column(type="text", nullable=true)
+     * @Column(type="json_array")
      */
     protected $reviewers;
 
@@ -203,8 +203,7 @@ class ScriptoProject extends AbstractEntity
      */
     public function isReviewer($email)
     {
-        $reviewers = explode(PHP_EOL, $this->getReviewers());
-        return in_array($email, $reviewers);
+        return in_array($email, $this->getReviewers());
     }
 
     public function setCreated(DateTime $dateTime)

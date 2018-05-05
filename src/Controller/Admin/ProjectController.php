@@ -79,6 +79,7 @@ class ProjectController extends AbstractActionController
             $data = $project->jsonSerialize();
             $data['o:item_set'] = $data['o:item_set'] ? $data['o:item_set']->id() : null;
             $data['o:property'] = $data['o:property'] ? $data['o:property']->id() : null;
+            $data['o-module-scripto:reviewers'] = implode(PHP_EOL, $data['o-module-scripto:reviewers']);
             $form->setData($data);
         }
 

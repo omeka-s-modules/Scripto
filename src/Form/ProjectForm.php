@@ -51,7 +51,7 @@ class ProjectForm extends Form
             'type' => 'textarea',
             'options' => [
                 'label' => 'Reviewers', // @translate
-                'info' => 'Enter Omeka user emails of project reviewers, separated by new lines.', // @translate
+                'info' => 'Enter the emails of Omeka users that have review rights for this project, separated by new lines.', // @translate
             ],
             'attributes' => [
                 'id' => 'o-module-scripto-reviewers',
