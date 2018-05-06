@@ -44,11 +44,18 @@ class IndexController extends AbstractActionController
             'owner_id' => $this->auth->getIdentity()->getId(),
         ])->getContent();
 
+        $reviewingProjects = $this->api()->search('scripto_projects', [
+            'sort_by' => 'created',
+            'sort_order' => 'desc',
+            'has_reviewer_id' => $this->auth->getIdentity()->getId(),
+        ])->getContent();
+
         $view = new ViewModel;
         $view->setVariable('user', $user);
         $view->setVariable('userCons', $userCons);
         $view->setVariable('watchlist', $watchlist);
         $view->setVariable('projects', $projects);
+        $view->setVariable('reviewingProjects', $reviewingProjects);
         return $view;
     }
 

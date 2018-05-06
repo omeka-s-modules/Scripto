@@ -79,7 +79,11 @@ class ProjectController extends AbstractActionController
             $data = $project->jsonSerialize();
             $data['o:item_set'] = $data['o:item_set'] ? $data['o:item_set']->id() : null;
             $data['o:property'] = $data['o:property'] ? $data['o:property']->id() : null;
-            $data['o-module-scripto:reviewers'] = implode(PHP_EOL, $data['o-module-scripto:reviewers']);
+            $reviewerEmails = [];
+            foreach ($data['o-module-scripto:reviewer'] as $reviewer) {
+                $reviewerEmails[] = $reviewer->user()->email();
+            }
+            $data['o-module-scripto:reviewer'] = implode(PHP_EOL, $reviewerEmails);
             $form->setData($data);
         }
 

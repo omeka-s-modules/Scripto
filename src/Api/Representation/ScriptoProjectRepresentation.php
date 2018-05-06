@@ -34,7 +34,7 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
             'o-module-scripto:title' => $this->title(),
             'o-module-scripto:description' => $this->description(),
             'o-module-scripto:guidelines' => $this->guidelines(),
-            'o-module-scripto:reviewers' => $this->reviewers(),
+            'o-module-scripto:reviewer' => $this->reviewers(),
             'o:owner' => $owner ? $owner->getReference() : null,
             'o:item_set' => $itemSet ? $itemSet->getReference() : null,
             'o:property' => $property ? $property->getReference() : null,
@@ -91,7 +91,11 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
 
     public function reviewers()
     {
-        return $this->resource->getReviewers();
+        $reviewers = [];
+        foreach ($this->resource->getReviewers() as $reviewer) {
+            $reviewers[] = new ScriptoReviewerRepresentation($reviewer, $this->getServiceLocator());
+        }
+        return $reviewers;
     }
 
     public function created()

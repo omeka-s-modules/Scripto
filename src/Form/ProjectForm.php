@@ -47,14 +47,14 @@ class ProjectForm extends Form
         ]);
 
         $this->add([
-            'name' => 'o-module-scripto:reviewers',
+            'name' => 'o-module-scripto:reviewer',
             'type' => 'textarea',
             'options' => [
                 'label' => 'Reviewers', // @translate
                 'info' => 'Enter the emails of Omeka users that have review rights for this project, separated by new lines.', // @translate
             ],
             'attributes' => [
-                'id' => 'o-module-scripto-reviewers',
+                'id' => 'o-module-scripto:reviewer',
             ],
         ]);
 
@@ -126,13 +126,6 @@ class ProjectForm extends Form
         ]);
         $inputFilter->add([
             'name' => 'o-module-scripto:guidelines',
-            'required' => false,
-            'filters' => [
-                ['name' => 'toNull'],
-            ],
-        ]);
-        $inputFilter->add([
-            'name' => 'o-module-scripto:reviewers',
             'required' => false,
             'filters' => [
                 ['name' => 'toNull'],

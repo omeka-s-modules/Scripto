@@ -16,6 +16,7 @@ class UserCanReviewAssertion implements AssertionInterface
         ResourceInterface $resource = null, $privilege = null
     ) {
         $project = $resource->getScriptoItem()->getScriptoProject();
-        return $project->isReviewer($role->getEmail());
+        // The $reviewers collection is indexed by user_id.
+        return $project->getReviewers()->containsKey($role->getId());
     }
 }

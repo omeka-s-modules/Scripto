@@ -6,6 +6,7 @@ use Omeka\Api\Adapter\AbstractEntityAdapter;
 use Omeka\Api\Request;
 use Omeka\Entity\EntityInterface;
 use Omeka\Stdlib\ErrorStore;
+use Scripto\Entity\ScriptoReviewer;
 
 class ScriptoProjectAdapter extends AbstractEntityAdapter
 {
@@ -57,6 +58,14 @@ class ScriptoProjectAdapter extends AbstractEntityAdapter
                 $this->createNamedParameter($qb, $query['property_id']))
             );
         }
+        if (isset($query['has_reviewer_id'])) {
+            $alias = $this->createAlias();
+            $qb->innerJoin('Scripto\Entity\ScriptoProject.reviewers', $alias);
+            $qb->andWhere($qb->expr()->eq(
+                "$alias.user",
+                $this->createNamedParameter($qb, $query['has_reviewer_id']))
+            );
+        }
     }
     public function validateRequest(Request $request, ErrorStore $errorStore)
     {
@@ -101,20 +110,50 @@ class ScriptoProjectAdapter extends AbstractEntityAdapter
         if ($this->shouldHydrate($request, 'o-module-scripto:description')) {
             $entity->setDescription($request->getValue('o-module-scripto:description'));
         }
-        if ($this->shouldHydrate($request, 'o-module-scripto:reviewers')) {
-            $reviewers = $request->getValue('o-module-scripto:reviewers');
-            if (is_string($reviewers)) {
-                $reviewers = explode(PHP_EOL, $reviewers);
-            }
-            if (is_array($reviewers)) {
-                // Trim all element values, remove empty elements, remove
-                // duplicate values, and re-index the keys numerically.
-                $reviewers = array_values(array_unique(array_filter(array_map('trim', $reviewers))));
-                $entity->setReviewers($reviewers);
-            }
-        }
         if ($this->shouldHydrate($request, 'o-module-scripto:import_target')) {
             $entity->setImportTarget($request->getValue('o-module-scripto:import_target'));
+        }
+        if ($this->shouldHydrate($request, 'o-module-scripto:reviewer')) {
+            $reviewerEmails = $request->getValue('o-module-scripto:reviewer');
+
+            // For now, hydrate only accepts a string containing emails of Omeka
+            // users, separated by new lines. Otherwise, nothing will happen.
+            if (is_string($reviewerEmails)) {
+
+                // Sanitize reviewer emails.
+                $reviewerEmails = explode(PHP_EOL, $reviewerEmails);
+                $reviewerEmails = array_map('trim', $reviewerEmails); // trim all values
+                $reviewerEmails = array_filter($reviewerEmails); // remove empty elements
+                $reviewerEmails = array_unique($reviewerEmails); // remove duplicate values
+
+                // Add reviewers to the project.
+                $reviewersToRetain = [];
+                $userAdapter = $this->getAdapter('users');
+                $reviewers = $entity->getReviewers();
+                foreach ($reviewerEmails as $reviewerEmail) {
+                    try {
+                        $user = $userAdapter->findEntity(['email' => $reviewerEmail]);
+                    } catch (\Exception $e) {
+                        continue;
+                    }
+                    // The $reviewers collection is indexed by user_id.
+                    $reviewer = $reviewers->get($user->getId());
+                    if (!$reviewer) {
+                        $reviewer = new ScriptoReviewer;
+                        $reviewer->setUser($user);
+                        $reviewer->setScriptoProject($entity);
+                        $reviewers->add($reviewer);
+                    }
+                    $reviewersToRetain[] = $reviewer;
+                }
+
+                // Remove reviewers from the project.
+                foreach ($reviewers as $reviewerId => $reviewer) {
+                    if (!in_array($reviewer, $reviewersToRetain)) {
+                        $reviewers->remove($reviewerId);
+                    }
+                }
+            }
         }
     }
 

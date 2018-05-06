@@ -24,7 +24,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto dashboard');
 <div class="dashboard-row">
 
     <div class="recent-projects panel">
-        <h4><?php echo $this->translate('Your projects'); ?> <?php echo $this->hyperlink($this->translate('View all projects'), $this->url('admin/scripto-project'), ['class' => 'button']); ?></h4>
+        <h4><?php echo $this->translate('Projects you own'); ?> <?php echo $this->hyperlink($this->translate('View all projects'), $this->url('admin/scripto-project'), ['class' => 'button']); ?></h4>
         <?php if ($projects): ?>
         <ul>
         <?php foreach ($projects as $project): ?>
@@ -38,7 +38,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto dashboard');
         <?php else: ?>
         <?php if ($this->userIsAllowed('Scripto\Api\Adapter\ScriptoProjectAdapter', 'create')): ?>
         <p><?php echo sprintf(
-            $this->translate('No projects found. %s'),
+            $this->translate('You do not own any projects. %s'),
             sprintf(
                 '<a href="%s">%s</a>',
                 $this->escapeHtml($this->url('admin/scripto-project', ['action' => 'add'])),
@@ -46,8 +46,25 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto dashboard');
             )
         ); ?></p>
         <?php else: ?>
-        <p><?php echo $this->translate('No projects found.'); ?></p>
+        <p><?php echo $this->translate('You do not own any projects.'); ?></p>
         <?php endif; ?>
+        <?php endif; ?>
+    </div>
+
+    <div class="recent-reviewing-projects panel">
+        <h4><?php echo $this->translate('Projects you review'); ?> <?php echo $this->hyperlink($this->translate('View all projects'), $this->url('admin/scripto-project'), ['class' => 'button']); ?></h4>
+        <?php if ($reviewingProjects): ?>
+        <ul>
+        <?php foreach ($reviewingProjects as $project): ?>
+            <li><?php echo sprintf(
+                '%s (%s)',
+                $project->link($project->title()),
+                sprintf($this->translate('%s items'), number_format($project->itemCount()))
+            ); ?></li>
+        <?php endforeach; ?>
+        </ul>
+        <?php else: ?>
+        <p><?php echo $this->translate('You are not reviewing any projects.'); ?></p>
         <?php endif; ?>
     </div>
 

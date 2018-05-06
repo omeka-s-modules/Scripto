@@ -2,6 +2,7 @@
 namespace Scripto\Entity;
 
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Omeka\Entity\AbstractEntity;
@@ -81,11 +82,6 @@ class ScriptoProject extends AbstractEntity
     protected $guidelines;
 
     /**
-     * @Column(type="json_array")
-     */
-    protected $reviewers;
-
-    /**
      * @Column(type="datetime")
      */
     protected $created;
@@ -99,6 +95,22 @@ class ScriptoProject extends AbstractEntity
      * @Column(type="datetime", nullable=true)
      */
     protected $imported;
+
+    /**
+     * @OneToMany(
+     *     targetEntity="ScriptoReviewer",
+     *     mappedBy="scriptoProject",
+     *     orphanRemoval=true,
+     *     cascade={"persist", "remove", "detach"},
+     *     indexBy="user_id"
+     * )
+     */
+    protected $reviewers;
+
+    public function __construct()
+    {
+        $this->reviewers = new ArrayCollection;
+    }
 
     public function getId()
     {
@@ -185,27 +197,6 @@ class ScriptoProject extends AbstractEntity
         return $this->guidelines;
     }
 
-    public function setReviewers($reviewers)
-    {
-        $this->reviewers = $reviewers;
-    }
-
-    public function getReviewers()
-    {
-        return $this->reviewers;
-    }
-
-    /**
-     * Is an Omeka user a reviewer of this project?
-     *
-     * @param string $email
-     * @return bool
-     */
-    public function isReviewer($email)
-    {
-        return in_array($email, $this->getReviewers());
-    }
-
     public function setCreated(DateTime $dateTime)
     {
         $this->created = $dateTime;
@@ -234,6 +225,11 @@ class ScriptoProject extends AbstractEntity
     public function getImported()
     {
         return $this->imported;
+    }
+
+    public function getReviewers()
+    {
+        return $this->reviewers;
     }
 
     /**
