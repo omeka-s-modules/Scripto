@@ -174,7 +174,7 @@ SET FOREIGN_KEY_CHECKS=1;
         $acl->allow(
             null,
             'Scripto\Controller\Admin\Media',
-            ['browse', 'show-details', 'show']
+            ['browse', 'show-details', 'show', 'batch-edit', 'batch-edit-all']
         );
         $acl->allow(
             null,
@@ -188,15 +188,16 @@ SET FOREIGN_KEY_CHECKS=1;
             [
                 'Scripto\Api\Adapter\ScriptoProjectAdapter',
                 'Scripto\Api\Adapter\ScriptoItemAdapter',
+                'Scripto\Api\Adapter\ScriptoMediaAdapter',
             ],
-            ['search', 'read']
+            ['search', 'read', 'view_scripto_media_batch_update']
         );
         $acl->allow(
             null,
             [
                 'Scripto\Api\Adapter\ScriptoMediaAdapter',
             ],
-            ['search', 'read', 'update']
+            ['update', 'batch_update']
         );
 
         // Set entity privileges.
@@ -212,7 +213,13 @@ SET FOREIGN_KEY_CHECKS=1;
         $acl->allow(
             null,
             'Scripto\Entity\ScriptoMedia',
-            ['update'],
+            ['update', 'batch_update'],
+            new UserCanReviewAssertion
+        );
+        $acl->allow(
+            null,
+            'Scripto\Entity\ScriptoItem',
+            'view_scripto_media_batch_update',
             new UserCanReviewAssertion
         );
     }

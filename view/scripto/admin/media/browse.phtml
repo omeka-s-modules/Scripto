@@ -86,7 +86,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto item show review m
 
 <form method="post" id="batch-form" class="disable-unsaved-warning">
 
-<?php if ($this->userIsAllowed('Scripto\Api\Adapter\ScriptoMediaAdapter', 'batch_update')): ?>
+<?php if ($sItem->userIsAllowed('view_scripto_media_batch_update')): ?>
 <div class="batch-inputs">
     <select class="batch-actions-select" aria-label="<?php echo $this->translate('Batch actions'); ?>">
         <option value="default"><?php echo $this->translate('Batch actions'); ?></option>
@@ -105,7 +105,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto item show review m
 <table class="tablesaw scripto-media batch-edit" data-tablesaw-mode="stack">
     <thead>
         <tr>
-            <?php if ($this->userIsAllowed('Scripto\Api\Adapter\ScriptoMediaAdapter', 'batch_update')): ?>
+            <?php if ($sItem->userIsAllowed('view_scripto_media_batch_update')): ?>
             <th class="row-select"><input type="checkbox" class="select-all" aria-label="<?php echo $this->translate('Select all'); ?>"></th>
             <?php endif; ?>
             <th class="row-number">#</th>
@@ -118,7 +118,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto item show review m
     <tbody>
     <?php foreach ($sMedia as $index => $sMedia): ?>
         <tr>
-            <?php if ($this->userIsAllowed('Scripto\Api\Adapter\ScriptoMediaAdapter', 'batch_update')): ?>
+            <?php if ($sItem->userIsAllowed('view_scripto_media_batch_update')): ?>
             <td><input type="checkbox" name="resource_ids[]" value="<?php echo $sMedia->id(); ?>" aria-label="<?php echo $this->translate('Select media'); ?>"></td>
             <?php endif; ?>
             <td><?php echo $index + 1; ?></td>
