@@ -35,6 +35,11 @@ class ScriptoProject extends AbstractEntity
     protected $owner;
 
     /**
+     * @Column(type="boolean")
+     */
+    protected $isPublic = true;
+
+    /**
      * @ManyToOne(
      *     targetEntity="Omeka\Entity\ItemSet"
      * )
@@ -125,6 +130,16 @@ class ScriptoProject extends AbstractEntity
     public function getOwner()
     {
         return $this->owner;
+    }
+
+    public function setIsPublic($isPublic)
+    {
+        $this->isPublic = (bool) $isPublic;
+    }
+
+    public function getIsPublic()
+    {
+        return (bool) $this->isPublic;
     }
 
     public function setItemSet(ItemSet $itemSet = null)

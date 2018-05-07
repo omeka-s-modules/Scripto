@@ -62,6 +62,9 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto project browse');
         <tr>
             <td>
                 <?php echo $project->link($project->title()); ?>
+                <?php if (!$project->isPublic()): ?>
+                    <span class="o-icon-private" aria-label="<?php echo $this->translate('Private'); ?>"></span>
+                <?php endif; ?>
                 <ul class="actions">
                     <?php if ($project->userIsAllowed('update')): ?>
                     <li><?php echo $project->link('', 'edit', [
@@ -100,9 +103,13 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto project browse');
 
 <?php else: ?>
 <div class="no-resources">
+    <?php if ($this->userIsAllowed('Scripto\Api\Adapter\ScriptoProjectAdapter', 'create')): ?>
     <p><?php echo sprintf(
         $this->translate('No Scripto projects found. %s'),
         $this->hyperlink($this->translate('Add a new project.'), $this->url('admin/scripto-project', ['action' => 'add']))
     ); ?></p>
+    <?php else: ?>
+    <p><?php echo $this->translate('No Scripto projects found.'); ?></p>
+    <?php endif; ?>
 </div>
 <?php endif; ?>

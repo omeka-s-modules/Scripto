@@ -235,6 +235,28 @@ class ScriptoReviewer extends \Scripto\Entity\ScriptoReviewer implements \Doctri
     /**
      * {@inheritDoc}
      */
+    public function setCreated(\DateTime $dateTime)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCreated', [$dateTime]);
+
+        return parent::setCreated($dateTime);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCreated()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreated', []);
+
+        return parent::getCreated();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function prePersist(\Doctrine\ORM\Event\LifecycleEventArgs $eventArgs)
     {
 

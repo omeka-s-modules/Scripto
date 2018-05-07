@@ -35,6 +35,7 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
             'o-module-scripto:description' => $this->description(),
             'o-module-scripto:guidelines' => $this->guidelines(),
             'o-module-scripto:reviewer' => $this->reviewers(),
+            'o:is_public' => $this->isPublic(),
             'o:owner' => $owner ? $owner->getReference() : null,
             'o:item_set' => $itemSet ? $itemSet->getReference() : null,
             'o:property' => $property ? $property->getReference() : null,
@@ -50,6 +51,11 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
     {
         return $this->getAdapter('users')
             ->getRepresentation($this->resource->getOwner());
+    }
+
+    public function isPublic()
+    {
+        return $this->resource->getIsPublic();
     }
 
     public function itemSet()

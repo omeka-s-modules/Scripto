@@ -64,10 +64,10 @@ class ScriptoProject extends \Scripto\Entity\ScriptoProject implements \Doctrine
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'owner', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'guidelines', 'created', 'synced', 'imported', 'reviewers'];
+            return ['__isInitialized__', 'id', 'owner', 'isPublic', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'guidelines', 'created', 'synced', 'imported', 'reviewers'];
         }
 
-        return ['__isInitialized__', 'id', 'owner', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'guidelines', 'created', 'synced', 'imported', 'reviewers'];
+        return ['__isInitialized__', 'id', 'owner', 'isPublic', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'guidelines', 'created', 'synced', 'imported', 'reviewers'];
     }
 
     /**
@@ -208,6 +208,28 @@ class ScriptoProject extends \Scripto\Entity\ScriptoProject implements \Doctrine
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getOwner', []);
 
         return parent::getOwner();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setIsPublic($isPublic)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setIsPublic', [$isPublic]);
+
+        return parent::setIsPublic($isPublic);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getIsPublic()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIsPublic', []);
+
+        return parent::getIsPublic();
     }
 
     /**

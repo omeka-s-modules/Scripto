@@ -84,6 +84,9 @@ class ScriptoProjectAdapter extends AbstractEntityAdapter
     public function hydrate(Request $request, EntityInterface $entity, ErrorStore $errorStore)
     {
         $this->hydrateOwner($request, $entity);
+        if ($this->shouldHydrate($request, 'o:is_public')) {
+            $entity->setIsPublic($request->getValue('o:is_public', true));
+        }
         if ($this->shouldHydrate($request, 'o:item_set')) {
             $itemSet = $request->getValue('o:item_set');
             if ($itemSet) {

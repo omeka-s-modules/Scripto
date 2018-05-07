@@ -34,6 +34,7 @@ class ProjectController extends AbstractActionController
             $form->setData($this->params()->fromPost());
             if ($form->isValid()) {
                 $formData = $form->getData();
+                $formData['o:is_public'] = $this->params()->fromPost('o:is_public');
                 $formData['o:item_set'] = ['o:id' => $formData['o:item_set']];
                 $formData['o:property'] = ['o:id' => $formData['o:property']];
                 $formData['o-module-scripto:guidelines'] = $this->htmlPurifier->purify($formData['o-module-scripto:guidelines']);
@@ -64,6 +65,7 @@ class ProjectController extends AbstractActionController
             $form->setData($this->params()->fromPost());
             if ($form->isValid()) {
                 $formData = $form->getData();
+                $formData['o:is_public'] = $this->params()->fromPost('o:is_public');
                 $formData['o:item_set'] = ['o:id' => $formData['o:item_set']];
                 $formData['o:property'] = ['o:id' => $formData['o:property']];
                 $formData['o-module-scripto:guidelines'] = $this->htmlPurifier->purify($formData['o-module-scripto:guidelines']);
