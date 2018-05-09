@@ -75,17 +75,20 @@
                 }
             });
     
-            $('.panzoom-container').on('click', '.rotate-left', function() {
+            $('.panzoom-container').on('click', '.rotate-left', function(e) {
+                e.preventDefault();
                 var panzoomImg = $(this).parents('.panzoom-container').find('img');
                 setRotation(panzoomImg, 'left');
             });
     
-            $('.panzoom-container').on('click', '.rotate-right', function() {
+            $('.panzoom-container').on('click', '.rotate-right', function(e) {
+                e.preventDefault();
                 var panzoomImg = $(this).parents('.panzoom-container').find('img');
                 setRotation(panzoomImg, 'right');
             });
     
-            $('.panzoom-container').on('click', '.reset', function() {
+            $('.panzoom-container').on('click', '.reset', function(e) {
+                e.preventDefault();
                 var panzoomImg = $(this).parents('.panzoom-container').find('img');
                 panzoomImg.css('transform', 'none');
             });
