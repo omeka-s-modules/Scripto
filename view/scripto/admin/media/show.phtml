@@ -85,18 +85,6 @@ $next = $sMedia->nextScriptoMedia();
                 <?php endif; ?>
             </div>
         </div>
-        <?php if ($mediaIsImage): ?>
-        <script>
-        (function($) {
-            var $zoomContainer = $('.panzoom-container');
-            $('#wikitext .media-render').panzoom({
-                $zoomIn: $zoomContainer.find(".zoom-in"),
-                $zoomOut: $zoomContainer.find(".zoom-out"),
-                $reset: $zoomContainer.find(".reset")
-            });
-        })(jQuery);
-        </script>
-        <?php endif; ?>
     </div>
 </div>
 

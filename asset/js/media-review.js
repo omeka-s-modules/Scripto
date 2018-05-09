@@ -1,4 +1,32 @@
 (function($) {
+
+    /**
+     * Apply panzoom to an element.
+     *
+     * @param element
+     */
+    function panzoomApply(element) {
+        var container = element.parent();
+        if (!container.hasClass('image')) {
+            return;
+        }
+        $panzoom = element.panzoom({
+            $zoomIn: container.find(".zoom-in"),
+            $zoomOut: container.find(".zoom-out"),
+            $reset: container.find(".reset")
+        });
+        container.on('mousewheel.focal', function(e) {
+            e.preventDefault();
+            var delta = e.delta || e.originalEvent.wheelDelta;
+            var zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0;
+            $panzoom.panzoom('zoom', zoomOut, {
+                increment: 0.1,
+                animate: false,
+                focal: e
+            });
+        });
+    }
+
     function getRotationDegrees(obj) {
         var matrix = obj.css("-webkit-transform") ||
         obj.css("-moz-transform")    ||
@@ -21,20 +49,19 @@
     }
 
     $(document).ready(function() {
-        if ($('.image.panzoom-container').length > 0) {
+        if ($('.image.panzoom-container').length) {
+
             var storedPanzoomStyle = '';
             var storedRotateStyle = '';
+
+            panzoomApply($('#wikitext .media-render'));
+
             $('.full-screen').featherlight('.wikitext-featherlight', {
                 beforeOpen: function() {
                     $('#wikitext .media-render').panzoom('destroy');
                 },
                 afterOpen: function() {
-                    var $zoomContainer = $('.featherlight-content');
-                    $('.featherlight-content .media-render').panzoom({
-                        $zoomIn: $zoomContainer.find(".zoom-in"),
-                        $zoomOut: $zoomContainer.find(".zoom-out"),
-                        $reset: $zoomContainer.find(".reset")
-                    });
+                    panzoomApply($('.featherlight-content .media-render'));
                 },
                 beforeClose: function() {
                     storedPanzoomStyle = $('.featherlight-content .media-render').attr('style');
@@ -44,12 +71,7 @@
                     $('#wikitext .panzoom-container img').attr('style', storedRotateStyle);
                 },
                 afterClose: function() {
-                    var $zoomContainer = $('#wikitext');
-                    $('#wikitext .media-render').panzoom({
-                        $zoomIn: $zoomContainer.find(".zoom-in"),
-                        $zoomOut: $zoomContainer.find(".zoom-out"),
-                        $reset: $zoomContainer.find(".reset")
-                    });
+                    panzoomApply($('#wikitext .media-render'));
                 }
             });
     
