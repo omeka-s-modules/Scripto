@@ -117,44 +117,34 @@ class ScriptoProjectAdapter extends AbstractEntityAdapter
             $entity->setImportTarget($request->getValue('o-module-scripto:import_target'));
         }
         if ($this->shouldHydrate($request, 'o-module-scripto:reviewer')) {
-            $reviewerEmails = $request->getValue('o-module-scripto:reviewer');
+            $userAdapter = $this->getAdapter('users');
+            $reviewers = $entity->getReviewers();
+            $reviewersNew = $request->getValue('o-module-scripto:reviewer');
+            $reviewersNew = is_array($reviewersNew) ? $reviewersNew : [];
 
-            // For now, hydrate only accepts a string containing emails of Omeka
-            // users, separated by new lines. Otherwise, nothing will happen.
-            if (is_string($reviewerEmails)) {
-
-                // Sanitize reviewer emails.
-                $reviewerEmails = explode(PHP_EOL, $reviewerEmails);
-                $reviewerEmails = array_map('trim', $reviewerEmails); // trim all values
-                $reviewerEmails = array_filter($reviewerEmails); // remove empty elements
-                $reviewerEmails = array_unique($reviewerEmails); // remove duplicate values
-
-                // Add reviewers to the project.
-                $reviewersToRetain = [];
-                $userAdapter = $this->getAdapter('users');
-                $reviewers = $entity->getReviewers();
-                foreach ($reviewerEmails as $reviewerEmail) {
-                    try {
-                        $user = $userAdapter->findEntity(['email' => $reviewerEmail]);
-                    } catch (\Exception $e) {
-                        continue;
-                    }
-                    // The $reviewers collection is indexed by user_id.
-                    $reviewer = $reviewers->get($user->getId());
-                    if (!$reviewer) {
-                        $reviewer = new ScriptoReviewer;
-                        $reviewer->setUser($user);
-                        $reviewer->setScriptoProject($entity);
-                        $reviewers->add($reviewer);
-                    }
-                    $reviewersToRetain[] = $reviewer;
+            // Add reviewers to the project.
+            $reviewersToRetain = [];
+            foreach ($reviewersNew as $reviewerNew) {
+                if (!isset($reviewerNew['o:user']['o:id'])) {
+                    continue;
                 }
 
-                // Remove reviewers from the project.
-                foreach ($reviewers as $reviewerId => $reviewer) {
-                    if (!in_array($reviewer, $reviewersToRetain)) {
-                        $reviewers->remove($reviewerId);
-                    }
+                $user = $userAdapter->findEntity($reviewerNew['o:user']['o:id']);
+                // The $reviewers collection is indexed by user_id.
+                $reviewer = $reviewers->get($user->getId());
+                if (!$reviewer) {
+                    $reviewer = new ScriptoReviewer;
+                    $reviewer->setUser($user);
+                    $reviewer->setScriptoProject($entity);
+                    $reviewers->set($user->getId(), $reviewer);
+                }
+                $reviewersToRetain[] = $reviewer;
+            }
+
+            // Remove reviewers from the project.
+            foreach ($reviewers as $reviewer) {
+                if (!in_array($reviewer, $reviewersToRetain)) {
+                    $reviewers->removeElement($reviewer);
                 }
             }
         }

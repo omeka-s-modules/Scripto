@@ -69,6 +69,7 @@ class ProjectController extends AbstractActionController
                 $formData['o:item_set'] = ['o:id' => $formData['o:item_set']];
                 $formData['o:property'] = ['o:id' => $formData['o:property']];
                 $formData['o-module-scripto:guidelines'] = $this->htmlPurifier->purify($formData['o-module-scripto:guidelines']);
+                $formData['o-module-scripto:reviewer'] = $this->params()->fromPost('o-module-scripto:reviewer');
                 $response = $this->api($form)->update('scripto_projects', $this->params('project-id'), $formData);
                 if ($response) {
                     $this->messenger()->addSuccess('Scripto project successfully edited.'); // @translate
@@ -81,11 +82,6 @@ class ProjectController extends AbstractActionController
             $data = $project->jsonSerialize();
             $data['o:item_set'] = $data['o:item_set'] ? $data['o:item_set']->id() : null;
             $data['o:property'] = $data['o:property'] ? $data['o:property']->id() : null;
-            $reviewerEmails = [];
-            foreach ($data['o-module-scripto:reviewer'] as $reviewer) {
-                $reviewerEmails[] = $reviewer->user()->email();
-            }
-            $data['o-module-scripto:reviewer'] = implode(PHP_EOL, $reviewerEmails);
             $form->setData($data);
         }
 

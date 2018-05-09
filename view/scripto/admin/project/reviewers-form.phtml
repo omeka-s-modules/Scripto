@@ -1,0 +1,89 @@
+<div id="project-reviewers" class="section">
+    <table id="project-reviewers-table" class="tablesaw" data-tablesaw-mode="stack" style="display: none;">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <?php echo $this->userSelector($this->translate('Click on a user to add them to the project.')); ?>
+</div>
+
+<?php
+$reviewers = [];
+if (isset($project)) {
+    foreach ($project->reviewers() as $reviewer) {
+        $reviewers[] = $reviewer->user();
+    }
+}
+$deleteIcon = $this->hyperlink('', '#', ['class' => 'o-icon-delete', 'title' => $this->translate('Delete')]);
+$restoreIcon = $this->hyperlink('', '#', ['class' => 'o-icon-undo', 'style' => 'display: none;', 'title' => $this->translate('Restore')]);
+$template = <<<TEMPLATE
+<tr>
+    <td class="user-name"></td>
+    <td class="user-email"></td>
+    <td>
+        <ul class="actions">
+            <li>$deleteIcon</li>
+            <li>$restoreIcon</li>
+        </ul>
+        <input class="user-id" type="hidden" name="o-module-scripto:reviewer[][o:user][o:id]" value="">
+    </td>
+</tr>
+TEMPLATE
+?>
+<span id="reviewers" data-reviewers="<?php echo $this->escapeHtml(json_encode($reviewers, true)); ?>"></span>
+<span id="reviewer-row-template" data-template="<?php echo $this->escapeHtml($template); ?>"></span>
+
+<script>
+var template = $($('#reviewer-row-template').data('template'));
+
+// Add a row to the reviewers table.
+var addReviewerRow = function(user) {
+    $('#project-reviewers-table').show();
+    var reviewerRow = template.clone();
+    reviewerRow.find('.user-id').val(user['o:id']);
+    reviewerRow.find('.user-name').text(user['o:name']);
+    reviewerRow.find('.user-email').text(user['o:email']);
+    $('#project-reviewers-table tbody').append(reviewerRow);
+};
+
+// Add existing reviewers to the reviewers table.
+$.each($('#reviewers').data('reviewers'), function(index, user) {
+    addReviewerRow(user);
+});
+
+// Add a new reviewer to the reviewers table.
+$('#new-users').find('.selector-child').on('click', function(e) {
+    var user = $(this).data('user');
+    var reviewer = $('#project-reviewers-table').find('input.user-id[value="' + user['o:id'] + '"]');
+    if (!reviewer.length) {
+        // Do not add existing reviewers.
+        addReviewerRow(user);
+    }
+});
+
+$('#project-reviewers-table').on('click', '.o-icon-delete, .o-icon-undo', function(e) {
+    e.preventDefault();
+    var thisIcon = $(this);
+    thisIcon.parents('tr').toggleClass('delete');
+});
+$('#project-reviewers-table').on('click', '.o-icon-delete', function(e) {
+    e.preventDefault();
+    var thisIcon = $(this);
+    var row = thisIcon.parents('tr');
+    thisIcon.hide();
+    row.find('.o-icon-undo').show();
+    row.find('input[type="hidden"]').prop('disabled', true);
+});
+$('#project-reviewers-table').on('click', '.o-icon-undo', function(e) {
+    var thisIcon = $(this);
+    var row = thisIcon.parents('tr');
+    thisIcon.hide();
+    row.find('.o-icon-delete').show();
+    row.find('input[type="hidden"]').prop('disabled', false);
+});
+</script>

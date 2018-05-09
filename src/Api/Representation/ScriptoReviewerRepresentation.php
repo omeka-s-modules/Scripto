@@ -22,7 +22,6 @@ class ScriptoReviewerRepresentation extends AbstractRepresentation
     {
         return [
             'o:user' => $this->user()->getReference(),
-            'o-module-scripto:project' => $this->scriptoProject()->getReference(),
         ];
     }
 

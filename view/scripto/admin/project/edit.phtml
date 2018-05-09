@@ -5,7 +5,14 @@ $form->prepare();
 ?>
 
 <?php echo $this->pageTitle($project->title(), 1, $this->translate(sprintf('Scripto: %s', 'Project')), $this->translate('Edit')); ?>
+
+<?php echo $this->sectionNav([
+    'project-config' => $this->translate('Configuration'),
+    'project-reviewers' => $this->translate('Reviewers'),
+]); ?>
+
 <?php echo $this->form()->openTag($form); ?>
+
 <div id="page-actions">
     <?php if ($project->isPublic()): ?>
     <?php echo $this->hyperlink('', '#', [
@@ -23,8 +30,15 @@ $form->prepare();
     <a href="#" class="delete button"><?php echo $this->translate('Delete'); ?></a>
     <button><?php echo $this->translate('Save'); ?></button>
 </div>
-<?php echo $this->formCollection($form, false); ?>
+
+<div id="project-config" class="active section">
+    <?php echo $this->formCollection($form, false); ?>
+</div>
+
+<?php echo $this->partial('reviewers-form'); ?>
+
 <?php echo $this->form()->closeTag(); ?>
+
 <?php echo $this->deleteConfirm($project, 'project'); ?>
 
 <script>

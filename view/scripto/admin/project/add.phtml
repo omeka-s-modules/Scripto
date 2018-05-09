@@ -5,7 +5,14 @@ $form->prepare();
 ?>
 
 <?php echo $this->pageTitle($this->translate('New project'), 1, $this->translate('Scripto')); ?>
+
+<?php echo $this->sectionNav([
+    'project-config' => $this->translate('Configuration'),
+    'project-reviewers' => $this->translate('Reviewers'),
+]); ?>
+
 <?php echo $this->form()->openTag($form); ?>
+
 <div id="page-actions">
     <?php echo $this->hyperlink('', '#', [
         'class' => 'o-icon-private button',
@@ -14,7 +21,13 @@ $form->prepare();
     <input type="hidden" name="o:is_public" value="0">
     <button><?php echo $this->translate('Add'); ?></button>
 </div>
-<?php echo $this->formCollection($form, false); ?>
+
+<div id="project-config" class="active section">
+    <?php echo $this->formCollection($form, false); ?>
+</div>
+
+<?php echo $this->partial('reviewers-form'); ?>
+
 <?php echo $this->form()->closeTag(); ?>
 
 <script>

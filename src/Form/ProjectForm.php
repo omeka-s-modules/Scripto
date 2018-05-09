@@ -47,18 +47,6 @@ class ProjectForm extends Form
         ]);
 
         $this->add([
-            'name' => 'o-module-scripto:reviewer',
-            'type' => 'textarea',
-            'options' => [
-                'label' => 'Reviewers', // @translate
-                'info' => 'Enter the emails of Omeka users that have review rights for this project, separated by new lines.', // @translate
-            ],
-            'attributes' => [
-                'id' => 'o-module-scripto:reviewer',
-            ],
-        ]);
-
-        $this->add([
             'name' => 'o:item_set',
             'type' => ItemSetSelect::class,
             'options' => [
