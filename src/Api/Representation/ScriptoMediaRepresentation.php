@@ -443,4 +443,26 @@ class ScriptoMediaRepresentation extends AbstractEntityRepresentation
         }
         return $editAccess;
     }
+
+    /**
+     * Is the corresponding media a renderable image?
+     *
+     * The media must have an original file, the file size must be no more than
+     * 40MB, and the file must be an image that can be renderable in browsers.
+     *
+     * @return bool
+     */
+    public function isRenderableImage()
+    {
+        $media = $this->media();
+        if (!$media->hasOriginal()) {
+            return false;
+        }
+        $sizeOk = 40000000 >= $media->size();
+        $imageOk = in_array(
+            $media->mediaType(),
+            ['image/gif', 'image/jpeg', 'image/jpg', 'image/png']
+        );
+        return $sizeOk && $imageOk;
+    }
 }

@@ -13,7 +13,8 @@
         $panzoom = element.panzoom({
             $zoomIn: container.find(".zoom-in"),
             $zoomOut: container.find(".zoom-out"),
-            $reset: container.find(".reset")
+            $reset: container.find(".reset"),
+            maxScale: 20
         });
         container.on('mousewheel.focal', function(e) {
             e.preventDefault();
