@@ -381,7 +381,7 @@ SET FOREIGN_KEY_CHECKS=1;
             $jsonLd['o-module-scripto:content'][] = [
                 'o:property' => $propertyAdapter->getRepresentation($project->getProperty())->getReference(),
                 'o:lang' => $project->getLang(),
-                'o:html' => $sMedia->getImportedHtml(),
+                'o-module-scripto:html' => $sMedia->getImportedHtml(),
             ];
         }
         $event->setParam('jsonLd', $jsonLd);
@@ -399,15 +399,11 @@ SET FOREIGN_KEY_CHECKS=1;
 
         $sItems = $this->getImportedScriptoItems($event->getTarget()->id());
         foreach ($sItems as $sItem) {
-            $html = [];
-            foreach ($sItem->getScriptoMedia() as $sMedia) {
-                $html[] = $sMedia->getImportedHtml();
-            }
-            $project = $sItem->getScriptoProject();
+            $project = $sItem[0]->getScriptoProject();
             $jsonLd['o-module-scripto:content'][] = [
                 'o:property' => $propertyAdapter->getRepresentation($project->getProperty())->getReference(),
                 'o:lang' => $project->getLang(),
-                'o:html' => implode(PHP_EOL, $html),
+                'o-module-scripto:html' => $sItem[1],
             ];
         }
         $event->setParam('jsonLd', $jsonLd);
@@ -440,11 +436,12 @@ SET FOREIGN_KEY_CHECKS=1;
     {
         $em = $this->getServiceLocator()->get('Omeka\EntityManager');
         $dql = '
-        SELECT si
+        SELECT si, GROUP_CONCAT(sm.importedHtml ORDER BY sm.position ASC SEPARATOR \'\')
         FROM Scripto\Entity\ScriptoItem si
         JOIN si.item i WITH i.id = :item_id
         LEFT JOIN si.scriptoMedia sm
-        WHERE sm.importedHtml IS NOT NULL';
+        WHERE sm.importedHtml IS NOT NULL
+        GROUP BY si';
         return $em->createQuery($dql)->setParameter('item_id', $itemId)->getResult();
     }
 }
