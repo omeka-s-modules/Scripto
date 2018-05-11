@@ -78,7 +78,7 @@ class ModuleConfigForm extends Form
             // Not a resolvable URL
             return false;
         }
-        if (!is_array($client->getSiteInfo())) {
+        if (!is_array($client->querySiteInfo())) {
             // Not a MediaWiki API endpoint
             return false;
         }

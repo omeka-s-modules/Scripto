@@ -28,6 +28,7 @@ class MediaController extends AbstractActionController
         $response = $this->api()->search('scripto_media', $query);
         $this->paginator($response->getTotalResults(), $this->params()->fromQuery('page'));
         $sMedia = $response->getContent();
+        $this->scripto()->cacheMediawikiPages($sMedia);
 
         $view = new ViewModel;
         $view->setVariable('sItem', $sItem);

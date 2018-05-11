@@ -121,7 +121,7 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
 
     public function hydrate(Request $request, EntityInterface $entity, ErrorStore $errorStore)
     {
-        $mwUser = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient')->getUserInfo();
+        $mwUser = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient')->queryUserInfo();
         $oUser = $this->getServiceLocator()->get('Omeka\AuthenticationService')->getIdentity();
         $setIsCompleted = $request->getValue('o-module-scripto:is_completed');
         $setIsApproved = $request->getValue('o-module-scripto:is_approved');

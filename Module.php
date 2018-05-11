@@ -322,7 +322,7 @@ SET FOREIGN_KEY_CHECKS=1;
 
         if (!isset($result['nochange'])) {
             // Update edited user and datetime only if there was a change.
-            $user = $client->getUserInfo();
+            $user = $client->queryUserInfo();
             $sMedia->setEditedBy($user['name']);
 
             $now = new DateTime('now');

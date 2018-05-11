@@ -57,6 +57,24 @@ class ApiClient
     protected $userInfo;
 
     /**
+     * Cache of page information
+     *
+     * Contains all pages queried by self::queryPages(), keyed by title.
+     *
+     * @var array
+     */
+    protected $pageCache = [];
+
+    /**
+     * Cache of revision information
+     *
+     * Contains all revisions queried by self::queryRevision(), keyed by title.
+     *
+     * @var array
+     */
+    protected $revisionCache = [];
+
+    /**
      * Construct the client.
      *
      * @param HttpClient $client
@@ -76,10 +94,6 @@ class ApiClient
                 $this->httpClient->addCookie($cookie);
             }
         }
-
-        // Set MediaWiki site and user information.
-        $this->siteInfo = $this->querySiteInfo();
-        $this->userInfo = $this->queryUserInfo();
     }
 
     /**
@@ -155,7 +169,10 @@ class ApiClient
      */
     public function userIsLoggedIn()
     {
-        return isset($this->userInfo) ? (bool) $this->userInfo['id'] : false;
+        if (!isset($this->userInfo)) {
+            $this->queryUserInfo();
+        }
+        return (bool) $this->userInfo['id'];
     }
 
     /**
@@ -166,7 +183,10 @@ class ApiClient
      */
     public function userIsInGroup($group)
     {
-        return isset($this->userInfo) ? in_array($group, $this->userInfo['groups']) : false;
+        if (!isset($this->userInfo)) {
+            $this->queryUserInfo();
+        }
+        return in_array($group, $this->userInfo['groups']);
     }
 
     /**
@@ -306,7 +326,10 @@ class ApiClient
      */
     public function queryPage($title)
     {
-        return $this->queryPages([$title])[0];
+        if (!isset($this->pageCache[$title])) {
+            $this->pageCache[$title] = $this->queryPages([$title])[0];
+        }
+        return $this->pageCache[$title];
     }
 
     /**
@@ -382,6 +405,10 @@ class ApiClient
                 }
                 $pages[$pageIndex]['protection'][$protectionIndex]['expiry'] = $expiry;
             }
+        }
+        // Cache all pages.
+        foreach ($pages as $page) {
+            $this->pageCache[$page['title']] = $page;
         }
         return $pages;
     }
@@ -500,45 +527,50 @@ class ApiClient
         if (!is_numeric($revisionId)) {
             throw new Exception\InvalidArgumentException('A revision ID must be numeric');
         }
-        $query = $this->request([
-            'action' => 'query',
-            'prop' => 'revisions',
-            'titles' => $title,
-            'rvstartid' => $revisionId,
-            'rvdir' => 'newer',
-            'rvlimit' => 2,
-            'rvprop' => 'ids|flags|timestamp|user|size|parsedcomment|content',
-        ]);
-        if (isset($query['error'])) {
-            throw new Exception\QueryException($query['error']['info']);
+
+        if (!isset($this->revisionCache[$title][$revisionId])) {
+            $query = $this->request([
+                'action' => 'query',
+                'prop' => 'revisions',
+                'titles' => $title,
+                'rvstartid' => $revisionId,
+                'rvdir' => 'newer',
+                'rvlimit' => 2,
+                'rvprop' => 'ids|flags|timestamp|user|size|parsedcomment|content',
+            ]);
+            if (isset($query['error'])) {
+                throw new Exception\QueryException($query['error']['info']);
+            }
+            if (!isset($query['query']['pages'][0]['revisions'])) {
+                // The revision exists, but it is not a revision of this page. The
+                // revision ID is likely more than the highest ID of this page.
+                throw new Exception\QueryException('Invalid page revision');
+            }
+            $revisions = $query['query']['pages'][0]['revisions'];
+            $revision = $revisions[0];
+            if ($revision['revid'] != $revisionId) {
+                // The revision exists, but it is not a revision of this page. The
+                // revision ID is likely less than the lowest ID of this page.
+                throw new Exception\QueryException('Invalid page revision');
+            }
+
+            // Set the child revision ID.
+            $revision['childid'] = isset($revisions[1])
+                ? $query['query']['pages'][0]['revisions'][1]['revid'] : null;
+
+            // Set the latest revision ID.
+            $page = $this->queryPage($title);
+            $revision['latestid'] = $page['lastrevid'];
+
+            // Set timestamp to DateTime object adjusted to Omeka's time zone.
+            $dateTime = new DateTime($revision['timestamp']);
+            $dateTime->setTimezone(new DateTimeZone($this->timeZone));
+            $revision['timestamp'] = $dateTime;
+
+            $this->revisionCache[$title][$revisionId] = $revision;
         }
-        if (!isset($query['query']['pages'][0]['revisions'])) {
-            // The revision exists, but it is not a revision of this page. The
-            // revision ID is likely more than the highest ID of this page.
-            throw new Exception\QueryException('Invalid page revision');
-        }
-        $revisions = $query['query']['pages'][0]['revisions'];
-        $revision = $revisions[0];
-        if ($revision['revid'] != $revisionId) {
-            // The revision exists, but it is not a revision of this page. The
-            // revision ID is likely less than the lowest ID of this page.
-            throw new Exception\QueryException('Invalid page revision');
-        }
 
-        // Set the child revision ID.
-        $revision['childid'] = isset($revisions[1])
-            ? $query['query']['pages'][0]['revisions'][1]['revid'] : null;
-
-        // Set the latest revision ID.
-        $page = $this->queryPage($title);
-        $revision['latestid'] = $page['lastrevid'];
-
-        // Set timestamp to DateTime object adjusted to Omeka's time zone.
-        $dateTime = new DateTime($revision['timestamp']);
-        $dateTime->setTimezone(new DateTimeZone($this->timeZone));
-        $revision['timestamp'] = $dateTime;
-
-        return $revision;
+        return $this->revisionCache[$title][$revisionId];
     }
 
     /**
@@ -821,20 +853,13 @@ class ApiClient
      */
     public function querySiteInfo()
     {
-        $query = $this->request([
-            'action' => 'query',
-            'meta' => 'siteinfo',
-        ]);
-        return $query['query']['general'];
-    }
-
-    /**
-     * Get the most recently queried site information.
-     *
-     * @return array
-     */
-    public function getSiteInfo()
-    {
+        if (!isset($this->siteInfo)) {
+            $query = $this->request([
+                'action' => 'query',
+                'meta' => 'siteinfo',
+            ]);
+            $this->siteInfo = $query['query']['general'];
+        }
         return $this->siteInfo;
     }
 
@@ -845,7 +870,7 @@ class ApiClient
      */
     public function getVersion()
     {
-        $generator = $this->getSiteInfo()['generator'];
+        $generator = $this->querySiteInfo()['generator'];
         preg_match('/^mediawiki (\d\.\d+\.\d+)/i', $generator, $matches);
         return $matches ? $matches[1] : false;
     }
@@ -858,21 +883,14 @@ class ApiClient
      */
     public function queryUserInfo()
     {
-        $query = $this->request([
-            'action' => 'query',
-            'meta' => 'userinfo',
-            'uiprop' => 'realname|email|registrationdate|editcount|groups|implicitgroups',
-        ]);
-        return $query['query']['userinfo'];
-    }
-
-    /**
-     * Get the most recently queried user information.
-     *
-     * @return array
-     */
-    public function getUserInfo()
-    {
+        if (!isset($this->userInfo)) {
+            $query = $this->request([
+                'action' => 'query',
+                'meta' => 'userinfo',
+                'uiprop' => 'realname|email|registrationdate|editcount|groups|implicitgroups',
+            ]);
+            $this->userInfo = $query['query']['userinfo'];
+        }
         return $this->userInfo;
     }
 
@@ -945,6 +963,7 @@ class ApiClient
         // Persist the authentication cookies.
         $this->session->cookies = $this->httpClient->getCookies();
         // Set user information.
+        $this->userInfo = null;
         $this->userInfo = $this->queryUserInfo();
         return $clientlogin['clientlogin'];
     }
@@ -959,7 +978,8 @@ class ApiClient
         $this->request(['action' => 'logout']); // Log out of MediaWiki
         $this->httpClient->clearCookies(); // Clear HTTP client cookies
         $this->session->cookies = null; // Clear session cookies
-        $this->userInfo = $this->queryUserInfo(); // Reset MediaWiki user information
+        $this->userInfo = null; // Reset MediaWiki user information
+        $this->userInfo = $this->queryUserInfo();
     }
 
     /**

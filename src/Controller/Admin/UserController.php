@@ -42,7 +42,7 @@ class UserController extends AbstractActionController
             return $this->redirect()->toRoute('admin/scripto');
         }
         $userName = $this->params('user-id');
-        $currentUser = $this->scripto()->apiClient()->getUserInfo();
+        $currentUser = $this->scripto()->apiClient()->queryUserInfo();
         if ($userName !== $currentUser['name']) {
             // Logged in user must be current user.
             return $this->redirect()->toRoute('admin/scripto-user-watchlist', ['user-id' => $currentUser['name']]);

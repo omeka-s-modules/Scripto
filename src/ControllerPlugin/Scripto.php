@@ -107,4 +107,21 @@ class Scripto extends AbstractPlugin
         }
         return $list;
     }
+
+    /**
+     * Cache MediaWiki pages.
+     *
+     * Leverages bulk caching in the API client so subsequent queries of
+     * individual pages don't make API requests.
+     *
+     * @param array An array of Scripto media representations
+     */
+    public function cacheMediawikiPages(array $sMedia)
+    {
+        $titles = [];
+        foreach ($sMedia as $sm) {
+            $titles[] = $sm->pageTitle();
+        }
+        $this->apiClient()->queryPages($titles);
+    }
 }

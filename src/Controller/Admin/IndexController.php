@@ -25,7 +25,7 @@ class IndexController extends AbstractActionController
 
     public function indexAction()
     {
-        $userInfo = $this->scripto()->apiClient()->getUserInfo();
+        $userInfo = $this->scripto()->apiClient()->queryUserInfo();
         $user = $this->scripto()->apiClient()->queryUser($userInfo['name']);
 
         $response = $this->scripto()->apiClient()->queryUserContributions($userInfo['name'], 10);

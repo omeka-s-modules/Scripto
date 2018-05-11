@@ -117,7 +117,7 @@ class Scripto extends AbstractHelper
         $view = $this->getView();
         if ($this->apiClient->userIsLoggedIn()) {
             $routeName = $this->routeMatch->getMatchedRouteName();
-            $userInfo = $this->apiClient->getUserInfo();
+            $userInfo = $this->apiClient->queryUserInfo();
             $form = $this->formElementManager->get(ScriptoLogoutForm::class);
             $form->setAttribute('action', $view->url(
                 'admin/scripto',
