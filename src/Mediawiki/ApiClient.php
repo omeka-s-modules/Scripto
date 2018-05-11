@@ -592,6 +592,7 @@ class ApiClient
             'disablelimitreport' => true,
             'disableeditsection' => true,
             'disabletoc' => true,
+            'wrapoutputclass' => '', // do not wrap output with div
         ]);
         if (isset($parse['error'])) {
             throw new Exception\ParseException($parse['error']['info']);
@@ -815,6 +816,7 @@ class ApiClient
             'disablelimitreport' => true,
             'disableeditsection' => true,
             'disabletoc' => true,
+            'wrapoutputclass' => '', // do not wrap output with div
         ]);
         if (isset($parse['error']) && 'missingtitle' !== $parse['error']['code']) {
             throw new Exception\ParseException($parse['error']['info']);
