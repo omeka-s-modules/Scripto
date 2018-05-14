@@ -18,6 +18,11 @@ use Zend\View\Renderer\PhpRenderer;
 
 class Module extends AbstractModule
 {
+    /**
+     * @var Cache
+     */
+    protected $cache = [];
+
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
@@ -124,10 +129,10 @@ SET FOREIGN_KEY_CHECKS=1;
 
     public function attachListeners(SharedEventManagerInterface $sharedEventManager)
     {
+        // Add the Scripto term definition.
         $sharedEventManager->attach(
             '*',
             'api.context',
-            // Add the Scripto term definition.
             function (Event $event) {
                 $context = $event->getParam('context');
                 $context['o-module-scripto'] = 'http://omeka.org/s/vocabs/module/scripto#';
@@ -155,14 +160,14 @@ SET FOREIGN_KEY_CHECKS=1;
             [$this, 'filterProjects']
         );
         $sharedEventManager->attach(
-            'Omeka\Api\Representation\MediaRepresentation',
-            'rep.resource.json',
-            [$this, 'filterMediaJsonLd']
-        );
-        $sharedEventManager->attach(
             'Omeka\Api\Representation\ItemRepresentation',
             'rep.resource.json',
             [$this, 'filterItemJsonLd']
+        );
+        $sharedEventManager->attach(
+            'Omeka\Api\Representation\MediaRepresentation',
+            'rep.resource.json',
+            [$this, 'filterMediaJsonLd']
         );
     }
 
@@ -366,28 +371,6 @@ SET FOREIGN_KEY_CHECKS=1;
     }
 
     /**
-     * Add imported Scripto media to the corresponding Omeka media's JSON-LD.
-     *
-     * Event $event
-     */
-    public function filterMediaJsonLd(Event $event)
-    {
-        $jsonLd = $event->getParam('jsonLd');
-        $propertyAdapter = $this->getServiceLocator()->get('Omeka\ApiAdapterManager')->get('properties');
-
-        $sMedias = $this->getImportedScriptoMedia($event->getTarget()->id());
-        foreach ($sMedias as $sMedia) {
-            $project = $sMedia->getScriptoItem()->getScriptoProject();
-            $jsonLd['o-module-scripto:content'][] = [
-                'o:property' => $propertyAdapter->getRepresentation($project->getProperty())->getReference(),
-                'o:lang' => $project->getLang(),
-                'o-module-scripto:html' => $sMedia->getImportedHtml(),
-            ];
-        }
-        $event->setParam('jsonLd', $jsonLd);
-    }
-
-    /**
      * Add imported Scripto items to the corresponding Omeka item's JSON-LD.
      *
      * Event $event
@@ -395,15 +378,33 @@ SET FOREIGN_KEY_CHECKS=1;
     public function filterItemJsonLd(Event $event)
     {
         $jsonLd = $event->getParam('jsonLd');
-        $propertyAdapter = $this->getServiceLocator()->get('Omeka\ApiAdapterManager')->get('properties');
-
         $sItems = $this->getImportedScriptoItems($event->getTarget()->id());
         foreach ($sItems as $sItem) {
-            $project = $sItem[0]->getScriptoProject();
+            $project = $sItem[0]->scriptoProject();
             $jsonLd['o-module-scripto:content'][] = [
-                'o:property' => $propertyAdapter->getRepresentation($project->getProperty())->getReference(),
-                'o:lang' => $project->getLang(),
+                'o:property' => $project->property()->getReference(),
+                'o:lang' => $project->lang(),
                 'o-module-scripto:html' => $sItem[1],
+            ];
+        }
+        $event->setParam('jsonLd', $jsonLd);
+    }
+
+    /**
+     * Add imported Scripto media to the corresponding Omeka media's JSON-LD.
+     *
+     * Event $event
+     */
+    public function filterMediaJsonLd(Event $event)
+    {
+        $jsonLd = $event->getParam('jsonLd');
+        $sMedias = $this->getImportedScriptoMedia($event->getTarget()->id());
+        foreach ($sMedias as $sMedia) {
+            $project = $sMedia->scriptoItem()->scriptoProject();
+            $jsonLd['o-module-scripto:content'][] = [
+                'o:property' => $project->property()->getReference(),
+                'o:lang' => $project->lang(),
+                'o-module-scripto:html' => $sMedia->importedHtml(),
             ];
         }
         $event->setParam('jsonLd', $jsonLd);
@@ -412,36 +413,68 @@ SET FOREIGN_KEY_CHECKS=1;
     /**
      * Get imported Scripto media.
      *
-     * @param int $mediaId The Omeka media ID
-     * @return array An array of Scripto media entities
+     * Caches the data to avoid duplicate queries during the request. Returns an
+     * array containing Scripto media representations.
+     *
+     * @param int $mediaId
+     * @return array
      */
     public function getImportedScriptoMedia($mediaId)
     {
-        $em = $this->getServiceLocator()->get('Omeka\EntityManager');
-        $dql = '
-        SELECT sm
-        FROM Scripto\Entity\ScriptoMedia sm
-        JOIN sm.media m WITH m.id = :media_id
-        WHERE sm.importedHtml IS NOT NULL';
-        return $em->createQuery($dql)->setParameter('media_id', $mediaId)->getResult();
+        if (!isset($this->cache['imported_scripto_resources'][$mediaId])) {
+            $em = $this->getServiceLocator()->get('Omeka\EntityManager');
+            $dql = '
+            SELECT sm
+            FROM Scripto\Entity\ScriptoMedia sm
+            JOIN sm.media m WITH m.id = :media_id
+            WHERE sm.importedHtml IS NOT NULL';
+            $sMediaEntities = $em->createQuery($dql)->setParameter('media_id', $mediaId)->getResult();
+            $sMedia = [];
+            if ($sMediaEntities) {
+                $sMediaAdapter = $this->getServiceLocator()->get('Omeka\ApiAdapterManager')->get('scripto_media');
+                foreach ($sMediaEntities as $sMediaEntity) {
+                    $sMedia[] = $sMediaAdapter->getRepresentation($sMediaEntity);
+                }
+            }
+            $this->cache['imported_scripto_resources'][$mediaId] = $sMedia;
+        }
+        return $this->cache['imported_scripto_resources'][$mediaId];
     }
 
     /**
      * Get imported Scripto items.
      *
-     * @param int $itemId The Omeka item ID
-     * @return array An array of Scripto item entities
+     * Caches the data to avoid duplicate queries during the request. Returns an
+     * array of arrays containing [0] Scripto item representations and [1]
+     * aggregated imported HTML.
+     *
+     * @param int $itemId
+     * @return array
      */
     public function getImportedScriptoItems($itemId)
     {
-        $em = $this->getServiceLocator()->get('Omeka\EntityManager');
-        $dql = '
-        SELECT si, GROUP_CONCAT(sm.importedHtml ORDER BY sm.position ASC SEPARATOR \'\')
-        FROM Scripto\Entity\ScriptoItem si
-        JOIN si.item i WITH i.id = :item_id
-        LEFT JOIN si.scriptoMedia sm
-        WHERE sm.importedHtml IS NOT NULL
-        GROUP BY si';
-        return $em->createQuery($dql)->setParameter('item_id', $itemId)->getResult();
+        if (!isset($this->cache['imported_scripto_resources'][$itemId])) {
+            $em = $this->getServiceLocator()->get('Omeka\EntityManager');
+            $dql = '
+            SELECT si, GROUP_CONCAT(sm.importedHtml ORDER BY sm.position ASC SEPARATOR \'\')
+            FROM Scripto\Entity\ScriptoItem si
+            JOIN si.item i WITH i.id = :item_id
+            LEFT JOIN si.scriptoMedia sm
+            WHERE sm.importedHtml IS NOT NULL
+            GROUP BY si';
+            $sItemEntities = $em->createQuery($dql)->setParameter('item_id', $itemId)->getResult();
+            $sItems = [];
+            if ($sItemEntities) {
+                $sItemAdapter = $this->getServiceLocator()->get('Omeka\ApiAdapterManager')->get('scripto_items');
+                foreach ($sItemEntities as $sItemEntity) {
+                    $sItems[] = [
+                        $sItemAdapter->getRepresentation($sItemEntity[0]),
+                        $sItemEntity[1]
+                    ];
+                }
+            }
+            $this->cache['imported_scripto_resources'][$itemId] = $sItems;
+        }
+        return $this->cache['imported_scripto_resources'][$itemId];
     }
 }
