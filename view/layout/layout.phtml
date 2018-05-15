@@ -1,7 +1,9 @@
 <?php
+$title = sprintf('%s · %s', $this->translate('Scripto'), $this->setting('installation_title', 'Omeka S'));
+
 $this->headMeta()->setCharset('utf-8');
 $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1');
-$this->headTitle($this->translate('Scripto'));
+$this->headTitle($title);
 $this->headLink()->prependStylesheet('//fonts.googleapis.com/css?family=Source+Code+Pro|Lato:400,400italic,700,700italic');
 $this->headLink()->appendStylesheet($this->assetUrl('css/iconfonts.css', 'Omeka'));
 $this->headLink()->appendStylesheet($this->assetUrl('css/public-app.css', 'Scripto'));
@@ -19,7 +21,7 @@ $this->headScript()->appendFile($this->assetUrl('js/public-app.js', 'Scripto'));
     </head>
     <header class="site-header" role="banner">
         <div class="wrapper">
-            <?php echo $this->hyperlink($this->translate('Scripto'), $this->url('scripto', []), ['class' => 'site-title']); ?>
+            <?php echo $this->hyperlink($title, $this->url('scripto'), ['class' => 'site-title']); ?>
             <nav class="site-nav">
                 <input type="checkbox" id="nav-trigger" class="nav-trigger" />
                 <label for="nav-trigger">
@@ -31,7 +33,7 @@ $this->headScript()->appendFile($this->assetUrl('js/public-app.js', 'Scripto'));
                 </label>
                 <div class="trigger">
                     <a class="page-link" href=""><?php echo $this->translate('Projects'); ?></a>
-                    <?php echo $this->scripto()->publicAppLoginBar(); ?>
+                    <?php echo $this->scripto()->loginBar(); ?>
                 </div>
             </nav>
         </div>
@@ -49,7 +51,7 @@ $this->headScript()->appendFile($this->assetUrl('js/public-app.js', 'Scripto'));
         </main>
         <footer class="site-footer h-card">
             <div class="wrapper">
-                <h2 class="footer-heading"><?php echo $this->translate('Scripto'); ?></h2>
+                <h2 class="footer-heading"><?php echo $title; ?></h2>
                 <div class="footer-col-wrapper">
                     <div class="footer-col footer-col-1"></div>
                     <div class="footer-col footer-col-2">

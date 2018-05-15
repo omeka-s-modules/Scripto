@@ -158,7 +158,7 @@ class Scripto extends AbstractHelper
      *
      * @return string
      */
-    public function publicAppLoginBar()
+    public function loginBar()
     {
         $view = $this->getView();
         if ($this->apiClient->userIsLoggedIn()) {
