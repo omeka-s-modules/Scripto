@@ -10,8 +10,6 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto user contribution 
 
 <?php echo $this->scripto()->adminBreadcrumbs(); ?>
 
-<p><?php echo sprintf($this->translate('MediaWiki groups: %s'), implode(', ', $user['groups'])); ?></p>
-
 <div class="browse-controls">
     <?php echo $this->scripto()->adminMediawikiPagination(); ?>
 </div>
