@@ -139,6 +139,90 @@ SET FOREIGN_KEY_CHECKS=1;
                 $event->setParam('context', $context);
             }
         );
+        // Add the imported Scripto items tab to the section navigation.
+        $sharedEventManager->attach(
+            'Omeka\Controller\Admin\Item',
+            'view.show.section_nav',
+            function (Event $event) {
+                $itemId = $event->getParam('resource')->id();
+                $sItems = $this->getImportedScriptoItems($itemId);
+                if ($sItems) {
+                    $view = $event->getTarget();
+                    $sectionNav = $event->getParam('section_nav');
+                    foreach ($sItems as $sItem) {
+                        $project = $sItem[0]->scriptoProject();
+                        $sectionId = sprintf('imported-scripto-item-%s', $sItem[0]->id());
+                        $tabText = sprintf(
+                            '%s%s',
+                            ucfirst($project->property()->label()),
+                            $project->lang() ? sprintf(' (%s)', $project->lang()) : ''
+                        );
+                        $sectionNav[$sectionId] = $view->translate($tabText);
+                    }
+                    $event->setParam('section_nav', $sectionNav);
+                }
+            }
+        );
+        // Add the imported Scripto media tab to the section navigation.
+        $sharedEventManager->attach(
+            'Omeka\Controller\Admin\Media',
+            'view.show.section_nav',
+            function (Event $event) {
+                $mediaId = $event->getParam('resource')->id();
+                $sMedias = $this->getImportedScriptoMedia($mediaId);
+                if ($sMedias) {
+                    $view = $event->getTarget();
+                    $sectionNav = $event->getParam('section_nav');
+                    foreach ($sMedias as $sMedia) {
+                        $project = $sMedia->scriptoItem()->scriptoProject();
+                        $sectionId = sprintf('imported-scripto-media-%s', $sMedia->id());
+                        $tabText = sprintf(
+                            '%s%s',
+                            ucfirst($project->property()->label()),
+                            $project->lang() ? sprintf(' (%s)', $project->lang()) : ''
+                        );
+                        $sectionNav[$sectionId] = $view->translate($tabText);
+                    }
+                    $event->setParam('section_nav', $sectionNav);
+                }
+            }
+        );
+        // Add the imported Scripto items panel to the item show page.
+        $sharedEventManager->attach(
+            'Omeka\Controller\Admin\Item',
+            'view.show.after',
+            function (Event $event) {
+                $item = $event->getTarget()->item;
+                $sItems = $this->getImportedScriptoItems($item->id());
+                if ($sItems) {
+                    foreach ($sItems as $sItem) {
+                        $sectionId = sprintf('imported-scripto-item-%s', $sItem[0]->id());
+                        echo $event->getTarget()->partial(
+                            'scripto/admin/imported-scripto-item',
+                            ['item' => $item, 'sItem' => $sItem, 'sectionId' => $sectionId]
+                        );
+                    }
+                }
+            }
+        );
+        // Add the imported Scripto media panel to the media show page.
+        $sharedEventManager->attach(
+            'Omeka\Controller\Admin\Media',
+            'view.show.after',
+            function (Event $event) {
+                $media = $event->getTarget()->media;
+                $sMedias = $this->getImportedScriptoMedia($media->id());
+                if ($sMedias) {
+                    foreach ($sMedias as $sMedia) {
+                        $sectionId = sprintf('imported-scripto-media-%s', $sMedia->id());
+                        echo $event->getTarget()->partial(
+                            'scripto/admin/imported-scripto-media',
+                            ['media' => $media, 'sMedia' => $sMedia, 'sectionId' => $sectionId]
+                        );
+                    }
+                }
+            }
+        );
         $sharedEventManager->attach(
             '*',
             'route',

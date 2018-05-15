@@ -1,0 +1,15 @@
+<?php
+$project = $sItem[0]->scriptoProject();
+$property = $project->property();
+?>
+<div id="<?php echo $this->escapeHtml($sectionId); ?>" class="section">
+    <div class="property">
+        <h4>Property</h4>
+        <div class="value"><?php echo $property ? sprintf('%s : %s', $property->vocabulary()->label(), $property->label()) : $this->translate('Not set'); ?></div>
+        <?php if ($project->lang()): ?>
+        <h4>Language</h4>
+        <div class="value"><?php echo $this->escapeHtml($project->lang()); ?></div>
+        <?php endif; ?>
+    </div>
+    <div><?php echo $sItem[1]; ?></div>
+</div>
