@@ -2,7 +2,10 @@
 namespace Scripto\ControllerPlugin;
 
 use Omeka\Api\Exception\NotFoundException;
+use Scripto\Form\ScriptoLoginForm;
+use Scripto\Form\ScriptoLogoutForm;
 use Scripto\Mediawiki\ApiClient;
+use Scripto\Mediawiki\Exception\ClientloginException;
 use Zend\Mvc\Controller\Plugin\AbstractPlugin;
 
 /**
@@ -123,5 +126,61 @@ class Scripto extends AbstractPlugin
             $titles[] = $sm->pageTitle();
         }
         $this->apiClient()->queryPages($titles);
+    }
+
+    /**
+     * Log in to Scripto (MediaWiki)
+     *
+     * @param string $name The redirect route name (for login without redirect)
+     * @param array $params The redirect route parameters (for login without redirect)
+     */
+    public function login($name, array $params = [])
+    {
+        $controller = $this->getController();
+        if ($controller->getRequest()->isPost()) {
+            $form = $controller->getForm(ScriptoLoginForm::class);
+            $form->setData($controller->getRequest()->getPost());
+            if ($form->isValid()) {
+                $formData = $form->getData();
+                try {
+                    $this->apiClient()->login(
+                        $formData['scripto-username'],
+                        $formData['scripto-password']
+                    );
+                    $controller->messenger()->addSuccess($controller->translate('Successfully logged in to Scripto.'));
+                } catch (ClientloginException $e) {
+                    $controller->messenger()->addError($controller->translate('Cannot log in to Scripto. Email or password is invalid.'));
+                }
+            }
+            $redirect = $controller->getRequest()->getQuery('redirect');
+            if ($redirect) {
+                return $controller->redirect()->toUrl($redirect);
+            }
+        }
+        return $controller->redirect()->toRoute($name, $params);
+    }
+
+    /**
+     * Log out of Scripto (MediaWiki)
+     *
+     * @param string $name The redirect route name (for logout without redirect)
+     * @param array $params The redirect route parameters (for logout without redirect)
+     */
+    public function logout($name, array $params = [])
+    {
+        $controller = $this->getController();
+        if ($controller->getRequest()->isPost()) {
+            $form = $controller->getForm(ScriptoLogoutForm::class);
+            $form->setData($controller->getRequest()->getPost());
+            if ($form->isValid()) {
+                $this->apiClient()->logout();
+                $controller->messenger()->addSuccess($controller->translate('Successfully logged out of Scripto.'));
+            }
+            $redirect = $controller->getRequest()->getQuery('redirect');
+            if ($redirect) {
+                return $controller->redirect()->toUrl($redirect);
+            }
+        }
+        return $controller->redirect()->toRoute($name, $params);
     }
 }

@@ -108,7 +108,7 @@ class Scripto extends AbstractHelper
     }
 
     /**
-     * Return the Scripto login and logout bar.
+     * Return the admin Scripto login and logout bar.
      *
      * @return string
      */
@@ -147,6 +147,55 @@ class Scripto extends AbstractHelper
             ));
             return sprintf(
                 '<div id="scripto-login"><h3>%s</h3>%s</div>',
+                $view->translate('Log in to Scripto'),
+                $view->form($form)
+            );
+        }
+    }
+
+    /**
+     * Return the public Scripto login and logout bar.
+     *
+     * @return string
+     */
+    public function publicAppLoginBar()
+    {
+        $view = $this->getView();
+        if ($this->apiClient->userIsLoggedIn()) {
+            $userInfo = $this->apiClient->queryUserInfo();
+            $form = $this->formElementManager->get(ScriptoLogoutForm::class);
+            $form->setAttribute('action', $view->url(
+                'scripto',
+                ['action' => 'logout'],
+                ['query' => ['redirect' => $this->getCurrentUrl()]]
+            ));
+            return sprintf(
+                '<div class="user">
+                    <a href="#" class="user-toggle page-link menu-toggle" aria-label="%s"></a>
+                    <ul class="user-menu">
+                        <li>%s</li>
+                        <li>%s</li>
+                        <li>%s</li>
+                        <li>%s</li>
+                    </ul>
+                </div>
+                %s',
+                $view->translate('User menu'),
+                sprintf($view->translate('Logged in to Scripto as %s'), sprintf('<span class="username">%s</span>', $userInfo['name'])),
+                $view->hyperlink($view->translate('Dashboard'), $view->url('scripto')),
+                $view->translate('Contributions'),
+                $view->translate('Watchlist'),
+                $view->form($form)
+            );
+        } else {
+            $form = $this->formElementManager->get(ScriptoLoginForm::class);
+            $form->setAttribute('action', $view->url(
+                'scripto',
+                ['action' => 'login'],
+                ['query' => ['redirect' => $this->getCurrentUrl()]]
+            ));
+            return sprintf(
+                '<div class="user">%s%s</div>',
                 $view->translate('Log in to Scripto'),
                 $view->form($form)
             );
