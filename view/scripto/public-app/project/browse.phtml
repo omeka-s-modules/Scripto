@@ -1,0 +1,22 @@
+<article class="post">
+    <header class="post-header">
+        <h1 class="post-title"><?php echo $this->translate('Projects'); ?></h1>
+    </header>
+    <div class="post-content">
+        <div class="project resource-list">
+            <?php foreach ($projects as $project): ?>
+            <div class="resource-row">
+                <img
+                    title="<?php echo $this->escapeHtml($this->translate('Project primary media')); ?>"
+                    alt="<?php echo $this->escapeHtml($this->translate('Project primary media')); ?>"
+                    src="<?php echo $this->escapeHtml($project->itemSet()->primaryMedia()->thumbnailUrl('square')); ?>"
+                >
+                <div class="resource-meta">
+                    <h4><?php echo $this->hyperlink($project->title(), $this->url('scripto')); ?></h4>
+                    <div class="description"><?php echo $this->escapeHtml($project->description()); ?></div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</article>

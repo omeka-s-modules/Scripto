@@ -32,7 +32,7 @@ $this->headScript()->appendFile($this->assetUrl('js/public-app.js', 'Scripto'));
                     </span>
                 </label>
                 <div class="trigger">
-                    <a class="page-link" href=""><?php echo $this->translate('Projects'); ?></a>
+                    <?php echo $this->hyperlink($this->translate('Projects'), $this->url('scripto-project'), ['class' => 'page-link']); ?>
                     <?php echo $this->scripto()->loginBar(); ?>
                 </div>
             </nav>

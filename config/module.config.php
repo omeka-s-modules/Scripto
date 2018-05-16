@@ -28,6 +28,7 @@ return [
     'controllers' => [
         'invokables' => [
             'Scripto\Controller\PublicApp\Index' => Scripto\Controller\PublicApp\IndexController::class,
+            'Scripto\Controller\PublicApp\Project' => Scripto\Controller\PublicApp\ProjectController::class,
             'Scripto\Controller\Admin\User' => Scripto\Controller\Admin\UserController::class,
             'Scripto\Controller\Admin\Item' => Scripto\Controller\Admin\ItemController::class,
             'Scripto\Controller\Admin\Media' => Scripto\Controller\Admin\MediaController::class,
@@ -76,6 +77,20 @@ return [
                         '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
                         'controller' => 'index',
                         'action' => 'index',
+                    ],
+                ],
+            ],
+            'scripto-project' =>  [
+                'type' => 'Segment',
+                'options' => [
+                    'route' => '/scripto/project[/:action]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ],
+                    'defaults' => [
+                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                        'controller' => 'project',
+                        'action' => 'browse',
                     ],
                 ],
             ],
