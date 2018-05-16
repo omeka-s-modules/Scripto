@@ -225,6 +225,11 @@ SET FOREIGN_KEY_CHECKS=1;
         );
         $sharedEventManager->attach(
             '*',
+            'dispatch',
+            [$this, 'setPublicAppLayout']
+        );
+        $sharedEventManager->attach(
+            '*',
             'route',
             [$this, 'checkMediawikiApiUrl']
         );
@@ -345,6 +350,21 @@ SET FOREIGN_KEY_CHECKS=1;
     }
 
     /**
+     * Set the public application layout.
+     *
+     * @param Event $event
+     */
+    public function setPublicAppLayout(Event $event)
+    {
+        $routeName = $event->getRouteMatch()->getMatchedRouteName();
+        if (0 !== strpos($routeName, 'scripto')) {
+            // Not a public application Scripto route.
+            return;
+        }
+        $event->getViewModel()->setTemplate('layout/scripto-public-app-layout');
+    }
+
+    /**
      * Check for MediaWiki API URL.
      *
      * Blocks access to all Scripto routes if the MediaWiki API URL is not
@@ -356,7 +376,7 @@ SET FOREIGN_KEY_CHECKS=1;
     {
         $routeName = $event->getRouteMatch()->getMatchedRouteName();
         if (0 !== strpos($routeName, 'admin/scripto')) {
-            // Not a Scripto route.
+            // Not an admin Scripto route.
             return;
         }
         $settings = $this->getServiceLocator()->get('Omeka\Settings');
