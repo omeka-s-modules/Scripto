@@ -87,7 +87,7 @@ class MediaController extends AbstractActionController
         if ($this->getRequest()->isPost() && isset($postData['submit_revisionrevertform'])) {
             $revertForm->setData($postData);
             if ($revertForm->isValid()) {
-                $data = ['o-module-scripto:content' => $revision['content']];
+                $data = ['o-module-scripto:wikitext' => $revision['content']];
                 $response = $this->api()->update('scripto_media', $sMedia->id(), $data, ['isPartial' => true]);
                 if ($response) {
                     $this->messenger()->addSuccess('Scripto media revision successfully reverted.'); // @translate
