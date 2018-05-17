@@ -41,6 +41,15 @@ $this->headScript()->appendFile($this->assetUrl('js/public-app.js', 'Scripto'));
             <input type="text" name="search" value="" aria-label="<?php echo $this->escapeHtml($this->translate('Query')); ?>">
             <button type="submit" class="o-icon-search" aria-label="<?php echo $this->escapeHtml($this->translate('Search')); ?>"></button>
         </form>
+        <?php if (isset($this->project)): ?>
+        <nav class="project-nav wrapper">
+            <h2><?php echo $project->link($project->title()); ?></h2>
+            <ul>
+                <li><?php echo $project->link($this->translate('Items')); ?></li>
+                <li><?php echo $project->link($this->translate('Transcription Guidelines'), 'guidelines'); ?></li>
+            </ul>
+        </nav>
+        <?php endif; ?>
     </header>
     <body>
         <main class="page-content" aria-label="<?php echo $this->escapeHtml($this->translate('Content')); ?>">

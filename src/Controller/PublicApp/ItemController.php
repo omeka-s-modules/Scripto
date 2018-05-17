@@ -23,8 +23,9 @@ class ItemController extends AbstractActionController
         $sItems = $response->getContent();
 
         $view = new ViewModel;
-        $view->setVariable('project', $project);
         $view->setVariable('sItems', $sItems);
+        $view->setVariable('project', $project);
+        $this->layout()->setVariable('project', $project);
         return $view;
     }
 
