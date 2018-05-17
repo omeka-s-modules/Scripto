@@ -29,6 +29,7 @@ return [
         'invokables' => [
             'Scripto\Controller\PublicApp\Index' => Scripto\Controller\PublicApp\IndexController::class,
             'Scripto\Controller\PublicApp\Project' => Scripto\Controller\PublicApp\ProjectController::class,
+            'Scripto\Controller\PublicApp\Item' => Scripto\Controller\PublicApp\ItemController::class,
             'Scripto\Controller\Admin\User' => Scripto\Controller\Admin\UserController::class,
             'Scripto\Controller\Admin\Item' => Scripto\Controller\Admin\ItemController::class,
             'Scripto\Controller\Admin\Media' => Scripto\Controller\Admin\MediaController::class,
@@ -91,6 +92,52 @@ return [
                         '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
                         'controller' => 'project',
                         'action' => 'browse',
+                    ],
+                ],
+            ],
+            'scripto-project-id' =>  [
+                'type' => 'Segment',
+                'options' => [
+                    'route' => '/scripto/:project-id[/:action]',
+                    'constraints' => [
+                        'project-id' => '\d+',
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ],
+                    'defaults' => [
+                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                        'controller' => 'project',
+                        'action' => 'show',
+                    ],
+                ],
+            ],
+            'scripto-item' =>  [
+                'type' => 'Segment',
+                'options' => [
+                    'route' => '/scripto/:project-id/item[/:action]',
+                    'constraints' => [
+                        'project-id' => '\d+',
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ],
+                    'defaults' => [
+                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                        'controller' => 'item',
+                        'action' => 'browse',
+                    ],
+                ],
+            ],
+            'scripto-item-id' =>  [
+                'type' => 'Segment',
+                'options' => [
+                    'route' => '/scripto/:project-id/:item-id[/:action]',
+                    'constraints' => [
+                        'project-id' => '\d+',
+                        'item-id' => '\d+',
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ],
+                    'defaults' => [
+                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                        'controller' => 'item',
+                        'action' => 'show',
                     ],
                 ],
             ],
