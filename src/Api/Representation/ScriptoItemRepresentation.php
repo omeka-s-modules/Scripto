@@ -13,6 +13,24 @@ class ScriptoItemRepresentation extends AbstractEntityRepresentation
     const STATUS_COMPLETED = 'Completed'; // @translate
     const STATUS_APPROVED = 'Approved'; // @translate
 
+    public function url($action = null, $canonical = false)
+    {
+        $url = parent::url($action, $canonical);
+        if ($url) {
+            return $url;
+        }
+        $urlHelper = $this->getViewHelper('Url');
+        return $urlHelper(
+            'scripto-item-id',
+            [
+                'action' => $action,
+                'project-id' => $this->resource->getScriptoProject()->getId(),
+                'item-id' => $this->resource->getItem()->getId(),
+            ],
+            ['force_canonical' => $canonical]
+        );
+    }
+
     public function adminUrl($action = null, $canonical = false)
     {
         $url = $this->getViewHelper('Url');
@@ -82,6 +100,17 @@ class ScriptoItemRepresentation extends AbstractEntityRepresentation
     public function edited()
     {
         return $this->resource->getEdited();
+    }
+
+    public function primaryMedia()
+    {
+        $sMediaEntities = $this->resource->getScriptoMedia();
+        if ($sMediaEntities->isEmpty()) {
+            return null;
+        }
+        $mediaEntity = $sMediaEntities->slice(0, 1)[0]->getMedia();
+        $media = $this->getAdapter('media')->getRepresentation($mediaEntity);
+        return $media->primaryMedia();
     }
 
     /**

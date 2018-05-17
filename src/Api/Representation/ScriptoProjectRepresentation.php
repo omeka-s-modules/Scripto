@@ -5,6 +5,23 @@ use Omeka\Api\Representation\AbstractEntityRepresentation;
 
 class ScriptoProjectRepresentation extends AbstractEntityRepresentation
 {
+    public function url($action = null, $canonical = false)
+    {
+        $url = parent::url($action, $canonical);
+        if ($url) {
+            return $url;
+        }
+        $urlHelper = $this->getViewHelper('Url');
+        return $urlHelper(
+            'scripto-project-id',
+            [
+                'action' => $action,
+                'project-id' => $this->resource->getId(),
+            ],
+            ['force_canonical' => $canonical]
+        );
+    }
+
     public function adminUrl($action = null, $canonical = false)
     {
         $url = $this->getViewHelper('Url');
@@ -117,6 +134,17 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
     public function imported()
     {
         return $this->resource->getImported();
+    }
+
+    public function primaryMedia()
+    {
+        $itemEntities = $this->resource->getItemSet()->getItems();
+        if ($itemEntities->isEmpty()) {
+            return null;
+        }
+        $itemEntity = $itemEntities->slice(0, 1)[0];
+        $item = $this->getAdapter('items')->getRepresentation($itemEntity);
+        return $item->primaryMedia();
     }
 
     /**

@@ -22,6 +22,25 @@ class ScriptoMediaRepresentation extends AbstractEntityRepresentation
      */
     protected $page;
 
+    public function url($action = null, $canonical = false)
+    {
+        $url = parent::url($action, $canonical);
+        if ($url) {
+            return $url;
+        }
+        $urlHelper = $this->getViewHelper('Url');
+        return $urlHelper(
+            'scripto-media-id',
+            [
+                'action' => $action,
+                'project-id' => $this->resource->getScriptoItem()->getScriptoProject()->getId(),
+                'item-id' => $this->resource->getScriptoItem()->getItem()->getId(),
+                'media-id' => $this->resource->getMedia()->getId(),
+            ],
+            ['force_canonical' => $canonical]
+        );
+    }
+
     public function adminUrl($action = null, $canonical = false)
     {
         $url = $this->getViewHelper('Url');
@@ -188,6 +207,11 @@ class ScriptoMediaRepresentation extends AbstractEntityRepresentation
     public function importedHtml()
     {
         return $this->resource->getImportedHtml();
+    }
+
+    public function primaryMedia()
+    {
+        return $this->media();
     }
 
     /**
