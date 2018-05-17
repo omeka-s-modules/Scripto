@@ -11,7 +11,7 @@
                     'alt' => $this->translate('Project primary media')
                 ]); ?>
                 <div class="resource-meta">
-                    <h4><?php echo $project->link($project->title()) ?></h4>
+                    <h4><?php echo $project->link($project->title()); ?></h4>
                     <div class="description"><?php echo $this->escapeHtml($project->description()); ?></div>
                 </div>
             </div>
