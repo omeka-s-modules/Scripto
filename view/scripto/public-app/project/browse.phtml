@@ -6,13 +6,12 @@
         <div class="project resource-list">
             <?php foreach ($projects as $project): ?>
             <div class="resource-row">
-                <img
-                    title="<?php echo $this->escapeHtml($this->translate('Project primary media')); ?>"
-                    alt="<?php echo $this->escapeHtml($this->translate('Project primary media')); ?>"
-                    src="<?php echo $this->escapeHtml($project->itemSet()->primaryMedia()->thumbnailUrl('square')); ?>"
-                >
+                <?php echo $this->thumbnail($project, 'square', [
+                    'title' => $this->translate('Project primary media'),
+                    'alt' => $this->translate('Project primary media')
+                ]); ?>
                 <div class="resource-meta">
-                    <h4><?php echo $this->hyperlink($project->title(), $this->url('scripto')); ?></h4>
+                    <h4><?php echo $project->link($project->title()) ?></h4>
                     <div class="description"><?php echo $this->escapeHtml($project->description()); ?></div>
                 </div>
             </div>

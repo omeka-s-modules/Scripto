@@ -17,4 +17,9 @@ class ProjectController extends AbstractActionController
         $view->setVariable('projects', $projects);
         return $view;
     }
+
+    public function showAction()
+    {
+        return $this->redirect()->toRoute('scripto-item', ['action' => 'browse'], true);
+    }
 }
