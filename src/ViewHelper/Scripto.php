@@ -170,7 +170,7 @@ class Scripto extends AbstractHelper
                 ['query' => ['redirect' => $this->getCurrentUrl()]]
             ));
             return sprintf(
-                '<div class="user">
+                '<div class="user logged-in">
                     <a href="#" class="user-toggle page-link menu-toggle" aria-label="%s"></a>
                     <ul class="user-menu">
                         <li>%s</li>
@@ -195,8 +195,8 @@ class Scripto extends AbstractHelper
                 ['query' => ['redirect' => $this->getCurrentUrl()]]
             ));
             return sprintf(
-                '<div class="user">%s%s</div>',
-                $view->translate('Log in to Scripto'),
+                '<div class="user logged-out"><a href="#" class="user-toggle page-link menu-toggle">%s</a><div class="user-menu">%s</div></div>',
+                $view->translate('Log in'),
                 $view->form($form)
             );
         }
