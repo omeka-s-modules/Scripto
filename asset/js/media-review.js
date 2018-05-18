@@ -64,22 +64,28 @@ $(document).ready(function() {
     });
 
     // Handle the watchlist toggle.
-    $('#content').on('click', '.watchlist.button', function(e) {
+    var isWatched = $('input[type="hidden"][name="is_watched"]');
+    var watchedIcon = isWatched.siblings('.watchlist.button.watched');
+    var notWatchedIcon = isWatched.siblings('.watchlist.button').not('.watched');
+    '1' === isWatched.val() ? watchedIcon.show() : notWatchedIcon.show();
+    watchedIcon.add(notWatchedIcon).on('click', function(e) {
         e.preventDefault();
-        var watchlistIcon = $(this);
-        $(this).toggleClass('watched')
-        var watchlistHiddenValue = $(this).next('[type="hidden"]');
-        if (watchlistHiddenValue.val() == 0) {
-            watchlistIcon.attr('aria-label', Omeka.jsTranslate('Watch media'));
-            watchlistIcon.attr('title', Omeka.jsTranslate('Watch media'));
-            watchlistHiddenValue.attr('value', 1);
+        if ('1' === isWatched.val()) {
+            isWatched.val('0');
+            notWatchedIcon.show();
+            watchedIcon.hide();
         } else {
-            watchlistIcon.attr('aria-label', Omeka.jsTranslate('Stop watching media'));
-            watchlistIcon.attr('title', Omeka.jsTranslate('Stop watching media'));
-            watchlistHiddenValue.attr('value', 0);
+            isWatched.val('1');
+            notWatchedIcon.hide()
+            watchedIcon.show();
         }
     });
 
     // Remove sidebar click event so revision pagination reloads the page.
     $('#content').off('click', '.sidebar .pagination a');
+
+    $('button.save, button.edit').click(function() {
+        $('#edit-view').toggle();
+        $('#show-view').toggle();
+    });
 });
