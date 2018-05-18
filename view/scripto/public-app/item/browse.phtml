@@ -4,18 +4,20 @@
     </header>
     <div class="post-content">
         <div class="resource-content">
-            <div class="project resource-metadata"><?php echo $this->escapeHtml($project->description()); ?></div>
+            <div class="project resource-metadata">
+                <?php echo $this->escapeHtml($project->description()); ?>
+            </div>
             <div class="item resource-list">
                 <h3><?php echo $this->translate('Items'); ?></h3>
                 <div class="media list-head">
                     <?php echo $this->pagination(); ?>
                     <div class="list-layout">
-                        <span class="layout-label">Layout</span>
-                        <button class="list" aria-label="List"></button>
-                        <button class="grid" aria-label="Grid" disabled></button>
+                        <span class="layout-label"><?php echo $this->translate('Layout'); ?></span>
+                        <button class="list" aria-label="<?php echo $this->escapeHtml($this->translate('List')); ?>"></button>
+                        <button class="grid" aria-label="<?php echo $this->escapeHtml($this->translate('Grid')); ?>" disabled></button>
                     </div>
                     <div class="sorting-toggle">
-                        <a href="#" class="sorting-heading menu-toggle">Sort</a>
+                        <a href="#" class="sorting-heading menu-toggle"><?php echo $this->translate('Sort'); ?></a>
                         <?php echo $this->sortSelector([
                             [
                                 'label' => $this->translate('Last edited'),
@@ -24,7 +26,7 @@
                         ]); ?>
                     </div>
                     <div class="filtering-toggle">
-                        <a href="#" class="filtering-heading menu-toggle">Filter</a>
+                        <a href="#" class="filtering-heading menu-toggle"><?php echo $this->translate('Filter'); ?></a>
                         <?php echo $this->filterSelector([
                             [
                                 'label' => $this->translate('Is approved'),
