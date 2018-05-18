@@ -361,7 +361,7 @@ SET FOREIGN_KEY_CHECKS=1;
             // Not a public application Scripto route.
             return;
         }
-        $event->getViewModel()->setTemplate('layout/scripto-public-app-layout');
+        $event->getViewModel()->setTemplate('layout/layout-scripto-public-app');
     }
 
     /**

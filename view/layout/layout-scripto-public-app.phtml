@@ -8,6 +8,7 @@ $this->headLink()->prependStylesheet('//fonts.googleapis.com/css?family=Source+C
 $this->headLink()->appendStylesheet($this->assetUrl('css/iconfonts.css', 'Omeka'));
 $this->headLink()->appendStylesheet($this->assetUrl('css/public-app.css', 'Scripto'));
 $this->headScript()->prependFile($this->assetUrl('vendor/jquery/jquery.min.js', 'Omeka'));
+$this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/public-app.js', 'Scripto'));
 ?>
 <?php echo $this->doctype(); ?>
