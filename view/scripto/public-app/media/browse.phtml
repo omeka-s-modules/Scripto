@@ -1,0 +1,117 @@
+<article class="post">
+    <header class="post-header">
+        <h1 class="post-title"><?php echo $item->displayTitle(); ?></h1>
+    </header>
+    <div class="post-content">
+        <div class="resource-content">
+            <div class="resource-metadata">
+                <h3><?php echo $this->translate('Metadata'); ?></h3>
+                <?php echo $item->displayValues(); ?>
+            </div>
+            <div class="media resource-list">
+                <h3>Media</h3>
+                <div class="media list-head">
+                    <?php echo $this->pagination(); ?>
+                    <div class="list-layout">
+                        <span class="layout-label"><?php echo $this->translate('Layout'); ?></span>
+                        <button class="list" aria-label="<?php echo $this->escapeHtml($this->translate('List')); ?>"></button>
+                        <button class="grid" aria-label="<?php echo $this->escapeHtml($this->translate('Grid')); ?>" disabled></button>
+                    </div>
+                    <div class="sorting-toggle">
+                        <a href="#" class="sorting-heading menu-toggle"><?php echo $this->translate('Sort'); ?></a>
+                        <?php echo $this->sortSelector([
+                            [
+                                'label' => $this->translate('Position'),
+                                'value' => 'position'
+                            ],
+                            [
+                                'label' => $this->translate('Last edited'),
+                                'value' => 'edited'
+                            ],
+                            [
+                                'label' => $this->translate('Last completed'),
+                                'value' => 'completed'
+                            ],
+                            [
+                                'label' => $this->translate('Last approved'),
+                                'value' => 'approved'
+                            ],
+                        ]); ?>
+                    </div>
+                    <div class="filtering-toggle">
+                        <a href="#" class="filtering-heading menu-toggle"><?php echo $this->translate('Filter'); ?></a>
+                        <?php echo $this->filterSelector([
+                            [
+                                'label' => $this->translate('Is edited'),
+                                'value' => 'is_edited',
+                            ],
+                            [
+                                'label' => $this->translate('Is not edited'),
+                                'value' => 'is_not_edited',
+                            ],
+                            [
+                                'label' => $this->translate('Is completed'),
+                                'value' => 'is_edited',
+                            ],
+                            [
+                                'label' => $this->translate('Is not completed'),
+                                'value' => 'is_not_completed',
+                            ],
+                            [
+                                'label' => $this->translate('Is approved'),
+                                'value' => 'is_approved',
+                            ],
+                            [
+                                'label' => $this->translate('Is not approved'),
+                                'value' => 'is_not_approved',
+                            ],
+                        ]); ?>
+                    </div>
+                </div>
+                <table style="display: none">
+                    <thead>
+                        <tr>
+                            <th class="title"><?php echo $this->translate('Title'); ?></th>
+                            <th class="last-edited"><?php echo $this->translate('Last edited'); ?></th>
+                            <th class="status"><?php echo $this->translate('Status'); ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($sMedias as $sMedia): ?>
+                        <tr class="resource-row">
+                            <td>
+                                <div class="title-flex">
+                                    <?php echo $this->thumbnail($sMedia, 'square', [
+                                        'title' => $this->translate('Media primary media'),
+                                        'alt' => $this->translate('Media primary media')
+                                    ]); ?>
+                                    <?php echo $sItem->link($sMedia->media()->displayTitle()) ?>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="last-edited"><?php echo $sMedia->edited() ? $this->i18n()->dateFormat($sMedia->edited(), 'long', 'medium') : $this->translate('Not edited'); ?></span>
+                            </td>
+                            <td>
+                                <span class="status"><?php echo $this->translate($sMedia->status()); ?></span>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                <div class="resource-grid">
+                    <?php foreach ($sMedias as $sMedia): ?>
+                    <div class="resource-tile">
+                        <?php echo $sItem->linkRaw($this->thumbnail($sMedia, 'square', [
+                            'title' => $this->translate('Media primary media'),
+                            'alt' => $this->translate('Media primary media')
+                        ])); ?>
+                        <h4><?php echo $sMedia->link($sMedia->media()->displayTitle()) ?></h4>
+                        <div class="last-edited"><span class="meta-label"><?php echo $this->translate('Last edited'); ?></span> <?php echo $sMedia->edited() ? $this->i18n()->dateFormat($sMedia->edited(), 'long', 'medium') : $this->translate('Not edited'); ?></div>
+                        <div class="status"><span class="meta-label"><?php echo $this->translate('Status'); ?></span> <?php echo $this->translate($sMedia->status()); ?></div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>

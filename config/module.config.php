@@ -30,6 +30,7 @@ return [
             'Scripto\Controller\PublicApp\Index' => Scripto\Controller\PublicApp\IndexController::class,
             'Scripto\Controller\PublicApp\Project' => Scripto\Controller\PublicApp\ProjectController::class,
             'Scripto\Controller\PublicApp\Item' => Scripto\Controller\PublicApp\ItemController::class,
+            'Scripto\Controller\PublicApp\Media' => Scripto\Controller\PublicApp\MediaController::class,
             'Scripto\Controller\Admin\User' => Scripto\Controller\Admin\UserController::class,
             'Scripto\Controller\Admin\Item' => Scripto\Controller\Admin\ItemController::class,
             'Scripto\Controller\Admin\Media' => Scripto\Controller\Admin\MediaController::class,
@@ -137,6 +138,40 @@ return [
                     'defaults' => [
                         '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
                         'controller' => 'item',
+                        'action' => 'show',
+                    ],
+                ],
+            ],
+            'scripto-media' =>  [
+                'type' => 'Segment',
+                'options' => [
+                    'route' => '/scripto/:project-id/:item-id/media[/:action]',
+                    'constraints' => [
+                        'project-id' => '\d+',
+                        'item-id' => '\d+',
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ],
+                    'defaults' => [
+                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                        'controller' => 'media',
+                        'action' => 'browse',
+                    ],
+                ],
+            ],
+            'scripto-media-id' =>  [
+                'type' => 'Segment',
+                'options' => [
+                    'route' => '/scripto/:project-id/:item-id/:media-id[/:revision-id][/:action]',
+                    'constraints' => [
+                        'project-id' => '\d+',
+                        'item-id' => '\d+',
+                        'media-id' => '\d+',
+                        'revision-id' => '\d+',
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ],
+                    'defaults' => [
+                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                        'controller' => 'media',
                         'action' => 'show',
                     ],
                 ],
