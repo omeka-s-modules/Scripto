@@ -18,6 +18,10 @@ class UserCanReviewAssertion implements AssertionInterface
     public function assert(Acl $acl, RoleInterface $role = null,
         ResourceInterface $resource = null, $privilege = null
     ) {
+        if (!$role) {
+            // The user is not authenticated.
+            return false;
+        }
         if ($resource instanceof ScriptoProject) {
             $project = $resource;
         } elseif ($resource instanceof ScriptoItem) {
