@@ -150,7 +150,7 @@ $next = $sMedia->nextScriptoMedia();
                 <div class="parsed-comment"><?php echo $revision['parsedcomment'] ?></div>
                 <?php endif; ?>
             </div>
-            <?php if ($sMedia->userIsAllowed('update')): ?>
+            <?php if ($sMedia->userIsAllowed('review')): ?>
             <?php if ($latestRevision && ($latestRevision['content'] !== $revision['content'])): ?>
             <div class="value">
                 <?php echo $this->hyperlink($this->translate('Revert to this revision.'), '#', ['class' => 'sidebar-content', 'data-sidebar-selector' => '#revert-revision']); ?>
@@ -163,7 +163,7 @@ $next = $sMedia->nextScriptoMedia();
     </div>
 
     <!-- Review section -->
-    <?php if ($sMedia->userIsAllowed('update')): ?>
+    <?php if ($sMedia->userIsAllowed('review')): ?>
     <div class="meta-group">
         <h3><?php echo $this->translate('Review status'); ?></h3>
         <?php if ($sMedia->completed()): ?>

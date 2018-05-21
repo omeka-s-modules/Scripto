@@ -121,12 +121,14 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
 
     public function hydrate(Request $request, EntityInterface $entity, ErrorStore $errorStore)
     {
-        $mwUser = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient')->queryUserInfo();
-        $oUser = $this->getServiceLocator()->get('Omeka\AuthenticationService')->getIdentity();
+        $services = $this->getServiceLocator();
+        $mwUser = $services->get('Scripto\Mediawiki\ApiClient')->queryUserInfo();
+        $oUser = $services->get('Omeka\AuthenticationService')->getIdentity();
         $setIsCompleted = $request->getValue('o-module-scripto:is_completed');
         $setIsApproved = $request->getValue('o-module-scripto:is_approved');
 
         if (null !== $setIsCompleted) {
+            // Anyone can mark as completed.
             if ($setIsCompleted) {
                 $entity->setCompleted(new DateTime('now'));
                 $entity->setCompletedBy($mwUser['name']);
@@ -138,6 +140,8 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
             }
         }
         if (null !== $setIsApproved) {
+            // The user must have Scripto review rights to mark as approved.
+            $this->authorize($entity, 'review');
             if ($setIsApproved) {
                 $entity->setApproved(new DateTime('now'));
                 $entity->setApprovedBy($oUser);
@@ -149,6 +153,8 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
             }
         }
 
+        // The user must have MediaWiki createpage/edit rights to edit wikitext.
+        // This is checked in Module::editMediawikiPage().
         $entity->setWikitext($request->getValue('o-module-scripto:wikitext'));
     }
 

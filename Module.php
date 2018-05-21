@@ -270,6 +270,15 @@ SET FOREIGN_KEY_CHECKS=1;
         // Set controller/action privileges.
         $acl->allow(
             null,
+            [
+                'Scripto\Controller\PublicApp\Index',
+                'Scripto\Controller\PublicApp\Project',
+                'Scripto\Controller\PublicApp\Item',
+                'Scripto\Controller\PublicApp\Media',
+            ]
+        );
+        $acl->allow(
+            null,
             'Scripto\Controller\Admin\Index',
             ['index', 'login', 'logout']
         );
@@ -338,7 +347,12 @@ SET FOREIGN_KEY_CHECKS=1;
         $acl->allow(
             null,
             'Scripto\Entity\ScriptoMedia',
-            ['update', 'batch_update'],
+            'update'
+        );
+        $acl->allow(
+            null,
+            'Scripto\Entity\ScriptoMedia',
+            ['batch_update', 'review'],
             new UserCanReviewAssertion
         );
         $acl->allow(
