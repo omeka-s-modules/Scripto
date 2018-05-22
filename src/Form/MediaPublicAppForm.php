@@ -1,0 +1,53 @@
+<?php
+namespace Scripto\Form;
+
+use Scripto\Mediawiki\ApiClient;
+use Zend\Form\Form;
+
+class MediaPublicAppForm extends Form
+{
+    public function init()
+    {
+        $this->setAttribute('id', 'edit-view');
+        $this->setAttribute('style', 'display: none;');
+
+        $this->add([
+            'type' => 'textarea',
+            'name' => 'wikitext',
+            'attributes' => [
+                'aria-label' => 'Wikitext', // @translate
+            ],
+        ]);
+
+        $this->add([
+            'type' => 'checkbox',
+            'name' => 'mark_complete',
+            'options' => [
+                'label' => 'Mark complete', // @translate
+                'use_hidden_element' => true,
+                'checked_value' => '1',
+                'unchecked_value' => '0',
+            ],
+            'attributes' => [
+                'id' => 'mark_complete',
+            ],
+        ]);
+        $this->add([
+            'type' => 'hidden',
+            'name' => 'is_watched',
+        ]);
+        $this->add([
+            'name' => 'submit',
+            'type' => 'submit',
+            'attributes' => [
+                'value' => 'Save', // @translate
+            ],
+        ]);
+
+        $inputFilter = $this->getInputFilter();
+        $inputFilter->add([
+            'name' => 'mark_complete',
+            'required' => false,
+        ]);
+    }
+}

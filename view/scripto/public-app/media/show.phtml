@@ -1,0 +1,104 @@
+<?php
+$this->headLink()->appendStylesheet($this->assetUrl('vendor/featherlight/featherlight.min.css', 'Scripto'));
+$this->headScript()->appendFile($this->assetUrl('js/media-review.js', 'Scripto'));
+$this->headScript()->appendFile($this->assetUrl('vendor/jquery-panzoom/jquery.panzoom.min.js', 'Scripto'));
+$this->headScript()->appendFile($this->assetUrl('vendor/featherlight/featherlight.min.js', 'Scripto'));
+?>
+<article class="post">
+    <header class="post-header">
+        <h1 class="post-title"><?php echo $media->displayTitle(); ?></h1>
+    </header>
+    <div class="post-content">
+        <?php echo $this->form()->openTag($mediaForm); ?>
+        <?php echo $this->formElement($mediaForm->get('mediapublicappform_csrf')); ?>
+            <div class="media-head">
+                <h2 class="media-item"><?php echo sprintf($this->translate('Part of %s'), $sItem->link($item->displayTitle())); ?></h2>
+                <div class="watch-list">
+                    <?php if ($userIsLoggedIn): ?>
+                    <a href="#" class="watchlist button watched" aria-label="<?php echo $this->translate('Stop watching media'); ?>" title="<?php echo $this->translate('Stop watching media'); ?>" style="display: none;"><?php echo $this->translate('Stop watching media'); ?></a>
+                    <a href="#" class="watchlist button" aria-label="<?php echo $this->translate('Watch media'); ?>" title="<?php echo $this->translate('Watch media'); ?>" style="display: none;"><?php echo $this->translate('Watch media'); ?></a>
+                    <?php echo $this->formHidden($mediaForm->get('is_watched')); ?>
+                    <?php endif; ?>
+                </div>
+                <div class="status-field">
+                    <?php if ($sMedia->completedRevision()): ?>
+                    <div class="current-status"><?php echo $this->translate('Status: completed'); ?></div>
+                    <?php else: ?>
+                    <div class="current-status"><?php echo $this->translate('Status: not completed'); ?></div>
+                    <?php endif; ?>
+                    <?php if ($userCanEdit): ?>
+                    <label for="mark_complete"><?php echo $this->translate('Mark this revision as complete'); ?></label>
+                    <?php echo $this->formCheckbox($mediaForm->get('mark_complete')); ?>
+                    <?php endif; ?>
+                </div>
+                <?php if ($userIsLoggedIn || $userCanEdit): ?>
+                <input type="submit" class="save" value="<?php echo $this->escapeHtml($this->translate('Save')); ?>">
+                <?php endif; ?>
+            </div>
+            <div id="wikitext">
+                <div class="wikitext-featherlight horizontal">
+                    <h3><?php echo $media->displayTitle(); ?></h3>
+                    <button type="button" class="full-screen"><?php echo $this->translate('Go full screen'); ?></button>
+                    <div class="layout">
+                        <label><?php echo $this->translate('Layout'); ?></label>
+                        <button type="button" name="horizontal" class="horizontal active" aria-label="<?php echo $this->escapeHtml($this->translate('Horizontal view')); ?>" title="<?php echo $this->escapeHtml($this->translate('Horizontal view')); ?>" disabled=""></button>
+                        <button type="button" name="vertical" class="vertical" aria-label="<?php echo $this->escapeHtml($this->translate('Vertical view')); ?>" title="<?php echo $this->escapeHtml($this->translate('Vertical view')); ?>"></button>
+                    </div>
+                    <div class="wikitext-flex">
+                        <div class="textarea-flex">
+                            <?php echo $this->formTextarea($mediaForm->get('wikitext')); ?>
+                        </div>
+                        <?php if ($sMedia->isRenderableImage()): ?>
+                        <div class="panzoom-container image">
+                            <div class="zoom-controls">
+                                <button class="zoom-in" aria-label="<?php echo $this->escapeHtml($this->translate('Zoom in')); ?>" title="<?php echo $this->escapeHtml($this->translate('Zoom in')); ?>"></button>
+                                <button class="zoom-out" aria-label="<?php echo $this->escapeHtml($this->translate('Zoom out')); ?>" title="<?php echo $this->escapeHtml($this->translate('Zoom out')); ?>"></button>
+                                <button class="rotate-right" aria-label="<?php echo $this->escapeHtml($this->translate('Rotate right')); ?>" title="<?php echo $this->escapeHtml($this->translate('Rotate right')); ?>"></button>
+                                <button class="rotate-left" aria-label="<?php echo $this->escapeHtml($this->translate('Rotate left')); ?>" title="<?php echo $this->escapeHtml($this->translate('Rotate left')); ?>"></button>
+                                <button class="reset"><?php echo $this->translate('Reset'); ?></button>
+                            </div>
+                            <div class="media-render">
+                                <img src="<?php echo $this->escapeHtml($media->originalUrl()); ?>">
+                            </div>
+                        </div>
+                        <?php else: ?>
+                        <div class="panzoom-container">
+                            <?php echo $media->render(['link' => null]); ?>
+                        </div>
+                        <?php endif; ?>
+                    </div>
+                    <script>
+                    (function($) {
+                        var $zoomContainer = $('.panzoom-container');
+                        $('#wikitext .media-render').panzoom({
+                            $zoomIn: $zoomContainer.find(".zoom-in"),
+                            $zoomOut: $zoomContainer.find(".zoom-out"),
+                            $reset: $zoomContainer.find(".reset")
+                        });
+                    })(jQuery);
+                    </script>
+                </div>
+            </div>
+        </form>
+        <div id="show-view">
+            <div class="media-head">
+                <h2 class="media-item"><?php echo sprintf($this->translate('Part of %s'), $sItem->link($item->displayTitle())); ?></h3>
+                <?php if ($userCanEdit): ?>
+                <button type="button" class="edit"><?php echo $this->translate('Edit'); ?></button>
+                <?php else: ?>
+                <button type="button" class="edit"><?php echo $this->translate('View'); ?></button>
+                <?php endif; ?>
+            </div>
+            <div class="resource-content">
+                <div class="media metadata">
+                    <h3><?php echo $this->translate('Metadata'); ?></h3>
+                    <?php echo $media->displayValues(); ?>
+                </div>
+                <div class="media html">
+                    <h3><?php echo $this->translate('HTML'); ?></h3>
+                    <?php echo $sMedia->pageHtml(); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
