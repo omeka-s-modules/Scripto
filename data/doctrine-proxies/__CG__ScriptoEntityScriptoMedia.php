@@ -64,10 +64,10 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'position', 'synced', 'edited', 'editedBy', 'completed', 'completedBy', 'completedRevision', 'approved', 'approvedBy', 'approvedRevision', 'importedHtml', 'wikitext'];
+            return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'position', 'synced', 'edited', 'editedBy', 'completed', 'completedBy', 'completedRevision', 'approved', 'approvedBy', 'approvedRevision', 'importedHtml', 'wikitextData'];
         }
 
-        return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'position', 'synced', 'edited', 'editedBy', 'completed', 'completedBy', 'completedRevision', 'approved', 'approvedBy', 'approvedRevision', 'importedHtml', 'wikitext'];
+        return ['__isInitialized__', 'id', 'scriptoItem', 'media', 'position', 'synced', 'edited', 'editedBy', 'completed', 'completedBy', 'completedRevision', 'approved', 'approvedBy', 'approvedRevision', 'importedHtml', 'wikitextData'];
     }
 
     /**
@@ -477,23 +477,23 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
     /**
      * {@inheritDoc}
      */
-    public function setWikitext($wikitext)
+    public function setWikitextData($wikitext, $markComplete = false, $markApproved = false)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setWikitext', [$wikitext]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setWikitextData', [$wikitext, $markComplete, $markApproved]);
 
-        return parent::setWikitext($wikitext);
+        return parent::setWikitextData($wikitext, $markComplete, $markApproved);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getWikitext()
+    public function getWikitextData($key)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getWikitext', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getWikitextData', [$key]);
 
-        return parent::getWikitext();
+        return parent::getWikitextData($key);
     }
 
     /**

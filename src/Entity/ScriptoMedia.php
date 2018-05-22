@@ -112,7 +112,11 @@ class ScriptoMedia extends AbstractEntity
      */
     protected $importedHtml;
 
-    protected $wikitext;
+    protected $wikitextData = [
+        'wikitext' => null,
+        'mark_complete' => false,
+        'mark_approved' => false,
+    ];
 
     public function getId()
     {
@@ -250,27 +254,31 @@ class ScriptoMedia extends AbstractEntity
     }
 
    /**
-     * Set Scripto media wikitext (transcription, translation, etc.).
+     * Set Scripto media wikitext data.
      *
-     * Note that content is stored as wikitext in MediaWiki, not Omeka. We use
-     * this setter to store content until persisting it using the MediaWiki API
-     * client.
+     * Note that wikitext is stored in MediaWiki, not Omeka. We use this setter
+     * to store data until persisting it using the MediaWiki API client.
      *
      * @param string $content
+     * @param bool $markComplete Mark the newest revision as complete?
+     * @param bool $markApproved Mark the newest revision as approved?
      */
-    public function setWikitext($wikitext)
+    public function setWikitextData($wikitext, $markComplete = false, $markApproved = false)
     {
-        $this->wikitext = $wikitext;
+        $this->wikitextData['wikitext'] = $wikitext;
+        $this->wikitextData['mark_complete'] = (bool) $markComplete;
+        $this->wikitextData['mark_approved'] = (bool) $markApproved;
     }
 
     /**
-     * Get the Scripto media wikitext.
+     * Get the Scripto media wikitext data.
      *
-     * @return string
+     * @param string $key
+     * @return string|bool
      */
-    public function getWikitext()
+    public function getWikitextData($key)
     {
-        return $this->wikitext;
+        return isset($this->wikitextData[$key]) ? $this->wikitextData[$key] : null;
     }
 
     /**

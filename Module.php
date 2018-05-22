@@ -416,13 +416,14 @@ SET FOREIGN_KEY_CHECKS=1;
     public function editMediawikiPage(Event $event)
     {
         $sMedia = $event->getParam('entity');
-        if (!is_string($sMedia->getWikitext())) {
+
+        if (!is_string($sMedia->getWikitextData('wikitext'))) {
             // No need to edit the MediaWiki page if text is null.
             return;
         }
 
-        $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
-        $translator = $this->getServiceLocator()->get('MvcTranslator');
+        $services = $this->getServiceLocator();
+        $client = $services->get('Scripto\Mediawiki\ApiClient');
 
         $pageTitle = $sMedia->getMediawikiPageTitle();
         $page = $client->queryPage($pageTitle);
@@ -430,18 +431,18 @@ SET FOREIGN_KEY_CHECKS=1;
 
         if (!$pageIsCreated && !$client->userCan($page, 'createpage')) {
             throw new \Exception(sprintf(
-                $translator->translate('The MediaWiki user does not have the necessary permissions to create the page "%s"'),
+                $services->get('MvcTranslator')->translate('The MediaWiki user does not have the necessary permissions to create the page "%s"'),
                 $pageTitle
             ));
         }
         if ($pageIsCreated && !$client->userCan($page, 'edit')) {
             throw new \Exception(sprintf(
-                $translator->translate('The MediaWiki user does not have the necessary permissions to edit the page "%s"'),
+                $services->get('MvcTranslator')->translate('The MediaWiki user does not have the necessary permissions to edit the page "%s"'),
                 $pageTitle
             ));
         }
 
-        $result = $client->editPage($pageTitle, $sMedia->getWikitext());
+        $result = $client->editPage($pageTitle, $sMedia->getWikitextData('wikitext'));
 
         if (!isset($result['nochange'])) {
             // Update edited user and datetime only if there was a change.
@@ -451,6 +452,21 @@ SET FOREIGN_KEY_CHECKS=1;
             $now = new DateTime('now');
             $sMedia->setEdited($now);
             $sMedia->getScriptoItem()->setEdited($now);
+        }
+
+        // Conditionally set the newest revision as completed/approved.
+        if ($sMedia->getWikitextData('mark_complete')
+            && !$sMedia->getCompletedRevision()
+        ) {
+            $revisionId = isset($result['nochange']) ? $page['lastrevid'] : $result['newrevid'];
+            $sMedia->setCompletedRevision($revisionId);
+        }
+        if ($sMedia->getWikitextData('mark_approved')
+            && !$sMedia->getApprovedRevision()
+            && $services->get('Omeka\Acl')->userIsAllowed($sMedia, 'review')
+        ) {
+            $revisionId = isset($result['nochange']) ? $page['lastrevid'] : $result['newrevid'];
+            $sMedia->setApprovedRevision($revisionId);
         }
     }
 
