@@ -412,6 +412,16 @@ class ScriptoMediaRepresentation extends AbstractEntityRepresentation
     }
 
     /**
+     * Can the user edit the corresponding MediaWiki page?
+     *
+     * @return bool
+     */
+    public function userCanEdit()
+    {
+        return $this->pageIsCreated() ? $this->userCan('edit') : $this->userCan('createpage');
+    }
+
+    /**
      * Is the current user watching the corresponding MediaWiki page?
      *
      * @return bool
