@@ -18,11 +18,6 @@ class ProjectController extends AbstractActionController
         return $view;
     }
 
-    public function showAction()
-    {
-        return $this->redirect()->toRoute('scripto-item', ['action' => 'browse'], true);
-    }
-
     public function guidelinesAction()
     {
         $project = $this->scripto()->getRepresentation($this->params('project-id'));
@@ -34,5 +29,15 @@ class ProjectController extends AbstractActionController
         $view->setVariable('project', $project);
         $this->layout()->setVariable('project', $project);
         return $view;
+    }
+
+    public function showAction()
+    {
+        return $this->redirect()->toRoute(
+            'scripto-item',
+            ['action' => 'browse'],
+            ['query' => $this->params()->fromQuery()],
+            true
+        );
     }
 }

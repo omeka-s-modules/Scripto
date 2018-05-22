@@ -31,6 +31,11 @@ class ItemController extends AbstractActionController
 
     public function showAction()
     {
-        return $this->redirect()->toRoute('scripto-media', ['action' => 'browse'], true);
+        return $this->redirect()->toRoute(
+            'scripto-media',
+            ['action' => 'browse'],
+            ['query' => $this->params()->fromQuery()],
+            true
+        );
     }
 }

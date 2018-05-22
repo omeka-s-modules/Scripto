@@ -34,6 +34,7 @@ class MediaController extends AbstractActionController
         $view->setVariable('item', $sItem->item());
         $view->setVariable('project', $project);
         $this->layout()->setVariable('project', $project);
+        $this->layout()->setVariable('sItem', $sItem);
         return $view;
     }
 
@@ -104,6 +105,7 @@ class MediaController extends AbstractActionController
         $view->setVariable('item', $sItem->item());
         $view->setVariable('project', $project);
         $this->layout()->setVariable('project', $project);
+        $this->layout()->setVariable('sItem', $sItem);
         return $view;
     }
 }

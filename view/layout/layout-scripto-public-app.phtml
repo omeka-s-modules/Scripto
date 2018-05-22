@@ -38,11 +38,15 @@ $this->headScript()->appendFile($this->assetUrl('js/public-app.js', 'Scripto'));
                 </div>
             </nav>
         </div>
-        <form id="scripto-search" class="wrapper">
-            <input type="text" name="search" value="" aria-label="<?php echo $this->escapeHtml($this->translate('Query')); ?>">
+        <?php if (isset($project)): ?>
+        <?php
+        $searchAction = isset($sItem) ? $sItem->url() : $project->url();
+        $searchQuery = $this->params()->fromQuery('search');
+        ?>
+        <form id="scripto-search" class="wrapper" action="<?php echo $this->escapeHtml($searchAction); ?>">
+            <input type="text" name="search" value="<?php echo $this->escapeHtml($searchQuery); ?>" aria-label="<?php echo $this->escapeHtml($this->translate('Query')); ?>">
             <button type="submit" class="o-icon-search" aria-label="<?php echo $this->escapeHtml($this->translate('Search')); ?>"></button>
         </form>
-        <?php if (isset($this->project)): ?>
         <nav class="project-nav wrapper">
             <h2><?php echo $project->link($project->title()); ?></h2>
             <ul>
