@@ -17,11 +17,6 @@ class ScriptoMediaRepresentation extends AbstractEntityRepresentation
     const STATUS_COMPLETED = 'Completed'; // @translate
     const STATUS_APPROVED = 'Approved'; // @translate
 
-    /**
-     * @var array Corresponding MediaWiki page information
-     */
-    protected $page;
-
     public function url($action = null, $canonical = false)
     {
         $url = parent::url($action, $canonical);
@@ -316,10 +311,7 @@ class ScriptoMediaRepresentation extends AbstractEntityRepresentation
     public function page()
     {
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
-        if (null === $this->page) {
-            $this->page = $client->queryPage($this->pageTitle());
-        }
-        return $this->page;
+        return $client->queryPage($this->pageTitle());
     }
 
     /**
