@@ -551,13 +551,13 @@ nav.pagination .row-count {
   .browse-controls .pagination .button:last-child {
     border-radius: 0 3px 3px 0; }
 
-.list-head .previous.button {
+.previous.button {
   border-radius: 3px 0 0 3px;
   margin-left: 15px;
   width: 30px;
   text-align: center; }
 
-.list-head .next.button {
+.next.button {
   border-radius: 0 3px 3px 0;
   margin-left: -1px;
   width: 30px;
@@ -786,7 +786,7 @@ button.full-screen:after {
   margin-left: 6px; }
 
 h2.media-item {
-  margin: -15px auto 0 0;
+  margin: -7.5px auto 0 0;
   font-size: 14px;
   line-height: 1.5; }
 
@@ -807,13 +807,17 @@ h2.media-item {
   border-bottom: 1px solid #e8e8e8;
   margin-bottom: 30px; }
 
+.media-head .previous.button {
+  margin-left: 0; }
+
 .media-head .section-nav {
   margin: 0 auto 0 0;
   border-bottom: 0;
   padding-bottom: 0; }
 
 .watchlist.button,
-.status-field {
+.status-field,
+.protection-field {
   margin-right: 30px; }
 
 .status-field {
@@ -830,6 +834,9 @@ h2.media-item {
   font-weight: 400;
   display: inline-block;
   margin-left: 7.5px; }
+
+.watched.watchlist.button:after {
+  font-weight: 900; }
 
 /* 
  * Item
