@@ -4,9 +4,11 @@
     </header>
     <div class="post-content">
         <div class="resource-content">
+            <?php if ($projectDescription = $project->description()): ?>
             <div class="project resource-metadata">
-                <?php echo $this->escapeHtml($project->description()); ?>
+                <?php echo $this->escapeHtml($projectDescription); ?>
             </div>
+            <?php endif; ?>
             <div class="item resource-list">
                 <h3><?php echo $this->translate('Items'); ?></h3>
                 <div class="media list-head">

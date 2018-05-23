@@ -824,7 +824,7 @@ h2.media-item {
     font-weight: 900;
 }
 
-.resource-list {
+.resource-metadata + .resource-list {
     width: 70%;
     padding-left: .5 * $spacing-unit;
 }

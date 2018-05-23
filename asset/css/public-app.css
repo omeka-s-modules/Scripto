@@ -880,7 +880,7 @@ h2.media-item {
   content: "\f009";
   font-weight: 900; }
 
-.resource-list {
+.resource-metadata + .resource-list {
   width: 70%;
   padding-left: 15px; }
 

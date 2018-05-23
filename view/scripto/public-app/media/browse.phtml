@@ -4,10 +4,12 @@
     </header>
     <div class="post-content">
         <div class="resource-content">
+            <?php if ($itemMetadata = $item->displayValues()): ?>
             <div class="resource-metadata">
                 <h3><?php echo $this->translate('Metadata'); ?></h3>
-                <?php echo $item->displayValues(); ?>
+                <?php echo $itemMetadata; ?>
             </div>
+            <?php endif; ?>
             <div class="media resource-list">
                 <h3>Media</h3>
                 <div class="media list-head">
