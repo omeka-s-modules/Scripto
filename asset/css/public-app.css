@@ -219,7 +219,8 @@ input[type="submit"] {
   input[type="submit"].inactive {
     background-color: #e8e8e8;
     border: 1px solid #828282;
-    color: #000; }
+    color: #828282;
+    cursor: default; }
 
 input[type="text"],
 input[type="password"] {
