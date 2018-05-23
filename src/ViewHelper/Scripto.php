@@ -278,6 +278,50 @@ class Scripto extends AbstractHelper
     }
 
     /**
+     * Render the watchlist time period select.
+     *
+     * @return string
+     */
+    public function watchlistTimePeriodSelect()
+    {
+        $view = $this->getView();
+        $timePeriods = [
+            6 => $view->translate('6 hours'),
+            12 => $view->translate('12 hours'),
+            24 => $view->translate('1 day'),
+            72 => $view->translate('3 days'),
+            168 => $view->translate('7 days'),
+            720 => $view->translate('30 days'),
+            2160 => $view->translate('90 days'),
+        ];
+        $options = [];
+        foreach ($timePeriods as $key => $value) {
+            $options[] = sprintf(
+                '<option value="%s"%s>%s</option>',
+                $key, $key == $view->hours ? ' selected="selected"' : null, $value
+            );
+        }
+        $html = <<<HTML
+<label for="time-period">%s</label>
+<select id="time-period" name="hours" data-url="%s">%s</select>
+<script>
+// Handle a time period selection.
+$('#time-period').on('change', function() {
+    var thisSelect = $(this);
+    var params = {'hours': thisSelect.val()};
+    window.location.href = thisSelect.data('url') + '?' + $.param(params);
+});
+</script>
+HTML;
+        return sprintf(
+            $html,
+            $view->translate('Period of time to display:'),
+            $view->escapeHtml($view->url(null, [], true)),
+            implode(PHP_EOL, $options)
+        );
+    }
+
+    /**
      * Render an admin search box for filtering items and media.
      *
      * @return string
