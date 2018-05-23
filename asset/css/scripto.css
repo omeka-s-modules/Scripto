@@ -170,11 +170,16 @@
     z-index: 1;
 }
 
-.revision nav.pagination .button:first-child {
+.item.show nav.pagination {
+    justify-content: flex-start;
+    margin-top: 0;
+}
+
+nav.pagination .button:first-child {
     border-radius: 3px 0 0 3px;
 }
 
-.revision nav.pagination .button:last-child {
+nav.pagination .button:last-child {
     border-radius: 0 3px 3px 0;
 }
 
