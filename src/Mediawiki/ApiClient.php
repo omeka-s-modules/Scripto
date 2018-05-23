@@ -355,8 +355,10 @@ class ApiClient
         }
 
         $pages = [];
-        // The API limits titles to 50 per query.
-        foreach (array_chunk($titles, 50) as $titleChunk) {
+        // Query nine pages at a time. The API exhibits an unusual behavior that
+        // removes properties from the result if querying more than nine pages.
+        // This behavior may only happen when the result includes missing pages.
+        foreach (array_chunk($titles, 9) as $titleChunk) {
             $query = $this->request([
                 'action' => 'query',
                 'prop' => 'info|revisions',
