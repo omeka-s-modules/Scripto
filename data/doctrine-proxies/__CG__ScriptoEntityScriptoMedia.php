@@ -477,12 +477,12 @@ class ScriptoMedia extends \Scripto\Entity\ScriptoMedia implements \Doctrine\ORM
     /**
      * {@inheritDoc}
      */
-    public function setWikitextData($wikitext, $markComplete = false, $markApproved = false)
+    public function setWikitextData($wikitext, $summary, $markComplete = false, $markApproved = false)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setWikitextData', [$wikitext, $markComplete, $markApproved]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setWikitextData', [$wikitext, $summary, $markComplete, $markApproved]);
 
-        return parent::setWikitextData($wikitext, $markComplete, $markApproved);
+        return parent::setWikitextData($wikitext, $summary, $markComplete, $markApproved);
     }
 
     /**

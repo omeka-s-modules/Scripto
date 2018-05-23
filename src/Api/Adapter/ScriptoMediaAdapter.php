@@ -128,6 +128,7 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
         $setIsCompleted = $request->getValue('o-module-scripto:is_completed');
         $setIsApproved = $request->getValue('o-module-scripto:is_approved');
         $wikitext = $request->getValue('o-module-scripto:wikitext');
+        $summary = $request->getValue('o-module-scripto:summary');
 
         if (null !== $setIsCompleted) {
             // Anyone can set completed.
@@ -158,7 +159,7 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
         if (is_string($wikitext)) {
             // The user must have MediaWiki createpage/edit rights to set
             // wikitext. This is checked during api.hydrate.post.
-            $entity->setWikitextData($wikitext, $setIsCompleted, $setIsApproved);
+            $entity->setWikitextData($wikitext, $summary, $setIsCompleted, $setIsApproved);
         }
     }
 

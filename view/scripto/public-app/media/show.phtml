@@ -83,8 +83,8 @@ $this->headScript()->appendFile($this->assetUrl('vendor/featherlight/featherligh
                 </div>
             </div>
             <div class="change-summary">
-                <p><?php echo $this->translate('Summarize your revision changes.'); ?></p>
-                <input type="text" id="change-summary-text" name="change-summary-text" aria-label="<?php echo $this->translate('Change Summary'); ?>" >
+                <p><?php echo $this->translate('Summarize your changes:'); ?></p>
+                <?php echo $this->formText($mediaForm->get('summary')); ?>
             </div>
         </form>
         <div id="show-view">

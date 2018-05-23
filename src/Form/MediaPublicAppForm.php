@@ -20,6 +20,16 @@ class MediaPublicAppForm extends Form
         ]);
 
         $this->add([
+            'type' => 'text',
+            'name' => 'summary',
+            'attributes' => [
+                'id' => 'change-summary-text',
+                'aria-label' => 'Change summary', // @translate
+                'maxlength' => 255,
+            ],
+        ]);
+
+        $this->add([
             'type' => 'checkbox',
             'name' => 'mark_complete',
             'options' => [

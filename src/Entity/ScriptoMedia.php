@@ -114,6 +114,7 @@ class ScriptoMedia extends AbstractEntity
 
     protected $wikitextData = [
         'wikitext' => null,
+        'summary' => null,
         'mark_complete' => false,
         'mark_approved' => false,
     ];
@@ -259,13 +260,15 @@ class ScriptoMedia extends AbstractEntity
      * Note that wikitext is stored in MediaWiki, not Omeka. We use this setter
      * to store data until persisting it using the MediaWiki API client.
      *
-     * @param string $content
+     * @param string $wikitext
+     * @param string $summary
      * @param bool $markComplete Mark the newest revision as complete?
      * @param bool $markApproved Mark the newest revision as approved?
      */
-    public function setWikitextData($wikitext, $markComplete = false, $markApproved = false)
+    public function setWikitextData($wikitext, $summary, $markComplete = false, $markApproved = false)
     {
         $this->wikitextData['wikitext'] = $wikitext;
+        $this->wikitextData['summary'] = $summary;
         $this->wikitextData['mark_complete'] = (bool) $markComplete;
         $this->wikitextData['mark_approved'] = (bool) $markApproved;
     }

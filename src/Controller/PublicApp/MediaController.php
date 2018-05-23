@@ -68,6 +68,7 @@ class MediaController extends AbstractActionController
                 }
                 if ($userCanEdit) {
                     $data['o-module-scripto:wikitext'] = $formData['wikitext'];
+                    $data['o-module-scripto:summary'] = $formData['summary'];
                 }
                 // Update Scripto media.
                 if ($userCanEdit && $formData['mark_complete']) {

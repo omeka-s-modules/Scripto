@@ -442,7 +442,11 @@ SET FOREIGN_KEY_CHECKS=1;
             ));
         }
 
-        $result = $client->editPage($pageTitle, $sMedia->getWikitextData('wikitext'));
+        $result = $client->editPage(
+            $pageTitle,
+            $sMedia->getWikitextData('wikitext'),
+            $sMedia->getWikitextData('summary')
+        );
 
         if (!isset($result['nochange'])) {
             // Update edited user and datetime only if there was a change.
