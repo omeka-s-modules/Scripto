@@ -14,11 +14,7 @@ $this->headScript()->appendFile($this->assetUrl('vendor/featherlight/featherligh
         <?php echo $this->form()->openTag($mediaForm); ?>
         <?php echo $this->formElement($mediaForm->get('mediapublicappform_csrf')); ?>
             <div class="media-head">
-                <nav class="pagination" role="navigation">
-                    <span class="previous o-icon-prev button inactive"></span>
-                    <a class="next o-icon-next button" title="Next" href="/~kim/omeka-s/admin/scripto/1/391/404" aria-label="Next"></a>
-                    <span class="row-count">1 of 18</span>
-                </nav>
+                <?php echo $this->scripto()->mediaPagination(); ?>
                 <div class="watch-list">
                     <?php if ($userIsLoggedIn): ?>
                     <a href="#" class="watchlist button watched" aria-label="<?php echo $this->translate('Stop watching media'); ?>" title="<?php echo $this->translate('Stop watching media'); ?>" style="display: none;"><?php echo $this->translate('Stop watching media'); ?></a>
@@ -27,15 +23,12 @@ $this->headScript()->appendFile($this->assetUrl('vendor/featherlight/featherligh
                     <?php endif; ?>
                 </div>
                 <div class="protection-field">
-                    <div class="current-protection"><strong><?php echo $this->translate('Protection: '); ?></strong><?php echo $this->translate('Admin-only'); ?></div>
-                    <div class="protection-expiration"><strong><?php echo $this->translate('Expiration: '); ?></strong><?php echo $this->translate('Never'); ?></div>
+                    <?php $editAccess = $sMedia->editAccess(); ?>
+                    <div class="current-protection"><strong><?php echo $this->translate('Protection: '); ?></strong><?php echo $this->translate($editAccess['label']); ?></div>
+                    <div class="protection-expiration"><strong><?php echo $this->translate('Expiration: '); ?></strong><?php echo $editAccess['expiry'] ? $this->i18n()->dateFormat($editAccess['expiry'], 'short', 'short') : $this->translate('Never'); ?></div>
                 </div>
                 <div class="status-field">
-                    <?php if ($sMedia->completedRevision()): ?>
-                    <div class="current-status"><strong><?php echo $this->translate('Status: '); ?></strong><?php echo $this->translate('completed'); ?></div>
-                    <?php else: ?>
-                    <div class="current-status"><strong><?php echo $this->translate('Status: '); ?></strong><?php echo $this->translate('not completed'); ?></div>
-                    <?php endif; ?>
+                    <div class="current-status"><strong><?php echo $this->translate('Status: '); ?></strong><?php echo $this->translate($sMedia->status()); ?></div>
                     <?php if ($userCanEdit): ?>
                     <label for="mark_complete"><?php echo $this->translate('Mark this revision as complete'); ?></label>
                     <?php echo $this->formCheckbox($mediaForm->get('mark_complete')); ?>
