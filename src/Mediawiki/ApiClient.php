@@ -608,15 +608,19 @@ class ApiClient
      * @link https://www.mediawiki.org/wiki/API:Edit
      * @param string $title
      * @param string $text
+     * @param string|null $summary
      * @return array The successful edit result
      */
-    public function editPage($title, $text)
+    public function editPage($title, $text, $summary = null)
     {
         if (!is_string($title)) {
             throw new Exception\InvalidArgumentException('Page title must be a string');
         }
         if (!is_string($text)) {
             throw new Exception\InvalidArgumentException('Page text must be a string');
+        }
+        if (isset($summary) && !is_string($summary)) {
+            throw new Exception\InvalidArgumentException('Edit summary must be a string');
         }
         $query = $this->request([
             'action' => 'query',
@@ -628,6 +632,7 @@ class ApiClient
             'action' => 'edit',
             'title' => $title,
             'text' => $text,
+            'summary' => $summary,
             'token' => $query['query']['tokens']['csrftoken'],
         ]);
         if (isset($edit['error'])) {
