@@ -230,7 +230,7 @@ input[type="password"] {
 select {
   padding-right: 30px;
   border: 1px solid #828282;
-  background: #e8e8e8 url(../assets/select-arrow.svg) no-repeat;
+  background: #e8e8e8 url(../../../../application/asset/img/select-arrow.svg) no-repeat;
   background-position: right 7.5px center;
   background-size: 7.5px; }
   select:after {

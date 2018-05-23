@@ -309,7 +309,7 @@ input[type="password"] {
 select {
   padding-right: $spacing-unit;
   border: 1px solid $grey-color;
-  background: $grey-color-light url(../assets/select-arrow.svg) no-repeat;
+  background: $grey-color-light url(../../../../application/asset/img/select-arrow.svg) no-repeat;
   background-position: right (.25 * $spacing-unit) center;
   background-size: .25 * $spacing-unit;
   &:after {
