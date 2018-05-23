@@ -346,6 +346,29 @@ ul.user-menu {
 /**
  * Page content
  */
+
+ul.messages {
+    list-style: none;
+    margin-left: 0;
+}
+
+ul.messages li {
+    border-radius: 3px;
+    padding: .25 * $spacing-unit;
+}
+
+ul.messages .success {
+    background-color: lighten(green, 65%);
+    border: 1px solid green;
+    color: green;
+}
+
+ul.messages .error {
+    background-color: lighten(red, 45%);
+    border: 1px solid red;
+    color: red;
+}
+
 .page-content {
   padding: $spacing-unit 0;
   flex: 1;
@@ -853,7 +876,7 @@ div.resource-row {
     display: flex;
     flex-wrap: wrap;
     margin: 0 (-.5 * $spacing-unit);
-    width: calc(100% + $spacing-unit);
+    width: calc(100% + #{$spacing-unit});
 }
 
 .resource-tile {

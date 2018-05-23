@@ -504,6 +504,24 @@ ul.user-menu {
 /**
  * Page content
  */
+ul.messages {
+  list-style: none;
+  margin-left: 0; }
+
+ul.messages li {
+  border-radius: 3px;
+  padding: 7.5px; }
+
+ul.messages .success {
+  background-color: #cdffcd;
+  border: 1px solid green;
+  color: green; }
+
+ul.messages .error {
+  background-color: #ffe6e6;
+  border: 1px solid red;
+  color: red; }
+
 .page-content {
   padding: 30px 0;
   flex: 1; }
@@ -904,7 +922,7 @@ div.resource-row {
   display: flex;
   flex-wrap: wrap;
   margin: 0 -15px;
-  width: calc(100% + $spacing-unit); }
+  width: calc(100% + 30px); }
 
 .resource-tile {
   width: 25%;
