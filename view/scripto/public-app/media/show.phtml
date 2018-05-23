@@ -85,6 +85,7 @@ $this->headScript()->appendFile($this->assetUrl('vendor/featherlight/featherligh
         </form>
         <div id="show-view">
             <div class="media-head">
+                <?php echo $this->scripto()->mediaPagination(); ?>
                 <?php if ($userCanEdit): ?>
                 <button type="button" class="edit"><?php echo $this->translate('Edit'); ?></button>
                 <?php else: ?>
