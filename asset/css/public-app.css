@@ -911,7 +911,8 @@ div.resource-row {
   padding: 15px; }
 
 .resource-tile h4 {
-  margin: 15px 0 0; }
+  margin: 15px 0 0;
+  word-wrap: break-word; }
 
 .resource-tile .meta-label {
   font-weight: bold;

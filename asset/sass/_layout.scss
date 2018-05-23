@@ -863,6 +863,7 @@ div.resource-row {
 
 .resource-tile h4 {
     margin: (.5 * $spacing-unit) 0 0;
+    word-wrap: break-word;
 }
 
 .resource-tile .meta-label {
