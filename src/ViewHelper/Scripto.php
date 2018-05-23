@@ -302,8 +302,10 @@ class Scripto extends AbstractHelper
             );
         }
         $html = <<<HTML
+<div class="time-period filtering">
 <label for="time-period">%s</label>
 <select id="time-period" name="hours" data-url="%s">%s</select>
+</div>
 <script>
 // Handle a time period selection.
 $('#time-period').on('change', function() {

@@ -945,6 +945,14 @@ div.resource-row {
     }
 }
 
+.time-period.filtering {
+    position: static;
+    display: flex;
+    align-items: center;
+    margin-bottom: .5 * $spacing-unit;
+    justify-content: flex-end;
+}
+
 .title-flex {
     display: flex;
     align-items: center;

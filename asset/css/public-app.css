@@ -983,6 +983,13 @@ div.resource-row {
   .filtering > *:not(:last-child) {
     margin-right: 7.5px; }
 
+.time-period.filtering {
+  position: static;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  justify-content: flex-end; }
+
 .title-flex {
   display: flex;
   align-items: center; }
