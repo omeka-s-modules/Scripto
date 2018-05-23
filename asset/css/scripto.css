@@ -105,7 +105,9 @@
     clear: both;
 }
 
-.browse .browse-controls > * {
+.browse .browse-controls > form,
+.browse .browse-controls > div,
+.browse .browse-controls > nav {
     width: 50%;
 }
 
@@ -162,6 +164,7 @@
 .revision nav.pagination,
 .media.show nav.pagination {
     float: right;
+    justify-content: flex-end;
     margin: 6px 0 0;
     position: relative;
     z-index: 1;
