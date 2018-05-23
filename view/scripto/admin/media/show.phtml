@@ -31,23 +31,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto media show');
     </div>
 </div>
 
-<?php
-$previous = $sMedia->previousScriptoMedia();
-$next = $sMedia->nextScriptoMedia();
-?>
-<nav class="pagination" role="navigation">
-    <?php if ($previous): ?>
-    <?php echo $this->hyperlink('', $previous->adminUrl(), ['class' => 'previous o-icon-prev button', 'title' => $this->translate('Previous')]); ?>
-    <?php else: ?>
-    <span class="previous o-icon-prev button inactive"></span>
-    <?php endif; ?>
-    <?php if ($next): ?>
-    <?php echo $this->hyperlink('', $next->adminUrl(), ['class' => 'next o-icon-next button', 'title' => $this->translate('Next')]); ?>
-    <?php else: ?>
-    <span class="next o-icon-next button inactive"></span>
-    <?php endif; ?>
-    <span class="row-count"><?php echo sprintf($this->translate('%s of %s'), $sMedia->position(), $sMedia->scriptoItem()->mediaCount()); ?></span>
-</nav>
+<?php echo $this->scripto()->mediaPagination(); ?>
 
 <?php echo $this->sectionNav([
     'wikitext' => $this->translate('Wikitext'),

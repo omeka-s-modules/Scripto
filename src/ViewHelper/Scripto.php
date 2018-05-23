@@ -252,6 +252,32 @@ class Scripto extends AbstractHelper
     }
 
     /**
+     * Render Scripto media pagination.
+     *
+     * @return string
+     */
+    public function mediaPagination()
+    {
+        $view = $this->getView();
+        $sMedia = $view->sMedia;
+        $previous = $sMedia->previousScriptoMedia();
+        $next = $sMedia->nextScriptoMedia();
+        return sprintf(
+            '<nav class="pagination" role="navigation">%s%s%s</nav>',
+            $previous
+                ? $view->hyperlink('', $previous->url(), ['class' => 'previous o-icon-prev button', 'title' => $view->translate('Previous')])
+                : '<span class="previous o-icon-prev button inactive"></span>',
+            $next
+                ? $view->hyperlink('', $next->url(), ['class' => 'next o-icon-next button', 'title' => $view->translate('Next')])
+                : '<span class="next o-icon-next button inactive"></span>',
+            sprintf(
+                '<span class="row-count">%s</span>',
+                sprintf($view->translate('%s of %s'), $sMedia->position(), $sMedia->scriptoItem()->mediaCount())
+            )
+        );
+    }
+
+    /**
      * Render an admin search box for filtering items and media.
      *
      * @return string
