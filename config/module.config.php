@@ -27,6 +27,7 @@ return [
     ],
     'controllers' => [
         'invokables' => [
+            'Scripto\Controller\PublicApp\User' => Scripto\Controller\PublicApp\UserController::class,
             'Scripto\Controller\PublicApp\Index' => Scripto\Controller\PublicApp\IndexController::class,
             'Scripto\Controller\PublicApp\Project' => Scripto\Controller\PublicApp\ProjectController::class,
             'Scripto\Controller\PublicApp\Item' => Scripto\Controller\PublicApp\ItemController::class,
@@ -79,6 +80,28 @@ return [
                         '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
                         'controller' => 'index',
                         'action' => 'index',
+                    ],
+                ],
+            ],
+            'scripto-user-contributions' =>  [
+                'type' => 'Segment',
+                'options' => [
+                    'route' => '/scripto/user/:user-id/contributions',
+                    'defaults' => [
+                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                        'controller' => 'user',
+                        'action' => 'contributions',
+                    ],
+                ],
+            ],
+            'scripto-user-watchlist' =>  [
+                'type' => 'Segment',
+                'options' => [
+                    'route' => '/scripto/user/:user-id/watchlist',
+                    'defaults' => [
+                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                        'controller' => 'user',
+                        'action' => 'watchlist',
                     ],
                 ],
             ],
