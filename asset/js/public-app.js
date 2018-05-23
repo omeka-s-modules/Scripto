@@ -3,9 +3,10 @@ $(document).ready(function() {
         e.preventDefault();
         var button = $(this);
         var menu = button.parent();
+        var dropdown = button.next();
         menu.toggleClass('open');
         $(document).on('mouseup.menu-toggle', function(e) {
-            if (menu.is(e.target)) {
+            if (dropdown.is(e.target) || $.contains(dropdown[0], e.target)) {
                 return;
             }
             if (!button.is(e.target)) {
