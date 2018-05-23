@@ -66,10 +66,10 @@
                         <tr class="resource-row">
                             <td>
                                 <div class="title-flex">
-                                    <?php echo $this->thumbnail($sItem, 'square', [
+                                    <?php echo $sItem->linkRaw($this->thumbnail($sItem, 'square', [
                                         'title' => $this->translate('Item primary media'),
                                         'alt' => $this->translate('Item primary media')
-                                    ]); ?>
+                                    ])); ?>
                                     <?php echo $sItem->link($sItem->item()->displayTitle()) ?>
                                 </div>
                             </td>

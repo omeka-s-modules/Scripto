@@ -81,11 +81,11 @@
                         <tr class="resource-row">
                             <td>
                                 <div class="title-flex">
-                                    <?php echo $this->thumbnail($sMedia, 'square', [
+                                    <?php echo $sMedia->linkRaw($this->thumbnail($sMedia, 'square', [
                                         'title' => $this->translate('Media primary media'),
                                         'alt' => $this->translate('Media primary media')
-                                    ]); ?>
-                                    <?php echo $sItem->link($sMedia->media()->displayTitle()) ?>
+                                    ])); ?>
+                                    <?php echo $sMedia->link($sMedia->media()->displayTitle()) ?>
                                 </div>
                             </td>
                             <td>
@@ -101,7 +101,7 @@
                 <div class="resource-grid">
                     <?php foreach ($sMedias as $sMedia): ?>
                     <div class="resource-tile">
-                        <?php echo $sItem->linkRaw($this->thumbnail($sMedia, 'square', [
+                        <?php echo $sMedia->linkRaw($this->thumbnail($sMedia, 'square', [
                             'title' => $this->translate('Media primary media'),
                             'alt' => $this->translate('Media primary media')
                         ])); ?>
