@@ -411,14 +411,14 @@ nav.pagination .row-count {
   }
 }
 
-.list-head .previous.button {
+.previous.button {
     border-radius: 3px 0 0 3px;
     margin-left: .5 * $spacing-unit;
     width: $spacing-unit;
     text-align: center;
 }
 
-.list-head .next.button {
+.next.button {
     border-radius: 0 3px 3px 0;
     margin-left: -1px;
     width: $spacing-unit;
@@ -705,7 +705,7 @@ button.full-screen:after {
 }
 
 h2.media-item {
-    margin: (-.5 * $spacing-unit) auto 0 0;
+    margin: (-.25 * $spacing-unit) auto 0 0;
     font-size: $base-font-size;
     line-height: $base-line-height;
 }
@@ -730,6 +730,10 @@ h2.media-item {
     margin-bottom: $spacing-unit;
 }
 
+.media-head .previous.button {
+    margin-left: 0;
+}
+
 .media-head .section-nav {
     margin: 0 auto 0 0;
     border-bottom: 0;
@@ -737,7 +741,8 @@ h2.media-item {
 }
 
 .watchlist.button,
-.status-field {
+.status-field,
+.protection-field {
     margin-right: $spacing-unit;
 }
 
@@ -757,6 +762,10 @@ h2.media-item {
     font-weight: 400;
     display: inline-block;
     margin-left: .25 * $spacing-unit;
+}
+
+.watched.watchlist.button:after {
+    font-weight: 900;
 }
 
 /* 
