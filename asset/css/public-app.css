@@ -1007,9 +1007,11 @@ div.resource-row {
   .completion[style="width: 100%"] {
     background-color: green; }
 
+.change-summary {
+  margin-top: 30px; }
+
 #change-summary-text {
-  width: 100%;
-  margin-bottom: 30px; }
+  width: 100%; }
 
 .featherlight .featherlight-content {
   width: 95%;
