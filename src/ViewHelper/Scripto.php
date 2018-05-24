@@ -231,7 +231,7 @@ class Scripto extends AbstractHelper
      *
      * @return string
      */
-    public function adminMediawikiPagination()
+    public function mediawikiPagination()
     {
         $view = $this->getView();
         return sprintf(
