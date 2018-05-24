@@ -409,7 +409,7 @@ ul.messages .error {
 nav.pagination {
   display: flex;
   align-items: center;
-  margin-right: auto;
+  margin-left: auto;
 }
 
 nav.pagination .row-count {
@@ -976,7 +976,6 @@ div.resource-row {
     position: static;
     display: flex;
     align-items: center;
-    margin-bottom: .5 * $spacing-unit;
     justify-content: flex-end;
 }
 

@@ -12,7 +12,6 @@
             <div class="item resource-list">
                 <h3><?php echo $this->translate('Items'); ?></h3>
                 <div class="media list-head">
-                    <?php echo $this->pagination(); ?>
                     <?php if ($sItems): ?>
                     <div class="list-layout">
                         <span class="layout-label"><?php echo $this->translate('Layout'); ?></span>
@@ -50,6 +49,7 @@
                             ],
                         ]); ?>
                     </div>
+                    <?php echo $this->pagination(); ?>
                 </div>
                 <?php if ($sItems): ?>
                 <table style="display: none">

@@ -13,7 +13,6 @@
             <div class="media resource-list">
                 <h3>Media</h3>
                 <div class="media list-head">
-                    <?php echo $this->pagination(); ?>
                     <?php if ($sMedias): ?>
                     <div class="list-layout">
                         <span class="layout-label"><?php echo $this->translate('Layout'); ?></span>
@@ -71,6 +70,7 @@
                             ],
                         ]); ?>
                     </div>
+                    <?php echo $this->pagination(); ?>
                 </div>
                 <?php if ($sMedias): ?>
                 <table style="display: none">

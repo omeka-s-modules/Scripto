@@ -15,7 +15,6 @@ $this->headScript()->appendFile($this->assetUrl('vendor/featherlight/featherligh
         <?php echo $this->form()->openTag($mediaForm); ?>
         <?php echo $this->formElement($mediaForm->get('mediapublicappform_csrf')); ?>
             <div class="media-head">
-                <?php echo $this->scripto()->mediaPagination(); ?>
                 <div class="watch-list">
                     <?php if ($userIsLoggedIn): ?>
                     <a href="#" class="watchlist button watched" aria-label="<?php echo $this->translate('Stop watching media'); ?>" title="<?php echo $this->translate('Stop watching media'); ?>" style="display: none;"><?php echo $this->translate('Stop watching media'); ?></a>
@@ -91,12 +90,12 @@ $this->headScript()->appendFile($this->assetUrl('vendor/featherlight/featherligh
         </form>
         <div id="show-view">
             <div class="media-head">
-                <?php echo $this->scripto()->mediaPagination(); ?>
                 <?php if ($userCanEdit): ?>
                 <button type="button" class="edit"><?php echo $this->translate('Edit'); ?></button>
                 <?php else: ?>
                 <button type="button" class="edit"><?php echo $this->translate('View'); ?></button>
                 <?php endif; ?>
+                <?php echo $this->scripto()->mediaPagination(); ?>
             </div>
             <div class="resource-content">
                 <div class="media metadata">

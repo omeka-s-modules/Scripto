@@ -554,7 +554,7 @@ ul.messages .error {
 nav.pagination {
   display: flex;
   align-items: center;
-  margin-right: auto; }
+  margin-left: auto; }
 
 nav.pagination .row-count {
   margin-left: 15px; }
@@ -1011,7 +1011,6 @@ div.resource-row {
   position: static;
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
   justify-content: flex-end; }
 
 .title-flex {
