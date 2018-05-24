@@ -104,7 +104,7 @@ $this->headScript()->appendFile($this->assetUrl('vendor/featherlight/featherligh
                     <?php echo $displayValues  ? $displayValues : sprintf('<span>[%s]</span>', $this->translate('No metadata')); ?>
                 </div>
                 <div class="media html">
-                    <h3><?php echo $this->translate('Content'); ?></h3>
+                    <h3><?php echo $this->translate('HTML'); ?></h3>
                     <?php $pageHtml = $sMedia->pageHtml(); ?>
                     <?php echo $pageHtml  ? $pageHtml : sprintf('<span>[%s]</span>', $this->translate('No HTML')); ?>
                 </div>
