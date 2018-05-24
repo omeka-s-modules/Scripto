@@ -107,6 +107,7 @@ class MediaController extends AbstractActionController
         $view->setVariable('project', $project);
         $this->layout()->setVariable('project', $project);
         $this->layout()->setVariable('sItem', $sItem);
+        $this->layout()->setVariable('sMedia', $sMedia);
         return $view;
     }
 }

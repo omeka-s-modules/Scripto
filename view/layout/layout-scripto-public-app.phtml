@@ -52,6 +52,9 @@ $this->headScript()->appendFile($this->assetUrl('js/public-app.js', 'Scripto'));
             <ul>
                 <li><?php echo $project->link($this->translate('Items')); ?></li>
                 <li><?php echo $project->link($this->translate('Transcription Guidelines'), 'guidelines'); ?></li>
+                <?php if (isset($sMedia)): ?>
+                <li><?php echo $this->hyperlink($this->translate('Revision history'), $this->url('scripto-revision', ['action' => 'browse'], true)); ?></li>
+                <?php endif; ?>
             </ul>
         </nav>
         <?php endif; ?>
