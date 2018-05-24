@@ -49,11 +49,14 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto user watchlist bro
             </td>
             <td><?php echo $project ? $project->link($project->title()) : $this->translate('n/a'); ?></td>
             <td>
-                <?php echo $sMedia ? $this->hyperlink($date, $this->url('admin/scripto-revision', [
+                <?php echo $sMedia
+                ? $this->hyperlink($date, $this->url('admin/scripto-media-id', [
                     'project-id' => $project->id(),
                     'item-id' => $sItem->item()->id(),
                     'media-id' => $sMedia->media()->id(),
-                ])) : $date; ?>
+                    'revision-id' => $page['revid'],
+                ]))
+                : $date; ?>
             </td>
             <td>
                 <?php echo $sMedia
