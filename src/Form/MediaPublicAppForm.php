@@ -15,6 +15,7 @@ class MediaPublicAppForm extends Form
             'type' => 'textarea',
             'name' => 'wikitext',
             'attributes' => [
+                'id' => 'wikitext-editor-text',
                 'aria-label' => 'Wikitext', // @translate
             ],
         ]);

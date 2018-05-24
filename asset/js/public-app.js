@@ -32,4 +32,13 @@ $(document).ready(function() {
         gridButton.attr('disabled', true);
         listButton.removeAttr('disabled');
     });
+
+    // Add wikitext editor buttons to the wikitext textarea.
+    $('#show-view button.edit').on('click', function(e) {
+        var wikitextEditor = new WikitextEditor(
+            document.getElementById('wikitext-editor-text'),
+            document.getElementById('wikitext-editor-buttons')
+        );
+        wikitextEditor.addBasicButtons();
+    });
 });
