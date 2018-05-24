@@ -460,6 +460,33 @@ nav.pagination .row-count {
     content: "\f105";
 }
 
+.no-resources {
+    font-size: 2 * $base-font-size;
+    line-height: 2 * $base-line-height;
+    text-align: center;
+    position: relative;
+
+    &:before {
+        @include font-awesome;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        color: $grey-color-light;
+        font-size: 6 * $base-font-size;
+        line-height: 1;
+        z-index: -1;
+    }
+}
+
+.media .no-resources:before {
+    content: "\f03e";
+}
+
+.item .no-resources:before {
+    content: "\f1b2";
+}
+
 /**
  * Posts
  */
@@ -805,16 +832,16 @@ h2.media-item {
     padding-right: .5 * $spacing-unit;
 }
 
+.resource-list {
+    width: 100%;
+    padding-left: 0;
+}
+
 .resource-content .project.resource-metadata {
     width: 100%;
     max-width: 800px;
     margin-bottom: $spacing-unit;
     padding-right: 0;
-
-    & + .resource-list {
-        width: 100%;
-        padding-left: 0;
-    }
 }
 
 .project.resource-list {

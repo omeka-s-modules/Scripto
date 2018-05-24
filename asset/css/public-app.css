@@ -591,6 +591,28 @@ nav.pagination .row-count {
 .o-icon-next:before {
   content: "\f105"; }
 
+.no-resources {
+  font-size: 28px;
+  line-height: 3;
+  text-align: center;
+  position: relative; }
+  .no-resources:before {
+    font-family: "Font Awesome 5 Free";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #e8e8e8;
+    font-size: 84px;
+    line-height: 1;
+    z-index: -1; }
+
+.media .no-resources:before {
+  content: "\f03e"; }
+
+.item .no-resources:before {
+  content: "\f1b2"; }
+
 /**
  * Posts
  */
@@ -868,14 +890,15 @@ h2.media-item {
   width: 30%;
   padding-right: 15px; }
 
+.resource-list {
+  width: 100%;
+  padding-left: 0; }
+
 .resource-content .project.resource-metadata {
   width: 100%;
   max-width: 800px;
   margin-bottom: 30px;
   padding-right: 0; }
-  .resource-content .project.resource-metadata + .resource-list {
-    width: 100%;
-    padding-left: 0; }
 
 .project.resource-list {
   width: 100%;
