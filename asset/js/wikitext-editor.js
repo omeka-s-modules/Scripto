@@ -54,15 +54,15 @@ function WikitextEditor(textarea, buttonContainer) {
         this.addButton('wikitext-editor-button-bold', 'Bold', "'''", "'''");
         this.addButton('wikitext-editor-button-strike', 'Strike out', "<s>", "</s>");
         this.addButton('wikitext-editor-button-underline', 'Underline', "<u>", "</u>");
-        this.addButton('wikitext-editor-button-preformatted', 'Preformatted', "<pre>", "</pre>");
         this.addButton('wikitext-editor-button-blockquote', 'Blockquote', "<blockquote>\n", "\n</blockquote>");
-        this.addButton('wikitext-editor-button-horizontal-rule', 'Horizontal rule', "\n", "----\n");
-        this.addButton('wikitext-editor-button-line-break', 'Line break', "\n", "<br>\n");
         this.addButton('wikitext-editor-button-comment', 'Hidden comment', "<!-- ", " -->");
         this.addButton('wikitext-editor-button-heading-1', 'Level 1 heading', "\n= ", " =\n");
         this.addButton('wikitext-editor-button-heading-2', 'Level 2 heading', "\n== ", " ==\n");
         this.addButton('wikitext-editor-button-heading-3', 'Level 3 heading', "\n=== ", " ===\n");
         this.addButton('wikitext-editor-button-heading-4', 'Level 4 heading', "\n==== ", " ====\n");
         this.addButton('wikitext-editor-button-heading-5', 'Level 5 heading', "\n===== ", " =====\n");
+        this.addButton('wikitext-editor-button-preformatted', 'Preformatted', "<pre>", "</pre>");
+        this.addButton('wikitext-editor-button-horizontal-rule', 'Horizontal rule', "\n", "----\n");
+        this.addButton('wikitext-editor-button-line-break', 'Line break', "\n", "<br>\n");
     };
 }

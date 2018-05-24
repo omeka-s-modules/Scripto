@@ -682,8 +682,8 @@ nav.pagination .row-count {
 
 .wikitext-flex .textarea-flex textarea {
   width: 100%;
-  min-height: 100%;
-  flex: 1; }
+  flex: 1;
+  border-top: 0; }
 
 .horizontal .wikitext-flex .textarea-flex,
 .horizontal .wikitext-flex .panzoom-container {
@@ -1012,6 +1012,74 @@ div.resource-row {
 
 #change-summary-text {
   width: 100%; }
+
+#wikitext-editor-buttons {
+  background-color: #e8e8e8;
+  border: 1px solid #828282;
+  padding: 3.75px;
+  overflow: hidden; }
+
+#wikitext-editor-buttons button {
+  background-color: transparent;
+  border: 0;
+  color: #424242;
+  text-indent: -9999px;
+  overflow: hidden;
+  word-break: break-all;
+  float: left; }
+  #wikitext-editor-buttons button:before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    text-indent: 0;
+    float: left; }
+  #wikitext-editor-buttons button:hover {
+    box-shadow: 0 0 0 1px #828282 inset; }
+
+#wikitext-editor-buttons #wikitext-editor-button-preformatted {
+  clear: left; }
+
+#wikitext-editor-buttons #wikitext-editor-button-preformatted,
+#wikitext-editor-buttons #wikitext-editor-button-horizontal-rule,
+#wikitext-editor-buttons #wikitext-editor-button-line-break {
+  text-indent: 0; }
+
+#wikitext-editor-button-italic:before {
+  content: "\f033"; }
+
+#wikitext-editor-button-bold:before {
+  content: "\f032"; }
+
+#wikitext-editor-button-strike:before {
+  content: "\f0cc"; }
+
+#wikitext-editor-button-underline:before {
+  content: "\f0cd"; }
+
+#wikitext-editor-button-blockquote:before {
+  content: "\f10d"; }
+
+#wikitext-editor-button-comment:before {
+  content: "\f075"; }
+
+#wikitext-editor-buttons #wikitext-editor-button-heading-1:before {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  content: "h1"; }
+
+#wikitext-editor-buttons #wikitext-editor-button-heading-2:before {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  content: "h2"; }
+
+#wikitext-editor-buttons #wikitext-editor-button-heading-3:before {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  content: "h3"; }
+
+#wikitext-editor-buttons #wikitext-editor-button-heading-4:before {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  content: "h4"; }
+
+#wikitext-editor-buttons #wikitext-editor-button-heading-5:before {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  content: "h5"; }
 
 .featherlight .featherlight-content {
   width: 95%;
