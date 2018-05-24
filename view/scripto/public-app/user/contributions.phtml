@@ -3,6 +3,9 @@
         <h1 class="post-title"><?php echo $this->translate('Your contributions'); ?></h1>
     </header>
     <div class="post-content">
+        <div class="browse-controls">
+            <?php echo $this->scripto()->mediawikiPagination(); ?>
+        </div>
         <table>
             <thead>
                 <tr>

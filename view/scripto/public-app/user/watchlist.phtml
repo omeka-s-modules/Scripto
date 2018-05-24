@@ -3,7 +3,10 @@
         <h1 class="post-title"><?php echo $this->translate('Your watchlist'); ?></h1>
     </header>
     <div class="post-content">
-        <?php echo $this->scripto()->watchlistTimePeriodSelect(); ?>
+        <div class="browse-controls">
+            <?php echo $this->scripto()->mediawikiPagination(); ?>
+            <?php echo $this->scripto()->watchlistTimePeriodSelect(); ?>
+        </div>
         <table class="tablesaw" data-tablesaw-mode="stack">
             <thead>
                 <tr>
