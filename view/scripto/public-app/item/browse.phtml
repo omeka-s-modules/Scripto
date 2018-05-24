@@ -13,11 +13,13 @@
                 <h3><?php echo $this->translate('Items'); ?></h3>
                 <div class="media list-head">
                     <?php echo $this->pagination(); ?>
+                    <?php if ($sItems): ?>
                     <div class="list-layout">
                         <span class="layout-label"><?php echo $this->translate('Layout'); ?></span>
                         <button class="list" aria-label="<?php echo $this->escapeHtml($this->translate('List')); ?>"></button>
                         <button class="grid" aria-label="<?php echo $this->escapeHtml($this->translate('Grid')); ?>" disabled></button>
                     </div>
+                    <?php endif; ?>
                     <div class="sorting-toggle">
                         <a href="#" class="sorting-heading menu-toggle"><?php echo $this->translate('Sort'); ?></a>
                         <?php echo $this->sortSelector([
@@ -49,6 +51,7 @@
                         ]); ?>
                     </div>
                 </div>
+                <?php if ($sItems): ?>
                 <table style="display: none">
                     <thead>
                         <tr>
@@ -116,6 +119,11 @@
                     </div>
                     <?php endforeach; ?>
                 </div>
+                <?php else: ?>
+                <div class="no-resources">
+                    <p><?php echo $this->translate('No Scripto items found'); ?></p>
+                </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
