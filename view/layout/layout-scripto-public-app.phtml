@@ -50,10 +50,14 @@ $this->headScript()->appendFile($this->assetUrl('js/public-app.js', 'Scripto'));
         <nav class="project-nav wrapper">
             <h2><?php echo $project->link($project->title()); ?></h2>
             <ul>
-                <li><?php echo $project->link($this->translate('Items')); ?></li>
-                <li><?php echo $project->link($this->translate('Transcription Guidelines'), 'guidelines'); ?></li>
+                <li><?php echo $project->link($this->translate('Editing guidelines'), 'guidelines'); ?></li>
+                <li><?php echo $project->link($this->translate('Browse items')); ?></li>
+                <?php if (isset($sItem)): ?>
+                <li><?php echo $sItem->link($this->translate('Browse media')); ?></li>
+                <?php endif; ?>
                 <?php if (isset($sMedia)): ?>
-                <li><?php echo $this->hyperlink($this->translate('Revision history'), $this->url('scripto-revision', ['action' => 'browse'], true)); ?></li>
+                <li><?php echo $sMedia->link($this->translate('View media')); ?></li>
+                <li><?php echo $this->hyperlink($this->translate('Browse revisions'), $this->url('scripto-revision', ['action' => 'browse'], true)); ?></li>
                 <?php endif; ?>
             </ul>
         </nav>
