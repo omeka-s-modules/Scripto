@@ -22,6 +22,7 @@
             <tbody>
             <?php foreach ($watchlist as $page): ?>
             <?php
+            $date = $page['timestamp']->format('G:i, j F Y');
             $sizeDiff = $page['newlen'] - $page['oldlen'];
             $sMedia = isset($page['scripto_media']) ? $page['scripto_media'] : null;
             $sItem = $sMedia ? $sMedia->scriptoItem() : null;
@@ -35,7 +36,16 @@
                         : $this->translate('n/a'); ?>
                     </td>
                     <td><?php echo $project ? $project->link($project->title()) : $this->translate('n/a'); ?></td>
-                    <td><?php echo $page['timestamp']->format('G:i, j F Y'); ?></td>
+                    <td>
+                        <?php echo $sMedia
+                        ? $this->hyperlink($date, $this->url('scripto-revision-id', [
+                            'project-id' => $project->id(),
+                            'item-id' => $sItem->item()->id(),
+                            'media-id' => $sMedia->media()->id(),
+                            'revision-id' => $page['revid'],
+                        ]))
+                        : $date; ?>
+                    </td>
                     <td><?php echo sprintf('%s bytes (%s)', number_format($page['newlen']), sprintf('%s%s', 0 < $sizeDiff ? '+' : '', number_format($sizeDiff))); ?></td>
                     <td><?php echo $page['user']; ?></td>
                     <td><i><?php echo strip_tags($page['parsedcomment']); ?></i></td>
