@@ -930,7 +930,7 @@ div.resource-row {
 .filtering-toggle {
     position: relative;
     &.open > form {
-        right: 0;
+        left: .5 * $spacing-unit;
         top: calc(100% + #{.0675 * $spacing-unit});
         background-color: #fff;
         padding: .25 * $spacing-unit;
@@ -941,7 +941,7 @@ div.resource-row {
         content: "";
         position: absolute;
         top: 0;
-        right: -1px;
+        left: -1px;
         width: 100%;
         height: calc(100% + #{.125 * $spacing-unit});
         background-color: #fff;
@@ -965,7 +965,7 @@ div.resource-row {
 .sorting,
 .filtering {
     position: absolute;
-    right: -9999px;
+    left: -9999px;
     display: flex;
     & > *:not(:last-child) {
       margin-right: .25 * $spacing-unit;

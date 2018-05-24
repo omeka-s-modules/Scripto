@@ -969,7 +969,7 @@ div.resource-row {
   position: relative; }
   .sorting-toggle.open > form,
   .filtering-toggle.open > form {
-    right: 0;
+    left: 15px;
     top: calc(100% + 2.025px);
     background-color: #fff;
     padding: 7.5px;
@@ -980,7 +980,7 @@ div.resource-row {
     content: "";
     position: absolute;
     top: 0;
-    right: -1px;
+    left: -1px;
     width: 100%;
     height: calc(100% + 3.75px);
     background-color: #fff;
@@ -1001,7 +1001,7 @@ div.resource-row {
 .sorting,
 .filtering {
   position: absolute;
-  right: -9999px;
+  left: -9999px;
   display: flex; }
   .sorting > *:not(:last-child),
   .filtering > *:not(:last-child) {
