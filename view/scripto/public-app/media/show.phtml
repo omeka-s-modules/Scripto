@@ -99,11 +99,13 @@ $this->headScript()->appendFile($this->assetUrl('vendor/featherlight/featherligh
             <div class="resource-content">
                 <div class="media metadata">
                     <h3><?php echo $this->translate('Metadata'); ?></h3>
-                    <?php echo $media->displayValues(); ?>
+                    <?php $displayValues = $media->displayValues(); ?>
+                    <?php echo $displayValues  ? $displayValues : sprintf('<span>[%s]</span>', $this->translate('No metadata')); ?>
                 </div>
                 <div class="media html">
-                    <h3><?php echo $this->translate('HTML'); ?></h3>
-                    <?php echo $sMedia->pageHtml(); ?>
+                    <h3><?php echo $this->translate('Content'); ?></h3>
+                    <?php $pageHtml = $sMedia->pageHtml(); ?>
+                    <?php echo $pageHtml  ? $pageHtml : sprintf('<span>[%s]</span>', $this->translate('No HTML')); ?>
                 </div>
             </div>
         </div>
