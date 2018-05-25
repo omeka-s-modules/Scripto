@@ -33,7 +33,7 @@ $this->headScript()->appendFile($this->assetUrl('vendor/featherlight/featherligh
                     <?php echo $this->formCheckbox($mediaForm->get('mark_complete')); ?>
                 </div>
                 <input type="submit" class="save" value="<?php echo $this->escapeHtml($this->translate('Save')); ?>">
-                <?php echo $this->scripto()->mediaPagination('edit'); ?>
+                <?php echo $sMedia->link($this->translate('Cancel'), 'show', ['class' => 'button']); ?>
             </div>
             <div id="wikitext">
                 <div class="wikitext-featherlight horizontal">
