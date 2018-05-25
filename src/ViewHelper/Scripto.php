@@ -279,6 +279,28 @@ class Scripto extends AbstractHelper
     }
 
     /**
+     * Render Scripto compare revisions pagination.
+     *
+     * @param string $action
+     * @return string
+     */
+    public function compareRevisionsPagination()
+    {
+        $view = $this->getView();
+        $fromRevision = $view->fromRevision;
+        $toRevision = $view->toRevision;
+        return sprintf(
+            '<nav class="pagination" role="navigation">%s%s</nav>',
+            $fromRevision['parentid']
+                ? $view->hyperlink('', $view->url(null, ['from-revision-id' => $fromRevision['parentid'], 'to-revision-id' => $fromRevision['revid']], true), ['class' => 'previous o-icon-prev button', 'title' => $view->translate('Older revision')])
+                : '<span class="previous o-icon-prev button inactive"></span>',
+            $toRevision['childid']
+                ? $view->hyperlink('', $view->url(null, ['from-revision-id' => $toRevision['revid'], 'to-revision-id' => $toRevision['childid']], true), ['class' => 'next o-icon-next button', 'title' => $view->translate('Newer revision')])
+                : '<span class="next o-icon-next button inactive"></span>'
+        );
+    }
+
+    /**
      * Render the watchlist time period select.
      *
      * @return string
