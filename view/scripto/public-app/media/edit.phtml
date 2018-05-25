@@ -29,14 +29,10 @@ $this->headScript()->appendFile($this->assetUrl('vendor/featherlight/featherligh
                 </div>
                 <div class="status-field">
                     <div class="current-status"><strong><?php echo $this->translate('Status: '); ?></strong><?php echo $this->translate($sMedia->status()); ?></div>
-                    <?php if ($userCanEdit): ?>
                     <label for="mark_complete"><?php echo $this->translate('Mark this revision as complete'); ?></label>
                     <?php echo $this->formCheckbox($mediaForm->get('mark_complete')); ?>
-                    <?php endif; ?>
                 </div>
-                <?php if ($userIsLoggedIn || $userCanEdit): ?>
                 <input type="submit" class="save" value="<?php echo $this->escapeHtml($this->translate('Save')); ?>">
-                <?php endif; ?>
                 <?php echo $this->scripto()->mediaPagination('edit'); ?>
             </div>
             <div id="wikitext">
