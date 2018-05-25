@@ -662,8 +662,12 @@ nav.pagination .row-count {
   margin-bottom: 24px;
   height: 35vh; }
 
-.wikitext-flex .panzoom-container {
-  border: 1px solid #dfdfdf; }
+.panzoom-container {
+  border: 1px solid #dfdfdf;
+  position: relative; }
+
+.media.html .panzoom-container {
+  margin-bottom: 30px; }
 
 .wikitext-flex .media-render {
   margin-bottom: 0; }
@@ -795,9 +799,14 @@ h2.media-item {
   padding-bottom: 0; }
 
 .watchlist.button,
-.status-field,
 .protection-field {
   margin-right: 30px; }
+
+.status-field {
+  margin-right: auto; }
+
+.save {
+  margin-right: 7.5px; }
 
 .status-field {
   margin-top: -30px; }

@@ -538,8 +538,13 @@ nav.pagination .row-count {
     height: 35vh;
 }
 
-.wikitext-flex .panzoom-container {
+.panzoom-container {
     border: 1px solid #dfdfdf;
+    position: relative;
+}
+
+.media.html .panzoom-container {
+    margin-bottom: $spacing-unit;
 }
 
 .wikitext-flex .media-render {
@@ -699,9 +704,16 @@ h2.media-item {
 }
 
 .watchlist.button,
-.status-field,
 .protection-field {
     margin-right: $spacing-unit;
+}
+
+.status-field {
+    margin-right: auto;
+}
+
+.save {
+    margin-right: .25 * $spacing-unit;
 }
 
 .status-field {
