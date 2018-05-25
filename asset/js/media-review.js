@@ -6,11 +6,11 @@ $(document).ready(function() {
         var storedPanzoomStyle = '';
         var storedRotateStyle = '';
 
-        Scripto.applyPanzoom($('#wikitext .media-render'));
+        Scripto.applyPanzoom($('.media-render'));
 
         $('.full-screen').featherlight('.wikitext-featherlight', {
             beforeOpen: function() {
-                $('#wikitext .media-render').panzoom('destroy');
+                $('.media-render').panzoom('destroy');
             },
             afterOpen: function() {
                 Scripto.applyPanzoom($('.featherlight-content .media-render'));
@@ -19,11 +19,11 @@ $(document).ready(function() {
                 storedPanzoomStyle = $('.featherlight-content .media-render').attr('style');
                 storedRotateStyle = $('.featherlight-content .panzoom-container img').attr('style');
                 $('.featherlight-content .media-render').panzoom('destroy');
-                $('#wikitext .media-render').attr('style', storedPanzoomStyle);
-                $('#wikitext .panzoom-container img').attr('style', storedRotateStyle);
+                $('.media-render').attr('style', storedPanzoomStyle);
+                $('.panzoom-container img').attr('style', storedRotateStyle);
             },
             afterClose: function() {
-                Scripto.applyPanzoom($('#wikitext .media-render'));
+                Scripto.applyPanzoom($('.media-render'));
             }
         });
 

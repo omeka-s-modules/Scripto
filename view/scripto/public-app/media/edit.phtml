@@ -72,16 +72,6 @@ $this->headScript()->appendFile($this->assetUrl('vendor/featherlight/featherligh
                         </div>
                         <?php endif; ?>
                     </div>
-                    <script>
-                    (function($) {
-                        var $zoomContainer = $('.panzoom-container');
-                        $('#wikitext .media-render').panzoom({
-                            $zoomIn: $zoomContainer.find(".zoom-in"),
-                            $zoomOut: $zoomContainer.find(".zoom-out"),
-                            $reset: $zoomContainer.find(".reset")
-                        });
-                    })(jQuery);
-                    </script>
                 </div>
             </div>
             <div class="change-summary">
