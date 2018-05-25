@@ -49,6 +49,31 @@ class MediaController extends AbstractActionController
             return $this->redirect()->toRoute('scripto');
         }
 
+        $sItem = $sMedia->scriptoItem();
+        $project = $sItem->scriptoProject();
+        $view = new ViewModel;
+        $view->setVariable('sMedia', $sMedia);
+        $view->setVariable('media', $sMedia->media());
+        $view->setVariable('sItem', $sItem);
+        $view->setVariable('item', $sItem->item());
+        $view->setVariable('project', $project);
+        $this->layout()->setVariable('project', $project);
+        $this->layout()->setVariable('sItem', $sItem);
+        $this->layout()->setVariable('sMedia', $sMedia);
+        return $view;
+    }
+
+    public function editAction()
+    {
+        $sMedia = $this->scripto()->getRepresentation(
+            $this->params('project-id'),
+            $this->params('item-id'),
+            $this->params('media-id')
+        );
+        if (!$sMedia) {
+            return $this->redirect()->toRoute('scripto');
+        }
+
         $mediaForm = $this->getForm(MediaPublicAppForm::class);
         $userIsLoggedIn = $this->scripto()->apiClient()->userIsLoggedIn();
         $userCanEdit = $sMedia->userCanEdit();

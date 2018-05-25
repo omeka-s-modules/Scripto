@@ -8,9 +8,6 @@ class MediaPublicAppForm extends Form
 {
     public function init()
     {
-        $this->setAttribute('id', 'edit-view');
-        $this->setAttribute('style', 'display: none;');
-
         $this->add([
             'type' => 'textarea',
             'name' => 'wikitext',
