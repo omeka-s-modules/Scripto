@@ -1,0 +1,146 @@
+@include media-query($on-palm) {
+    .site-nav {
+        position: absolute;
+        top: 9px;
+        right: $spacing-unit / 2;
+        text-align: right;
+    
+        label[for="nav-trigger"] {
+          display: block;
+          float: right;
+          width: 36px;
+          height: 36px;
+          background-color: $background-color;
+          border: 1px solid $grey-color-light;
+          border-radius: 5px;
+          z-index: 1000;
+          cursor: pointer;
+          position: relative;
+          font-size: 1.5 * $base-font-size;
+          line-height: 36px;
+          text-align: center;
+
+          &:before {
+            @include font-awesome;
+            content: "\f0c9";
+          }
+        }
+    
+        .menu-icon {
+          display: block;
+          float: right;
+          width: 36px;
+          height: 26px;
+          line-height: 0;
+          padding-top: 10px;
+          text-align: center;
+    
+          > svg {
+            fill: $grey-color-dark;
+          }
+        }
+    
+        input ~ .trigger {
+          clear: both;
+          display: none;
+        }
+    
+        input:checked ~ .trigger {
+          display: block;
+          padding-bottom: 5px;
+          position: fixed;
+          z-index: 999;
+          top: 0;
+          right: 0;
+          width: 100%;
+          height: 100%;
+          padding-top: 2 * $spacing-unit;
+          background-color: #fff;
+          text-align: left;
+          border-top: 5px solid $grey-color-dark;
+          border-bottom: 1px solid $grey-color-light;
+        }
+
+        input:checked ~ label[for="nav-trigger"]:before {
+          content: "\f00d";
+        }
+    
+        .page-link {
+          display: block;
+          padding: (.25 * $spacing-unit) (.5 * $spacing-unit);
+          border-bottom: 1px solid $grey-color-light;
+
+          &:first-child {
+          border-top: 1px solid $grey-color-light;
+          }
+
+          &:not(:last-child) {
+            margin: 0;
+          }
+        }
+
+        .user {
+          display: block;
+          margin: 0;
+          border: 0;
+          border-radius: 0;
+        }
+
+        .user:before,
+        .page-link.user-toggle {
+          display: none;
+        }
+
+        .user-menu {
+          position: relative;
+          right: 0;
+          margin: 0;
+          width: 100%;
+          border-width: 0 0 1px;
+        }
+
+        #scriptologoutform {
+          display: block;
+          padding: (.25 * $spacing-unit) (.5 * $spacing-unit);
+          border-bottom: 1px solid $grey-color-light;
+          line-height: $base-line-height;
+        }
+    }
+
+    .footer-col {
+      float: none;
+      width: -webkit-calc(100% - (#{$spacing-unit} / 2));
+      width:         calc(100% - (#{$spacing-unit} / 2));
+    }
+}
+
+@include media-query($on-laptop) {
+  .footer-col-1,
+  .footer-col-2 {
+    width: -webkit-calc(50% - (#{$spacing-unit} / 2));
+    width:         calc(50% - (#{$spacing-unit} / 2));
+  }
+
+  .footer-col-3 {
+    width: -webkit-calc(100% - (#{$spacing-unit} / 2));
+    width:         calc(100% - (#{$spacing-unit} / 2));
+  }
+
+  .post-title {
+    @include relative-font-size(2.25);
+  }
+
+  .post-content {
+    h2 {
+      @include relative-font-size(1.75);
+    }
+
+    h3 {
+      @include relative-font-size(1.375);
+    }
+
+    h4 {
+      @include relative-font-size(1.125);
+    }
+  }
+}
