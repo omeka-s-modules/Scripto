@@ -627,12 +627,12 @@ class ApiClient
             'meta' => 'tokens',
             'type' => 'csrf',
         ]);
-        $page = $this->queryPage($title);
         $edit = $this->request([
             'action' => 'edit',
             'title' => $title,
             'text' => $text,
             'summary' => $summary,
+            'watchlist' => 'nochange', // watchlist not affected by edit
             'token' => $query['query']['tokens']['csrftoken'],
         ]);
         if (isset($edit['error'])) {
