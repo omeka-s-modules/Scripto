@@ -30,6 +30,16 @@ class Scripto extends AbstractHelper
     protected $routeMatch;
 
     /**
+     * @var string This page's title for the public application
+     */
+    protected $postTitle;
+
+    /**
+     * @var string This page's subtitle for the public application
+     */
+    protected $postSubtitle;
+
+    /**
      * @var array Breadcrumbs route map
      */
     protected $bcRouteMap = [
@@ -105,6 +115,36 @@ class Scripto extends AbstractHelper
     public function apiClient()
     {
         return $this->apiClient;
+    }
+
+    /**
+     * Set and get this page's post title for the public application.
+     *
+     * @param string $postTitle
+     * @return string
+     */
+    public function postTitle($postTitle = null)
+    {
+        if (isset($postTitle)) {
+            $this->postTitle = $postTitle;
+        } else {
+            return $this->postTitle;
+        }
+    }
+
+    /**
+     * Set and get this page's post subtitle for the public application.
+     *
+     * @param string $postSubtitle
+     * @return string
+     */
+    public function postSubtitle($postSubtitle = null)
+    {
+        if (isset($postSubtitle)) {
+            $this->postSubtitle = $postSubtitle;
+        } else {
+            return $this->postSubtitle;
+        }
     }
 
     /**
