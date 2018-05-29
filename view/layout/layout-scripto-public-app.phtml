@@ -63,7 +63,19 @@ $this->headScript()->appendFile($this->assetUrl('js/public-app.js', 'Scripto'));
         <main class="page-content" aria-label="<?php echo $this->escapeHtml($this->translate('Content')); ?>">
             <div class="wrapper">
                 <?php echo $this->messages(); ?>
-                <?php echo $this->content; ?>
+                <article class="post">
+                    <header class="post-header">
+                        <?php if ($this->scripto()->postTitle()): ?>
+                        <h1 class="post-title"><?php echo $this->scripto()->postTitle(); ?></h1>
+                        <?php endif; ?>
+                        <?php if ($this->scripto()->postSubtitle()): ?>
+                        <h2 class="post-subtitle"><?php echo $this->scripto()->postSubtitle(); ?></h2>
+                        <?php endif; ?>
+                    </header>
+                    <div class="post-content">
+                        <?php echo $this->content; ?>
+                    </div>
+                </article>
             </div>
         </main>
         <footer class="site-footer h-card">

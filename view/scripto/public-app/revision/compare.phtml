@@ -1,69 +1,65 @@
-<article class="post">
-    <header class="post-header">
-        <h1 class="post-title"><?php echo sprintf($this->translate('Compare revisions: %s'), $this->escapeHtml($media->displayTitle())); ?></h1>
-    </header>
-    <div class="post-content">
-        <div class="resource-content">
-            <div class="browse-controls">
-                <?php echo $this->scripto()->compareRevisionsPagination(); ?>
-            </div>
-            <table id="compare-table">
-                <colgroup>
-                    <col class="diff-marker">
-                    <col class="diff-context">
-                    <col class="diff-marker">
-                    <col class="diff-context">
-                </colgroup>
-                <thead>
-                    <tr>
-                        <th colspan="2">
-                            <div class="revision-timestamp"><?php echo sprintf(
-                                $this->translate('Revision as of %s by %s'),
-                                $fromRevision['timestamp']->format('G:i:s, j F Y'),
-                                $this->hyperlink($fromRevision['user'], $this->url('scripto-user-contributions', ['user-id' => $fromRevision['user']]))
-                            ); ?></div>
-                            <?php if ($fromRevision['parsedcomment']): ?>
-                            <div class="parsed-comment"><?php echo strip_tags($fromRevision['parsedcomment']); ?></div>
-                            <?php endif; ?>
-                        </th>
-                        <th colspan="2">
-                            <div class="revision-timestamp"><?php echo sprintf(
-                                $this->translate('Revision as of %s by %s'),
-                                $toRevision['timestamp']->format('G:i:s, j F Y'),
-                                $this->hyperlink($toRevision['user'], $this->url('scripto-user-contributions', ['user-id' => $toRevision['user']]))
-                            ); ?></div>
-                            <?php if ($toRevision['parsedcomment']): ?>
-                            <div class="parsed-comment"><?php echo strip_tags($toRevision['parsedcomment']); ?></div>
-                            <?php endif; ?>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th colspan="2">
-                            <?php if ($fromRevision['revid'] === $sMedia->completedRevision()): ?>
-                            <div class="green">This revision marked as completed.</div>
-                            <?php endif; ?>
-                            <?php if ($fromRevision['revid'] === $sMedia->approvedRevision()): ?>
-                            <div class="green">This revision marked as approved.</div>
-                            <?php endif; ?>
-                        </th>
-                        <th colspan="2">
-                            <?php if ($toRevision['revid'] === $sMedia->completedRevision()): ?>
-                            <div class="green">This revision marked as completed.</div>
-                            <?php endif; ?>
-                            <?php if ($toRevision['revid'] === $sMedia->approvedRevision()): ?>
-                            <div class="green">This revision marked as approved.</div>
-                            <?php endif; ?>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if ($compare): ?>
-                    <?php echo $compare; ?>
-                    <?php else: ?>
-                    <tr><td colspan="4"><?php echo $this->translate('(No difference)'); ?></td></tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
-        </div>
+<?php
+$this->scripto()->postTitle(sprintf($this->translate('Compare revisions: %s'), $this->escapeHtml($media->displayTitle())));
+?>
+<div class="resource-content">
+    <div class="browse-controls">
+        <?php echo $this->scripto()->compareRevisionsPagination(); ?>
     </div>
-</article>
+    <table id="compare-table">
+        <colgroup>
+            <col class="diff-marker">
+            <col class="diff-context">
+            <col class="diff-marker">
+            <col class="diff-context">
+        </colgroup>
+        <thead>
+            <tr>
+                <th colspan="2">
+                    <div class="revision-timestamp"><?php echo sprintf(
+                        $this->translate('Revision as of %s by %s'),
+                        $fromRevision['timestamp']->format('G:i:s, j F Y'),
+                        $this->hyperlink($fromRevision['user'], $this->url('scripto-user-contributions', ['user-id' => $fromRevision['user']]))
+                    ); ?></div>
+                    <?php if ($fromRevision['parsedcomment']): ?>
+                    <div class="parsed-comment"><?php echo strip_tags($fromRevision['parsedcomment']); ?></div>
+                    <?php endif; ?>
+                </th>
+                <th colspan="2">
+                    <div class="revision-timestamp"><?php echo sprintf(
+                        $this->translate('Revision as of %s by %s'),
+                        $toRevision['timestamp']->format('G:i:s, j F Y'),
+                        $this->hyperlink($toRevision['user'], $this->url('scripto-user-contributions', ['user-id' => $toRevision['user']]))
+                    ); ?></div>
+                    <?php if ($toRevision['parsedcomment']): ?>
+                    <div class="parsed-comment"><?php echo strip_tags($toRevision['parsedcomment']); ?></div>
+                    <?php endif; ?>
+                </th>
+            </tr>
+            <tr>
+                <th colspan="2">
+                    <?php if ($fromRevision['revid'] === $sMedia->completedRevision()): ?>
+                    <div class="green">This revision marked as completed.</div>
+                    <?php endif; ?>
+                    <?php if ($fromRevision['revid'] === $sMedia->approvedRevision()): ?>
+                    <div class="green">This revision marked as approved.</div>
+                    <?php endif; ?>
+                </th>
+                <th colspan="2">
+                    <?php if ($toRevision['revid'] === $sMedia->completedRevision()): ?>
+                    <div class="green">This revision marked as completed.</div>
+                    <?php endif; ?>
+                    <?php if ($toRevision['revid'] === $sMedia->approvedRevision()): ?>
+                    <div class="green">This revision marked as approved.</div>
+                    <?php endif; ?>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if ($compare): ?>
+            <?php echo $compare; ?>
+            <?php else: ?>
+            <tr><td colspan="4"><?php echo $this->translate('(No difference)'); ?></td></tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
+</div>

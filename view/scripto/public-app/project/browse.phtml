@@ -1,29 +1,25 @@
-<article class="post">
-    <header class="post-header">
-        <h1 class="post-title"><?php echo $this->translate('Projects'); ?></h1>
-    </header>
-    <div class="post-content">
-        <div class="resource-content">
-            <div class="project resource-list">
-                <?php if ($projects): ?>
-                <?php foreach ($projects as $project): ?>
-                <div class="resource-row">
-                    <?php echo $project->linkRaw($this->thumbnail($project, 'square', [
-                        'title' => $this->translate('Project primary media'),
-                        'alt' => $this->translate('Project primary media')
-                    ])); ?>
-                    <div class="resource-meta">
-                        <h4><?php echo $project->link($project->title()); ?></h4>
-                        <div class="description"><?php echo $this->escapeHtml($project->description()); ?></div>
-                    </div>
-                </div>
-                <?php endforeach; ?>
-                <?php else: ?>
-                <div class="no-resources">
-                    <p><?php echo $this->translate('No Scripto projects found'); ?></p>
-                </div>
-                <?php endif; ?>
+<?php
+$this->scripto()->postTitle($this->translate('Projects'));
+?>
+<div class="resource-content">
+    <div class="project resource-list">
+        <?php if ($projects): ?>
+        <?php foreach ($projects as $project): ?>
+        <div class="resource-row">
+            <?php echo $project->linkRaw($this->thumbnail($project, 'square', [
+                'title' => $this->translate('Project primary media'),
+                'alt' => $this->translate('Project primary media')
+            ])); ?>
+            <div class="resource-meta">
+                <h4><?php echo $project->link($project->title()); ?></h4>
+                <div class="description"><?php echo $this->escapeHtml($project->description()); ?></div>
             </div>
         </div>
+        <?php endforeach; ?>
+        <?php else: ?>
+        <div class="no-resources">
+            <p><?php echo $this->translate('No Scripto projects found'); ?></p>
+        </div>
+        <?php endif; ?>
     </div>
-</article>
+</div>

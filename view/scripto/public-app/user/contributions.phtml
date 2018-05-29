@@ -1,58 +1,56 @@
-<article class="post">
-    <header class="post-header">
-        <h1 class="post-title"><?php echo $this->translate('Your contributions'); ?></h1>
-    </header>
-    <div class="post-content">
-        <div class="browse-controls">
-            <?php echo $this->scripto()->mediawikiPagination(); ?>
-        </div>
-        <table>
-            <thead>
-                <tr>
-                    <th><?php echo $this->translate('Revision'); ?></th>
-                    <th><?php echo $this->translate('Item'); ?></th>
-                    <th><?php echo $this->translate('Media #'); ?></th>
-                    <th><?php echo $this->translate('Project'); ?></th>
-                    <th><?php echo $this->translate('Size'); ?></th>
-                    <th class="comment"><?php echo $this->translate('Comment'); ?></th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($userCons as $userCon): ?>
-            <?php
-            $date = $userCon['timestamp']->format('G:i, j F Y');
-            $flags = array_filter([
-                $userCon['new'] ? $this->translate('new') : null,
-                $userCon['top'] ? $this->translate('current') : null,
-            ]);
-            $sMedia = isset($userCon['scripto_media']) ? $userCon['scripto_media'] : null;
-            $sItem = $sMedia ? $sMedia->scriptoItem() : null;
-            $project = $sItem ? $sItem->scriptoProject() : null;
-            ?>
-                <tr>
-                    <td>
-                        <?php echo $sMedia
-                        ? $this->hyperlink($date, $this->url('scripto-revision-id', [
-                            'project-id' => $project->id(),
-                            'item-id' => $sItem->item()->id(),
-                            'media-id' => $sMedia->media()->id(),
-                            'revision-id' => $userCon['revid'],
-                        ]))
-                        : $date; ?>
-                        <span class="flags"><?php echo $flags ? sprintf(' (%s)', implode(', ', $flags)) : null; ?></span>
-                    </td>
-                    <td><?php echo $sItem ? $sItem->link($sItem->item()->displayTitle()) : $userCon['title']; ?></td>
-                    <td>
-                        <?php echo $sMedia
-                        ? $this->hyperlink(sprintf($this->translate('Media #%s'), $sMedia->position()), $sMedia->url())
-                        : $this->translate('n/a'); ?>
-                    </td>
-                    <td><?php echo $project ? $project->link($project->title()) : $this->translate('n/a'); ?></td>
-                    <td><?php echo sprintf('%s bytes (%s)', number_format($userCon['size']), sprintf('%s%s', 0 < $userCon['sizediff'] ? '+' : '', number_format($userCon['sizediff']))); ?></td>
-                    <td><i><?php echo strip_tags($userCon['parsedcomment']); ?></i></td>
-                </tr>
-            <?php endforeach; ?>
-            </tbody>
-        </table>
+<?php
+$this->scripto()->postTitle($this->translate('Your contributions'));
+?>
+<div class="resource-content">
+    <div class="browse-controls">
+        <?php echo $this->scripto()->mediawikiPagination(); ?>
     </div>
-</article>
+    <table>
+        <thead>
+            <tr>
+                <th><?php echo $this->translate('Revision'); ?></th>
+                <th><?php echo $this->translate('Item'); ?></th>
+                <th><?php echo $this->translate('Media #'); ?></th>
+                <th><?php echo $this->translate('Project'); ?></th>
+                <th><?php echo $this->translate('Size'); ?></th>
+                <th class="comment"><?php echo $this->translate('Comment'); ?></th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($userCons as $userCon): ?>
+        <?php
+        $date = $userCon['timestamp']->format('G:i, j F Y');
+        $flags = array_filter([
+            $userCon['new'] ? $this->translate('new') : null,
+            $userCon['top'] ? $this->translate('current') : null,
+        ]);
+        $sMedia = isset($userCon['scripto_media']) ? $userCon['scripto_media'] : null;
+        $sItem = $sMedia ? $sMedia->scriptoItem() : null;
+        $project = $sItem ? $sItem->scriptoProject() : null;
+        ?>
+            <tr>
+                <td>
+                    <?php echo $sMedia
+                    ? $this->hyperlink($date, $this->url('scripto-revision-id', [
+                        'project-id' => $project->id(),
+                        'item-id' => $sItem->item()->id(),
+                        'media-id' => $sMedia->media()->id(),
+                        'revision-id' => $userCon['revid'],
+                    ]))
+                    : $date; ?>
+                    <span class="flags"><?php echo $flags ? sprintf(' (%s)', implode(', ', $flags)) : null; ?></span>
+                </td>
+                <td><?php echo $sItem ? $sItem->link($sItem->item()->displayTitle()) : $userCon['title']; ?></td>
+                <td>
+                    <?php echo $sMedia
+                    ? $this->hyperlink(sprintf($this->translate('Media #%s'), $sMedia->position()), $sMedia->url())
+                    : $this->translate('n/a'); ?>
+                </td>
+                <td><?php echo $project ? $project->link($project->title()) : $this->translate('n/a'); ?></td>
+                <td><?php echo sprintf('%s bytes (%s)', number_format($userCon['size']), sprintf('%s%s', 0 < $userCon['sizediff'] ? '+' : '', number_format($userCon['sizediff']))); ?></td>
+                <td><i><?php echo strip_tags($userCon['parsedcomment']); ?></i></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

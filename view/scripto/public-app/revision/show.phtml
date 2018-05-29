@@ -1,23 +1,15 @@
-<article class="post">
-    <header class="post-header">
-        <h1 class="post-title"><?php echo $this->escapeHtml($media->displayTitle()); ?></h1>
-        <h2 class="media-item"><?php echo sprintf(
-            'Revision as of %s by %s',
-            $revision['timestamp']->format('G:i:s, j F Y'),
-            $revision['user']
-        ); ?></h2>
-    </header>
-    <div class="post-content">
-        <div class="resource-content">
-            <div class="media wikitext">
-                <h3><?php echo $this->translate('Wikitext'); ?></h3>
-                <textarea disabled aria-label="<?php echo $this->translate('Wikitext'); ?>"><?php echo $sMedia->pageWikitext($revision['revid']); ?></textarea>
-            </div>
-            <div class="media html">
-                <h3><?php echo $this->translate('HTML'); ?></h3>
-                <?php $pageHtml = $sMedia->pageHtml($revision['revid']); ?>
-                <?php echo $pageHtml  ? $pageHtml : sprintf('<span>[%s]</span>', $this->translate('No HTML')); ?>
-            </div>
-        </div>
+<?php
+$this->scripto()->postTitle($media->displayTitle());
+$this->scripto()->postSubtitle(sprintf('Revision as of %s by %s', $revision['timestamp']->format('G:i:s, j F Y'), $revision['user']));
+?>
+<div class="resource-content">
+    <div class="media wikitext">
+        <h3><?php echo $this->translate('Wikitext'); ?></h3>
+        <textarea disabled aria-label="<?php echo $this->translate('Wikitext'); ?>"><?php echo $sMedia->pageWikitext($revision['revid']); ?></textarea>
     </div>
-</article>
+    <div class="media html">
+        <h3><?php echo $this->translate('HTML'); ?></h3>
+        <?php $pageHtml = $sMedia->pageHtml($revision['revid']); ?>
+        <?php echo $pageHtml  ? $pageHtml : sprintf('<span>[%s]</span>', $this->translate('No HTML')); ?>
+    </div>
+</div>
