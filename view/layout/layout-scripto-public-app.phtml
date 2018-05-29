@@ -31,6 +31,9 @@ $this->headScript()->appendFile($this->assetUrl('js/public-app.js', 'Scripto'));
                 <div class="trigger">
                     <?php echo $this->hyperlink($this->translate('Projects'), $this->url('scripto-project'), ['class' => 'page-link']); ?>
                     <?php echo $this->scripto()->loginBar(); ?>
+                    <?php if (!$this->scripto()->apiClient()->userIsLoggedIn()): ?>
+                    <?php echo $this->hyperlink($this->translate('Create account'), $this->url('scripto', ['action' => 'create-account']), ['class' => 'page-link']); ?>
+                    <?php endif; ?>
                 </div>
             </nav>
         </div>
