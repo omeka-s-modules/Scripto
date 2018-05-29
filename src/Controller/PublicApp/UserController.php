@@ -8,17 +8,7 @@ class UserController extends AbstractActionController
 {
     public function contributionsAction()
     {
-        if (!$this->scripto()->apiClient()->userIsLoggedIn()) {
-            // User must be logged in.
-            return $this->redirect()->toRoute('scripto');
-        }
         $userName = $this->params('user-id');
-        $currentUser = $this->scripto()->apiClient()->queryUserInfo();
-        if ($userName !== $currentUser['name']) {
-            // Logged in user must be current user.
-            return $this->redirect()->toRoute('scripto-user-contribution', ['user-id' => $currentUser['name']]);
-        }
-
         $continue = $this->params()->fromQuery('continue');
 
         $user = $this->scripto()->apiClient()->queryUser($userName);
