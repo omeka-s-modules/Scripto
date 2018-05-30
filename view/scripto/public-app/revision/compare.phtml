@@ -35,24 +35,26 @@ $this->scripto()->postTitle(sprintf($this->translate('Compare revisions: %s'), $
                     <?php endif; ?>
                 </th>
             </tr>
+            <?php
+                $completedHtml = '<div class="green">' . $this->translate('This revision marked as completed.') . '</div>';
+                $approvedHtml = '<div class="green">' . $this->translate('This revision marked as approved.') . '</div>';
+                $fromRevisionCompleted = ($fromRevision['revid'] === $sMedia->completedRevision()) ? $completedHtml : false;
+                $fromRevisionApproved = ($fromRevision['revid'] === $sMedia->approvedRevision()) ? $approvedHtml : false;
+                $toRevisionCompleted = ($toRevision['revid'] === $sMedia->completedRevision()) ? $completedHtml : false;
+                $toRevisionApproved = ($toRevision['revid'] === $sMedia->approvedRevision()) ? $approvedHtml : false;
+            ?>
+            <?php if ($fromRevisionApproved || $fromRevisionCompleted || $toRevisionApproved || $toRevisionCompleted): ?>
             <tr>
                 <th colspan="2">
-                    <?php if ($fromRevision['revid'] === $sMedia->completedRevision()): ?>
-                    <div class="green">This revision marked as completed.</div>
-                    <?php endif; ?>
-                    <?php if ($fromRevision['revid'] === $sMedia->approvedRevision()): ?>
-                    <div class="green">This revision marked as approved.</div>
-                    <?php endif; ?>
+                    <?php echo $fromRevisionCompleted; ?>
+                    <?php echo $fromRevisionApproved; ?>
                 </th>
                 <th colspan="2">
-                    <?php if ($toRevision['revid'] === $sMedia->completedRevision()): ?>
-                    <div class="green">This revision marked as completed.</div>
-                    <?php endif; ?>
-                    <?php if ($toRevision['revid'] === $sMedia->approvedRevision()): ?>
-                    <div class="green">This revision marked as approved.</div>
-                    <?php endif; ?>
+                    <?php echo $toRevisionCompleted; ?>
+                    <?php echo $toRevisionApproved; ?>
                 </th>
             </tr>
+            <?php endif; ?>
         </thead>
         <tbody>
             <?php if ($compare): ?>
