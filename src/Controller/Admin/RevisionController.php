@@ -19,7 +19,7 @@ class RevisionController extends AbstractActionController
         }
 
         $sItem = $sMedia->scriptoItem();
-        $response = $sMedia->pageRevisions(100, $this->params()->fromQuery('continue'));
+        $response = $sMedia->pageRevisions(0, 100, $this->params()->fromQuery('continue'));
         $revisions = isset($response['query']['pages'][0]['revisions'])
             ? $response['query']['pages'][0]['revisions'] : [];
         $continue = isset($response['continue']) ? $response['continue']['rvcontinue'] : null;
@@ -48,8 +48,8 @@ class RevisionController extends AbstractActionController
         $view = new ViewModel;
         $view->setVariable('sMedia', $sMedia);
         $view->setVariable('media', $sMedia->media());
-        $view->setVariable('fromRevision', $sMedia->pageRevision($this->params('from-revision-id')));
-        $view->setVariable('toRevision', $sMedia->pageRevision($this->params('to-revision-id')));
+        $view->setVariable('fromRevision', $sMedia->pageRevision(0, $this->params('from-revision-id')));
+        $view->setVariable('toRevision', $sMedia->pageRevision(0, $this->params('to-revision-id')));
         $view->setVariable('compare', $this->scripto()->apiClient()->compareRevisions($this->params('from-revision-id'), $this->params('to-revision-id')));
         return $view;
     }

@@ -51,7 +51,7 @@ class MediaController extends AbstractActionController
 
         $mediaForm = $this->getForm(MediaPublicAppForm::class);
         $userIsLoggedIn = $this->scripto()->apiClient()->userIsLoggedIn();
-        $userCanEdit = $sMedia->userCanEdit();
+        $userCanEdit = $sMedia->userCanEdit(0);
 
         if ($this->getRequest()->isPost()) {
             $mediaForm->setData($this->getRequest()->getPost());
@@ -61,9 +61,9 @@ class MediaController extends AbstractActionController
                 // Update MediaWiki data.
                 if ($userIsLoggedIn) {
                     if ($formData['is_watched']) {
-                        $this->scripto()->apiClient()->watchPage($sMedia->pageTitle());
+                        $this->scripto()->apiClient()->watchPage($sMedia->pageTitle(0));
                     } else {
-                        $this->scripto()->apiClient()->unwatchPage($sMedia->pageTitle());
+                        $this->scripto()->apiClient()->unwatchPage($sMedia->pageTitle(0));
                     }
                 }
                 $this->messenger()->addSuccess('Scripto media successfully updated.'); // @translate
@@ -75,7 +75,7 @@ class MediaController extends AbstractActionController
 
         // Set media form for display.
         $data = [
-            'is_watched' => $sMedia->isWatched(),
+            'is_watched' => $sMedia->isWatched(0),
         ];
         $mediaForm->setData($data);
 
@@ -109,7 +109,7 @@ class MediaController extends AbstractActionController
 
         $mediaForm = $this->getForm(MediaPublicAppForm::class);
         $userIsLoggedIn = $this->scripto()->apiClient()->userIsLoggedIn();
-        $userCanEdit = $sMedia->userCanEdit();
+        $userCanEdit = $sMedia->userCanEdit(0);
 
         if (!$userCanEdit) {
             // Deny access to users without edit authorization.
@@ -124,9 +124,9 @@ class MediaController extends AbstractActionController
                 // Update MediaWiki data.
                 if ($userIsLoggedIn) {
                     if ($formData['is_watched']) {
-                        $this->scripto()->apiClient()->watchPage($sMedia->pageTitle());
+                        $this->scripto()->apiClient()->watchPage($sMedia->pageTitle(0));
                     } else {
-                        $this->scripto()->apiClient()->unwatchPage($sMedia->pageTitle());
+                        $this->scripto()->apiClient()->unwatchPage($sMedia->pageTitle(0));
                     }
                 }
                 $data['o-module-scripto:wikitext'] = $formData['wikitext'];
@@ -145,12 +145,12 @@ class MediaController extends AbstractActionController
 
         // Set media form for display.
         $data = [
-            'wikitext' => $sMedia->pageWikitext(),
-            'is_watched' => $sMedia->isWatched(),
+            'wikitext' => $sMedia->pageWikitext(0),
+            'is_watched' => $sMedia->isWatched(0),
         ];
         $mediaForm->setData($data);
         $wikitext = $mediaForm->get('wikitext');
-        $wikitext->setValue($sMedia->pageWikitext());
+        $wikitext->setValue($sMedia->pageWikitext(0));
 
         $sItem = $sMedia->scriptoItem();
         $project = $sItem->scriptoProject();

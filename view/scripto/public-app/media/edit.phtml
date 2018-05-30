@@ -20,7 +20,7 @@ $this->scripto()->postSubtitle(sprintf($this->translate('Part of %s'), $sItem->l
             <?php endif; ?>
         </div>
         <div class="protection-field">
-            <?php $editAccess = $sMedia->editAccess(); ?>
+            <?php $editAccess = $sMedia->editAccess(0); ?>
             <div class="current-protection"><strong><?php echo $this->translate('Protection: '); ?></strong><?php echo $this->translate($editAccess['label']); ?></div>
             <div class="protection-expiration"><strong><?php echo $this->translate('Expiration: '); ?></strong><?php echo $editAccess['expiry'] ? $this->i18n()->dateFormat($editAccess['expiry'], 'short', 'short') : $this->translate('Never'); ?></div>
         </div>

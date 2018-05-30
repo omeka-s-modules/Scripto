@@ -72,7 +72,7 @@ class MediaController extends AbstractActionController
         }
 
         try {
-            $revision = $sMedia->pageRevision($this->params('revision-id'));
+            $revision = $sMedia->pageRevision(0, $this->params('revision-id'));
         } catch (QueryException $e) {
             // Invalid revision ID
             return $this->redirect()->toRoute('admin/scripto');
@@ -80,7 +80,7 @@ class MediaController extends AbstractActionController
 
         $revertForm = $this->getForm(RevisionRevertForm::class);
         $mediaForm = $this->getForm(MediaForm::class);
-        $editAccess = $sMedia->editAccess();
+        $editAccess = $sMedia->editAccess(0);
         $postData = $this->getRequest()->getPost();
 
         // Handle the revision revert form.
@@ -105,7 +105,7 @@ class MediaController extends AbstractActionController
                 $formData = $mediaForm->getData();
 
                 // Update MediaWiki data.
-                if ($sMedia->userCan('protect')) {
+                if ($sMedia->userCan(0, 'protect')) {
                     if ('' === $formData['protection_expiry']) {
                         // Use existing expiration date.
                         $protectionExpiry = $editAccess['expiry']
@@ -116,17 +116,17 @@ class MediaController extends AbstractActionController
                         $protectionExpiry = $formData['protection_expiry'];
                     }
                     $this->scripto()->apiClient()->protectPage(
-                        $sMedia->pageTitle(),
-                        $sMedia->pageIsCreated() ? 'edit' : 'create',
+                        $sMedia->pageTitle(0),
+                        $sMedia->pageIsCreated(0) ? 'edit' : 'create',
                         $formData['protection_level'],
                         $protectionExpiry
                     );
                 }
                 if ($this->scripto()->apiClient()->userIsLoggedIn()) {
                     if ($formData['is_watched']) {
-                        $this->scripto()->apiClient()->watchPage($sMedia->pageTitle());
+                        $this->scripto()->apiClient()->watchPage($sMedia->pageTitle(0));
                     } else {
-                        $this->scripto()->apiClient()->unwatchPage($sMedia->pageTitle());
+                        $this->scripto()->apiClient()->unwatchPage($sMedia->pageTitle(0));
                     }
                 }
 
@@ -166,7 +166,7 @@ class MediaController extends AbstractActionController
 
         // Set media form data.
         $data = [
-            'is_watched' => $sMedia->isWatched(),
+            'is_watched' => $sMedia->isWatched(0),
         ];
         if (!$editAccess['expired']) {
             $data['protection_level'] = $editAccess['level'];
@@ -183,7 +183,7 @@ class MediaController extends AbstractActionController
         $revisionId = isset($revision['revid']) ? $revision['revid'] : null;
         $view = new ViewModel;
         $view->setVariable('revision', $revision);
-        $view->setVariable('latestRevision', $sMedia->pageLatestRevision());
+        $view->setVariable('latestRevision', $sMedia->pageLatestRevision(0));
         $view->setVariable('sMedia', $sMedia);
         $view->setVariable('media', $sMedia->media());
         $view->setVariable('sItem', $sItem);
@@ -226,7 +226,7 @@ class MediaController extends AbstractActionController
                 if ($this->scripto()->apiClient()->userIsLoggedIn()) {
                     $titles = [];
                     foreach ($sMedias as $sMedia) {
-                        $titles[] = $sMedia->pageTitle();
+                        $titles[] = $sMedia->pageTitle(0);
                     }
                     if ('1' === $formData['is_watched']) {
                         $this->scripto()->apiClient()->watchPages($titles);
@@ -237,8 +237,8 @@ class MediaController extends AbstractActionController
                 if ($formData['protection_level'] && $this->scripto()->apiClient()->userIsInGroup('sysop')) {
                     foreach ($sMedias as $sMedia) {
                         $this->scripto()->apiClient()->protectPage(
-                            $sMedia->pageTitle(),
-                            $sMedia->pageIsCreated() ? 'edit' : 'create',
+                            $sMedia->pageTitle(0),
+                            $sMedia->pageIsCreated(0) ? 'edit' : 'create',
                             $formData['protection_level'],
                             $formData['protection_expiry']
                         );
@@ -322,7 +322,7 @@ class MediaController extends AbstractActionController
                 if ($this->scripto()->apiClient()->userIsLoggedIn()) {
                     $titles = [];
                     foreach ($sMedias as $sMedia) {
-                        $titles[] = $sMedia->pageTitle();
+                        $titles[] = $sMedia->pageTitle(0);
                     }
                     if ('1' === $formData['is_watched']) {
                         $this->scripto()->apiClient()->watchPages($titles);

@@ -136,7 +136,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto item show review m
             </td>
             <td><?php echo $this->i18n()->dateFormat($sMedia->edited()); ?></td>
             <td><?php echo $this->translate($sMedia->status()); ?></td>
-            <td><?php echo $this->translate($sMedia->editAccess()['label']); ?></td>
+            <td><?php echo $this->translate($sMedia->editAccess(0)['label']); ?></td>
         </tr>
     <?php endforeach; ?>
     </tbody>

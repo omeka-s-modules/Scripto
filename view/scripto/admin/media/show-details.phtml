@@ -19,7 +19,7 @@
 <div class="meta-group">
     <h4><?php echo $this->translate('Edit protection'); ?></h4>
     <div class="value"><?php
-        $editAccess = $sMedia->editAccess();
+        $editAccess = $sMedia->editAccess(0);
         echo sprintf(
             '%s; expiring %s',
             $this->translate($editAccess['label']),
@@ -73,8 +73,8 @@
 </div>
 <div class="meta-group">
     <h4><?php echo $this->translate('MediaWiki page'); ?></h4>
-    <?php $page = $sMedia->page(); ?>
-    <div class="value"><?php echo $this->hyperlink($sMedia->pageTitle(), $page['fullurl']); ?></div>
+    <?php $page = $sMedia->page(0); ?>
+    <div class="value"><?php echo $this->hyperlink($sMedia->pageTitle(0), $page['fullurl']); ?></div>
 </div>
 <div class="meta-group">
     <h4><?php echo $this->translate('Omeka media'); ?></h4>

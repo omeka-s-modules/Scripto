@@ -157,7 +157,7 @@ class ScriptoMediaRepresentation extends AbstractEntityRepresentation
         if ($revisionId) {
             return $revisionId;
         }
-        $latestRevision = $this->pageLatestRevision();
+        $latestRevision = $this->pageLatestRevision(0);
         if ($latestRevision) {
             return $latestRevision['revid'];
         }
@@ -192,7 +192,7 @@ class ScriptoMediaRepresentation extends AbstractEntityRepresentation
         if ($revisionId) {
             return $revisionId;
         }
-        $latestRevision = $this->pageLatestRevision();
+        $latestRevision = $this->pageLatestRevision(0);
         if ($latestRevision) {
             return $latestRevision['revid'];
         }
@@ -294,11 +294,16 @@ class ScriptoMediaRepresentation extends AbstractEntityRepresentation
     /**
      * Get the title of the corresponding MediaWiki page.
      *
+     * @param int $namespace The MediaWiki namespace
      * @return string
      */
-    public function pageTitle()
+    public function pageTitle($namespace)
     {
-        return $this->resource->getMediawikiPageTitle();
+        if (1 === $namespace) {
+            return sprintf('Talk:%s', $this->resource->getMediawikiPageTitle());
+        } else {
+            return $this->resource->getMediawikiPageTitle();
+        }
     }
 
     /**
@@ -306,12 +311,13 @@ class ScriptoMediaRepresentation extends AbstractEntityRepresentation
      *
      * Caches the information when first called.
      *
+     * @param int $namespace The MediaWiki namespace
      * @return array
      */
-    public function page()
+    public function page($namespace)
     {
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
-        return $client->queryPage($this->pageTitle());
+        return $client->queryPage($this->pageTitle($namespace));
     }
 
     /**
@@ -319,50 +325,54 @@ class ScriptoMediaRepresentation extends AbstractEntityRepresentation
      *
      * Use self::pageRevision() for more comprehensive revision info.
      *
+     * @param int $namespace The MediaWiki namespace
      * @return array
      */
-    public function pageLatestRevision()
+    public function pageLatestRevision($namespace)
     {
-        $page = $this->page();
+        $page = $this->page($namespace);
         return isset($page['revisions'][0]) ? $page['revisions'][0] : null;
     }
 
     /**
      * Get page wikitext.
      *
+     * @param int $namespace The MediaWiki namespace
      * @param int $revisionId
      * @return string|null
      */
-    public function pageWikitext($revisionId = null)
+    public function pageWikitext($namespace, $revisionId = null)
     {
-        $revision = $this->pageRevision($revisionId);
+        $revision = $this->pageRevision($namespace, $revisionId);
         return $revision ? $revision['content'] : null;
     }
 
     /**
      * Get page HTML.
      *
+     * @param int $namespace The MediaWiki namespace
      * @param int $revisionId
      * @return string|null
      */
-    public function pageHtml($revisionId = null)
+    public function pageHtml($namespace, $revisionId = null)
     {
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
-        $revision = $this->pageRevision($revisionId);
+        $revision = $this->pageRevision($namespace, $revisionId);
         return $revision ? $client->parseRevision($revision['revid']) : null;
     }
 
     /**
      * Get page revisions.
      *
+     * @param int $namespace The MediaWiki namespace
      * @param int $limit
      * @param string $continue
      * @return array
      */
-    public function pageRevisions($limit, $continue = null)
+    public function pageRevisions($namespace, $limit, $continue = null)
     {
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
-        return $client->queryRevisions($this->pageTitle(), $limit, $continue);
+        return $client->queryRevisions($this->pageTitle($namespace), $limit, $continue);
     }
 
     /**
@@ -371,64 +381,69 @@ class ScriptoMediaRepresentation extends AbstractEntityRepresentation
      * When getting the latest revision, use this method instead of
      * self::latestRevision() for more comprehensive revision info.
      *
+     * @param int $namespace The MediaWiki namespace
      * @param int|null $revisionId
      * @return array|null
      */
-    public function pageRevision($revisionId = null)
+    public function pageRevision($namespace, $revisionId = null)
     {
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
         if (null === $revisionId) {
             // Get the latest revision.
-            $latestRevision = $this->pageLatestRevision();
+            $latestRevision = $this->pageLatestRevision($namespace);
             return $latestRevision
-                ? $client->queryRevision($this->pageTitle(), $latestRevision['revid'])
+                ? $client->queryRevision($this->pageTitle($namespace), $latestRevision['revid'])
                 : null; // page not created (no revisions)
         } else {
             // Get a specific revision.
-            return $client->queryRevision($this->pageTitle(), $revisionId);
+            return $client->queryRevision($this->pageTitle($namespace), $revisionId);
         }
     }
 
     /**
      * Is the corresponding MediaWiki page created?
      *
+     * @param int $namespace The MediaWiki namespace
      * @return bool
      */
-    public function pageIsCreated()
+    public function pageIsCreated($namespace)
     {
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
-        return $client->pageIsCreated($this->page());
+        return $client->pageIsCreated($this->page($namespace));
     }
 
     /**
      * Can the user perform this action on the corresponding MediaWiki page?
      *
+     * @param int $namespace The MediaWiki namespace
      * @return bool
      */
-    public function userCan($action)
+    public function userCan($namespace, $action)
     {
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
-        return $client->userCan($this->page(), $action);
+        return $client->userCan($this->page($namespace), $action);
     }
 
     /**
      * Can the user edit the corresponding MediaWiki page?
      *
+     * @param int $namespace The MediaWiki namespace
      * @return bool
      */
-    public function userCanEdit()
+    public function userCanEdit($namespace)
     {
-        return $this->pageIsCreated() ? $this->userCan('edit') : $this->userCan('createpage');
+        return $this->pageIsCreated($namespace) ? $this->userCan(0, 'edit') : $this->userCan(0, 'createpage');
     }
 
     /**
      * Is the current user watching the corresponding MediaWiki page?
      *
+     * @param int $namespace The MediaWiki namespace
      * @return bool
      */
-    public function isWatched()
+    public function isWatched($namespace)
     {
-        $page = $this->page();
+        $page = $this->page($namespace);
         return isset($page['watched']) ? $page['watched'] : false;
     }
 
@@ -438,13 +453,14 @@ class ScriptoMediaRepresentation extends AbstractEntityRepresentation
      * Note that, unlike MediaWiki, Scripto does not differentiate between
      * "create" and "edit" protection types when restricting access to a page.
      *
+     * @param int $namespace The MediaWiki namespace
      * @return array|null
      */
-    public function editAccess()
+    public function editAccess($namespace)
     {
         $client = $this->getServiceLocator()->get('Scripto\Mediawiki\ApiClient');
-        $type = $this->pageIsCreated() ? 'edit' : 'create';
-        $editAccess = $client->getPageProtection($this->page(), $type);
+        $type = $this->pageIsCreated($namespace) ? 'edit' : 'create';
+        $editAccess = $client->getPageProtection($this->page($namespace), $type);
 
         if ($editAccess) {
             if ('autoconfirmed' === $editAccess['level']) {

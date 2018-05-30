@@ -18,7 +18,7 @@ class RevisionController extends AbstractActionController
             return $this->redirect()->toRoute('scripto');
         }
 
-        $response = $sMedia->pageRevisions(100, $this->params()->fromQuery('continue'));
+        $response = $sMedia->pageRevisions(0, 100, $this->params()->fromQuery('continue'));
         $revisions = isset($response['query']['pages'][0]['revisions'])
             ? $response['query']['pages'][0]['revisions'] : [];
         $continue = isset($response['continue']) ? $response['continue']['rvcontinue'] : null;
@@ -51,7 +51,7 @@ class RevisionController extends AbstractActionController
         }
 
         try {
-            $revision = $sMedia->pageRevision($this->params('revision-id'));
+            $revision = $sMedia->pageRevision(0, $this->params('revision-id'));
         } catch (QueryException $e) {
             // Invalid revision ID
             return $this->redirect()->toRoute('admin/scripto');
@@ -83,8 +83,8 @@ class RevisionController extends AbstractActionController
             return $this->redirect()->toRoute('admin/scripto');
         }
 
-        $fromRevision = $sMedia->pageRevision($this->params('from-revision-id'));
-        $toRevision = $sMedia->pageRevision($this->params('to-revision-id'));
+        $fromRevision = $sMedia->pageRevision(0, $this->params('from-revision-id'));
+        $toRevision = $sMedia->pageRevision(0, $this->params('to-revision-id'));
         $compare = $this->scripto()->apiClient()->compareRevisions(
             $this->params('from-revision-id'),
             $this->params('to-revision-id')

@@ -52,7 +52,7 @@ $this->scripto()->postSubtitle(sprintf($this->translate('Part of %s'), $sItem->l
         </div>
         <?php endif; ?>
             <h3><?php echo $this->translate('HTML'); ?></h3>
-            <?php $pageHtml = $sMedia->pageHtml(); ?>
+            <?php $pageHtml = $sMedia->pageHtml(0); ?>
             <?php echo $pageHtml  ? $pageHtml : sprintf('<span>[%s]</span>', $this->translate('No HTML')); ?>
         </div>
     </div>

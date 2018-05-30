@@ -123,7 +123,7 @@ class Scripto extends AbstractPlugin
     {
         $titles = [];
         foreach ($sMedia as $sm) {
-            $titles[] = $sm->pageTitle();
+            $titles[] = $sm->pageTitle(0);
         }
         $this->apiClient()->queryPages($titles);
     }
