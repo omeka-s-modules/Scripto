@@ -1,6 +1,4 @@
 <?php
-$this->scripto()->postTitle($project->title());
+$this->scripto()->postTitle($this->translate('Project guidelines'));
 ?>
-<div class="resource-content">
-    <?php echo $project->guidelines(); ?>
-</div>
+<?php echo $project->guidelines(); ?>
