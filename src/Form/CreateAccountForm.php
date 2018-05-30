@@ -15,7 +15,7 @@ class CreateAccountForm extends Form
                 'label' => 'Username', // @translate
             ],
             'attributes' => [
-                //~ 'required' => true,
+                'required' => true,
             ],
         ]);
         $this->add([
@@ -23,6 +23,9 @@ class CreateAccountForm extends Form
             'name' => 'password',
             'options' => [
                 'label' => 'Password', // @translate
+            ],
+            'attributes' => [
+                'required' => true,
             ],
         ]);
         $this->add([
@@ -83,6 +86,10 @@ class CreateAccountForm extends Form
                     ],
                 ],
             ],
+        ]);
+        $inputFilter->add([
+            'name' => 'email',
+            'required' => true,
         ]);
     }
 }
