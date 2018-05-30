@@ -325,6 +325,21 @@ ul.messages .error {
   @include relative-font-size(1.5);
 }
 
+.post-content .field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: .5 * $spacing-unit;
+}
+
+.post-content .field-meta {
+  margin-right: .5 * $spacing-unit;
+}
+
+.post-content .required .field-meta:after {
+  content: "*";
+}
+
 .browse-controls {
   display: flex;
   margin-bottom: .5 * $spacing-unit;

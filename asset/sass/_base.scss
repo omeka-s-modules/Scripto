@@ -300,8 +300,7 @@ input[type="submit"] {
   }
 }
 
-input[type="text"],
-input[type="password"] {
+input:not([type=submit]):not([type=file]):not([type=radio]):not([type=checkbox]) {
   font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
   padding: (.125 * $spacing-unit) (.25 * $spacing-unit);
   border: 1px solid $grey-color-light;
