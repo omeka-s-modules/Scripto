@@ -31,7 +31,6 @@ $this->scripto()->postSubtitle(sprintf($this->translate('Part of %s'), $sItem->l
         </div>
         <input type="submit" class="save" value="<?php echo $this->escapeHtml($this->translate('Save')); ?>">
         <?php echo $sMedia->link($this->translate('Cancel'), 'show', ['class' => 'button']); ?>
-        <?php echo $this->scripto()->mediaPagination('edit'); ?>
     </div>
     <div id="wikitext" class="resource-content">
         <div class="wikitext-featherlight horizontal">
