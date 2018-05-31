@@ -45,6 +45,6 @@ $on-laptop:        800px !default;
 
 // Import partials.
 @import "base";
+@import "shared";
 @import "layout";
 @import "mobile";
-@import "shared";

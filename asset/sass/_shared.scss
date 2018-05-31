@@ -10,10 +10,6 @@
   table-layout: auto;
 }
 
-#compare-table th[colspan="2"] {
-    width: 50%;
-}
-
 #compare-table td {
     position: relative;
 }
@@ -22,12 +18,17 @@
     width: 0;
     vertical-align: top;
     text-align: center;
-    padding: 18px;
+    padding: 0;
     text-indent: -9999px;
     overflow: hidden;
+
+    & + td {
+        padding-left: 36px;
+        width: 50%;
+    }
 }
 
-#compare-table [colspan="2"],
+#compare-table [colspan="2"]:first-child,
 #compare-table td.diff-context:nth-child(2) {
     border-right: 1px solid #dfdfdf;
 }
@@ -51,7 +52,7 @@
     position: absolute;
     top: 0;
     bottom: 0;
-    right: 100%;
+    left: 0;
     width: 36px;
     text-align: center;
     line-height: 36px;
