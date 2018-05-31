@@ -343,6 +343,12 @@ ul.messages .error {
 .browse-controls {
   display: flex;
   margin-bottom: .5 * $spacing-unit;
+  width: 100%;
+
+  nav.pagination:only-child {
+    width: 100%;
+    justify-content: flex-end;
+  }
 }
 
 nav.pagination {

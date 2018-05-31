@@ -510,7 +510,11 @@ ul.messages .error {
 
 .browse-controls {
   display: flex;
-  margin-bottom: 15px; }
+  margin-bottom: 15px;
+  width: 100%; }
+  .browse-controls nav.pagination:only-child {
+    width: 100%;
+    justify-content: flex-end; }
 
 nav.pagination {
   display: flex;
