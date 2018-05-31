@@ -1195,6 +1195,14 @@ button.featherlight-close-icon.featherlight-close {
 #compare-table td {
   border: 0; }
 
+.media.wikitext,
+.media.wikitext + .media.html {
+  width: 50%; }
+
+.media.wikitext textarea {
+  width: 100%;
+  height: 100%; }
+
 @media screen and (max-width: 600px) {
   .site-nav {
     position: absolute;
