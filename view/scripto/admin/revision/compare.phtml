@@ -21,44 +21,46 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto revision compare n
     <thead>
         <tr>
             <th colspan="2">
-                <div class="revision-timestamp"><?php echo sprintf(
-                    $this->translate('Revision as of %s by %s'),
-                    $fromRevision['timestamp']->format('G:i:s, j F Y'),
-                    $this->hyperlink($fromRevision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $fromRevision['user']]))
+                <div class="revision-timestamp"><?php echo $this->hyperlink(sprintf($this->translate('Revision as of %s'), $fromRevision['timestamp']->format('G:i:s, j F Y')), $this->url('scripto-revision-id', ['action' => 'show', 'revision-id' => $fromRevision['revid']], true)); ?>
+                <?php echo sprintf(
+                    $this->translate('by %s'),
+                    $this->hyperlink($fromRevision['user'], $this->url('scripto-user-contributions', ['user-id' => $fromRevision['user']]))
                 ); ?></div>
                 <?php if ($fromRevision['parsedcomment']): ?>
-                <div class="parsed-comment"><?php echo $fromRevision['parsedcomment'] ?></div>
+                <div class="parsed-comment"><?php echo strip_tags($fromRevision['parsedcomment']); ?></div>
                 <?php endif; ?>
             </th>
             <th colspan="2">
-                <div class="revision-timestamp"><?php echo sprintf(
-                    $this->translate('Revision as of %s by %s'),
-                    $toRevision['timestamp']->format('G:i:s, j F Y'),
-                    $this->hyperlink($toRevision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $toRevision['user']]))
+                <div class="revision-timestamp"><?php echo $this->hyperlink(sprintf($this->translate('Revision as of %s'), $toRevision['timestamp']->format('G:i:s, j F Y')), $this->url('scripto-revision-id', ['action' => 'show', 'revision-id' => $toRevision['revid']], true)); ?>
+                <?php echo sprintf(
+                    $this->translate('by %s'),
+                    $this->hyperlink($toRevision['user'], $this->url('scripto-user-contributions', ['user-id' => $toRevision['user']]))
                 ); ?></div>
                 <?php if ($toRevision['parsedcomment']): ?>
-                <div class="parsed-comment"><?php echo $toRevision['parsedcomment'] ?></div>
+                <div class="parsed-comment"><?php echo strip_tags($toRevision['parsedcomment']); ?></div>
                 <?php endif; ?>
             </th>
         </tr>
+        <?php
+            $completedHtml = '<div class="green">' . $this->translate('This revision marked as completed.') . '</div>';
+            $approvedHtml = '<div class="green">' . $this->translate('This revision marked as approved.') . '</div>';
+            $fromRevisionCompleted = ($fromRevision['revid'] === $sMedia->completedRevision()) ? $completedHtml : false;
+            $fromRevisionApproved = ($fromRevision['revid'] === $sMedia->approvedRevision()) ? $approvedHtml : false;
+            $toRevisionCompleted = ($toRevision['revid'] === $sMedia->completedRevision()) ? $completedHtml : false;
+            $toRevisionApproved = ($toRevision['revid'] === $sMedia->approvedRevision()) ? $approvedHtml : false;
+        ?>
+        <?php if ($fromRevisionApproved || $fromRevisionCompleted || $toRevisionApproved || $toRevisionCompleted): ?>
         <tr>
             <th colspan="2">
-                <?php if ($fromRevision['revid'] === $sMedia->completedRevision()): ?>
-                <div class="green">This revision marked as completed.</div>
-                <?php endif; ?>
-                <?php if ($fromRevision['revid'] === $sMedia->approvedRevision()): ?>
-                <div class="green">This revision marked as approved.</div>
-                <?php endif; ?>
+                <?php echo $fromRevisionCompleted; ?>
+                <?php echo $fromRevisionApproved; ?>
             </th>
             <th colspan="2">
-                <?php if ($toRevision['revid'] === $sMedia->completedRevision()): ?>
-                <div class="green">This revision marked as completed.</div>
-                <?php endif; ?>
-                <?php if ($toRevision['revid'] === $sMedia->approvedRevision()): ?>
-                <div class="green">This revision marked as approved.</div>
-                <?php endif; ?>
+                <?php echo $toRevisionCompleted; ?>
+                <?php echo $toRevisionApproved; ?>
             </th>
         </tr>
+        <?php endif; ?>
     </thead>
     <tbody>
         <?php if ($compare): ?>
