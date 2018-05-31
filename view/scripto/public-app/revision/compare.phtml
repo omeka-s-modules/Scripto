@@ -15,9 +15,9 @@ $this->scripto()->postTitle(sprintf($this->translate('Compare revisions: %s'), $
         <thead>
             <tr>
                 <th colspan="2">
-                    <div class="revision-timestamp"><?php echo sprintf(
-                        $this->translate('Revision as of %s by %s'),
-                        $fromRevision['timestamp']->format('G:i:s, j F Y'),
+                    <div class="revision-timestamp"><?php echo $this->hyperlink(sprintf($this->translate('Revision as of %s'), $fromRevision['timestamp']->format('G:i:s, j F Y')), $this->url('scripto-revision-id', ['action' => 'show', 'revision-id' => $fromRevision['revid']], true)); ?>
+                    <?php echo sprintf(
+                        $this->translate('by %s'),
                         $this->hyperlink($fromRevision['user'], $this->url('scripto-user-contributions', ['user-id' => $fromRevision['user']]))
                     ); ?></div>
                     <?php if ($fromRevision['parsedcomment']): ?>
@@ -25,9 +25,9 @@ $this->scripto()->postTitle(sprintf($this->translate('Compare revisions: %s'), $
                     <?php endif; ?>
                 </th>
                 <th colspan="2">
-                    <div class="revision-timestamp"><?php echo sprintf(
-                        $this->translate('Revision as of %s by %s'),
-                        $toRevision['timestamp']->format('G:i:s, j F Y'),
+                    <div class="revision-timestamp"><?php echo $this->hyperlink(sprintf($this->translate('Revision as of %s'), $toRevision['timestamp']->format('G:i:s, j F Y')), $this->url('scripto-revision-id', ['action' => 'show', 'revision-id' => $toRevision['revid']], true)); ?>
+                    <?php echo sprintf(
+                        $this->translate('by %s'),
                         $this->hyperlink($toRevision['user'], $this->url('scripto-user-contributions', ['user-id' => $toRevision['user']]))
                     ); ?></div>
                     <?php if ($toRevision['parsedcomment']): ?>

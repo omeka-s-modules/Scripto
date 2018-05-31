@@ -1,5 +1,5 @@
 <?php
-$this->scripto()->postTitle($media->displayTitle());
+$this->scripto()->postTitle($sMedia->link($media->displayTitle(), 'show'));
 $this->scripto()->postSubtitle(sprintf(
     'Revision as of %s by %s',
     $revision['timestamp']->format('G:i:s, j F Y'),
