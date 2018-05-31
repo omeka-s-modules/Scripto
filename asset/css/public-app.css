@@ -184,7 +184,8 @@ table {
     border: 1px solid #dedede;
     border-bottom-color: #c9c9c9; }
   table td {
-    border: 1px solid #e8e8e8; }
+    border: 1px solid #e8e8e8;
+    vertical-align: top; }
 
 /**
  * Form elements
@@ -248,6 +249,15 @@ select {
 
 .red {
   color: red; }
+
+.compare-controls {
+  display: flex;
+  align-items: center; }
+
+.from-revision,
+.to-revision {
+  width: 1em;
+  margin: 0 6px; }
 
 #compare-table {
   table-layout: auto; }

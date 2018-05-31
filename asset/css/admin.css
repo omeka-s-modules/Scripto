@@ -4,6 +4,15 @@
 .red {
   color: red; }
 
+.compare-controls {
+  display: flex;
+  align-items: center; }
+
+.from-revision,
+.to-revision {
+  width: 1em;
+  margin: 0 6px; }
+
 #compare-table {
   table-layout: auto; }
 
@@ -362,11 +371,6 @@ button.full-screen:after {
 
 .current-previous {
   margin-right: 6px; }
-
-.from-revision,
-.to-revision {
-  width: 1em;
-  margin: 0 6px; }
 
 #page-action-menu {
   display: inline-block;

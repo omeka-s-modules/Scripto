@@ -23,27 +23,29 @@ $this->scripto()->postTitle(sprintf($this->translate('Revisions: %s'), $this->es
             <?php $childRevision = isset($revisions[$index + 1]) ? $revisions[$index + 1] : null; ?>
                 <tr>
                     <td>
-                        <div class="current-previous">
-                        <?php echo sprintf(
-                            '%s | %s',
-                            $latestId !== $revision['revid']
-                                ? $this->hyperlink($this->translate('cur'), $this->url('scripto-revision-compare', ['action' => 'compare', 'from-revision-id' => $revision['revid'], 'to-revision-id' => $latestId], true))
-                                : $this->translate('cur'),
-                            $childRevision
-                                ? $this->hyperlink($this->translate('prev'), $this->url('scripto-revision-compare', ['action' => 'compare', 'from-revision-id' => $childRevision['revid'], 'to-revision-id' => $revision['revid']], true))
-                                : $this->translate('prev')
-                        ); ?>
-                        </div>
-                        <div class="from-revision">
-                            <?php if ($latestId !== $revision['revid']): ?>
-                            <input type="radio" name="from-revision-id" aria-label="<?php echo $this->translate('From revision'); ?>" value="<?php echo $revision['revid']; ?>">
-                            <?php endif; ?>
-                        </div>
-                        <div class="to-revision">
-                            <?php if ($childRevision): ?>
-                            <?php $hide = 0 < $index ? ' style="display: none;"' : ''; ?>
-                            <input type="radio" name="to-revision-id" aria-label="<?php echo $this->translate('To revision'); ?>" value="<?php echo $revision['revid']; ?>"<?php echo $hide; ?>>
-                            <?php endif; ?>
+                        <div class="compare-controls">
+                            <div class="current-previous">
+                            <?php echo sprintf(
+                                '%s | %s',
+                                $latestId !== $revision['revid']
+                                    ? $this->hyperlink($this->translate('cur'), $this->url('scripto-revision-compare', ['action' => 'compare', 'from-revision-id' => $revision['revid'], 'to-revision-id' => $latestId], true))
+                                    : $this->translate('cur'),
+                                $childRevision
+                                    ? $this->hyperlink($this->translate('prev'), $this->url('scripto-revision-compare', ['action' => 'compare', 'from-revision-id' => $childRevision['revid'], 'to-revision-id' => $revision['revid']], true))
+                                    : $this->translate('prev')
+                            ); ?>
+                            </div>
+                            <div class="from-revision">
+                                <?php if ($latestId !== $revision['revid']): ?>
+                                <input type="radio" name="from-revision-id" aria-label="<?php echo $this->translate('From revision'); ?>" value="<?php echo $revision['revid']; ?>">
+                                <?php endif; ?>
+                            </div>
+                            <div class="to-revision">
+                                <?php if ($childRevision): ?>
+                                <?php $hide = 0 < $index ? ' style="display: none;"' : ''; ?>
+                                <input type="radio" name="to-revision-id" aria-label="<?php echo $this->translate('To revision'); ?>" value="<?php echo $revision['revid']; ?>"<?php echo $hide; ?>>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </td>
                     <td>

@@ -6,6 +6,17 @@
     color: red;
 }
 
+.compare-controls {
+    display: flex;
+    align-items: center;
+}
+
+.from-revision,
+.to-revision {
+    width: 1em;
+    margin: 0 6px;
+}
+
 #compare-table {
   table-layout: auto;
 }
