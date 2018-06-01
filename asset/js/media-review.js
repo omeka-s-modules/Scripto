@@ -68,17 +68,30 @@ $(document).ready(function() {
     var watchedIcon = isWatched.siblings('.watchlist.button.watched');
     var notWatchedIcon = isWatched.siblings('.watchlist.button').not('.watched');
     '1' === isWatched.val() ? watchedIcon.show() : notWatchedIcon.show();
-    watchedIcon.add(notWatchedIcon).on('click', function(e) {
+
+    $('.watchlist.button').on('click', function(e) {
         e.preventDefault();
         if ('1' === isWatched.val()) {
             isWatched.val('0');
-            notWatchedIcon.show();
-            watchedIcon.hide();
         } else {
             isWatched.val('1');
-            notWatchedIcon.hide()
-            watchedIcon.show();
         }
+
+        var watchlistForm = $(this).parents('form').first();
+        var formData = watchlistForm.serialize();
+        $.ajax({
+            type: 'POST',
+            data: formData,
+            success: function() {
+                if (isWatched.val() == 1) {
+                    $(".watch.success").fadeIn('slow').delay(2000).fadeOut('slow');
+                } else {
+                    $(".unwatch.success").fadeIn('slow').delay(2000).fadeOut('slow');
+                }
+                watchedIcon.toggle();
+                notWatchedIcon.toggle();
+            }
+        });
     });
 
     // Remove sidebar click event so revision pagination reloads the page.

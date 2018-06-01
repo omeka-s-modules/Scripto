@@ -724,6 +724,42 @@ h2.media-item {
     padding-bottom: 0;
 }
 
+.watch-list {
+    position: relative;
+}
+
+#mediapublicappform .success {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid green;
+    border-radius: 3px;
+    padding: .25 * $spacing-unit;
+    top: 1.375 * $spacing-unit;
+    color: green;
+    z-index: 1;
+    box-shadow: 0 0 10px $grey-color-light;
+
+    &:before,
+    &:after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        bottom: calc(100% - 1px);
+        left: $spacing-unit;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 10px solid #fff;
+    }
+
+    &:after {
+        bottom: calc(100% + 1px);
+        border-bottom-color: green;
+        z-index: -1;
+    }
+}
+
 .watchlist.button,
 .protection-field {
     margin-right: $spacing-unit;
