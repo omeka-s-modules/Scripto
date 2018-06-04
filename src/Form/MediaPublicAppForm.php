@@ -41,10 +41,6 @@ class MediaPublicAppForm extends Form
             ],
         ]);
         $this->add([
-            'type' => 'hidden',
-            'name' => 'is_watched',
-        ]);
-        $this->add([
             'name' => 'submit',
             'type' => 'submit',
             'attributes' => [

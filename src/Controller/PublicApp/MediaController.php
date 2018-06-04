@@ -74,43 +74,14 @@ class MediaController extends AbstractActionController
             return $this->redirect()->toRoute('scripto');
         }
 
-        $mediaForm = $this->getForm(MediaPublicAppForm::class);
         $userIsLoggedIn = $this->scripto()->apiClient()->userIsLoggedIn();
         $userCanEdit = $sMedia->userCanEdit($namespace);
-
-        if ($this->getRequest()->isPost()) {
-            $mediaForm->setData($this->getRequest()->getPost());
-            if ($mediaForm->isValid()) {
-                $formData = $mediaForm->getData();
-                $data = [];
-                // Update MediaWiki data.
-                if ($userIsLoggedIn) {
-                    if ($formData['is_watched']) {
-                        $this->scripto()->apiClient()->watchPage($sMedia->pageTitle($namespace));
-                    } else {
-                        $this->scripto()->apiClient()->unwatchPage($sMedia->pageTitle($namespace));
-                    }
-                }
-                $this->messenger()->addSuccess('Scripto media successfully updated.'); // @translate
-                $action = (0 === $namespace) ? 'show' : 'show-talk';
-                return $this->redirect()->toRoute(null, ['action' => $action], true);
-            } else {
-                $this->messenger()->addFormErrors($mediaForm);
-            }
-        }
-
-        // Set media form for display.
-        $data = [
-            'is_watched' => $sMedia->isWatched($namespace),
-        ];
-        $mediaForm->setData($data);
 
         $sItem = $sMedia->scriptoItem();
         $project = $sItem->scriptoProject();
         $view = new ViewModel;
         $view->setVariable('userCanEdit', $userCanEdit);
         $view->setVariable('userIsLoggedIn', $userIsLoggedIn);
-        $view->setVariable('mediaForm', $mediaForm);
         $view->setVariable('sMedia', $sMedia);
         $view->setVariable('media', $sMedia->media());
         $view->setVariable('sItem', $sItem);
@@ -151,23 +122,12 @@ class MediaController extends AbstractActionController
             $mediaForm->setData($this->getRequest()->getPost());
             if ($mediaForm->isValid()) {
                 $formData = $mediaForm->getData();
-                $data = [];
-                // Update MediaWiki data.
-                if ($userIsLoggedIn) {
-                    if ($formData['is_watched']) {
-                        $this->scripto()->apiClient()->watchPage($sMedia->pageTitle($namespace));
-                    } else {
-                        $this->scripto()->apiClient()->unwatchPage($sMedia->pageTitle($namespace));
-                    }
-                }
-                // Update Scripto media.
                 if (1 === $namespace) {
                     $this->scripto()->apiClient()->editPage(
-                        $sMedia->pageTitle(1),
-                        $formData['wikitext'],
-                        $formData['summary']
+                        $sMedia->pageTitle(1), $formData['wikitext'], $formData['summary']
                     );
                 } else {
+                    $data = [];
                     if ($formData['mark_complete']) {
                         $data['o-module-scripto:is_completed'] = true;
                     }
@@ -186,7 +146,6 @@ class MediaController extends AbstractActionController
         // Set media form for display.
         $data = [
             'wikitext' => $sMedia->pageWikitext($namespace),
-            'is_watched' => $sMedia->isWatched($namespace),
         ];
         $mediaForm->setData($data);
 
