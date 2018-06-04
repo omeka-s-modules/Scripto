@@ -1,0 +1,59 @@
+<?php
+$this->headLink()->appendStylesheet($this->assetUrl('vendor/featherlight/featherlight.min.css', 'Scripto'));
+$this->headScript()->appendFile($this->assetUrl('js/media-review.js', 'Scripto'));
+$this->headScript()->appendFile($this->assetUrl('js/wikitext-editor.js', 'Scripto'));
+$this->headLink()->appendStylesheet('https://use.fontawesome.com/releases/v5.0.9/css/all.css');
+$this->headScript()->appendFile($this->assetUrl('vendor/jquery-panzoom/jquery.panzoom.min.js', 'Scripto'));
+$this->headScript()->appendFile($this->assetUrl('vendor/featherlight/featherlight.min.js', 'Scripto'));
+
+$this->scripto()->postTitle(sprintf($this->translate('Discuss: %s'), $media->displayTitle()));
+$this->scripto()->postSubtitle(sprintf($this->translate('Part of %s'), $sItem->link($item->displayTitle())));
+?>
+<?php echo $this->form()->openTag($mediaForm); ?>
+<?php echo $this->formElement($mediaForm->get('mediapublicappform_csrf')); ?>
+    <div class="media-head">
+        <?php if ($userIsLoggedIn): ?>
+        <div class="watch-list">
+            <a href="#" class="watchlist button watched" aria-label="<?php echo $this->translate('Stop watching media'); ?>" title="<?php echo $this->translate('Stop watching media'); ?>" style="display: none;"><?php echo $this->translate('Stop watching media'); ?></a>
+            <a href="#" class="watchlist button" aria-label="<?php echo $this->translate('Watch media'); ?>" title="<?php echo $this->translate('Watch media'); ?>" style="display: none;"><?php echo $this->translate('Watch media'); ?></a>
+            <?php echo $this->formHidden($mediaForm->get('is_watched')); ?>
+        </div>
+        <input type="submit" class="save" value="<?php echo $this->escapeHtml($this->translate('Save')); ?>">
+        <?php endif; ?>
+        <?php if ($userCanEdit): ?>
+        <?php echo $sMedia->link($this->translate('Edit'), 'edit-talk', ['class' => 'button']); ?>
+        <?php endif; ?>
+        <?php echo $this->scripto()->mediaPagination('show-talk'); ?>
+    </div>
+    <div class="resource-content">
+        <div class="media metadata">
+            <h3><?php echo $this->translate('Metadata'); ?></h3>
+            <?php $displayValues = $media->displayValues(); ?>
+            <?php echo $displayValues  ? $displayValues : sprintf('<span>[%s]</span>', $this->translate('No metadata')); ?>
+        </div>
+        <div class="media html">
+        <?php if ($sMedia->isRenderableImage()): ?>
+        <h3><?php echo $this->translate('Media'); ?></h3>
+        <div class="panzoom-container image">
+            <div class="zoom-controls">
+                <button class="zoom-in" aria-label="<?php echo $this->escapeHtml($this->translate('Zoom in')); ?>" title="<?php echo $this->escapeHtml($this->translate('Zoom in')); ?>"></button>
+                <button class="zoom-out" aria-label="<?php echo $this->escapeHtml($this->translate('Zoom out')); ?>" title="<?php echo $this->escapeHtml($this->translate('Zoom out')); ?>"></button>
+                <button class="rotate-right" aria-label="<?php echo $this->escapeHtml($this->translate('Rotate right')); ?>" title="<?php echo $this->escapeHtml($this->translate('Rotate right')); ?>"></button>
+                <button class="rotate-left" aria-label="<?php echo $this->escapeHtml($this->translate('Rotate left')); ?>" title="<?php echo $this->escapeHtml($this->translate('Rotate left')); ?>"></button>
+                <button class="reset"><?php echo $this->translate('Reset'); ?></button>
+            </div>
+            <div class="media-render">
+                <img src="<?php echo $this->escapeHtml($media->originalUrl()); ?>">
+            </div>
+        </div>
+        <?php else: ?>
+        <div class="panzoom-container">
+            <?php echo $media->render(['link' => null]); ?>
+        </div>
+        <?php endif; ?>
+            <h3><?php echo $this->translate('HTML'); ?></h3>
+            <?php $pageHtml = $sMedia->pageHtml(1); ?>
+            <?php echo $pageHtml  ? $pageHtml : sprintf('<span>[%s]</span>', $this->translate('No HTML')); ?>
+        </div>
+    </div>
+</form>

@@ -56,6 +56,7 @@ $this->headScript()->appendFile($this->assetUrl('js/public-app.js', 'Scripto'));
                 <?php endif; ?>
                 <?php if (isset($sMedia)): ?>
                 <li><?php echo $sMedia->link($this->translate('View media')); ?></li>
+                <li><?php echo $sMedia->link($this->translate('View media discussion'), 'show-talk'); ?></li>
                 <li><?php echo $this->hyperlink($this->translate('Browse revisions'), $this->url('scripto-revision', ['action' => 'browse'], true)); ?></li>
                 <?php endif; ?>
             </ul>
