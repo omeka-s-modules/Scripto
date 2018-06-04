@@ -900,7 +900,7 @@ h2.media-item {
 .watch-list {
   position: relative; }
 
-#mediapublicappform .success {
+.watch-list .success {
   display: none;
   position: absolute;
   background-color: #fff;
@@ -911,7 +911,7 @@ h2.media-item {
   color: green;
   z-index: 1;
   box-shadow: 0 0 10px #e8e8e8; }
-  #mediapublicappform .success:before, #mediapublicappform .success:after {
+  .watch-list .success:before, .watch-list .success:after {
     content: "";
     position: absolute;
     width: 0;
@@ -921,7 +921,7 @@ h2.media-item {
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     border-bottom: 10px solid #fff; }
-  #mediapublicappform .success:after {
+  .watch-list .success:after {
     bottom: calc(100% + 1px);
     border-bottom-color: green;
     z-index: -1; }
