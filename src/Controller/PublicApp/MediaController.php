@@ -58,6 +58,37 @@ class MediaController extends AbstractActionController
         return $this->handleEdit(1);
     }
 
+    public function watchAction()
+    {
+        if (!$this->getRequest()->isPost()) {
+            $this->getResponse()->setStatusCode(400);
+            return;
+        }
+        if (!$this->scripto()->apiClient()->userIsLoggedIn()) {
+            $this->getResponse()->setStatusCode(403);
+            return;
+        }
+        $sMedia = $this->scripto()->getRepresentation(
+            $this->params('project-id'),
+            $this->params('item-id'),
+            $this->params('media-id')
+        );
+        if (!$sMedia) {
+            $this->getResponse()->setStatusCode(400);
+            return;
+        }
+
+        // Note that MediaWiki always watches and unwatches a Main page and its
+        // Talk page simultaneously, so these's no need to make a distinction.
+        $watching = $this->getRequest()->getPost('watching');
+        if ($watching) {
+            $this->scripto()->apiClient()->watchPage($sMedia->pageTitle(0));
+        } else {
+            $this->scripto()->apiClient()->unwatchPage($sMedia->pageTitle(0));
+        }
+        exit;
+    }
+
     /**
      * Handle the show actions for the Main and Talk namespaces.
      *
@@ -76,12 +107,14 @@ class MediaController extends AbstractActionController
 
         $userIsLoggedIn = $this->scripto()->apiClient()->userIsLoggedIn();
         $userCanEdit = $sMedia->userCanEdit($namespace);
+        $userIsWatching = $sMedia->isWatched(0);
 
         $sItem = $sMedia->scriptoItem();
         $project = $sItem->scriptoProject();
         $view = new ViewModel;
         $view->setVariable('userCanEdit', $userCanEdit);
         $view->setVariable('userIsLoggedIn', $userIsLoggedIn);
+        $view->setVariable('userIsWatching', $userIsWatching);
         $view->setVariable('sMedia', $sMedia);
         $view->setVariable('media', $sMedia->media());
         $view->setVariable('sItem', $sItem);
@@ -112,6 +145,7 @@ class MediaController extends AbstractActionController
         $mediaForm = $this->getForm(MediaPublicAppForm::class);
         $userIsLoggedIn = $this->scripto()->apiClient()->userIsLoggedIn();
         $userCanEdit = $sMedia->userCanEdit($namespace);
+        $userIsWatching = $sMedia->isWatched(0);
 
         if (!$userCanEdit) {
             // Deny access to users without edit authorization.
@@ -154,6 +188,7 @@ class MediaController extends AbstractActionController
         $view = new ViewModel;
         $view->setVariable('userCanEdit', $userCanEdit);
         $view->setVariable('userIsLoggedIn', $userIsLoggedIn);
+        $view->setVariable('userIsWatching', $userIsWatching);
         $view->setVariable('mediaForm', $mediaForm);
         $view->setVariable('sMedia', $sMedia);
         $view->setVariable('media', $sMedia->media());
@@ -165,4 +200,5 @@ class MediaController extends AbstractActionController
         $this->layout()->setVariable('sMedia', $sMedia);
         return $view;
     }
+
 }

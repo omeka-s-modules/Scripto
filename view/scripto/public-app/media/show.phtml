@@ -11,9 +11,9 @@ $this->scripto()->postSubtitle(sprintf($this->translate('Part of %s'), $sItem->l
 ?>
 <div class="media-head">
     <?php if ($userIsLoggedIn): ?>
-    <div class="watch-list">
-        <a href="#" class="watchlist button watched" aria-label="<?php echo $this->translate('Stop watching media'); ?>" title="<?php echo $this->translate('Stop watching media'); ?>" style="display: none;"><?php echo $this->translate('Stop watching media'); ?></a>
-        <a href="#" class="watchlist button" aria-label="<?php echo $this->translate('Watch media'); ?>" title="<?php echo $this->translate('Watch media'); ?>" style="display: none;"><?php echo $this->translate('Watch media'); ?></a>
+    <div class="watch-list" data-url="<?php echo $this->escapeHtml($this->url(null, ['action' => 'watch'], true)); ?>" data-watching="<?php echo $this->escapeHtml($userIsWatching); ?>">
+        <a href="#" class="watchlist button watched" aria-label="<?php echo $this->translate('Stop watching media'); ?>" title="<?php echo $this->translate('Stop watching media'); ?>" style="<?php echo $userIsWatching ? null : $this->escapeHtml('display: none;'); ?>"><?php echo $this->translate('Stop watching media'); ?></a>
+        <a href="#" class="watchlist button" aria-label="<?php echo $this->translate('Watch media'); ?>" title="<?php echo $this->translate('Watch media'); ?>" style="<?php echo $userIsWatching ? $this->escapeHtml('display: none;') : null; ?>"><?php echo $this->translate('Watch media'); ?></a>
         <div class="watch success"><?php echo $this->translate('Media successfully saved to your watchlist.'); ?></div>
         <div class="unwatch success"><?php echo $this->translate('Media successfully removed from your watchlist.'); ?></div>
     </div>
