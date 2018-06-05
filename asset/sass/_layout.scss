@@ -733,6 +733,20 @@ h2.media-item {
     margin-right: $spacing-unit;
 }
 
+.watchlist.button:after {
+    margin-left: .25 * $spacing-unit;
+}
+
+.watch-list .success {
+    top: 1.125 * $spacing-unit;
+    padding: .25 * $spacing-unit;
+
+    &:before,
+    &:after {
+        left: .25 * $spacing-unit;
+    }
+}
+
 .status-field {
     margin-right: auto;
 }

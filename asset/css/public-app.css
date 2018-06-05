@@ -296,7 +296,10 @@ select {
   border: 1px solid green;
   border-radius: 3px;
   color: green;
-  z-index: 1; }
+  z-index: 1;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content; }
   .watch-list .success:before, .watch-list .success:after {
     content: "";
     position: absolute;
@@ -964,6 +967,15 @@ h2.media-item {
 .watchlist.button,
 .protection-field {
   margin-right: 30px; }
+
+.watchlist.button:after {
+  margin-left: 7.5px; }
+
+.watch-list .success {
+  top: 33.75px;
+  padding: 7.5px; }
+  .watch-list .success:before, .watch-list .success:after {
+    left: 7.5px; }
 
 .status-field {
   margin-right: auto; }
