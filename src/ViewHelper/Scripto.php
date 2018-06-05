@@ -416,4 +416,34 @@ HTML;
             http_build_query($view->params()->fromQuery())
         );
     }
+
+    public function watchlistToggle($sMedia)
+    {
+        if (!$this->apiClient()->userIsLoggedIn()) {
+            return;
+        }
+
+        $view = $this->getView();
+        $userIsWatching = $sMedia->isWatched(0);
+
+        $html = <<<'HTML'
+<div class="watch-list" data-url="%1$s" data-watching="%2$s">
+    <a href="#" class="watchlist button watched" aria-label="%3$s" title="%3$s" style="%4$s">%3$s</a>
+    <a href="#" class="watchlist button" aria-label="%5$s" title="%5$s" style="%6$s">%5$s</a>
+    <div class="watch success">%7$s</div>
+    <div class="unwatch success">%8$s</div>
+</div>
+HTML;
+        return sprintf(
+            $html,
+            $view->escapeHtml($view->url(null, ['action' => 'watch'], true)),
+            $view->escapeHtml($userIsWatching),
+            $view->translate('Stop watching media'),
+            $userIsWatching ? null : $view->escapeHtml('display: none;'),
+            $view->translate('Watch media'),
+            $userIsWatching ? $view->escapeHtml('display: none;') : null,
+            $view->translate('Media successfully saved to your watchlist.'),
+            $view->translate('Media successfully removed from your watchlist.')
+        );
+    }
 }

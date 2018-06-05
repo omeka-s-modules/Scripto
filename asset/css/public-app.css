@@ -250,6 +250,70 @@ select {
 .red {
   color: red; }
 
+.watch-list {
+  position: relative; }
+
+.watch-list .success {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid green;
+  border-radius: 3px;
+  color: green;
+  z-index: 1; }
+  .watch-list .success:before, .watch-list .success:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: calc(100% - 1px);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 10px solid #fff; }
+  .watch-list .success:after {
+    bottom: calc(100% + 1px);
+    border-bottom-color: green;
+    z-index: -1; }
+
+.watchlist.button {
+  background-color: transparent;
+  border: 0;
+  padding: 0; }
+
+.watchlist.button:after {
+  content: "\f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400;
+  display: inline-block; }
+
+.watched.watchlist.button:after {
+  font-weight: 900; }
+
+.watch-list .success {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid green;
+  border-radius: 3px;
+  color: green;
+  z-index: 1;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content; }
+  .watch-list .success:before, .watch-list .success:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: calc(100% - 1px);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 10px solid #fff; }
+  .watch-list .success:after {
+    bottom: calc(100% + 1px);
+    border-bottom-color: green;
+    z-index: -1; }
+
 .compare-controls {
   display: flex;
   align-items: center; }
@@ -897,9 +961,21 @@ h2.media-item {
   border-bottom: 0;
   padding-bottom: 0; }
 
+#mediapublicappform .watch-list {
+  margin-right: auto; }
+
 .watchlist.button,
 .protection-field {
   margin-right: 30px; }
+
+.watchlist.button:after {
+  margin-left: 7.5px; }
+
+.watch-list .success {
+  top: 33.75px;
+  padding: 7.5px; }
+  .watch-list .success:before, .watch-list .success:after {
+    left: 7.5px; }
 
 .status-field {
   margin-right: auto; }
@@ -909,21 +985,6 @@ h2.media-item {
 
 .status-field {
   margin-top: -30px; }
-
-.watchlist.button {
-  background-color: transparent;
-  border: 0;
-  padding: 0; }
-
-.watchlist.button:after {
-  content: "\f005";
-  font-family: "Font Awesome 5 Free";
-  font-weight: 400;
-  display: inline-block;
-  margin-left: 7.5px; }
-
-.watched.watchlist.button:after {
-  font-weight: 900; }
 
 /* 
  * Item

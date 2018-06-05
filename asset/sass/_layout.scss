@@ -724,9 +724,27 @@ h2.media-item {
     padding-bottom: 0;
 }
 
+#mediapublicappform .watch-list {
+    margin-right: auto;
+}
+
 .watchlist.button,
 .protection-field {
     margin-right: $spacing-unit;
+}
+
+.watchlist.button:after {
+    margin-left: .25 * $spacing-unit;
+}
+
+.watch-list .success {
+    top: 1.125 * $spacing-unit;
+    padding: .25 * $spacing-unit;
+
+    &:before,
+    &:after {
+        left: .25 * $spacing-unit;
+    }
 }
 
 .status-field {
@@ -739,24 +757,6 @@ h2.media-item {
 
 .status-field {
     margin-top: -1 * $spacing-unit;
-}
-
-.watchlist.button {
-    background-color: transparent;
-    border: 0;
-    padding: 0;
-}
-
-.watchlist.button:after {
-    content: "\f005";
-    @include font-awesome;
-    font-weight: 400;
-    display: inline-block;
-    margin-left: .25 * $spacing-unit;
-}
-
-.watched.watchlist.button:after {
-    font-weight: 900;
 }
 
 /* 

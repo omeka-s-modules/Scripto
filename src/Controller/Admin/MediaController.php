@@ -122,13 +122,6 @@ class MediaController extends AbstractActionController
                         $protectionExpiry
                     );
                 }
-                if ($this->scripto()->apiClient()->userIsLoggedIn()) {
-                    if ($formData['is_watched']) {
-                        $this->scripto()->apiClient()->watchPage($sMedia->pageTitle(0));
-                    } else {
-                        $this->scripto()->apiClient()->unwatchPage($sMedia->pageTitle(0));
-                    }
-                }
 
                 // Update Scripto media.
                 $data = [];
@@ -165,9 +158,7 @@ class MediaController extends AbstractActionController
         }
 
         // Set media form data.
-        $data = [
-            'is_watched' => $sMedia->isWatched(0),
-        ];
+        $data = [];
         if (!$editAccess['expired']) {
             $data['protection_level'] = $editAccess['level'];
             $mediaForm->get('protection_expiry')->setEmptyOption(sprintf(
@@ -364,5 +355,36 @@ class MediaController extends AbstractActionController
         $view->setVariable('count', $response->getTotalResults());
         $view->setVariable('form', $form);
         return $view;
+    }
+
+    public function watchAction()
+    {
+        if (!$this->getRequest()->isPost()) {
+            $this->getResponse()->setStatusCode(400);
+            return;
+        }
+        if (!$this->scripto()->apiClient()->userIsLoggedIn()) {
+            $this->getResponse()->setStatusCode(403);
+            return;
+        }
+        $sMedia = $this->scripto()->getRepresentation(
+            $this->params('project-id'),
+            $this->params('item-id'),
+            $this->params('media-id')
+        );
+        if (!$sMedia) {
+            $this->getResponse()->setStatusCode(400);
+            return;
+        }
+
+        // Note that MediaWiki always watches and unwatches a Main page and its
+        // Talk page simultaneously, so these's no need to make a distinction.
+        $watching = $this->getRequest()->getPost('watching');
+        if ($watching) {
+            $this->scripto()->apiClient()->watchPage($sMedia->pageTitle(0));
+        } else {
+            $this->scripto()->apiClient()->unwatchPage($sMedia->pageTitle(0));
+        }
+        exit;
     }
 }

@@ -6,6 +6,85 @@
     color: red;
 }
 
+.watch-list {
+    position: relative;
+}
+
+.watch-list .success {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid green;
+    border-radius: 3px;
+    color: green;
+    z-index: 1;
+
+    &:before,
+    &:after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        bottom: calc(100% - 1px);
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 10px solid #fff;
+    }
+
+    &:after {
+        bottom: calc(100% + 1px);
+        border-bottom-color: green;
+        z-index: -1;
+    }
+}
+
+.watchlist.button {
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+}
+
+.watchlist.button:after {
+    content: "\f005";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 400;
+    display: inline-block;
+}
+
+.watched.watchlist.button:after {
+    font-weight: 900;
+}
+
+.watch-list .success {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid green;
+    border-radius: 3px;
+    color: green;
+    z-index: 1;
+    width: max-content;
+
+
+    &:before,
+    &:after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        bottom: calc(100% - 1px);
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 10px solid #fff;
+    }
+
+    &:after {
+        bottom: calc(100% + 1px);
+        border-bottom-color: green;
+        z-index: -1;
+    }
+}
+
 .compare-controls {
     display: flex;
     align-items: center;

@@ -92,10 +92,6 @@ class MediaForm extends Form
             ],
         ]);
         $this->add([
-            'type' => 'hidden',
-            'name' => 'is_watched',
-        ]);
-        $this->add([
             'name' => 'submit_mediaform',
             'type' => 'submit',
             'attributes' => [
@@ -126,10 +122,6 @@ class MediaForm extends Form
         ]);
         $inputFilter->add([
             'name' => 'protection_expiry',
-            'allow_empty' => true,
-        ]);
-        $inputFilter->add([
-            'name' => 'is_watched',
             'allow_empty' => true,
         ]);
     }

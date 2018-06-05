@@ -64,21 +64,24 @@ $(document).ready(function() {
     });
 
     // Handle the watchlist toggle.
-    var isWatched = $('input[type="hidden"][name="is_watched"]');
-    var watchedIcon = isWatched.siblings('.watchlist.button.watched');
-    var notWatchedIcon = isWatched.siblings('.watchlist.button').not('.watched');
-    '1' === isWatched.val() ? watchedIcon.show() : notWatchedIcon.show();
-    watchedIcon.add(notWatchedIcon).on('click', function(e) {
+    var watchlist = $('.watch-list');
+    var watchedIcon = watchlist.children('.watchlist.button.watched');
+    var notWatchedIcon = watchlist.children('.watchlist.button').not('.watched');
+    var watching = watchlist.data('watching');
+
+    watchlist.children('.watchlist.button').on('click', function(e) {
         e.preventDefault();
-        if ('1' === isWatched.val()) {
-            isWatched.val('0');
-            notWatchedIcon.show();
-            watchedIcon.hide();
-        } else {
-            isWatched.val('1');
-            notWatchedIcon.hide()
-            watchedIcon.show();
-        }
+        watching = (1 === watching) ? 0 : 1;
+        $.post(watchlist.data('url'), {'watching': watching})
+            .done(function(data) {
+                watchedIcon.toggle();
+                notWatchedIcon.toggle();
+                if (watching) {
+                    watchlist.children('.watch.success').fadeIn('slow').delay(2000).fadeOut('slow');
+                } else {
+                    watchlist.children('.unwatch.success').fadeIn('slow').delay(2000).fadeOut('slow');
+                }
+            });
     });
 
     // Remove sidebar click event so revision pagination reloads the page.
