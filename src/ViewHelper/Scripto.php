@@ -417,6 +417,12 @@ HTML;
         );
     }
 
+    /**
+     * Render the wtchlist toggle form.
+     *
+     * @param ScriptoMediaRepresentation $sMedia
+     * @return string
+     */
     public function watchlistToggle($sMedia)
     {
         if (!$this->apiClient()->userIsLoggedIn()) {
