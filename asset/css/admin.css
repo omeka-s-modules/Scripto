@@ -4,6 +4,67 @@
 .red {
   color: red; }
 
+.watch-list {
+  position: relative; }
+
+.watch-list .success {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid green;
+  border-radius: 3px;
+  color: green;
+  z-index: 1; }
+  .watch-list .success:before, .watch-list .success:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: calc(100% - 1px);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 10px solid #fff; }
+  .watch-list .success:after {
+    bottom: calc(100% + 1px);
+    border-bottom-color: green;
+    z-index: -1; }
+
+.watchlist.button {
+  background-color: transparent;
+  border: 0;
+  padding: 0; }
+
+.watchlist.button:after {
+  content: "\f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400;
+  display: inline-block; }
+
+.watched.watchlist.button:after {
+  font-weight: 900; }
+
+.watch-list .success {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid green;
+  border-radius: 3px;
+  color: green;
+  z-index: 1; }
+  .watch-list .success:before, .watch-list .success:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: calc(100% - 1px);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 10px solid #fff; }
+  .watch-list .success:after {
+    bottom: calc(100% + 1px);
+    border-bottom-color: green;
+    z-index: -1; }
+
 .compare-controls {
   display: flex;
   align-items: center; }
@@ -469,18 +530,33 @@ button.full-screen:after {
 #compare-table .diff-addedline div:before {
   left: -1px; }
 
+.watch-list {
+  display: inline-block;
+  width: 36px; }
+
 .watchlist.button,
 .watchlist.button:hover {
+  width: 36px;
+  padding: 0 !important;
   background-color: transparent;
-  box-shadow: none !important; }
+  box-shadow: none !important;
+  text-indent: -9999px;
+  overflow: hidden; }
+  .watchlist.button:after,
+  .watchlist.button:hover:after {
+    text-indent: 0px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 36px;
+    width: 36px;
+    text-align: center; }
 
-.watchlist.button:before {
-  content: "\f005";
-  font-family: "Font Awesome 5 Free";
-  font-weight: regular; }
-
-.watched.watchlist.button:before {
-  font-weight: 900; }
+.watch-list .success {
+  padding: 6px;
+  right: 0; }
+  .watch-list .success:before, .watch-list .success:after {
+    right: 12px; }
 
 #reviewer-form .pagination {
   margin: 0;
