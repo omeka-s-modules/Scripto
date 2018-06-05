@@ -105,16 +105,10 @@ class MediaController extends AbstractActionController
             return $this->redirect()->toRoute('scripto');
         }
 
-        $userIsLoggedIn = $this->scripto()->apiClient()->userIsLoggedIn();
-        $userCanEdit = $sMedia->userCanEdit($namespace);
-        $userIsWatching = $sMedia->isWatched(0);
-
         $sItem = $sMedia->scriptoItem();
         $project = $sItem->scriptoProject();
         $view = new ViewModel;
-        $view->setVariable('userCanEdit', $userCanEdit);
-        $view->setVariable('userIsLoggedIn', $userIsLoggedIn);
-        $view->setVariable('userIsWatching', $userIsWatching);
+        $view->setVariable('userCanEdit', $sMedia->userCanEdit($namespace));
         $view->setVariable('sMedia', $sMedia);
         $view->setVariable('media', $sMedia->media());
         $view->setVariable('sItem', $sItem);
@@ -142,14 +136,12 @@ class MediaController extends AbstractActionController
             return $this->redirect()->toRoute('scripto');
         }
 
+        $action = (0 === $namespace) ? 'show' : 'show-talk';
         $mediaForm = $this->getForm(MediaPublicAppForm::class);
-        $userIsLoggedIn = $this->scripto()->apiClient()->userIsLoggedIn();
-        $userCanEdit = $sMedia->userCanEdit($namespace);
-        $userIsWatching = $sMedia->isWatched(0);
 
-        if (!$userCanEdit) {
+        if (!$sMedia->userCanEdit($namespace)) {
             // Deny access to users without edit authorization.
-            return $this->redirect()->toRoute(null, ['action' => 'show-talk'], true);
+            return $this->redirect()->toRoute(null, ['action' => $action], true);
         }
 
         if ($this->getRequest()->isPost()) {
@@ -170,7 +162,6 @@ class MediaController extends AbstractActionController
                     $response = $this->api($mediaForm)->update('scripto_media', $sMedia->id(), $data);
                 }
                 $this->messenger()->addSuccess('Scripto media successfully updated.'); // @translate
-                $action = (0 === $namespace) ? 'show' : 'show-talk';
                 return $this->redirect()->toRoute(null, ['action' => $action], true);
             } else {
                 $this->messenger()->addFormErrors($mediaForm);
@@ -186,9 +177,6 @@ class MediaController extends AbstractActionController
         $sItem = $sMedia->scriptoItem();
         $project = $sItem->scriptoProject();
         $view = new ViewModel;
-        $view->setVariable('userCanEdit', $userCanEdit);
-        $view->setVariable('userIsLoggedIn', $userIsLoggedIn);
-        $view->setVariable('userIsWatching', $userIsWatching);
         $view->setVariable('mediaForm', $mediaForm);
         $view->setVariable('sMedia', $sMedia);
         $view->setVariable('media', $sMedia->media());
