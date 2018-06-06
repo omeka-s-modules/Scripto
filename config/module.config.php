@@ -58,6 +58,11 @@ return [
             'scripto' => Scripto\Service\ViewHelper\ScriptoFactory::class,
         ],
     ],
+    'block_layouts' => [
+        'invokables' => [
+            'scripto' => Scripto\Site\BlockLayout\Scripto::class,
+        ],
+    ],
     'navigation' => [
         'AdminModule' => [
             [
