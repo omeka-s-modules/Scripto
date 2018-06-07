@@ -1,3 +1,4 @@
+
 <?php 
 $this->headLink()->appendStylesheet($this->assetUrl('css/admin.css', 'Scripto'));
 $this->htmlElement('body')->appendAttribute('class', 'scripto revision compare no-actions'); 
@@ -21,7 +22,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto revision compare n
     <thead>
         <tr>
             <th colspan="2">
-                <div class="revision-timestamp"><?php echo $this->hyperlink(sprintf($this->translate('Revision as of %s'), $fromRevision['timestamp']->format('G:i:s, j F Y')), $this->url('admin/scripto-media-id', ['action' => 'show', 'revision-id' => $fromRevision['revid']], true)); ?>
+                <div class="revision-timestamp"><?php echo $this->hyperlink(sprintf($this->translate('Revision as of %s'), $fromRevision['timestamp']->format('G:i:s, j F Y')), $this->url('admin/scripto-talk-media-id', ['action' => 'show-talk', 'revision-id' => $fromRevision['revid']], true)); ?>
                 <?php echo sprintf(
                     $this->translate('by %s'),
                     $this->hyperlink($fromRevision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $fromRevision['user']]))
@@ -31,7 +32,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto revision compare n
                 <?php endif; ?>
             </th>
             <th colspan="2">
-                <div class="revision-timestamp"><?php echo $this->hyperlink(sprintf($this->translate('Revision as of %s'), $toRevision['timestamp']->format('G:i:s, j F Y')), $this->url('admin/scripto-media-id', ['action' => 'show', 'revision-id' => $toRevision['revid']], true)); ?>
+                <div class="revision-timestamp"><?php echo $this->hyperlink(sprintf($this->translate('Revision as of %s'), $toRevision['timestamp']->format('G:i:s, j F Y')), $this->url('admin/scripto-talk-media-id', ['action' => 'show-talk', 'revision-id' => $toRevision['revid']], true)); ?>
                 <?php echo sprintf(
                     $this->translate('by %s'),
                     $this->hyperlink($toRevision['user'], $this->url('admin/scripto-user-contributions', ['user-id' => $toRevision['user']]))
@@ -41,26 +42,6 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto revision compare n
                 <?php endif; ?>
             </th>
         </tr>
-        <?php
-            $completedHtml = '<div class="green">' . $this->translate('This revision marked as completed.') . '</div>';
-            $approvedHtml = '<div class="green">' . $this->translate('This revision marked as approved.') . '</div>';
-            $fromRevisionCompleted = ($fromRevision['revid'] === $sMedia->completedRevision()) ? $completedHtml : false;
-            $fromRevisionApproved = ($fromRevision['revid'] === $sMedia->approvedRevision()) ? $approvedHtml : false;
-            $toRevisionCompleted = ($toRevision['revid'] === $sMedia->completedRevision()) ? $completedHtml : false;
-            $toRevisionApproved = ($toRevision['revid'] === $sMedia->approvedRevision()) ? $approvedHtml : false;
-        ?>
-        <?php if ($fromRevisionApproved || $fromRevisionCompleted || $toRevisionApproved || $toRevisionCompleted): ?>
-        <tr>
-            <th colspan="2">
-                <?php echo $fromRevisionCompleted; ?>
-                <?php echo $fromRevisionApproved; ?>
-            </th>
-            <th colspan="2">
-                <?php echo $toRevisionCompleted; ?>
-                <?php echo $toRevisionApproved; ?>
-            </th>
-        </tr>
-        <?php endif; ?>
     </thead>
     <tbody>
         <?php if ($compare): ?>

@@ -9,6 +9,31 @@ class RevisionController extends AbstractActionController
 {
     public function browseAction()
     {
+        return $this->handleBrowse(0);
+    }
+
+    public function browseTalkAction()
+    {
+        return $this->handleBrowse(1);
+    }
+
+    public function compareAction()
+    {
+        return $this->handleCompare(0);
+    }
+
+    public function compareTalkAction()
+    {
+        return $this->handleCompare(1);
+    }
+
+    /**
+     * Handle the browse actions for the Main and Talk namespaces.
+     *
+     * @param int $namespace 0=Main; 1=Talk
+     */
+    public function handleBrowse($namespace)
+    {
         $sMedia = $this->scripto()->getRepresentation(
             $this->params('project-id'),
             $this->params('item-id'),
@@ -19,7 +44,7 @@ class RevisionController extends AbstractActionController
         }
 
         $sItem = $sMedia->scriptoItem();
-        $response = $sMedia->pageRevisions(0, 100, $this->params()->fromQuery('continue'));
+        $response = $sMedia->pageRevisions($namespace, 100, $this->params()->fromQuery('continue'));
         $revisions = isset($response['query']['pages'][0]['revisions'])
             ? $response['query']['pages'][0]['revisions'] : [];
         $continue = isset($response['continue']) ? $response['continue']['rvcontinue'] : null;
@@ -34,7 +59,12 @@ class RevisionController extends AbstractActionController
         return $view;
     }
 
-    public function compareAction()
+    /**
+     * Handle the compare actions for the Main and Talk namespaces.
+     *
+     * @param int $namespace 0=Main; 1=Talk
+     */
+    public function handleCompare($namespace)
     {
         $sMedia = $this->scripto()->getRepresentation(
             $this->params('project-id'),
@@ -48,8 +78,8 @@ class RevisionController extends AbstractActionController
         $view = new ViewModel;
         $view->setVariable('sMedia', $sMedia);
         $view->setVariable('media', $sMedia->media());
-        $view->setVariable('fromRevision', $sMedia->pageRevision(0, $this->params('from-revision-id')));
-        $view->setVariable('toRevision', $sMedia->pageRevision(0, $this->params('to-revision-id')));
+        $view->setVariable('fromRevision', $sMedia->pageRevision($namespace, $this->params('from-revision-id')));
+        $view->setVariable('toRevision', $sMedia->pageRevision($namespace, $this->params('to-revision-id')));
         $view->setVariable('compare', $this->scripto()->apiClient()->compareRevisions($this->params('from-revision-id'), $this->params('to-revision-id')));
         return $view;
     }

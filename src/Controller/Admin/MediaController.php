@@ -185,6 +185,101 @@ class MediaController extends AbstractActionController
         return $view;
     }
 
+    public function showTalkaction()
+    {
+        $sMedia = $this->scripto()->getRepresentation(
+            $this->params('project-id'),
+            $this->params('item-id'),
+            $this->params('media-id')
+        );
+        if (!$sMedia) {
+            return $this->redirect()->toRoute('admin/scripto');
+        }
+
+        try {
+            $revision = $sMedia->pageRevision(1, $this->params('revision-id'));
+        } catch (QueryException $e) {
+            // Invalid revision ID
+            return $this->redirect()->toRoute('admin/scripto');
+        }
+
+        $revertForm = $this->getForm(RevisionRevertForm::class);
+        $mediaForm = $this->getForm(MediaForm::class);
+        $editAccess = $sMedia->editAccess(1);
+        $postData = $this->getRequest()->getPost();
+
+        // Handle the revision revert form.
+        if ($this->getRequest()->isPost() && isset($postData['submit_revisionrevertform'])) {
+            $revertForm->setData($postData);
+            if ($revertForm->isValid()) {
+                $this->scripto()->apiClient()->editPage($sMedia->pageTitle(1), $revision['content']);
+                $this->messenger()->addSuccess('Scripto media revision successfully reverted.'); // @translate
+                return $this->redirect()->toRoute(null, ['revision-id' => null], true);
+            } else {
+                $this->messenger()->addFormErrors($revertForm);
+            }
+        }
+
+        // Handle the media form.
+        if ($this->getRequest()->isPost() && isset($postData['submit_mediaform'])) {
+            $mediaForm->setData($postData);
+            if ($mediaForm->isValid()) {
+                $formData = $mediaForm->getData();
+
+                // Update MediaWiki data.
+                if ($sMedia->userCan(1, 'protect')) {
+                    if ('' === $formData['protection_expiry']) {
+                        // Use existing expiration date.
+                        $protectionExpiry = $editAccess['expiry']
+                            ? $editAccess['expiry']->format('c')
+                            : 'infinite';
+                    } else {
+                        // Use selected expiration date.
+                        $protectionExpiry = $formData['protection_expiry'];
+                    }
+                    $this->scripto()->apiClient()->protectPage(
+                        $sMedia->pageTitle(1),
+                        $sMedia->pageIsCreated(1) ? 'edit' : 'create',
+                        $formData['protection_level'],
+                        $protectionExpiry
+                    );
+                }
+
+                $this->messenger()->addSuccess('Scripto media successfully updated.'); // @translate
+                return $this->redirect()->toRoute(null, [], true);
+            } else {
+                $this->messenger()->addFormErrors($mediaForm);
+            }
+        }
+
+        // Set media form data.
+        $data = [];
+        if (!$editAccess['expired']) {
+            $data['protection_level'] = $editAccess['level'];
+            $mediaForm->get('protection_expiry')->setEmptyOption(sprintf(
+                $this->translate('Existing expiration time: %s'),
+                $editAccess['expiry']
+                    ? $editAccess['expiry']->format('G:i, j F Y')
+                    : 'infinite'
+            ));
+        }
+        $mediaForm->setData($data);
+
+        $sItem = $sMedia->scriptoItem();
+        $revisionId = isset($revision['revid']) ? $revision['revid'] : null;
+        $view = new ViewModel;
+        $view->setVariable('revision', $revision);
+        $view->setVariable('latestRevision', $sMedia->pageLatestRevision(1));
+        $view->setVariable('sMedia', $sMedia);
+        $view->setVariable('media', $sMedia->media());
+        $view->setVariable('sItem', $sItem);
+        $view->setVariable('item', $sItem->item());
+        $view->setVariable('project', $sItem->scriptoProject());
+        $view->setVariable('mediaForm', $mediaForm);
+        $view->setVariable('revertForm', $revertForm);
+        return $view;
+    }
+
     public function batchEditAction()
     {
         if (!$this->getRequest()->isPost()) {
