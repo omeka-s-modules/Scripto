@@ -258,6 +258,77 @@ return [
                     ],
                 ],
             ],
+            'scripto-talk-media-id' =>  [
+                'type' => 'Segment',
+                'options' => [
+                    'route' => '/scripto/:project-id/:item-id/:media-id/talk[/:action]',
+                    'constraints' => [
+                        'project-id' => '\d+',
+                        'item-id' => '\d+',
+                        'media-id' => '\d+',
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ],
+                    'defaults' => [
+                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                        'controller' => 'media',
+                        'action' => 'show-talk',
+                    ],
+                ],
+            ],
+            'scripto-talk-revision' =>  [
+                'type' => 'Segment',
+                'options' => [
+                    'route' => '/scripto/:project-id/:item-id/:media-id/talk/revision[/:action]',
+                    'constraints' => [
+                        'project-id' => '\d+',
+                        'item-id' => '\d+',
+                        'media-id' => '\d+',
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ],
+                    'defaults' => [
+                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                        'controller' => 'revision',
+                        'action' => 'browse-talk',
+                    ],
+                ],
+            ],
+            'scripto-talk-revision-id' =>  [
+                'type' => 'Segment',
+                'options' => [
+                    'route' => '/scripto/:project-id/:item-id/:media-id/talk/revision/:revision-id[/:action]',
+                    'constraints' => [
+                        'project-id' => '\d+',
+                        'item-id' => '\d+',
+                        'media-id' => '\d+',
+                        'revision-id' => '\d+',
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ],
+                    'defaults' => [
+                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                        'controller' => 'revision',
+                        'action' => 'show-talk',
+                    ],
+                ],
+            ],
+            'scripto-talk-revision-compare' =>  [
+                'type' => 'Segment',
+                'options' => [
+                    'route' => '/scripto/:project-id/:item-id/:media-id/talk/revision/:from-revision-id/:to-revision-id[/:action]',
+                    'constraints' => [
+                        'project-id' => '\d+',
+                        'item-id' => '\d+',
+                        'media-id' => '\d+',
+                        'from-revision-id' => '\d+',
+                        'to-revision-id' => '\d+',
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ],
+                    'defaults' => [
+                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                        'controller' => 'revision',
+                        'action' => 'compare-talk',
+                    ],
+                ],
+            ],
             'admin' => [
                 'child_routes' => [
                     'scripto' => [

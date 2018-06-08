@@ -1,5 +1,5 @@
 <?php
-$this->scripto()->postTitle(sprintf($this->translate('Revision: %s'), $media->displayTitle()));
+$this->scripto()->postTitle(sprintf($this->translate('Discussion revision: %s'), $media->displayTitle()));
 $this->scripto()->postSubtitle(sprintf(
     'Revision as of %s by %s',
     $revision['timestamp']->format('G:i:s, j F Y'),
@@ -9,11 +9,11 @@ $this->scripto()->postSubtitle(sprintf(
 <div class="resource-content">
     <div class="media wikitext">
         <h3><?php echo $this->translate('Wikitext'); ?></h3>
-        <textarea disabled aria-label="<?php echo $this->translate('Wikitext'); ?>"><?php echo $sMedia->pageWikitext(0, $revision['revid']); ?></textarea>
+        <textarea disabled aria-label="<?php echo $this->translate('Wikitext'); ?>"><?php echo $sMedia->pageWikitext(1, $revision['revid']); ?></textarea>
     </div>
     <div class="media html">
         <h3><?php echo $this->translate('HTML'); ?></h3>
-        <?php $pageHtml = $sMedia->pageHtml(0, $revision['revid']); ?>
+        <?php $pageHtml = $sMedia->pageHtml(1, $revision['revid']); ?>
         <?php echo $pageHtml  ? $pageHtml : sprintf('<span>[%s]</span>', $this->translate('No HTML')); ?>
     </div>
 </div>

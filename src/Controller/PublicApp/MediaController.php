@@ -136,7 +136,7 @@ class MediaController extends AbstractActionController
             return $this->redirect()->toRoute('scripto');
         }
 
-        $action = (0 === $namespace) ? 'show' : 'show-talk';
+        $action = (0 === $namespace) ? 'show' : 'talk';
         $mediaForm = $this->getForm(MediaPublicAppForm::class);
 
         if (!$sMedia->userCanEdit($namespace)) {

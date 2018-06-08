@@ -6,7 +6,7 @@ $this->headLink()->appendStylesheet('https://use.fontawesome.com/releases/v5.0.9
 $this->headScript()->appendFile($this->assetUrl('vendor/jquery-panzoom/jquery.panzoom.min.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('vendor/featherlight/featherlight.min.js', 'Scripto'));
 
-$this->scripto()->postTitle(sprintf($this->translate('Discuss: %s'), $media->displayTitle()));
+$this->scripto()->postTitle(sprintf($this->translate('Discussion: %s'), $media->displayTitle()));
 $this->scripto()->postSubtitle(sprintf($this->translate('Part of %s'), $sItem->link($item->displayTitle())));
 ?>
 <?php echo $this->form()->openTag($mediaForm); ?>
@@ -19,7 +19,7 @@ $this->scripto()->postSubtitle(sprintf($this->translate('Part of %s'), $sItem->l
             <div class="protection-expiration"><strong><?php echo $this->translate('Expiration: '); ?></strong><?php echo $editAccess['expiry'] ? $this->i18n()->dateFormat($editAccess['expiry'], 'short', 'short') : $this->translate('Never'); ?></div>
         </div>
         <input type="submit" class="save" value="<?php echo $this->escapeHtml($this->translate('Save')); ?>">
-        <?php echo $sMedia->link($this->translate('Cancel'), 'show-talk', ['class' => 'button']); ?>
+        <?php echo $sMedia->link($this->translate('Cancel'), 'talk', ['class' => 'button']); ?>
     </div>
     <div id="wikitext" class="resource-content">
         <div class="wikitext-featherlight horizontal">
