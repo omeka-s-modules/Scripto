@@ -5,14 +5,14 @@ $(document).ready(function() {
         var menu = button.parent();
         var dropdown = button.next();
         menu.toggleClass('open');
-        $(document).on('mouseup.menu-toggle', function(e) {
+        $(document).on('mouseup', button, function(e) {
             if (dropdown.is(e.target) || $.contains(dropdown[0], e.target)) {
                 return;
             }
             if (!button.is(e.target)) {
                 button.click();
             }
-            $(document).off('mouseup.menu-toggle');
+            $(document).off('mouseup', button);
         });
     });
 
