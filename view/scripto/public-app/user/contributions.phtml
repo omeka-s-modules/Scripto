@@ -9,6 +9,7 @@ $this->scripto()->postTitle(sprintf($this->translate('Contributions by %s'), $us
         <thead>
             <tr>
                 <th><?php echo $this->translate('Revision'); ?></th>
+                <th></th>
                 <th><?php echo $this->translate('Item'); ?></th>
                 <th><?php echo $this->translate('Media #'); ?></th>
                 <th><?php echo $this->translate('Project'); ?></th>
@@ -27,23 +28,56 @@ $this->scripto()->postTitle(sprintf($this->translate('Contributions by %s'), $us
         $sMedia = isset($userCon['scripto_media']) ? $userCon['scripto_media'] : null;
         $sItem = $sMedia ? $sMedia->scriptoItem() : null;
         $project = $sItem ? $sItem->scriptoProject() : null;
+        $isTalk = (1 === $userCon['ns']);
         ?>
             <tr>
                 <td>
                     <?php echo $sMedia
-                    ? $this->hyperlink($date, $this->url('scripto-revision-id', [
-                        'project-id' => $project->id(),
-                        'item-id' => $sItem->item()->id(),
-                        'media-id' => $sMedia->media()->id(),
-                        'revision-id' => $userCon['revid'],
-                    ]))
+                    ? $this->hyperlink($date, $this->url(
+                        $isTalk ? 'scripto-talk-revision-id' : 'scripto-revision-id',
+                        [
+                            'project-id' => $project->id(),
+                            'item-id' => $sItem->item()->id(),
+                            'media-id' => $sMedia->media()->id(),
+                            'revision-id' => $userCon['revid'],
+                        ]
+                    ))
                     : $date; ?>
                     <span class="flags"><?php echo $flags ? sprintf(' (%s)', implode(', ', $flags)) : null; ?></span>
+                </td>
+                <td>
+                    <?php echo $sMedia
+                    ? sprintf(
+                        '(%s | %s)',
+                        $userCon['parentid']
+                            ? $this->hyperlink($this->translate('diff'), $this->url(
+                                $isTalk ? 'scripto-talk-revision-compare' : 'scripto-revision-compare',
+                                [
+                                    'project-id' => $project->id(),
+                                    'item-id' => $sItem->item()->id(),
+                                    'media-id' => $sMedia->media()->id(),
+                                    'from-revision-id' => $userCon['parentid'],
+                                    'to-revision-id' => $userCon['revid'],
+                                ]
+                            ))
+                            : $this->translate('diff'),
+                        $this->hyperlink($this->translate('hist'), $this->url(
+                            $isTalk ? 'scripto-talk-revision' : 'scripto-revision',
+                            [
+                                'project-id' => $project->id(),
+                                'item-id' => $sItem->item()->id(),
+                                'media-id' => $sMedia->media()->id(),
+                            ]
+                        ))
+                    )
+                    : ''; ?>
                 </td>
                 <td><?php echo $sItem ? $sItem->link($sItem->item()->displayTitle()) : $userCon['title']; ?></td>
                 <td>
                     <?php echo $sMedia
-                    ? $this->hyperlink(sprintf($this->translate('Media #%s'), $sMedia->position()), $sMedia->url())
+                    ? $isTalk
+                        ? $this->hyperlink(sprintf($this->translate('Discuss #%s'), $sMedia->position()), $sMedia->url('talk'))
+                        : $this->hyperlink(sprintf($this->translate('Media #%s'), $sMedia->position()), $sMedia->url())
                     : $this->translate('n/a'); ?>
                 </td>
                 <td><?php echo $project ? $project->link($project->title()) : $this->translate('n/a'); ?></td>

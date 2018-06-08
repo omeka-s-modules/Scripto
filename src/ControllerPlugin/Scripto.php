@@ -100,9 +100,8 @@ class Scripto extends AbstractPlugin
     public function prepareMediawikiList(array $list)
     {
         foreach ($list as $key => $row) {
-            if (preg_match('/^\d+:\d+:\d+$/', $row['title'])) {
-                list($projectId, $itemId, $mediaId) = explode(':', $row['title']);
-                $sMedia = $this->getRepresentation($projectId, $itemId, $mediaId);
+            if (preg_match('/^(Talk:)?(\d+):(\d+):(\d+)$/', $row['title'], $matches)) {
+                $sMedia = $this->getRepresentation($matches[2], $matches[3], $matches[4]);
                 if ($sMedia) {
                     $list[$key]['scripto_media'] = $sMedia;
                 }

@@ -490,7 +490,6 @@ class ApiClient
             'list' => 'watchlist',
             'wlend' => strtotime(sprintf('-%s hour', $hours)),
             'wllimit' => $limit,
-            'wlnamespace' => 0,
             'wltype' => 'edit|new',
             'wlprop' => 'ids|title|flags|user|userid|parsedcomment|timestamp|sizes|loginfo',
         ];
