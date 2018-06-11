@@ -275,7 +275,7 @@ class Scripto extends AbstractHelper
             foreach ($this->bcRouteMap[$bcRoute]['params'] as $bcParam) {
                 $params[$bcParam] = $this->routeMatch->getParam($bcParam);
             }
-            $bc[] = $view->hyperlink($this->bcRouteMap[$bcRoute]['text'], $view->url($bcRoute, $params));
+            $bc[] = $view->hyperlink($view->translate($this->bcRouteMap[$bcRoute]['text']), $view->url($bcRoute, $params));
         }
         $bc[] = $view->translate($this->bcRouteMap[$routeName]['text']);
         return sprintf('<div class="breadcrumbs">%s</div>', implode('<div class="separator"></div>', $bc));
