@@ -22,8 +22,8 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto user contribution 
         <tr>
             <th><?php echo $this->translate('Revision'); ?></th>
             <th></th>
-            <th><?php echo $this->translate('Item'); ?></th>
             <th><?php echo $this->translate('Media #'); ?></th>
+            <th><?php echo $this->translate('Item'); ?></th>
             <th><?php echo $this->translate('Project'); ?></th>
             <th><?php echo $this->translate('Size'); ?></th>
             <th class="comment"><?php echo $this->translate('Comment'); ?></th>
@@ -84,7 +84,6 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto user contribution 
                 )
                 : ''; ?>
             </td>
-            <td><?php echo $sItem ? $sItem->link($sItem->item()->displayTitle()) : $userCon['title']; ?></td>
             <td>
                 <?php echo $sMedia
                 ? $isTalk
@@ -92,6 +91,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto user contribution 
                     : $this->hyperlink(sprintf($this->translate('Media #%s'), $sMedia->position()), $sMedia->adminUrl())
                 : $this->translate('n/a'); ?>
             </td>
+            <td><?php echo $sItem ? $sItem->link($sItem->item()->displayTitle()) : $userCon['title']; ?></td>
             <td><?php echo $project ? $project->link($project->title()) : $this->translate('n/a'); ?></td>
             <td><?php echo sprintf('%s bytes (%s)', number_format($userCon['size']), sprintf('%s%s', 0 < $userCon['sizediff'] ? '+' : '', number_format($userCon['sizediff']))); ?></td>
             <td><i><?php echo $userCon['parsedcomment']; ?></i></td>

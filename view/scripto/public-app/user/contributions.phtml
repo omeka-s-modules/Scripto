@@ -10,8 +10,8 @@ $this->scripto()->postTitle(sprintf($this->translate('Contributions by %s'), $us
             <tr>
                 <th><?php echo $this->translate('Revision'); ?></th>
                 <th></th>
-                <th><?php echo $this->translate('Item'); ?></th>
                 <th><?php echo $this->translate('Media #'); ?></th>
+                <th><?php echo $this->translate('Item'); ?></th>
                 <th><?php echo $this->translate('Project'); ?></th>
                 <th><?php echo $this->translate('Size'); ?></th>
                 <th class="comment"><?php echo $this->translate('Comment'); ?></th>
@@ -72,7 +72,6 @@ $this->scripto()->postTitle(sprintf($this->translate('Contributions by %s'), $us
                     )
                     : ''; ?>
                 </td>
-                <td><?php echo $sItem ? $sItem->link($sItem->item()->displayTitle()) : $userCon['title']; ?></td>
                 <td>
                     <?php echo $sMedia
                     ? $isTalk
@@ -80,6 +79,7 @@ $this->scripto()->postTitle(sprintf($this->translate('Contributions by %s'), $us
                         : $this->hyperlink(sprintf($this->translate('Media #%s'), $sMedia->position()), $sMedia->url())
                     : $this->translate('n/a'); ?>
                 </td>
+                <td><?php echo $sItem ? $sItem->link($sItem->item()->displayTitle()) : $userCon['title']; ?></td>
                 <td><?php echo $project ? $project->link($project->title()) : $this->translate('n/a'); ?></td>
                 <td><?php echo sprintf('%s bytes (%s)', number_format($userCon['size']), sprintf('%s%s', 0 < $userCon['sizediff'] ? '+' : '', number_format($userCon['sizediff']))); ?></td>
                 <td><i><?php echo strip_tags($userCon['parsedcomment']); ?></i></td>
