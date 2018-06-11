@@ -93,7 +93,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto user contribution 
             </td>
             <td><?php echo $sItem ? $sItem->link($sItem->item()->displayTitle()) : $userCon['title']; ?></td>
             <td><?php echo $project ? $project->link($project->title()) : $this->translate('n/a'); ?></td>
-            <td><?php echo sprintf('%s bytes (%s)', number_format($userCon['size']), sprintf('%s%s', 0 < $userCon['sizediff'] ? '+' : '', number_format($userCon['sizediff']))); ?></td>
+            <td><?php echo sprintf($this->translate('%s bytes (%s)'), number_format($userCon['size']), sprintf('%s%s', 0 < $userCon['sizediff'] ? '+' : '', number_format($userCon['sizediff']))); ?></td>
             <td><i><?php echo $userCon['parsedcomment']; ?></i></td>
         </tr>
     <?php endforeach; ?>

@@ -1,7 +1,7 @@
 <?php
 $this->scripto()->postTitle(sprintf($this->translate('Discussion revision: %s'), $media->displayTitle()));
 $this->scripto()->postSubtitle(sprintf(
-    'Revision as of %s by %s',
+    $this->translate('Revision as of %s by %s'),
     $revision['timestamp']->format('G:i:s, j F Y'),
     $this->hyperlink($revision['user'], $this->url('scripto-user-contributions', ['user-id' => $revision['user']]))
 ));

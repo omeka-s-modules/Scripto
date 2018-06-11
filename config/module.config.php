@@ -1,5 +1,14 @@
 <?php
 return [
+    'translator' => [
+        'translation_file_patterns' => [
+            [
+                'type' => 'gettext',
+                'base_dir' => OMEKA_PATH . '/modules/Scripto/language',
+                'pattern' => '%s.mo',
+            ],
+        ],
+    ],
     'service_manager' => [
         'factories' => [
             'Scripto\Mediawiki\ApiClient'  => Scripto\Service\Mediawiki\ApiClientFactory::class,

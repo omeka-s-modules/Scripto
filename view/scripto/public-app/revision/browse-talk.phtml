@@ -3,8 +3,9 @@ $this->scripto()->postTitle(sprintf($this->translate('Discussion revisions: %s')
 ?>
 <div class="resource-content">
     <div class="revisions resource-list">
+        <?php if ($revisions): ?>
         <div class="browse-controls">
-            <button class="compare-selected" data-url="<?php echo $this->escapeHtml($this->url(null, [], true)); ?>">Compare selected</button>
+            <button class="compare-selected" data-url="<?php echo $this->escapeHtml($this->url(null, [], true)); ?>"><?php echo $this->translate('Compare selected'); ?></button>
             <?php echo $this->scripto()->mediawikiPagination(); ?>
         </div>
         <table>
@@ -64,7 +65,7 @@ $this->scripto()->postTitle(sprintf($this->translate('Discussion revisions: %s')
                     <td><?php
                     $sizeDiff = $childRevision ? $revision['size'] - $childRevision['size'] : 0;
                     echo sprintf(
-                        '%s bytes (%s)',
+                        $this->translate('%s bytes (%s)'),
                         number_format($revision['size']),
                         sprintf('%s%s', 0 < $sizeDiff ? '+' : '', number_format($sizeDiff))
                     );
@@ -74,6 +75,11 @@ $this->scripto()->postTitle(sprintf($this->translate('Discussion revisions: %s')
             <?php endforeach; ?>
             </tbody>
         </table>
+        <?php else: ?>
+        <div class="no-resources">
+            <p><?php echo $this->translate('No revisions found'); ?></p>
+        </div>
+        <?php endif; ?>
     </div>
 </div>
 

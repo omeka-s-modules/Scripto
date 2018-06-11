@@ -1,0 +1,1643 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-11 16:20-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: Module.php:402
+msgid ""
+"Missing Scripto configuration. Cannot access Scripto without the MediaWiki "
+"API URL."
+msgstr ""
+
+#: Module.php:434
+#, php-format
+msgid ""
+"The MediaWiki user does not have the necessary permissions to create the "
+"page \"%s\""
+msgstr ""
+
+#: Module.php:440
+#, php-format
+msgid ""
+"The MediaWiki user does not have the necessary permissions to edit the page "
+"\"%s\""
+msgstr ""
+
+#: src/Controller/Admin/ItemController.php:35
+msgid "Set an item set here."
+msgstr ""
+
+#: src/Controller/Admin/ItemController.php:46
+msgid "Set a property here."
+msgstr ""
+
+#: src/Controller/Admin/MediaController.php:165
+#: src/Controller/Admin/MediaController.php:260
+#, php-format
+msgid "Existing expiration time: %s"
+msgstr ""
+
+#: src/Controller/Admin/ProjectController.php:156
+msgid "See this job for sync progress."
+msgstr ""
+
+#: src/Controller/Admin/ProjectController.php:181
+msgid "See this job for import progress."
+msgstr ""
+
+#: src/Controller/Admin/ProjectController.php:206
+msgid "See this job for unimport progress."
+msgstr ""
+
+#: src/ControllerPlugin/Scripto.php:149
+msgid "Successfully logged in to Scripto."
+msgstr ""
+
+#: src/ControllerPlugin/Scripto.php:151
+msgid "Cannot log in to Scripto. Email or password is invalid."
+msgstr ""
+
+#: src/ControllerPlugin/Scripto.php:176
+msgid "Successfully logged out of Scripto."
+msgstr ""
+
+#: src/Site/BlockLayout/Scripto.php:33
+msgid "Select one"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:184 src/ViewHelper/Scripto.php:239
+#, php-format
+msgid "Logged in to Scripto as %s"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:186 src/ViewHelper/Scripto.php:187
+#: src/ViewHelper/Scripto.php:240 view/scripto/admin/index/index.phtml:8
+msgid "Dashboard"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:189 src/ViewHelper/Scripto.php:190
+#: src/ViewHelper/Scripto.php:241 view/scripto/admin/user/contributions.phtml:8
+msgid "Contributions"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:192 src/ViewHelper/Scripto.php:193
+#: src/ViewHelper/Scripto.php:242 view/scripto/admin/user/watchlist.phtml:8
+msgid "Watchlist"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:205
+msgid "Log in to Scripto"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:296 src/ViewHelper/Scripto.php:297
+msgid "First page"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:302 src/ViewHelper/Scripto.php:303
+msgid "Next page"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:331
+#, php-format
+msgid "%s of %s"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:350 view/scripto/admin/media/show-talk.phtml:103
+#: view/scripto/admin/media/show.phtml:104
+msgid "Older revision"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:353 view/scripto/admin/media/show-talk.phtml:108
+#: view/scripto/admin/media/show.phtml:109
+msgid "Newer revision"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:367
+msgid "6 hours"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:368
+msgid "12 hours"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:369
+msgid "1 day"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:370
+msgid "3 days"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:371
+msgid "7 days"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:372
+msgid "30 days"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:373
+msgid "90 days"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:398
+msgid "Period of time to display:"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:462
+msgid "Stop watching media"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:464
+msgid "Watch media"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:466
+msgid "Media successfully saved to your watchlist."
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:467
+msgid "Media successfully removed from your watchlist."
+msgstr ""
+
+#: view/common/block-layout/scripto-block-form.phtml:2
+msgid "Add a link to this Scripto project:"
+msgstr ""
+
+#: view/common/block-layout/scripto-block-form.phtml:5
+#: view/scripto/admin/project/browse.phtml:113
+msgid "No Scripto projects found."
+msgstr ""
+
+#: view/common/block-layout/scripto-block.phtml:4
+msgid "The Scripto project is not found."
+msgstr ""
+
+#: view/layout/layout-scripto-public-app.phtml:2
+#: view/scripto/admin/index/index.phtml:8
+#: view/scripto/admin/project/add.phtml:7
+#: view/scripto/admin/project/browse.phtml:8
+#: view/scripto/admin/user/browse.phtml:8
+msgid "Scripto"
+msgstr ""
+
+#: view/layout/layout-scripto-public-app.phtml:27
+msgid "Toggle menu"
+msgstr ""
+
+#: view/layout/layout-scripto-public-app.phtml:32
+#: view/scripto/admin/project/browse.phtml:8
+#: view/scripto/public-app/project/browse.phtml:2
+msgid "Projects"
+msgstr ""
+
+#: view/layout/layout-scripto-public-app.phtml:35
+#: view/scripto/public-app/index/create-account.phtml:2
+msgid "Create account"
+msgstr ""
+
+#: view/layout/layout-scripto-public-app.phtml:52
+#: view/scripto/public-app/project/guidelines.phtml:2
+msgid "Project guidelines"
+msgstr ""
+
+#: view/layout/layout-scripto-public-app.phtml:53
+msgid "Browse items"
+msgstr ""
+
+#: view/layout/layout-scripto-public-app.phtml:55
+msgid "Browse media"
+msgstr ""
+
+#: view/layout/layout-scripto-public-app.phtml:58
+msgid "View media"
+msgstr ""
+
+#: view/layout/layout-scripto-public-app.phtml:59
+msgid "Browse media revisions"
+msgstr ""
+
+#: view/layout/layout-scripto-public-app.phtml:60
+#: view/scripto/admin/media/show.phtml:26
+msgid "View discussion"
+msgstr ""
+
+#: view/layout/layout-scripto-public-app.phtml:61
+msgid "Browse discussion revisions"
+msgstr ""
+
+#: view/layout/layout-scripto-public-app.phtml:68
+msgid "Content"
+msgstr ""
+
+#: view/scripto/admin/imported-scripto-item.phtml:8
+#: view/scripto/admin/imported-scripto-media.phtml:8
+#: view/scripto/admin/project/show-details.phtml:14
+#: view/scripto/admin/project/show-details.phtml:19
+msgid "Not set"
+msgstr ""
+
+#: view/scripto/admin/index/index.phtml:12
+#: view/scripto/admin/item/browse.phtml:15
+msgid "Actions"
+msgstr ""
+
+#: view/scripto/admin/index/index.phtml:14
+msgid "Browse projects"
+msgstr ""
+
+#: view/scripto/admin/index/index.phtml:16
+#: view/scripto/admin/project/browse.phtml:14
+msgid "Add new project"
+msgstr ""
+
+#: view/scripto/admin/index/index.phtml:18
+msgid "Browse users"
+msgstr ""
+
+#: view/scripto/admin/index/index.phtml:28
+msgid "Projects you own"
+msgstr ""
+
+#: view/scripto/admin/index/index.phtml:28
+#: view/scripto/admin/index/index.phtml:56
+msgid "View all projects"
+msgstr ""
+
+#: view/scripto/admin/index/index.phtml:35
+#: view/scripto/admin/index/index.phtml:63
+#, php-format
+msgid "%s items"
+msgstr ""
+
+#: view/scripto/admin/index/index.phtml:42
+#, php-format
+msgid "You do not own any projects. %s"
+msgstr ""
+
+#: view/scripto/admin/index/index.phtml:46
+msgid "Add a project here."
+msgstr ""
+
+#: view/scripto/admin/index/index.phtml:50
+msgid "You do not own any projects."
+msgstr ""
+
+#: view/scripto/admin/index/index.phtml:56
+msgid "Projects you review"
+msgstr ""
+
+#: view/scripto/admin/index/index.phtml:68
+msgid "You are not reviewing any projects."
+msgstr ""
+
+#: view/scripto/admin/index/index.phtml:74
+msgid "Your recent contributions"
+msgstr ""
+
+#: view/scripto/admin/index/index.phtml:76
+msgid "View your contributions"
+msgstr ""
+
+#: view/scripto/admin/index/index.phtml:103
+#: view/scripto/admin/index/index.phtml:184
+#, php-format
+msgid "discuss #%s"
+msgstr ""
+
+#: view/scripto/admin/index/index.phtml:104
+#: view/scripto/admin/index/index.phtml:185
+#, php-format
+msgid "media #%s"
+msgstr ""
+
+#: view/scripto/admin/index/index.phtml:106
+#: view/scripto/admin/index/index.phtml:116
+#: view/scripto/admin/index/index.phtml:187
+#: view/scripto/admin/index/index.phtml:197
+#: view/scripto/admin/user/contributions.phtml:65
+#: view/scripto/admin/user/contributions.phtml:75
+#: view/scripto/admin/user/watchlist.phtml:72
+#: view/scripto/admin/user/watchlist.phtml:82
+#: view/scripto/public-app/user/contributions.phtml:53
+#: view/scripto/public-app/user/contributions.phtml:63
+#: view/scripto/public-app/user/watchlist.phtml:60
+#: view/scripto/public-app/user/watchlist.phtml:70
+msgid "diff"
+msgstr ""
+
+#: view/scripto/admin/index/index.phtml:117
+#: view/scripto/admin/index/index.phtml:198
+#: view/scripto/admin/user/contributions.phtml:76
+#: view/scripto/admin/user/watchlist.phtml:83
+#: view/scripto/public-app/user/contributions.phtml:64
+#: view/scripto/public-app/user/watchlist.phtml:71
+msgid "hist"
+msgstr ""
+
+#: view/scripto/admin/index/index.phtml:145
+msgid "No contributions found."
+msgstr ""
+
+#: view/scripto/admin/index/index.phtml:147
+msgid "No contributions found. Do you need to log in to Scripto?"
+msgstr ""
+
+#: view/scripto/admin/index/index.phtml:154
+msgid "Your recent watchlist"
+msgstr ""
+
+#: view/scripto/admin/index/index.phtml:156
+msgid "View your watchlist"
+msgstr ""
+
+#: view/scripto/admin/index/index.phtml:226
+msgid "No watchlist found."
+msgstr ""
+
+#: view/scripto/admin/index/index.phtml:228
+msgid "No watchlist found. Do you need to log in to Scripto?"
+msgstr ""
+
+#: view/scripto/admin/item/browse.phtml:17
+msgid "Edit project"
+msgstr ""
+
+#: view/scripto/admin/item/browse.phtml:18
+#: view/scripto/admin/item/browse.phtml:130
+msgid "Sync project"
+msgstr ""
+
+#: view/scripto/admin/item/browse.phtml:19
+#: view/scripto/admin/item/browse.phtml:143
+msgid "Import content"
+msgstr ""
+
+#: view/scripto/admin/item/browse.phtml:20
+#: view/scripto/admin/item/browse.phtml:160
+msgid "Unimport content"
+msgstr ""
+
+#: view/scripto/admin/item/browse.phtml:35
+#: view/scripto/admin/item/browse.phtml:73
+#: view/scripto/admin/item/show-details.phtml:15
+msgid "Date synced"
+msgstr ""
+
+#: view/scripto/admin/item/browse.phtml:39
+#: view/scripto/admin/item/browse.phtml:74
+#: view/scripto/admin/item/show-details.phtml:19
+#: view/scripto/admin/media/browse.phtml:34
+#: view/scripto/admin/media/browse.phtml:114
+#: view/scripto/admin/media/show-details.phtml:37
+#: view/scripto/public-app/item/browse.phtml:24
+#: view/scripto/public-app/item/browse.phtml:57
+#: view/scripto/public-app/item/browse.phtml:108
+#: view/scripto/public-app/media/browse.phtml:29
+#: view/scripto/public-app/media/browse.phtml:78
+#: view/scripto/public-app/media/browse.phtml:112
+msgid "Last edited"
+msgstr ""
+
+#: view/scripto/admin/item/browse.phtml:45
+#: view/scripto/admin/media/browse.phtml:64
+#: view/scripto/public-app/item/browse.phtml:33
+#: view/scripto/public-app/media/browse.phtml:62
+msgid "Is approved"
+msgstr ""
+
+#: view/scripto/admin/item/browse.phtml:49
+#: view/scripto/admin/media/browse.phtml:68
+#: view/scripto/public-app/item/browse.phtml:37
+#: view/scripto/public-app/media/browse.phtml:66
+msgid "Is not approved"
+msgstr ""
+
+#: view/scripto/admin/item/browse.phtml:53
+#: view/scripto/public-app/item/browse.phtml:41
+msgid "Is in progress"
+msgstr ""
+
+#: view/scripto/admin/item/browse.phtml:57
+#: view/scripto/public-app/item/browse.phtml:45
+msgid "Is new"
+msgstr ""
+
+#: view/scripto/admin/item/browse.phtml:61
+#: view/scripto/admin/media/browse.phtml:76
+msgid "Is edited after imported"
+msgstr ""
+
+#: view/scripto/admin/item/browse.phtml:75
+msgid "Media count"
+msgstr ""
+
+#: view/scripto/admin/item/browse.phtml:109
+msgid "No Scripto items found. Do you need to sync the project?"
+msgstr ""
+
+#: view/scripto/admin/item/browse.phtml:111
+msgid "If you have recently synced, the sync job has likely not finished."
+msgstr ""
+
+#: view/scripto/admin/item/browse.phtml:132
+msgid "This project has no item set. Set an item set to enable syncing."
+msgstr ""
+
+#: view/scripto/admin/item/browse.phtml:134
+msgid ""
+"Synchronize this project with the configured item set. Once synchronized, "
+"this project will contain every item in the item set. You should synchronize "
+"periodically, any time items are added or removed from the item set, and "
+"when item media have been added, removed, or reordered."
+msgstr ""
+
+#: view/scripto/admin/item/browse.phtml:145
+msgid "This project has no property. Set a property to enable importing."
+msgstr ""
+
+#: view/scripto/admin/item/browse.phtml:147
+msgid ""
+"Import project content into Omeka. Scripto stores content in a wiki before "
+"it is imported. Importing will copy approved content from the wiki into "
+"Omeka so that it can be viewed and searched."
+msgstr ""
+
+#: view/scripto/admin/item/browse.phtml:149
+#, php-format
+msgid ""
+"%s: All existing values matching the configured import target, property, and "
+"language tag will be overwritten or deleted."
+msgstr ""
+
+#: view/scripto/admin/item/browse.phtml:162
+msgid "This project has no property. Set a property to enable unimporting."
+msgstr ""
+
+#: view/scripto/admin/item/browse.phtml:164
+msgid "Unimport project content from Omeka."
+msgstr ""
+
+#: view/scripto/admin/item/browse.phtml:166
+#, php-format
+msgid ""
+"%s: All existing values matching the configured import target, property, and "
+"language tag will be deleted."
+msgstr ""
+
+#: view/scripto/admin/item/show-details.phtml:1
+msgid "Scripto item metadata"
+msgstr ""
+
+#: view/scripto/admin/item/show-details.phtml:21
+#: view/scripto/admin/media/show-details.phtml:44
+#: view/scripto/public-app/item/browse.phtml:80
+#: view/scripto/public-app/item/browse.phtml:108
+#: view/scripto/public-app/media/browse.phtml:95
+#: view/scripto/public-app/media/browse.phtml:112
+msgid "Not edited"
+msgstr ""
+
+#: view/scripto/admin/item/show-details.phtml:24
+msgid "Total media count"
+msgstr ""
+
+#: view/scripto/admin/item/show-details.phtml:28
+msgid "Is approved media count"
+msgstr ""
+
+#: view/scripto/admin/item/show-details.phtml:32
+msgid "Is completed media count"
+msgstr ""
+
+#: view/scripto/admin/item/show-details.phtml:36
+msgid "Is in progress media count"
+msgstr ""
+
+#: view/scripto/admin/item/show-details.phtml:40
+msgid "Is edited after approved media count"
+msgstr ""
+
+#: view/scripto/admin/item/show-details.phtml:44
+msgid "Is edited after imported media count"
+msgstr ""
+
+#: view/scripto/admin/item/show-details.phtml:48
+msgid "Is synced after imported media count"
+msgstr ""
+
+#: view/scripto/admin/item/show-details.phtml:52
+#: view/scripto/admin/media/show-details.phtml:84
+msgid "Omeka item"
+msgstr ""
+
+#: view/scripto/admin/item/show-details.phtml:58
+#: view/scripto/admin/media/show-details.phtml:90
+#: view/scripto/admin/project/show-details.phtml:9
+msgid "No description"
+msgstr ""
+
+#: view/scripto/admin/media/batch-edit-all.phtml:6
+msgid "Batch edit all media"
+msgstr ""
+
+#: view/scripto/admin/media/batch-edit-all.phtml:34
+#: view/scripto/admin/media/batch-edit.phtml:41
+msgid "Affected media"
+msgstr ""
+
+#: view/scripto/admin/media/batch-edit-all.phtml:35
+#, php-format
+msgid "You are editing %s media."
+msgstr ""
+
+#: view/scripto/admin/media/batch-edit.phtml:6
+msgid "Batch edit media"
+msgstr ""
+
+#: view/scripto/admin/media/batch-edit.phtml:42
+#, php-format
+msgid "You are editing the following %s media:"
+msgstr ""
+
+#: view/scripto/admin/media/browse.phtml:16
+msgid "Omeka item metadata"
+msgstr ""
+
+#: view/scripto/admin/media/browse.phtml:26
+#: view/scripto/public-app/media/browse.phtml:25
+msgid "Position"
+msgstr ""
+
+#: view/scripto/admin/media/browse.phtml:30
+#: view/scripto/admin/media/show-details.phtml:33
+#: view/scripto/admin/project/browse.phtml:36
+#: view/scripto/admin/project/browse.phtml:56
+#: view/scripto/admin/project/show-details.phtml:51
+msgid "Last synced"
+msgstr ""
+
+#: view/scripto/admin/media/browse.phtml:38
+#: view/scripto/admin/media/show-details.phtml:47
+#: view/scripto/public-app/media/browse.phtml:33
+msgid "Last completed"
+msgstr ""
+
+#: view/scripto/admin/media/browse.phtml:42
+#: view/scripto/admin/media/show-details.phtml:59
+#: view/scripto/public-app/media/browse.phtml:37
+msgid "Last approved"
+msgstr ""
+
+#: view/scripto/admin/media/browse.phtml:48
+#: view/scripto/public-app/media/browse.phtml:46
+msgid "Is edited"
+msgstr ""
+
+#: view/scripto/admin/media/browse.phtml:52
+#: view/scripto/public-app/media/browse.phtml:50
+msgid "Is not edited"
+msgstr ""
+
+#: view/scripto/admin/media/browse.phtml:56
+#: view/scripto/public-app/media/browse.phtml:54
+msgid "Is completed"
+msgstr ""
+
+#: view/scripto/admin/media/browse.phtml:60
+#: view/scripto/public-app/media/browse.phtml:58
+msgid "Is not completed"
+msgstr ""
+
+#: view/scripto/admin/media/browse.phtml:72
+msgid "Is edited after approved"
+msgstr ""
+
+#: view/scripto/admin/media/browse.phtml:80
+msgid "Is synced after imported"
+msgstr ""
+
+#: view/scripto/admin/media/browse.phtml:116
+#: view/scripto/admin/media/show-details.phtml:20
+#: view/scripto/admin/media/show-talk.phtml:148
+#: view/scripto/admin/media/show.phtml:248
+msgid "Edit protection"
+msgstr ""
+
+#: view/scripto/admin/media/browse.phtml:153
+msgid "No Scripto media found. Do you need to sync the project?"
+msgstr ""
+
+#: view/scripto/admin/media/browse.phtml:174
+msgid "The Omeka item has no metadata."
+msgstr ""
+
+#: view/scripto/admin/media/show-details.phtml:1
+msgid "Scripto media metadata"
+msgstr ""
+
+#: view/scripto/admin/media/show-details.phtml:28
+msgid "never"
+msgstr ""
+
+#: view/scripto/admin/media/show-details.phtml:54
+#: view/scripto/admin/media/show.phtml:157
+#: view/scripto/admin/media/show.phtml:203
+msgid "[Unknown]"
+msgstr ""
+
+#: view/scripto/admin/media/show-details.phtml:56
+#: view/scripto/admin/media/show.phtml:189
+msgid "Not completed"
+msgstr ""
+
+#: view/scripto/admin/media/show-details.phtml:72
+#: view/scripto/admin/media/show.phtml:235
+msgid "Not approved"
+msgstr ""
+
+#: view/scripto/admin/media/show-details.phtml:75
+msgid "MediaWiki page"
+msgstr ""
+
+#: view/scripto/admin/media/show-details.phtml:80
+msgid "Omeka media"
+msgstr ""
+
+#: view/scripto/admin/media/show-talk.phtml:13
+msgid "Discussion"
+msgstr ""
+
+#: view/scripto/admin/media/show-talk.phtml:25
+#: view/scripto/admin/media/show.phtml:25
+msgid "Revision history"
+msgstr ""
+
+#: view/scripto/admin/media/show-talk.phtml:33
+#: view/scripto/admin/media/show-talk.phtml:49
+#: view/scripto/admin/media/show.phtml:34
+#: view/scripto/admin/media/show.phtml:50
+#: view/scripto/public-app/revision/show-talk.phtml:11
+#: view/scripto/public-app/revision/show-talk.phtml:12
+#: view/scripto/public-app/revision/show.phtml:11
+#: view/scripto/public-app/revision/show.phtml:12
+msgid "Wikitext"
+msgstr ""
+
+#: view/scripto/admin/media/show-talk.phtml:35
+#: view/scripto/admin/media/show.phtml:36
+msgid "Omeka media metadata"
+msgstr ""
+
+#: view/scripto/admin/media/show-talk.phtml:41
+#: view/scripto/admin/media/show.phtml:42
+#: view/scripto/public-app/media/edit-talk.phtml:27
+#: view/scripto/public-app/media/edit.phtml:32
+msgid "Go full screen"
+msgstr ""
+
+#: view/scripto/admin/media/show-talk.phtml:43
+#: view/scripto/admin/media/show.phtml:44
+#: view/scripto/public-app/item/browse.phtml:15
+#: view/scripto/public-app/media/browse.phtml:16
+#: view/scripto/public-app/media/edit-talk.phtml:29
+#: view/scripto/public-app/media/edit.phtml:34
+msgid "Layout"
+msgstr ""
+
+#: view/scripto/admin/media/show-talk.phtml:44
+#: view/scripto/admin/media/show.phtml:45
+#: view/scripto/public-app/media/edit-talk.phtml:30
+#: view/scripto/public-app/media/edit.phtml:35
+msgid "Horizontal view"
+msgstr ""
+
+#: view/scripto/admin/media/show-talk.phtml:45
+#: view/scripto/admin/media/show.phtml:46
+#: view/scripto/public-app/media/edit-talk.phtml:31
+#: view/scripto/public-app/media/edit.phtml:36
+msgid "Vertical view"
+msgstr ""
+
+#: view/scripto/admin/media/show-talk.phtml:54
+#: view/scripto/admin/media/show.phtml:55
+#: view/scripto/public-app/media/edit-talk.phtml:41
+#: view/scripto/public-app/media/edit.phtml:46
+#: view/scripto/public-app/media/show-talk.phtml:30
+#: view/scripto/public-app/media/show.phtml:30
+msgid "Zoom in"
+msgstr ""
+
+#: view/scripto/admin/media/show-talk.phtml:55
+#: view/scripto/admin/media/show.phtml:56
+#: view/scripto/public-app/media/edit-talk.phtml:42
+#: view/scripto/public-app/media/edit.phtml:47
+#: view/scripto/public-app/media/show-talk.phtml:31
+#: view/scripto/public-app/media/show.phtml:31
+msgid "Zoom out"
+msgstr ""
+
+#: view/scripto/admin/media/show-talk.phtml:56
+#: view/scripto/admin/media/show.phtml:57
+#: view/scripto/public-app/media/edit-talk.phtml:43
+#: view/scripto/public-app/media/edit.phtml:48
+#: view/scripto/public-app/media/show-talk.phtml:32
+#: view/scripto/public-app/media/show.phtml:32
+msgid "Rotate right"
+msgstr ""
+
+#: view/scripto/admin/media/show-talk.phtml:57
+#: view/scripto/admin/media/show.phtml:58
+#: view/scripto/public-app/media/edit-talk.phtml:44
+#: view/scripto/public-app/media/edit.phtml:49
+#: view/scripto/public-app/media/show-talk.phtml:33
+#: view/scripto/public-app/media/show.phtml:33
+msgid "Rotate left"
+msgstr ""
+
+#: view/scripto/admin/media/show-talk.phtml:58
+#: view/scripto/admin/media/show.phtml:59
+#: view/scripto/public-app/media/edit-talk.phtml:45
+#: view/scripto/public-app/media/edit.phtml:50
+#: view/scripto/public-app/media/show-talk.phtml:34
+#: view/scripto/public-app/media/show.phtml:34
+msgid "Reset"
+msgstr ""
+
+#: view/scripto/admin/media/show-talk.phtml:92
+#: view/scripto/admin/media/show.phtml:93
+msgid "The Omeka media has no metadata."
+msgstr ""
+
+#: view/scripto/admin/media/show-talk.phtml:113
+#: view/scripto/admin/media/show.phtml:114
+msgid "Latest revision"
+msgstr ""
+
+#: view/scripto/admin/media/show-talk.phtml:118
+#: view/scripto/admin/media/show.phtml:119
+msgid "This revision"
+msgstr ""
+
+#: view/scripto/admin/media/show-talk.phtml:122
+#: view/scripto/admin/media/show.phtml:123
+#: view/scripto/admin/media/show.phtml:153
+#: view/scripto/admin/media/show.phtml:199
+#, php-format
+msgid "%s: %s by %s"
+msgstr ""
+
+#: view/scripto/admin/media/show-talk.phtml:124
+#: view/scripto/admin/media/show.phtml:125
+msgid "Latest"
+msgstr ""
+
+#: view/scripto/admin/media/show-talk.phtml:125
+#: view/scripto/admin/media/show.phtml:126
+msgid "Out-of-date"
+msgstr ""
+
+#: view/scripto/admin/media/show-talk.phtml:136
+#: view/scripto/admin/media/show.phtml:137
+msgid "Revert to this revision."
+msgstr ""
+
+#: view/scripto/admin/media/show-talk.phtml:141
+#: view/scripto/admin/media/show.phtml:142
+msgid "There are no revisions."
+msgstr ""
+
+#: view/scripto/admin/media/show-talk.phtml:163
+#: view/scripto/admin/media/show.phtml:265
+msgid "Revert to this revision"
+msgstr ""
+
+#: view/scripto/admin/media/show-talk.phtml:165
+#: view/scripto/admin/media/show.phtml:267
+#, php-format
+msgid ""
+"%s: You are reverting to an out-of-date revision. Any changes made since "
+"this revision will be lost, including changes that may be constructive. Note "
+"that this revert will not affect which revisions are marked as completed or "
+"approved."
+msgstr ""
+
+#: view/scripto/admin/media/show-talk.phtml:169
+#: view/scripto/admin/media/show.phtml:271
+msgid "Verify changes before confirming this reversion."
+msgstr ""
+
+#: view/scripto/admin/media/show.phtml:149
+msgid "Review status"
+msgstr ""
+
+#: view/scripto/admin/media/show.phtml:165
+msgid "This revision marked as complete."
+msgstr ""
+
+#: view/scripto/admin/media/show.phtml:166
+#: view/scripto/admin/media/show.phtml:182
+msgid "Mark media as not complete"
+msgstr ""
+
+#: view/scripto/admin/media/show.phtml:173
+#, php-format
+msgid "Another revision marked as complete. [%s]"
+msgstr ""
+
+#: view/scripto/admin/media/show.phtml:174
+#: view/scripto/admin/media/show.phtml:220
+msgid "view revision"
+msgstr ""
+
+#: view/scripto/admin/media/show.phtml:191
+#: view/scripto/public-app/media/edit.phtml:23
+msgid "Mark this revision as complete"
+msgstr ""
+
+#: view/scripto/admin/media/show.phtml:192
+msgid "Mark media as complete"
+msgstr ""
+
+#: view/scripto/admin/media/show.phtml:200
+msgid "Approved"
+msgstr ""
+
+#: view/scripto/admin/media/show.phtml:211
+#: view/scripto/admin/revision/compare.phtml:46
+#: view/scripto/public-app/revision/compare.phtml:40
+msgid "This revision marked as approved."
+msgstr ""
+
+#: view/scripto/admin/media/show.phtml:212
+#: view/scripto/admin/media/show.phtml:228
+msgid "Mark media as not approved"
+msgstr ""
+
+#: view/scripto/admin/media/show.phtml:219
+#, php-format
+msgid "Another revision marked as approved. [%s]"
+msgstr ""
+
+#: view/scripto/admin/media/show.phtml:237
+msgid "Mark this revision as approved"
+msgstr ""
+
+#: view/scripto/admin/media/show.phtml:238
+msgid "Mark media as approved"
+msgstr ""
+
+#: view/scripto/admin/project/add.phtml:7
+msgid "New project"
+msgstr ""
+
+#: view/scripto/admin/project/add.phtml:10
+#: view/scripto/admin/project/edit.phtml:10
+msgid "Configuration"
+msgstr ""
+
+#: view/scripto/admin/project/add.phtml:11
+#: view/scripto/admin/project/edit.phtml:11
+msgid "Reviewers"
+msgstr ""
+
+#: view/scripto/admin/project/browse.phtml:32
+#: view/scripto/admin/project/browse.phtml:55
+#: view/scripto/admin/project/show-details.phtml:47
+#: view/scripto/admin/user/browse.phtml:24
+msgid "Date created"
+msgstr ""
+
+#: view/scripto/admin/project/browse.phtml:40
+#: view/scripto/admin/project/browse.phtml:57
+#: view/scripto/admin/project/show-details.phtml:56
+msgid "Last imported"
+msgstr ""
+
+#: view/scripto/admin/project/browse.phtml:109
+#, php-format
+msgid "No Scripto projects found. %s"
+msgstr ""
+
+#: view/scripto/admin/project/browse.phtml:110
+msgid "Add a new project."
+msgstr ""
+
+#: view/scripto/admin/project/reviewers-form.phtml:12
+msgid "Click on a user to add them to the project."
+msgstr ""
+
+#: view/scripto/admin/project/show-details.phtml:1
+msgid "Project metadata"
+msgstr ""
+
+#: view/scripto/admin/project/show-details.phtml:22
+msgid "Language tag"
+msgstr ""
+
+#: view/scripto/admin/project/show-details.phtml:26
+msgid "Import target"
+msgstr ""
+
+#: view/scripto/admin/project/show-details.phtml:33
+msgid "Item and media"
+msgstr ""
+
+#: view/scripto/admin/project/show-details.phtml:44
+msgid "No owner"
+msgstr ""
+
+#: view/scripto/admin/project/show-details.phtml:53
+msgid "Not synced"
+msgstr ""
+
+#: view/scripto/admin/project/show-details.phtml:58
+msgid "Not imported"
+msgstr ""
+
+#: view/scripto/admin/project/show-details.phtml:61
+msgid "Total item count"
+msgstr ""
+
+#: view/scripto/admin/project/show-details.phtml:65
+msgid "Is approved item count"
+msgstr ""
+
+#: view/scripto/admin/project/show-details.phtml:69
+msgid "Is not approved item count"
+msgstr ""
+
+#: view/scripto/admin/revision/browse-talk.phtml:8
+#: view/scripto/admin/revision/browse.phtml:8
+msgid "Revisions"
+msgstr ""
+
+#: view/scripto/admin/revision/browse-talk.phtml:17
+#: view/scripto/admin/revision/browse.phtml:17
+#: view/scripto/public-app/revision/browse-talk.phtml:8
+#: view/scripto/public-app/revision/browse.phtml:8
+msgid "Compare selected"
+msgstr ""
+
+#: view/scripto/admin/revision/browse-talk.phtml:24
+#: view/scripto/admin/revision/browse.phtml:24
+#: view/scripto/public-app/revision/browse-talk.phtml:14
+#: view/scripto/public-app/revision/browse.phtml:14
+msgid "Compare"
+msgstr ""
+
+#: view/scripto/admin/revision/browse-talk.phtml:42
+#: view/scripto/admin/revision/browse-talk.phtml:43
+#: view/scripto/admin/revision/browse.phtml:42
+#: view/scripto/admin/revision/browse.phtml:43
+#: view/scripto/public-app/revision/browse-talk.phtml:32
+#: view/scripto/public-app/revision/browse-talk.phtml:33
+#: view/scripto/public-app/revision/browse.phtml:32
+#: view/scripto/public-app/revision/browse.phtml:33
+msgid "cur"
+msgstr ""
+
+#: view/scripto/admin/revision/browse-talk.phtml:45
+#: view/scripto/admin/revision/browse-talk.phtml:46
+#: view/scripto/admin/revision/browse.phtml:45
+#: view/scripto/admin/revision/browse.phtml:46
+#: view/scripto/public-app/revision/browse-talk.phtml:35
+#: view/scripto/public-app/revision/browse-talk.phtml:36
+#: view/scripto/public-app/revision/browse.phtml:35
+#: view/scripto/public-app/revision/browse.phtml:36
+msgid "prev"
+msgstr ""
+
+#: view/scripto/admin/revision/browse-talk.phtml:51
+#: view/scripto/admin/revision/browse.phtml:51
+#: view/scripto/public-app/revision/browse-talk.phtml:41
+#: view/scripto/public-app/revision/browse.phtml:41
+msgid "From revision"
+msgstr ""
+
+#: view/scripto/admin/revision/browse-talk.phtml:57
+#: view/scripto/admin/revision/browse.phtml:57
+#: view/scripto/public-app/revision/browse-talk.phtml:47
+#: view/scripto/public-app/revision/browse.phtml:47
+msgid "To revision"
+msgstr ""
+
+#: view/scripto/admin/revision/browse-talk.phtml:78
+#: view/scripto/admin/revision/browse.phtml:78
+#: view/scripto/admin/user/contributions.phtml:96
+#: view/scripto/admin/user/watchlist.phtml:94
+#: view/scripto/public-app/revision/browse-talk.phtml:68
+#: view/scripto/public-app/revision/browse.phtml:68
+#: view/scripto/public-app/user/contributions.phtml:84
+#: view/scripto/public-app/user/watchlist.phtml:82
+#, php-format
+msgid "%s bytes (%s)"
+msgstr ""
+
+#: view/scripto/admin/revision/browse-talk.phtml:117
+#: view/scripto/admin/revision/browse.phtml:117
+msgid "This Scripto media has no revisions."
+msgstr ""
+
+#: view/scripto/admin/revision/compare-talk.phtml:7
+#: view/scripto/admin/revision/compare.phtml:6
+msgid "Compare revisions"
+msgstr ""
+
+#: view/scripto/admin/revision/compare-talk.phtml:25
+#: view/scripto/admin/revision/compare-talk.phtml:35
+#: view/scripto/admin/revision/compare.phtml:24
+#: view/scripto/admin/revision/compare.phtml:34
+#: view/scripto/public-app/revision/compare-talk.phtml:18
+#: view/scripto/public-app/revision/compare-talk.phtml:28
+#: view/scripto/public-app/revision/compare.phtml:18
+#: view/scripto/public-app/revision/compare.phtml:28
+#, php-format
+msgid "Revision as of %s"
+msgstr ""
+
+#: view/scripto/admin/revision/compare-talk.phtml:50
+#: view/scripto/admin/revision/compare.phtml:69
+#: view/scripto/public-app/revision/compare-talk.phtml:43
+#: view/scripto/public-app/revision/compare.phtml:63
+msgid "(No difference)"
+msgstr ""
+
+#: view/scripto/admin/revision/compare.phtml:45
+#: view/scripto/public-app/revision/compare.phtml:39
+msgid "This revision marked as completed."
+msgstr ""
+
+#: view/scripto/admin/user/browse.phtml:21
+msgid "Name"
+msgstr ""
+
+#: view/scripto/admin/user/browse.phtml:22
+msgid "MediaWiki groups"
+msgstr ""
+
+#: view/scripto/admin/user/browse.phtml:23
+msgid "Edit count"
+msgstr ""
+
+#: view/scripto/admin/user/contributions.phtml:23
+#: view/scripto/admin/user/watchlist.phtml:27
+#: view/scripto/public-app/user/contributions.phtml:11
+#: view/scripto/public-app/user/watchlist.phtml:15
+msgid "Revision"
+msgstr ""
+
+#: view/scripto/admin/user/contributions.phtml:25
+#: view/scripto/admin/user/watchlist.phtml:24
+#: view/scripto/public-app/user/contributions.phtml:13
+#: view/scripto/public-app/user/watchlist.phtml:12
+msgid "Media #"
+msgstr ""
+
+#: view/scripto/admin/user/contributions.phtml:37
+#: view/scripto/public-app/user/contributions.phtml:25
+msgid "new"
+msgstr ""
+
+#: view/scripto/admin/user/contributions.phtml:38
+#: view/scripto/public-app/user/contributions.phtml:26
+msgid "current"
+msgstr ""
+
+#: view/scripto/admin/user/contributions.phtml:90
+#: view/scripto/admin/user/watchlist.phtml:48
+#: view/scripto/public-app/user/contributions.phtml:78
+#: view/scripto/public-app/user/watchlist.phtml:36
+#, php-format
+msgid "Discuss #%s"
+msgstr ""
+
+#: view/scripto/admin/user/contributions.phtml:91
+#: view/scripto/admin/user/watchlist.phtml:49
+#: view/scripto/public-app/user/contributions.phtml:79
+#: view/scripto/public-app/user/watchlist.phtml:37
+#, php-format
+msgid "Media #%s"
+msgstr ""
+
+#: view/scripto/admin/user/contributions.phtml:92
+#: view/scripto/admin/user/contributions.phtml:95
+#: view/scripto/admin/user/watchlist.phtml:50
+#: view/scripto/admin/user/watchlist.phtml:53
+#: view/scripto/public-app/user/contributions.phtml:80
+#: view/scripto/public-app/user/contributions.phtml:83
+#: view/scripto/public-app/user/watchlist.phtml:38
+#: view/scripto/public-app/user/watchlist.phtml:41
+msgid "n/a"
+msgstr ""
+
+#: view/scripto/admin/user/contributions.phtml:105
+msgid "No user contributions found."
+msgstr ""
+
+#: view/scripto/admin/user/watchlist.phtml:104
+msgid "No watchlist pages found."
+msgstr ""
+
+#: view/scripto/public-app/item/browse.phtml:16
+#: view/scripto/public-app/media/browse.phtml:17
+msgid "List"
+msgstr ""
+
+#: view/scripto/public-app/item/browse.phtml:17
+#: view/scripto/public-app/media/browse.phtml:18
+msgid "Grid"
+msgstr ""
+
+#: view/scripto/public-app/item/browse.phtml:59
+msgid "%"
+msgstr ""
+
+#: view/scripto/public-app/item/browse.phtml:73
+#: view/scripto/public-app/item/browse.phtml:74
+#: view/scripto/public-app/item/browse.phtml:104
+#: view/scripto/public-app/item/browse.phtml:105
+msgid "Item primary media"
+msgstr ""
+
+#: view/scripto/public-app/item/browse.phtml:111
+msgid "Approved media"
+msgstr ""
+
+#: view/scripto/public-app/item/browse.phtml:122
+msgid "No Scripto items found"
+msgstr ""
+
+#: view/scripto/public-app/media/browse.phtml:88
+#: view/scripto/public-app/media/browse.phtml:89
+#: view/scripto/public-app/media/browse.phtml:108
+#: view/scripto/public-app/media/browse.phtml:109
+msgid "Media primary media"
+msgstr ""
+
+#: view/scripto/public-app/media/browse.phtml:119
+msgid "No Scripto media found"
+msgstr ""
+
+#: view/scripto/public-app/media/edit-talk.phtml:9
+#: view/scripto/public-app/media/show-talk.phtml:9
+#, php-format
+msgid "Discussion: %s"
+msgstr ""
+
+#: view/scripto/public-app/media/edit-talk.phtml:10
+#: view/scripto/public-app/media/edit.phtml:10
+#: view/scripto/public-app/media/show-talk.phtml:10
+#: view/scripto/public-app/media/show.phtml:10
+#, php-format
+msgid "Part of %s"
+msgstr ""
+
+#: view/scripto/public-app/media/edit-talk.phtml:18
+#: view/scripto/public-app/media/edit.phtml:18
+msgid "Protection: "
+msgstr ""
+
+#: view/scripto/public-app/media/edit-talk.phtml:19
+#: view/scripto/public-app/media/edit.phtml:19
+msgid "Expiration: "
+msgstr ""
+
+#: view/scripto/public-app/media/edit-talk.phtml:19
+#: view/scripto/public-app/media/edit.phtml:19
+msgid "Never"
+msgstr ""
+
+#: view/scripto/public-app/media/edit-talk.phtml:60
+#: view/scripto/public-app/media/edit.phtml:65
+msgid "Summarize your changes:"
+msgstr ""
+
+#: view/scripto/public-app/media/edit.phtml:22
+msgid "Status: "
+msgstr ""
+
+#: view/scripto/public-app/media/show-talk.phtml:23
+#: view/scripto/public-app/media/show.phtml:23
+msgid "No metadata"
+msgstr ""
+
+#: view/scripto/public-app/media/show-talk.phtml:47
+#: view/scripto/public-app/media/show.phtml:47
+#: view/scripto/public-app/revision/show-talk.phtml:17
+#: view/scripto/public-app/revision/show.phtml:17
+msgid "No HTML"
+msgstr ""
+
+#: view/scripto/public-app/project/browse.phtml:10
+#: view/scripto/public-app/project/browse.phtml:11
+msgid "Project primary media"
+msgstr ""
+
+#: view/scripto/public-app/project/browse.phtml:21
+msgid "No Scripto projects found"
+msgstr ""
+
+#: view/scripto/public-app/revision/browse-talk.phtml:2
+#, php-format
+msgid "Discussion revisions: %s"
+msgstr ""
+
+#: view/scripto/public-app/revision/browse-talk.phtml:80
+#: view/scripto/public-app/revision/browse.phtml:80
+msgid "No revisions found"
+msgstr ""
+
+#: view/scripto/public-app/revision/browse.phtml:2
+#, php-format
+msgid "Revisions: %s"
+msgstr ""
+
+#: view/scripto/public-app/revision/compare-talk.phtml:2
+#, php-format
+msgid "Compare discussion revisions: %s"
+msgstr ""
+
+#: view/scripto/public-app/revision/compare.phtml:2
+#, php-format
+msgid "Compare revisions: %s"
+msgstr ""
+
+#: view/scripto/public-app/revision/show-talk.phtml:2
+#, php-format
+msgid "Discussion revision: %s"
+msgstr ""
+
+#: view/scripto/public-app/revision/show-talk.phtml:4
+#: view/scripto/public-app/revision/show.phtml:4
+#, php-format
+msgid "Revision as of %s by %s"
+msgstr ""
+
+#: view/scripto/public-app/revision/show.phtml:2
+#, php-format
+msgid "Revision: %s"
+msgstr ""
+
+#: view/scripto/public-app/user/contributions.phtml:2
+#, php-format
+msgid "Contributions by %s"
+msgstr ""
+
+#: view/scripto/public-app/user/watchlist.phtml:2
+msgid "Your watchlist"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:58
+msgid "User contributions"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:63
+msgid "User watchlist"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:73
+msgid "Review project"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:78
+msgid "Review item"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:83
+msgid "Review media"
+msgstr ""
+
+#: src/Api/Representation/ScriptoItemRepresentation.php:11
+#: src/Api/Representation/ScriptoMediaRepresentation.php:15
+msgid "New"
+msgstr ""
+
+#: src/Api/Representation/ScriptoItemRepresentation.php:12
+#: src/Api/Representation/ScriptoMediaRepresentation.php:16
+msgid "In progress"
+msgstr ""
+
+#: src/Api/Representation/ScriptoMediaRepresentation.php:467
+msgid "Confirmed only"
+msgstr ""
+
+#: src/Api/Representation/ScriptoMediaRepresentation.php:470
+msgid "Admin only"
+msgstr ""
+
+#: src/Api/Representation/ScriptoMediaRepresentation.php:483
+msgid "Open to all"
+msgstr ""
+
+#: src/Api/Adapter/ScriptoMediaAdapter.php:46
+msgid ""
+"The Scripto\\Api\\Adapter\\ScriptoMediaAdapter adapter does not implement "
+"the create operation."
+msgstr ""
+
+#: src/Api/Adapter/ScriptoMediaAdapter.php:170
+msgid "A Scripto item must not be null."
+msgstr ""
+
+#: src/Api/Adapter/ScriptoMediaAdapter.php:173
+msgid "A media must not be null."
+msgstr ""
+
+#: src/Api/Adapter/ScriptoMediaAdapter.php:179
+msgid "Invalid completed revision ID."
+msgstr ""
+
+#: src/Api/Adapter/ScriptoMediaAdapter.php:186
+msgid "Invalid approved revision ID."
+msgstr ""
+
+#: src/Api/Adapter/ScriptoItemAdapter.php:37
+msgid ""
+"The Scripto\\Api\\Adapter\\ScriptoItemAdapter adapter does not implement the "
+"create operation."
+msgstr ""
+
+#: src/Api/Adapter/ScriptoItemAdapter.php:127
+msgid "A Scripto project must not be null"
+msgstr ""
+
+#: src/Api/Adapter/ScriptoItemAdapter.php:130
+msgid "An item must not be null"
+msgstr ""
+
+#: src/Api/Adapter/ScriptoProjectAdapter.php:74
+msgid "An owner must have an ID"
+msgstr ""
+
+#: src/Api/Adapter/ScriptoProjectAdapter.php:77
+msgid "An item set must have an ID"
+msgstr ""
+
+#: src/Api/Adapter/ScriptoProjectAdapter.php:80
+msgid "A property must have an ID"
+msgstr ""
+
+#: src/Api/Adapter/ScriptoProjectAdapter.php:156
+msgid "A Scripto project title must not be null"
+msgstr ""
+
+#: src/Controller/Admin/MediaController.php:93
+#: src/Controller/Admin/MediaController.php:216
+msgid "Scripto media revision successfully reverted."
+msgstr ""
+
+#: src/Controller/Admin/MediaController.php:150
+#: src/Controller/Admin/MediaController.php:248
+#: src/Controller/PublicApp/MediaController.php:164
+msgid "Scripto media successfully updated."
+msgstr ""
+
+#: src/Controller/Admin/MediaController.php:354
+#: src/Controller/Admin/MediaController.php:440
+msgid "Scripto media successfully edited"
+msgstr ""
+
+#: src/Controller/Admin/ItemController.php:31
+#, php-format
+msgid "This project has no item set. %s"
+msgstr ""
+
+#: src/Controller/Admin/ItemController.php:42
+#, php-format
+msgid "This project has no property. %s"
+msgstr ""
+
+#: src/Controller/Admin/ProjectController.php:43
+msgid "Scripto project successfully created."
+msgstr ""
+
+#: src/Controller/Admin/ProjectController.php:75
+msgid "Scripto project successfully edited."
+msgstr ""
+
+#: src/Controller/Admin/ProjectController.php:102
+msgid "Scripto project successfully deleted"
+msgstr ""
+
+#: src/Controller/Admin/ProjectController.php:152
+#, php-format
+msgid "Syncing Scripto project. This may take a while. %s"
+msgstr ""
+
+#: src/Controller/Admin/ProjectController.php:177
+#, php-format
+msgid "Importing Scripto project text. This may take a while. %s"
+msgstr ""
+
+#: src/Controller/Admin/ProjectController.php:202
+#, php-format
+msgid "Unimporting Scripto project text. This may take a while. %s"
+msgstr ""
+
+#: src/Controller/PublicApp/IndexController.php:28
+msgid "Scripto account successfully created."
+msgstr ""
+
+#: src/Form/ProjectForm.php:17
+msgid "Enter the title of this project."
+msgstr ""
+
+#: src/Form/ProjectForm.php:30
+msgid "Enter the description of this project."
+msgstr ""
+
+#: src/Form/ProjectForm.php:41
+msgid "Guidelines"
+msgstr ""
+
+#: src/Form/ProjectForm.php:42
+msgid "Enter guidelines for producing content for this project."
+msgstr ""
+
+#: src/Form/ProjectForm.php:54
+msgid ""
+"Select the item set used to synchronize project items. Once synchronized, "
+"this project will contain every item in this item set."
+msgstr ""
+
+#: src/Form/ProjectForm.php:60
+msgid "Select an item set"
+msgstr ""
+
+#: src/Form/ProjectForm.php:84
+msgid "Select the property used to store imported content."
+msgstr ""
+
+#: src/Form/ProjectForm.php:100
+msgid "Enter the language of your content using an IETF language tag."
+msgstr ""
+
+#: src/Form/ScriptoLogoutForm.php:15
+msgid "Log out"
+msgstr ""
+
+#: src/Form/ScriptoLoginForm.php:15 src/Form/CreateAccountForm.php:15
+msgid "Username"
+msgstr ""
+
+#: src/Form/ProjectUnimportForm.php:14
+msgid "Unimport project"
+msgstr ""
+
+#: src/Form/CreateAccountForm.php:45
+msgid "Email address"
+msgstr ""
+
+#: src/Form/CreateAccountForm.php:55
+msgid "Real name"
+msgstr ""
+
+#: src/Form/CreateAccountForm.php:65
+msgid "Create your account"
+msgstr ""
+
+#: src/Form/RevisionRevertForm.php:14
+msgid "Confirm reversion"
+msgstr ""
+
+#: src/Form/MediaForm.php:15
+msgid "Toggle complete"
+msgstr ""
+
+#: src/Form/MediaForm.php:28
+msgid "Complete action"
+msgstr ""
+
+#: src/Form/MediaForm.php:29 src/Form/MediaForm.php:54
+msgid "Select action:"
+msgstr ""
+
+#: src/Form/MediaForm.php:40
+msgid "Toggle approved"
+msgstr ""
+
+#: src/Form/MediaForm.php:53
+msgid "Approved action"
+msgstr ""
+
+#: src/Form/MediaForm.php:65 src/Form/MediaBatchForm.php:45
+msgid "Protection level"
+msgstr ""
+
+#: src/Form/MediaForm.php:67 src/Form/MediaBatchForm.php:48
+msgid "Allow all users"
+msgstr ""
+
+#: src/Form/MediaForm.php:68 src/Form/MediaBatchForm.php:49
+msgid "Allow only confirmed users"
+msgstr ""
+
+#: src/Form/MediaForm.php:69 src/Form/MediaBatchForm.php:50
+msgid "Allow only administrators"
+msgstr ""
+
+#: src/Form/MediaForm.php:80 src/Form/MediaBatchForm.php:58
+msgid "Protection expiry"
+msgstr ""
+
+#: src/Form/MediaForm.php:82 src/Form/MediaBatchForm.php:60
+msgid "infinite"
+msgstr ""
+
+#: src/Form/MediaForm.php:83 src/Form/MediaBatchForm.php:61
+msgid "1 hour"
+msgstr ""
+
+#: src/Form/MediaForm.php:85 src/Form/MediaBatchForm.php:63
+msgid "1 week"
+msgstr ""
+
+#: src/Form/MediaForm.php:86 src/Form/MediaBatchForm.php:64
+msgid "2 weeks"
+msgstr ""
+
+#: src/Form/MediaForm.php:87 src/Form/MediaBatchForm.php:65
+msgid "1 month"
+msgstr ""
+
+#: src/Form/MediaForm.php:88 src/Form/MediaBatchForm.php:66
+msgid "3 months"
+msgstr ""
+
+#: src/Form/MediaForm.php:89 src/Form/MediaBatchForm.php:67
+msgid "6 months"
+msgstr ""
+
+#: src/Form/MediaForm.php:90 src/Form/MediaBatchForm.php:68
+msgid "1 year"
+msgstr ""
+
+#: src/Form/MediaPublicAppForm.php:25
+msgid "Change summary"
+msgstr ""
+
+#: src/Form/MediaPublicAppForm.php:34
+msgid "Mark complete"
+msgstr ""
+
+#: src/Form/MediaBatchForm.php:15
+msgid "Completion status"
+msgstr ""
+
+#: src/Form/MediaBatchForm.php:17
+msgid "Complete"
+msgstr ""
+
+#: src/Form/MediaBatchForm.php:18
+msgid "Incomplete"
+msgstr ""
+
+#: src/Form/MediaBatchForm.php:30
+msgid "Approval status"
+msgstr ""
+
+#: src/Form/MediaBatchForm.php:76
+msgid "Watchlist status"
+msgstr ""
+
+#: src/Form/MediaBatchForm.php:78
+msgid "Watch"
+msgstr ""
+
+#: src/Form/MediaBatchForm.php:79
+msgid "Unwatch"
+msgstr ""
+
+#: src/Form/ProjectImportForm.php:14
+msgid "Import project"
+msgstr ""
+
+#: src/Form/ModuleConfigForm.php:27
+msgid "MediaWiki API URL"
+msgstr ""
+
+#: src/Form/ModuleConfigForm.php:28
+msgid "Enter the URL to your MediaWiki API endpoint."
+msgstr ""
+
+#: src/Form/ModuleConfigForm.php:55
+#, php-format
+msgid ""
+"Invalid MediaWiki API. The URL must resolve to a MediaWiki API endpoint and "
+"the MediaWiki version must be %s or greater."
+msgstr ""

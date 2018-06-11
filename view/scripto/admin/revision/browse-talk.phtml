@@ -14,7 +14,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto browse revision no
 <?php if ($revisions): ?>
 
 <div class="browse-controls">
-    <button class="compare-selected" data-url="<?php echo $this->escapeHtml($this->url(null, [], true)); ?>">Compare selected</button>
+    <button class="compare-selected" data-url="<?php echo $this->escapeHtml($this->url(null, [], true)); ?>"><?php echo $this->translate('Compare selected'); ?></button>
     <?php echo $this->scripto()->mediawikiPagination(); ?>
 </div>
 
@@ -75,7 +75,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto browse revision no
             <td><?php
             $sizeDiff = $childRevision ? $revision['size'] - $childRevision['size'] : 0;
             echo sprintf(
-                '%s bytes (%s)',
+                $this->translate('%s bytes (%s)'),
                 number_format($revision['size']),
                 sprintf('%s%s', 0 < $sizeDiff ? '+' : '', number_format($sizeDiff))
             );
