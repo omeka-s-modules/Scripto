@@ -384,14 +384,6 @@ class Scripto extends AbstractHelper
 <label for="time-period">%s</label>
 <select id="time-period" name="hours" data-url="%s">%s</select>
 </div>
-<script>
-// Handle a time period selection.
-$('#time-period').on('change', function() {
-    var thisSelect = $(this);
-    var params = {'hours': thisSelect.val()};
-    window.location.href = thisSelect.data('url') + '?' + $.param(params);
-});
-</script>
 HTML;
         return sprintf(
             $html,

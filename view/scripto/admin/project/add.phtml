@@ -1,4 +1,5 @@
 <?php
+$this->headScript()->appendFile($this->assetUrl('js/project-form.js', 'Scripto'));
 $this->ckEditor();
 $this->htmlElement('body')->appendAttribute('class', 'scripto project add');
 $form->prepare();
@@ -29,7 +30,3 @@ $form->prepare();
 <?php echo $this->partial('reviewers-form'); ?>
 
 <?php echo $this->form()->closeTag(); ?>
-
-<script>
-CKEDITOR.inline(document.getElementById('o-module-scripto-guidelines'));
-</script>
