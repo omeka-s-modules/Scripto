@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-12 10:41-0400\n"
+"POT-Creation-Date: 2018-06-12 12:03-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -172,6 +172,62 @@ msgstr ""
 
 #: src/ViewHelper/Scripto.php:467
 msgid "Media successfully removed from your watchlist."
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:475
+msgid "Italic"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:476
+msgid "Bold"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:477
+msgid "Strike out"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:478
+msgid "Underline"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:479
+msgid "Blockquote"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:480
+msgid "Hidden comment"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:481
+msgid "Level 1 heading"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:482
+msgid "Level 2 heading"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:483
+msgid "Level 3 heading"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:484
+msgid "Level 4 heading"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:485
+msgid "Level 5 heading"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:486
+msgid "Preformatted"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:487
+msgid "Horizontal rule"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:489
+msgid "Signature"
 msgstr ""
 
 #: view/common/block-layout/scripto-block-form.phtml:2

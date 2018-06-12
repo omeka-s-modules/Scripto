@@ -467,4 +467,31 @@ HTML;
             $view->translate('Media successfully removed from your watchlist.')
         );
     }
+
+    /**
+     * Get translations for the wikitext editor.
+     *
+     * @return string JSON encoded string of translations
+     */
+    public function getWikitextEditorTranslations()
+    {
+        $view = $this->getView();
+        return json_encode([
+            'Italic' => $view->translate('Italic'),
+            'Bold' => $view->translate('Bold'),
+            'Strike out' => $view->translate('Strike out'),
+            'Underline' => $view->translate('Underline'),
+            'Blockquote' => $view->translate('Blockquote'),
+            'Hidden comment' => $view->translate('Hidden comment'),
+            'Level 1 heading' => $view->translate('Level 1 heading'),
+            'Level 2 heading' => $view->translate('Level 2 heading'),
+            'Level 3 heading' => $view->translate('Level 3 heading'),
+            'Level 4 heading' => $view->translate('Level 4 heading'),
+            'Level 5 heading' => $view->translate('Level 5 heading'),
+            'Preformatted' => $view->translate('Preformatted'),
+            'Horizontal rule' => $view->translate('Horizontal rule'),
+            'Line break' => $view->translate('Line break'),
+            'Signature' => $view->translate('Signature'),
+        ]);
+    }
 }

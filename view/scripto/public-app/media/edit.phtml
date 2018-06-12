@@ -37,7 +37,7 @@ $this->scripto()->postSubtitle(sprintf($this->translate('Part of %s'), $sItem->l
             </div>
             <div class="wikitext-flex">
                 <div class="textarea-flex">
-                    <div id="wikitext-editor-buttons"></div>
+                    <div id="wikitext-editor-buttons" data-wikitext-editor-translations="<?php echo $this->escapeHtml($this->scripto()->getWikitextEditorTranslations()); ?>"></div>
                     <?php echo $this->formTextarea($mediaForm->get('wikitext')); ?>
                 </div>
                 <?php if ($sMedia->isRenderableImage()): ?>

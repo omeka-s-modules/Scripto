@@ -1,6 +1,10 @@
 /**
  * Add wikitext editing buttons.
  *
+ * To translate the titles of buttons that are added in addBasicButtons(), add a
+ * data attribute to the button container containing an object where keys are
+ * original strings and values are translated strings.
+ *
  * @param textarea The wikitext textarea
  * @param buttonContainer The editor buttons container
  */
@@ -8,6 +12,9 @@ function WikitextEditor(textarea, buttonContainer) {
 
     this.textarea = textarea;
     this.buttonContainer = buttonContainer;
+
+    var translations = buttonContainer.dataset.wikitextEditorTranslations
+    this.translations = translations ? JSON.parse(translations) : {};
 
     /**
      * Add a wikitext button
@@ -19,6 +26,7 @@ function WikitextEditor(textarea, buttonContainer) {
      */
     this.addButton = function(id, title, prepend, append) {
         var button = document.createElement('button');
+        title = (title in this.translations) ? this.translations[title] : title;
         button.id = id;
         button.title = title;
         button.appendChild(document.createTextNode(title));
