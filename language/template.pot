@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-11 16:20-0400\n"
+"POT-Creation-Date: 2018-06-12 10:23-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -631,6 +631,10 @@ msgstr ""
 msgid "Is synced after imported"
 msgstr ""
 
+#: view/scripto/admin/media/browse.phtml:110
+msgid "Select all"
+msgstr ""
+
 #: view/scripto/admin/media/browse.phtml:116
 #: view/scripto/admin/media/show-details.phtml:20
 #: view/scripto/admin/media/show-talk.phtml:148
@@ -945,6 +949,10 @@ msgstr ""
 msgid "Project metadata"
 msgstr ""
 
+#: view/scripto/admin/project/show-details.phtml:17
+msgid "Property"
+msgstr ""
+
 #: view/scripto/admin/project/show-details.phtml:22
 msgid "Language tag"
 msgstr ""
@@ -998,6 +1006,17 @@ msgstr ""
 #: view/scripto/public-app/revision/browse-talk.phtml:14
 #: view/scripto/public-app/revision/browse.phtml:14
 msgid "Compare"
+msgstr ""
+
+#: view/scripto/admin/revision/browse-talk.phtml:27
+#: view/scripto/admin/revision/browse.phtml:27
+#: view/scripto/admin/user/contributions.phtml:28
+#: view/scripto/admin/user/watchlist.phtml:29
+#: view/scripto/public-app/revision/browse-talk.phtml:17
+#: view/scripto/public-app/revision/browse.phtml:17
+#: view/scripto/public-app/user/contributions.phtml:16
+#: view/scripto/public-app/user/watchlist.phtml:17
+msgid "Size"
 msgstr ""
 
 #: view/scripto/admin/revision/browse-talk.phtml:42
@@ -1640,4 +1659,24 @@ msgstr ""
 msgid ""
 "Invalid MediaWiki API. The URL must resolve to a MediaWiki API endpoint and "
 "the MediaWiki version must be %s or greater."
+msgstr ""
+
+#: vocabs/scripto.n3
+msgid "A plain text representation of the content of a resource."
+msgstr ""
+
+#: vocabs/scripto.n3
+msgid "transcription"
+msgstr ""
+
+#: vocabs/scripto.n3
+msgid "A transcription of a resource."
+msgstr ""
+
+#: vocabs/scripto.n3
+msgid "translation"
+msgstr ""
+
+#: vocabs/scripto.n3
+msgid "A translation of a resource."
 msgstr ""

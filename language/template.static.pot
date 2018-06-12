@@ -1,0 +1,24 @@
+#: vocabs/scripto.n3
+msgid "content"
+msgstr ""
+
+#: vocabs/scripto.n3
+msgid "A plain text representation of the content of a resource."
+msgstr ""
+
+#: vocabs/scripto.n3
+msgid "transcription"
+msgstr ""
+
+#: vocabs/scripto.n3
+msgid "A transcription of a resource."
+msgstr ""
+
+#: vocabs/scripto.n3
+msgid "translation"
+msgstr ""
+
+#: vocabs/scripto.n3
+msgid "A translation of a resource."
+msgstr ""
+
