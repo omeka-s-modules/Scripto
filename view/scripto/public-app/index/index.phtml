@@ -1,1 +1,161 @@
+    <div class="recent-contributions panel">
+        <h4>
+            <?php echo $this->translate('Your recent contributions'); ?>
+            <?php if (!isset($user['invalid'])): ?>
+            <?php echo $this->hyperlink($this->translate('View your contributions'), $this->url('scripto-user-contributions', ['user-id' => $user['name']]), ['class' => 'button']); ?>
+            <?php endif; ?>
+        </h4>
+        <?php if (!isset($user['invalid']) && $userCons): ?>
+        <ul>
+        <?php foreach ($userCons as $userCon): ?>
+            <?php
+            $date = $this->i18n()->dateFormat($userCon['timestamp'], 'short', 'short');
+            $sMedia = isset($userCon['scripto_media']) ? $userCon['scripto_media'] : null;
+            $sItem = $sMedia ? $sMedia->scriptoItem() : null;
+            $project = $sItem ? $sItem->scriptoProject() : null;
+            $sizeDiffText = sprintf('%s%s', 0 < $userCon['sizediff'] ? '+' : '', number_format($userCon['sizediff']));
+            $isTalk = (1 === $userCon['ns']);
+            ?>
+            <li>
+                <?php if ($sMedia): ?>
+                <?php echo sprintf(
+                    '%s (%s) (%s | %s) %s (%s) <i>%s</i>',
+                    $this->hyperlink($sItem->item()->displayTitle(), $this->url(
+                        $isTalk ? 'scripto-talk-media-id' : 'scripto-media-id',
+                        [
+                            'project-id' => $project->id(),
+                            'item-id' => $sItem->item()->id(),
+                            'media-id' => $sMedia->media()->id(),
+                        ]
+                    )),
+                    $isTalk
+                        ? sprintf($this->translate('discuss #%s'), $sMedia->position())
+                        : sprintf($this->translate('media #%s'), $sMedia->position()),
+                    $userCon['parentid']
+                        ? $this->hyperlink($this->translate('diff'), $this->url(
+                            $isTalk ? 'scripto-talk-revision-compare' : 'scripto-revision-compare',
+                            [
+                                'project-id' => $project->id(),
+                                'item-id' => $sItem->item()->id(),
+                                'media-id' => $sMedia->media()->id(),
+                                'from-revision-id' => $userCon['parentid'],
+                                'to-revision-id' => $userCon['revid'],
+                            ]
+                        ))
+                        : $this->translate('diff'),
+                    $this->hyperlink($this->translate('hist'), $this->url(
+                        $isTalk ? 'scripto-talk-revision' : 'scripto-revision',
+                        [
+                            'project-id' => $project->id(),
+                            'item-id' => $sItem->item()->id(),
+                            'media-id' => $sMedia->media()->id(),
+                        ]
+                    )),
+                    $this->hyperlink($date, $this->url(
+                        $isTalk ? 'scripto-talk-revision-id' : 'scripto-revision-id',
+                        [
+                            'project-id' => $project->id(),
+                            'item-id' => $sItem->item()->id(),
+                            'media-id' => $sMedia->media()->id(),
+                            'revision-id' => $userCon['revid'],
+                        ]
+                    )),
+                    $sizeDiffText,
+                    strip_tags($userCon['parsedcomment'])
+                ); ?>
+                <?php else: ?>
+                <?php echo sprintf('%s: %s (%s) <i>%s</i>', $userCon['title'], $date, $sizeDiffText, $userCon['parsedcomment']); ?>
+                <?php endif; ?>
+            </li>
+        <?php endforeach; ?>
+        </ul>
+        <?php else: ?>
+        <?php if ($this->scripto()->apiClient()->userIsLoggedIn()): ?>
+        <p><?php echo $this->translate('No contributions found.'); ?></p>
+        <?php else: ?>
+        <p><?php echo $this->translate('No contributions found. Do you need to log in to Scripto?'); ?></p>
+        <?php endif; ?>
+        <?php endif; ?>
+    </div>
+
+    <div class="recent-watchlist panel">
+        <h4>
+            <?php echo $this->translate('Your recent watchlist'); ?>
+            <?php if (!isset($user['invalid'])): ?>
+            <?php echo $this->hyperlink($this->translate('View your watchlist'), $this->url('scripto-user-watchlist', ['user-id' => $user['name']]), ['class' => 'button']); ?>
+            <?php endif; ?>
+        </h4>
+        <?php if (!isset($user['invalid']) && $watchlist): ?>
+        <ul>
+        <?php foreach ($watchlist as $page): ?>
+            <?php
+            $date = $this->i18n()->dateFormat($page['timestamp'], 'short', 'short');
+            $sizeDiff = $page['newlen'] - $page['oldlen'];
+            $sizeDiffText = sprintf('%s%s', 0 < $sizeDiff ? '+' : '', number_format($sizeDiff));
+            $sMedia = isset($page['scripto_media']) ? $page['scripto_media'] : null;
+            $sItem = $sMedia ? $sMedia->scriptoItem() : null;
+            $project = $sItem ? $sItem->scriptoProject() : null;
+            $isTalk = (1 === $page['ns']);
+            ?>
+            <li>
+                <?php if ($sMedia): ?>
+                <?php echo sprintf(
+                    '%s (%s) (%s | %s) %s (%s) <i>%s</i>',
+                    $this->hyperlink($sItem->item()->displayTitle(), $this->url(
+                        $isTalk ? 'scripto-talk-media-id' : 'scripto-media-id',
+                        [
+                            'project-id' => $project->id(),
+                            'item-id' => $sItem->item()->id(),
+                            'media-id' => $sMedia->media()->id(),
+                        ]
+                    )),
+                    $isTalk
+                        ? sprintf($this->translate('discuss #%s'), $sMedia->position())
+                        : sprintf($this->translate('media #%s'), $sMedia->position()),
+                    $page['old_revid']
+                        ? $this->hyperlink($this->translate('diff'), $this->url(
+                            $isTalk ? 'scripto-talk-revision-compare' : 'scripto-revision-compare',
+                            [
+                                'project-id' => $project->id(),
+                                'item-id' => $sItem->item()->id(),
+                                'media-id' => $sMedia->media()->id(),
+                                'from-revision-id' => $page['old_revid'],
+                                'to-revision-id' => $page['revid'],
+                            ]
+                        ))
+                        : $this->translate('diff'),
+                    $this->hyperlink($this->translate('hist'), $this->url(
+                        $isTalk ? 'scripto-talk-revision' : 'scripto-revision',
+                        [
+                            'project-id' => $project->id(),
+                            'item-id' => $sItem->item()->id(),
+                            'media-id' => $sMedia->media()->id(),
+                        ]
+                    )),
+                    $this->hyperlink($date, $this->url(
+                        $isTalk ? 'scripto-talk-revision-id' : 'scripto-revision-id',
+                        [
+                            'project-id' => $project->id(),
+                            'item-id' => $sItem->item()->id(),
+                            'media-id' => $sMedia->media()->id(),
+                            'revision-id' => $page['revid'],
+                        ]
+                    )),
+                    $sizeDiffText,
+                    strip_tags($page['parsedcomment'])
+                ); ?>
+                <?php else: ?>
+                <?php echo sprintf('%s: %s (%s) <i>%s</i>', $date, $page['title'], $sizeDiffText, $page['parsedcomment']); ?>
+                <?php endif; ?>
+            </li>
+        <?php endforeach; ?>
+        </ul>
+        <?php else: ?>
+        <?php if ($this->scripto()->apiClient()->userIsLoggedIn()): ?>
+        <p><?php echo $this->translate('No watchlist found.'); ?></p>
+        <?php else: ?>
+        <p><?php echo $this->translate('No watchlist found. Do you need to log in to Scripto?'); ?></p>
+        <?php endif; ?>
+        <?php endif; ?>
+    </div>
 

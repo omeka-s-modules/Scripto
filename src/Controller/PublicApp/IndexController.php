@@ -10,6 +10,24 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
+        $userInfo = $this->scripto()->apiClient()->queryUserInfo();
+        $user = $this->scripto()->apiClient()->queryUser($userInfo['name']);
+
+        $userCons = [];
+        $watchlist = [];
+        if ($this->scripto()->apiClient()->userIsLoggedIn()) {
+            $response = $this->scripto()->apiClient()->queryUserContributions($userInfo['name'], 10);
+            $userCons = $this->scripto()->prepareMediawikiList($response['query']['usercontribs']);
+
+            $response = $this->scripto()->apiClient()->queryWatchlist(720, 20); // 30 days
+            $watchlist = $this->scripto()->prepareMediawikiList($response['query']['watchlist']);
+        }
+
+        $view = new ViewModel;
+        $view->setVariable('user', $user);
+        $view->setVariable('userCons', $userCons);
+        $view->setVariable('watchlist', $watchlist);
+        return $view;
     }
 
     public function createAccountAction()
