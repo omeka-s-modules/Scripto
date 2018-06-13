@@ -461,11 +461,11 @@ HTML;
     }
 
     /**
-     * Get translations for the wikitext editor.
+     * Get translations for the LML editor.
      *
      * @return string JSON encoded string of translations
      */
-    public function getWikitextEditorTranslations()
+    public function getLmlEditorTranslations()
     {
         $view = $this->getView();
         return json_encode([

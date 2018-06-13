@@ -1,23 +1,23 @@
 /**
- * Add wikitext editing buttons.
+ * Turn any textarea into a lightweight markup language (LML) editor.
  *
- * To translate the titles of buttons that are added in addBasicButtons(), add a
- * data attribute to the button container containing an object where keys are
+ * To translate button titles, add a "data-lml-editor-translations" data
+ * attribute to the button container containing a JSON object where keys are
  * original strings and values are translated strings.
  *
- * @param textarea The wikitext textarea
+ * @param textarea The editor textarea
  * @param buttonContainer The editor buttons container
  */
-function WikitextEditor(textarea, buttonContainer) {
+function LmlEditor(textarea, buttonContainer) {
 
     this.textarea = textarea;
     this.buttonContainer = buttonContainer;
 
-    var translations = buttonContainer.dataset.wikitextEditorTranslations
+    var translations = buttonContainer.dataset.lmlEditorTranslations
     this.translations = translations ? JSON.parse(translations) : {};
 
     /**
-     * Add a wikitext button
+     * Add a LML button
      *
      * @param id Button ID
      * @param title Button title
@@ -53,11 +53,11 @@ function WikitextEditor(textarea, buttonContainer) {
     };
 
     /**
-     * Add a basic set of buttons.
+     * Add MediaWiki buttons.
      *
      * @see https://www.mediawiki.org/wiki/Help:Formatting
      */
-    this.addBasicButtons = function() {
+    this.addMediawikiButtons = function() {
         this.addButton('wikitext-editor-button-italic', 'Italic', "''", "''");
         this.addButton('wikitext-editor-button-bold', 'Bold', "'''", "'''");
         this.addButton('wikitext-editor-button-strike', 'Strike out', "<s>", "</s>");

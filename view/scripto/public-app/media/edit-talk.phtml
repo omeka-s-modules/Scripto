@@ -3,7 +3,7 @@ $this->headLink()->appendStylesheet($this->assetUrl('vendor/featherlight/feather
 $this->headLink()->appendStylesheet('https://use.fontawesome.com/releases/v5.0.9/css/all.css');
 $this->headScript()->appendFile($this->assetUrl('vendor/jquery-panzoom/jquery.panzoom.min.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('vendor/featherlight/featherlight.min.js', 'Scripto'));
-$this->headScript()->appendFile($this->assetUrl('js/wikitext-editor.js', 'Scripto'));
+$this->headScript()->appendFile($this->assetUrl('js/LmlEditor.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/common/media.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/public-app/media-edit.js', 'Scripto'));
 
@@ -33,7 +33,7 @@ $this->scripto()->postSubtitle(sprintf($this->translate('Part of %s'), $sItem->l
             </div>
             <div class="wikitext-flex">
                 <div class="textarea-flex">
-                    <div id="wikitext-editor-buttons" data-wikitext-editor-translations="<?php echo $this->escapeHtml($this->scripto()->getWikitextEditorTranslations()); ?>"></div>
+                    <div id="wikitext-editor-buttons" data-lml-editor-translations="<?php echo $this->escapeHtml($this->scripto()->getLmlEditorTranslations()); ?>"></div>
                     <?php echo $this->formTextarea($mediaForm->get('wikitext')); ?>
                 </div>
                 <?php if ($sMedia->isRenderableImage()): ?>

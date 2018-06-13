@@ -38,12 +38,12 @@ if ($('.image.panzoom-container').length) {
 
             // Apply wikitext editor to lightbox textarea.
             if ($('#wikitext-editor-text').length) {
-                var wikitextEditor = new WikitextEditor(
+                var lmlEditor = new LmlEditor(
                     $('.featherlight-content #wikitext-editor-text')[0],
                     $('.featherlight-content #wikitext-editor-buttons')[0],
                 );
                 $('.featherlight-content #wikitext-editor-buttons').empty();
-                wikitextEditor.addBasicButtons();
+                lmlEditor.addMediawikiButtons();
             }
         },
         beforeClose: function() {
