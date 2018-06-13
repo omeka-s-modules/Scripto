@@ -1,20 +1,14 @@
 $(document).ready(function() {
 
-$('.menu-toggle').click(function(e) {
+$('.menu-toggle').on('click', function(e) {
     e.preventDefault();
-    var button = $(this);
-    var menu = button.parent();
-    var dropdown = button.next();
-    menu.toggleClass('open');
-    $(document).on('mouseup', button, function(e) {
-        if (dropdown.is(e.target) || $.contains(dropdown[0], e.target)) {
-            return;
-        }
-        if (!button.is(e.target)) {
-            button.click();
-        }
-        $(document).off('mouseup', button);
-    });
+    var thisMenu = $(this).parent();
+    thisMenu.toggleClass('open');
+    if (thisMenu.hasClass('sorting-toggle')) {
+        $('.filtering-toggle').removeClass('open');
+    } else if (thisMenu.hasClass('filtering-toggle')) {
+        $('.sorting-toggle').removeClass('open');
+    }
 });
 
 var listButton = $('.list-layout .list');
