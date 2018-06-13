@@ -6,7 +6,8 @@ $this->headScript()->appendFile($this->assetUrl('vendor/jquery-panzoom/jquery.pa
 $this->headScript()->appendFile($this->assetUrl('vendor/featherlight/featherlight.min.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/admin.js', 'Scripto'));
-$this->headScript()->appendFile($this->assetUrl('js/media-review.js', 'Scripto'));
+$this->headScript()->appendFile($this->assetUrl('js/common/media.js', 'Scripto'));
+$this->headScript()->appendFile($this->assetUrl('js/admin/media-show.js', 'Scripto'));
 $this->htmlElement('body')->appendAttribute('class', 'scripto media show');
 ?>
 
