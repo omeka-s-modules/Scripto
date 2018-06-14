@@ -34,7 +34,7 @@ $this->scripto()->postTitle($this->translate('Your watchlist'));
                 <td>
                     <?php echo $sMedia
                     ? $isTalk
-                        ? $this->hyperlink(sprintf($this->translate('Discuss #%s'), $sMedia->position()), $sMedia->url('talk'))
+                        ? $this->hyperlink(sprintf($this->translate('Media #%s (discussion)'), $sMedia->position()), $sMedia->url('talk'))
                         : $this->hyperlink(sprintf($this->translate('Media #%s'), $sMedia->position()), $sMedia->url())
                     : $this->translate('n/a'); ?>
                 </td>

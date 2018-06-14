@@ -75,8 +75,8 @@ $this->scripto()->postTitle(sprintf($this->translate('Contributions by %s'), $us
                 <td class="number">
                     <?php echo $sMedia
                     ? $isTalk
-                        ? $this->hyperlink($sMedia->position(), $sMedia->url('talk'))
-                        : $this->hyperlink($sMedia->position(), $sMedia->url())
+                        ? $this->hyperlink(sprintf($this->translate('Media #%s (discussion)'), $sMedia->position()), $sMedia->url('talk'))
+                        : $this->hyperlink(sprintf($this->translate('Media #%s'), $sMedia->position()), $sMedia->url())
                     : $this->translate('n/a'); ?>
                 </td>
                 <td class="item"><?php echo $sItem ? $sItem->link($sItem->item()->displayTitle()) : $userCon['title']; ?></td>

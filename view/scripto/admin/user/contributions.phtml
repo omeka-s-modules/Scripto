@@ -87,7 +87,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto user contribution 
             <td>
                 <?php echo $sMedia
                 ? $isTalk
-                    ? $this->hyperlink(sprintf($this->translate('Discuss #%s'), $sMedia->position()), $sMedia->adminUrl('talk'))
+                    ? $this->hyperlink(sprintf($this->translate('Media #%s (discussion)'), $sMedia->position()), $sMedia->adminUrl('talk'))
                     : $this->hyperlink(sprintf($this->translate('Media #%s'), $sMedia->position()), $sMedia->adminUrl())
                 : $this->translate('n/a'); ?>
             </td>
