@@ -642,7 +642,7 @@ nav.pagination .row-count {
     position: relative;
 }
 
-.wikitext-featherlight h3:after {
+.wikitext-featherlight h3:before {
     content: "";
     position: absolute;
     top: -12px;
@@ -962,14 +962,23 @@ div.resource-row {
     color: $grey-color-dark;
     text-indent: -9999px;
     overflow: hidden;
-    word-break: break-all;
     float: left;
+    position: relative;
+    min-width: $spacing-unit;
 
     &:before {
         @include font-awesome;
         font-weight: 900;
         text-indent: 0;
-        float: left;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        line-height: 1.5;
+        padding: .125 * $spacing-unit;
+        text-align: center;
     }
 
     &:hover {
@@ -1053,7 +1062,7 @@ div.resource-row {
     position: relative;
 }
 
-.wikitext-featherlight h3:after {
+.wikitext-featherlight h3:before {
     content: "";
     position: absolute;
     top: -12px;
