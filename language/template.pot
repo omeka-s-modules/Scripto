@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-12 12:03-0400\n"
+"POT-Creation-Date: 2018-06-14 17:24-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -95,7 +95,7 @@ msgid "Contributions"
 msgstr ""
 
 #: src/ViewHelper/Scripto.php:192 src/ViewHelper/Scripto.php:193
-#: src/ViewHelper/Scripto.php:242 view/scripto/admin/user/watchlist.phtml:8
+#: src/ViewHelper/Scripto.php:242 view/scripto/admin/user/watchlist.phtml:9
 msgid "Watchlist"
 msgstr ""
 
@@ -116,13 +116,13 @@ msgstr ""
 msgid "%s of %s"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:350 view/scripto/admin/media/show-talk.phtml:103
-#: view/scripto/admin/media/show.phtml:104
+#: src/ViewHelper/Scripto.php:350 view/scripto/admin/media/show-talk.phtml:104
+#: view/scripto/admin/media/show.phtml:105
 msgid "Older revision"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:353 view/scripto/admin/media/show-talk.phtml:108
-#: view/scripto/admin/media/show.phtml:109
+#: src/ViewHelper/Scripto.php:353 view/scripto/admin/media/show-talk.phtml:109
+#: view/scripto/admin/media/show.phtml:110
 msgid "Newer revision"
 msgstr ""
 
@@ -154,79 +154,79 @@ msgstr ""
 msgid "90 days"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:398
+#: src/ViewHelper/Scripto.php:390
 msgid "Period of time to display:"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:462
+#: src/ViewHelper/Scripto.php:454
 msgid "Stop watching media"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:464
+#: src/ViewHelper/Scripto.php:456
 msgid "Watch media"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:466
+#: src/ViewHelper/Scripto.php:458
 msgid "Media successfully saved to your watchlist."
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:467
+#: src/ViewHelper/Scripto.php:459
 msgid "Media successfully removed from your watchlist."
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:475
+#: src/ViewHelper/Scripto.php:472
 msgid "Italic"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:476
+#: src/ViewHelper/Scripto.php:473
 msgid "Bold"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:477
+#: src/ViewHelper/Scripto.php:474
 msgid "Strike out"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:478
+#: src/ViewHelper/Scripto.php:475
 msgid "Underline"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:479
+#: src/ViewHelper/Scripto.php:476
 msgid "Blockquote"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:480
+#: src/ViewHelper/Scripto.php:477
 msgid "Hidden comment"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:481
+#: src/ViewHelper/Scripto.php:478
 msgid "Level 1 heading"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:482
+#: src/ViewHelper/Scripto.php:479
 msgid "Level 2 heading"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:483
+#: src/ViewHelper/Scripto.php:480
 msgid "Level 3 heading"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:484
+#: src/ViewHelper/Scripto.php:481
 msgid "Level 4 heading"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:485
+#: src/ViewHelper/Scripto.php:482
 msgid "Level 5 heading"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:486
+#: src/ViewHelper/Scripto.php:483
 msgid "Preformatted"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:487
+#: src/ViewHelper/Scripto.php:484
 msgid "Horizontal rule"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:489
+#: src/ViewHelper/Scripto.php:486
 msgid "Signature"
 msgstr ""
 
@@ -245,7 +245,7 @@ msgstr ""
 
 #: view/layout/layout-scripto-public-app.phtml:2
 #: view/scripto/admin/index/index.phtml:8
-#: view/scripto/admin/project/add.phtml:7
+#: view/scripto/admin/project/add.phtml:8
 #: view/scripto/admin/project/browse.phtml:8
 #: view/scripto/admin/user/browse.phtml:8
 msgid "Scripto"
@@ -288,7 +288,7 @@ msgid "Browse media revisions"
 msgstr ""
 
 #: view/layout/layout-scripto-public-app.phtml:60
-#: view/scripto/admin/media/show.phtml:26
+#: view/scripto/admin/media/show.phtml:27
 msgid "View discussion"
 msgstr ""
 
@@ -362,21 +362,27 @@ msgid "You are not reviewing any projects."
 msgstr ""
 
 #: view/scripto/admin/index/index.phtml:74
+#: view/scripto/public-app/index/index.phtml:3
 msgid "Your recent contributions"
 msgstr ""
 
 #: view/scripto/admin/index/index.phtml:76
+#: view/scripto/public-app/index/index.phtml:5
 msgid "View your contributions"
 msgstr ""
 
 #: view/scripto/admin/index/index.phtml:103
 #: view/scripto/admin/index/index.phtml:184
+#: view/scripto/public-app/index/index.phtml:32
+#: view/scripto/public-app/index/index.phtml:113
 #, php-format
-msgid "discuss #%s"
+msgid "media #%s discussion"
 msgstr ""
 
 #: view/scripto/admin/index/index.phtml:104
 #: view/scripto/admin/index/index.phtml:185
+#: view/scripto/public-app/index/index.phtml:33
+#: view/scripto/public-app/index/index.phtml:114
 #, php-format
 msgid "media #%s"
 msgstr ""
@@ -387,45 +393,57 @@ msgstr ""
 #: view/scripto/admin/index/index.phtml:197
 #: view/scripto/admin/user/contributions.phtml:65
 #: view/scripto/admin/user/contributions.phtml:75
-#: view/scripto/admin/user/watchlist.phtml:72
-#: view/scripto/admin/user/watchlist.phtml:82
+#: view/scripto/admin/user/watchlist.phtml:73
+#: view/scripto/admin/user/watchlist.phtml:83
+#: view/scripto/public-app/index/index.phtml:35
+#: view/scripto/public-app/index/index.phtml:45
+#: view/scripto/public-app/index/index.phtml:116
+#: view/scripto/public-app/index/index.phtml:126
 #: view/scripto/public-app/user/contributions.phtml:53
 #: view/scripto/public-app/user/contributions.phtml:63
-#: view/scripto/public-app/user/watchlist.phtml:60
-#: view/scripto/public-app/user/watchlist.phtml:70
+#: view/scripto/public-app/user/watchlist.phtml:61
+#: view/scripto/public-app/user/watchlist.phtml:71
 msgid "diff"
 msgstr ""
 
 #: view/scripto/admin/index/index.phtml:117
 #: view/scripto/admin/index/index.phtml:198
 #: view/scripto/admin/user/contributions.phtml:76
-#: view/scripto/admin/user/watchlist.phtml:83
+#: view/scripto/admin/user/watchlist.phtml:84
+#: view/scripto/public-app/index/index.phtml:46
+#: view/scripto/public-app/index/index.phtml:127
 #: view/scripto/public-app/user/contributions.phtml:64
-#: view/scripto/public-app/user/watchlist.phtml:71
+#: view/scripto/public-app/user/watchlist.phtml:72
 msgid "hist"
 msgstr ""
 
 #: view/scripto/admin/index/index.phtml:145
+#: view/scripto/public-app/index/index.phtml:74
 msgid "No contributions found."
 msgstr ""
 
 #: view/scripto/admin/index/index.phtml:147
+#: view/scripto/public-app/index/index.phtml:76
 msgid "No contributions found. Do you need to log in to Scripto?"
 msgstr ""
 
 #: view/scripto/admin/index/index.phtml:154
+#: view/scripto/public-app/index/index.phtml:83
 msgid "Your recent watchlist"
 msgstr ""
 
 #: view/scripto/admin/index/index.phtml:156
+#: view/scripto/public-app/index/index.phtml:85
 msgid "View your watchlist"
 msgstr ""
 
 #: view/scripto/admin/index/index.phtml:226
+#: view/scripto/public-app/index/index.phtml:155
 msgid "No watchlist found."
 msgstr ""
 
 #: view/scripto/admin/index/index.phtml:228
+#: view/scripto/public-app/index/index.phtml:157
 msgid "No watchlist found. Do you need to log in to Scripto?"
 msgstr ""
 
@@ -693,8 +711,8 @@ msgstr ""
 
 #: view/scripto/admin/media/browse.phtml:116
 #: view/scripto/admin/media/show-details.phtml:20
-#: view/scripto/admin/media/show-talk.phtml:148
-#: view/scripto/admin/media/show.phtml:248
+#: view/scripto/admin/media/show-talk.phtml:149
+#: view/scripto/admin/media/show.phtml:249
 msgid "Edit protection"
 msgstr ""
 
@@ -715,18 +733,18 @@ msgid "never"
 msgstr ""
 
 #: view/scripto/admin/media/show-details.phtml:54
-#: view/scripto/admin/media/show.phtml:157
-#: view/scripto/admin/media/show.phtml:203
+#: view/scripto/admin/media/show.phtml:158
+#: view/scripto/admin/media/show.phtml:204
 msgid "[Unknown]"
 msgstr ""
 
 #: view/scripto/admin/media/show-details.phtml:56
-#: view/scripto/admin/media/show.phtml:189
+#: view/scripto/admin/media/show.phtml:190
 msgid "Not completed"
 msgstr ""
 
 #: view/scripto/admin/media/show-details.phtml:72
-#: view/scripto/admin/media/show.phtml:235
+#: view/scripto/admin/media/show.phtml:236
 msgid "Not approved"
 msgstr ""
 
@@ -738,19 +756,19 @@ msgstr ""
 msgid "Omeka media"
 msgstr ""
 
-#: view/scripto/admin/media/show-talk.phtml:13
+#: view/scripto/admin/media/show-talk.phtml:14
 msgid "Discussion"
 msgstr ""
 
-#: view/scripto/admin/media/show-talk.phtml:25
-#: view/scripto/admin/media/show.phtml:25
+#: view/scripto/admin/media/show-talk.phtml:26
+#: view/scripto/admin/media/show.phtml:26
 msgid "Revision history"
 msgstr ""
 
-#: view/scripto/admin/media/show-talk.phtml:33
-#: view/scripto/admin/media/show-talk.phtml:49
-#: view/scripto/admin/media/show.phtml:34
-#: view/scripto/admin/media/show.phtml:50
+#: view/scripto/admin/media/show-talk.phtml:34
+#: view/scripto/admin/media/show-talk.phtml:50
+#: view/scripto/admin/media/show.phtml:35
+#: view/scripto/admin/media/show.phtml:51
 #: view/scripto/public-app/revision/show-talk.phtml:11
 #: view/scripto/public-app/revision/show-talk.phtml:12
 #: view/scripto/public-app/revision/show.phtml:11
@@ -758,136 +776,136 @@ msgstr ""
 msgid "Wikitext"
 msgstr ""
 
-#: view/scripto/admin/media/show-talk.phtml:35
-#: view/scripto/admin/media/show.phtml:36
+#: view/scripto/admin/media/show-talk.phtml:36
+#: view/scripto/admin/media/show.phtml:37
 msgid "Omeka media metadata"
 msgstr ""
 
-#: view/scripto/admin/media/show-talk.phtml:41
-#: view/scripto/admin/media/show.phtml:42
-#: view/scripto/public-app/media/edit-talk.phtml:27
-#: view/scripto/public-app/media/edit.phtml:32
+#: view/scripto/admin/media/show-talk.phtml:42
+#: view/scripto/admin/media/show.phtml:43
+#: view/scripto/public-app/media/edit-talk.phtml:28
+#: view/scripto/public-app/media/edit.phtml:33
 msgid "Go full screen"
-msgstr ""
-
-#: view/scripto/admin/media/show-talk.phtml:43
-#: view/scripto/admin/media/show.phtml:44
-#: view/scripto/public-app/item/browse.phtml:15
-#: view/scripto/public-app/media/browse.phtml:16
-#: view/scripto/public-app/media/edit-talk.phtml:29
-#: view/scripto/public-app/media/edit.phtml:34
-msgid "Layout"
 msgstr ""
 
 #: view/scripto/admin/media/show-talk.phtml:44
 #: view/scripto/admin/media/show.phtml:45
+#: view/scripto/public-app/item/browse.phtml:15
+#: view/scripto/public-app/media/browse.phtml:16
 #: view/scripto/public-app/media/edit-talk.phtml:30
 #: view/scripto/public-app/media/edit.phtml:35
-msgid "Horizontal view"
+msgid "Layout"
 msgstr ""
 
 #: view/scripto/admin/media/show-talk.phtml:45
 #: view/scripto/admin/media/show.phtml:46
 #: view/scripto/public-app/media/edit-talk.phtml:31
 #: view/scripto/public-app/media/edit.phtml:36
-msgid "Vertical view"
+msgid "Horizontal view"
 msgstr ""
 
-#: view/scripto/admin/media/show-talk.phtml:54
-#: view/scripto/admin/media/show.phtml:55
-#: view/scripto/public-app/media/edit-talk.phtml:41
-#: view/scripto/public-app/media/edit.phtml:46
-#: view/scripto/public-app/media/show-talk.phtml:30
-#: view/scripto/public-app/media/show.phtml:30
-msgid "Zoom in"
+#: view/scripto/admin/media/show-talk.phtml:46
+#: view/scripto/admin/media/show.phtml:47
+#: view/scripto/public-app/media/edit-talk.phtml:32
+#: view/scripto/public-app/media/edit.phtml:37
+msgid "Vertical view"
 msgstr ""
 
 #: view/scripto/admin/media/show-talk.phtml:55
 #: view/scripto/admin/media/show.phtml:56
 #: view/scripto/public-app/media/edit-talk.phtml:42
 #: view/scripto/public-app/media/edit.phtml:47
-#: view/scripto/public-app/media/show-talk.phtml:31
-#: view/scripto/public-app/media/show.phtml:31
-msgid "Zoom out"
+#: view/scripto/public-app/media/show-talk.phtml:30
+#: view/scripto/public-app/media/show.phtml:30
+msgid "Zoom in"
 msgstr ""
 
 #: view/scripto/admin/media/show-talk.phtml:56
 #: view/scripto/admin/media/show.phtml:57
 #: view/scripto/public-app/media/edit-talk.phtml:43
 #: view/scripto/public-app/media/edit.phtml:48
-#: view/scripto/public-app/media/show-talk.phtml:32
-#: view/scripto/public-app/media/show.phtml:32
-msgid "Rotate right"
+#: view/scripto/public-app/media/show-talk.phtml:31
+#: view/scripto/public-app/media/show.phtml:31
+msgid "Zoom out"
 msgstr ""
 
 #: view/scripto/admin/media/show-talk.phtml:57
 #: view/scripto/admin/media/show.phtml:58
 #: view/scripto/public-app/media/edit-talk.phtml:44
 #: view/scripto/public-app/media/edit.phtml:49
-#: view/scripto/public-app/media/show-talk.phtml:33
-#: view/scripto/public-app/media/show.phtml:33
-msgid "Rotate left"
+#: view/scripto/public-app/media/show-talk.phtml:32
+#: view/scripto/public-app/media/show.phtml:32
+msgid "Rotate right"
 msgstr ""
 
 #: view/scripto/admin/media/show-talk.phtml:58
 #: view/scripto/admin/media/show.phtml:59
 #: view/scripto/public-app/media/edit-talk.phtml:45
 #: view/scripto/public-app/media/edit.phtml:50
+#: view/scripto/public-app/media/show-talk.phtml:33
+#: view/scripto/public-app/media/show.phtml:33
+msgid "Rotate left"
+msgstr ""
+
+#: view/scripto/admin/media/show-talk.phtml:59
+#: view/scripto/admin/media/show.phtml:60
+#: view/scripto/public-app/media/edit-talk.phtml:46
+#: view/scripto/public-app/media/edit.phtml:51
 #: view/scripto/public-app/media/show-talk.phtml:34
 #: view/scripto/public-app/media/show.phtml:34
 msgid "Reset"
 msgstr ""
 
-#: view/scripto/admin/media/show-talk.phtml:92
-#: view/scripto/admin/media/show.phtml:93
+#: view/scripto/admin/media/show-talk.phtml:93
+#: view/scripto/admin/media/show.phtml:94
 msgid "The Omeka media has no metadata."
 msgstr ""
 
-#: view/scripto/admin/media/show-talk.phtml:113
-#: view/scripto/admin/media/show.phtml:114
+#: view/scripto/admin/media/show-talk.phtml:114
+#: view/scripto/admin/media/show.phtml:115
 msgid "Latest revision"
 msgstr ""
 
-#: view/scripto/admin/media/show-talk.phtml:118
-#: view/scripto/admin/media/show.phtml:119
+#: view/scripto/admin/media/show-talk.phtml:119
+#: view/scripto/admin/media/show.phtml:120
 msgid "This revision"
 msgstr ""
 
-#: view/scripto/admin/media/show-talk.phtml:122
-#: view/scripto/admin/media/show.phtml:123
-#: view/scripto/admin/media/show.phtml:153
-#: view/scripto/admin/media/show.phtml:199
+#: view/scripto/admin/media/show-talk.phtml:123
+#: view/scripto/admin/media/show.phtml:124
+#: view/scripto/admin/media/show.phtml:154
+#: view/scripto/admin/media/show.phtml:200
 #, php-format
 msgid "%s: %s by %s"
 msgstr ""
 
-#: view/scripto/admin/media/show-talk.phtml:124
-#: view/scripto/admin/media/show.phtml:125
+#: view/scripto/admin/media/show-talk.phtml:125
+#: view/scripto/admin/media/show.phtml:126
 msgid "Latest"
 msgstr ""
 
-#: view/scripto/admin/media/show-talk.phtml:125
-#: view/scripto/admin/media/show.phtml:126
+#: view/scripto/admin/media/show-talk.phtml:126
+#: view/scripto/admin/media/show.phtml:127
 msgid "Out-of-date"
 msgstr ""
 
-#: view/scripto/admin/media/show-talk.phtml:136
-#: view/scripto/admin/media/show.phtml:137
+#: view/scripto/admin/media/show-talk.phtml:137
+#: view/scripto/admin/media/show.phtml:138
 msgid "Revert to this revision."
 msgstr ""
 
-#: view/scripto/admin/media/show-talk.phtml:141
-#: view/scripto/admin/media/show.phtml:142
+#: view/scripto/admin/media/show-talk.phtml:142
+#: view/scripto/admin/media/show.phtml:143
 msgid "There are no revisions."
 msgstr ""
 
-#: view/scripto/admin/media/show-talk.phtml:163
-#: view/scripto/admin/media/show.phtml:265
+#: view/scripto/admin/media/show-talk.phtml:164
+#: view/scripto/admin/media/show.phtml:266
 msgid "Revert to this revision"
 msgstr ""
 
-#: view/scripto/admin/media/show-talk.phtml:165
-#: view/scripto/admin/media/show.phtml:267
+#: view/scripto/admin/media/show-talk.phtml:166
+#: view/scripto/admin/media/show.phtml:268
 #, php-format
 msgid ""
 "%s: You are reverting to an out-of-date revision. Any changes made since "
@@ -896,82 +914,82 @@ msgid ""
 "approved."
 msgstr ""
 
-#: view/scripto/admin/media/show-talk.phtml:169
-#: view/scripto/admin/media/show.phtml:271
+#: view/scripto/admin/media/show-talk.phtml:170
+#: view/scripto/admin/media/show.phtml:272
 msgid "Verify changes before confirming this reversion."
 msgstr ""
 
-#: view/scripto/admin/media/show.phtml:149
+#: view/scripto/admin/media/show.phtml:150
 msgid "Review status"
 msgstr ""
 
-#: view/scripto/admin/media/show.phtml:165
+#: view/scripto/admin/media/show.phtml:166
 msgid "This revision marked as complete."
 msgstr ""
 
-#: view/scripto/admin/media/show.phtml:166
-#: view/scripto/admin/media/show.phtml:182
+#: view/scripto/admin/media/show.phtml:167
+#: view/scripto/admin/media/show.phtml:183
 msgid "Mark media as not complete"
 msgstr ""
 
-#: view/scripto/admin/media/show.phtml:173
+#: view/scripto/admin/media/show.phtml:174
 #, php-format
 msgid "Another revision marked as complete. [%s]"
 msgstr ""
 
-#: view/scripto/admin/media/show.phtml:174
-#: view/scripto/admin/media/show.phtml:220
+#: view/scripto/admin/media/show.phtml:175
+#: view/scripto/admin/media/show.phtml:221
 msgid "view revision"
 msgstr ""
 
-#: view/scripto/admin/media/show.phtml:191
-#: view/scripto/public-app/media/edit.phtml:23
+#: view/scripto/admin/media/show.phtml:192
+#: view/scripto/public-app/media/edit.phtml:24
 msgid "Mark this revision as complete"
 msgstr ""
 
-#: view/scripto/admin/media/show.phtml:192
+#: view/scripto/admin/media/show.phtml:193
 msgid "Mark media as complete"
 msgstr ""
 
-#: view/scripto/admin/media/show.phtml:200
+#: view/scripto/admin/media/show.phtml:201
 msgid "Approved"
 msgstr ""
 
-#: view/scripto/admin/media/show.phtml:211
+#: view/scripto/admin/media/show.phtml:212
 #: view/scripto/admin/revision/compare.phtml:46
 #: view/scripto/public-app/revision/compare.phtml:40
 msgid "This revision marked as approved."
 msgstr ""
 
-#: view/scripto/admin/media/show.phtml:212
-#: view/scripto/admin/media/show.phtml:228
+#: view/scripto/admin/media/show.phtml:213
+#: view/scripto/admin/media/show.phtml:229
 msgid "Mark media as not approved"
 msgstr ""
 
-#: view/scripto/admin/media/show.phtml:219
+#: view/scripto/admin/media/show.phtml:220
 #, php-format
 msgid "Another revision marked as approved. [%s]"
 msgstr ""
 
-#: view/scripto/admin/media/show.phtml:237
+#: view/scripto/admin/media/show.phtml:238
 msgid "Mark this revision as approved"
 msgstr ""
 
-#: view/scripto/admin/media/show.phtml:238
+#: view/scripto/admin/media/show.phtml:239
 msgid "Mark media as approved"
 msgstr ""
 
-#: view/scripto/admin/project/add.phtml:7
+#: view/scripto/admin/project/add.phtml:8
 msgid "New project"
-msgstr ""
-
-#: view/scripto/admin/project/add.phtml:10
-#: view/scripto/admin/project/edit.phtml:10
-msgid "Configuration"
 msgstr ""
 
 #: view/scripto/admin/project/add.phtml:11
 #: view/scripto/admin/project/edit.phtml:11
+msgid "Configuration"
+msgstr ""
+
+#: view/scripto/admin/project/add.phtml:12
+#: view/scripto/admin/project/edit.phtml:12
 msgid "Reviewers"
 msgstr ""
 
@@ -1045,96 +1063,96 @@ msgstr ""
 msgid "Is not approved item count"
 msgstr ""
 
-#: view/scripto/admin/revision/browse-talk.phtml:8
-#: view/scripto/admin/revision/browse.phtml:8
+#: view/scripto/admin/revision/browse-talk.phtml:9
+#: view/scripto/admin/revision/browse.phtml:9
 msgid "Revisions"
 msgstr ""
 
-#: view/scripto/admin/revision/browse-talk.phtml:17
-#: view/scripto/admin/revision/browse.phtml:17
-#: view/scripto/public-app/revision/browse-talk.phtml:8
-#: view/scripto/public-app/revision/browse.phtml:8
+#: view/scripto/admin/revision/browse-talk.phtml:18
+#: view/scripto/admin/revision/browse.phtml:18
+#: view/scripto/public-app/revision/browse-talk.phtml:9
+#: view/scripto/public-app/revision/browse.phtml:9
 msgid "Compare selected"
 msgstr ""
 
-#: view/scripto/admin/revision/browse-talk.phtml:24
-#: view/scripto/admin/revision/browse.phtml:24
-#: view/scripto/public-app/revision/browse-talk.phtml:14
-#: view/scripto/public-app/revision/browse.phtml:14
+#: view/scripto/admin/revision/browse-talk.phtml:25
+#: view/scripto/admin/revision/browse.phtml:25
+#: view/scripto/public-app/revision/browse-talk.phtml:15
+#: view/scripto/public-app/revision/browse.phtml:15
 msgid "Compare"
 msgstr ""
 
-#: view/scripto/admin/revision/browse-talk.phtml:27
-#: view/scripto/admin/revision/browse.phtml:27
+#: view/scripto/admin/revision/browse-talk.phtml:28
+#: view/scripto/admin/revision/browse.phtml:28
 #: view/scripto/admin/user/contributions.phtml:28
-#: view/scripto/admin/user/watchlist.phtml:29
-#: view/scripto/public-app/revision/browse-talk.phtml:17
-#: view/scripto/public-app/revision/browse.phtml:17
+#: view/scripto/admin/user/watchlist.phtml:30
+#: view/scripto/public-app/revision/browse-talk.phtml:18
+#: view/scripto/public-app/revision/browse.phtml:18
 #: view/scripto/public-app/user/contributions.phtml:16
-#: view/scripto/public-app/user/watchlist.phtml:17
+#: view/scripto/public-app/user/watchlist.phtml:18
 msgid "Size"
 msgstr ""
 
-#: view/scripto/admin/revision/browse-talk.phtml:42
 #: view/scripto/admin/revision/browse-talk.phtml:43
-#: view/scripto/admin/revision/browse.phtml:42
+#: view/scripto/admin/revision/browse-talk.phtml:44
 #: view/scripto/admin/revision/browse.phtml:43
-#: view/scripto/public-app/revision/browse-talk.phtml:32
+#: view/scripto/admin/revision/browse.phtml:44
 #: view/scripto/public-app/revision/browse-talk.phtml:33
-#: view/scripto/public-app/revision/browse.phtml:32
+#: view/scripto/public-app/revision/browse-talk.phtml:34
 #: view/scripto/public-app/revision/browse.phtml:33
+#: view/scripto/public-app/revision/browse.phtml:34
 msgid "cur"
 msgstr ""
 
-#: view/scripto/admin/revision/browse-talk.phtml:45
 #: view/scripto/admin/revision/browse-talk.phtml:46
-#: view/scripto/admin/revision/browse.phtml:45
+#: view/scripto/admin/revision/browse-talk.phtml:47
 #: view/scripto/admin/revision/browse.phtml:46
-#: view/scripto/public-app/revision/browse-talk.phtml:35
+#: view/scripto/admin/revision/browse.phtml:47
 #: view/scripto/public-app/revision/browse-talk.phtml:36
-#: view/scripto/public-app/revision/browse.phtml:35
+#: view/scripto/public-app/revision/browse-talk.phtml:37
 #: view/scripto/public-app/revision/browse.phtml:36
+#: view/scripto/public-app/revision/browse.phtml:37
 msgid "prev"
 msgstr ""
 
-#: view/scripto/admin/revision/browse-talk.phtml:51
-#: view/scripto/admin/revision/browse.phtml:51
-#: view/scripto/public-app/revision/browse-talk.phtml:41
-#: view/scripto/public-app/revision/browse.phtml:41
+#: view/scripto/admin/revision/browse-talk.phtml:52
+#: view/scripto/admin/revision/browse.phtml:52
+#: view/scripto/public-app/revision/browse-talk.phtml:42
+#: view/scripto/public-app/revision/browse.phtml:42
 msgid "From revision"
 msgstr ""
 
-#: view/scripto/admin/revision/browse-talk.phtml:57
-#: view/scripto/admin/revision/browse.phtml:57
-#: view/scripto/public-app/revision/browse-talk.phtml:47
-#: view/scripto/public-app/revision/browse.phtml:47
+#: view/scripto/admin/revision/browse-talk.phtml:58
+#: view/scripto/admin/revision/browse.phtml:58
+#: view/scripto/public-app/revision/browse-talk.phtml:48
+#: view/scripto/public-app/revision/browse.phtml:48
 msgid "To revision"
 msgstr ""
 
-#: view/scripto/admin/revision/browse-talk.phtml:78
-#: view/scripto/admin/revision/browse.phtml:78
+#: view/scripto/admin/revision/browse-talk.phtml:79
+#: view/scripto/admin/revision/browse.phtml:79
 #: view/scripto/admin/user/contributions.phtml:96
-#: view/scripto/admin/user/watchlist.phtml:94
-#: view/scripto/public-app/revision/browse-talk.phtml:68
-#: view/scripto/public-app/revision/browse.phtml:68
+#: view/scripto/admin/user/watchlist.phtml:95
+#: view/scripto/public-app/revision/browse-talk.phtml:69
+#: view/scripto/public-app/revision/browse.phtml:69
 #: view/scripto/public-app/user/contributions.phtml:84
-#: view/scripto/public-app/user/watchlist.phtml:82
+#: view/scripto/public-app/user/watchlist.phtml:83
 #, php-format
 msgid "%s bytes (%s)"
 msgstr ""
 
-#: view/scripto/admin/revision/browse-talk.phtml:117
-#: view/scripto/admin/revision/browse.phtml:117
+#: view/scripto/admin/revision/browse-talk.phtml:92
+#: view/scripto/admin/revision/browse.phtml:92
 msgid "This Scripto media has no revisions."
 msgstr ""
 
-#: view/scripto/admin/revision/compare-talk.phtml:7
+#: view/scripto/admin/revision/compare-talk.phtml:6
 #: view/scripto/admin/revision/compare.phtml:6
 msgid "Compare revisions"
 msgstr ""
 
-#: view/scripto/admin/revision/compare-talk.phtml:25
-#: view/scripto/admin/revision/compare-talk.phtml:35
+#: view/scripto/admin/revision/compare-talk.phtml:24
+#: view/scripto/admin/revision/compare-talk.phtml:34
 #: view/scripto/admin/revision/compare.phtml:24
 #: view/scripto/admin/revision/compare.phtml:34
 #: view/scripto/public-app/revision/compare-talk.phtml:18
@@ -1145,7 +1163,7 @@ msgstr ""
 msgid "Revision as of %s"
 msgstr ""
 
-#: view/scripto/admin/revision/compare-talk.phtml:50
+#: view/scripto/admin/revision/compare-talk.phtml:49
 #: view/scripto/admin/revision/compare.phtml:69
 #: view/scripto/public-app/revision/compare-talk.phtml:43
 #: view/scripto/public-app/revision/compare.phtml:63
@@ -1170,16 +1188,16 @@ msgid "Edit count"
 msgstr ""
 
 #: view/scripto/admin/user/contributions.phtml:23
-#: view/scripto/admin/user/watchlist.phtml:27
+#: view/scripto/admin/user/watchlist.phtml:28
 #: view/scripto/public-app/user/contributions.phtml:11
-#: view/scripto/public-app/user/watchlist.phtml:15
+#: view/scripto/public-app/user/watchlist.phtml:16
 msgid "Revision"
 msgstr ""
 
 #: view/scripto/admin/user/contributions.phtml:25
-#: view/scripto/admin/user/watchlist.phtml:24
+#: view/scripto/admin/user/watchlist.phtml:25
 #: view/scripto/public-app/user/contributions.phtml:13
-#: view/scripto/public-app/user/watchlist.phtml:12
+#: view/scripto/public-app/user/watchlist.phtml:13
 msgid "Media #"
 msgstr ""
 
@@ -1194,29 +1212,29 @@ msgid "current"
 msgstr ""
 
 #: view/scripto/admin/user/contributions.phtml:90
-#: view/scripto/admin/user/watchlist.phtml:48
+#: view/scripto/admin/user/watchlist.phtml:49
 #: view/scripto/public-app/user/contributions.phtml:78
-#: view/scripto/public-app/user/watchlist.phtml:36
+#: view/scripto/public-app/user/watchlist.phtml:37
 #, php-format
-msgid "Discuss #%s"
+msgid "Media #%s (discussion)"
 msgstr ""
 
 #: view/scripto/admin/user/contributions.phtml:91
-#: view/scripto/admin/user/watchlist.phtml:49
+#: view/scripto/admin/user/watchlist.phtml:50
 #: view/scripto/public-app/user/contributions.phtml:79
-#: view/scripto/public-app/user/watchlist.phtml:37
+#: view/scripto/public-app/user/watchlist.phtml:38
 #, php-format
 msgid "Media #%s"
 msgstr ""
 
 #: view/scripto/admin/user/contributions.phtml:92
 #: view/scripto/admin/user/contributions.phtml:95
-#: view/scripto/admin/user/watchlist.phtml:50
-#: view/scripto/admin/user/watchlist.phtml:53
+#: view/scripto/admin/user/watchlist.phtml:51
+#: view/scripto/admin/user/watchlist.phtml:54
 #: view/scripto/public-app/user/contributions.phtml:80
 #: view/scripto/public-app/user/contributions.phtml:83
-#: view/scripto/public-app/user/watchlist.phtml:38
-#: view/scripto/public-app/user/watchlist.phtml:41
+#: view/scripto/public-app/user/watchlist.phtml:39
+#: view/scripto/public-app/user/watchlist.phtml:42
 msgid "n/a"
 msgstr ""
 
@@ -1224,7 +1242,7 @@ msgstr ""
 msgid "No user contributions found."
 msgstr ""
 
-#: view/scripto/admin/user/watchlist.phtml:104
+#: view/scripto/admin/user/watchlist.phtml:105
 msgid "No watchlist pages found."
 msgstr ""
 
@@ -1268,41 +1286,41 @@ msgstr ""
 msgid "No Scripto media found"
 msgstr ""
 
-#: view/scripto/public-app/media/edit-talk.phtml:9
+#: view/scripto/public-app/media/edit-talk.phtml:10
 #: view/scripto/public-app/media/show-talk.phtml:9
 #, php-format
 msgid "Discussion: %s"
 msgstr ""
 
-#: view/scripto/public-app/media/edit-talk.phtml:10
-#: view/scripto/public-app/media/edit.phtml:10
+#: view/scripto/public-app/media/edit-talk.phtml:11
+#: view/scripto/public-app/media/edit.phtml:11
 #: view/scripto/public-app/media/show-talk.phtml:10
 #: view/scripto/public-app/media/show.phtml:10
 #, php-format
 msgid "Part of %s"
 msgstr ""
 
-#: view/scripto/public-app/media/edit-talk.phtml:18
-#: view/scripto/public-app/media/edit.phtml:18
+#: view/scripto/public-app/media/edit-talk.phtml:19
+#: view/scripto/public-app/media/edit.phtml:19
 msgid "Protection: "
 msgstr ""
 
-#: view/scripto/public-app/media/edit-talk.phtml:19
-#: view/scripto/public-app/media/edit.phtml:19
+#: view/scripto/public-app/media/edit-talk.phtml:20
+#: view/scripto/public-app/media/edit.phtml:20
 msgid "Expiration: "
 msgstr ""
 
-#: view/scripto/public-app/media/edit-talk.phtml:19
-#: view/scripto/public-app/media/edit.phtml:19
+#: view/scripto/public-app/media/edit-talk.phtml:20
+#: view/scripto/public-app/media/edit.phtml:20
 msgid "Never"
 msgstr ""
 
-#: view/scripto/public-app/media/edit-talk.phtml:60
-#: view/scripto/public-app/media/edit.phtml:65
+#: view/scripto/public-app/media/edit-talk.phtml:61
+#: view/scripto/public-app/media/edit.phtml:66
 msgid "Summarize your changes:"
 msgstr ""
 
-#: view/scripto/public-app/media/edit.phtml:22
+#: view/scripto/public-app/media/edit.phtml:23
 msgid "Status: "
 msgstr ""
 
@@ -1327,17 +1345,17 @@ msgstr ""
 msgid "No Scripto projects found"
 msgstr ""
 
-#: view/scripto/public-app/revision/browse-talk.phtml:2
+#: view/scripto/public-app/revision/browse-talk.phtml:3
 #, php-format
 msgid "Discussion revisions: %s"
 msgstr ""
 
-#: view/scripto/public-app/revision/browse-talk.phtml:80
-#: view/scripto/public-app/revision/browse.phtml:80
+#: view/scripto/public-app/revision/browse-talk.phtml:81
+#: view/scripto/public-app/revision/browse.phtml:81
 msgid "No revisions found"
 msgstr ""
 
-#: view/scripto/public-app/revision/browse.phtml:2
+#: view/scripto/public-app/revision/browse.phtml:3
 #, php-format
 msgid "Revisions: %s"
 msgstr ""
@@ -1373,7 +1391,7 @@ msgstr ""
 msgid "Contributions by %s"
 msgstr ""
 
-#: view/scripto/public-app/user/watchlist.phtml:2
+#: view/scripto/public-app/user/watchlist.phtml:3
 msgid "Your watchlist"
 msgstr ""
 
@@ -1524,7 +1542,7 @@ msgstr ""
 msgid "Unimporting Scripto project text. This may take a while. %s"
 msgstr ""
 
-#: src/Controller/PublicApp/IndexController.php:28
+#: src/Controller/PublicApp/IndexController.php:46
 msgid "Scripto account successfully created."
 msgstr ""
 
