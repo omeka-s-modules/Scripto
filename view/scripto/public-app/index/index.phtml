@@ -13,7 +13,12 @@
             $sMedia = isset($userCon['scripto_media']) ? $userCon['scripto_media'] : null;
             $sItem = $sMedia ? $sMedia->scriptoItem() : null;
             $project = $sItem ? $sItem->scriptoProject() : null;
-            $sizeDiffText = sprintf('%s%s', 0 < $userCon['sizediff'] ? '+' : '', number_format($userCon['sizediff']));
+            $sizeDiffText = sprintf(
+                '<span style="color: %s;">%s%s</span>',
+                0 < $userCon['sizediff'] ? 'green' : (0 > $userCon['sizediff'] ? 'red' : 'inherit'),
+                0 < $userCon['sizediff'] ? '+' : null,
+                number_format($userCon['sizediff'])
+            );
             $isTalk = (1 === $userCon['ns']);
             ?>
             <li>
@@ -91,7 +96,12 @@
             <?php
             $date = $this->i18n()->dateFormat($page['timestamp'], 'short', 'short');
             $sizeDiff = $page['newlen'] - $page['oldlen'];
-            $sizeDiffText = sprintf('%s%s', 0 < $sizeDiff ? '+' : '', number_format($sizeDiff));
+            $sizeDiffText = sprintf(
+                '<span style="color: %s;">%s%s</span>',
+                0 < $sizeDiff ? 'green' : (0 > $sizeDiff ? 'red' : 'inherit'),
+                0 < $sizeDiff ? '+' : '',
+                number_format($sizeDiff)
+            );
             $sMedia = isset($page['scripto_media']) ? $page['scripto_media'] : null;
             $sItem = $sMedia ? $sMedia->scriptoItem() : null;
             $project = $sItem ? $sItem->scriptoProject() : null;

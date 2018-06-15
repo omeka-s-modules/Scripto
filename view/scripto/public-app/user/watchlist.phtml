@@ -80,7 +80,16 @@ $this->scripto()->postTitle($this->translate('Your watchlist'));
                     )
                     : ''; ?>
                 </td>
-                <td><?php echo sprintf($this->translate('%s bytes (%s)'), number_format($page['newlen']), sprintf('%s%s', 0 < $sizeDiff ? '+' : '', number_format($sizeDiff))); ?></td>
+                <td><?php echo sprintf(
+                    $this->translate('%s bytes (%s)'),
+                    number_format($page['newlen']),
+                    sprintf(
+                        '<span style="color: %s;">%s%s</span>',
+                        0 < $sizeDiff ? 'green' : (0 > $sizeDiff ? 'red' : 'inherit'),
+                        0 < $sizeDiff ? '+' : '',
+                        number_format($sizeDiff)
+                    )
+                ); ?></td>
                 <td><?php echo $this->hyperlink($page['user'], $this->url('scripto-user-contributions', ['user-id' => $page['user']])); ?></td>
                 <td><i><?php echo strip_tags($page['parsedcomment']); ?></i></td>
             </tr>

@@ -81,7 +81,16 @@ $this->scripto()->postTitle(sprintf($this->translate('Contributions by %s'), $us
                 </td>
                 <td class="item"><?php echo $sItem ? $sItem->link($sItem->item()->displayTitle()) : $userCon['title']; ?></td>
                 <td class="project"><?php echo $project ? $project->link($project->title()) : $this->translate('n/a'); ?></td>
-                <td class="size"><?php echo sprintf($this->translate('%s bytes (%s)'), number_format($userCon['size']), sprintf('%s%s', 0 < $userCon['sizediff'] ? '+' : '', number_format($userCon['sizediff']))); ?></td>
+                <td><?php echo sprintf(
+                    $this->translate('%s bytes (%s)'),
+                    number_format($userCon['size']),
+                    sprintf(
+                        '<span style="color: %s;">%s%s</span>',
+                        0 < $userCon['sizediff'] ? 'green' : (0 > $userCon['sizediff'] ? 'red' : 'inherit'),
+                        0 < $userCon['sizediff'] ? '+' : null,
+                        number_format($userCon['sizediff'])
+                    )
+                ); ?></td>
                 <td class="comment"><i><?php echo strip_tags($userCon['parsedcomment']); ?></i></td>
             </tr>
         <?php endforeach; ?>
