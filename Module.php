@@ -5,6 +5,7 @@ use DateTime;
 use Omeka\Module\AbstractModule;
 use Omeka\Mvc\Exception\RuntimeException as MvcRuntimeException;
 use Scripto\Form\ModuleConfigForm;
+use Scripto\Mediawiki\Exception\RequestException as MediawikiRequestException;
 use Scripto\PermissionsAssertion\ProjectIsPublicAssertion;
 use Scripto\PermissionsAssertion\UserCanReviewAssertion;
 use Scripto\PermissionsAssertion\UserOwnsProjectAssertion;
@@ -381,25 +382,25 @@ SET FOREIGN_KEY_CHECKS=1;
     /**
      * Check for MediaWiki API URL.
      *
-     * Blocks access to all Scripto routes if the MediaWiki API URL is not
-     * configured.
+     * Blocks access to all Scripto routes if the MediaWiki API URL is not set.
      *
      * @param Event $event
      */
     public function checkMediawikiApiUrl(Event $event)
     {
+        $services = $this->getServiceLocator();
         $routeName = $event->getRouteMatch()->getMatchedRouteName();
-        if (0 !== strpos($routeName, 'admin/scripto')) {
-            // Not an admin Scripto route.
+        if (0 !== strpos($routeName, 'admin/scripto') && 0 !== strpos($routeName, 'scripto')) {
+            // Not an admin or public Scripto route.
             return;
         }
-        $settings = $this->getServiceLocator()->get('Omeka\Settings');
+        $settings = $services->get('Omeka\Settings');
         if ($settings->get('scripto_apiurl')) {
-            // MediaWiki API URL exists.
+            // The MediaWiki API URL is not set.
             return;
         }
-        $translator = $this->getServiceLocator()->get('MvcTranslator');
-        throw new MvcRuntimeException($translator->translate('Missing Scripto configuration. Cannot access Scripto without the MediaWiki API URL.'));
+        $translator = $services->get('MvcTranslator');
+        throw new MvcRuntimeException($translator->translate('Cannot access Scripto. Missing MediaWiki API URL.'));
     }
 
     /**

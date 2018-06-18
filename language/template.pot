@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-14 17:24-0400\n"
+"POT-Creation-Date: 2018-06-18 09:39-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,19 +18,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: Module.php:402
-msgid ""
-"Missing Scripto configuration. Cannot access Scripto without the MediaWiki "
-"API URL."
+msgid "Cannot access Scripto. Missing MediaWiki API URL."
 msgstr ""
 
-#: Module.php:434
+#: Module.php:435
 #, php-format
 msgid ""
 "The MediaWiki user does not have the necessary permissions to create the "
 "page \"%s\""
 msgstr ""
 
-#: Module.php:440
+#: Module.php:441
 #, php-format
 msgid ""
 "The MediaWiki user does not have the necessary permissions to edit the page "
@@ -371,34 +369,34 @@ msgstr ""
 msgid "View your contributions"
 msgstr ""
 
-#: view/scripto/admin/index/index.phtml:103
-#: view/scripto/admin/index/index.phtml:184
-#: view/scripto/public-app/index/index.phtml:32
-#: view/scripto/public-app/index/index.phtml:113
+#: view/scripto/admin/index/index.phtml:108
+#: view/scripto/admin/index/index.phtml:194
+#: view/scripto/public-app/index/index.phtml:37
+#: view/scripto/public-app/index/index.phtml:123
 #, php-format
 msgid "media #%s discussion"
 msgstr ""
 
-#: view/scripto/admin/index/index.phtml:104
-#: view/scripto/admin/index/index.phtml:185
-#: view/scripto/public-app/index/index.phtml:33
-#: view/scripto/public-app/index/index.phtml:114
+#: view/scripto/admin/index/index.phtml:109
+#: view/scripto/admin/index/index.phtml:195
+#: view/scripto/public-app/index/index.phtml:38
+#: view/scripto/public-app/index/index.phtml:124
 #, php-format
 msgid "media #%s"
 msgstr ""
 
-#: view/scripto/admin/index/index.phtml:106
-#: view/scripto/admin/index/index.phtml:116
-#: view/scripto/admin/index/index.phtml:187
+#: view/scripto/admin/index/index.phtml:111
+#: view/scripto/admin/index/index.phtml:121
 #: view/scripto/admin/index/index.phtml:197
+#: view/scripto/admin/index/index.phtml:207
 #: view/scripto/admin/user/contributions.phtml:65
 #: view/scripto/admin/user/contributions.phtml:75
 #: view/scripto/admin/user/watchlist.phtml:73
 #: view/scripto/admin/user/watchlist.phtml:83
-#: view/scripto/public-app/index/index.phtml:35
-#: view/scripto/public-app/index/index.phtml:45
-#: view/scripto/public-app/index/index.phtml:116
+#: view/scripto/public-app/index/index.phtml:40
+#: view/scripto/public-app/index/index.phtml:50
 #: view/scripto/public-app/index/index.phtml:126
+#: view/scripto/public-app/index/index.phtml:136
 #: view/scripto/public-app/user/contributions.phtml:53
 #: view/scripto/public-app/user/contributions.phtml:63
 #: view/scripto/public-app/user/watchlist.phtml:61
@@ -406,44 +404,44 @@ msgstr ""
 msgid "diff"
 msgstr ""
 
-#: view/scripto/admin/index/index.phtml:117
-#: view/scripto/admin/index/index.phtml:198
+#: view/scripto/admin/index/index.phtml:122
+#: view/scripto/admin/index/index.phtml:208
 #: view/scripto/admin/user/contributions.phtml:76
 #: view/scripto/admin/user/watchlist.phtml:84
-#: view/scripto/public-app/index/index.phtml:46
-#: view/scripto/public-app/index/index.phtml:127
+#: view/scripto/public-app/index/index.phtml:51
+#: view/scripto/public-app/index/index.phtml:137
 #: view/scripto/public-app/user/contributions.phtml:64
 #: view/scripto/public-app/user/watchlist.phtml:72
 msgid "hist"
 msgstr ""
 
-#: view/scripto/admin/index/index.phtml:145
-#: view/scripto/public-app/index/index.phtml:74
+#: view/scripto/admin/index/index.phtml:150
+#: view/scripto/public-app/index/index.phtml:79
 msgid "No contributions found."
 msgstr ""
 
-#: view/scripto/admin/index/index.phtml:147
-#: view/scripto/public-app/index/index.phtml:76
+#: view/scripto/admin/index/index.phtml:152
+#: view/scripto/public-app/index/index.phtml:81
 msgid "No contributions found. Do you need to log in to Scripto?"
 msgstr ""
 
-#: view/scripto/admin/index/index.phtml:154
-#: view/scripto/public-app/index/index.phtml:83
+#: view/scripto/admin/index/index.phtml:159
+#: view/scripto/public-app/index/index.phtml:88
 msgid "Your recent watchlist"
 msgstr ""
 
-#: view/scripto/admin/index/index.phtml:156
-#: view/scripto/public-app/index/index.phtml:85
+#: view/scripto/admin/index/index.phtml:161
+#: view/scripto/public-app/index/index.phtml:90
 msgid "View your watchlist"
 msgstr ""
 
-#: view/scripto/admin/index/index.phtml:226
-#: view/scripto/public-app/index/index.phtml:155
+#: view/scripto/admin/index/index.phtml:236
+#: view/scripto/public-app/index/index.phtml:165
 msgid "No watchlist found."
 msgstr ""
 
-#: view/scripto/admin/index/index.phtml:228
-#: view/scripto/public-app/index/index.phtml:157
+#: view/scripto/admin/index/index.phtml:238
+#: view/scripto/public-app/index/index.phtml:167
 msgid "No watchlist found. Do you need to log in to Scripto?"
 msgstr ""
 
@@ -1131,12 +1129,12 @@ msgstr ""
 
 #: view/scripto/admin/revision/browse-talk.phtml:79
 #: view/scripto/admin/revision/browse.phtml:79
-#: view/scripto/admin/user/contributions.phtml:96
-#: view/scripto/admin/user/watchlist.phtml:95
+#: view/scripto/admin/user/contributions.phtml:97
+#: view/scripto/admin/user/watchlist.phtml:96
 #: view/scripto/public-app/revision/browse-talk.phtml:69
 #: view/scripto/public-app/revision/browse.phtml:69
-#: view/scripto/public-app/user/contributions.phtml:84
-#: view/scripto/public-app/user/watchlist.phtml:83
+#: view/scripto/public-app/user/contributions.phtml:85
+#: view/scripto/public-app/user/watchlist.phtml:84
 #, php-format
 msgid "%s bytes (%s)"
 msgstr ""
@@ -1238,11 +1236,11 @@ msgstr ""
 msgid "n/a"
 msgstr ""
 
-#: view/scripto/admin/user/contributions.phtml:105
+#: view/scripto/admin/user/contributions.phtml:114
 msgid "No user contributions found."
 msgstr ""
 
-#: view/scripto/admin/user/watchlist.phtml:105
+#: view/scripto/admin/user/watchlist.phtml:114
 msgid "No watchlist pages found."
 msgstr ""
 
