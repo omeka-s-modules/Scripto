@@ -56,9 +56,6 @@ class CreateAccountForm extends Form
             ],
         ]);
         $this->add([
-            'type' => 'Omeka\Form\Element\Recaptcha',
-        ]);
-        $this->add([
             'name' => 'submit',
             'type' => 'submit',
             'attributes' => [
