@@ -72,6 +72,11 @@ return [
             'scripto' => Scripto\Site\BlockLayout\Scripto::class,
         ],
     ],
+    'navigation_links' => [
+        'invokables' => [
+            'scripto' => Scripto\Site\Navigation\Link\Scripto::class,
+        ],
+    ],
     'navigation' => [
         'AdminModule' => [
             [
