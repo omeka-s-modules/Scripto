@@ -486,4 +486,26 @@ HTML;
             'Signature' => $view->translate('Signature'),
         ]);
     }
+
+    /**
+     * Get a project select object.
+     *
+     * @param string $name
+     * @param string $value
+     * @return Element\Select
+     */
+    public function getProjectSelect($name, $value = null)
+    {
+        $view = $this->getView();
+        $options = [];
+        $projects = $view->api()->search('scripto_projects')->getContent();
+        foreach ($projects as $project) {
+            $options[$project->id()] = $project->title();
+        }
+        $select = new Element\Select($name);
+        $select->setEmptyOption($view->translate('Select one'));
+        $select->setValueOptions($options);
+        $select->setValue($value);
+        return $select;
+    }
 }
