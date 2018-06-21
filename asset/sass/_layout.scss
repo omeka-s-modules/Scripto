@@ -203,6 +203,12 @@ ul.user-menu {
     padding-bottom: .25 * $spacing-unit;
     border-top: 1px solid $grey-color-light;
     display: flex;
+    position: absolute;
+    top: -9999px;
+}
+
+#scripto-search.active {
+    position: static;
 }
 
 #scripto-search input[type="text"] {
@@ -210,7 +216,7 @@ ul.user-menu {
     width: 100%;
 }
 
-#scripto-search button.o-icon-search {
+#scripto-search button {
     border-radius: 0 3px 3px 0;
 }
 
@@ -706,7 +712,7 @@ h2.media-item {
 
 .media-head {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: flex-end;
     position: relative;
     padding-bottom: .25 * $spacing-unit;
@@ -728,6 +734,10 @@ h2.media-item {
     margin-right: auto;
 }
 
+.watch-list {
+    display: inline-block;
+}
+
 .watchlist.button,
 .protection-field {
     margin-right: $spacing-unit;
@@ -745,6 +755,40 @@ h2.media-item {
     &:after {
         left: .25 * $spacing-unit;
     }
+}
+
+.media-tabs {
+    display: flex;
+}
+
+.media-tabs > * {
+  text-align: center;
+  border-radius: 0;
+
+  &:first-child {
+    border-radius: 3px 0 0 3px;
+  }
+
+  &:not(:first-child) {
+    margin-left: -1px;
+  }
+
+  &:last-child {
+    border-radius: 0 3px 3px 0;
+  }
+
+  &.inactive {
+    color: $grey-color-dark;
+    font-weight: bold;
+  }
+}
+
+.tab-actions {
+    margin-left: $spacing-unit;
+}
+
+.tab-actions a {
+    margin-right: .5 * $spacing-unit;
 }
 
 .status-field {

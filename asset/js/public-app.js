@@ -1,5 +1,12 @@
 $(document).ready(function() {
 
+// Toggle project search form.
+$('.project-nav .o-icon-search').click(function(e) {
+    e.preventDefault();
+    $('#scripto-search').toggleClass('active');
+    $('#scripto-search input[type="text"]').focus();
+});
+
 // Toggle the sort and filter menus.
 $('.menu-toggle').on('click', function(e) {
     e.preventDefault();
@@ -13,6 +20,7 @@ $('.menu-toggle').on('click', function(e) {
         $('.sorting-toggle').removeClass('open');
     }
 });
+
 // Close the sort and filter menus by clicking anywhere outside them.
 $(document).on('click', function(e) {
     if ($(e.target).parent().parent().is('.sorting-toggle, .filtering-toggle')) {
