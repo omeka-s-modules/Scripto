@@ -10,11 +10,18 @@ $this->scripto()->postTitle($media->displayTitle());
 $this->scripto()->postSubtitle(sprintf($this->translate('Part of %s'), $sItem->link($item->displayTitle())));
 ?>
 <div class="media-head">
-    <?php echo $this->scripto()->watchlistToggle($sMedia); ?>
+    <div class="media-tabs">
+        <span class="inactive tab button"><?php echo $this->translate('Text'); ?></span>
+        <?php echo $sMedia->link($this->translate('Discussion'), 'show-talk', ['class' => 'button']); ?>
+    </div>
+    <div class="tab-actions">
     <?php if ($userCanEdit): ?>
-    <?php echo $sMedia->link($this->translate('Edit'), 'edit', ['class' => 'button']); ?>
+        <?php echo $sMedia->link($this->translate('Edit'), 'edit'); ?>
+        <?php echo $this->hyperlink($this->translate('View revision history'), $this->url('scripto-revision', ['action' => 'browse'], true)); ?>
     <?php endif; ?>
-    <?php echo $this->scripto()->mediaPagination(); ?>
+    <?php echo $this->scripto()->watchlistToggle($sMedia); ?>
+    </div>
+    <?php echo $this->scripto()->mediaPagination('talk'); ?>
 </div>
 <div class="resource-content">
     <div class="media metadata">

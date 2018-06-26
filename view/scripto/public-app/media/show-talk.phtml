@@ -10,10 +10,17 @@ $this->scripto()->postTitle(sprintf($this->translate('Discussion: %s'), $media->
 $this->scripto()->postSubtitle(sprintf($this->translate('Part of %s'), $sItem->link($item->displayTitle())));
 ?>
 <div class="media-head">
-    <?php echo $this->scripto()->watchlistToggle($sMedia); ?>
+    <div class="media-tabs">
+        <?php echo $sMedia->link($this->translate('Text'), 'show', ['class' => 'button']); ?>
+        <span class="inactive tab button"><?php echo $this->translate('Discussion'); ?></span>
+    </div>
+    <div class="tab-actions">
     <?php if ($userCanEdit): ?>
-    <?php echo $sMedia->link($this->translate('Edit'), 'edit-talk', ['class' => 'button']); ?>
+        <?php echo $sMedia->link($this->translate('Discuss'), 'edit-talk'); ?>
+        <?php echo $this->hyperlink($this->translate('View discussion history'), $this->url('scripto-talk-revision', ['action' => 'browse-talk'], true)); ?>
     <?php endif; ?>
+    <?php echo $this->scripto()->watchlistToggle($sMedia); ?>
+    </div>
     <?php echo $this->scripto()->mediaPagination('talk'); ?>
 </div>
 <div class="resource-content">
@@ -42,8 +49,8 @@ $this->scripto()->postSubtitle(sprintf($this->translate('Part of %s'), $sItem->l
         <?php echo $media->render(['link' => null]); ?>
     </div>
     <?php endif; ?>
-        <h3><?php echo $this->translate('HTML'); ?></h3>
+        <h3><?php echo $this->translate('Discussion'); ?></h3>
         <?php $pageHtml = $sMedia->pageHtml(1); ?>
-        <?php echo $pageHtml  ? $pageHtml : sprintf('<span>[%s]</span>', $this->translate('No HTML')); ?>
+        <?php echo $pageHtml  ? $pageHtml : sprintf('<span>[%s]</span>', $this->translate('No discussion yet.')); ?>
     </div>
 </div>

@@ -37,12 +37,12 @@ if ($('.image.panzoom-container').length) {
             Scripto.applyPanzoom($('.featherlight-content .media-render'));
 
             // Apply wikitext editor to lightbox textarea.
-            if ($('#wikitext-editor-text').length) {
+            if ($('#wikitext .wikitext-editor-text').length) {
                 var lmlEditor = new LmlEditor(
-                    $('.featherlight-content #wikitext-editor-text')[0],
-                    $('.featherlight-content #wikitext-editor-buttons')[0],
+                    $('.featherlight-content .wikitext-editor-text')[0],
+                    $('.featherlight-content .wikitext-editor-buttons')[0],
                 );
-                $('.featherlight-content #wikitext-editor-buttons').empty();
+                $('.featherlight-content .wikitext-editor-buttons').empty();
                 lmlEditor.addMediawikiButtons();
             }
         },
@@ -54,8 +54,8 @@ if ($('.image.panzoom-container').length) {
             $('.panzoom-container img').attr('style', storedRotateStyle);
 
             // Copy value of lightbox textarea to original textarea.
-            if ($('#wikitext-editor-text').length) {
-                $('#wikitext #wikitext-editor-text').val($('.featherlight-content #wikitext-editor-text').val());
+            if ($('.featherlight-content .wikitext-editor-text').length) {
+                $('#wikitext .wikitext-editor-text').val($('.featherlight-content .wikitext-editor-text').val());
             }
         },
         afterClose: function() {

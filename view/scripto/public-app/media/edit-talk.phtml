@@ -33,7 +33,7 @@ $this->scripto()->postSubtitle(sprintf($this->translate('Part of %s'), $sItem->l
             </div>
             <div class="wikitext-flex">
                 <div class="textarea-flex">
-                    <div id="wikitext-editor-buttons" data-lml-editor-translations="<?php echo $this->escapeHtml($this->scripto()->getLmlEditorTranslations()); ?>"></div>
+                    <div class="wikitext-editor-buttons" data-lml-editor-translations="<?php echo $this->escapeHtml($this->scripto()->getLmlEditorTranslations()); ?>"></div>
                     <?php echo $this->formTextarea($mediaForm->get('wikitext')); ?>
                 </div>
                 <?php if ($sMedia->isRenderableImage()): ?>
@@ -58,7 +58,7 @@ $this->scripto()->postSubtitle(sprintf($this->translate('Part of %s'), $sItem->l
         </div>
     </div>
     <div class="change-summary">
-        <p><?php echo $this->translate('Summarize your changes:'); ?></p>
+        <p><?php echo $this->translate('Summarize your comment:'); ?></p>
         <?php echo $this->formText($mediaForm->get('summary')); ?>
     </div>
 </form>
