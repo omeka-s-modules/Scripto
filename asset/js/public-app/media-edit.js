@@ -2,8 +2,8 @@ $(document).ready(function() {
 
 // Add wikitext editor buttons to the wikitext textarea.
 var lmlEditor = new LmlEditor(
-    document.getElementById('wikitext-editor-text'),
-    document.getElementById('wikitext-editor-buttons')
+    document.getElementsByClassName('wikitext-editor-text')[0],
+    document.getElementsByClassName('wikitext-editor-buttons')[0]
 );
 lmlEditor.addMediawikiButtons();
 
