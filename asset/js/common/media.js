@@ -79,6 +79,16 @@ if ($('.image.panzoom-container').length) {
         }
     });
 
+    // Maintain focus on text editor when manipulating image.
+    $('.panzoom-container').on('click', '.zoom-out, .zoom-in, .rotate-left, .rotate-right, .reset', function(e) {
+        e.preventDefault();
+        if ($(this).closest('.featherlight').length) {
+            $('.featherlight-content .wikitext-editor-text').focus();
+        } else {
+            editorText.focus();
+        }
+    });
+
     $('.panzoom-container').on('click', '.rotate-left', function(e) {
         e.preventDefault();
         var panzoomImg = $(this).parents('.panzoom-container').find('img');
