@@ -24,8 +24,7 @@ watchlist.children('.watchlist.button').on('click', function(e) {
 // Apply panzoom and featherlight.
 if ($('.image.panzoom-container').length) {
 
-    var storedPanzoomStyle = '';
-    var storedRotateStyle = '';
+    var editorText = $('#wikitext .wikitext-editor-text');
 
     Scripto.applyPanzoom($('.media-render'));
 
@@ -34,29 +33,46 @@ if ($('.image.panzoom-container').length) {
             $('.media-render').panzoom('destroy');
         },
         afterOpen: function() {
+            var editorTextFl = $('.featherlight-content .wikitext-editor-text');
+            var editorButtonsFl = $('.featherlight-content .wikitext-editor-buttons');
+
             Scripto.applyPanzoom($('.featherlight-content .media-render'));
 
             // Apply wikitext editor to lightbox textarea.
-            if ($('#wikitext .wikitext-editor-text').length) {
+            if (editorText.length) {
                 var lmlEditor = new LmlEditor(
-                    $('.featherlight-content .wikitext-editor-text')[0],
-                    $('.featherlight-content .wikitext-editor-buttons')[0],
+                    editorTextFl[0],
+                    editorButtonsFl[0],
                 );
-                $('.featherlight-content .wikitext-editor-buttons').empty();
+                editorButtonsFl.empty();
                 lmlEditor.addMediawikiButtons();
             }
+            // Apply the selection range to the lightbox textarea.
+            editorTextFl[0].setSelectionRange(
+                editorText[0].selectionStart,
+                editorText[0].selectionEnd
+            );
+            editorTextFl.focus();
         },
         beforeClose: function() {
-            storedPanzoomStyle = $('.featherlight-content .media-render').attr('style');
-            storedRotateStyle = $('.featherlight-content .panzoom-container img').attr('style');
+            var editorTextFl = $('.featherlight-content .wikitext-editor-text');
+            var storedPanzoomStyle = $('.featherlight-content .media-render').attr('style');
+            var storedRotateStyle = $('.featherlight-content .panzoom-container img').attr('style');
+
             $('.featherlight-content .media-render').panzoom('destroy');
             $('.media-render').attr('style', storedPanzoomStyle);
             $('.panzoom-container img').attr('style', storedRotateStyle);
 
             // Copy value of lightbox textarea to original textarea.
-            if ($('.featherlight-content .wikitext-editor-text').length) {
-                $('#wikitext .wikitext-editor-text').val($('.featherlight-content .wikitext-editor-text').val());
+            if (editorTextFl.length) {
+                editorText.val(editorTextFl.val());
             }
+            // Apply the selection range to the original textarea.
+            editorText[0].setSelectionRange(
+                editorTextFl[0].selectionStart,
+                editorTextFl[0].selectionEnd
+            );
+            editorText.focus();
         },
         afterClose: function() {
             Scripto.applyPanzoom($('.media-render'));
