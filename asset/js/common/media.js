@@ -116,6 +116,12 @@ $('.layout button').click(function(e) {
     $('.wikitext-featherlight').toggleClass('horizontal').toggleClass('vertical');
     $('.layout button:disabled').removeAttr('disabled');
     $('.layout button.active').attr('disabled', true);
+    // Maintain focus on text editor when switching layouts.
+    if ($(this).closest('.featherlight').length) {
+        $('.featherlight-content .wikitext-editor-text').focus();
+    } else {
+        editorText.focus();
+    }
 });
 
 });
