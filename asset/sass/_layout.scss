@@ -540,8 +540,11 @@ nav.pagination .row-count {
 
 .wikitext-flex .textarea-flex textarea {
     width: 100%;
-    flex: 1;
     border-top: 0;
+    margin-top: 0;
+    max-width: 100%;
+    min-width: 100%;
+    height: 100%;
 }
 
 .horizontal .wikitext-flex .textarea-flex,
@@ -559,10 +562,15 @@ nav.pagination .row-count {
     min-height: 35vh;
 }
 
+.vertical .wikitext-flex .textarea-flex textarea {
+    min-height: 35vh;
+    height: auto;
+}
+
 .vertical .wikitext-flex .panzoom-container {
     order: 1;
     margin-bottom: 24px;
-    height: 35vh;
+    min-height: 35vh;
 }
 
 .panzoom-container {
@@ -997,7 +1005,8 @@ div.resource-row {
     background-color: $grey-color-light;
     border: 1px solid $grey-color;
     padding: .125 * $spacing-unit;
-    overflow: hidden;
+    float: left;
+    width: 100%;
 }
 
 .wikitext-editor-buttons button {
