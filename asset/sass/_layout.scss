@@ -993,14 +993,14 @@ div.resource-row {
     width: 100%;
 }
 
-#wikitext-editor-buttons {
+.wikitext-editor-buttons {
     background-color: $grey-color-light;
     border: 1px solid $grey-color;
     padding: .125 * $spacing-unit;
     overflow: hidden;
 }
 
-#wikitext-editor-buttons button {
+.wikitext-editor-buttons button {
     background-color: transparent;
     border: 0;
     color: $grey-color-dark;
@@ -1030,13 +1030,13 @@ div.resource-row {
     }
 }
 
-#wikitext-editor-buttons #wikitext-editor-button-preformatted {
+.wikitext-editor-buttons #wikitext-editor-button-preformatted {
     clear: left;
 }
 
-#wikitext-editor-buttons #wikitext-editor-button-preformatted,
-#wikitext-editor-buttons #wikitext-editor-button-horizontal-rule,
-#wikitext-editor-buttons #wikitext-editor-button-line-break {
+.wikitext-editor-buttons #wikitext-editor-button-preformatted,
+.wikitext-editor-buttons #wikitext-editor-button-horizontal-rule,
+.wikitext-editor-buttons #wikitext-editor-button-line-break {
     text-indent: 0;
 }
 
@@ -1064,27 +1064,27 @@ div.resource-row {
     content: "\f075";
 }
 
-#wikitext-editor-buttons #wikitext-editor-button-heading-1:before {
+.wikitext-editor-buttons #wikitext-editor-button-heading-1:before {
     font-family: $base-font-family;
     content: "h1";
 }
 
-#wikitext-editor-buttons #wikitext-editor-button-heading-2:before {
+.wikitext-editor-buttons #wikitext-editor-button-heading-2:before {
     font-family: $base-font-family;
     content: "h2";
 }
 
-#wikitext-editor-buttons #wikitext-editor-button-heading-3:before {
+.wikitext-editor-buttons #wikitext-editor-button-heading-3:before {
     font-family: $base-font-family;
     content: "h3";
 }
 
-#wikitext-editor-buttons #wikitext-editor-button-heading-4:before {
+.wikitext-editor-buttons #wikitext-editor-button-heading-4:before {
     font-family: $base-font-family;
     content: "h4";
 }
 
-#wikitext-editor-buttons #wikitext-editor-button-heading-5:before {
+.wikitext-editor-buttons #wikitext-editor-button-heading-5:before {
     font-family: $base-font-family;
     content: "h5";
 }
