@@ -1,6 +1,6 @@
 <?php
 $this->headScript()->appendFile($this->assetUrl('js/common/revision-browse.js', 'Scripto'));
-$this->scripto()->postTitle(sprintf($this->translate('Revisions: %s'), $this->escapeHtml($media->displayTitle())));
+$this->scripto()->postTitle(sprintf($this->translate('Revisions: %s'), $sMedia->link($this->escapeHtml($media->displayTitle()), 'show')));
 ?>
 <div class="resource-content">
     <div class="revisions resource-list">

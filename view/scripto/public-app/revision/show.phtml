@@ -1,5 +1,5 @@
 <?php
-$this->scripto()->postTitle(sprintf($this->translate('Revision: %s'), $media->displayTitle()));
+$this->scripto()->postTitle(sprintf($this->translate('Revision: %s'), $sMedia->link($media->displayTitle(), 'show')));
 $this->scripto()->postSubtitle(sprintf(
     $this->translate('Revision as of %s by %s'),
     $revision['timestamp']->format('G:i:s, j F Y'),
@@ -7,6 +7,9 @@ $this->scripto()->postSubtitle(sprintf(
 ));
 ?>
 <div class="resource-content">
+    <div class="browse-controls">
+        <?php echo $this->hyperlink($this->translate('Return to revision history'), $this->url('scripto-revision', ['action' => 'browse'], true)); ?>
+    </div>
     <div class="media wikitext">
         <h3><?php echo $this->translate('Wikitext'); ?></h3>
         <textarea disabled aria-label="<?php echo $this->translate('Wikitext'); ?>"><?php echo $sMedia->pageWikitext(0, $revision['revid']); ?></textarea>

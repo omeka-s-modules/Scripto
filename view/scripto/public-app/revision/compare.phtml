@@ -1,8 +1,9 @@
 <?php
-$this->scripto()->postTitle(sprintf($this->translate('Compare revisions: %s'), $this->escapeHtml($media->displayTitle())));
+$this->scripto()->postTitle(sprintf($this->translate('Compare revisions: %s'), $sMedia->link($this->escapeHtml($media->displayTitle()), 'show')));
 ?>
 <div class="resource-content">
     <div class="browse-controls">
+        <?php echo $this->hyperlink($this->translate('Return to revision history'), $this->url('scripto-revision', ['action' => 'browse'], true)); ?>
         <?php echo $this->scripto()->compareRevisionsPagination(); ?>
     </div>
     <table id="compare-table">
