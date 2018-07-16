@@ -46,13 +46,13 @@ if ($('.image.panzoom-container').length) {
                 );
                 editorButtonsFl.empty();
                 lmlEditor.addMediawikiButtons();
+                // Apply the selection range to the lightbox textarea.
+                editorTextFl[0].setSelectionRange(
+                    editorText[0].selectionStart,
+                    editorText[0].selectionEnd
+                );
+                editorTextFl.focus();
             }
-            // Apply the selection range to the lightbox textarea.
-            editorTextFl[0].setSelectionRange(
-                editorText[0].selectionStart,
-                editorText[0].selectionEnd
-            );
-            editorTextFl.focus();
         },
         beforeClose: function() {
             var editorTextFl = $('.featherlight-content .wikitext-editor-text');
@@ -66,13 +66,13 @@ if ($('.image.panzoom-container').length) {
             // Copy value of lightbox textarea to original textarea.
             if (editorTextFl.length) {
                 editorText.val(editorTextFl.val());
+                // Apply the selection range to the original textarea.
+                editorText[0].setSelectionRange(
+                    editorTextFl[0].selectionStart,
+                    editorTextFl[0].selectionEnd
+                );
+                editorText.focus();
             }
-            // Apply the selection range to the original textarea.
-            editorText[0].setSelectionRange(
-                editorTextFl[0].selectionStart,
-                editorTextFl[0].selectionEnd
-            );
-            editorText.focus();
         },
         afterClose: function() {
             Scripto.applyPanzoom($('.media-render'));
