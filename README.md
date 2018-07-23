@@ -2,7 +2,12 @@
 
 Transcribe and translate items.
 
-See the [Omeka S user manual](http://dev.omeka.org/docs/s/user-manual/modules/scripto/) for user documentation.
+See the [Omeka S user manual](https://omeka.org/s/docs/user-manual/) for user documentation.
+
+## Requirements
+
+- Omeka S 1.2.0
+- MediaWiki 1.30.0
 
 ## Installation
 
