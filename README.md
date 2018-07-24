@@ -6,8 +6,8 @@ See the [Omeka S user manual](https://omeka.org/s/docs/user-manual/) for user do
 
 ## Requirements
 
-- Omeka S 1.2.0
-- MediaWiki 1.30.0
+- [Omeka S](https://omeka.org/s/) ≥ 1.2.0
+- [MediaWiki](https://www.mediawiki.org/wiki/MediaWiki) ≥ 1.30.0
 
 ## Installation
 
