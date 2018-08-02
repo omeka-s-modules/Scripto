@@ -237,9 +237,9 @@ class Scripto extends AbstractHelper
                 %s',
                 $view->translate('User menu'),
                 sprintf($view->translate('Logged in to Scripto as %s'), sprintf('<span class="username">%s</span>', $userInfo['name'])),
-                $view->hyperlink($view->translate('Dashboard'), $view->url('scripto')),
-                $view->hyperlink($view->translate('Contributions'), $view->url('scripto-user-contributions', ['user-id' => $userInfo['name']])),
-                $view->hyperlink($view->translate('Watchlist'), $view->url('scripto-user-watchlist', ['user-id' => $userInfo['name']])),
+                $view->hyperlink($view->translate('Dashboard'), $view->url('scripto', ['action' => 'index'], true)),
+                $view->hyperlink($view->translate('Contributions'), $view->url('scripto-user-contributions', ['action' => 'contributions', 'user-id' => $userInfo['name']], true)),
+                $view->hyperlink($view->translate('Watchlist'), $view->url('scripto-user-watchlist', ['action' => 'watchlist', 'user-id' => $userInfo['name']], true)),
                 $view->form($form)
             );
         } else {

@@ -92,7 +92,7 @@ return [
             'scripto' => [
                 'type' => 'Segment',
                 'options' => [
-                    'route' => '/scripto[/:action]',
+                    'route' => '/scripto[/theme/:theme-id][/:action]',
                     'constraints' => [
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                     ],
@@ -106,7 +106,7 @@ return [
             'scripto-user-contributions' =>  [
                 'type' => 'Segment',
                 'options' => [
-                    'route' => '/scripto/user/:user-id/contributions',
+                    'route' => '/scripto[/theme/:theme-id]/user/:user-id/contributions',
                     'defaults' => [
                         '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
                         'controller' => 'user',
@@ -117,7 +117,7 @@ return [
             'scripto-user-watchlist' =>  [
                 'type' => 'Segment',
                 'options' => [
-                    'route' => '/scripto/user/:user-id/watchlist',
+                    'route' => '/scripto[/theme/:theme-id]/user/:user-id/watchlist',
                     'defaults' => [
                         '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
                         'controller' => 'user',
@@ -128,7 +128,7 @@ return [
             'scripto-project' =>  [
                 'type' => 'Segment',
                 'options' => [
-                    'route' => '/scripto/project[/:action]',
+                    'route' => '/scripto[/theme/:theme-id]/project[/:action]',
                     'constraints' => [
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                     ],
@@ -142,7 +142,7 @@ return [
             'scripto-project-id' =>  [
                 'type' => 'Segment',
                 'options' => [
-                    'route' => '/scripto/:project-id[/:action]',
+                    'route' => '/scripto[/theme/:theme-id]/:project-id[/:action]',
                     'constraints' => [
                         'project-id' => '\d+',
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
@@ -157,7 +157,7 @@ return [
             'scripto-item' =>  [
                 'type' => 'Segment',
                 'options' => [
-                    'route' => '/scripto/:project-id/item[/:action]',
+                    'route' => '/scripto[/theme/:theme-id]/:project-id/item[/:action]',
                     'constraints' => [
                         'project-id' => '\d+',
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
@@ -172,7 +172,7 @@ return [
             'scripto-item-id' =>  [
                 'type' => 'Segment',
                 'options' => [
-                    'route' => '/scripto/:project-id/:item-id[/:action]',
+                    'route' => '/scripto[/theme/:theme-id]/:project-id/:item-id[/:action]',
                     'constraints' => [
                         'project-id' => '\d+',
                         'item-id' => '\d+',
@@ -188,7 +188,7 @@ return [
             'scripto-media' =>  [
                 'type' => 'Segment',
                 'options' => [
-                    'route' => '/scripto/:project-id/:item-id/media[/:action]',
+                    'route' => '/scripto[/theme/:theme-id]/:project-id/:item-id/media[/:action]',
                     'constraints' => [
                         'project-id' => '\d+',
                         'item-id' => '\d+',
@@ -204,7 +204,7 @@ return [
             'scripto-media-id' =>  [
                 'type' => 'Segment',
                 'options' => [
-                    'route' => '/scripto/:project-id/:item-id/:media-id[/:action]',
+                    'route' => '/scripto[/theme/:theme-id]/:project-id/:item-id/:media-id[/:action]',
                     'constraints' => [
                         'project-id' => '\d+',
                         'item-id' => '\d+',
@@ -221,7 +221,7 @@ return [
             'scripto-revision' =>  [
                 'type' => 'Segment',
                 'options' => [
-                    'route' => '/scripto/:project-id/:item-id/:media-id/revision[/:action]',
+                    'route' => '/scripto[/theme/:theme-id]/:project-id/:item-id/:media-id/revision[/:action]',
                     'constraints' => [
                         'project-id' => '\d+',
                         'item-id' => '\d+',
@@ -238,7 +238,7 @@ return [
             'scripto-revision-id' =>  [
                 'type' => 'Segment',
                 'options' => [
-                    'route' => '/scripto/:project-id/:item-id/:media-id/revision/:revision-id[/:action]',
+                    'route' => '/scripto[/theme/:theme-id]/:project-id/:item-id/:media-id/revision/:revision-id[/:action]',
                     'constraints' => [
                         'project-id' => '\d+',
                         'item-id' => '\d+',
@@ -256,7 +256,7 @@ return [
             'scripto-revision-compare' =>  [
                 'type' => 'Segment',
                 'options' => [
-                    'route' => '/scripto/:project-id/:item-id/:media-id/revision/:from-revision-id/:to-revision-id[/:action]',
+                    'route' => '/scripto[/theme/:theme-id]/:project-id/:item-id/:media-id/revision/:from-revision-id/:to-revision-id[/:action]',
                     'constraints' => [
                         'project-id' => '\d+',
                         'item-id' => '\d+',
@@ -275,7 +275,7 @@ return [
             'scripto-talk-media-id' =>  [
                 'type' => 'Segment',
                 'options' => [
-                    'route' => '/scripto/:project-id/:item-id/:media-id/talk[/:action]',
+                    'route' => '/scripto[/theme/:theme-id]/:project-id/:item-id/:media-id/talk[/:action]',
                     'constraints' => [
                         'project-id' => '\d+',
                         'item-id' => '\d+',
@@ -292,7 +292,7 @@ return [
             'scripto-talk-revision' =>  [
                 'type' => 'Segment',
                 'options' => [
-                    'route' => '/scripto/:project-id/:item-id/:media-id/talk/revision[/:action]',
+                    'route' => '/scripto[/theme/:theme-id]/:project-id/:item-id/:media-id/talk/revision[/:action]',
                     'constraints' => [
                         'project-id' => '\d+',
                         'item-id' => '\d+',
@@ -309,7 +309,7 @@ return [
             'scripto-talk-revision-id' =>  [
                 'type' => 'Segment',
                 'options' => [
-                    'route' => '/scripto/:project-id/:item-id/:media-id/talk/revision/:revision-id[/:action]',
+                    'route' => '/scripto[/theme/:theme-id]/:project-id/:item-id/:media-id/talk/revision/:revision-id[/:action]',
                     'constraints' => [
                         'project-id' => '\d+',
                         'item-id' => '\d+',
@@ -327,7 +327,7 @@ return [
             'scripto-talk-revision-compare' =>  [
                 'type' => 'Segment',
                 'options' => [
-                    'route' => '/scripto/:project-id/:item-id/:media-id/talk/revision/:from-revision-id/:to-revision-id[/:action]',
+                    'route' => '/scripto[/theme/:theme-id]/:project-id/:item-id/:media-id/talk/revision/:from-revision-id/:to-revision-id[/:action]',
                     'constraints' => [
                         'project-id' => '\d+',
                         'item-id' => '\d+',

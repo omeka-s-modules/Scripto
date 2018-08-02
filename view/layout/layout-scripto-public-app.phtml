@@ -22,17 +22,17 @@ $this->headScript()->appendFile($this->assetUrl('js/public-app.js', 'Scripto'));
     </head>
     <header class="site-header" role="banner">
         <div class="wrapper">
-            <?php echo $this->hyperlink($title, $this->url('scripto'), ['class' => 'site-title']); ?>
+            <?php echo $this->hyperlink($title, $this->url('scripto', ['action' => 'index'], true), ['class' => 'site-title']); ?>
             <nav class="site-nav">
                 <input type="checkbox" id="nav-trigger" class="nav-trigger" aria-label="<?php echo $this->translate('Toggle menu'); ?>"/>
                 <label for="nav-trigger">
                     <span class="menu-icon"></span>
                 </label>
                 <div class="trigger">
-                    <?php echo $this->hyperlink($this->translate('Projects'), $this->url('scripto-project'), ['class' => 'page-link']); ?>
+                    <?php echo $this->hyperlink($this->translate('Projects'), $this->url('scripto-project', ['action' => 'browse'], true), ['class' => 'page-link']); ?>
                     <?php echo $this->scripto()->loginBar(); ?>
                     <?php if (!$this->scripto()->apiClient()->userIsLoggedIn()): ?>
-                    <?php echo $this->hyperlink($this->translate('Create account'), $this->url('scripto', ['action' => 'create-account']), ['class' => 'page-link']); ?>
+                    <?php echo $this->hyperlink($this->translate('Create account'), $this->url('scripto', ['action' => 'create-account'], true), ['class' => 'page-link']); ?>
                     <?php endif; ?>
                 </div>
             </nav>
