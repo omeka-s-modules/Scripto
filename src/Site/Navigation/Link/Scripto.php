@@ -44,6 +44,8 @@ class Scripto implements LinkInterface
         return [
             'route' => 'scripto-project-id',
             'params' => [
+                'site-slug' => $site->slug(),
+                'site-project-id' => $data['project_id'],
                 'project-id' => $data['project_id'],
             ],
         ];

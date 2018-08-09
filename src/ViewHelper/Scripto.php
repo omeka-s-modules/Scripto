@@ -133,6 +133,96 @@ class Scripto extends AbstractHelper
     }
 
     /**
+     * Get the title of the public application.
+     *
+     * @return string
+     */
+    public function publicAppTitle()
+    {
+        $view = $this->getView();
+        $siteProjectId = $this->routeMatch->getParam('site-project-id');
+        if ($siteProjectId) {
+            $project = $view->api()->read('scripto_projects', $siteProjectId)->getContent();
+            $title = $project->title();
+        } else {
+            $title = $view->setting('installation_title', 'Omeka S');
+        }
+        return sprintf('%s · %s', $view->translate('Scripto'), $title);
+    }
+
+    /**
+     * Get the project link for the public application navigation.
+     *
+     * @return string
+     */
+    public function publicAppProjectLink()
+    {
+        $view = $this->getView();
+        $siteProjectId = $this->routeMatch->getParam('site-project-id');
+        if ($siteProjectId) {
+            $project = $view->api()->read('scripto_projects', $siteProjectId)->getContent();
+            return $project->link($view->translate('Project'), null, ['class' => 'page-link']);
+        } else {
+            return $view->hyperlink(
+                $view->translate('Projects'),
+                $view->url('scripto-project', ['action' => 'browse'], true),
+                ['class' => 'page-link']
+            );
+        }
+    }
+
+    /**
+     * Get the site link for the public application navigation.
+     *
+     * @return string
+     */
+    public function publicAppSiteLink()
+    {
+        $view = $this->getView();
+        $siteSlug = $this->routeMatch->getParam('site-slug');
+        if ($siteSlug) {
+            $site = $view->api()->read('sites', ['slug' => $siteSlug])->getContent();
+            return $view->hyperlink($site->title(), $site->siteUrl(), ['class' => 'page-link']);
+        }
+    }
+
+    /**
+     * Get the URL to the public application stylesheet.
+     *
+     * @return string
+     */
+    public function publicAppStylesheet()
+    {
+        $view = $this->getView();
+        $defaultStylesheet = $view->assetUrl('css/public-app.css', 'Scripto');
+
+        $siteSlug = $this->routeMatch->getParam('site-slug');
+        if (!$siteSlug) {
+            return $defaultStylesheet;
+        }
+
+        // Get the Scripto stylesheets.
+        $stylesheets = [];
+        try {
+            $path = sprintf('%s/modules/Scripto/asset/css/site-themes', OMEKA_PATH);
+            foreach (new \DirectoryIterator($path) as $fileinfo) {
+                if ($fileinfo->isFile() && $fileinfo->isReadable() && 'css' === $fileinfo->getExtension()) {
+                    $stylesheets[] = $fileinfo->getBasename('.css');
+                }
+            }
+        } catch (\UnexpectedValueException $e) {
+            return $defaultStylesheet;
+        }
+
+        $site = $view->api()->read('sites', ['slug' => $siteSlug])->getContent();
+        if (in_array($site->theme(), $stylesheets)) {
+            // Use the site's corresponding Scripto stylesheet.
+            return $view->assetUrl(sprintf('css/themes/%s.css', $site->theme()), 'Scripto');
+        }
+        return $defaultStylesheet;
+    }
+
+    /**
      * Set and get this page's post title for the public application.
      *
      * @param string $postTitle

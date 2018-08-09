@@ -1,5 +1,16 @@
 <?php if ($project): ?>
-<p><?php echo $project->link($project->title(), null, ['target' => '_blank']); ?></p>
+<p><?php echo $this->hyperlink(
+    $project->title(),
+    $this->url(
+        'scripto-project-id',
+        [
+            'site-slug' => $site->slug(),
+            'site-project-id' => $project->id(),
+            'project-id' => $project->id(),
+        ]
+    ),
+    ['target' => '_blank']
+); ?></p>
 <?php else: ?>
 <p><?php echo $this->translate('The Scripto project is not found.'); ?></p>
 <?php endif; ?>

@@ -1,12 +1,12 @@
 <?php
-$title = sprintf('%s · %s', $this->translate('Scripto'), $this->setting('installation_title', 'Omeka S'));
+$title = $this->scripto()->publicAppTitle();
 
 $this->headMeta()->setCharset('utf-8');
 $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1');
 $this->headTitle($title);
 $this->headLink()->prependStylesheet('//fonts.googleapis.com/css?family=Source+Code+Pro|Lato:400,400italic,700,700italic');
 $this->headLink()->appendStylesheet($this->assetUrl('css/iconfonts.css', 'Omeka'));
-$this->headLink()->appendStylesheet($this->assetUrl('css/public-app.css', 'Scripto'));
+$this->headLink()->appendStylesheet($this->scripto()->publicAppStylesheet());
 $this->headScript()->prependFile($this->assetUrl('vendor/jquery/jquery.min.js', 'Omeka'));
 $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/public-app.js', 'Scripto'));
@@ -29,7 +29,8 @@ $this->headScript()->appendFile($this->assetUrl('js/public-app.js', 'Scripto'));
                     <span class="menu-icon"></span>
                 </label>
                 <div class="trigger">
-                    <?php echo $this->hyperlink($this->translate('Projects'), $this->url('scripto-project', ['action' => 'browse'], true), ['class' => 'page-link']); ?>
+                    <?php echo $this->scripto()->publicAppProjectLink(); ?>
+                    <?php echo $this->scripto()->publicAppSiteLink(); ?>
                     <?php echo $this->scripto()->loginBar(); ?>
                     <?php if (!$this->scripto()->apiClient()->userIsLoggedIn()): ?>
                     <?php echo $this->hyperlink($this->translate('Create account'), $this->url('scripto', ['action' => 'create-account'], true), ['class' => 'page-link']); ?>
