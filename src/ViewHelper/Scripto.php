@@ -229,7 +229,7 @@ class Scripto extends AbstractHelper
 
         if (in_array($this->publicAppSite->theme(), $stylesheets)) {
             // Use the site's corresponding Scripto stylesheet.
-            return $view->assetUrl(sprintf('css/themes/%s.css', $this->publicAppSite->theme()), 'Scripto');
+            return $view->assetUrl(sprintf('css/site-themes/%s.css', $this->publicAppSite->theme()), 'Scripto');
         }
         return $defaultStylesheet;
     }
