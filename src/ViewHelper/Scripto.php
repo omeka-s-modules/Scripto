@@ -30,6 +30,16 @@ class Scripto extends AbstractHelper
     protected $routeMatch;
 
     /**
+     * @var SiteRepresentation Site cache for public application site context
+     */
+    protected $publicAppSite;
+
+    /**
+     * @var ScriptoProjectRepresentation Project cache for public application site context
+     */
+    protected $publicAppProject;
+
+    /**
      * @var string This page's title for the public application
      */
     protected $postTitle;
@@ -133,6 +143,20 @@ class Scripto extends AbstractHelper
     }
 
     /**
+     * Prepare the site context of the public application.
+     */
+    public function prepareSiteContext()
+    {
+        $view = $this->getView();
+        $siteSlug = $this->routeMatch->getParam('site-slug');
+        $siteProjectId = $this->routeMatch->getParam('site-project-id');
+        if ($siteSlug) {
+            $this->publicAppSite = $view->api()->read('sites', ['slug' => $siteSlug])->getContent();
+            $this->publicAppProject = $view->api()->read('scripto_projects', $siteProjectId)->getContent();
+        }
+    }
+
+    /**
      * Get the title of the public application.
      *
      * @return string
@@ -140,13 +164,9 @@ class Scripto extends AbstractHelper
     public function publicAppTitle()
     {
         $view = $this->getView();
-        $siteProjectId = $this->routeMatch->getParam('site-project-id');
-        if ($siteProjectId) {
-            $project = $view->api()->read('scripto_projects', $siteProjectId)->getContent();
-            $title = $project->title();
-        } else {
-            $title = $view->setting('installation_title', 'Omeka S');
-        }
+        $title = $this->publicAppProject
+            ? $this->publicAppProject->title()
+            : $view->setting('installation_title', 'Omeka S');
         return sprintf('%s · %s', $view->translate('Scripto'), $title);
     }
 
@@ -158,17 +178,13 @@ class Scripto extends AbstractHelper
     public function publicAppProjectLink()
     {
         $view = $this->getView();
-        $siteProjectId = $this->routeMatch->getParam('site-project-id');
-        if ($siteProjectId) {
-            $project = $view->api()->read('scripto_projects', $siteProjectId)->getContent();
-            return $project->link($view->translate('Project'), null, ['class' => 'page-link']);
-        } else {
-            return $view->hyperlink(
+        return $this->publicAppProject
+            ? $this->publicAppProject->link($view->translate('Project'), null, ['class' => 'page-link'])
+            : $view->hyperlink(
                 $view->translate('Projects'),
                 $view->url('scripto-project', ['action' => 'browse'], true),
                 ['class' => 'page-link']
             );
-        }
     }
 
     /**
@@ -179,10 +195,8 @@ class Scripto extends AbstractHelper
     public function publicAppSiteLink()
     {
         $view = $this->getView();
-        $siteSlug = $this->routeMatch->getParam('site-slug');
-        if ($siteSlug) {
-            $site = $view->api()->read('sites', ['slug' => $siteSlug])->getContent();
-            return $view->hyperlink($site->title(), $site->siteUrl(), ['class' => 'page-link']);
+        if ($this->publicAppSite) {
+            return $view->hyperlink($this->publicAppSite->title(), $this->publicAppSite->siteUrl(), ['class' => 'page-link']);
         }
     }
 
@@ -196,8 +210,7 @@ class Scripto extends AbstractHelper
         $view = $this->getView();
         $defaultStylesheet = $view->assetUrl('css/public-app.css', 'Scripto');
 
-        $siteSlug = $this->routeMatch->getParam('site-slug');
-        if (!$siteSlug) {
+        if (!$this->publicAppSite) {
             return $defaultStylesheet;
         }
 
@@ -211,13 +224,12 @@ class Scripto extends AbstractHelper
                 }
             }
         } catch (\UnexpectedValueException $e) {
-            return $defaultStylesheet;
+            return $defaultStylesheet; // path not found
         }
 
-        $site = $view->api()->read('sites', ['slug' => $siteSlug])->getContent();
-        if (in_array($site->theme(), $stylesheets)) {
+        if (in_array($this->publicAppSite->theme(), $stylesheets)) {
             // Use the site's corresponding Scripto stylesheet.
-            return $view->assetUrl(sprintf('css/themes/%s.css', $site->theme()), 'Scripto');
+            return $view->assetUrl(sprintf('css/themes/%s.css', $this->publicAppSite->theme()), 'Scripto');
         }
         return $defaultStylesheet;
     }
