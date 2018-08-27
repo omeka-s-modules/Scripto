@@ -45,11 +45,13 @@ $this->scripto()->postTitle($this->translate('Your watchlist'));
                     ? $this->hyperlink($date, $this->url(
                         $isTalk ? 'scripto-talk-revision-id' : 'scripto-revision-id',
                         [
+                            'action' => 'show',
                             'project-id' => $project->id(),
                             'item-id' => $sItem->item()->id(),
                             'media-id' => $sMedia->media()->id(),
                             'revision-id' => $page['revid'],
-                        ]
+                        ],
+                        true
                     ))
                     : $date; ?>
                 </td>
@@ -61,21 +63,25 @@ $this->scripto()->postTitle($this->translate('Your watchlist'));
                             ? $this->hyperlink($this->translate('diff'), $this->url(
                                 $isTalk ? 'scripto-talk-revision-compare' : 'scripto-revision-compare',
                                 [
+                                    'action' => 'compare',
                                     'project-id' => $project->id(),
                                     'item-id' => $sItem->item()->id(),
                                     'media-id' => $sMedia->media()->id(),
                                     'from-revision-id' => $page['old_revid'],
                                     'to-revision-id' => $page['revid'],
-                                ]
+                                ],
+                                true
                             ))
                             : $this->translate('diff'),
                         $this->hyperlink($this->translate('hist'), $this->url(
                             $isTalk ? 'scripto-talk-revision' : 'scripto-revision',
                             [
+                                'action' => 'browse',
                                 'project-id' => $project->id(),
                                 'item-id' => $sItem->item()->id(),
                                 'media-id' => $sMedia->media()->id(),
-                            ]
+                            ],
+                            true
                         ))
                     )
                     : ''; ?>
@@ -90,7 +96,7 @@ $this->scripto()->postTitle($this->translate('Your watchlist'));
                         number_format($sizeDiff)
                     )
                 ); ?></td>
-                <td><?php echo $this->hyperlink($page['user'], $this->url('scripto-user-contributions', ['user-id' => $page['user']])); ?></td>
+                <td><?php echo $this->hyperlink($page['user'], $this->url('scripto-user-contributions', ['action' => 'contributions', 'user-id' => $page['user']], true)); ?></td>
                 <td><i><?php echo strip_tags($page['parsedcomment']); ?></i></td>
             </tr>
         <?php endforeach; ?>

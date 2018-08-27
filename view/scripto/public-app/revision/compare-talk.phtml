@@ -19,7 +19,7 @@ $this->scripto()->postTitle(sprintf($this->translate('Compare discussion revisio
                     <div class="revision-timestamp"><?php echo $this->hyperlink(sprintf($this->translate('Revision as of %s'), $fromRevision['timestamp']->format('G:i:s, j F Y')), $this->url('scripto-talk-revision-id', ['action' => 'show-talk', 'revision-id' => $fromRevision['revid']], true)); ?>
                     <?php echo sprintf(
                         $this->translate('by %s'),
-                        $this->hyperlink($fromRevision['user'], $this->url('scripto-user-contributions', ['user-id' => $fromRevision['user']]))
+                        $this->hyperlink($fromRevision['user'], $this->url('scripto-user-contributions', ['action' => 'contributions', 'user-id' => $fromRevision['user']], true))
                     ); ?></div>
                     <?php if ($fromRevision['parsedcomment']): ?>
                     <div class="parsed-comment"><?php echo strip_tags($fromRevision['parsedcomment']); ?></div>
@@ -29,7 +29,7 @@ $this->scripto()->postTitle(sprintf($this->translate('Compare discussion revisio
                     <div class="revision-timestamp"><?php echo $this->hyperlink(sprintf($this->translate('Revision as of %s'), $toRevision['timestamp']->format('G:i:s, j F Y')), $this->url('scripto-talk-revision-id', ['action' => 'show-talk', 'revision-id' => $toRevision['revid']], true)); ?>
                     <?php echo sprintf(
                         $this->translate('by %s'),
-                        $this->hyperlink($toRevision['user'], $this->url('scripto-user-contributions', ['user-id' => $toRevision['user']]))
+                        $this->hyperlink($toRevision['user'], $this->url('scripto-user-contributions', ['action' => 'contributions', 'user-id' => $toRevision['user']], true))
                     ); ?></div>
                     <?php if ($toRevision['parsedcomment']): ?>
                     <div class="parsed-comment"><?php echo strip_tags($toRevision['parsedcomment']); ?></div>

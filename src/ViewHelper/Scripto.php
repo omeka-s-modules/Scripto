@@ -30,6 +30,16 @@ class Scripto extends AbstractHelper
     protected $routeMatch;
 
     /**
+     * @var SiteRepresentation Site cache for public application site context
+     */
+    protected $publicAppSite;
+
+    /**
+     * @var ScriptoProjectRepresentation Project cache for public application site context
+     */
+    protected $publicAppProject;
+
+    /**
      * @var string This page's title for the public application
      */
     protected $postTitle;
@@ -130,6 +140,98 @@ class Scripto extends AbstractHelper
     public function apiClient()
     {
         return $this->apiClient;
+    }
+
+    /**
+     * Prepare the site context of the public application.
+     */
+    public function prepareSiteContext()
+    {
+        $view = $this->getView();
+        $siteSlug = $this->routeMatch->getParam('site-slug');
+        $siteProjectId = $this->routeMatch->getParam('site-project-id');
+        if ($siteSlug) {
+            $this->publicAppSite = $view->api()->read('sites', ['slug' => $siteSlug])->getContent();
+            $this->publicAppProject = $view->api()->read('scripto_projects', $siteProjectId)->getContent();
+        }
+    }
+
+    /**
+     * Get the title of the public application.
+     *
+     * @return string
+     */
+    public function publicAppTitle()
+    {
+        $view = $this->getView();
+        $title = $this->publicAppProject
+            ? $this->publicAppProject->title()
+            : $view->setting('installation_title', 'Omeka S');
+        return sprintf('%s · %s', $view->translate('Scripto'), $title);
+    }
+
+    /**
+     * Get the project link for the public application navigation.
+     *
+     * @return string
+     */
+    public function publicAppProjectLink()
+    {
+        $view = $this->getView();
+        return $this->publicAppProject
+            ? $this->publicAppProject->link($view->translate('Project'), null, ['class' => 'page-link'])
+            : $view->hyperlink(
+                $view->translate('Projects'),
+                $view->url('scripto-project', ['action' => 'browse'], true),
+                ['class' => 'page-link']
+            );
+    }
+
+    /**
+     * Get the site link for the public application navigation.
+     *
+     * @return string
+     */
+    public function publicAppSiteLink()
+    {
+        $view = $this->getView();
+        if ($this->publicAppSite) {
+            return $view->hyperlink($this->publicAppSite->title(), $this->publicAppSite->siteUrl(), ['class' => 'page-link']);
+        }
+    }
+
+    /**
+     * Get the URL to the public application stylesheet.
+     *
+     * @return string
+     */
+    public function publicAppStylesheet()
+    {
+        $view = $this->getView();
+        $defaultStylesheet = $view->assetUrl('css/public-app.css', 'Scripto');
+
+        if (!$this->publicAppSite) {
+            return $defaultStylesheet;
+        }
+
+        // Get the Scripto stylesheets.
+        $stylesheets = [];
+        try {
+            $path = sprintf('%s/modules/Scripto/asset/css/site-themes', OMEKA_PATH);
+            foreach (new \DirectoryIterator($path) as $fileinfo) {
+                if ($fileinfo->isFile() && $fileinfo->isReadable() && 'css' === $fileinfo->getExtension()) {
+                    $stylesheets[] = $fileinfo->getBasename('.css');
+                }
+            }
+        } catch (\UnexpectedValueException $e) {
+            return $defaultStylesheet; // path not found
+        }
+
+        if (in_array($this->publicAppSite->theme(), $stylesheets)) {
+            // Use the site's corresponding Scripto stylesheet.
+            return $view->assetUrl(sprintf('css/site-themes/%s.css', $this->publicAppSite->theme()), 'Scripto');
+        }
+        return $defaultStylesheet;
     }
 
     /**
@@ -237,9 +339,9 @@ class Scripto extends AbstractHelper
                 %s',
                 $view->translate('User menu'),
                 sprintf($view->translate('Logged in to Scripto as %s'), sprintf('<span class="username">%s</span>', $userInfo['name'])),
-                $view->hyperlink($view->translate('Dashboard'), $view->url('scripto')),
-                $view->hyperlink($view->translate('Contributions'), $view->url('scripto-user-contributions', ['user-id' => $userInfo['name']])),
-                $view->hyperlink($view->translate('Watchlist'), $view->url('scripto-user-watchlist', ['user-id' => $userInfo['name']])),
+                $view->hyperlink($view->translate('Dashboard'), $view->url('scripto', ['action' => 'index'], true)),
+                $view->hyperlink($view->translate('Contributions'), $view->url('scripto-user-contributions', ['action' => 'contributions', 'user-id' => $userInfo['name']], true)),
+                $view->hyperlink($view->translate('Watchlist'), $view->url('scripto-user-watchlist', ['action' => 'watchlist', 'user-id' => $userInfo['name']], true)),
                 $view->form($form)
             );
         } else {

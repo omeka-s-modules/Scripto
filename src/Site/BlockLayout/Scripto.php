@@ -41,6 +41,7 @@ class Scripto extends AbstractBlockLayout
             $project = null;
         }
         return $view->partial('common/block-layout/scripto-block', [
+            'site' => $block->page()->site(),
             'project' => $project,
         ]);
     }

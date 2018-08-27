@@ -32,7 +32,8 @@ class ScriptoMediaRepresentation extends AbstractEntityRepresentation
                 'item-id' => $this->resource->getScriptoItem()->getItem()->getId(),
                 'media-id' => $this->resource->getMedia()->getId(),
             ],
-            ['force_canonical' => $canonical]
+            ['force_canonical' => $canonical],
+            true
         );
     }
 

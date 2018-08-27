@@ -27,7 +27,8 @@ class ScriptoItemRepresentation extends AbstractEntityRepresentation
                 'project-id' => $this->resource->getScriptoProject()->getId(),
                 'item-id' => $this->resource->getItem()->getId(),
             ],
-            ['force_canonical' => $canonical]
+            ['force_canonical' => $canonical],
+            true
         );
     }
 
