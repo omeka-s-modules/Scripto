@@ -488,6 +488,13 @@ SET FOREIGN_KEY_CHECKS=1;
         $expression = $qb->expr()->eq("Scripto\Entity\ScriptoProject.isPublic", true);
 
         $identity = $this->getServiceLocator()->get('Omeka\AuthenticationService')->getIdentity();
+        $acl = $this->getServiceLocator()->get('Omeka\Acl');
+
+        if ($acl->isAdminRole($identity->getRole())) {
+            // Admin users can view all projects.
+            return;
+        }
+
         if ($identity) {
             $adapter = $event->getTarget();
             $projectAlias = $adapter->createAlias();
