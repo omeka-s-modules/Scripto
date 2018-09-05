@@ -64,10 +64,10 @@ class ScriptoProject extends \Scripto\Entity\ScriptoProject implements \Doctrine
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'owner', 'isPublic', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'guidelines', 'created', 'synced', 'imported', 'reviewers'];
+            return ['__isInitialized__', 'id', 'owner', 'isPublic', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'guidelines', 'browseLayout', 'created', 'synced', 'imported', 'reviewers'];
         }
 
-        return ['__isInitialized__', 'id', 'owner', 'isPublic', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'guidelines', 'created', 'synced', 'imported', 'reviewers'];
+        return ['__isInitialized__', 'id', 'owner', 'isPublic', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'guidelines', 'browseLayout', 'created', 'synced', 'imported', 'reviewers'];
     }
 
     /**
@@ -384,6 +384,28 @@ class ScriptoProject extends \Scripto\Entity\ScriptoProject implements \Doctrine
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getGuidelines', []);
 
         return parent::getGuidelines();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setBrowseLayout($browseLayout)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBrowseLayout', [$browseLayout]);
+
+        return parent::setBrowseLayout($browseLayout);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getBrowseLayout()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBrowseLayout', []);
+
+        return parent::getBrowseLayout();
     }
 
     /**

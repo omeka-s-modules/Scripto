@@ -87,6 +87,11 @@ class ScriptoProject extends AbstractEntity
     protected $guidelines;
 
     /**
+     * @Column(nullable=true)
+     */
+    protected $browseLayout;
+
+    /**
      * @Column(type="datetime")
      */
     protected $created;
@@ -210,6 +215,16 @@ class ScriptoProject extends AbstractEntity
     public function getGuidelines()
     {
         return $this->guidelines;
+    }
+
+    public function setBrowseLayout($browseLayout)
+    {
+        $this->browseLayout = $browseLayout;
+    }
+
+    public function getBrowseLayout()
+    {
+        return $this->browseLayout;
     }
 
     public function setCreated(DateTime $dateTime)
