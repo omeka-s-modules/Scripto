@@ -14,8 +14,8 @@ $this->scripto()->postTitle($item->displayTitle());
             <?php if ($sMedias): ?>
             <div class="list-layout">
                 <span class="layout-label"><?php echo $this->translate('Layout'); ?></span>
-                <button class="list" aria-label="<?php echo $this->escapeHtml($this->translate('List')); ?>"></button>
-                <button class="grid" aria-label="<?php echo $this->escapeHtml($this->translate('Grid')); ?>" disabled></button>
+                <button class="list" aria-label="<?php echo $this->escapeHtml($this->translate('List')); ?>"<?php echo 'list' === $project->browseLayout() ? ' disabled' : ''; ?>></button>
+                <button class="grid" aria-label="<?php echo $this->escapeHtml($this->translate('Grid')); ?>"<?php echo 'list' !== $project->browseLayout() ? ' disabled' : ''; ?>></button>
             </div>
             <?php endif; ?>
             <div class="sorting-toggle">
@@ -71,7 +71,7 @@ $this->scripto()->postTitle($item->displayTitle());
             <?php echo $this->pagination(); ?>
         </div>
         <?php if ($sMedias): ?>
-        <table style="display: none">
+        <table<?php echo 'list' !== $project->browseLayout() ? ' style="display: none"' : ''; ?>>
             <thead>
                 <tr>
                     <th class="title"><?php echo $this->translate('Title'); ?></th>
@@ -101,7 +101,7 @@ $this->scripto()->postTitle($item->displayTitle());
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <div class="resource-grid">
+        <div class="resource-grid"<?php echo 'list' === $project->browseLayout() ? ' style="display: none"' : ''; ?>>
             <?php foreach ($sMedias as $sMedia): ?>
             <div class="resource-tile">
                 <?php echo $sMedia->linkRaw($this->thumbnail($sMedia, 'square', [

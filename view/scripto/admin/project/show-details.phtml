@@ -35,6 +35,16 @@
     </div>
 </div>
 <div class="meta-group">
+    <h4><?php echo $this->translate('Browse layout'); ?></h4>
+    <div class="value">
+    <?php if ('list' === $project->browseLayout()): ?>
+    <?php echo $this->translate('List'); ?>
+    <?php else: ?>
+    <?php echo $this->translate('Grid'); ?>
+    <?php endif; ?>
+    </div>
+</div>
+<div class="meta-group">
     <h4><?php echo $this->translate('Visibility'); ?></h4>
     <div class="value"><?php echo ($project->isPublic()) ? $this->translate('Public') : $this->translate('Private'); ?></div>
 </div>

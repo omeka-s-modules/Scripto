@@ -116,6 +116,9 @@ class ScriptoProjectAdapter extends AbstractEntityAdapter
         if ($this->shouldHydrate($request, 'o-module-scripto:import_target')) {
             $entity->setImportTarget($request->getValue('o-module-scripto:import_target'));
         }
+        if ($this->shouldHydrate($request, 'o-module-scripto:browse_layout')) {
+            $entity->setBrowseLayout($request->getValue('o-module-scripto:browse_layout'));
+        }
         if ($this->shouldHydrate($request, 'o-module-scripto:reviewer')) {
             $userAdapter = $this->getAdapter('users');
             $reviewers = $entity->getReviewers();

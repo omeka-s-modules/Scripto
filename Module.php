@@ -1,6 +1,7 @@
 <?php
 namespace Scripto;
 
+use Composer\Semver\Comparator;
 use DateTime;
 use Omeka\Module\AbstractModule;
 use Omeka\Mvc\Exception\RuntimeException as MvcRuntimeException;
@@ -48,7 +49,7 @@ SET FOREIGN_KEY_CHECKS=0;
 CREATE TABLE scripto_reviewer (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, scripto_project_id INT NOT NULL, INDEX IDX_A9E24DFCA76ED395 (user_id), INDEX IDX_A9E24DFCDC45463D (scripto_project_id), UNIQUE INDEX UNIQ_A9E24DFCA76ED395DC45463D (user_id, scripto_project_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB;
 CREATE TABLE scripto_media (id INT AUTO_INCREMENT NOT NULL, scripto_item_id INT NOT NULL, media_id INT NOT NULL, approved_by_id INT DEFAULT NULL, position INT NOT NULL, synced DATETIME NOT NULL, edited DATETIME DEFAULT NULL, edited_by VARCHAR(255) DEFAULT NULL, completed DATETIME DEFAULT NULL, completed_by VARCHAR(255) DEFAULT NULL, completed_revision INT DEFAULT NULL, approved DATETIME DEFAULT NULL, approved_revision INT DEFAULT NULL, imported_html LONGTEXT DEFAULT NULL, INDEX IDX_28ABA038DE42D3B8 (scripto_item_id), INDEX IDX_28ABA038EA9FDD75 (media_id), INDEX IDX_28ABA0382D234F6A (approved_by_id), UNIQUE INDEX UNIQ_28ABA038DE42D3B8EA9FDD75 (scripto_item_id, media_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB;
 CREATE TABLE scripto_item (id INT AUTO_INCREMENT NOT NULL, scripto_project_id INT NOT NULL, item_id INT NOT NULL, synced DATETIME NOT NULL, edited DATETIME DEFAULT NULL, INDEX IDX_2A827D37DC45463D (scripto_project_id), INDEX IDX_2A827D37126F525E (item_id), UNIQUE INDEX UNIQ_2A827D37DC45463D126F525E (scripto_project_id, item_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB;
-CREATE TABLE scripto_project (id INT AUTO_INCREMENT NOT NULL, owner_id INT DEFAULT NULL, item_set_id INT DEFAULT NULL, property_id INT DEFAULT NULL, is_public TINYINT(1) NOT NULL, lang VARCHAR(255) DEFAULT NULL, import_target VARCHAR(255) DEFAULT NULL, title VARCHAR(255) NOT NULL, description LONGTEXT DEFAULT NULL, guidelines LONGTEXT DEFAULT NULL, created DATETIME NOT NULL, synced DATETIME DEFAULT NULL, imported DATETIME DEFAULT NULL, INDEX IDX_E39E51087E3C61F9 (owner_id), INDEX IDX_E39E5108960278D7 (item_set_id), INDEX IDX_E39E5108549213EC (property_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB;
+CREATE TABLE scripto_project (id INT AUTO_INCREMENT NOT NULL, owner_id INT DEFAULT NULL, item_set_id INT DEFAULT NULL, property_id INT DEFAULT NULL, is_public TINYINT(1) NOT NULL, lang VARCHAR(255) DEFAULT NULL, import_target VARCHAR(255) DEFAULT NULL, title VARCHAR(255) NOT NULL, description LONGTEXT DEFAULT NULL, guidelines LONGTEXT DEFAULT NULL, browse_layout VARCHAR(255) DEFAULT NULL, created DATETIME NOT NULL, synced DATETIME DEFAULT NULL, imported DATETIME DEFAULT NULL, INDEX IDX_E39E51087E3C61F9 (owner_id), INDEX IDX_E39E5108960278D7 (item_set_id), INDEX IDX_E39E5108549213EC (property_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB;
 ALTER TABLE scripto_reviewer ADD CONSTRAINT FK_A9E24DFCA76ED395 FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE;
 ALTER TABLE scripto_reviewer ADD CONSTRAINT FK_A9E24DFCDC45463D FOREIGN KEY (scripto_project_id) REFERENCES scripto_project (id) ON DELETE CASCADE;
 ALTER TABLE scripto_media ADD CONSTRAINT FK_28ABA038DE42D3B8 FOREIGN KEY (scripto_item_id) REFERENCES scripto_item (id) ON DELETE CASCADE;
@@ -83,6 +84,14 @@ SET FOREIGN_KEY_CHECKS=1;
                     'format' => 'turtle',
                 ]
             );
+        }
+    }
+
+    public function upgrade($oldVersion, $newVersion, ServiceLocatorInterface $services)
+    {
+        $conn = $services->get('Omeka\Connection');
+        if (Comparator::lessThan($oldVersion, '0.1.0-alpha2')) {
+            $conn->exec('ALTER TABLE scripto_project ADD browse_layout VARCHAR(255) DEFAULT NULL');
         }
     }
 

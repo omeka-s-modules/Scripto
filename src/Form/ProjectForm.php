@@ -104,6 +104,19 @@ class ProjectForm extends Form
             ],
         ]);
 
+        $this->add([
+            'name' => 'o-module-scripto:browse_layout',
+            'type' => 'select',
+            'options' => [
+                'label' => 'Browse layout', // @translate
+                'info' => 'Select the default layout for public browse views.', // @translate
+                'value_options' => [
+                    'grid' => 'Grid', // @translate
+                    'list' => 'List', // @translate
+                ],
+            ],
+        ]);
+
         $inputFilter = $this->getInputFilter();
         $inputFilter->add([
             'name' => 'o-module-scripto:description',

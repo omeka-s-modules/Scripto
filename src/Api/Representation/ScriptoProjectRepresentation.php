@@ -59,6 +59,7 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
             'o:property' => $property ? $property->getReference() : null,
             'o:lang' => $this->lang(),
             'o-module-scripto:import_target' => $this->importTarget(),
+            'o-module-scripto:browse_layout' => $this->browseLayout(),
             'o:created' => $this->getDateTime($this->created()),
             'o-module-scripto:synced' => $synced ? $this->getDateTime($synced) : null,
             'o-module-scripto:imported' => $imported ? $this->getDateTime($imported) : null,
@@ -111,6 +112,11 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
     public function guidelines()
     {
         return $this->resource->getGuidelines();
+    }
+
+    public function browseLayout()
+    {
+        return $this->resource->getBrowseLayout();
     }
 
     public function reviewers()
