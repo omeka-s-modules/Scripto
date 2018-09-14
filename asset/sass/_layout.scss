@@ -24,7 +24,7 @@
   }
 }
 
-.site-nav {
+.top-nav {
   float: right;
   line-height: $base-line-height * $base-font-size * 2.25;
 
@@ -67,7 +67,7 @@
     font-weight: bold;
 }
 
-.site-nav .page-link.user-toggle {
+.top-nav .page-link.user-toggle {
     //border-left: 1px solid $grey-color-dark;
     position: relative;
     z-index: 2;

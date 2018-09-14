@@ -1,9 +1,10 @@
 @include media-query($on-palm) {
-    .site-nav {
+    .top-nav {
         position: absolute;
         top: 9px;
         right: $spacing-unit / 2;
         text-align: right;
+        line-height: $base-line-height;
     
         label[for="nav-trigger"] {
           display: block;
@@ -96,7 +97,8 @@
           right: 0;
           margin: 0;
           width: 100%;
-          border-width: 0 0 1px;
+          border-width: 0;
+          padding: (.25 * $spacing-unit) (.5 * $spacing-unit);
         }
 
         #scriptologoutform {
@@ -104,6 +106,36 @@
           padding: (.25 * $spacing-unit) (.5 * $spacing-unit);
           border-bottom: 1px solid $grey-color-light;
           line-height: $base-line-height;
+        }
+        
+        .project-nav {
+            display: block;
+                border-top: 0;
+        }
+        
+        .project-nav li:last-child {
+            display: none;
+        }
+        
+        .project-nav h2 {
+            font-size: 1.25 * $base-font-size;
+            padding: 0 (.5 * $spacing-unit);
+        }
+        
+        .project-nav ul {
+            padding: 0;
+            display: block;
+        }
+        
+        .project-nav li {
+            margin: 0;
+            padding: 0 (.5 * $spacing-unit);
+            width: 100%;
+        }
+        
+        #scripto-search {
+            position: static;
+            border-top: 0;
         }
     }
 
