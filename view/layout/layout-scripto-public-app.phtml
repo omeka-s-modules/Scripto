@@ -7,8 +7,10 @@ $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1')
 $this->headTitle($title);
 $this->headLink()->prependStylesheet('//fonts.googleapis.com/css?family=Source+Code+Pro|Lato:400,400italic,700,700italic');
 $this->headLink()->appendStylesheet($this->assetUrl('css/iconfonts.css', 'Omeka'));
+$this->headLink()->appendStylesheet($this->assetUrl('vendor/tablesaw/tablesaw.stackonly.css', 'Omeka'));
 $this->headLink()->appendStylesheet($this->scripto()->publicAppStylesheet());
 $this->headScript()->prependFile($this->assetUrl('vendor/jquery/jquery.min.js', 'Omeka'));
+$this->headScript()->appendFile($this->assetUrl('vendor/tablesaw/tablesaw.stackonly.jquery.js', 'Omeka'));
 $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/public-app.js', 'Scripto'));
 ?>

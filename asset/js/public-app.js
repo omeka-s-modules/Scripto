@@ -47,4 +47,6 @@ gridButton.click(function() {
     listButton.removeAttr('disabled');
 });
 
+$(document).trigger('enhance.tablesaw');
+
 });
