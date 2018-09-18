@@ -496,15 +496,15 @@ SET FOREIGN_KEY_CHECKS=1;
         // Users can view projects they do not own that are public.
         $expression = $qb->expr()->eq("Scripto\Entity\ScriptoProject.isPublic", true);
 
-        $identity = $this->getServiceLocator()->get('Omeka\AuthenticationService')->getIdentity();
+        $auth = $this->getServiceLocator()->get('Omeka\AuthenticationService');
         $acl = $this->getServiceLocator()->get('Omeka\Acl');
 
-        if ($acl->isAdminRole($identity->getRole())) {
-            // Admin users can view all projects.
-            return;
-        }
-
-        if ($identity) {
+        if ($auth->hasIdentity()) {
+            $identity = $auth->getIdentity();
+            if ($acl->isAdminRole($identity->getRole())) {
+                // Admin users can view all projects.
+                return;
+            }
             $adapter = $event->getTarget();
             $projectAlias = $adapter->createAlias();
             $qb->leftJoin('Scripto\Entity\ScriptoProject.reviewers', $projectAlias);
