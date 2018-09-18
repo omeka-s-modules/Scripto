@@ -282,6 +282,7 @@ SET FOREIGN_KEY_CHECKS=1;
             null,
             [
                 'Scripto\Controller\PublicApp\Index',
+                'Scripto\Controller\PublicApp\User',
                 'Scripto\Controller\PublicApp\Project',
                 'Scripto\Controller\PublicApp\Item',
                 'Scripto\Controller\PublicApp\Media',
