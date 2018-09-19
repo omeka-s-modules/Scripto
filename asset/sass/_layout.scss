@@ -25,7 +25,6 @@
 }
 
 .top-nav {
-  float: right;
   line-height: $base-line-height * $base-font-size * 2.25;
 
   .nav-trigger {
@@ -45,6 +44,10 @@
       margin-right: 20px;
     }
   }
+}
+
+.site-nav {
+  float: right;
 }
 
 .user {
@@ -145,10 +148,14 @@ ul.user-menu {
 
 .project-nav {
     border-top: 1px solid $grey-color-light;
+    clear: both;
+    margin: 0 (-1 * $spacing-unit);
     display: flex;
     justify-content: space-between;
     padding-top: .25 * $spacing-unit;
     padding-bottom: .25 * $spacing-unit;
+    padding-left: $spacing-unit;
+    padding-right: $spacing-unit;
     align-items: center;
 }
 

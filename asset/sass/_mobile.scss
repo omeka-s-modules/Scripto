@@ -65,6 +65,10 @@
         input:checked ~ label[for="nav-trigger"]:before {
           content: "\f00d";
         }
+        
+        .site-nav {
+            float: none;
+        }
     
         .page-link {
           display: block;
