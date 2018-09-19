@@ -149,6 +149,60 @@
       width:         calc(100% - (#{$spacing-unit} / 2));
     }
     
+    .list-layout {
+        width: 100%;
+        margin-bottom: (.25 * $spacing-unit);
+    }
+
+    .sorting-toggle,
+    .filtering-toggle {
+        width: 100%;
+        padding: (.25 * $spacing-unit);
+        margin-bottom: (.25 * $spacing-unit);
+        border: 1px solid $grey-color-light;
+        border-radius: 3px;
+    }
+
+    .sorting-heading, 
+    .filtering-heading {
+        margin-left: 0;
+        padding: 0;
+        display: block;
+        
+        &:after {
+            content: "\f0da";
+            font-family: "Font Awesome 5 Free";
+            float: right;
+            
+        }
+    }
+    
+    .sorting-toggle.open,
+    .filtering-toggle.open {
+        a:after {
+            content: "\f0d7";
+            border: 0;
+            position: static;
+            width: auto;
+        }
+        
+        & > form {
+            position: static;
+            padding: (.25 * $spacing-unit) 0;
+            flex-wrap: wrap;
+            border: 0;
+            
+            select {
+                width: 100%;
+                margin: 0 0 (.25 * $spacing-unit);
+            }
+        }
+    }
+    
+    nav.pagination {
+        margin: (.25 * $spacing-unit) 0;
+    }
+    
     .resource-grid {
         display: block;
     }
