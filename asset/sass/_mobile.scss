@@ -148,6 +148,22 @@
       width: -webkit-calc(100% - (#{$spacing-unit} / 2));
       width:         calc(100% - (#{$spacing-unit} / 2));
     }
+    
+    .resource-grid {
+        display: block;
+    }
+    
+    .resource-tile {
+        width: 100%;
+        margin-bottom: $spacing-unit;
+    }
+    
+    .resource-tile .last-edited,
+    .resource-tile .status {
+        width: 50%;
+        padding: 0 $spacing-unit (.5 * $spacing-unit) 0;
+        float: left;
+    }
 }
 
 @include media-query($on-laptop) {
