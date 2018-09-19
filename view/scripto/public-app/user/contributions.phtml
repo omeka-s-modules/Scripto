@@ -5,7 +5,7 @@ $this->scripto()->postTitle(sprintf($this->translate('Contributions by %s'), $us
     <div class="browse-controls">
         <?php echo $this->scripto()->mediawikiPagination(); ?>
     </div>
-    <table>
+    <table class="tablesaw tablesaw-stack" data-tablesaw-mode="stack">
         <thead>
             <tr>
                 <th><?php echo $this->translate('Revision'); ?></th>
