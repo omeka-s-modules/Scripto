@@ -71,9 +71,9 @@ $this->scripto()->postTitle($project->title());
                         <div class="title-flex">
                             <?php echo $sItem->linkRaw($this->thumbnail($sItem, 'square', [
                                 'title' => $this->translate('Item primary media'),
-                                'alt' => $this->translate('Item primary media')
-                            ])); ?>
-                            <?php echo $sItem->link($sItem->item()->displayTitle()) ?>
+                                'alt' => $this->translate('Item primary media'),
+                            ]), null, ['class' => 'resource-media']); ?>
+                            <?php echo $sItem->link($sItem->item()->displayTitle(), null, ['class' => 'resource-title']); ?>
                         </div>
                     </td>
                     <td>

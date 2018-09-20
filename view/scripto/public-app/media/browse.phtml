@@ -87,8 +87,8 @@ $this->scripto()->postTitle($item->displayTitle());
                             <?php echo $sMedia->linkRaw($this->thumbnail($sMedia, 'square', [
                                 'title' => $this->translate('Media primary media'),
                                 'alt' => $this->translate('Media primary media')
-                            ])); ?>
-                            <?php echo $sMedia->link($sMedia->media()->displayTitle()) ?>
+                            ]), null, ['class' => 'resource-media']); ?>
+                            <?php echo $sMedia->link($sMedia->media()->displayTitle(), null, ['class' => 'resource-title']); ?>
                         </div>
                     </td>
                     <td>

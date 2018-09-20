@@ -1,4 +1,17 @@
 @include media-query($on-palm) {
+    .tablesaw-stack tbody tr {
+        border-bottom: 3px solid #dfdfdf;
+    }
+
+    .tablesaw-stack tbody td, 
+    .tablesaw-stack tbody th {
+        border-width: 0 1px 1px;
+
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+
     .top-nav {
         position: absolute;
         top: 9px;
@@ -202,7 +215,25 @@
     nav.pagination {
         margin: (.25 * $spacing-unit) 0;
     }
-    
+
+    .resource-row td:first-child .tablesaw-cell-label {
+        display: none;
+    }
+
+    .resource-row td:first-child .tablesaw-cell-content {
+        width: 100%;
+        max-width: none;
+    }
+
+    .resource-media {
+        width: 30%;
+        padding: 0 .6em 0 0;
+    }
+
+    .resource-title {
+        max-width: 67%;
+    }
+
     .resource-grid {
         display: block;
     }
