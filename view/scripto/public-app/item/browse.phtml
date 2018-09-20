@@ -82,7 +82,7 @@ $this->scripto()->postTitle($project->title());
                     <td>
                         <span class="status"><?php echo $this->translate($sItem->status()); ?></span>
                     </td>
-                    <td>
+                    <td class="percentage">
                         <span class="total-approved-media"><?php echo number_format($approvedCount); ?></span> / <span class="total-media"><?php echo number_format($totalCount); ?></span>
                         <div class="status-bar">
                             <div class="completion" style="width: <?php echo $approvedPercentage; ?>%"></div>

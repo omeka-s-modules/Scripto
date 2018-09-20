@@ -91,7 +91,7 @@ $this->scripto()->postTitle($item->displayTitle());
                             <?php echo $sMedia->link($sMedia->media()->displayTitle(), null, ['class' => 'resource-title']); ?>
                         </div>
                     </td>
-                    <td>
+                    <td class="percentage">
                         <span class="last-edited"><?php echo $sMedia->edited() ? $this->i18n()->dateFormat($sMedia->edited(), 'long', 'medium') : $this->translate('Not edited'); ?></span>
                     </td>
                     <td>
