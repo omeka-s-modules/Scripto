@@ -261,6 +261,78 @@
     .resource-tile .percentage {
         clear: both;
     }
+
+    .resource-content .resource-metadata,
+    .resource-metadata + .resource-list,
+    .media.wikitext,
+    .media.wikitext + .media.html,
+    .media.html,
+    .horizontal .wikitext-flex .textarea-flex, 
+    .horizontal .wikitext-flex .panzoom-container {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .media-head {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .media-tabs {
+        width: 100%;
+        margin-bottom: (.5 * $spacing-unit);
+        
+        & > * {
+            width: 50%;
+        }
+    }
+    
+    .tab-actions {
+        margin-left: 0;
+    }
+    
+    .save.button,
+    input.save {
+        margin-left: auto;
+    }
+    
+    .media.metadata {
+        margin-bottom: $spacing-unit;
+    }
+    
+    .media-render > * {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    .resource-content {
+        display: block;
+    }
+    
+    .media.wikitext {
+        margin-bottom: $spacing-unit;
+    }
+    
+    #wikitext .layout {
+        display: none;
+    }
+    
+    .horizontal .wikitext-flex .textarea-flex {
+        order: 2;
+    }
+    
+    .horizontal .wikitext-flex .panzoom-container {
+        margin-bottom: $spacing-unit;
+    }
+    
+    .vertical .wikitext-flex .panzoom-container {
+        min-height: 0;
+    }
+    
+    .compare-selected + .pagination {
+        margin-left: auto;
+    }
 }
 
 @include media-query($on-laptop) {
