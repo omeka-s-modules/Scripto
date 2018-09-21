@@ -37,6 +37,7 @@
           &:before {
             @include font-awesome;
             content: "\f0c9";
+            font-weight: 900;
           }
         }
     
