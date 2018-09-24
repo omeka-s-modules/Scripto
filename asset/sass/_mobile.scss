@@ -6,10 +6,6 @@
     .tablesaw-stack tbody td, 
     .tablesaw-stack tbody th {
         border-width: 0 1px 1px;
-
-        &:last-child {
-            border-bottom: 0;
-        }
     }
 
     .top-nav {
@@ -241,6 +237,7 @@
 
     .resource-title {
         max-width: 67%;
+        word-break: break-all;
     }
 
     .resource-grid {
@@ -265,6 +262,7 @@
 
     .resource-content .resource-metadata,
     .resource-metadata + .resource-list,
+    .media.metadata,
     .media.wikitext,
     .media.wikitext + .media.html,
     .media.html,
@@ -273,6 +271,18 @@
         width: 100%;
         margin: 0;
         padding: 0;
+    }
+
+    .post-title {
+        word-break: break-all;
+    }
+
+    .browse-controls {
+        align-items: center;
+    }
+
+    .browse-controls .pagination {
+        margin: 0;
     }
     
     .media-head {
@@ -333,6 +343,29 @@
     
     .compare-selected + .pagination {
         margin-left: auto;
+    }
+
+    .featherlight .featherlight-content {
+        width: 100%;
+        height: 100%;
+        max-height: none;
+    }
+
+    .featherlight-content .horizontal .wikitext-flex {
+        height: auto;
+    }
+    
+    .featherlight-content .wikitext-featherlight h3 {
+        margin-bottom: $spacing-unit;
+    }
+
+    .featherlight-content .horizontal .wikitext-flex .textarea-flex, 
+    .featherlight-content .horizontal .wikitext-flex .panzoom-container {
+        min-height: 0;
+    }
+
+    .status-field {
+        margin: 0 0 $spacing-unit;
     }
 }
 
