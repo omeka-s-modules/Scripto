@@ -7,8 +7,10 @@ $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1')
 $this->headTitle($title);
 $this->headLink()->prependStylesheet('//fonts.googleapis.com/css?family=Source+Code+Pro|Lato:400,400italic,700,700italic');
 $this->headLink()->appendStylesheet($this->assetUrl('css/iconfonts.css', 'Omeka'));
+$this->headLink()->appendStylesheet($this->assetUrl('vendor/tablesaw/tablesaw.stackonly.css', 'Omeka'));
 $this->headLink()->appendStylesheet($this->scripto()->publicAppStylesheet());
 $this->headScript()->prependFile($this->assetUrl('vendor/jquery/jquery.min.js', 'Omeka'));
+$this->headScript()->appendFile($this->assetUrl('vendor/tablesaw/tablesaw.stackonly.jquery.js', 'Omeka'));
 $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/public-app.js', 'Scripto'));
 ?>
@@ -24,39 +26,41 @@ $this->headScript()->appendFile($this->assetUrl('js/public-app.js', 'Scripto'));
     <header class="site-header" role="banner">
         <div class="wrapper">
             <?php echo $this->hyperlink($title, $this->url('scripto', ['action' => 'index'], true), ['class' => 'site-title']); ?>
-            <nav class="site-nav">
+            <nav class="top-nav">
                 <input type="checkbox" id="nav-trigger" class="nav-trigger" aria-label="<?php echo $this->translate('Toggle menu'); ?>"/>
                 <label for="nav-trigger">
                     <span class="menu-icon"></span>
                 </label>
                 <div class="trigger">
-                    <?php echo $this->scripto()->publicAppProjectLink(); ?>
-                    <?php echo $this->scripto()->publicAppSiteLink(); ?>
-                    <?php echo $this->scripto()->loginBar(); ?>
-                    <?php if (!$this->scripto()->apiClient()->userIsLoggedIn()): ?>
-                    <?php echo $this->hyperlink($this->translate('Create account'), $this->url('scripto', ['action' => 'create-account'], true), ['class' => 'page-link']); ?>
+                    <div class="site-nav">
+                        <?php echo $this->scripto()->publicAppProjectLink(); ?>
+                        <?php echo $this->scripto()->publicAppSiteLink(); ?>
+                        <?php echo $this->scripto()->loginBar(); ?>
+                        <?php if (!$this->scripto()->apiClient()->userIsLoggedIn()): ?>
+                        <?php echo $this->hyperlink($this->translate('Create account'), $this->url('scripto', ['action' => 'create-account'], true), ['class' => 'page-link']); ?>
+                        <?php endif; ?>
+                    </div>
+                    <?php if (isset($project)): ?>
+                    <div class="project-nav">
+                        <h2><?php echo $project->link($project->title()); ?></h2>
+                        <ul>
+                            <li><?php echo $project->link($this->translate('Project guidelines'), 'guidelines'); ?></li>
+                            <li><?php echo $project->link($this->translate('Browse items')); ?></li>
+                            <li><?php echo $this->hyperlink('', '#', ['class' => 'o-icon-search', 'aria-label' => $this->escapeHtml($this->translate('Search'))]); ?>
+                        </ul>
+                    </div>
+                    <?php
+                    $searchAction = isset($sItem) ? $sItem->url() : $project->url();
+                    $searchQuery = $this->params()->fromQuery('search');
+                    ?>
+                    <form id="scripto-search" class="wrapper" action="<?php echo $this->escapeHtml($searchAction); ?>">
+                        <input type="text" name="search" value="<?php echo $this->escapeHtml($searchQuery); ?>" aria-label="<?php echo $this->escapeHtml($this->translate('Query')); ?>">
+                        <button type="submit"><?php echo $this->escapeHtml($this->translate('Search')); ?></button>
+                    </form>
                     <?php endif; ?>
                 </div>
             </nav>
         </div>
-        <?php if (isset($project)): ?>
-        <nav class="project-nav wrapper">
-            <h2><?php echo $project->link($project->title()); ?></h2>
-            <ul>
-                <li><?php echo $project->link($this->translate('Project guidelines'), 'guidelines'); ?></li>
-                <li><?php echo $project->link($this->translate('Browse items')); ?></li>
-                <li><?php echo $this->hyperlink('', '#', ['class' => 'o-icon-search', 'aria-label' => $this->escapeHtml($this->translate('Search'))]); ?>
-            </ul>
-        </nav>
-        <?php
-        $searchAction = isset($sItem) ? $sItem->url() : $project->url();
-        $searchQuery = $this->params()->fromQuery('search');
-        ?>
-        <form id="scripto-search" class="wrapper" action="<?php echo $this->escapeHtml($searchAction); ?>">
-            <input type="text" name="search" value="<?php echo $this->escapeHtml($searchQuery); ?>" aria-label="<?php echo $this->escapeHtml($this->translate('Query')); ?>">
-            <button type="submit"><?php echo $this->escapeHtml($this->translate('Search')); ?></button>
-        </form>
-        <?php endif; ?>
     </header>
     <body>
         <main class="page-content" aria-label="<?php echo $this->escapeHtml($this->translate('Content')); ?>">

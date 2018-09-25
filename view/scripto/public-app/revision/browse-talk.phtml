@@ -9,7 +9,7 @@ $this->scripto()->postTitle(sprintf($this->translate('Discussion revisions: %s')
             <button class="compare-selected" data-url="<?php echo $this->escapeHtml($this->url(null, [], true)); ?>"><?php echo $this->translate('Compare selected'); ?></button>
             <?php echo $this->scripto()->mediawikiPagination(); ?>
         </div>
-        <table>
+        <table class="tablesaw tablesaw-stack" data-tablesaw-mode="stack">
             <thead>
                 <tr>
                     <th><?php echo $this->translate('Compare'); ?></th>

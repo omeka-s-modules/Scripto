@@ -71,7 +71,7 @@ $this->scripto()->postTitle($item->displayTitle());
             <?php echo $this->pagination(); ?>
         </div>
         <?php if ($sMedias): ?>
-        <table<?php echo 'list' !== $project->browseLayout() ? ' style="display: none"' : ''; ?>>
+        <table<?php echo 'list' !== $project->browseLayout() ? ' style="display: none"' : ''; ?> class="tablesaw tablesaw-stack" data-tablesaw-mode="stack">
             <thead>
                 <tr>
                     <th class="title"><?php echo $this->translate('Title'); ?></th>
@@ -87,11 +87,11 @@ $this->scripto()->postTitle($item->displayTitle());
                             <?php echo $sMedia->linkRaw($this->thumbnail($sMedia, 'square', [
                                 'title' => $this->translate('Media primary media'),
                                 'alt' => $this->translate('Media primary media')
-                            ])); ?>
-                            <?php echo $sMedia->link($sMedia->media()->displayTitle()) ?>
+                            ]), null, ['class' => 'resource-media']); ?>
+                            <?php echo $sMedia->link($sMedia->media()->displayTitle(), null, ['class' => 'resource-title']); ?>
                         </div>
                     </td>
-                    <td>
+                    <td class="percentage">
                         <span class="last-edited"><?php echo $sMedia->edited() ? $this->i18n()->dateFormat($sMedia->edited(), 'long', 'medium') : $this->translate('Not edited'); ?></span>
                     </td>
                     <td>

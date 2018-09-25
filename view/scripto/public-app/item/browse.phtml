@@ -50,7 +50,7 @@ $this->scripto()->postTitle($project->title());
             <?php echo $this->pagination(); ?>
         </div>
         <?php if ($sItems): ?>
-        <table<?php echo 'list' !== $project->browseLayout() ? ' style="display: none"' : ''; ?>>
+        <table<?php echo 'list' !== $project->browseLayout() ? ' style="display: none"' : ''; ?> class="tablesaw tablesaw-stack" data-tablesaw-mode="stack">
             <thead>
                 <tr>
                     <th class="title"><?php echo $this->translate('Title'); ?></th>
@@ -71,9 +71,9 @@ $this->scripto()->postTitle($project->title());
                         <div class="title-flex">
                             <?php echo $sItem->linkRaw($this->thumbnail($sItem, 'square', [
                                 'title' => $this->translate('Item primary media'),
-                                'alt' => $this->translate('Item primary media')
-                            ])); ?>
-                            <?php echo $sItem->link($sItem->item()->displayTitle()) ?>
+                                'alt' => $this->translate('Item primary media'),
+                            ]), null, ['class' => 'resource-media']); ?>
+                            <?php echo $sItem->link($sItem->item()->displayTitle(), null, ['class' => 'resource-title']); ?>
                         </div>
                     </td>
                     <td>
@@ -82,7 +82,7 @@ $this->scripto()->postTitle($project->title());
                     <td>
                         <span class="status"><?php echo $this->translate($sItem->status()); ?></span>
                     </td>
-                    <td>
+                    <td class="percentage">
                         <span class="total-approved-media"><?php echo number_format($approvedCount); ?></span> / <span class="total-media"><?php echo number_format($totalCount); ?></span>
                         <div class="status-bar">
                             <div class="completion" style="width: <?php echo $approvedPercentage; ?>%"></div>

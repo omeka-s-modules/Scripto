@@ -1,9 +1,19 @@
 @include media-query($on-palm) {
-    .site-nav {
+    .tablesaw-stack tbody tr {
+        border-bottom: 3px solid #dfdfdf;
+    }
+
+    .tablesaw-stack tbody td, 
+    .tablesaw-stack tbody th {
+        border-width: 0 1px 1px;
+    }
+
+    .top-nav {
         position: absolute;
         top: 9px;
         right: $spacing-unit / 2;
         text-align: right;
+        line-height: $base-line-height;
     
         label[for="nav-trigger"] {
           display: block;
@@ -23,6 +33,7 @@
           &:before {
             @include font-awesome;
             content: "\f0c9";
+            font-weight: 900;
           }
         }
     
@@ -64,6 +75,10 @@
         input:checked ~ label[for="nav-trigger"]:before {
           content: "\f00d";
         }
+        
+        .site-nav {
+            float: none;
+        }
     
         .page-link {
           display: block;
@@ -96,7 +111,8 @@
           right: 0;
           margin: 0;
           width: 100%;
-          border-width: 0 0 1px;
+          border-width: 0;
+          padding: (.25 * $spacing-unit) (.5 * $spacing-unit);
         }
 
         #scriptologoutform {
@@ -105,12 +121,251 @@
           border-bottom: 1px solid $grey-color-light;
           line-height: $base-line-height;
         }
+        
+        .project-nav {
+            display: block;
+                border-top: 0;
+        }
+        
+        .project-nav li:last-child {
+            display: none;
+        }
+        
+        .project-nav h2 {
+            font-size: 1.25 * $base-font-size;
+            padding: 0 (.5 * $spacing-unit);
+        }
+        
+        .project-nav ul {
+            padding: 0;
+            display: block;
+        }
+        
+        .project-nav li {
+            margin: 0;
+            padding: 0 (.5 * $spacing-unit);
+            width: 100%;
+        }
+        
+        #scripto-search {
+            position: static;
+            border-top: 0;
+        }
     }
 
     .footer-col {
       float: none;
       width: -webkit-calc(100% - (#{$spacing-unit} / 2));
       width:         calc(100% - (#{$spacing-unit} / 2));
+    }
+    
+    .list-layout {
+        width: 100%;
+        margin-bottom: (.25 * $spacing-unit);
+    }
+
+    .sorting-toggle,
+    .filtering-toggle {
+        width: 100%;
+        padding: (.25 * $spacing-unit);
+        margin-bottom: (.25 * $spacing-unit);
+        border: 1px solid $grey-color-light;
+        border-radius: 3px;
+    }
+
+    .sorting-heading, 
+    .filtering-heading {
+        margin-left: 0;
+        padding: 0;
+        display: block;
+        
+        &:after {
+            content: "\f0da";
+            font-family: "Font Awesome 5 Free";
+            float: right;
+            
+        }
+    }
+    
+    .sorting-toggle.open,
+    .filtering-toggle.open {
+        a:after {
+            content: "\f0d7";
+            border: 0;
+            position: static;
+            width: auto;
+        }
+        
+        & > form {
+            position: static;
+            padding: (.25 * $spacing-unit) 0;
+            flex-wrap: wrap;
+            border: 0;
+            
+            select {
+                width: 100%;
+                margin: 0 0 (.25 * $spacing-unit);
+            }
+        }
+    }
+    
+    nav.pagination {
+        margin: (.25 * $spacing-unit) 0;
+    }
+
+    .resource-row td:first-child .tablesaw-cell-label {
+        display: none;
+    }
+
+    .resource-row td:first-child .tablesaw-cell-content {
+        width: 100%;
+        max-width: none;
+    }
+
+    .resource-row .percentage .tablesaw-cell-content {
+        width: 67%;
+    }
+
+    .resource-row .status-bar {
+        margin-top: (.25 * $spacing-unit);
+    }
+
+    .resource-media {
+        width: 30%;
+        padding: 0 .6em 0 0;
+    }
+
+    .resource-title {
+        max-width: 67%;
+        word-break: break-all;
+    }
+
+    .resource-grid {
+        display: block;
+    }
+    
+    .resource-tile {
+        width: 100%;
+        margin-bottom: $spacing-unit;
+    }
+    
+    .resource-tile .last-edited,
+    .resource-tile .status {
+        width: 50%;
+        padding: 0 $spacing-unit (.5 * $spacing-unit) 0;
+        float: left;
+    }
+
+    .resource-tile .percentage {
+        clear: both;
+    }
+
+    .resource-content .resource-metadata,
+    .resource-metadata + .resource-list,
+    .media.metadata,
+    .media.wikitext,
+    .media.wikitext + .media.html,
+    .media.html,
+    .horizontal .wikitext-flex .textarea-flex, 
+    .horizontal .wikitext-flex .panzoom-container {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .post-title {
+        word-break: break-all;
+    }
+
+    .browse-controls {
+        align-items: center;
+    }
+
+    .browse-controls .pagination {
+        margin: 0;
+    }
+    
+    .media-head {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .media-tabs {
+        width: 100%;
+        margin-bottom: (.5 * $spacing-unit);
+        
+        & > * {
+            width: 50%;
+        }
+    }
+    
+    .tab-actions {
+        margin-left: 0;
+    }
+    
+    .save.button,
+    input.save {
+        margin-left: auto;
+    }
+    
+    .media.metadata {
+        margin-bottom: $spacing-unit;
+    }
+    
+    .media-render > * {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    .resource-content {
+        display: block;
+    }
+    
+    .media.wikitext {
+        margin-bottom: $spacing-unit;
+    }
+    
+    #wikitext .layout {
+        display: none;
+    }
+    
+    .horizontal .wikitext-flex .textarea-flex {
+        order: 2;
+    }
+    
+    .horizontal .wikitext-flex .panzoom-container {
+        margin-bottom: $spacing-unit;
+    }
+    
+    .vertical .wikitext-flex .panzoom-container {
+        min-height: 0;
+    }
+    
+    .compare-selected + .pagination {
+        margin-left: auto;
+    }
+
+    .featherlight .featherlight-content {
+        width: 100%;
+        height: 100%;
+        max-height: none;
+    }
+
+    .featherlight-content .horizontal .wikitext-flex {
+        height: auto;
+    }
+    
+    .featherlight-content .wikitext-featherlight h3 {
+        margin-bottom: $spacing-unit;
+    }
+
+    .featherlight-content .horizontal .wikitext-flex .textarea-flex, 
+    .featherlight-content .horizontal .wikitext-flex .panzoom-container {
+        min-height: 0;
+    }
+
+    .status-field {
+        margin: 0 0 $spacing-unit;
     }
 }
 
