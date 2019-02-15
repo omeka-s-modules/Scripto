@@ -1515,7 +1515,7 @@ msgid "Unimporting Scripto project text. This may take a while. %s"
 msgstr ""
 
 #: src/Controller/PublicApp/IndexController.php:46
-msgid "Scripto account successfully created."
+msgid "Your Scripto account has been created! Please check your email for a link to activate your account."
 msgstr ""
 
 #: src/Form/ProjectForm.php:17
