@@ -47,16 +47,16 @@ $this->headScript()->appendFile($this->assetUrl('js/public-app.js', 'Scripto'));
                             <li><?php echo $project->link($this->translate('Project guidelines'), 'guidelines'); ?></li>
                             <li><?php echo $project->link($this->translate('Browse items')); ?></li>
                         </ul>
+	                    <?php
+	                    $searchAction = isset($sItem) ? $sItem->url() : $project->url();
+	                    $searchQuery = $this->params()->fromQuery('search');
+	                    $searchLabel = $this->escapeHtml(sprintf($this->translate('Search %s'), $project->title()));
+	                    ?>
+	                    <form id="scripto-search" class="wrapper" action="<?php echo $this->escapeHtml($searchAction); ?>">
+	                        <input type="text" name="search" value="<?php echo $this->escapeHtml($searchQuery); ?>" aria-label="<?php echo $searchLabel; ?>" placeholder="<?php echo $searchLabel; ?>">
+	                        <button type="submit"><?php echo $this->escapeHtml($this->translate('Search')); ?></button>
+	                    </form>
                     </div>
-                    <?php
-                    $searchAction = isset($sItem) ? $sItem->url() : $project->url();
-                    $searchQuery = $this->params()->fromQuery('search');
-                    $searchLabel = $this->escapeHtml(sprintf($this->translate('Search %s'), $project->title()));
-                    ?>
-                    <form id="scripto-search" class="wrapper active" action="<?php echo $this->escapeHtml($searchAction); ?>">
-                        <input type="text" name="search" value="<?php echo $this->escapeHtml($searchQuery); ?>" aria-label="<?php echo $searchLabel; ?>" placeholder="<?php echo $searchLabel; ?>">
-                        <button type="submit"><?php echo $this->escapeHtml($this->translate('Search')); ?></button>
-                    </form>
                     <?php endif; ?>
                 </div>
             </nav>

@@ -127,10 +127,6 @@
                 border-top: 0;
         }
         
-        .project-nav li:last-child {
-            display: none;
-        }
-        
         .project-nav h2 {
             font-size: 1.25 * $base-font-size;
             padding: 0 (.5 * $spacing-unit);
@@ -150,6 +146,8 @@
         #scripto-search {
             position: static;
             border-top: 0;
+            margin-left: 0;
+            padding: (.5 * $spacing-unit);
         }
     }
 
