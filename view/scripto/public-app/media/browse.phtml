@@ -4,12 +4,10 @@ $this->scripto()->postTitle($item->displayTitle());
 <div class="resource-content">
     <?php if ($itemMetadata = $item->displayValues()): ?>
     <div class="resource-metadata">
-        <h3><?php echo $this->translate('Metadata'); ?></h3>
         <?php echo $itemMetadata; ?>
     </div>
     <?php endif; ?>
     <div class="media resource-list">
-        <h3><?php echo $this->translate('Media'); ?></h3>
         <div class="media list-head">
             <?php if ($sMedias): ?>
             <div class="list-layout">
