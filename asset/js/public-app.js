@@ -47,6 +47,12 @@ gridButton.click(function() {
     listButton.removeAttr('disabled');
 });
 
+// Toggle media's original titles.
+var mediaToggle = $('.title-toggle input[type="checkbox"]');
+$(document).on('change', mediaToggle, function() {
+   $('.original-title').toggleClass('active'); 
+});
+
 $(document).trigger('enhance.tablesaw');
 
 });

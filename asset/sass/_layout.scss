@@ -837,6 +837,22 @@ h2.media-item {
     padding-left: 0;
 }
 
+.resource-list td {
+    vertical-align: middle;
+}
+
+.resource-list .original-title {
+    display: none;
+    
+    &.active {
+        display: inline;
+    }
+}
+
+.resource-list .edit-link {
+    display: block;
+}
+
 .resource-content .project.resource-metadata {
     width: 100%;
     max-width: 800px;
@@ -969,6 +985,14 @@ div.resource-row {
     display: flex;
     & > *:not(:last-child) {
       margin-right: .25 * $spacing-unit;
+    }
+}
+
+.title-toggle {
+    padding: (.125 * $spacing-unit) (.25 * $spacing-unit);
+    
+    input {
+        margin-right: .25 * $spacing-unit;
     }
 }
 
