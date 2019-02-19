@@ -7,8 +7,8 @@ $this->headScript()->appendFile($this->assetUrl('js/LmlEditor.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/common/media.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/public-app/media-edit.js', 'Scripto'));
 
-$this->scripto()->postTitle($media->displayTitle());
-$this->scripto()->postSubtitle(sprintf($this->translate('Part of %s'), $sItem->link($item->displayTitle())));
+$this->scripto()->postTitle(sprintf($this->translate('%s: Media #%s'), $sItem->link($item->displayTitle()), $sMedia->position()));
+$this->scripto()->postSubtitle(sprintf($this->translate('Original title: %s'), $media->displayTitle()));
 ?>
 <?php echo $this->form()->openTag($mediaForm); ?>
 <?php echo $this->formElement($mediaForm->get('mediapublicappform_csrf')); ?>
