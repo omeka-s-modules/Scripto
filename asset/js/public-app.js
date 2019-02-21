@@ -1,12 +1,5 @@
 $(document).ready(function() {
 
-// Toggle project search form.
-$('.project-nav .o-icon-search').click(function(e) {
-    e.preventDefault();
-    $('#scripto-search').toggleClass('active');
-    $('#scripto-search input[type="text"]').focus();
-});
-
 // Toggle the sort and filter menus.
 $('.menu-toggle').on('click', function(e) {
     e.preventDefault();
