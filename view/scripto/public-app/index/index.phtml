@@ -24,7 +24,8 @@
             <li>
                 <?php if ($sMedia): ?>
                 <?php echo sprintf(
-                    '%s (%s) (%s | %s) %s (%s) <i>%s</i>',
+                    '%s: %s (%s) (%s | %s) %s (%s) <i>%s</i>',
+                    $this->scripto()->translate($project->itemType(), 'Item'),
                     $this->hyperlink($sItem->item()->displayTitle(), $this->url(
                         $isTalk ? 'scripto-talk-media-id' : 'scripto-media-id',
                         [
@@ -36,8 +37,8 @@
                         true
                     )),
                     $isTalk
-                        ? sprintf($this->translate('media #%s discussion'), $sMedia->position())
-                        : sprintf($this->translate('media #%s'), $sMedia->position()),
+                        ? sprintf($this->scripto()->translate($project->mediaType(), 'Media #%s discussion'), $sMedia->position())
+                        : sprintf($this->scripto()->translate($project->mediaType(), 'Media #%s'), $sMedia->position()),
                     $userCon['parentid']
                         ? $this->hyperlink($this->translate('diff'), $this->url(
                             $isTalk ? 'scripto-talk-revision-compare' : 'scripto-revision-compare',
@@ -118,7 +119,8 @@
             <li>
                 <?php if ($sMedia): ?>
                 <?php echo sprintf(
-                    '%s (%s) (%s | %s) %s (%s) <i>%s</i>',
+                    '%s: %s (%s) (%s | %s) %s (%s) <i>%s</i>',
+                    $this->scripto()->translate($project->itemType(), 'Item'),
                     $this->hyperlink($sItem->item()->displayTitle(), $this->url(
                         $isTalk ? 'scripto-talk-media-id' : 'scripto-media-id',
                         [
@@ -130,8 +132,8 @@
                         true
                     )),
                     $isTalk
-                        ? sprintf($this->translate('media #%s discussion'), $sMedia->position())
-                        : sprintf($this->translate('media #%s'), $sMedia->position()),
+                        ? sprintf($this->scripto()->translate($project->mediaType(), 'Media #%s discussion'), $sMedia->position())
+                        : sprintf($this->scripto()->translate($project->mediaType(), 'Media #%s'), $sMedia->position()),
                     $page['old_revid']
                         ? $this->hyperlink($this->translate('diff'), $this->url(
                             $isTalk ? 'scripto-talk-revision-compare' : 'scripto-revision-compare',

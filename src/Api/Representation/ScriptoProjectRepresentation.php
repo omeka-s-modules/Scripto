@@ -60,6 +60,9 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
             'o:lang' => $this->lang(),
             'o-module-scripto:import_target' => $this->importTarget(),
             'o-module-scripto:browse_layout' => $this->browseLayout(),
+            'o-module-scripto:item_type' => $this->itemType(),
+            'o-module-scripto:media_type' => $this->mediaType(),
+            'o-module-scripto:content_type' => $this->contentType(),
             'o:created' => $this->getDateTime($this->created()),
             'o-module-scripto:synced' => $synced ? $this->getDateTime($synced) : null,
             'o-module-scripto:imported' => $imported ? $this->getDateTime($imported) : null,
@@ -117,6 +120,21 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
     public function browseLayout()
     {
         return $this->resource->getBrowseLayout();
+    }
+
+    public function itemType()
+    {
+        return $this->resource->getItemType();
+    }
+
+    public function mediaType()
+    {
+        return $this->resource->getMediaType();
+    }
+
+    public function contentType()
+    {
+        return $this->resource->getContentType();
     }
 
     public function reviewers()

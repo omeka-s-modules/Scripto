@@ -23,6 +23,38 @@ class ProjectForm extends Form
         ]);
 
         $this->add([
+            'name' => 'o:item_set',
+            'type' => ItemSetSelect::class,
+            'options' => [
+                'label' => 'Item set', // @translate
+                'info' => 'Select the item set used to synchronize project items. Once synchronized, this project will contain every item in this item set.', // @translate
+                'empty_option' => '',
+                'show_required' => true,
+            ],
+            'attributes' => [
+                'class' => 'chosen-select',
+                'data-placeholder' => 'Select an item set', // @translate
+                'id' => 'o-item-set',
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'o:property',
+            'type' => PropertySelect::class,
+            'options' => [
+                'label' => 'Property', // @translate
+                'info' => 'Select the property used to store imported content.', // @translate
+                'empty_option' => '',
+                'show_required' => true,
+            ],
+            'attributes' => [
+                'class' => 'chosen-select',
+                'data-placeholder' => 'Select a property', // @translate
+                'id' => 'o-property',
+            ],
+        ]);
+
+        $this->add([
             'name' => 'o-module-scripto:description',
             'type' => 'textarea',
             'options' => [
@@ -47,18 +79,14 @@ class ProjectForm extends Form
         ]);
 
         $this->add([
-            'name' => 'o:item_set',
-            'type' => ItemSetSelect::class,
+            'name' => 'o:lang',
+            'type' => 'text',
             'options' => [
-                'label' => 'Item set', // @translate
-                'info' => 'Select the item set used to synchronize project items. Once synchronized, this project will contain every item in this item set.', // @translate
-                'empty_option' => '',
-                'show_required' => true,
+                'label' => 'Language tag', // @translate
+                'info' => 'Enter the language of your content using an IETF language tag.', // @translate
             ],
             'attributes' => [
-                'class' => 'chosen-select',
-                'data-placeholder' => 'Select an item set', // @translate
-                'id' => 'o-item-set',
+                'id' => 'o-lang',
             ],
         ]);
 
@@ -77,34 +105,6 @@ class ProjectForm extends Form
         ]);
 
         $this->add([
-            'name' => 'o:property',
-            'type' => PropertySelect::class,
-            'options' => [
-                'label' => 'Property', // @translate
-                'info' => 'Select the property used to store imported content.', // @translate
-                'empty_option' => '',
-                'show_required' => true,
-            ],
-            'attributes' => [
-                'class' => 'chosen-select',
-                'data-placeholder' => 'Select a property', // @translate
-                'id' => 'o-property',
-            ],
-        ]);
-
-        $this->add([
-            'name' => 'o:lang',
-            'type' => 'text',
-            'options' => [
-                'label' => 'Language tag', // @translate
-                'info' => 'Enter the language of your content using an IETF language tag.', // @translate
-            ],
-            'attributes' => [
-                'id' => 'o-lang',
-            ],
-        ]);
-
-        $this->add([
             'name' => 'o-module-scripto:browse_layout',
             'type' => 'select',
             'options' => [
@@ -113,6 +113,52 @@ class ProjectForm extends Form
                 'value_options' => [
                     'grid' => 'Grid', // @translate
                     'list' => 'List', // @translate
+                ],
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'o-module-scripto:item_type',
+            'type' => 'select',
+            'options' => [
+                'label' => 'Item type', // @translate
+                'info' => 'Select the type of item convered by this project. This is used to clarify the interface, if needed.', // @translate
+                'empty_option' => 'Generic item', // @translate
+                'value_options' => [
+                    'document' => 'Document', // @translate
+                    'manuscript' => 'Manuscript', // @translate
+                    'book' => 'Book', // @translate
+                    'audio' => 'Audio', // @translate
+                    'video' => 'Video', // @translate
+                ],
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'o-module-scripto:media_type',
+            'type' => 'select',
+            'options' => [
+                'label' => 'Media type', // @translate
+                'info' => 'Select the type of media covered by this project. This is used to clarify the interface, if needed.', // @translate
+                'empty_option' => 'Generic media', // @translate
+                'value_options' => [
+                    'page' => 'Page', // @translate
+                    'image' => 'Image', // @translate
+                ],
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'o-module-scripto:content_type',
+            'type' => 'select',
+            'options' => [
+                'label' => 'Content type', // @translate
+                'info' => 'Select the type of content convered by this project. This is used to clarify the interface, if needed.', // @translate
+                'empty_option' => 'Generic content', // @translate
+                'value_options' => [
+                    'transcription' => 'Transcription', // @translate
+                    'translation' => 'Translation', // @translate
+                    'description' => 'Description', // @translate
                 ],
             ],
         ]);
@@ -142,6 +188,27 @@ class ProjectForm extends Form
         $inputFilter->add([
             'name' => 'o:lang',
             'required' => false,
+            'filters' => [
+                ['name' => 'toNull'],
+            ],
+        ]);
+        $inputFilter->add([
+            'name' => 'o-module-scripto:item_type',
+            'allow_empty' => true,
+            'filters' => [
+                ['name' => 'toNull'],
+            ],
+        ]);
+        $inputFilter->add([
+            'name' => 'o-module-scripto:media_type',
+            'allow_empty' => true,
+            'filters' => [
+                ['name' => 'toNull'],
+            ],
+        ]);
+        $inputFilter->add([
+            'name' => 'o-module-scripto:content_type',
+            'allow_empty' => true,
             'filters' => [
                 ['name' => 'toNull'],
             ],

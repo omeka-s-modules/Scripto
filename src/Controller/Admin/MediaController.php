@@ -361,6 +361,7 @@ class MediaController extends AbstractActionController
         $view = new ViewModel;
         $view->setVariable('sItem', $sItem);
         $view->setVariable('sMedias', $sMedias);
+        $view->setVariable('project', $sItem->scriptoProject());
         $view->setVariable('form', $form);
         return $view;
     }
@@ -446,6 +447,7 @@ class MediaController extends AbstractActionController
 
         $view = new ViewModel;
         $view->setVariable('sItem', $sItem);
+        $view->setVariable('project', $sItem->scriptoProject());
         $view->setVariable('query', $query);
         $view->setVariable('count', $response->getTotalResults());
         $view->setVariable('form', $form);

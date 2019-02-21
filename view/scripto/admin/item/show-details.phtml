@@ -1,6 +1,6 @@
-<h3><?php echo $this->translate('Scripto item metadata'); ?></h3>
+<h3><?php echo $this->scripto()->translate($project->itemType(), 'Scripto item metadata'); ?></h3>
 <div class="meta-group">
-    <h4><?php echo $this->translate('Item'); ?></h4>
+    <h4><?php echo $this->scripto()->translate($project->itemType(), 'Item'); ?></h4>
     <div class="value"><?php echo $sItem->link($item->displayTitle()); ?></div>
 </div>
 <div class="meta-group">
@@ -16,36 +16,36 @@
     <div class="value"><?php echo $this->i18n()->dateFormat($sItem->synced(), 'long', 'medium'); ?></div>
 </div>
 <div class="meta-group">
-    <h4><?php echo $this->translate('Last edited'); ?></h4>
+    <h4><?php echo $this->scripto()->translate($project->contentType(), 'Last edited'); ?></h4>
     <?php $edited = $sItem->edited(); ?>
-    <div class="value"><?php echo $edited ? $this->i18n()->dateFormat($sItem->edited(), 'long', 'medium') : $this->translate('Not edited'); ?></div>
+    <div class="value"><?php echo $edited ? $this->i18n()->dateFormat($sItem->edited(), 'long', 'medium') : $this->scripto()->translate($project->contentType(), 'Not edited'); ?></div>
 </div>
 <div class="meta-group">
-    <h4><?php echo $this->translate('Total media count'); ?></h4>
+    <h4><?php echo $this->scripto()->translate($project->mediaType(), 'Total media count'); ?></h4>
     <div class="value"><?php echo number_format($sItem->mediaCount()); ?></div>
 </div>
 <div class="meta-group">
-    <h4><?php echo $this->translate('Is approved media count'); ?></h4>
+    <h4><?php echo $this->scripto()->translate($project->mediaType(), 'Is approved media count'); ?></h4>
     <div class="value"><?php echo number_format($sItem->isApprovedMediaCount()); ?></div>
 </div>
 <div class="meta-group">
-    <h4><?php echo $this->translate('Is completed media count'); ?></h4>
+    <h4><?php echo $this->scripto()->translate($project->mediaType(), 'Is completed media count'); ?></h4>
     <div class="value"><?php echo number_format($sItem->isCompletedMediaCount()); ?></div>
 </div>
 <div class="meta-group">
-    <h4><?php echo $this->translate('Is in progress media count'); ?></h4>
+    <h4><?php echo $this->scripto()->translate($project->mediaType(), 'Is in progress media count'); ?></h4>
     <div class="value"><?php echo number_format($sItem->isEditedMediaCount()); ?></div>
 </div>
 <div class="meta-group">
-    <h4><?php echo $this->translate('Is edited after approved media count'); ?></h4>
+    <h4><?php echo $this->scripto()->translate($project->mediaType(), 'Is edited after approved media count'); ?></h4>
     <div class="value"><?php echo number_format($sItem->isEditedAfterApprovedMediaCount()); ?></div>
 </div>
 <div class="meta-group">
-    <h4><?php echo $this->translate('Is edited after imported media count'); ?></h4>
+    <h4><?php echo $this->scripto()->translate($project->mediaType(), 'Is edited after imported media count'); ?></h4>
     <div class="value"><?php echo number_format($sItem->isEditedAfterImportedMediaCount()); ?></div>
 </div>
 <div class="meta-group">
-    <h4><?php echo $this->translate('Is synced after imported media count'); ?></h4>
+    <h4><?php echo $this->scripto()->translate($project->mediaType(), 'Is synced after imported media count'); ?></h4>
     <div class="value"><?php echo number_format($sItem->isSyncedAfterImportedMediaCount()); ?></div>
 </div>
 <div class="meta-group">

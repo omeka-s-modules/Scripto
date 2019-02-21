@@ -120,6 +120,224 @@ class Scripto extends AbstractHelper
         ],
     ];
 
+    protected $stringMap = [
+        'Items' => [ // @translate
+            'document' => 'Documents', // @translate
+            'manuscript' => 'Manuscripts', // @translate
+            'book' => 'Books', // @translate
+            'audio' => 'Audio', // @translate
+            'video' => 'Video', // @translate
+        ],
+        'Item' => [ // @translate
+            'document' => 'Document', // @translate
+            'manuscript' => 'Manuscript', // @translate
+            'book' => 'Book', // @translate
+            'audio' => 'Audio', // @translate
+            'video' => 'Video', // @translate
+        ],
+        'No Scripto items found' => [ // @translate
+            'document' => 'No Scripto documents found', // @translate
+            'manuscript' => 'No Scripto manuscripts found', // @translate
+            'book' => 'No Scripto books found', // @translate
+            'audio' => 'No Scripto audio found', // @translate
+            'video' => 'No Scripto video found', // @translate
+        ],
+        '%s items' => [ // @translate
+            'document' => '%s documents', // @translate
+            'manuscript' => '%s manuscripts', // @translate
+            'book' => '%s books', // @translate
+            'audio' => '%s audio', // @translate
+            'video' => '%s video', // @translate
+        ],
+        'item: %s' => [ // @translate
+            'document' => 'document: %s', // @translate
+            'manuscript' => 'manuscript: %s', // @translate
+            'book' => 'book: %s', // @translate
+            'audio' => 'audio: %s', // @translate
+            'video' => 'video: %s', // @translate
+        ],
+        'Total item count' => [ // @translate
+            'document' => 'Total document count', // @translate
+            'manuscript' => 'Total manuscript count', // @translate
+            'book' => 'Total book count', // @translate
+            'audio' => 'Total audio count', // @translate
+            'video' => 'Total video count', // @translate
+        ],
+        'Is approved item count' => [ // @translate
+            'document' => 'Is approved document count', // @translate
+            'manuscript' => 'Is approved manuscript count', // @translate
+            'book' => 'Is approved book count', // @translate
+            'audio' => 'Is approved audio count', // @translate
+            'video' => 'Is approved video count', // @translate
+        ],
+        'Is not approved item count' => [ // @translate
+            'document' => 'Is not approved document count', // @translate
+            'manuscript' => 'Is not approved manuscript count', // @translate
+            'book' => 'Is not approved book count', // @translate
+            'audio' => 'Is not approved audio count', // @translate
+            'video' => 'Is not approved video count', // @translate
+        ],
+        'Scripto item metadata' => [ // @translate
+            'document' => 'Scripto document metadata', // @translate
+            'manuscript' => 'Scripto manuscript metadata', // @translate
+            'book' => 'Scripto book metadata', // @translate
+            'audio' => 'Scripto audio metadata', // @translate
+            'video' => 'Scripto video metadata', // @translate
+        ],
+        'Scripto: Item' => [ // @translate
+            'document' => 'Scripto: Document', // @translate
+            'manuscript' => 'Scripto: Manuscript', // @translate
+            'book' => 'Scripto: Book', // @translate
+            'audio' => 'Scripto: Audio', // @translate
+            'video' => 'Scripto: Video', // @translate
+        ],
+        'Review item' => [ // @translate
+            'document' => 'Review document', // @translate
+            'manuscript' => 'Review manuscript', // @translate
+            'book' => 'Review book', // @translate
+            'audio' => 'Review audio', // @translate
+            'video' => 'Review video', // @translate
+        ],
+        'Medias' => [ // @translate
+            '' => 'Media', // @translate
+            'page' => 'Pages', // @translate
+            'image' => 'Images', // @translate
+        ],
+        'Media' => [ // @translate
+            'page' => 'Page', // @translate
+            'image' => 'Image', // @translate
+        ],
+        'Primary media' => [ // @translate
+            'page' => 'Primary page', // @translate
+            'image' => 'Primary image', // @translate
+        ],
+        'Approved medias' => [ // @translate
+            '' => 'Approved media', // @translate
+            'page' => 'Approved pages', // @translate
+            'image' => 'Approved images', // @translate
+        ],
+        'Media #%s' => [ // @translate
+            'page' => 'Page #%s', // @translate
+            'image' => 'Image #%s', // @translate
+        ],
+        'Media #%s discussion' => [ // @translate
+            'page' => 'Page #%s discussion', // @translate
+            'image' => 'Image #%s discussion', // @translate
+        ],
+        'Media count' => [ // @translate
+            'page' => 'Page count', // @translate
+            'image' => 'Image count', // @translate
+        ],
+        'Total media count' => [ // @translate
+            'page' => 'Total page count', // @translate
+            'image' => 'Total image count', // @translate
+        ],
+        'Is approved media count' => [ // @translate
+            'page' => 'Is approved page count', // @translate
+            'image' => 'Is approved image count', // @translate
+        ],
+        'Is completed media count' => [ // @translate
+            'page' => 'Is completed page count', // @translate
+            'image' => 'Is completed image count', // @translate
+        ],
+        'Is in progress media count' => [ // @translate
+            'page' => 'Is in progress page count', // @translate
+            'image' => 'Is in progress image count', // @translate
+        ],
+        'Is edited after approved media count' => [ // @translate
+            'page' => 'Is edited after approved page count', // @translate
+            'image' => 'Is edited after approved image count', // @translate
+        ],
+        'Is edited after imported media count' => [ // @translate
+            'page' => 'Is edited after imported page count', // @translate
+            'image' => 'Is edited after imported image count', // @translate
+        ],
+        'Is synced after imported media count' => [ // @translate
+            'page' => 'Is synced after imported page count', // @translate
+            'image' => 'Is synced after imported image count', // @translate
+        ],
+        'Select media' => [ // @translate
+            'page' => 'Select page', // @translate
+            'image' => 'Select image', // @translate
+        ],
+        'No Scripto media found' => [ // @translate
+            'page' => 'No Scripto pages found', // @translate
+            'image' => 'No Scripto images found', // @translate
+        ],
+        'Scripto: Media' => [ // @translate
+            'page' => 'Scripto: Page', // @translate
+            'image' => 'Scripto: Image', // @translate
+        ],
+        'Mark media as not complete' => [ // @translate
+            'page' => 'Mark page as not complete', // @translate
+            'image' => 'Mark image as not complete', // @translate
+        ],
+        'Mark media as complete' => [ // @translate
+            'page' => 'Mark page as complete', // @translate
+            'image' => 'Mark image as complete', // @translate
+        ],
+        'Mark media as not approved' => [ // @translate
+            'page' => 'Mark page as not approved', // @translate
+            'image' => 'Mark image as not approved', // @translate
+        ],
+        'Mark media as approved' => [ // @translate
+            'page' => 'Mark page as approved', // @translate
+            'image' => 'Mark image as approved', // @translate
+        ],
+        'Scripto media metadata' => [ // @translate
+            'page' => 'Scripto page metadata', // @translate
+            'image' => 'Scripto image metadata', // @translate
+        ],
+        'Batch edit medias' => [ // @translate
+            '' => 'Batch edit media', // @translate
+            'page' => 'Batch edit pages', // @translate
+            'image' => 'Batch edit images', // @translate
+        ],
+        'Batch edit all medias' => [ // @translate
+            '' => 'Batch edit all media', // @translate
+            'page' => 'Batch edit all pages', // @translate
+            'image' => 'Batch edit all images', // @translate
+        ],
+        'Affected medias' => [ // @translate
+            '' => 'Affected media', // @translate
+            'page' => 'Affected pages', // @translate
+            'image' => 'Affected images', // @translate
+        ],
+        'You are editing the following %s medias' => [ // @translate
+            '' => 'You are editing the following %s media', // @translate
+            'page' => 'You are editing the following %s pages', // @translate
+            'image' => 'You are editing the following %s images', // @translate
+        ],
+        'You are editing %s medias' => [ // @translate
+            '' => 'You are editing %s media', // @translate
+            'page' => 'You are editing %s pages', // @translate
+            'image' => 'You are editing %s images', // @translate
+        ],
+        'This Scripto media has no revisions.' => [ // @translate
+            'page' => 'This Scripto page has no revisions.', // @translate
+            'image' => 'This Scripto image has no revisions.', // @translate
+        ],
+        'Review media' => [ // @translate
+            'page' => 'Review page', // @translate
+            'image' => 'Review page', // @translate
+        ],
+        'Content' => [ // @translate
+            'transcription' => 'Transcription', // @translate
+            'translation' => 'Translation', // @translate
+            'description' => 'Description', // @translate
+        ],
+        'Last edited' => [ // @translate
+            'transcription' => 'Last transcribed', // @translate
+            'translation' => 'Last translated', // @translate
+            'description' => 'Last described', // @translate
+        ],
+        'Not edited' => [ // @translate
+            'transcription' => 'Not transcribed', // @translate
+            'translation' => 'Not translated', // @translate
+            'description' => 'Not described', // @translate
+        ],
+    ];
+
     /**
      * @param ApiClient $apiClient
      * @param ServiceLocatorInterface $formElementManager
@@ -377,9 +595,29 @@ class Scripto extends AbstractHelper
             foreach ($this->bcRouteMap[$bcRoute]['params'] as $bcParam) {
                 $params[$bcParam] = $this->routeMatch->getParam($bcParam);
             }
-            $bc[] = $view->hyperlink($view->translate($this->bcRouteMap[$bcRoute]['text']), $view->url($bcRoute, $params));
+            switch ($bcRoute) {
+                case 'admin/scripto-media':
+                    $text = $view->scripto()->translate($view->project->itemType(), $this->bcRouteMap[$bcRoute]['text']);
+                    break;
+                case 'admin/scripto-media-id':
+                    $text = $view->scripto()->translate($view->project->mediaType(), $this->bcRouteMap[$bcRoute]['text']);
+                    break;
+                default:
+                    $text = $view->translate($this->bcRouteMap[$bcRoute]['text']);
+            }
+            $bc[] = $view->hyperlink($text, $view->url($bcRoute, $params));
         }
-        $bc[] = $view->translate($this->bcRouteMap[$routeName]['text']);
+        switch ($routeName) {
+            case 'admin/scripto-media':
+                $text = $view->scripto()->translate($view->project->itemType(), $this->bcRouteMap[$routeName]['text']);
+                break;
+            case 'admin/scripto-media-id':
+                $text = $view->scripto()->translate($view->project->mediaType(), $this->bcRouteMap[$routeName]['text']);
+                break;
+            default:
+                $text = $view->translate($this->bcRouteMap[$routeName]['text']);
+        }
+        $bc[] = $view->translate($text);
         return sprintf('<div class="breadcrumbs">%s</div>', implode('<div class="separator"></div>', $bc));
     }
 
@@ -609,5 +847,21 @@ HTML;
         $select->setValueOptions($options);
         $select->setValue($value);
         return $select;
+    }
+
+    /**
+     * Translate a string that must account for item, media, or content type.
+     *
+     * @param string $type item|media|content
+     * @param string $string The string to translate
+     * @return string The translated string
+     */
+    public function translate($type, $string)
+    {
+        $view = $this->getView();
+        if (isset($this->stringMap[$string][$type])) {
+            $string = $this->stringMap[$string][$type];
+        }
+        return $view->translate($string);
     }
 }

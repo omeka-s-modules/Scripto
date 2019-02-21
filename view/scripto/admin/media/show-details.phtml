@@ -1,11 +1,11 @@
-<h3><?php echo $this->translate('Scripto media metadata'); ?></h3>
+<h3><?php echo $this->scripto()->translate($project->mediaType(), 'Scripto media metadata'); ?></h3>
 <?php echo $this->thumbnail($media, 'square'); ?>
 <div class="meta-group">
-    <h4><?php echo $this->translate('Media'); ?></h4>
+    <h4><?php echo $this->scripto()->translate($project->mediaType(), 'Media'); ?></h4>
     <div class="value"><?php echo $sMedia->link($media->displayTitle()); ?></div>
 </div>
 <div class="meta-group">
-    <h4><?php echo $this->translate('Item'); ?></h4>
+    <h4><?php echo $this->scripto()->translate($project->itemType(), 'Item'); ?></h4>
     <div class="value"><?php echo $sItem->link($item->displayTitle()); ?></div>
 </div>
 <div class="meta-group">
@@ -34,14 +34,14 @@
     <div class="value"><?php echo $this->i18n()->dateFormat($sMedia->synced(), 'long', 'medium'); ?></div>
 </div>
 <div class="meta-group">
-    <h4><?php echo $this->translate('Last edited'); ?></h4>
+    <h4><?php echo $this->scripto()->translate($project->contentType(), 'Last edited'); ?></h4>
     <?php $edited = $sMedia->edited(); ?>
     <div class="value"><?php echo $edited
         ? sprintf(
             '%s by %s',
             $this->i18n()->dateFormat($sMedia->edited(), 'long', 'medium'),
             $this->hyperlink($sMedia->editedBy(), $this->url('admin/scripto-user-contributions', ['user-id' => $sMedia->editedBy()]))
-        ) : $this->translate('Not edited'); ?></div>
+        ) : $this->scripto()->translate($project->contentType(), 'Not edited'); ?></div>
 </div>
 <div class="meta-group">
     <h4><?php echo $this->translate('Last completed'); ?></h4>
