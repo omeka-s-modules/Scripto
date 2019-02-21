@@ -577,6 +577,16 @@ nav.pagination .row-count {
     position: relative;
 }
 
+.media.html:only-child {
+    display: flex;
+    padding: 0;
+    width: 100%;
+    
+    .render {
+        margin-right: (.5 * $spacing-unit);
+    }
+}
+
 .media.html .panzoom-container {
     margin-bottom: $spacing-unit;
 }

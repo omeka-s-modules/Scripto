@@ -23,33 +23,38 @@ $this->scripto()->postSubtitle(sprintf($this->translate('Original title: %s'), $
     <?php echo $this->scripto()->mediaPagination('talk'); ?>
 </div>
 <div class="resource-content">
+    <?php if ($displayValues): ?>
     <div class="media metadata">
         <h3><?php echo $this->translate('Metadata'); ?></h3>
         <?php $displayValues = $media->displayValues(); ?>
-        <?php echo $displayValues  ? $displayValues : sprintf('<span>[%s]</span>', $this->translate('No metadata')); ?>
-    </div>
-    <div class="media html">
-    <?php if ($sMedia->isRenderableImage()): ?>
-    <h3><?php echo $this->translate('Media'); ?></h3>
-    <div class="panzoom-container image">
-        <div class="zoom-controls">
-            <button class="zoom-in" aria-label="<?php echo $this->escapeHtml($this->translate('Zoom in')); ?>" title="<?php echo $this->escapeHtml($this->translate('Zoom in')); ?>"></button>
-            <button class="zoom-out" aria-label="<?php echo $this->escapeHtml($this->translate('Zoom out')); ?>" title="<?php echo $this->escapeHtml($this->translate('Zoom out')); ?>"></button>
-            <button class="rotate-right" aria-label="<?php echo $this->escapeHtml($this->translate('Rotate right')); ?>" title="<?php echo $this->escapeHtml($this->translate('Rotate right')); ?>"></button>
-            <button class="rotate-left" aria-label="<?php echo $this->escapeHtml($this->translate('Rotate left')); ?>" title="<?php echo $this->escapeHtml($this->translate('Rotate left')); ?>"></button>
-            <button class="reset"><?php echo $this->translate('Reset'); ?></button>
-        </div>
-        <div class="media-render">
-            <img src="<?php echo $this->escapeHtml($media->originalUrl()); ?>">
-        </div>
-    </div>
-    <?php else: ?>
-    <div class="panzoom-container">
-        <?php echo $media->render(['link' => null]); ?>
+        <?php echo $displayValues; ?>
     </div>
     <?php endif; ?>
-        <h3><?php echo $this->translate('HTML'); ?></h3>
-        <?php $pageHtml = $sMedia->pageHtml(0); ?>
-        <?php echo $pageHtml  ? $pageHtml : sprintf('<span>[%s]</span>', $this->translate('No HTML')); ?>
+    <div class="media html">
+        <div class="render">
+        <?php if ($sMedia->isRenderableImage()): ?>
+        <div class="panzoom-container image">
+            <div class="zoom-controls">
+                <button class="zoom-in" aria-label="<?php echo $this->escapeHtml($this->translate('Zoom in')); ?>" title="<?php echo $this->escapeHtml($this->translate('Zoom in')); ?>"></button>
+                <button class="zoom-out" aria-label="<?php echo $this->escapeHtml($this->translate('Zoom out')); ?>" title="<?php echo $this->escapeHtml($this->translate('Zoom out')); ?>"></button>
+                <button class="rotate-right" aria-label="<?php echo $this->escapeHtml($this->translate('Rotate right')); ?>" title="<?php echo $this->escapeHtml($this->translate('Rotate right')); ?>"></button>
+                <button class="rotate-left" aria-label="<?php echo $this->escapeHtml($this->translate('Rotate left')); ?>" title="<?php echo $this->escapeHtml($this->translate('Rotate left')); ?>"></button>
+                <button class="reset"><?php echo $this->translate('Reset'); ?></button>
+            </div>
+            <div class="media-render">
+                <img src="<?php echo $this->escapeHtml($media->originalUrl()); ?>">
+            </div>
+        </div>
+        <?php else: ?>
+        <div class="panzoom-container">
+            <?php echo $media->render(['link' => null]); ?>
+        </div>
+        <?php endif; ?>
+        </div>
+        <div class="copy">
+            <h3><?php echo $this->translate('HTML'); ?></h3>
+            <?php $pageHtml = $sMedia->pageHtml(0); ?>
+            <?php echo $pageHtml  ? $pageHtml : sprintf('<span>[%s]</span>', $this->translate('No HTML')); ?>
+        </div>
     </div>
 </div>
