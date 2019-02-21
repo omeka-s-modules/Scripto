@@ -23,10 +23,10 @@ $this->scripto()->postSubtitle(sprintf($this->translate('Original title: %s'), $
     <?php echo $this->scripto()->mediaPagination('talk'); ?>
 </div>
 <div class="resource-content">
+    <?php $displayValues = $media->displayValues(); ?>
     <?php if ($displayValues): ?>
     <div class="media metadata">
         <h3><?php echo $this->translate('Metadata'); ?></h3>
-        <?php $displayValues = $media->displayValues(); ?>
         <?php echo $displayValues; ?>
     </div>
     <?php endif; ?>
