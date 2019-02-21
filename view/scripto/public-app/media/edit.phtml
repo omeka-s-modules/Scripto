@@ -29,7 +29,7 @@ $this->scripto()->postSubtitle(sprintf($this->translate('Original title: %s'), $
     </div>
     <div id="wikitext" class="resource-content">
         <div class="wikitext-featherlight horizontal">
-            <h3><?php echo $media->displayTitle(); ?></h3>
+            <h3><?php echo sprintf($this->translate('%s: Media #%s'), $item->displayTitle(), $sMedia->position()); ?></h3>
             <button type="button" class="full-screen"><?php echo $this->translate('Go full screen'); ?></button>
             <div class="layout">
                 <label><?php echo $this->translate('Layout'); ?></label>
