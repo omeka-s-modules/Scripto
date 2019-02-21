@@ -591,6 +591,11 @@ nav.pagination .row-count {
 
 .wikitext-flex .media-render {
     margin-bottom: 0;
+    
+    & > * {
+        max-width: 100%;
+        height: auto;
+    }
 }
 
 .wikitext-flex .media-render img {
