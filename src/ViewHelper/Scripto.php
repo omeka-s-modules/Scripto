@@ -120,6 +120,9 @@ class Scripto extends AbstractHelper
         ],
     ];
 
+    /**
+     * @var array Map between item|media|content type strings for translation
+     */
     protected $stringMap = [
         'Items' => [ // @translate
             'document' => 'Documents', // @translate
