@@ -145,6 +145,8 @@ class ProjectForm extends Form
                 'value_options' => [
                     'page' => 'Page', // @translate
                     'image' => 'Image', // @translate
+                    'folio' => 'Folio', // @translate
+                    'sheet' => 'Sheet', // @translate
                     'section' => 'Section', // @translate
                     'segment' => 'Segment', // @translate
                 ],
