@@ -128,6 +128,7 @@ class ProjectForm extends Form
                     'document' => 'Document', // @translate
                     'manuscript' => 'Manuscript', // @translate
                     'book' => 'Book', // @translate
+                    'paper' => 'Paper', // @translate
                     'audio' => 'Audio', // @translate
                     'video' => 'Video', // @translate
                 ],
@@ -144,6 +145,8 @@ class ProjectForm extends Form
                 'value_options' => [
                     'page' => 'Page', // @translate
                     'image' => 'Image', // @translate
+                    'section' => 'Section', // @translate
+                    'segment' => 'Segment', // @translate
                 ],
             ],
         ]);

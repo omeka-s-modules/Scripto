@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-22 10:31-0500\n"
+"POT-Creation-Date: 2019-02-22 13:09-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,170 +73,170 @@ msgstr ""
 msgid "Successfully logged out of Scripto."
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:388 view/scripto/admin/index/index.phtml:8
+#: src/ViewHelper/Scripto.php:176 view/scripto/admin/index/index.phtml:8
 #: view/scripto/admin/project/add.phtml:8
 #: view/scripto/admin/project/browse.phtml:8
 #: view/scripto/admin/user/browse.phtml:8
 msgid "Scripto"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:402 view/scripto/admin/project/browse.phtml:8
+#: src/ViewHelper/Scripto.php:190 view/scripto/admin/project/browse.phtml:8
 #: view/scripto/public-app/project/browse.phtml:2
 msgid "Projects"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:504 src/ViewHelper/Scripto.php:559
+#: src/ViewHelper/Scripto.php:292 src/ViewHelper/Scripto.php:347
 #, php-format
 msgid "Logged in to Scripto as %s"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:506 src/ViewHelper/Scripto.php:507
-#: src/ViewHelper/Scripto.php:560 view/scripto/admin/index/index.phtml:8
+#: src/ViewHelper/Scripto.php:294 src/ViewHelper/Scripto.php:295
+#: src/ViewHelper/Scripto.php:348 view/scripto/admin/index/index.phtml:8
 msgid "Dashboard"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:509 src/ViewHelper/Scripto.php:510
-#: src/ViewHelper/Scripto.php:561 view/scripto/admin/user/contributions.phtml:8
+#: src/ViewHelper/Scripto.php:297 src/ViewHelper/Scripto.php:298
+#: src/ViewHelper/Scripto.php:349 view/scripto/admin/user/contributions.phtml:8
 msgid "Contributions"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:512 src/ViewHelper/Scripto.php:513
-#: src/ViewHelper/Scripto.php:562 view/scripto/admin/user/watchlist.phtml:9
+#: src/ViewHelper/Scripto.php:300 src/ViewHelper/Scripto.php:301
+#: src/ViewHelper/Scripto.php:350 view/scripto/admin/user/watchlist.phtml:9
 msgid "Watchlist"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:525
+#: src/ViewHelper/Scripto.php:313
 msgid "Log in to Scripto"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:636 src/ViewHelper/Scripto.php:637
+#: src/ViewHelper/Scripto.php:424 src/ViewHelper/Scripto.php:425
 msgid "First page"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:642 src/ViewHelper/Scripto.php:643
+#: src/ViewHelper/Scripto.php:430 src/ViewHelper/Scripto.php:431
 msgid "Next page"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:671
+#: src/ViewHelper/Scripto.php:459
 #, php-format
 msgid "%s of %s"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:690 view/scripto/admin/media/show-talk.phtml:104
+#: src/ViewHelper/Scripto.php:478 view/scripto/admin/media/show-talk.phtml:104
 #: view/scripto/admin/media/show.phtml:105
 msgid "Older revision"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:693 view/scripto/admin/media/show-talk.phtml:109
+#: src/ViewHelper/Scripto.php:481 view/scripto/admin/media/show-talk.phtml:109
 #: view/scripto/admin/media/show.phtml:110
 msgid "Newer revision"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:707
+#: src/ViewHelper/Scripto.php:495
 msgid "6 hours"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:708
+#: src/ViewHelper/Scripto.php:496
 msgid "12 hours"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:709
+#: src/ViewHelper/Scripto.php:497
 msgid "1 day"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:710
+#: src/ViewHelper/Scripto.php:498
 msgid "3 days"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:711
+#: src/ViewHelper/Scripto.php:499
 msgid "7 days"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:712
+#: src/ViewHelper/Scripto.php:500
 msgid "30 days"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:713
+#: src/ViewHelper/Scripto.php:501
 msgid "90 days"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:730
+#: src/ViewHelper/Scripto.php:518
 msgid "Period of time to display:"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:794
+#: src/ViewHelper/Scripto.php:582
 msgid "Stop watching media"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:796
+#: src/ViewHelper/Scripto.php:584
 msgid "Watch media"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:798
+#: src/ViewHelper/Scripto.php:586
 msgid "Media successfully saved to your watchlist."
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:799
+#: src/ViewHelper/Scripto.php:587
 msgid "Media successfully removed from your watchlist."
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:812
+#: src/ViewHelper/Scripto.php:600
 msgid "Italic"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:813
+#: src/ViewHelper/Scripto.php:601
 msgid "Bold"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:814
+#: src/ViewHelper/Scripto.php:602
 msgid "Strike out"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:815
+#: src/ViewHelper/Scripto.php:603
 msgid "Underline"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:816
+#: src/ViewHelper/Scripto.php:604
 msgid "Blockquote"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:817
+#: src/ViewHelper/Scripto.php:605
 msgid "Hidden comment"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:818
+#: src/ViewHelper/Scripto.php:606
 msgid "Level 1 heading"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:819
+#: src/ViewHelper/Scripto.php:607
 msgid "Level 2 heading"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:820
+#: src/ViewHelper/Scripto.php:608
 msgid "Level 3 heading"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:821
+#: src/ViewHelper/Scripto.php:609
 msgid "Level 4 heading"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:822
+#: src/ViewHelper/Scripto.php:610
 msgid "Level 5 heading"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:823
+#: src/ViewHelper/Scripto.php:611
 msgid "Preformatted"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:824
+#: src/ViewHelper/Scripto.php:612
 msgid "Horizontal rule"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:826
+#: src/ViewHelper/Scripto.php:614
 msgid "Signature"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:846
+#: src/ViewHelper/Scripto.php:634
 msgid "Select one"
 msgstr ""
 
@@ -1083,10 +1083,6 @@ msgstr ""
 msgid "No watchlist pages found."
 msgstr ""
 
-#: view/scripto/public-app/item/browse.phtml:59
-msgid "%"
-msgstr ""
-
 #: view/scripto/public-app/media/browse.phtml:88
 #: view/scripto/public-app/media/browse.phtml:89
 #: view/scripto/public-app/media/browse.phtml:108
@@ -1239,635 +1235,922 @@ msgstr ""
 msgid "Review project"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:88 src/ViewHelper/Scripto.php:194
+#: src/ViewHelper/Scripto.php:88 src/ViewHelper/type_string_map.php:86
 msgid "Review item"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:93 src/ViewHelper/Scripto.php:320
+#: src/ViewHelper/Scripto.php:93 src/ViewHelper/type_string_map.php:273
 msgid "Review media"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:125
+#: src/ViewHelper/type_string_map.php:7
 msgid "Documents"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:126
+#: src/ViewHelper/type_string_map.php:8
 msgid "Manuscripts"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:127
+#: src/ViewHelper/type_string_map.php:9
 msgid "Books"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:128 src/ViewHelper/Scripto.php:135
-#: src/Form/ProjectForm.php:131
+#: src/ViewHelper/type_string_map.php:10 src/ViewHelper/type_string_map.php:18
+#: src/Form/ProjectForm.php:132
 msgid "Audio"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:129 src/ViewHelper/Scripto.php:136
-#: src/Form/ProjectForm.php:132
+#: src/ViewHelper/type_string_map.php:11 src/ViewHelper/type_string_map.php:19
+#: src/Form/ProjectForm.php:133
 msgid "Video"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:138
+#: src/ViewHelper/type_string_map.php:12
+msgid "Papers"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:20 src/Form/ProjectForm.php:131
+msgid "Paper"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:22
 msgid "No Scripto items found"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:139
+#: src/ViewHelper/type_string_map.php:23
 msgid "No Scripto documents found"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:140
+#: src/ViewHelper/type_string_map.php:24
 msgid "No Scripto manuscripts found"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:141
+#: src/ViewHelper/type_string_map.php:25
 msgid "No Scripto books found"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:142
+#: src/ViewHelper/type_string_map.php:26
 msgid "No Scripto audio found"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:143
+#: src/ViewHelper/type_string_map.php:27
 msgid "No Scripto video found"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:145
+#: src/ViewHelper/type_string_map.php:28
+msgid "No Scripto papers found"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:30
 #, php-format
 msgid "%s items"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:146
+#: src/ViewHelper/type_string_map.php:31
 #, php-format
 msgid "%s documents"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:147
+#: src/ViewHelper/type_string_map.php:32
 #, php-format
 msgid "%s manuscripts"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:148
+#: src/ViewHelper/type_string_map.php:33
 #, php-format
 msgid "%s books"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:149
+#: src/ViewHelper/type_string_map.php:34
 #, php-format
 msgid "%s audio"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:150
+#: src/ViewHelper/type_string_map.php:35
 #, php-format
 msgid "%s video"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:152
+#: src/ViewHelper/type_string_map.php:36
+#, php-format
+msgid "%s papers"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:38
 #, php-format
 msgid "item: %s"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:153
+#: src/ViewHelper/type_string_map.php:39
 #, php-format
 msgid "document: %s"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:154
+#: src/ViewHelper/type_string_map.php:40
 #, php-format
 msgid "manuscript: %s"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:155
+#: src/ViewHelper/type_string_map.php:41
 #, php-format
 msgid "book: %s"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:156
+#: src/ViewHelper/type_string_map.php:42
 #, php-format
 msgid "audio: %s"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:157
+#: src/ViewHelper/type_string_map.php:43
 #, php-format
 msgid "video: %s"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:159
+#: src/ViewHelper/type_string_map.php:44
+#, php-format
+msgid "paper: %s"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:46
 msgid "Total item count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:160
+#: src/ViewHelper/type_string_map.php:47
 msgid "Total document count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:161
+#: src/ViewHelper/type_string_map.php:48
 msgid "Total manuscript count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:162
+#: src/ViewHelper/type_string_map.php:49
 msgid "Total book count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:163
+#: src/ViewHelper/type_string_map.php:50
 msgid "Total audio count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:164
+#: src/ViewHelper/type_string_map.php:51
 msgid "Total video count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:166
+#: src/ViewHelper/type_string_map.php:52
+msgid "Total paper count"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:54
 msgid "Is approved item count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:167
+#: src/ViewHelper/type_string_map.php:55
 msgid "Is approved document count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:168
+#: src/ViewHelper/type_string_map.php:56
 msgid "Is approved manuscript count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:169
+#: src/ViewHelper/type_string_map.php:57
 msgid "Is approved book count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:170
+#: src/ViewHelper/type_string_map.php:58
 msgid "Is approved audio count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:171
+#: src/ViewHelper/type_string_map.php:59
 msgid "Is approved video count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:173
+#: src/ViewHelper/type_string_map.php:60
+msgid "Is approved paper count"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:62
 msgid "Is not approved item count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:174
+#: src/ViewHelper/type_string_map.php:63
 msgid "Is not approved document count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:175
+#: src/ViewHelper/type_string_map.php:64
 msgid "Is not approved manuscript count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:176
+#: src/ViewHelper/type_string_map.php:65
 msgid "Is not approved book count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:177
+#: src/ViewHelper/type_string_map.php:66
 msgid "Is not approved audio count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:178
+#: src/ViewHelper/type_string_map.php:67
 msgid "Is not approved video count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:180
+#: src/ViewHelper/type_string_map.php:68
+msgid "Is not approved paper count"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:70
 msgid "Scripto item metadata"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:181
+#: src/ViewHelper/type_string_map.php:71
 msgid "Scripto document metadata"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:182
+#: src/ViewHelper/type_string_map.php:72
 msgid "Scripto manuscript metadata"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:183
+#: src/ViewHelper/type_string_map.php:73
 msgid "Scripto book metadata"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:184
+#: src/ViewHelper/type_string_map.php:74
 msgid "Scripto audio metadata"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:185
+#: src/ViewHelper/type_string_map.php:75
 msgid "Scripto video metadata"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:187
+#: src/ViewHelper/type_string_map.php:76
+msgid "Scripto paper metadata"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:78
 msgid "Scripto: Item"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:188
+#: src/ViewHelper/type_string_map.php:79
 msgid "Scripto: Document"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:189
+#: src/ViewHelper/type_string_map.php:80
 msgid "Scripto: Manuscript"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:190
+#: src/ViewHelper/type_string_map.php:81
 msgid "Scripto: Book"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:191
+#: src/ViewHelper/type_string_map.php:82
 msgid "Scripto: Audio"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:192
+#: src/ViewHelper/type_string_map.php:83
 msgid "Scripto: Video"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:195
+#: src/ViewHelper/type_string_map.php:84
+msgid "Scripto: Paper"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:87
 msgid "Review document"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:196
+#: src/ViewHelper/type_string_map.php:88
 msgid "Review manuscript"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:197
+#: src/ViewHelper/type_string_map.php:89
 msgid "Review book"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:198
+#: src/ViewHelper/type_string_map.php:90
 msgid "Review audio"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:199
+#: src/ViewHelper/type_string_map.php:91
 msgid "Review video"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:201
+#: src/ViewHelper/type_string_map.php:92
+msgid "Review paper"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:98
 msgid "Medias"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:204
+#: src/ViewHelper/type_string_map.php:101
 msgid "Images"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:210
+#: src/ViewHelper/type_string_map.php:102
+msgid "Sections"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:103
+msgid "Segments"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:108 src/Form/ProjectForm.php:148
+msgid "Section"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:109 src/Form/ProjectForm.php:149
+msgid "Segment"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:111
 msgid "Primary media"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:211
+#: src/ViewHelper/type_string_map.php:112
 msgid "Primary page"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:212
+#: src/ViewHelper/type_string_map.php:113
 msgid "Primary image"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:214
+#: src/ViewHelper/type_string_map.php:114
+msgid "Primary section"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:115
+msgid "Primary segment"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:117
 msgid "Approved medias"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:215
+#: src/ViewHelper/type_string_map.php:118
 msgid "Approved media"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:216
+#: src/ViewHelper/type_string_map.php:119
 msgid "Approved pages"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:217
+#: src/ViewHelper/type_string_map.php:120
 msgid "Approved images"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:219
+#: src/ViewHelper/type_string_map.php:121
+msgid "Approved section"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:122
+msgid "Approved segment"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:124
 #, php-format
 msgid "Media #%s"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:220
+#: src/ViewHelper/type_string_map.php:125
 #, php-format
 msgid "Page #%s"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:221
+#: src/ViewHelper/type_string_map.php:126
 #, php-format
 msgid "Image #%s"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:223
+#: src/ViewHelper/type_string_map.php:127
+#, php-format
+msgid "Section #%s"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:128
+#, php-format
+msgid "Segment #%s"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:130
 #, php-format
 msgid "Media #%s discussion"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:224
+#: src/ViewHelper/type_string_map.php:131
 #, php-format
 msgid "Page #%s discussion"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:225
+#: src/ViewHelper/type_string_map.php:132
 #, php-format
 msgid "Image #%s discussion"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:227
+#: src/ViewHelper/type_string_map.php:133
+#, php-format
+msgid "Section #%s discussion"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:134
+#, php-format
+msgid "Segment #%s discussion"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:136
 msgid "Media count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:228
+#: src/ViewHelper/type_string_map.php:137
 msgid "Page count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:229
+#: src/ViewHelper/type_string_map.php:138
 msgid "Image count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:231
+#: src/ViewHelper/type_string_map.php:139
+msgid "Section count"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:140
+msgid "Segment count"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:142
 msgid "Total media count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:232
+#: src/ViewHelper/type_string_map.php:143
 msgid "Total page count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:233
+#: src/ViewHelper/type_string_map.php:144
 msgid "Total image count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:235
+#: src/ViewHelper/type_string_map.php:145
+msgid "Total section count"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:146
+msgid "Total segment count"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:148
 msgid "Is approved media count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:236
+#: src/ViewHelper/type_string_map.php:149
 msgid "Is approved page count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:237
+#: src/ViewHelper/type_string_map.php:150
 msgid "Is approved image count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:239
+#: src/ViewHelper/type_string_map.php:151
+msgid "Is approved section count"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:152
+msgid "Is approved segment count"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:154
 msgid "Is completed media count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:240
+#: src/ViewHelper/type_string_map.php:155
 msgid "Is completed page count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:241
+#: src/ViewHelper/type_string_map.php:156
 msgid "Is completed image count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:243
+#: src/ViewHelper/type_string_map.php:157
+msgid "Is completed section count"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:158
+msgid "Is completed segment count"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:160
 msgid "Is in progress media count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:244
+#: src/ViewHelper/type_string_map.php:161
 msgid "Is in progress page count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:245
+#: src/ViewHelper/type_string_map.php:162
 msgid "Is in progress image count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:247
+#: src/ViewHelper/type_string_map.php:163
+msgid "Is in progress section count"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:164
+msgid "Is in progress segment count"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:166
 msgid "Is edited after approved media count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:248
+#: src/ViewHelper/type_string_map.php:167
 msgid "Is edited after approved page count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:249
+#: src/ViewHelper/type_string_map.php:168
 msgid "Is edited after approved image count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:251
+#: src/ViewHelper/type_string_map.php:169
+msgid "Is edited after approved section count"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:170
+msgid "Is edited after approved segment count"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:172
 msgid "Is edited after imported media count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:252
+#: src/ViewHelper/type_string_map.php:173
 msgid "Is edited after imported page count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:253
+#: src/ViewHelper/type_string_map.php:174
 msgid "Is edited after imported image count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:255
+#: src/ViewHelper/type_string_map.php:175
+msgid "Is edited after imported section count"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:176
+msgid "Is edited after imported segment count"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:178
 msgid "Is synced after imported media count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:256
+#: src/ViewHelper/type_string_map.php:179
 msgid "Is synced after imported page count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:257
+#: src/ViewHelper/type_string_map.php:180
 msgid "Is synced after imported image count"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:260
+#: src/ViewHelper/type_string_map.php:181
+msgid "Is synced after imported section count"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:182
+msgid "Is synced after imported segment count"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:185
 msgid "Select page"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:261
+#: src/ViewHelper/type_string_map.php:186
 msgid "Select image"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:264
+#: src/ViewHelper/type_string_map.php:187
+msgid "Select section"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:188
+msgid "Select segment"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:191
 msgid "No Scripto pages found"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:265
+#: src/ViewHelper/type_string_map.php:192
 msgid "No Scripto images found"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:267
+#: src/ViewHelper/type_string_map.php:193
+msgid "No Scripto sections found"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:194
+msgid "No Scripto segments found"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:196
 msgid "Scripto: Media"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:268
+#: src/ViewHelper/type_string_map.php:197
 msgid "Scripto: Page"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:269
+#: src/ViewHelper/type_string_map.php:198
 msgid "Scripto: Image"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:271 src/Form/MediaForm.php:32
+#: src/ViewHelper/type_string_map.php:199
+msgid "Scripto: Section"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:200
+msgid "Scripto: Segment"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:202 src/Form/MediaForm.php:32
 msgid "Mark media as not complete"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:272
+#: src/ViewHelper/type_string_map.php:203
 msgid "Mark page as not complete"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:273
+#: src/ViewHelper/type_string_map.php:204
 msgid "Mark image as not complete"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:275
+#: src/ViewHelper/type_string_map.php:205
+msgid "Mark section as not complete"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:206
+msgid "Mark segment as not complete"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:208
 msgid "Mark media as complete"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:276
+#: src/ViewHelper/type_string_map.php:209
 msgid "Mark page as complete"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:277
+#: src/ViewHelper/type_string_map.php:210
 msgid "Mark image as complete"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:279 src/Form/MediaForm.php:57
+#: src/ViewHelper/type_string_map.php:211
+msgid "Mark section as complete"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:212
+msgid "Mark segment as complete"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:214 src/Form/MediaForm.php:57
 msgid "Mark media as not approved"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:280
+#: src/ViewHelper/type_string_map.php:215
 msgid "Mark page as not approved"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:281
+#: src/ViewHelper/type_string_map.php:216
 msgid "Mark image as not approved"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:283
+#: src/ViewHelper/type_string_map.php:217
+msgid "Mark section as not approved"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:218
+msgid "Mark segment as not approved"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:220
 msgid "Mark media as approved"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:284
+#: src/ViewHelper/type_string_map.php:221
 msgid "Mark page as approved"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:285
+#: src/ViewHelper/type_string_map.php:222
 msgid "Mark image as approved"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:287
+#: src/ViewHelper/type_string_map.php:223
+msgid "Mark section as approved"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:224
+msgid "Mark segment as approved"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:226
 msgid "Scripto media metadata"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:288
+#: src/ViewHelper/type_string_map.php:227
 msgid "Scripto page metadata"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:289
+#: src/ViewHelper/type_string_map.php:228
 msgid "Scripto image metadata"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:292
+#: src/ViewHelper/type_string_map.php:229
+msgid "Scripto section metadata"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:230
+msgid "Scripto segment metadata"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:233
 msgid "Batch edit media"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:293
+#: src/ViewHelper/type_string_map.php:234
 msgid "Batch edit pages"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:294
+#: src/ViewHelper/type_string_map.php:235
 msgid "Batch edit images"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:296
+#: src/ViewHelper/type_string_map.php:236
+msgid "Batch edit sections"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:237
+msgid "Batch edit segments"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:239
 msgid "Batch edit all medias"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:297
+#: src/ViewHelper/type_string_map.php:240
 msgid "Batch edit all media"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:298
+#: src/ViewHelper/type_string_map.php:241
 msgid "Batch edit all pages"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:299
+#: src/ViewHelper/type_string_map.php:242
 msgid "Batch edit all images"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:302
+#: src/ViewHelper/type_string_map.php:243
+msgid "Batch edit all sections"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:244
+msgid "Batch edit all segments"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:247
 msgid "Affected media"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:303
+#: src/ViewHelper/type_string_map.php:248
 msgid "Affected pages"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:304
+#: src/ViewHelper/type_string_map.php:249
 msgid "Affected images"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:306
+#: src/ViewHelper/type_string_map.php:250
+msgid "Affected sections"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:251
+msgid "Affected segments"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:253
 #, php-format
 msgid "You are editing the following %s medias"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:307
+#: src/ViewHelper/type_string_map.php:254
 #, php-format
 msgid "You are editing the following %s media"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:308
+#: src/ViewHelper/type_string_map.php:255
 #, php-format
 msgid "You are editing the following %s pages"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:309
+#: src/ViewHelper/type_string_map.php:256
 #, php-format
 msgid "You are editing the following %s images"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:311
+#: src/ViewHelper/type_string_map.php:257
+#, php-format
+msgid "You are editing the following %s sections"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:258
+#, php-format
+msgid "You are editing the following %s segments"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:260
 #, php-format
 msgid "You are editing %s medias"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:312
+#: src/ViewHelper/type_string_map.php:261
 #, php-format
 msgid "You are editing %s media"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:313
+#: src/ViewHelper/type_string_map.php:262
 #, php-format
 msgid "You are editing %s pages"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:314
+#: src/ViewHelper/type_string_map.php:263
 #, php-format
 msgid "You are editing %s images"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:316
+#: src/ViewHelper/type_string_map.php:264
+#, php-format
+msgid "You are editing %s sections"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:265
+#, php-format
+msgid "You are editing %s segments"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:267
 msgid "This Scripto media has no revisions."
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:317
+#: src/ViewHelper/type_string_map.php:268
 msgid "This Scripto page has no revisions."
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:318
+#: src/ViewHelper/type_string_map.php:269
 msgid "This Scripto image has no revisions."
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:321 src/ViewHelper/Scripto.php:322
+#: src/ViewHelper/type_string_map.php:270
+msgid "This Scripto section has no revisions."
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:271
+msgid "This Scripto segment has no revisions."
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:274
+#: src/ViewHelper/type_string_map.php:275
 msgid "Review page"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:325 src/Form/ProjectForm.php:159
+#: src/ViewHelper/type_string_map.php:276
+msgid "Review section"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:277
+msgid "Review segment"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:284 src/Form/ProjectForm.php:162
 msgid "Transcription"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:326 src/Form/ProjectForm.php:160
+#: src/ViewHelper/type_string_map.php:285 src/Form/ProjectForm.php:163
 msgid "Translation"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:330
+#: src/ViewHelper/type_string_map.php:289
 msgid "Last transcribed"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:331
+#: src/ViewHelper/type_string_map.php:290
 msgid "Last translated"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:332
+#: src/ViewHelper/type_string_map.php:291
 msgid "Last described"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:335
+#: src/ViewHelper/type_string_map.php:294
 msgid "Not transcribed"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:336
+#: src/ViewHelper/type_string_map.php:295
 msgid "Not translated"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:337
+#: src/ViewHelper/type_string_map.php:296
 msgid "Not described"
 msgstr ""
 
@@ -2052,23 +2335,23 @@ msgstr ""
 msgid "Generic item"
 msgstr ""
 
-#: src/Form/ProjectForm.php:142
+#: src/Form/ProjectForm.php:143
 msgid ""
 "Select the type of media covered by this project. This is used to clarify "
 "the interface, if needed."
 msgstr ""
 
-#: src/Form/ProjectForm.php:143
+#: src/Form/ProjectForm.php:144
 msgid "Generic media"
 msgstr ""
 
-#: src/Form/ProjectForm.php:156
+#: src/Form/ProjectForm.php:159
 msgid ""
 "Select the type of content convered by this project. This is used to clarify "
 "the interface, if needed."
 msgstr ""
 
-#: src/Form/ProjectForm.php:157
+#: src/Form/ProjectForm.php:160
 msgid "Generic content"
 msgstr ""
 
