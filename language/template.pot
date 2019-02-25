@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-22 14:03-0500\n"
+"POT-Creation-Date: 2019-02-25 13:08-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -164,22 +164,6 @@ msgstr ""
 msgid "Period of time to display:"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:582
-msgid "Stop watching media"
-msgstr ""
-
-#: src/ViewHelper/Scripto.php:584
-msgid "Watch media"
-msgstr ""
-
-#: src/ViewHelper/Scripto.php:586
-msgid "Media successfully saved to your watchlist."
-msgstr ""
-
-#: src/ViewHelper/Scripto.php:587
-msgid "Media successfully removed from your watchlist."
-msgstr ""
-
 #: src/ViewHelper/Scripto.php:600
 msgid "Italic"
 msgstr ""
@@ -265,10 +249,6 @@ msgstr ""
 #: view/layout/layout-scripto-public-app.phtml:47
 #: view/scripto/public-app/project/guidelines.phtml:2
 msgid "Project guidelines"
-msgstr ""
-
-#: view/layout/layout-scripto-public-app.phtml:48
-msgid "Browse items"
 msgstr ""
 
 #: view/layout/layout-scripto-public-app.phtml:53
@@ -439,23 +419,21 @@ msgstr ""
 #: view/scripto/admin/item/browse.phtml:74
 #: view/scripto/admin/media/browse.phtml:34
 #: view/scripto/admin/media/browse.phtml:114
-#: view/scripto/public-app/media/browse.phtml:29
-#: view/scripto/public-app/media/browse.phtml:78
-#: view/scripto/public-app/media/browse.phtml:112
+#: view/scripto/public-app/media/browse.phtml:27
 msgid "Last edited"
 msgstr ""
 
 #: view/scripto/admin/item/browse.phtml:45
 #: view/scripto/admin/media/browse.phtml:64
 #: view/scripto/public-app/item/browse.phtml:33
-#: view/scripto/public-app/media/browse.phtml:62
+#: view/scripto/public-app/media/browse.phtml:60
 msgid "Is approved"
 msgstr ""
 
 #: view/scripto/admin/item/browse.phtml:49
 #: view/scripto/admin/media/browse.phtml:68
 #: view/scripto/public-app/item/browse.phtml:37
-#: view/scripto/public-app/media/browse.phtml:66
+#: view/scripto/public-app/media/browse.phtml:64
 msgid "Is not approved"
 msgstr ""
 
@@ -541,7 +519,7 @@ msgid "Omeka item metadata"
 msgstr ""
 
 #: view/scripto/admin/media/browse.phtml:26
-#: view/scripto/public-app/media/browse.phtml:25
+#: view/scripto/public-app/media/browse.phtml:23
 msgid "Position"
 msgstr ""
 
@@ -555,33 +533,33 @@ msgstr ""
 
 #: view/scripto/admin/media/browse.phtml:38
 #: view/scripto/admin/media/show-details.phtml:47
-#: view/scripto/public-app/media/browse.phtml:33
+#: view/scripto/public-app/media/browse.phtml:31
 msgid "Last completed"
 msgstr ""
 
 #: view/scripto/admin/media/browse.phtml:42
 #: view/scripto/admin/media/show-details.phtml:59
-#: view/scripto/public-app/media/browse.phtml:37
+#: view/scripto/public-app/media/browse.phtml:35
 msgid "Last approved"
 msgstr ""
 
 #: view/scripto/admin/media/browse.phtml:48
-#: view/scripto/public-app/media/browse.phtml:46
+#: view/scripto/public-app/media/browse.phtml:44
 msgid "Is edited"
 msgstr ""
 
 #: view/scripto/admin/media/browse.phtml:52
-#: view/scripto/public-app/media/browse.phtml:50
+#: view/scripto/public-app/media/browse.phtml:48
 msgid "Is not edited"
 msgstr ""
 
 #: view/scripto/admin/media/browse.phtml:56
-#: view/scripto/public-app/media/browse.phtml:54
+#: view/scripto/public-app/media/browse.phtml:52
 msgid "Is completed"
 msgstr ""
 
 #: view/scripto/admin/media/browse.phtml:60
-#: view/scripto/public-app/media/browse.phtml:58
+#: view/scripto/public-app/media/browse.phtml:56
 msgid "Is not completed"
 msgstr ""
 
@@ -638,8 +616,8 @@ msgstr ""
 
 #: view/scripto/admin/media/show-talk.phtml:14
 #: view/scripto/public-app/media/show-talk.phtml:15
-#: view/scripto/public-app/media/show-talk.phtml:52
-#: view/scripto/public-app/media/show.phtml:15
+#: view/scripto/public-app/media/show-talk.phtml:56
+#: view/scripto/public-app/media/show.phtml:14
 msgid "Discussion"
 msgstr ""
 
@@ -674,7 +652,7 @@ msgstr ""
 #: view/scripto/admin/media/show-talk.phtml:44
 #: view/scripto/admin/media/show.phtml:45
 #: view/scripto/public-app/item/browse.phtml:15
-#: view/scripto/public-app/media/browse.phtml:16
+#: view/scripto/public-app/media/browse.phtml:14
 #: view/scripto/public-app/media/edit-talk.phtml:30
 #: view/scripto/public-app/media/edit.phtml:35
 msgid "Layout"
@@ -698,8 +676,8 @@ msgstr ""
 #: view/scripto/admin/media/show.phtml:56
 #: view/scripto/public-app/media/edit-talk.phtml:42
 #: view/scripto/public-app/media/edit.phtml:47
-#: view/scripto/public-app/media/show-talk.phtml:37
-#: view/scripto/public-app/media/show.phtml:37
+#: view/scripto/public-app/media/show-talk.phtml:39
+#: view/scripto/public-app/media/show.phtml:38
 msgid "Zoom in"
 msgstr ""
 
@@ -707,8 +685,8 @@ msgstr ""
 #: view/scripto/admin/media/show.phtml:57
 #: view/scripto/public-app/media/edit-talk.phtml:43
 #: view/scripto/public-app/media/edit.phtml:48
-#: view/scripto/public-app/media/show-talk.phtml:38
-#: view/scripto/public-app/media/show.phtml:38
+#: view/scripto/public-app/media/show-talk.phtml:40
+#: view/scripto/public-app/media/show.phtml:39
 msgid "Zoom out"
 msgstr ""
 
@@ -716,8 +694,8 @@ msgstr ""
 #: view/scripto/admin/media/show.phtml:58
 #: view/scripto/public-app/media/edit-talk.phtml:44
 #: view/scripto/public-app/media/edit.phtml:49
-#: view/scripto/public-app/media/show-talk.phtml:39
-#: view/scripto/public-app/media/show.phtml:39
+#: view/scripto/public-app/media/show-talk.phtml:41
+#: view/scripto/public-app/media/show.phtml:40
 msgid "Rotate right"
 msgstr ""
 
@@ -725,8 +703,8 @@ msgstr ""
 #: view/scripto/admin/media/show.phtml:59
 #: view/scripto/public-app/media/edit-talk.phtml:45
 #: view/scripto/public-app/media/edit.phtml:50
-#: view/scripto/public-app/media/show-talk.phtml:40
-#: view/scripto/public-app/media/show.phtml:40
+#: view/scripto/public-app/media/show-talk.phtml:42
+#: view/scripto/public-app/media/show.phtml:41
 msgid "Rotate left"
 msgstr ""
 
@@ -901,13 +879,13 @@ msgstr ""
 
 #: view/scripto/admin/project/show-details.phtml:41
 #: view/scripto/public-app/item/browse.phtml:16
-#: view/scripto/public-app/media/browse.phtml:17
+#: view/scripto/public-app/media/browse.phtml:15
 msgid "List"
 msgstr ""
 
 #: view/scripto/admin/project/show-details.phtml:43
 #: view/scripto/public-app/item/browse.phtml:17
-#: view/scripto/public-app/media/browse.phtml:18
+#: view/scripto/public-app/media/browse.phtml:16
 msgid "Grid"
 msgstr ""
 
@@ -1083,34 +1061,16 @@ msgstr ""
 msgid "No watchlist pages found."
 msgstr ""
 
-#: view/scripto/public-app/media/browse.phtml:88
-#: view/scripto/public-app/media/browse.phtml:89
-#: view/scripto/public-app/media/browse.phtml:108
-#: view/scripto/public-app/media/browse.phtml:109
-msgid "Media primary media"
-msgstr ""
-
-#: view/scripto/public-app/media/browse.phtml:95
-#: view/scripto/public-app/media/browse.phtml:112
-msgid "Not edited"
-msgstr ""
-
-#: view/scripto/public-app/media/browse.phtml:119
-msgid "No Scripto media found"
-msgstr ""
-
-#: view/scripto/public-app/media/edit-talk.phtml:10
-#: view/scripto/public-app/media/show-talk.phtml:9
-#, php-format
-msgid "Discussion: %s"
+#: view/scripto/public-app/media/browse.phtml:70
+msgid "Show original titles"
 msgstr ""
 
 #: view/scripto/public-app/media/edit-talk.phtml:11
 #: view/scripto/public-app/media/edit.phtml:11
 #: view/scripto/public-app/media/show-talk.phtml:10
-#: view/scripto/public-app/media/show.phtml:10
+#: view/scripto/public-app/media/show.phtml:9
 #, php-format
-msgid "Part of %s"
+msgid "Original title: %s"
 msgstr ""
 
 #: view/scripto/public-app/media/edit-talk.phtml:19
@@ -1143,23 +1103,12 @@ msgstr ""
 msgid "View discussion history"
 msgstr ""
 
-#: view/scripto/public-app/media/show-talk.phtml:30
-#: view/scripto/public-app/media/show.phtml:30
-msgid "No metadata"
-msgstr ""
-
-#: view/scripto/public-app/media/show-talk.phtml:54
+#: view/scripto/public-app/media/show-talk.phtml:58
 msgid "No discussion yet."
 msgstr ""
 
-#: view/scripto/public-app/media/show.phtml:20
+#: view/scripto/public-app/media/show.phtml:19
 msgid "View revision history"
-msgstr ""
-
-#: view/scripto/public-app/media/show.phtml:54
-#: view/scripto/public-app/revision/show-talk.phtml:20
-#: view/scripto/public-app/revision/show.phtml:20
-msgid "No HTML"
 msgstr ""
 
 #: view/scripto/public-app/project/browse.phtml:21
@@ -1209,6 +1158,11 @@ msgstr ""
 msgid "Revision as of %s by %s"
 msgstr ""
 
+#: view/scripto/public-app/revision/show-talk.phtml:20
+#: view/scripto/public-app/revision/show.phtml:20
+msgid "No HTML"
+msgstr ""
+
 #: view/scripto/public-app/revision/show.phtml:2
 #, php-format
 msgid "Revision: %s"
@@ -1239,7 +1193,7 @@ msgstr ""
 msgid "Review item"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:93 src/ViewHelper/type_string_map.php:329
+#: src/ViewHelper/Scripto.php:93 src/ViewHelper/type_string_map.php:337
 msgid "Review media"
 msgstr ""
 
@@ -1535,863 +1489,1103 @@ msgstr ""
 msgid "Review paper"
 msgstr ""
 
+#: src/ViewHelper/type_string_map.php:94
+msgid "Browse items"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:95
+msgid "Browse documents"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:96
+msgid "Browse manuscripts"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:97
+msgid "Browse books"
+msgstr ""
+
 #: src/ViewHelper/type_string_map.php:98
+msgid "Browse audio"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:99
+msgid "Browse video"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:100
+msgid "Browse papers"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:106
 msgid "Medias"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:101
+#: src/ViewHelper/type_string_map.php:109
 msgid "Images"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:102
+#: src/ViewHelper/type_string_map.php:110
 msgid "Sections"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:103
+#: src/ViewHelper/type_string_map.php:111
 msgid "Segments"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:104
+#: src/ViewHelper/type_string_map.php:112
 msgid "Folios"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:105
+#: src/ViewHelper/type_string_map.php:113
 msgid "Sheets"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:110 src/Form/ProjectForm.php:150
+#: src/ViewHelper/type_string_map.php:118 src/Form/ProjectForm.php:150
 msgid "Section"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:111 src/Form/ProjectForm.php:151
+#: src/ViewHelper/type_string_map.php:119 src/Form/ProjectForm.php:151
 msgid "Segment"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:112 src/Form/ProjectForm.php:148
+#: src/ViewHelper/type_string_map.php:120 src/Form/ProjectForm.php:148
 msgid "Folio"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:113 src/Form/ProjectForm.php:149
+#: src/ViewHelper/type_string_map.php:121 src/Form/ProjectForm.php:149
 msgid "Sheet"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:115
+#: src/ViewHelper/type_string_map.php:123
 msgid "Primary media"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:116
+#: src/ViewHelper/type_string_map.php:124
 msgid "Primary page"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:117
+#: src/ViewHelper/type_string_map.php:125
 msgid "Primary image"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:118
+#: src/ViewHelper/type_string_map.php:126
 msgid "Primary section"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:119
+#: src/ViewHelper/type_string_map.php:127
 msgid "Primary segment"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:120
+#: src/ViewHelper/type_string_map.php:128
 msgid "Primary folio"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:121
+#: src/ViewHelper/type_string_map.php:129
 msgid "Primary sheet"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:123
+#: src/ViewHelper/type_string_map.php:131
 msgid "Approved medias"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:124
+#: src/ViewHelper/type_string_map.php:132
 msgid "Approved media"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:125
+#: src/ViewHelper/type_string_map.php:133
 msgid "Approved pages"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:126
+#: src/ViewHelper/type_string_map.php:134
 msgid "Approved images"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:127
+#: src/ViewHelper/type_string_map.php:135
 msgid "Approved sections"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:128
+#: src/ViewHelper/type_string_map.php:136
 msgid "Approved segments"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:129
+#: src/ViewHelper/type_string_map.php:137
 msgid "Approved folios"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:130
-msgid "Approved sheets"
-msgstr ""
-
-#: src/ViewHelper/type_string_map.php:132
-#, php-format
-msgid "Media #%s"
-msgstr ""
-
-#: src/ViewHelper/type_string_map.php:133
-#, php-format
-msgid "Page #%s"
-msgstr ""
-
-#: src/ViewHelper/type_string_map.php:134
-#, php-format
-msgid "Image #%s"
-msgstr ""
-
-#: src/ViewHelper/type_string_map.php:135
-#, php-format
-msgid "Section #%s"
-msgstr ""
-
-#: src/ViewHelper/type_string_map.php:136
-#, php-format
-msgid "Segment #%s"
-msgstr ""
-
-#: src/ViewHelper/type_string_map.php:137
-#, php-format
-msgid "Folio #%s"
-msgstr ""
-
 #: src/ViewHelper/type_string_map.php:138
-#, php-format
-msgid "Sheet #%s"
+msgid "Approved sheets"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:140
 #, php-format
-msgid "Media #%s discussion"
+msgid "Media #%s"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:141
 #, php-format
-msgid "Page #%s discussion"
+msgid "Page #%s"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:142
 #, php-format
-msgid "Image #%s discussion"
+msgid "Image #%s"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:143
 #, php-format
-msgid "Section #%s discussion"
+msgid "Section #%s"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:144
 #, php-format
-msgid "Segment #%s discussion"
+msgid "Segment #%s"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:145
 #, php-format
-msgid "Folio #%s discussion"
+msgid "Folio #%s"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:146
 #, php-format
-msgid "Sheet #%s discussion"
+msgid "Sheet #%s"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:148
-msgid "Media count"
+#, php-format
+msgid "Media #%s discussion"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:149
-msgid "Page count"
+#, php-format
+msgid "Page #%s discussion"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:150
-msgid "Image count"
+#, php-format
+msgid "Image #%s discussion"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:151
-msgid "Section count"
+#, php-format
+msgid "Section #%s discussion"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:152
-msgid "Segment count"
+#, php-format
+msgid "Segment #%s discussion"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:153
-msgid "Folio count"
+#, php-format
+msgid "Folio #%s discussion"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:154
-msgid "Sheet count"
+#, php-format
+msgid "Sheet #%s discussion"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:156
-msgid "Total media count"
+msgid "Media count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:157
-msgid "Total page count"
+msgid "Page count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:158
-msgid "Total image count"
+msgid "Image count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:159
-msgid "Total section count"
+msgid "Section count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:160
-msgid "Total segment count"
+msgid "Segment count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:161
-msgid "Total folio count"
+msgid "Folio count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:162
-msgid "Total sheet count"
+msgid "Sheet count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:164
-msgid "Is approved media count"
+msgid "Total media count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:165
-msgid "Is approved page count"
+msgid "Total page count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:166
-msgid "Is approved image count"
+msgid "Total image count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:167
-msgid "Is approved section count"
+msgid "Total section count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:168
-msgid "Is approved segment count"
+msgid "Total segment count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:169
-msgid "Is approved folio count"
+msgid "Total folio count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:170
-msgid "Is approved sheet count"
+msgid "Total sheet count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:172
-msgid "Is completed media count"
+msgid "Is approved media count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:173
-msgid "Is completed page count"
+msgid "Is approved page count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:174
-msgid "Is completed image count"
+msgid "Is approved image count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:175
-msgid "Is completed section count"
+msgid "Is approved section count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:176
-msgid "Is completed segment count"
+msgid "Is approved segment count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:177
-msgid "Is completed folio count"
+msgid "Is approved folio count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:178
-msgid "Is completed sheet count"
+msgid "Is approved sheet count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:180
-msgid "Is in progress media count"
+msgid "Is completed media count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:181
-msgid "Is in progress page count"
+msgid "Is completed page count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:182
-msgid "Is in progress image count"
+msgid "Is completed image count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:183
-msgid "Is in progress section count"
+msgid "Is completed section count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:184
-msgid "Is in progress segment count"
+msgid "Is completed segment count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:185
-msgid "Is in progress folio count"
+msgid "Is completed folio count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:186
-msgid "Is in progress sheet count"
+msgid "Is completed sheet count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:188
-msgid "Is edited after approved media count"
+msgid "Is in progress media count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:189
-msgid "Is edited after approved page count"
+msgid "Is in progress page count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:190
-msgid "Is edited after approved image count"
+msgid "Is in progress image count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:191
-msgid "Is edited after approved section count"
+msgid "Is in progress section count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:192
-msgid "Is edited after approved segment count"
+msgid "Is in progress segment count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:193
-msgid "Is edited after approved folio count"
+msgid "Is in progress folio count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:194
-msgid "Is edited after approved sheet count"
+msgid "Is in progress sheet count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:196
-msgid "Is edited after imported media count"
+msgid "Is edited after approved media count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:197
-msgid "Is edited after imported page count"
+msgid "Is edited after approved page count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:198
-msgid "Is edited after imported image count"
+msgid "Is edited after approved image count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:199
-msgid "Is edited after imported section count"
+msgid "Is edited after approved section count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:200
-msgid "Is edited after imported segment count"
+msgid "Is edited after approved segment count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:201
-msgid "Is edited after imported folio count"
+msgid "Is edited after approved folio count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:202
-msgid "Is edited after imported sheet count"
+msgid "Is edited after approved sheet count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:204
-msgid "Is synced after imported media count"
+msgid "Is edited after imported media count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:205
-msgid "Is synced after imported page count"
+msgid "Is edited after imported page count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:206
-msgid "Is synced after imported image count"
+msgid "Is edited after imported image count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:207
-msgid "Is synced after imported section count"
+msgid "Is edited after imported section count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:208
-msgid "Is synced after imported segment count"
+msgid "Is edited after imported segment count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:209
-msgid "Is synced after imported folio count"
+msgid "Is edited after imported folio count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:210
-msgid "Is synced after imported sheet count"
+msgid "Is edited after imported sheet count"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:212
+msgid "Is synced after imported media count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:213
-msgid "Select page"
+msgid "Is synced after imported page count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:214
-msgid "Select image"
+msgid "Is synced after imported image count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:215
-msgid "Select section"
+msgid "Is synced after imported section count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:216
-msgid "Select segment"
+msgid "Is synced after imported segment count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:217
-msgid "Select folio"
+msgid "Is synced after imported folio count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:218
-msgid "Select sheet"
+msgid "Is synced after imported sheet count"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:221
-msgid "No Scripto pages found"
+msgid "Select page"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:222
-msgid "No Scripto images found"
+msgid "Select image"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:223
-msgid "No Scripto sections found"
+msgid "Select section"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:224
-msgid "No Scripto segments found"
+msgid "Select segment"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:225
-msgid "No Scripto folios found"
+msgid "Select folio"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:226
-msgid "No Scripto sheets found"
+msgid "Select sheet"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:228
-msgid "Scripto: Media"
+msgid "No Scripto media found"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:229
-msgid "Scripto: Page"
+msgid "No Scripto pages found"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:230
-msgid "Scripto: Image"
+msgid "No Scripto images found"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:231
-msgid "Scripto: Section"
+msgid "No Scripto sections found"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:232
-msgid "Scripto: Segment"
+msgid "No Scripto segments found"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:233
-msgid "Scripto: Folio"
+msgid "No Scripto folios found"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:234
-msgid "Scripto: Sheet"
+msgid "No Scripto sheets found"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:236 src/Form/MediaForm.php:32
-msgid "Mark media as not complete"
+#: src/ViewHelper/type_string_map.php:236
+msgid "Scripto: Media"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:237
-msgid "Mark page as not complete"
+msgid "Scripto: Page"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:238
-msgid "Mark image as not complete"
+msgid "Scripto: Image"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:239
-msgid "Mark section as not complete"
+msgid "Scripto: Section"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:240
-msgid "Mark segment as not complete"
+msgid "Scripto: Segment"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:241
-msgid "Mark folio as not complete"
+msgid "Scripto: Folio"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:242
-msgid "Mark sheet as not complete"
+msgid "Scripto: Sheet"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:244
-msgid "Mark media as complete"
+#: src/ViewHelper/type_string_map.php:244 src/Form/MediaForm.php:32
+msgid "Mark media as not complete"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:245
-msgid "Mark page as complete"
+msgid "Mark page as not complete"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:246
-msgid "Mark image as complete"
+msgid "Mark image as not complete"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:247
-msgid "Mark section as complete"
+msgid "Mark section as not complete"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:248
-msgid "Mark segment as complete"
+msgid "Mark segment as not complete"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:249
-msgid "Mark folio as complete"
+msgid "Mark folio as not complete"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:250
-msgid "Mark sheet as complete"
+msgid "Mark sheet as not complete"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:252 src/Form/MediaForm.php:57
-msgid "Mark media as not approved"
+#: src/ViewHelper/type_string_map.php:252
+msgid "Mark media as complete"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:253
-msgid "Mark page as not approved"
+msgid "Mark page as complete"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:254
-msgid "Mark image as not approved"
+msgid "Mark image as complete"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:255
-msgid "Mark section as not approved"
+msgid "Mark section as complete"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:256
-msgid "Mark segment as not approved"
+msgid "Mark segment as complete"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:257
-msgid "Mark folio as not approved"
+msgid "Mark folio as complete"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:258
-msgid "Mark sheet as not approved"
+msgid "Mark sheet as complete"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:260
-msgid "Mark media as approved"
+#: src/ViewHelper/type_string_map.php:260 src/Form/MediaForm.php:57
+msgid "Mark media as not approved"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:261
-msgid "Mark page as approved"
+msgid "Mark page as not approved"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:262
-msgid "Mark image as approved"
+msgid "Mark image as not approved"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:263
-msgid "Mark section as approved"
+msgid "Mark section as not approved"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:264
-msgid "Mark segment as approved"
+msgid "Mark segment as not approved"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:265
-msgid "Mark folio as approved"
+msgid "Mark folio as not approved"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:266
-msgid "Mark sheet as approved"
+msgid "Mark sheet as not approved"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:268
-msgid "Scripto media metadata"
+msgid "Mark media as approved"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:269
-msgid "Scripto page metadata"
+msgid "Mark page as approved"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:270
-msgid "Scripto image metadata"
+msgid "Mark image as approved"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:271
-msgid "Scripto section metadata"
+msgid "Mark section as approved"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:272
-msgid "Scripto segment metadata"
+msgid "Mark segment as approved"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:273
-msgid "Scripto folio metadata"
+msgid "Mark folio as approved"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:274
-msgid "Scripto sheet metadata"
+msgid "Mark sheet as approved"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:276
+msgid "Scripto media metadata"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:277
-msgid "Batch edit media"
+msgid "Scripto page metadata"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:278
-msgid "Batch edit pages"
+msgid "Scripto image metadata"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:279
-msgid "Batch edit images"
+msgid "Scripto section metadata"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:280
-msgid "Batch edit sections"
+msgid "Scripto segment metadata"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:281
-msgid "Batch edit segments"
+msgid "Scripto folio metadata"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:282
-msgid "Batch edit folios"
-msgstr ""
-
-#: src/ViewHelper/type_string_map.php:283
-msgid "Batch edit sheets"
+msgid "Scripto sheet metadata"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:285
-msgid "Batch edit all medias"
+msgid "Batch edit media"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:286
-msgid "Batch edit all media"
+msgid "Batch edit pages"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:287
-msgid "Batch edit all pages"
+msgid "Batch edit images"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:288
-msgid "Batch edit all images"
+msgid "Batch edit sections"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:289
-msgid "Batch edit all sections"
+msgid "Batch edit segments"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:290
-msgid "Batch edit all segments"
+msgid "Batch edit folios"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:291
-msgid "Batch edit all folios"
+msgid "Batch edit sheets"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:292
-msgid "Batch edit all sheets"
+#: src/ViewHelper/type_string_map.php:293
+msgid "Batch edit all medias"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:294
+msgid "Batch edit all media"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:295
-msgid "Affected media"
+msgid "Batch edit all pages"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:296
-msgid "Affected pages"
+msgid "Batch edit all images"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:297
-msgid "Affected images"
+msgid "Batch edit all sections"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:298
-msgid "Affected sections"
+msgid "Batch edit all segments"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:299
-msgid "Affected segments"
+msgid "Batch edit all folios"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:300
-msgid "Affected folios"
-msgstr ""
-
-#: src/ViewHelper/type_string_map.php:301
-msgid "Affected sheets"
+msgid "Batch edit all sheets"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:303
+msgid "Affected media"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:304
+msgid "Affected pages"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:305
+msgid "Affected images"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:306
+msgid "Affected sections"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:307
+msgid "Affected segments"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:308
+msgid "Affected folios"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:309
+msgid "Affected sheets"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:311
 #, php-format
 msgid "You are editing the following %s medias"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:304
+#: src/ViewHelper/type_string_map.php:312
 #, php-format
 msgid "You are editing the following %s media"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:305
+#: src/ViewHelper/type_string_map.php:313
 #, php-format
 msgid "You are editing the following %s pages"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:306
+#: src/ViewHelper/type_string_map.php:314
 #, php-format
 msgid "You are editing the following %s images"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:307
+#: src/ViewHelper/type_string_map.php:315
 #, php-format
 msgid "You are editing the following %s sections"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:308
+#: src/ViewHelper/type_string_map.php:316
 #, php-format
 msgid "You are editing the following %s segments"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:309
+#: src/ViewHelper/type_string_map.php:317
 #, php-format
 msgid "You are editing the following %s folios"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:310
+#: src/ViewHelper/type_string_map.php:318
 #, php-format
 msgid "You are editing the following %s sheets"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:312
+#: src/ViewHelper/type_string_map.php:320
 #, php-format
 msgid "You are editing %s medias"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:313
+#: src/ViewHelper/type_string_map.php:321
 #, php-format
 msgid "You are editing %s media"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:314
+#: src/ViewHelper/type_string_map.php:322
 #, php-format
 msgid "You are editing %s pages"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:315
+#: src/ViewHelper/type_string_map.php:323
 #, php-format
 msgid "You are editing %s images"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:316
+#: src/ViewHelper/type_string_map.php:324
 #, php-format
 msgid "You are editing %s sections"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:317
+#: src/ViewHelper/type_string_map.php:325
 #, php-format
 msgid "You are editing %s segments"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:318
+#: src/ViewHelper/type_string_map.php:326
 #, php-format
 msgid "You are editing %s folios"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:319
+#: src/ViewHelper/type_string_map.php:327
 #, php-format
 msgid "You are editing %s sheets"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:321
+#: src/ViewHelper/type_string_map.php:329
 msgid "This Scripto media has no revisions."
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:322
+#: src/ViewHelper/type_string_map.php:330
 msgid "This Scripto page has no revisions."
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:323
+#: src/ViewHelper/type_string_map.php:331
 msgid "This Scripto image has no revisions."
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:324
+#: src/ViewHelper/type_string_map.php:332
 msgid "This Scripto section has no revisions."
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:325
+#: src/ViewHelper/type_string_map.php:333
 msgid "This Scripto segment has no revisions."
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:326
+#: src/ViewHelper/type_string_map.php:334
 msgid "This Scripto folio has no revisions."
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:327
+#: src/ViewHelper/type_string_map.php:335
 msgid "This Scripto sheet has no revisions."
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:330
-#: src/ViewHelper/type_string_map.php:331
+#: src/ViewHelper/type_string_map.php:338
+#: src/ViewHelper/type_string_map.php:339
 msgid "Review page"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:332
+#: src/ViewHelper/type_string_map.php:340
 msgid "Review section"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:333
+#: src/ViewHelper/type_string_map.php:341
 msgid "Review segment"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:334
+#: src/ViewHelper/type_string_map.php:342
 msgid "Review folio"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:335
+#: src/ViewHelper/type_string_map.php:343
 msgid "Review sheet"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:342 src/Form/ProjectForm.php:164
-msgid "Transcription"
+#: src/ViewHelper/type_string_map.php:345
+#, php-format
+msgid "%s: Media #%s"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:343 src/Form/ProjectForm.php:165
-msgid "Translation"
+#: src/ViewHelper/type_string_map.php:346
+#, php-format
+msgid "%s: Page #%s"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:347
-msgid "Last transcribed"
+#, php-format
+msgid "%s: Image #%s"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:348
-msgid "Last translated"
+#, php-format
+msgid "%s: Section #%s"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:349
-msgid "Last described"
+#, php-format
+msgid "%s: Segment #%s"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:352
-msgid "Not transcribed"
+#: src/ViewHelper/type_string_map.php:350
+#, php-format
+msgid "%s: Folio #%s"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:351
+#, php-format
+msgid "%s: Sheet #%s"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:353
-msgid "Not translated"
+#, php-format
+msgid "Discussion of %s: Media #%s"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:354
+#, php-format
+msgid "Discussion of %s: Page #%s"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:355
+#, php-format
+msgid "Discussion of %s: Image #%s"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:356
+#, php-format
+msgid "Discussion of %s: Section #%s"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:357
+#, php-format
+msgid "Discussion of %s: Segment #%s"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:358
+#, php-format
+msgid "Discussion of %s: Folio #%s"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:359
+#, php-format
+msgid "Discussion of %s: Sheet #%s"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:361
+msgid "Stop watching media"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:362
+msgid "Stop watching page"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:363
+msgid "Stop watching image"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:364
+msgid "Stop watching section"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:365
+msgid "Stop watching segment"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:366
+msgid "Stop watching folio"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:367
+msgid "Stop watching sheet"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:369
+msgid "Watch media"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:370
+msgid "Watch page"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:371
+msgid "Watch image"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:372
+msgid "Watch section"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:373
+msgid "Watch segment"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:374
+msgid "Watch folio"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:375
+msgid "Watch sheet"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:377
+msgid "Media successfully saved to your watchlist"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:378
+msgid "Page successfully saved to your watchlist"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:379
+msgid "Image successfully saved to your watchlist"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:380
+msgid "Section successfully saved to your watchlist"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:381
+msgid "Segment successfully saved to your watchlist"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:382
+msgid "Folio successfully saved to your watchlist"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:383
+msgid "Sheet successfully saved to your watchlist"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:385
+msgid "Media successfully removed from your watchlist"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:386
+msgid "Page successfully removed from your watchlist"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:387
+msgid "Image successfully removed from your watchlist"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:388
+msgid "Section successfully removed from your watchlist"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:389
+msgid "Segment successfully removed from your watchlist"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:390
+msgid "Folio successfully removed from your watchlist"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:391
+msgid "Sheet successfully removed from your watchlist"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:398
+#: src/ViewHelper/type_string_map.php:418 src/Form/ProjectForm.php:164
+msgid "Transcription"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:399
+#: src/ViewHelper/type_string_map.php:419 src/Form/ProjectForm.php:165
+msgid "Translation"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:403
+msgid "Last transcribed"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:404
+msgid "Last translated"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:405
+msgid "Last described"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:407
+msgid "Not edited"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:408
+msgid "Not transcribed"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:409
+msgid "Not translated"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:410
 msgid "Not described"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:413
+msgid "Transcribe"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:414
+msgid "Translate"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:415
+msgid "Describe"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:423
+msgid "No transcription"
+msgstr ""
+
+#: src/ViewHelper/type_string_map.php:424
+msgid "No translation"
 msgstr ""
 
 #: src/Api/Representation/ScriptoItemRepresentation.php:11
