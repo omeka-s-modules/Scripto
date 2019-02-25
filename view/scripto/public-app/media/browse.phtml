@@ -111,10 +111,10 @@ $this->scripto()->postTitle($item->displayTitle());
         <div class="resource-grid"<?php echo 'list' === $project->browseLayout() ? ' style="display: none"' : ''; ?>>
             <?php foreach ($sMedias as $sMedia): ?>
             <div class="resource-tile">
-                <?php echo $this->thumbnail($sMedia, 'square', [
+                <?php echo $sMedia->linkRaw($this->thumbnail($sMedia, 'square', [
                     'title' => $this->translate('Media primary media'),
                     'alt' => $this->translate('Media primary media')
-                ]); ?>
+                ])); ?>
                 <h4><span class="original-number"><?php echo $sMedia->linkRaw(sprintf('#%s', $sMedia->position())); ?></span>
                 <span class="original-title"><?php echo $sMedia->linkRaw($sMedia->media()->displayTitle()); ?></span></h4>
                 <?php echo $sMedia->linkRaw($this->translate('Edit'), 'edit', [
