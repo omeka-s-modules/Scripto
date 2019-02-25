@@ -8,7 +8,7 @@ $this->scripto()->postTitle($project->title());
     </div>
     <?php endif; ?>
     <div class="item resource-list">
-        <h3><?php echo $this->translate('Items'); ?></h3>
+        <h3><?php echo $this->scripto()->translate($project->itemType(), 'Items'); ?></h3>
         <div class="media list-head">
             <?php if ($sItems): ?>
             <div class="list-layout">
@@ -21,7 +21,7 @@ $this->scripto()->postTitle($project->title());
                 <a href="#" class="sorting-heading menu-toggle"><?php echo $this->translate('Sort'); ?></a>
                 <?php echo $this->sortSelector([
                     [
-                        'label' => $this->translate('Last edited'),
+                        'label' => $this->scripto()->translate($project->contentType(), 'Last edited'),
                         'value' => 'edited'
                     ],
                 ]); ?>
@@ -54,9 +54,9 @@ $this->scripto()->postTitle($project->title());
             <thead>
                 <tr>
                     <th class="title"><?php echo $this->translate('Title'); ?></th>
-                    <th class="last-edited"><?php echo $this->translate('Last edited'); ?></th>
+                    <th class="last-edited"><?php echo $this->scripto()->translate($project->contentType(), 'Last edited'); ?></th>
                     <th class="status"><?php echo $this->translate('Status'); ?></th>
-                    <th class="percentage"><?php echo $this->translate('%'); ?></th>
+                    <th class="percentage">%</th>
                 </tr>
             </thead>
             <tbody>
@@ -70,14 +70,14 @@ $this->scripto()->postTitle($project->title());
                     <td>
                         <div class="title-flex">
                             <?php echo $sItem->linkRaw($this->thumbnail($sItem, 'square', [
-                                'title' => $this->translate('Item primary media'),
-                                'alt' => $this->translate('Item primary media'),
+                                'title' => $this->scripto()->translate($project->mediaType(), 'Primary media'),
+                                'alt' => $this->scripto()->translate($project->mediaType(), 'Primary media'),
                             ]), null, ['class' => 'resource-media']); ?>
                             <?php echo $sItem->link($sItem->item()->displayTitle(), null, ['class' => 'resource-title']); ?>
                         </div>
                     </td>
                     <td>
-                        <span class="last-edited"><?php echo $sItem->edited() ? $this->i18n()->dateFormat($sItem->edited(), 'long', 'medium') : $this->translate('Not edited'); ?></span>
+                        <span class="last-edited"><?php echo $sItem->edited() ? $this->i18n()->dateFormat($sItem->edited(), 'long', 'medium') : $this->scripto()->translate($project->contentType(), 'Not edited'); ?></span>
                     </td>
                     <td>
                         <span class="status"><?php echo $this->translate($sItem->status()); ?></span>
@@ -101,14 +101,14 @@ $this->scripto()->postTitle($project->title());
             ?>
             <div class="resource-tile">
                 <?php echo $sItem->linkRaw($this->thumbnail($sItem, 'square', [
-                    'title' => $this->translate('Item primary media'),
-                    'alt' => $this->translate('Item primary media')
+                    'title' => $this->scripto()->translate($project->mediaType(), 'Primary media'),
+                    'alt' => $this->scripto()->translate($project->mediaType(), 'Primary media'),
                 ])); ?>
                 <h4><?php echo $sItem->link($sItem->item()->displayTitle()) ?></h4>
-                <div class="last-edited"><span class="meta-label"><?php echo $this->translate('Last edited'); ?></span> <?php echo $sItem->edited() ? $this->i18n()->dateFormat($sItem->edited(), 'long', 'medium') : $this->translate('Not edited'); ?></div>
+                <div class="last-edited"><span class="meta-label"><?php echo $this->scripto()->translate($project->contentType(), 'Last edited'); ?></span> <?php echo $sItem->edited() ? $this->i18n()->dateFormat($sItem->edited(), 'long', 'medium') : $this->scripto()->translate($project->contentType(), 'Not edited'); ?></div>
                 <div class="status"><span class="meta-label"><?php echo $this->translate('Status'); ?></span> <?php echo $this->translate($sItem->status()); ?></div>
                 <div class="percentage">
-                    <span class="meta-label"><?php echo $this->translate('Approved media'); ?></span>
+                    <span class="meta-label"><?php echo $this->scripto()->translate($project->mediaType(), 'Approved medias'); ?></span>
                     <span class="total-approved-media"><?php echo number_format($approvedCount); ?></span> / <span class="total-media"><?php echo number_format($totalCount); ?></span>
                     <div class="status-bar">
                         <div class="completion" style="width: <?php echo $approvedPercentage; ?>%"></div>
@@ -119,7 +119,7 @@ $this->scripto()->postTitle($project->title());
         </div>
         <?php else: ?>
         <div class="no-resources">
-            <p><?php echo $this->translate('No Scripto items found'); ?></p>
+            <p><?php echo $this->scripto()->translate($project->itemType(), 'No Scripto items found'); ?></p>
         </div>
         <?php endif; ?>
     </div>

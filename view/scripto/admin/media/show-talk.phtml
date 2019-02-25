@@ -11,7 +11,7 @@ $this->headScript()->appendFile($this->assetUrl('js/admin/media-show.js', 'Scrip
 $this->htmlElement('body')->appendAttribute('class', 'scripto media show');
 ?>
 
-<?php echo $this->pageTitle($media->displayTitle(), 1, $this->translate(sprintf('Scripto: %s', 'Media')), $this->translate('Discussion')); ?>
+<?php echo $this->pageTitle($media->displayTitle(), 1, $this->scripto()->translate($project->mediaType(), 'Scripto: Media'), $this->translate('Discussion')); ?>
 
 <?php echo $this->scripto()->adminLoginBar(); ?>
 

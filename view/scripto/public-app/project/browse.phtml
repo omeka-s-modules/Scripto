@@ -7,8 +7,8 @@ $this->scripto()->postTitle($this->translate('Projects'));
         <?php foreach ($projects as $project): ?>
         <div class="resource-row">
             <?php echo $project->linkRaw($this->thumbnail($project, 'square', [
-                'title' => $this->translate('Project primary media'),
-                'alt' => $this->translate('Project primary media')
+                'title' => $this->scripto()->translate($project->mediaType(), 'Primary media'),
+                'alt' => $this->scripto()->translate($project->mediaType(), 'Primary media'),
             ])); ?>
             <div class="resource-meta">
                 <h4><?php echo $project->link($project->title()); ?></h4>

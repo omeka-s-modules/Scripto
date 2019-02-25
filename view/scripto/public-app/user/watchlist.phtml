@@ -11,6 +11,7 @@ $this->scripto()->postTitle($this->translate('Your watchlist'));
         <thead>
             <tr>
                 <th><?php echo $this->translate('Media #'); ?></th>
+                <th><?php echo $this->translate('Type'); ?></th>
                 <th><?php echo $this->translate('Item'); ?></th>
                 <th><?php echo $this->translate('Project'); ?></th>
                 <th><?php echo $this->translate('Revision'); ?></th>
@@ -34,10 +35,11 @@ $this->scripto()->postTitle($this->translate('Your watchlist'));
                 <td>
                     <?php echo $sMedia
                     ? $isTalk
-                        ? $this->hyperlink(sprintf($this->translate('Media #%s (discussion)'), $sMedia->position()), $sMedia->url('talk'))
-                        : $this->hyperlink(sprintf($this->translate('Media #%s'), $sMedia->position()), $sMedia->url())
+                        ? $this->hyperlink(sprintf($this->scripto()->translate($project->mediaType(), 'Media #%s discussion'), $sMedia->position()), $sMedia->url('talk'))
+                        : $this->hyperlink(sprintf($this->scripto()->translate($project->mediaType(), 'Media #%s'), $sMedia->position()), $sMedia->url())
                     : $this->translate('n/a'); ?>
                 </td>
+                <td><?php echo $this->scripto()->translate($project->itemType(), 'Item'); ?></td>
                 <td><?php echo $sItem ? $sItem->link($sItem->item()->displayTitle()) : $page['title']; ?></td>
                 <td><?php echo $project ? $project->link($project->title()) : $this->translate('n/a'); ?></td>
                 <td>

@@ -5,14 +5,14 @@ $this->headScript()->appendFile($this->assetUrl('js/admin.js', 'Scripto'));
 $this->htmlElement('body')->appendAttribute('class', 'scripto item show review media browse no-actions');
 ?>
 
-<?php echo $this->pageTitle($sItem->item()->displayTitle(), 1, $this->translate(sprintf('Scripto: %s', 'Item')), $this->translate('Review')); ?>
+<?php echo $this->pageTitle($sItem->item()->displayTitle(), 1, $this->scripto()->translate($project->itemType(), 'Scripto: Item'), $this->translate('Review')); ?>
 
 <?php echo $this->scripto()->adminLoginBar(); ?>
 
 <?php echo $this->scripto()->adminBreadcrumbs(); ?>
 
 <?php echo $this->sectionNav([
-    'item-media' => $this->translate('Media'),
+    'item-media' => $this->scripto()->translate($project->mediaType(), 'Medias'),
     'item-metadata' => $this->translate('Omeka item metadata'),
 ]); ?>
 
@@ -110,7 +110,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto item show review m
             <th class="row-select"><input type="checkbox" class="select-all" aria-label="<?php echo $this->translate('Select all'); ?>"></th>
             <?php endif; ?>
             <th class="row-number">#</th>
-            <th class="row-title"><?php echo $this->translate('Media'); ?></th>
+            <th class="row-title"><?php echo $this->scripto()->translate($project->mediaType(), 'Media'); ?></th>
             <th><?php echo $this->translate('Last edited'); ?></th>
             <th><?php echo $this->translate('Status'); ?></th>
             <th><?php echo $this->translate('Edit protection'); ?></th>
@@ -120,7 +120,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto item show review m
     <?php foreach ($sMedia as $index => $sMedia): ?>
         <tr>
             <?php if ($sItem->userIsAllowed('view_scripto_media_batch_update')): ?>
-            <td><input type="checkbox" name="resource_ids[]" value="<?php echo $sMedia->id(); ?>" aria-label="<?php echo $this->translate('Select media'); ?>"></td>
+            <td><input type="checkbox" name="resource_ids[]" value="<?php echo $sMedia->id(); ?>" aria-label="<?php echo $this->scripto()->translate($project->mediaType(), 'Select media'); ?>"></td>
             <?php endif; ?>
             <td><?php echo $index + 1; ?></td>
             <td>
@@ -150,7 +150,11 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto item show review m
 
 <?php else: ?>
 <div class="no-resources">
-    <p><?php echo $this->translate('No Scripto media found. Do you need to sync the project?'); ?></p>
+    <p>
+        <?php echo $this->scripto()->translate($project->mediaType(), 'No Scripto media found'); ?>
+        <br>
+        <?php echo $this->translate('Do you need to sync the project?'); ?>
+    </p>
 </div>
 <?php endif; ?>
 

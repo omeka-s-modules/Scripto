@@ -64,10 +64,10 @@ class ScriptoProject extends \Scripto\Entity\ScriptoProject implements \Doctrine
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'owner', 'isPublic', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'guidelines', 'browseLayout', 'created', 'synced', 'imported', 'reviewers'];
+            return ['__isInitialized__', 'id', 'owner', 'isPublic', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'guidelines', 'browseLayout', 'itemType', 'mediaType', 'contentType', 'created', 'synced', 'imported', 'reviewers'];
         }
 
-        return ['__isInitialized__', 'id', 'owner', 'isPublic', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'guidelines', 'browseLayout', 'created', 'synced', 'imported', 'reviewers'];
+        return ['__isInitialized__', 'id', 'owner', 'isPublic', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'guidelines', 'browseLayout', 'itemType', 'mediaType', 'contentType', 'created', 'synced', 'imported', 'reviewers'];
     }
 
     /**
@@ -406,6 +406,72 @@ class ScriptoProject extends \Scripto\Entity\ScriptoProject implements \Doctrine
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBrowseLayout', []);
 
         return parent::getBrowseLayout();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setItemType($itemType)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setItemType', [$itemType]);
+
+        return parent::setItemType($itemType);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getItemType()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getItemType', []);
+
+        return parent::getItemType();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setMediaType($mediaType)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setMediaType', [$mediaType]);
+
+        return parent::setMediaType($mediaType);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getMediaType()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMediaType', []);
+
+        return parent::getMediaType();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setContentType($contentType)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setContentType', [$contentType]);
+
+        return parent::setContentType($contentType);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getContentType()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getContentType', []);
+
+        return parent::getContentType();
     }
 
     /**

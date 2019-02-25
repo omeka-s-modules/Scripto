@@ -45,6 +45,18 @@
     </div>
 </div>
 <div class="meta-group">
+    <h4><?php echo $this->translate('Item type'); ?></h4>
+    <div class="value"><?php echo $this->scripto()->translate($project->itemType(), 'Item'); ?></div>
+</div>
+<div class="meta-group">
+    <h4><?php echo $this->translate('Media type'); ?></h4>
+    <div class="value"><?php echo $this->scripto()->translate($project->mediaType(), 'Media'); ?></div>
+</div>
+<div class="meta-group">
+    <h4><?php echo $this->translate('Content type'); ?></h4>
+    <div class="value"><?php echo $this->scripto()->translate($project->contentType(), 'Content'); ?></div>
+</div>
+<div class="meta-group">
     <h4><?php echo $this->translate('Visibility'); ?></h4>
     <div class="value"><?php echo ($project->isPublic()) ? $this->translate('Public') : $this->translate('Private'); ?></div>
 </div>
@@ -68,14 +80,14 @@
     <div class="value"><?php echo $imported ? $this->i18n()->dateFormat($project->imported(), 'long', 'medium') : $this->translate('Not imported'); ?></div>
 </div>
 <div class="meta-group">
-    <h4><?php echo $this->translate('Total item count'); ?></h4>
+    <h4><?php echo $this->scripto()->translate($project->itemType(), 'Total item count'); ?></h4>
     <div class="value"><?php echo number_format($project->itemCount()); ?></div>
 </div>
 <div class="meta-group">
-    <h4><?php echo $this->translate('Is approved item count'); ?></h4>
+    <h4><?php echo $this->scripto()->translate($project->itemType(), 'Is approved item count'); ?></h4>
     <div class="value"><?php echo number_format($project->isApprovedItemCount()); ?></div>
 </div>
 <div class="meta-group">
-    <h4><?php echo $this->translate('Is not approved item count'); ?></h4>
+    <h4><?php echo $this->scripto()->translate($project->itemType(), 'Is not approved item count'); ?></h4>
     <div class="value"><?php echo number_format($project->isNotApprovedItemCount()); ?></div>
 </div>

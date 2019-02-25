@@ -3,7 +3,7 @@ $this->headLink()->appendStylesheet($this->assetUrl('css/admin.css', 'Scripto'))
 $this->htmlElement('body')->appendAttribute('class', 'scripto item review media browse no-actions');
 ?>
 
-<?php echo $this->pageTitle($sItem->item()->displayTitle(), 1, $this->translate(sprintf('Scripto: %s', 'Item')), $this->translate('Batch edit media')); ?>
+<?php echo $this->pageTitle($sItem->item()->displayTitle(), 1, $this->scripto()->translate($project->itemType(), 'Scripto: Item'), $this->scripto()->translate($project->mediaType(), 'Batch edit medias')); ?>
 
 <?php echo $this->scripto()->adminLoginBar(); ?>
 
@@ -38,8 +38,8 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto item review media 
 <?php echo $this->form()->closeTag(); ?>
 
 <div class="sidebar always-open">
-    <h3><?php echo $this->translate('Affected media'); ?></h3>
-    <p><?php echo sprintf($this->translate('You are editing the following %s media:'), count($sMedias)); ?></p>
+    <h3><?php echo $this->scripto()->translate($project->mediaType(), 'Affected medias'); ?></h3>
+    <p><?php echo sprintf($this->scripto()->translate($project->mediaType(), 'You are editing the following %s medias'), count($sMedias)); ?></p>
     <ul class="batch-selected">
         <?php foreach ($sMedias as $sMedia): ?>
         <li><?php echo $sMedia->link($sMedia->media()->displayTitle(), null, ['target' => '_blank']); ?></li>

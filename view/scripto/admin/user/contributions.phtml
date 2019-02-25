@@ -5,7 +5,7 @@ $this->headScript()->appendFile($this->assetUrl('js/admin.js', 'Scripto'));
 $this->htmlElement('body')->appendAttribute('class', 'scripto user contribution browse');
 ?>
 
-<?php echo $this->pageTitle($user['name'], 1, $this->translate(sprintf('Scripto: %s', 'User')), $this->translate('Contributions')); ?>
+<?php echo $this->pageTitle($user['name'], 1, $this->translate('Scripto: User'), $this->translate('Contributions')); ?>
 
 <?php echo $this->scripto()->adminLoginBar(); ?>
 
@@ -23,6 +23,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto user contribution 
             <th><?php echo $this->translate('Revision'); ?></th>
             <th></th>
             <th><?php echo $this->translate('Media #'); ?></th>
+            <th><?php echo $this->translate('Type'); ?></th>
             <th><?php echo $this->translate('Item'); ?></th>
             <th><?php echo $this->translate('Project'); ?></th>
             <th><?php echo $this->translate('Size'); ?></th>
@@ -87,10 +88,11 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto user contribution 
             <td>
                 <?php echo $sMedia
                 ? $isTalk
-                    ? $this->hyperlink(sprintf($this->translate('Media #%s (discussion)'), $sMedia->position()), $sMedia->adminUrl('talk'))
-                    : $this->hyperlink(sprintf($this->translate('Media #%s'), $sMedia->position()), $sMedia->adminUrl())
+                    ? $this->hyperlink(sprintf($this->scripto()->translate($project->mediaType(), 'Media #%s discussion'), $sMedia->position()), $sMedia->adminUrl('talk'))
+                    : $this->hyperlink(sprintf($this->scripto()->translate($project->mediaType(), 'Media #%s'), $sMedia->position()), $sMedia->adminUrl())
                 : $this->translate('n/a'); ?>
             </td>
+            <td><?php echo $this->scripto()->translate($project->itemType(), 'Item'); ?></td>
             <td><?php echo $sItem ? $sItem->link($sItem->item()->displayTitle()) : $userCon['title']; ?></td>
             <td><?php echo $project ? $project->link($project->title()) : $this->translate('n/a'); ?></td>
             <td><?php echo sprintf(

@@ -5,7 +5,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto project edit');
 $form->prepare();
 ?>
 
-<?php echo $this->pageTitle($project->title(), 1, $this->translate(sprintf('Scripto: %s', 'Project')), $this->translate('Edit')); ?>
+<?php echo $this->pageTitle($project->title(), 1, $this->translate('Scripto: Project'), $this->translate('Edit')); ?>
 
 <?php echo $this->sectionNav([
     'project-config' => $this->translate('Configuration'),

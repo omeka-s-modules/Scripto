@@ -5,7 +5,7 @@ $this->headScript()->appendFile($this->assetUrl('js/admin.js', 'Scripto'));
 $this->htmlElement('body')->appendAttribute('class', 'scripto project review item browse');
 ?>
 
-<?php echo $this->pageTitle($project->title(), 1, $this->translate(sprintf('Scripto: %s', 'Project')), $this->translate('Review')); ?>
+<?php echo $this->pageTitle($project->title(), 1, $this->translate('Scripto: Project'), $this->translate('Review')); ?>
 
 <?php
 if ($project->userIsAllowed('update')):
@@ -69,10 +69,10 @@ if ($project->userIsAllowed('update')):
 <table class="tablesaw" data-tablesaw-mode="stack">
     <thead>
         <tr>
-            <th><?php echo $this->translate('Item'); ?></th>
+            <th><?php echo $this->scripto()->translate($project->itemType(), 'Item'); ?></th>
             <th><?php echo $this->translate('Date synced'); ?></th>
             <th><?php echo $this->translate('Last edited'); ?></th>
-            <th><?php echo $this->translate('Media count'); ?></th>
+            <th><?php echo $this->scripto()->translate($project->mediaType(), 'Media count'); ?></th>
             <th><?php echo $this->translate('Status'); ?></th>
         </tr>
     </thead>
@@ -106,9 +106,9 @@ if ($project->userIsAllowed('update')):
 <?php else: ?>
 <div class="no-resources">
     <p>
-        <?php echo $this->translate('No Scripto items found. Do you need to sync the project?'); ?>
+        <?php echo $this->scripto()->translate($project->itemType(), 'No Scripto items found'); ?>
         <br>
-        <?php echo $this->translate('If you have recently synced, the sync job has likely not finished.'); ?>
+        <?php echo $this->translate('Do you need to sync the project? If you have recently synced, the sync job has likely not finished.'); ?>
     </p>
 </div>
 <?php endif; ?>

@@ -92,6 +92,21 @@ class ScriptoProject extends AbstractEntity
     protected $browseLayout;
 
     /**
+     * @Column(nullable=true)
+     */
+    protected $itemType;
+
+    /**
+     * @Column(nullable=true)
+     */
+    protected $mediaType;
+
+    /**
+     * @Column(nullable=true)
+     */
+    protected $contentType;
+
+    /**
      * @Column(type="datetime")
      */
     protected $created;
@@ -225,6 +240,36 @@ class ScriptoProject extends AbstractEntity
     public function getBrowseLayout()
     {
         return $this->browseLayout;
+    }
+
+    public function setItemType($itemType)
+    {
+        $this->itemType = $itemType;
+    }
+
+    public function getItemType()
+    {
+        return $this->itemType;
+    }
+
+    public function setMediaType($mediaType)
+    {
+        $this->mediaType = $mediaType;
+    }
+
+    public function getMediaType()
+    {
+        return $this->mediaType;
+    }
+
+    public function setContentType($contentType)
+    {
+        $this->contentType = $contentType;
+    }
+
+    public function getContentType()
+    {
+        return $this->contentType;
     }
 
     public function setCreated(DateTime $dateTime)

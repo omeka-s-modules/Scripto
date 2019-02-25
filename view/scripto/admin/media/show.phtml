@@ -11,7 +11,7 @@ $this->headScript()->appendFile($this->assetUrl('js/admin/media-show.js', 'Scrip
 $this->htmlElement('body')->appendAttribute('class', 'scripto media show');
 ?>
 
-<?php echo $this->pageTitle($media->displayTitle(), 1, $this->translate(sprintf('Scripto: %s', 'Media')), $this->translate('Review')); ?>
+<?php echo $this->pageTitle($media->displayTitle(), 1, $this->scripto()->translate($project->mediaType(), 'Scripto: Media'), $this->translate('Review')); ?>
 
 <?php echo $this->scripto()->adminLoginBar(); ?>
 
@@ -164,7 +164,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto media show');
         <!-- marked as complete + page is created + this is completed revision -->
         <div class="field">
             <?php echo $this->translate('This revision marked as complete.'); ?>
-            <label for="toggle_complete"><?php echo $this->translate('Mark media as not complete'); ?></label>
+            <label for="toggle_complete"><?php echo $this->scripto()->translate($project->mediaType(), 'Mark media as not complete'); ?></label>
             <?php echo $this->formCheckbox($mediaForm->get('toggle_complete')); ?>
         </div>
         <?php else: ?>
@@ -180,7 +180,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto media show');
         <?php else: ?>
         <!-- marked as complete + page is not created -->
         <div class="field">
-            <label for="toggle_complete"><?php echo $this->translate('Mark media as not complete'); ?></label>
+            <label for="toggle_complete"><?php echo $this->scripto()->translate($project->mediaType(), 'Mark media as not complete'); ?></label>
             <?php echo $this->formCheckbox($mediaForm->get('toggle_complete')); ?>
         </div>
         <?php endif; ?>
@@ -190,7 +190,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto media show');
             <span class="red"><?php echo $this->translate('Not completed'); ?></span>
             <label for="toggle_complete"><?php echo $revision
                 ? $this->translate('Mark this revision as complete')
-                : $this->translate('Mark media as complete'); ?></label>
+                : $this->scripto()->translate($project->mediaType(), 'Mark media as complete'); ?></label>
             <?php echo $this->formCheckbox($mediaForm->get('toggle_complete')); ?>
         </div>
         <?php endif; ?>
@@ -210,7 +210,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto media show');
         <!-- marked as approved + page is created + this is approved revision -->
         <div class="field">
             <?php echo $this->translate('This revision marked as approved.'); ?>
-            <label for="toggle_approved"><?php echo $this->translate('Mark media as not approved'); ?></label>
+            <label for="toggle_approved"><?php echo $this->scripto()->translate($project->mediaType(), 'Mark media as not approved'); ?></label>
             <?php echo $this->formCheckbox($mediaForm->get('toggle_approved')); ?>
         </div>
         <?php else: ?>
@@ -226,7 +226,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto media show');
         <?php else: ?>
         <!-- marked as approved + page is not created -->
         <div class="field">
-            <label for="toggle_approved"><?php echo $this->translate('Mark media as not approved'); ?></label>
+            <label for="toggle_approved"><?php echo $this->scripto()->translate($project->mediaType(), 'Mark media as not approved'); ?></label>
             <?php echo $this->formCheckbox($mediaForm->get('toggle_approved')); ?>
         </div>
         <?php endif; ?>
@@ -236,7 +236,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto media show');
             <span class="red"><?php echo $this->translate('Not approved'); ?></span>
             <label for="toggle_approved"><?php echo $revision
                 ? $this->translate('Mark this revision as approved')
-                : $this->translate('Mark media as approved'); ?></label>
+                : $this->scripto()->translate($project->mediaType(), 'Mark media as approved'); ?></label>
             <?php echo $this->formCheckbox($mediaForm->get('toggle_approved')); ?>
         </div>
         <?php endif; ?>

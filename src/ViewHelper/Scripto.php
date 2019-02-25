@@ -121,6 +121,11 @@ class Scripto extends AbstractHelper
     ];
 
     /**
+     * @var array Map between item|media|content type strings for translation
+     */
+    protected $typeStringMap;
+
+    /**
      * @param ApiClient $apiClient
      * @param ServiceLocatorInterface $formElementManager
      * @param RouteMatch $routeMatch
@@ -130,6 +135,7 @@ class Scripto extends AbstractHelper
         $this->apiClient = $apiClient;
         $this->formElementManager = $formElementManager;
         $this->routeMatch = $routeMatch;
+        $this->typeStringMap = include('type_string_map.php');
     }
 
     /**
@@ -377,9 +383,29 @@ class Scripto extends AbstractHelper
             foreach ($this->bcRouteMap[$bcRoute]['params'] as $bcParam) {
                 $params[$bcParam] = $this->routeMatch->getParam($bcParam);
             }
-            $bc[] = $view->hyperlink($view->translate($this->bcRouteMap[$bcRoute]['text']), $view->url($bcRoute, $params));
+            switch ($bcRoute) {
+                case 'admin/scripto-media':
+                    $text = $view->scripto()->translate($view->project->itemType(), $this->bcRouteMap[$bcRoute]['text']);
+                    break;
+                case 'admin/scripto-media-id':
+                    $text = $view->scripto()->translate($view->project->mediaType(), $this->bcRouteMap[$bcRoute]['text']);
+                    break;
+                default:
+                    $text = $view->translate($this->bcRouteMap[$bcRoute]['text']);
+            }
+            $bc[] = $view->hyperlink($text, $view->url($bcRoute, $params));
         }
-        $bc[] = $view->translate($this->bcRouteMap[$routeName]['text']);
+        switch ($routeName) {
+            case 'admin/scripto-media':
+                $text = $view->scripto()->translate($view->project->itemType(), $this->bcRouteMap[$routeName]['text']);
+                break;
+            case 'admin/scripto-media-id':
+                $text = $view->scripto()->translate($view->project->mediaType(), $this->bcRouteMap[$routeName]['text']);
+                break;
+            default:
+                $text = $view->translate($this->bcRouteMap[$routeName]['text']);
+        }
+        $bc[] = $view->translate($text);
         return sprintf('<div class="breadcrumbs">%s</div>', implode('<div class="separator"></div>', $bc));
     }
 
@@ -553,12 +579,12 @@ HTML;
             $html,
             $view->escapeHtml($view->url(null, ['action' => 'watch'], true)),
             $view->escapeHtml($userIsWatching),
-            $view->translate('Stop watching media'),
+            $view->scripto()->translate($view->project->mediaType(), 'Stop watching media'),
             $userIsWatching ? null : $view->escapeHtml('display: none;'),
-            $view->translate('Watch media'),
+            $view->scripto()->translate($view->project->mediaType(), 'Watch media'),
             $userIsWatching ? $view->escapeHtml('display: none;') : null,
-            $view->translate('Media successfully saved to your watchlist.'),
-            $view->translate('Media successfully removed from your watchlist.')
+            $view->scripto()->translate($view->project->mediaType(), 'Media successfully saved to your watchlist'),
+            $view->scripto()->translate($view->project->mediaType(), 'Media successfully removed from your watchlist')
         );
     }
 
@@ -609,5 +635,21 @@ HTML;
         $select->setValueOptions($options);
         $select->setValue($value);
         return $select;
+    }
+
+    /**
+     * Translate a string that must account for item, media, or content type.
+     *
+     * @param string $type item|media|content
+     * @param string $string The string to translate
+     * @return string The translated string
+     */
+    public function translate($type, $string)
+    {
+        $view = $this->getView();
+        if (isset($this->typeStringMap[$string][$type])) {
+            $string = $this->typeStringMap[$string][$type];
+        }
+        return $view->translate($string);
     }
 }

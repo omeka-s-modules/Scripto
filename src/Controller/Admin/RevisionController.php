@@ -53,6 +53,7 @@ class RevisionController extends AbstractActionController
         $view->setVariable('sMedia', $sMedia);
         $view->setVariable('media', $sMedia->media());
         $view->setVariable('sItem', $sItem);
+        $view->setVariable('project', $sItem->scriptoProject());
         $view->setVariable('item', $sItem->item());
         $view->setVariable('revisions', $revisions);
         $view->setVariable('continue', $continue);
@@ -78,6 +79,7 @@ class RevisionController extends AbstractActionController
         $view = new ViewModel;
         $view->setVariable('sMedia', $sMedia);
         $view->setVariable('media', $sMedia->media());
+        $view->setVariable('project', $sMedia->scriptoItem()->scriptoProject());
         $view->setVariable('fromRevision', $sMedia->pageRevision($namespace, $this->params('from-revision-id')));
         $view->setVariable('toRevision', $sMedia->pageRevision($namespace, $this->params('to-revision-id')));
         $view->setVariable('compare', $this->scripto()->apiClient()->compareRevisions($this->params('from-revision-id'), $this->params('to-revision-id')));
