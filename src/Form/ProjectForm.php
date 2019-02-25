@@ -125,11 +125,12 @@ class ProjectForm extends Form
                 'info' => 'Select the type of item convered by this project. This is used to clarify the interface, if needed.', // @translate
                 'empty_option' => 'Generic item', // @translate
                 'value_options' => [
-                    'document' => 'Document', // @translate
-                    'manuscript' => 'Manuscript', // @translate
-                    'book' => 'Book', // @translate
-                    'paper' => 'Paper', // @translate
                     'audio' => 'Audio', // @translate
+                    'book' => 'Book', // @translate
+                    'document' => 'Document', // @translate
+                    'journal' => 'Journal', // @translate
+                    'manuscript' => 'Manuscript', // @translate
+                    'paper' => 'Paper', // @translate
                     'video' => 'Video', // @translate
                 ],
             ],
@@ -143,12 +144,13 @@ class ProjectForm extends Form
                 'info' => 'Select the type of media covered by this project. This is used to clarify the interface, if needed.', // @translate
                 'empty_option' => 'Generic media', // @translate
                 'value_options' => [
-                    'page' => 'Page', // @translate
-                    'image' => 'Image', // @translate
+                    'entry' => 'Entry', // @translate
                     'folio' => 'Folio', // @translate
-                    'sheet' => 'Sheet', // @translate
+                    'image' => 'Image', // @translate
+                    'page' => 'Page', // @translate
                     'section' => 'Section', // @translate
                     'segment' => 'Segment', // @translate
+                    'sheet' => 'Sheet', // @translate
                 ],
             ],
         ]);
@@ -161,9 +163,9 @@ class ProjectForm extends Form
                 'info' => 'Select the type of content convered by this project. This is used to clarify the interface, if needed.', // @translate
                 'empty_option' => 'Generic content', // @translate
                 'value_options' => [
+                    'description' => 'Description', // @translate
                     'transcription' => 'Transcription', // @translate
                     'translation' => 'Translation', // @translate
-                    'description' => 'Description', // @translate
                 ],
             ],
         ]);

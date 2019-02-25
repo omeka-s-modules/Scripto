@@ -10,7 +10,7 @@ $this->scripto()->postSubtitle(sprintf($this->translate('Original title: %s'), $
 ?>
 <div class="media-head">
     <div class="media-tabs">
-        <span class="inactive tab button"><?php echo $this->translate('Text'); ?></span>
+        <span class="inactive tab button"><?php echo $this->scripto()->translate($project->contentType(), 'Text'); ?></span>
         <?php echo $sMedia->link($this->translate('Discussion'), 'show-talk', ['class' => 'button']); ?>
     </div>
     <div class="tab-actions">
