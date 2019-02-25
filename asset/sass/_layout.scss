@@ -577,12 +577,27 @@ nav.pagination .row-count {
     position: relative;
 }
 
+.media.html:only-child {
+    display: flex;
+    padding: 0;
+    width: 100%;
+    
+    .render {
+        margin-right: (.5 * $spacing-unit);
+    }
+}
+
 .media.html .panzoom-container {
     margin-bottom: $spacing-unit;
 }
 
 .wikitext-flex .media-render {
     margin-bottom: 0;
+    
+    & > * {
+        max-width: 100%;
+        height: auto;
+    }
 }
 
 .wikitext-flex .media-render img {
@@ -806,10 +821,6 @@ h2.media-item {
     margin-right: .25 * $spacing-unit;
 }
 
-.status-field {
-    margin-top: -1 * $spacing-unit;
-}
-
 /* 
  * Item
  */
@@ -827,6 +838,22 @@ h2.media-item {
 .resource-list {
     width: 100%;
     padding-left: 0;
+}
+
+.resource-list td {
+    vertical-align: middle;
+}
+
+.resource-list .original-title {
+    display: none;
+    
+    &.active {
+        display: inline;
+    }
+}
+
+.resource-list .edit-link {
+    display: block;
 }
 
 .resource-content .project.resource-metadata {
@@ -961,6 +988,14 @@ div.resource-row {
     display: flex;
     & > *:not(:last-child) {
       margin-right: .25 * $spacing-unit;
+    }
+}
+
+.title-toggle {
+    padding: (.125 * $spacing-unit) (.25 * $spacing-unit);
+    
+    input {
+        margin-right: .25 * $spacing-unit;
     }
 }
 
