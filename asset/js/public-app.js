@@ -16,7 +16,9 @@ $('.menu-toggle').on('click', function(e) {
 
 // Close the sort and filter menus by clicking anywhere outside them.
 $(document).on('click', function(e) {
-    if ($(e.target).parent().parent().is('.sorting-toggle, .filtering-toggle')) {
+    var toggleParentCheck = $(e.target).parent().parent().is('.sorting-toggle, .filtering-toggle');
+    var toggleOptionCheck = $(e.target).is('option');
+    if (toggleParentCheck || toggleOptionCheck) {
         // Ignore if clicks are triggered from in-menu selects.
         return;
     }
@@ -38,6 +40,12 @@ gridButton.click(function() {
     $('.resource-list .resource-grid').show();
     gridButton.attr('disabled', true);
     listButton.removeAttr('disabled');
+});
+
+// Toggle media's original titles.
+var mediaToggle = $('.title-toggle input[type="checkbox"]');
+$(document).on('change', mediaToggle, function() {
+   $('.original-title').toggleClass('active'); 
 });
 
 $(document).trigger('enhance.tablesaw');
