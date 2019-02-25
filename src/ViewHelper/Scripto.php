@@ -579,12 +579,12 @@ HTML;
             $html,
             $view->escapeHtml($view->url(null, ['action' => 'watch'], true)),
             $view->escapeHtml($userIsWatching),
-            $view->translate('Stop watching media'),
+            $view->scripto()->translate($view->project->mediaType(), 'Stop watching media'),
             $userIsWatching ? null : $view->escapeHtml('display: none;'),
-            $view->translate('Watch media'),
+            $view->scripto()->translate($view->project->mediaType(), 'Watch media'),
             $userIsWatching ? $view->escapeHtml('display: none;') : null,
-            $view->translate('Media successfully saved to your watchlist.'),
-            $view->translate('Media successfully removed from your watchlist.')
+            $view->scripto()->translate($view->project->mediaType(), 'Media successfully saved to your watchlist'),
+            $view->scripto()->translate($view->project->mediaType(), 'Media successfully removed from your watchlist')
         );
     }
 

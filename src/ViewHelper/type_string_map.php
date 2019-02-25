@@ -91,6 +91,14 @@ return [
         'video' => 'Review video', // @translate
         'paper' => 'Review paper', // @translate
     ],
+    'Browse items' => [ // @translate
+        'document' => 'Browse documents', // @translate
+        'manuscript' => 'Browse manuscripts', // @translate
+        'book' => 'Browse books', // @translate
+        'audio' => 'Browse audio', // @translate
+        'video' => 'Browse video', // @translate
+        'paper' => 'Browse papers', // @translate
+    ],
 
     /**
      * Media type
@@ -334,6 +342,54 @@ return [
         'folio' => 'Review folio', // @translate
         'sheet' => 'Review sheet', // @translate
     ],
+    '%s: Media #%s' => [ // @translate
+        'page' => '%s: Page #%s', // @translate
+        'image' => '%s: Image #%s', // @translate
+        'section' => '%s: Section #%s', // @translate
+        'segment' => '%s: Segment #%s', // @translate
+        'folio' => '%s: Folio #%s', // @translate
+        'sheet' => '%s: Sheet #%s', // @translate
+    ],
+    'Discussion of %s: Media #%s' => [ // @translate
+        'page' => 'Discussion of %s: Page #%s', // @translate
+        'image' => 'Discussion of %s: Image #%s', // @translate
+        'section' => 'Discussion of %s: Section #%s', // @translate
+        'segment' => 'Discussion of %s: Segment #%s', // @translate
+        'folio' => 'Discussion of %s: Folio #%s', // @translate
+        'sheet' => 'Discussion of %s: Sheet #%s', // @translate
+    ],
+    'Stop watching media' => [ // @translate
+        'page' => 'Stop watching page', // @translate
+        'image' => 'Stop watching image', // @translate
+        'section' => 'Stop watching section', // @translate
+        'segment' => 'Stop watching segment', // @translate
+        'folio' => 'Stop watching folio', // @translate
+        'sheet' => 'Stop watching sheet', // @translate
+    ],
+    'Watch media' => [ // @translate
+        'page' => 'Watch page', // @translate
+        'image' => 'Watch image', // @translate
+        'section' => 'Watch section', // @translate
+        'segment' => 'Watch segment', // @translate
+        'folio' => 'Watch folio', // @translate
+        'sheet' => 'Watch sheet', // @translate
+    ],
+    'Media successfully saved to your watchlist' => [ // @translate
+        'page' => 'Page successfully saved to your watchlist', // @translate
+        'image' => 'Image successfully saved to your watchlist', // @translate
+        'section' => 'Section successfully saved to your watchlist', // @translate
+        'segment' => 'Segment successfully saved to your watchlist', // @translate
+        'folio' => 'Folio successfully saved to your watchlist', // @translate
+        'sheet' => 'Sheet successfully saved to your watchlist', // @translate
+    ],
+    'Media successfully removed from your watchlist' => [ // @translate
+        'page' => 'Page successfully removed from your watchlist', // @translate
+        'image' => 'Image successfully removed from your watchlist', // @translate
+        'section' => 'Section successfully removed from your watchlist', // @translate
+        'segment' => 'Segment successfully removed from your watchlist', // @translate
+        'folio' => 'Folio successfully removed from your watchlist', // @translate
+        'sheet' => 'Sheet successfully removed from your watchlist', // @translate
+    ],
 
     /**
      * Content type
@@ -352,5 +408,20 @@ return [
         'transcription' => 'Not transcribed', // @translate
         'translation' => 'Not translated', // @translate
         'description' => 'Not described', // @translate
+    ],
+    'Edit' => [ // @translate
+        'transcription' => 'Transcribe', // @translate
+        'translation' => 'Translate', // @translate
+        'description' => 'Describe', // @translate
+    ],
+    'HTML' => [ // @translate
+        'transcription' => 'Transcription', // @translate
+        'translation' => 'Translation', // @translate
+        'description' => 'Description', // @translate
+    ],
+    'No HTML' => [ // @translate
+        'transcription' => 'No transcription', // @translate
+        'translation' => 'No translation', // @translate
+        'description' => 'No description', // @translate
     ],
 ];

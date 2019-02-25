@@ -45,7 +45,7 @@ $this->headScript()->appendFile($this->assetUrl('js/public-app.js', 'Scripto'));
                         <h2><?php echo $project->link($project->title()); ?></h2>
                         <ul>
                             <li><?php echo $project->link($this->translate('Project guidelines'), 'guidelines'); ?></li>
-                            <li><?php echo $project->link($this->translate('Browse items')); ?></li>
+                            <li><?php echo $project->link($this->scripto()->translate($project->itemType(), 'Browse items')); ?></li>
                         </ul>
                         <?php
                         $searchAction = isset($sItem) ? $sItem->url() : $project->url();

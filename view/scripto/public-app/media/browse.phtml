@@ -75,8 +75,8 @@ $this->scripto()->postTitle($item->displayTitle());
         <table<?php echo 'list' !== $project->browseLayout() ? ' style="display: none"' : ''; ?> class="tablesaw tablesaw-stack" data-tablesaw-mode="stack">
             <thead>
                 <tr>
-                    <th class="title"><?php echo $this->translate('Media'); ?></th>
-                    <th class="last-edited"><?php echo $this->translate('Last edited'); ?></th>
+                    <th class="title"><?php echo $this->scripto()->translate($project->mediaType(), 'Media'); ?></th>
+                    <th class="last-edited"><?php echo $this->scripto()->translate($project->contentType(), 'Last edited'); ?></th>
                     <th class="status"><?php echo $this->translate('Status'); ?></th>
                 </tr>
             </thead>
@@ -86,20 +86,20 @@ $this->scripto()->postTitle($item->displayTitle());
                     <td>
                         <div class="title-flex">
                             <?php echo $sMedia->linkRaw($this->thumbnail($sMedia, 'square', [
-                                'title' => $this->translate('Media primary media'),
-                                'alt' => $this->translate('Media primary media')
+                                'title' => $this->scripto()->translate($project->mediaType(), 'Primary media'),
+                                'alt' => $this->scripto()->translate($project->mediaType(), 'Primary media'),
                             ])); ?>
                             <div class="title-meta">
                                 <span class="original-number"><?php echo $sMedia->linkRaw(sprintf('#%s', $sMedia->position())); ?></span>
                                 <span class="original-title"><?php echo $sMedia->linkRaw($sMedia->media()->displayTitle()); ?></span>
-                                <?php echo $sMedia->linkRaw($this->translate('Edit'), 'edit', [
+                                <?php echo $sMedia->linkRaw($this->scripto()->translate($project->contentType(), 'Edit'), 'edit', [
                                     'class' => 'edit-link',
                                 ]); ?>
                             </div>
                         </div>
                     </td>
                     <td class="percentage">
-                        <span class="last-edited"><?php echo $sMedia->edited() ? $this->i18n()->dateFormat($sMedia->edited(), 'long', 'medium') : $this->translate('Not edited'); ?></span>
+                        <span class="last-edited"><?php echo $sMedia->edited() ? $this->i18n()->dateFormat($sMedia->edited(), 'long', 'medium') : $this->scripto()->translate($project->contentType(), 'Not edited'); ?></span>
                     </td>
                     <td>
                         <span class="status"><?php echo $this->translate($sMedia->status()); ?></span>
@@ -112,22 +112,22 @@ $this->scripto()->postTitle($item->displayTitle());
             <?php foreach ($sMedias as $sMedia): ?>
             <div class="resource-tile">
                 <?php echo $sMedia->linkRaw($this->thumbnail($sMedia, 'square', [
-                    'title' => $this->translate('Media primary media'),
-                    'alt' => $this->translate('Media primary media')
+                    'title' => $this->scripto()->translate($project->mediaType(), 'Primary media'),
+                    'alt' => $this->scripto()->translate($project->mediaType(), 'Primary media')
                 ])); ?>
                 <h4><span class="original-number"><?php echo $sMedia->linkRaw(sprintf('#%s', $sMedia->position())); ?></span>
                 <span class="original-title"><?php echo $sMedia->linkRaw($sMedia->media()->displayTitle()); ?></span></h4>
-                <?php echo $sMedia->linkRaw($this->translate('Edit'), 'edit', [
+                <?php echo $sMedia->linkRaw($this->scripto()->translate($project->contentType(), 'Edit'), 'edit', [
                     'class' => 'edit-link',
                 ]); ?>
-                <div class="last-edited"><span class="meta-label"><?php echo $this->translate('Last edited'); ?></span> <?php echo $sMedia->edited() ? $this->i18n()->dateFormat($sMedia->edited(), 'long', 'medium') : $this->translate('Not edited'); ?></div>
+                <div class="last-edited"><span class="meta-label"><?php echo $this->scripto()->translate($project->contentType(), 'Last edited'); ?></span> <?php echo $sMedia->edited() ? $this->i18n()->dateFormat($sMedia->edited(), 'long', 'medium') : $this->scripto()->translate($project->contentType(), 'Not edited'); ?></div>
                 <div class="status"><span class="meta-label"><?php echo $this->translate('Status'); ?></span> <?php echo $this->translate($sMedia->status()); ?></div>
             </div>
             <?php endforeach; ?>
         </div>
         <?php else: ?>
         <div class="no-resources">
-            <p><?php echo $this->translate('No Scripto media found'); ?></p>
+            <p><?php echo $this->scripto()->translate($project->mediaType(), 'No Scripto media found'); ?></p>
         </div>
         <?php endif; ?>
     </div>
