@@ -466,6 +466,18 @@ nav.pagination .row-count {
   }
 }
 
+.value.resource .resource-link {
+    display: flex;
+    align-items: center;
+    
+    img {
+        max-height: $spacing-unit;
+        width: auto;
+        margin-left : .25 * $spacing-unit;
+        order: 2;
+    }
+}
+
 /** 
  * Media
  */
