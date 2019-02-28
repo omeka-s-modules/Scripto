@@ -272,6 +272,21 @@ ul.user-menu {
   width:         calc(45% - (#{$spacing-unit} / 2));
 }
 
+#back-to-top {
+    position: fixed;
+    bottom: $spacing-unit;
+    right: $spacing-unit;
+    background-color: #fff;
+    border-radius: $spacing-unit;
+    padding: (.25 * $spacing-unit);
+    border: 1px solid $grey-color-light;
+    display: none;
+    
+    &.active {
+        display: block;
+    }
+}
+
 /**
  * Page content
  */

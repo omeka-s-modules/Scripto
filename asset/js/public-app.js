@@ -1,5 +1,29 @@
 $(document).ready(function() {
 
+// Show "back to top" link when scrolling past window height.
+
+var backToTop    = $("#back-to-top"),
+    $window = $(window),
+    content = $("#content");
+
+var checkScroll = function () {
+    if ($window.scrollTop() > content.offset().top) {
+        backToTop.addClass("active");
+    } else {
+        backToTop.removeClass("active");
+    }
+}
+
+checkScroll();
+
+$window.resize( function() {
+    checkScroll();
+});
+
+$window.scroll( function() {
+   checkScroll(); 
+});
+
 // Toggle the sort and filter menus.
 $('.menu-toggle').on('click', function(e) {
     e.preventDefault();

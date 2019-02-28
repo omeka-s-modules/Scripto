@@ -63,7 +63,7 @@ $this->headScript()->appendFile($this->assetUrl('js/public-app.js', 'Scripto'));
         </div>
     </header>
     <body>
-        <main class="page-content" aria-label="<?php echo $this->escapeHtml($this->translate('Content')); ?>">
+        <main id="content" class="page-content" aria-label="<?php echo $this->escapeHtml($this->translate('Content')); ?>">
             <div class="wrapper">
                 <?php echo $this->messages(); ?>
                 <article class="post">
@@ -84,13 +84,7 @@ $this->headScript()->appendFile($this->assetUrl('js/public-app.js', 'Scripto'));
         <footer class="site-footer h-card">
             <div class="wrapper">
                 <h2 class="footer-heading"><?php echo $title; ?></h2>
-                <div class="footer-col-wrapper">
-                    <div class="footer-col footer-col-1"></div>
-                    <div class="footer-col footer-col-2">
-                        <ul class="social-media-list"></ul>
-                    </div>
-                    <div class="footer-col footer-col-3"></div>
-                </div>
+                <div id="back-to-top"><a href="#content"><?php echo $this->translate('Back to top'); ?></a></div>
             </div>
         </footer>
     </body>
