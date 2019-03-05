@@ -9,6 +9,7 @@ $this->scripto()->postSubtitle($sMedia->link($media->displayTitle(), 'show-talk'
         <?php if ($revisions): ?>
         <div class="browse-controls">
             <button class="compare-selected" data-url="<?php echo $this->escapeHtml($this->url(null, [], true)); ?>"><?php echo $this->translate('Compare selected'); ?></button>
+            <?php echo $sMedia->link($this->translate('Back to notes'), 'talk', ['class' => 'back-to-notes']); ?>
             <?php echo $this->scripto()->mediawikiPagination(); ?>
         </div>
         <table class="tablesaw tablesaw-stack" data-tablesaw-mode="stack">
