@@ -13,52 +13,55 @@ $this->scripto()->postSubtitle(sprintf($this->translate('Original title: %s'), $
 <?php echo $this->form()->openTag($mediaForm); ?>
 <?php echo $this->formElement($mediaForm->get('mediapublicappform_csrf')); ?>
     <div class="media-head">
-        <?php echo $this->scripto()->watchlistToggle($sMedia); ?>
-        <div class="protection-field">
-            <?php $editAccess = $sMedia->editAccess(1); ?>
-            <div class="current-protection"><strong><?php echo $this->translate('Protection: '); ?></strong><?php echo $this->translate($editAccess['label']); ?></div>
-            <div class="protection-expiration"><strong><?php echo $this->translate('Expiration: '); ?></strong><?php echo $editAccess['expiry'] ? $this->i18n()->dateFormat($editAccess['expiry'], 'short', 'short') : $this->translate('Never'); ?></div>
-        </div>
+        <?php echo $this->scripto()->watchlistToggle($sMedia, true); ?>
         <input type="submit" class="save" value="<?php echo $this->escapeHtml($this->translate('Save')); ?>">
         <?php echo $sMedia->link($this->translate('Cancel'), 'talk', ['class' => 'button']); ?>
     </div>
     <div id="wikitext" class="resource-content">
-        <div class="wikitext-featherlight horizontal">
-            <h3><?php echo sprintf($this->scripto()->translate($project->mediaType(), 'Discussion of %s: Media #%s'), $item->displayTitle(), $sMedia->position()); ?></h3>
-            <button type="button" class="full-screen"><?php echo $this->translate('Go full screen'); ?></button>
-            <div class="layout">
-                <label><?php echo $this->translate('Layout'); ?></label>
-                <button type="button" name="horizontal" class="horizontal active" aria-label="<?php echo $this->escapeHtml($this->translate('Horizontal view')); ?>" title="<?php echo $this->escapeHtml($this->translate('Horizontal view')); ?>" disabled=""></button>
-                <button type="button" name="vertical" class="vertical" aria-label="<?php echo $this->escapeHtml($this->translate('Vertical view')); ?>" title="<?php echo $this->escapeHtml($this->translate('Vertical view')); ?>"></button>
-            </div>
-            <div class="wikitext-flex">
-                <div class="textarea-flex">
-                    <div class="wikitext-editor-buttons" data-lml-editor-translations="<?php echo $this->escapeHtml($this->scripto()->getLmlEditorTranslations()); ?>"></div>
-                    <?php echo $this->formTextarea($mediaForm->get('wikitext')); ?>
-                </div>
-                <?php if ($sMedia->isRenderableImage()): ?>
-                <div class="panzoom-container image">
-                    <div class="zoom-controls">
-                        <button class="zoom-in" aria-label="<?php echo $this->escapeHtml($this->translate('Zoom in')); ?>" title="<?php echo $this->escapeHtml($this->translate('Zoom in')); ?>"></button>
-                        <button class="zoom-out" aria-label="<?php echo $this->escapeHtml($this->translate('Zoom out')); ?>" title="<?php echo $this->escapeHtml($this->translate('Zoom out')); ?>"></button>
-                        <button class="rotate-right" aria-label="<?php echo $this->escapeHtml($this->translate('Rotate right')); ?>" title="<?php echo $this->escapeHtml($this->translate('Rotate right')); ?>"></button>
-                        <button class="rotate-left" aria-label="<?php echo $this->escapeHtml($this->translate('Rotate left')); ?>" title="<?php echo $this->escapeHtml($this->translate('Rotate left')); ?>"></button>
-                        <button class="reset"><?php echo $this->translate('Reset'); ?></button>
-                    </div>
-                    <div class="media-render">
-                        <img src="<?php echo $this->escapeHtml($media->originalUrl()); ?>">
-                    </div>
-                </div>
-                <?php else: ?>
-                <div class="panzoom-container">
-                    <?php echo $media->render(['link' => null]); ?>
-                </div>
-                <?php endif; ?>
-            </div>
+    <div class="wikitext-flex notes-column">
+        <div class="change-summary">
+            <p><?php echo $this->translate('Summarize your note:'); ?></p>
+            <?php echo $this->formText($mediaForm->get('summary')); ?>
+        </div>
+        <div class="textarea-flex">
+            <div class="wikitext-editor-buttons" data-lml-editor-translations="<?php echo $this->escapeHtml($this->scripto()->getLmlEditorTranslations()); ?>"></div>
+            <?php echo $this->formTextarea($mediaForm->get('wikitext')); ?>
         </div>
     </div>
-    <div class="change-summary">
-        <p><?php echo $this->translate('Summarize your comment:'); ?></p>
-        <?php echo $this->formText($mediaForm->get('summary')); ?>
+    <div id="media-column">
+        <div class="media render">
+            <h3><a href="#"><?php echo $this->translate(ucfirst($project->mediaType())); ?></a></h3>
+            <?php if ($sMedia->isRenderableImage()): ?>
+            <div class="panzoom-container image">
+                <div class="zoom-controls">
+                    <button class="zoom-in" aria-label="<?php echo $this->escapeHtml($this->translate('Zoom in')); ?>" title="<?php echo $this->escapeHtml($this->translate('Zoom in')); ?>"></button>
+                    <button class="zoom-out" aria-label="<?php echo $this->escapeHtml($this->translate('Zoom out')); ?>" title="<?php echo $this->escapeHtml($this->translate('Zoom out')); ?>"></button>
+                    <button class="rotate-right" aria-label="<?php echo $this->escapeHtml($this->translate('Rotate right')); ?>" title="<?php echo $this->escapeHtml($this->translate('Rotate right')); ?>"></button>
+                    <button class="rotate-left" aria-label="<?php echo $this->escapeHtml($this->translate('Rotate left')); ?>" title="<?php echo $this->escapeHtml($this->translate('Rotate left')); ?>"></button>
+                    <button class="reset"><?php echo $this->translate('Reset'); ?></button>
+                </div>
+                <div class="media-render">
+                    <img src="<?php echo $this->escapeHtml($media->originalUrl()); ?>">
+                </div>
+            </div>
+            <?php else: ?>
+            <div class="panzoom-container">
+                <?php echo $media->render(['link' => null]); ?>
+            </div>
+            <?php endif; ?>
+        </div>
+        <div class="media copy">
+            <h3><a href="#"><?php echo $this->scripto()->translate($project->contentType(), 'HTML'); ?></a></h3>
+            <?php $pageHtml = $sMedia->pageHtml(0); ?>
+            <?php echo $pageHtml  ? $pageHtml : sprintf('<span>[%s]</span>', $this->scripto()->translate($project->contentType(), 'No HTML')); ?>
+        </div>
+        <?php $displayValues = $media->displayValues(); ?>
+        <?php if ($displayValues): ?>
+        <div class="media metadata">
+            <h3><a href="#"><?php echo $this->translate('Metadata'); ?></a></h3>
+            <?php echo $displayValues; ?>
+        </div>
+        <?php endif; ?>
+    </div>
     </div>
 </form>

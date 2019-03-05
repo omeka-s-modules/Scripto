@@ -584,7 +584,6 @@ nav.pagination .row-count {
 }
 
 .vertical .wikitext-flex .textarea-flex {
-    order: 2;
     min-height: 35vh;
 }
 
@@ -594,7 +593,6 @@ nav.pagination .row-count {
 }
 
 .vertical .wikitext-flex .panzoom-container {
-    order: 1;
     margin-bottom: 24px;
     min-height: 35vh;
 }
@@ -619,12 +617,13 @@ nav.pagination .row-count {
     margin-bottom: $spacing-unit;
 }
 
-.wikitext-flex .media-render {
+.media-render {
     margin-bottom: 0;
     
     & > * {
         max-width: 100%;
         height: auto;
+        display: block;
     }
 }
 
@@ -834,7 +833,7 @@ h2.media-item {
 }
 
 .tab-actions {
-    margin-left: $spacing-unit;
+    margin-right: $spacing-unit;
 }
 
 .tab-actions a {
@@ -849,6 +848,77 @@ h2.media-item {
     margin-right: .25 * $spacing-unit;
 }
 
+#media-column {
+    width: 40%;
+    padding-left: .5 * $spacing-unit;
+    
+    & > div {
+        margin-bottom: $spacing-unit;
+    }
+}
+
+.notes-column {
+    width: 60%;
+    padding-right: .5 * $spacing-unit;
+    height: 100%;
+    margin-top: 0;
+    
+    .change-summary {
+        width: 100%;
+        margin: 0 0 $spacing-unit;
+    }
+    
+    .textarea-flex {
+        width: 100%;
+        min-height: (10 * $spacing-unit);
+    }
+}
+
+.notes-head {
+    display: flex;
+    align-items: center;
+    margin-bottom: $spacing-unit;
+}
+
+.notes-head h3 {
+    margin-bottom: 0;
+}
+
+.notes-nav {
+    margin-left: $spacing-unit;
+}
+
+.note-actions {
+    list-style: none;
+    padding-left: 0;
+    margin-left: 0;
+    display: flex;
+    
+    li {
+        display: inline-block;
+        
+        &:not(:last-child):after {
+            content: "|";
+            display: inline-block;
+            margin: 0 (.125 * $spacing-unit);
+        }
+    }
+}
+
+.note-actions a {
+    display: inline-block;
+}
+
+.note-actions .watchlist.button {
+    margin-right: 0;
+}
+
+.back-to-notes {
+    display: inline-block;
+    padding: (.125 * $spacing-unit) 0;
+    margin: 0 (.5 * $spacing-unit);
+}
+
 /* 
  * Item
  */
@@ -856,6 +926,7 @@ h2.media-item {
 .resource-content {
     display: flex;
     flex-wrap: wrap;
+    height: 100%;
 }
 
 .resource-content .resource-metadata {
