@@ -401,14 +401,14 @@ return [
         'sheet' => 'Discussion of %s: Sheet #%s', // @translate
         'entry' => 'Discussion of %s: Entry #%s', // @translate
     ],
-    'Stop watching media' => [ // @translate
-        'page' => 'Stop watching page', // @translate
-        'image' => 'Stop watching image', // @translate
-        'section' => 'Stop watching section', // @translate
-        'segment' => 'Stop watching segment', // @translate
-        'folio' => 'Stop watching folio', // @translate
-        'sheet' => 'Stop watching sheet', // @translate
-        'entry' => 'Stop watching entry', // @translate
+    'Stop tracking media' => [ // @translate
+        'page' => 'Stop tracking page', // @translate
+        'image' => 'Stop tracking image', // @translate
+        'section' => 'Stop tracking section', // @translate
+        'segment' => 'Stop tracking segment', // @translate
+        'folio' => 'Stop tracking folio', // @translate
+        'sheet' => 'Stop tracking sheet', // @translate
+        'entry' => 'Stop tracking entry', // @translate
     ],
     'Watch media' => [ // @translate
         'page' => 'Watch page', // @translate
@@ -419,23 +419,23 @@ return [
         'sheet' => 'Watch sheet', // @translate
         'entry' => 'Watch entry', // @translate
     ],
-    'Media successfully saved to your watchlist' => [ // @translate
-        'page' => 'Page successfully saved to your watchlist', // @translate
-        'image' => 'Image successfully saved to your watchlist', // @translate
-        'section' => 'Section successfully saved to your watchlist', // @translate
-        'segment' => 'Segment successfully saved to your watchlist', // @translate
-        'folio' => 'Folio successfully saved to your watchlist', // @translate
-        'sheet' => 'Sheet successfully saved to your watchlist', // @translate
-        'entry' => 'Entry successfully saved to your watchlist', // @translate
+    'Now tracking media' => [ // @translate
+        'page' => 'Now tracking page', // @translate
+        'image' => 'Now tracking image', // @translate
+        'section' => 'Now tracking section', // @translate
+        'segment' => 'Now tracking segment', // @translate
+        'folio' => 'Now tracking folio', // @translate
+        'sheet' => 'Now tracking sheet', // @translate
+        'entry' => 'Now tracking entry', // @translate
     ],
     'Media successfully removed from your watchlist' => [ // @translate
-        'page' => 'Page successfully removed from your watchlist', // @translate
-        'image' => 'Image successfully removed from your watchlist', // @translate
-        'section' => 'Section successfully removed from your watchlist', // @translate
-        'segment' => 'Segment successfully removed from your watchlist', // @translate
-        'folio' => 'Folio successfully removed from your watchlist', // @translate
-        'sheet' => 'Sheet successfully removed from your watchlist', // @translate
-        'entry' => 'Entry successfully removed from your watchlist', // @translate
+        'page' => 'No longer tracking page', // @translate
+        'image' => 'No longer tracking image', // @translate
+        'section' => 'No longer tracking section', // @translate
+        'segment' => 'No longer tracking segment', // @translate
+        'folio' => 'No longer tracking folio', // @translate
+        'sheet' => 'No longer tracking sheet', // @translate
+        'entry' => 'No longer tracking entry', // @translate
     ],
 
     /**
