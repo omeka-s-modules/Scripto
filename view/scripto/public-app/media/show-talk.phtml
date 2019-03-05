@@ -9,20 +9,8 @@ $this->headScript()->appendFile($this->assetUrl('js/common/media.js', 'Scripto')
 $this->scripto()->postTitle(sprintf($this->scripto()->translate($project->mediaType(), 'Discussion of %s: Media #%s'), $sItem->link($item->displayTitle()), $sMedia->position()));
 $this->scripto()->postSubtitle(sprintf($this->translate('Original title: %s'), $media->displayTitle()));
 ?>
-<div class="media-head">
-    <div class="media-tabs">
-        <?php echo $sMedia->link($this->scripto()->translate($project->contentType(), 'Text'), 'show', ['class' => 'button']); ?>
-        <span class="inactive tab button"><?php echo $this->translate('Discussion'); ?></span>
-    </div>
-    <div class="tab-actions">
-    <?php if ($userCanEdit): ?>
-        <?php echo $sMedia->link($this->translate('Discuss'), 'edit-talk'); ?>
-        <?php echo $this->hyperlink($this->translate('View discussion history'), $this->url('scripto-talk-revision', ['action' => 'browse-talk'], true)); ?>
-    <?php endif; ?>
-    <?php echo $this->scripto()->watchlistToggle($sMedia); ?>
-    </div>
-    <?php echo $this->scripto()->mediaPagination('talk'); ?>
-</div>
+
+<?php echo $this->partial('common/media-head.phtml'); ?>
 <div class="resource-content">
     <?php $displayValues = $media->displayValues(); ?>
     <?php if ($displayValues): ?>

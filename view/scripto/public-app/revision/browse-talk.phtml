@@ -4,6 +4,7 @@ $this->scripto()->postTitle(sprintf($this->translate('Discussion revisions: %s')
 ?>
 <div class="resource-content">
     <div class="revisions resource-list">
+        <?php echo $this->partial('common/media-head.phtml'); ?>
         <?php if ($revisions): ?>
         <div class="browse-controls">
             <button class="compare-selected" data-url="<?php echo $this->escapeHtml($this->url(null, [], true)); ?>"><?php echo $this->translate('Compare selected'); ?></button>
