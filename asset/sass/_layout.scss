@@ -560,7 +560,7 @@ nav.pagination .row-count {
 
 .horizontal .wikitext-flex .textarea-flex {
     display: flex;
-    margin-right: 12px;
+    margin-left: 12px;
     flex-direction: column;
 }
 
@@ -602,14 +602,17 @@ nav.pagination .row-count {
     position: relative;
 }
 
-.media.html:only-child {
-    display: flex;
+.render {
+    width: 50%;
+}
+
+.media.html {
     padding: 0;
-    width: 100%;
+    width: 50%;
+    padding-left: (.5 * $spacing-unit);
     
-    .render {
-        margin-right: (.5 * $spacing-unit);
-        max-width: 50%;
+    .copy {
+        margin-bottom: $spacing-unit;
     }
 }
 
@@ -749,16 +752,6 @@ h2.media-item {
     line-height: $base-line-height;
 }
 
-.media.metadata {
-    width: 30%;
-    padding-right: .5 * $spacing-unit;
-}
-
-.media.html {
-    width: 70%;
-    padding-left: .5 * $spacing-unit;
-}
-
 .media-head {
     display: flex;
     align-items: center;
@@ -850,22 +843,27 @@ h2.media-item {
 
 #media-column {
     width: 40%;
-    padding-left: .5 * $spacing-unit;
+    padding-right: .5 * $spacing-unit;
     
     & > div {
         margin-bottom: $spacing-unit;
+    }
+    
+    .render {
+        width: 100%;
     }
 }
 
 .notes-column {
     width: 60%;
-    padding-right: .5 * $spacing-unit;
+    padding-left: .5 * $spacing-unit;
     height: 100%;
     margin-top: 0;
+    align-content: flex-start;
     
     .change-summary {
         width: 100%;
-        margin: 0 0 $spacing-unit;
+        margin: 0 0 (.5 * $spacing-unit);
     }
     
     .textarea-flex {
@@ -1127,7 +1125,7 @@ div.resource-row {
 }
 
 .change-summary {
-    margin-top: $spacing-unit;
+    margin: (-1.5 * $spacing-unit) 0 (.5 * $spacing-unit);
 }
 
 #change-summary-text {

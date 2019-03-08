@@ -12,19 +12,8 @@ $this->scripto()->postSubtitle(sprintf($this->translate('Original title: %s'), $
 
 <?php echo $this->partial('common/media-head.phtml'); ?>
 <div class="resource-content">
-    <div class="notes-column">
-        <?php $pageHtml = $sMedia->pageHtml(1); ?>
-        <?php echo $pageHtml  ? $pageHtml : sprintf('<span>[%s]</span>', $this->translate('No notes yet.')); ?>
-        <ul class="note-actions">
-        <?php if ($userCanEdit): ?>
-            <li><?php echo $sMedia->link($this->translate('Edit'), 'edit-talk'); ?></li>
-            <li><?php echo $this->hyperlink($this->translate('Browse notes history'), $this->url('scripto-talk-revision', ['action' => 'browse-talk'], true)); ?></li>
-        <?php endif; ?>
-        </ul>
-    </div>
     <div id="media-column">
         <div class="media render">
-            <h3><?php echo $this->translate(ucfirst($project->mediaType())); ?></h3>
             <?php if ($sMedia->isRenderableImage()): ?>
             <div class="panzoom-container image">
                 <div class="zoom-controls">
@@ -56,5 +45,15 @@ $this->scripto()->postSubtitle(sprintf($this->translate('Original title: %s'), $
             <?php echo $displayValues; ?>
         </div>
         <?php endif; ?>
+    </div>
+    <div class="notes-column">
+        <?php $pageHtml = $sMedia->pageHtml(1); ?>
+        <?php echo $pageHtml  ? $pageHtml : sprintf('<span>[%s]</span>', $this->translate('No notes yet.')); ?>
+        <ul class="note-actions">
+        <?php if ($userCanEdit): ?>
+            <li><?php echo $sMedia->link($this->translate('Edit'), 'edit-talk'); ?></li>
+            <li><?php echo $this->hyperlink($this->translate('Browse notes history'), $this->url('scripto-talk-revision', ['action' => 'browse-talk'], true)); ?></li>
+        <?php endif; ?>
+        </ul>
     </div>
 </div>

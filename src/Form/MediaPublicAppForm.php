@@ -24,6 +24,7 @@ class MediaPublicAppForm extends Form
                 'id' => 'change-summary-text',
                 'aria-label' => 'Change summary', // @translate
                 'maxlength' => 255,
+                'placeholder' => 'Summarize your changes', // @translate
             ],
         ]);
 
