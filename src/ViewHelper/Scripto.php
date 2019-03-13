@@ -612,6 +612,9 @@ HTML;
             'Horizontal rule' => $view->translate('Horizontal rule'),
             'Line break' => $view->translate('Line break'),
             'Signature' => $view->translate('Signature'),
+            'Strikethrough' => $view->translate('Strikethrough'),
+            'Unordered list' => $view->translate('Unordered list'),
+            'Ordered list' => $view->translate('Ordered list'),
         ]);
     }
 
