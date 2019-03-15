@@ -1176,7 +1176,8 @@ div.resource-row {
 
 .wikitext-editor-buttons #wikitext-editor-button-preformatted,
 .wikitext-editor-buttons #wikitext-editor-button-horizontal-rule,
-.wikitext-editor-buttons #wikitext-editor-button-line-break {
+.wikitext-editor-buttons #wikitext-editor-button-line-break,
+.wikitext-editor-buttons #wikitext-editor-button-signature, {
     text-indent: 0;
 }
 
@@ -1188,7 +1189,7 @@ div.resource-row {
     content: "\f032";
 }
 
-#wikitext-editor-button-strike:before {
+#wikitext-editor-button-strikethrough:before {
     content: "\f0cc";
 }
 
@@ -1202,6 +1203,14 @@ div.resource-row {
 
 #wikitext-editor-button-comment:before {
     content: "\f075";
+}
+
+#wikitext-editor-button-ordered-list:before {
+	content: "\f0cb";
+}
+
+#wikitext-editor-button-unordered-list:before {
+	content: "\f03a";
 }
 
 .wikitext-editor-buttons #wikitext-editor-button-heading-1:before {
