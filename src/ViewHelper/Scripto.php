@@ -590,4 +590,27 @@ HTML;
         }
         return $view->translate($string);
     }
+
+    /**
+     * Get the user signature for media talk page.
+     *
+     * MediaWiki's signature markup is not appropriate to use within Scripto
+     * because it links back to the MediaWiki installation instead of Omeka.
+     * This creates custom signature markup that links the user's name to their
+     * public Scripto contributions page. Note that the links will break if the
+     * domain changes in the meantime.
+     *
+     * @see https://www.mediawiki.org/wiki/Help:Signatures
+     * @return string
+     */
+    public function getUserSignature()
+    {
+        $view = $this->getView();
+        $userInfo = $this->apiClient->queryUserInfo();
+        return sprintf(
+            '-- [%s %s] ~~~~~',
+            $view->url('scripto-user-contributions', ['user-id' => $userInfo['name']], ['force_canonical' => true]),
+            $userInfo['name']
+        );
+    }
 }
