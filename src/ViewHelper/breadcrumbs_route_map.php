@@ -52,7 +52,7 @@ return [
     ],
     'admin/scripto-talk-media-id' => [
         'breadcrumbs' => ['admin/scripto', 'admin/scripto-project', 'admin/scripto-item', 'admin/scripto-media', 'admin/scripto-media-id'],
-        'text' => 'View discussion', // @translate
+        'text' => 'View notes', // @translate
         'params' => ['project-id', 'item-id', 'media-id'],
     ],
     'admin/scripto-talk-revision' => [

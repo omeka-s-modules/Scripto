@@ -162,14 +162,14 @@ return [
         'sheet' => 'Sheet #%s', // @translate
         'entry' => 'Entry #%s', // @translate
     ],
-    'Media #%s discussion' => [ // @translate
-        'page' => 'Page #%s discussion', // @translate
-        'image' => 'Image #%s discussion', // @translate
-        'section' => 'Section #%s discussion', // @translate
-        'segment' => 'Segment #%s discussion', // @translate
-        'folio' => 'Folio #%s discussion', // @translate
-        'sheet' => 'Sheet #%s discussion', // @translate
-        'entry' => 'Entry #%s discussion', // @translate
+    'Media #%s notes' => [ // @translate
+        'page' => 'Page #%s notes', // @translate
+        'image' => 'Image #%s notes', // @translate
+        'section' => 'Section #%s notes', // @translate
+        'segment' => 'Segment #%s notes', // @translate
+        'folio' => 'Folio #%s notes', // @translate
+        'sheet' => 'Sheet #%s notes', // @translate
+        'entry' => 'Entry #%s notes', // @translate
     ],
     'Media count' => [ // @translate
         'page' => 'Page count', // @translate
@@ -392,14 +392,14 @@ return [
         'sheet' => '%s: Sheet #%s', // @translate
         'entry' => '%s: Entry #%s', // @translate
     ],
-    'Discussion of %s: Media #%s' => [ // @translate
-        'page' => 'Discussion of %s: Page #%s', // @translate
-        'image' => 'Discussion of %s: Image #%s', // @translate
-        'section' => 'Discussion of %s: Section #%s', // @translate
-        'segment' => 'Discussion of %s: Segment #%s', // @translate
-        'folio' => 'Discussion of %s: Folio #%s', // @translate
-        'sheet' => 'Discussion of %s: Sheet #%s', // @translate
-        'entry' => 'Discussion of %s: Entry #%s', // @translate
+    'Notes of %s: Media #%s' => [ // @translate
+        'page' => 'Notes of %s: Page #%s', // @translate
+        'image' => 'Notes of %s: Image #%s', // @translate
+        'section' => 'Notes of %s: Section #%s', // @translate
+        'segment' => 'Notes of %s: Segment #%s', // @translate
+        'folio' => 'Notes of %s: Folio #%s', // @translate
+        'sheet' => 'Notes of %s: Sheet #%s', // @translate
+        'entry' => 'Notes of %s: Entry #%s', // @translate
     ],
     'Stop tracking media' => [ // @translate
         'page' => 'Stop tracking page', // @translate
