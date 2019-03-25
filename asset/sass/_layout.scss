@@ -560,7 +560,7 @@ nav.pagination .row-count {
 
 .horizontal .wikitext-flex .textarea-flex {
     display: flex;
-    margin-right: 12px;
+    margin-left: 12px;
     flex-direction: column;
 }
 
@@ -584,7 +584,6 @@ nav.pagination .row-count {
 }
 
 .vertical .wikitext-flex .textarea-flex {
-    order: 2;
     min-height: 35vh;
 }
 
@@ -594,7 +593,6 @@ nav.pagination .row-count {
 }
 
 .vertical .wikitext-flex .panzoom-container {
-    order: 1;
     margin-bottom: 24px;
     min-height: 35vh;
 }
@@ -604,14 +602,17 @@ nav.pagination .row-count {
     position: relative;
 }
 
-.media.html:only-child {
-    display: flex;
+.render {
+    width: 50%;
+}
+
+.media.html {
     padding: 0;
-    width: 100%;
+    width: 50%;
+    padding-left: (.5 * $spacing-unit);
     
-    .render {
-        margin-right: (.5 * $spacing-unit);
-        max-width: 50%;
+    .copy {
+        margin-bottom: $spacing-unit;
     }
 }
 
@@ -619,12 +620,13 @@ nav.pagination .row-count {
     margin-bottom: $spacing-unit;
 }
 
-.wikitext-flex .media-render {
+.media-render {
     margin-bottom: 0;
     
     & > * {
         max-width: 100%;
         height: auto;
+        display: block;
     }
 }
 
@@ -750,16 +752,6 @@ h2.media-item {
     line-height: $base-line-height;
 }
 
-.media.metadata {
-    width: 30%;
-    padding-right: .5 * $spacing-unit;
-}
-
-.media.html {
-    width: 70%;
-    padding-left: .5 * $spacing-unit;
-}
-
 .media-head {
     display: flex;
     align-items: center;
@@ -834,7 +826,7 @@ h2.media-item {
 }
 
 .tab-actions {
-    margin-left: $spacing-unit;
+    margin-right: $spacing-unit;
 }
 
 .tab-actions a {
@@ -849,6 +841,82 @@ h2.media-item {
     margin-right: .25 * $spacing-unit;
 }
 
+#media-column {
+    width: 40%;
+    padding-right: .5 * $spacing-unit;
+    
+    & > div {
+        margin-bottom: $spacing-unit;
+    }
+    
+    .render {
+        width: 100%;
+    }
+}
+
+.notes-column {
+    width: 60%;
+    padding-left: .5 * $spacing-unit;
+    height: 100%;
+    margin-top: 0;
+    align-content: flex-start;
+    
+    .change-summary {
+        width: 100%;
+        margin: 0 0 (.5 * $spacing-unit);
+    }
+    
+    .textarea-flex {
+        width: 100%;
+        min-height: (10 * $spacing-unit);
+    }
+}
+
+.notes-head {
+    display: flex;
+    align-items: center;
+    margin-bottom: $spacing-unit;
+}
+
+.notes-head h3 {
+    margin-bottom: 0;
+}
+
+.notes-nav {
+    margin-left: $spacing-unit;
+}
+
+.note-actions {
+    list-style: none;
+    padding-left: 0;
+    margin-left: 0;
+    display: flex;
+    
+    li {
+        display: inline-block;
+        
+        &:not(:last-child):after {
+            content: "|";
+            display: inline-block;
+            margin: 0 (.125 * $spacing-unit);
+        }
+    }
+}
+
+.note-actions a {
+    display: inline-block;
+}
+
+.note-actions .watchlist.button {
+    margin-right: 0;
+}
+
+.back-to-notes {
+    display: inline-block;
+    padding: (.125 * $spacing-unit) 0;
+    margin: 0 (.5 * $spacing-unit);
+}
+
 /* 
  * Item
  */
@@ -856,6 +924,7 @@ h2.media-item {
 .resource-content {
     display: flex;
     flex-wrap: wrap;
+    height: 100%;
 }
 
 .resource-content .resource-metadata {
@@ -1056,7 +1125,7 @@ div.resource-row {
 }
 
 .change-summary {
-    margin-top: $spacing-unit;
+    margin: (-1.5 * $spacing-unit) 0 (.5 * $spacing-unit);
 }
 
 #change-summary-text {
@@ -1107,7 +1176,8 @@ div.resource-row {
 
 .wikitext-editor-buttons #wikitext-editor-button-preformatted,
 .wikitext-editor-buttons #wikitext-editor-button-horizontal-rule,
-.wikitext-editor-buttons #wikitext-editor-button-line-break {
+.wikitext-editor-buttons #wikitext-editor-button-line-break,
+.wikitext-editor-buttons #wikitext-editor-button-signature, {
     text-indent: 0;
 }
 
@@ -1119,7 +1189,7 @@ div.resource-row {
     content: "\f032";
 }
 
-#wikitext-editor-button-strike:before {
+#wikitext-editor-button-strikethrough:before {
     content: "\f0cc";
 }
 
@@ -1133,6 +1203,14 @@ div.resource-row {
 
 #wikitext-editor-button-comment:before {
     content: "\f075";
+}
+
+#wikitext-editor-button-ordered-list:before {
+	content: "\f0cb";
+}
+
+#wikitext-editor-button-unordered-list:before {
+	content: "\f03a";
 }
 
 .wikitext-editor-buttons #wikitext-editor-button-heading-1:before {

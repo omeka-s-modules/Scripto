@@ -37,7 +37,7 @@
                         true
                     )),
                     $isTalk
-                        ? sprintf($this->scripto()->translate($project->mediaType(), 'Media #%s discussion'), $sMedia->position())
+                        ? sprintf($this->scripto()->translate($project->mediaType(), 'Media #%s notes'), $sMedia->position())
                         : sprintf($this->scripto()->translate($project->mediaType(), 'Media #%s'), $sMedia->position()),
                     $userCon['parentid']
                         ? $this->hyperlink($this->translate('diff'), $this->url(
@@ -132,7 +132,7 @@
                         true
                     )),
                     $isTalk
-                        ? sprintf($this->scripto()->translate($project->mediaType(), 'Media #%s discussion'), $sMedia->position())
+                        ? sprintf($this->scripto()->translate($project->mediaType(), 'Media #%s notes'), $sMedia->position())
                         : sprintf($this->scripto()->translate($project->mediaType(), 'Media #%s'), $sMedia->position()),
                     $page['old_revid']
                         ? $this->hyperlink($this->translate('diff'), $this->url(

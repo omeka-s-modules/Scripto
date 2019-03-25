@@ -68,6 +68,7 @@ class RevisionController extends AbstractActionController
         $view->setVariable('project', $project);
         $view->setVariable('revisions', $revisions);
         $view->setVariable('continue', $continue);
+        $view->setVariable('userCanEdit', $sMedia->userCanEdit($namespace));
         $this->layout()->setVariable('project', $project);
         $this->layout()->setVariable('sItem', $sItem);
         $this->layout()->setVariable('sMedia', $sMedia);
@@ -106,9 +107,11 @@ class RevisionController extends AbstractActionController
         $view->setVariable('sItem', $sItem);
         $view->setVariable('item', $sItem->item());
         $view->setVariable('project', $project);
+        $view->setVariable('userCanEdit', $sMedia->userCanEdit($namespace));
         $this->layout()->setVariable('project', $project);
         $this->layout()->setVariable('sItem', $sItem);
         $this->layout()->setVariable('sMedia', $sMedia);
+
         return $view;
     }
 
@@ -146,6 +149,7 @@ class RevisionController extends AbstractActionController
         $view->setVariable('sItem', $sItem);
         $view->setVariable('item', $sItem->item());
         $view->setVariable('project', $project);
+        $view->setVariable('userCanEdit', $sMedia->userCanEdit($namespace));
         $this->layout()->setVariable('project', $project);
         $this->layout()->setVariable('sItem', $sItem);
         $this->layout()->setVariable('sMedia', $sMedia);

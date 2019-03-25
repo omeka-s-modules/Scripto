@@ -6,56 +6,54 @@ $this->headScript()->appendFile($this->assetUrl('vendor/featherlight/featherligh
 $this->headScript()->appendFile($this->assetUrl('js/LmlEditor.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/common/media.js', 'Scripto'));
 
-$this->scripto()->postTitle(sprintf($this->scripto()->translate($project->mediaType(), 'Discussion of %s: Media #%s'), $sItem->link($item->displayTitle()), $sMedia->position()));
-$this->scripto()->postSubtitle(sprintf($this->translate('Original title: %s'), $media->displayTitle()));
+$this->scripto()->postTitle(sprintf($this->scripto()->translate($project->mediaType(), 'Notes for %s: %s #%s'), $sItem->link($item->displayTitle()), ucfirst($project->mediaType()), $sMedia->position()));
+$this->scripto()->postSubtitle(sprintf($this->translate('Original title: %s'), $sMedia->link($media->displayTitle())));
 ?>
-<div class="media-head">
-    <div class="media-tabs">
-        <?php echo $sMedia->link($this->scripto()->translate($project->contentType(), 'Text'), 'show', ['class' => 'button']); ?>
-        <span class="inactive tab button"><?php echo $this->translate('Discussion'); ?></span>
-    </div>
-    <div class="tab-actions">
-    <?php if ($userCanEdit): ?>
-        <?php echo $sMedia->link($this->translate('Discuss'), 'edit-talk'); ?>
-        <?php echo $this->hyperlink($this->translate('View discussion history'), $this->url('scripto-talk-revision', ['action' => 'browse-talk'], true)); ?>
-    <?php endif; ?>
-    <?php echo $this->scripto()->watchlistToggle($sMedia); ?>
-    </div>
-    <?php echo $this->scripto()->mediaPagination('talk'); ?>
-</div>
+
+<?php echo $this->partial('common/media-head.phtml'); ?>
 <div class="resource-content">
-    <?php $displayValues = $media->displayValues(); ?>
-    <?php if ($displayValues): ?>
-    <div class="media metadata">
-        <h3><?php echo $this->translate('Metadata'); ?></h3>
-        <?php echo $displayValues; ?>
-    </div>
-    <?php endif; ?>
-    <div class="media html">
-        <div class="render">
-        <?php if ($sMedia->isRenderableImage()): ?>
-        <div class="panzoom-container image">
-            <div class="zoom-controls">
-                <button class="zoom-in" aria-label="<?php echo $this->escapeHtml($this->translate('Zoom in')); ?>" title="<?php echo $this->escapeHtml($this->translate('Zoom in')); ?>"></button>
-                <button class="zoom-out" aria-label="<?php echo $this->escapeHtml($this->translate('Zoom out')); ?>" title="<?php echo $this->escapeHtml($this->translate('Zoom out')); ?>"></button>
-                <button class="rotate-right" aria-label="<?php echo $this->escapeHtml($this->translate('Rotate right')); ?>" title="<?php echo $this->escapeHtml($this->translate('Rotate right')); ?>"></button>
-                <button class="rotate-left" aria-label="<?php echo $this->escapeHtml($this->translate('Rotate left')); ?>" title="<?php echo $this->escapeHtml($this->translate('Rotate left')); ?>"></button>
-                <button class="reset"><?php echo $this->translate('Reset'); ?></button>
+    <div id="media-column">
+        <div class="media render">
+            <?php if ($sMedia->isRenderableImage()): ?>
+            <div class="panzoom-container image">
+                <div class="zoom-controls">
+                    <button class="zoom-in" aria-label="<?php echo $this->escapeHtml($this->translate('Zoom in')); ?>" title="<?php echo $this->escapeHtml($this->translate('Zoom in')); ?>"></button>
+                    <button class="zoom-out" aria-label="<?php echo $this->escapeHtml($this->translate('Zoom out')); ?>" title="<?php echo $this->escapeHtml($this->translate('Zoom out')); ?>"></button>
+                    <button class="rotate-right" aria-label="<?php echo $this->escapeHtml($this->translate('Rotate right')); ?>" title="<?php echo $this->escapeHtml($this->translate('Rotate right')); ?>"></button>
+                    <button class="rotate-left" aria-label="<?php echo $this->escapeHtml($this->translate('Rotate left')); ?>" title="<?php echo $this->escapeHtml($this->translate('Rotate left')); ?>"></button>
+                    <button class="reset"><?php echo $this->translate('Reset'); ?></button>
+                </div>
+                <div class="media-render">
+                    <img src="<?php echo $this->escapeHtml($media->originalUrl()); ?>">
+                </div>
             </div>
-            <div class="media-render">
-                <img src="<?php echo $this->escapeHtml($media->originalUrl()); ?>">
+            <?php else: ?>
+            <div class="panzoom-container">
+                <?php echo $media->render(['link' => null]); ?>
             </div>
+            <?php endif; ?>
         </div>
-        <?php else: ?>
-        <div class="panzoom-container">
-            <?php echo $media->render(['link' => null]); ?>
+        <div class="media copy">
+            <h3><?php echo $this->scripto()->translate($project->contentType(), 'HTML'); ?></h3>
+            <?php $pageHtml = $sMedia->pageHtml(0); ?>
+            <?php echo $pageHtml  ? $pageHtml : sprintf('<span>[%s]</span>', $this->scripto()->translate($project->contentType(), 'No HTML')); ?>
+        </div>
+        <?php $displayValues = $media->displayValues(); ?>
+        <?php if ($displayValues): ?>
+        <div class="media metadata">
+            <h3><?php echo $this->translate('Metadata'); ?></h3>
+            <?php echo $displayValues; ?>
         </div>
         <?php endif; ?>
-        </div>
-        <div class="copy">
-            <h3><?php echo $this->translate('Discussion'); ?></h3>
-            <?php $pageHtml = $sMedia->pageHtml(1); ?>
-            <?php echo $pageHtml  ? $pageHtml : sprintf('<span>[%s]</span>', $this->translate('No discussion yet.')); ?>
-        </div>
+    </div>
+    <div class="notes-column">
+        <?php $pageHtml = $sMedia->pageHtml(1); ?>
+        <?php echo $pageHtml  ? $pageHtml : sprintf('<span>[%s]</span>', $this->translate('No notes yet.')); ?>
+        <ul class="note-actions">
+        <?php if ($userCanEdit): ?>
+            <li><?php echo $sMedia->link($this->translate('Edit'), 'edit-talk'); ?></li>
+            <li><?php echo $this->hyperlink($this->translate('Browse notes history'), $this->url('scripto-talk-revision', ['action' => 'browse-talk'], true)); ?></li>
+        <?php endif; ?>
+        </ul>
     </div>
 </div>

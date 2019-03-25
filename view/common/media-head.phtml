@@ -1,0 +1,11 @@
+<div class="media-head">
+    <div class="tab-actions">
+    <?php if ($userCanEdit): ?>
+        <?php echo $sMedia->link($this->scripto()->translate($project->contentType(), 'Edit'), 'edit'); ?>
+        <?php echo $this->hyperlink($this->translate('Browse revision history'), $this->url('scripto-revision', ['action' => 'browse'], true)); ?>
+    <?php endif; ?>
+    <?php echo $sMedia->link($this->translate('View notes'), 'show-talk'); ?>
+    <?php echo $this->scripto()->watchlistToggle($sMedia, $project->mediaType()); ?>
+    </div>
+    <?php echo $this->scripto()->mediaPagination(); ?>
+</div>

@@ -47,7 +47,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto user watchlist bro
             <td>
                 <?php echo $sMedia
                 ? $isTalk
-                    ? $this->hyperlink(sprintf($this->scripto()->translate($project->mediaType(), 'Media #%s discussion'), $sMedia->position()), $sMedia->adminUrl('talk'))
+                    ? $this->hyperlink(sprintf($this->scripto()->translate($project->mediaType(), 'Media #%s notes'), $sMedia->position()), $sMedia->adminUrl('talk'))
                     : $this->hyperlink(sprintf($this->scripto()->translate($project->mediaType(), 'Media #%s'), $sMedia->position()), $sMedia->adminUrl())
                 : $this->translate('n/a'); ?>
             </td>

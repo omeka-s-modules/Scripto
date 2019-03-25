@@ -5,7 +5,6 @@ $this->headScript()->appendFile($this->assetUrl('vendor/jquery-panzoom/jquery.pa
 $this->headScript()->appendFile($this->assetUrl('vendor/featherlight/featherlight.min.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/LmlEditor.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/common/media.js', 'Scripto'));
-$this->headScript()->appendFile($this->assetUrl('js/public-app/media-edit.js', 'Scripto'));
 
 $this->scripto()->postTitle(sprintf($this->scripto()->translate($project->mediaType(), '%s: Media #%s'), $sItem->link($item->displayTitle()), $sMedia->position()));
 $this->scripto()->postSubtitle(sprintf($this->translate('Original title: %s'), $media->displayTitle()));
@@ -37,10 +36,6 @@ $this->scripto()->postSubtitle(sprintf($this->translate('Original title: %s'), $
                 <button type="button" name="vertical" class="vertical" aria-label="<?php echo $this->escapeHtml($this->translate('Vertical view')); ?>" title="<?php echo $this->escapeHtml($this->translate('Vertical view')); ?>"></button>
             </div>
             <div class="wikitext-flex">
-                <div class="textarea-flex">
-                    <div class="wikitext-editor-buttons" data-lml-editor-translations="<?php echo $this->escapeHtml($this->scripto()->getLmlEditorTranslations()); ?>"></div>
-                    <?php echo $this->formTextarea($mediaForm->get('wikitext')); ?>
-                </div>
                 <?php if ($sMedia->isRenderableImage()): ?>
                 <div class="panzoom-container image">
                     <div class="zoom-controls">
@@ -59,11 +54,33 @@ $this->scripto()->postSubtitle(sprintf($this->translate('Original title: %s'), $
                     <?php echo $media->render(['link' => null]); ?>
                 </div>
                 <?php endif; ?>
+                <div class="textarea-flex">
+                    <div class="change-summary">
+                        <?php echo $this->formText($mediaForm->get('summary')); ?>
+                    </div>
+                    <div class="wikitext-editor-buttons" data-lml-editor-translations="<?php echo $this->escapeHtml($this->scripto()->getLmlEditorTranslations()); ?>"></div>
+                    <?php echo $this->formTextarea($mediaForm->get('wikitext')); ?>
+                </div>
             </div>
         </div>
     </div>
-    <div class="change-summary">
-        <p><?php echo $this->translate('Summarize your changes:'); ?></p>
-        <?php echo $this->formText($mediaForm->get('summary')); ?>
-    </div>
 </form>
+<script>
+// Add wikitext editor buttons to the wikitext textarea.
+var lmlEditor = new LmlEditor(
+    document.getElementsByClassName('wikitext-editor-text')[0],
+    document.getElementsByClassName('wikitext-editor-buttons')[0]
+);
+lmlEditor.addButton('wikitext-editor-button-bold', 'Bold', "'''", "'''");
+lmlEditor.addButton('wikitext-editor-button-italic', 'Italic', "''", "''");
+lmlEditor.addButton('wikitext-editor-button-underline', 'Underline', "<u>", "</u>");
+lmlEditor.addButton('wikitext-editor-button-strikethrough', 'Strikethrough', "<s>", "</s>");
+lmlEditor.addListButton('wikitext-editor-button-unordered-list', 'Unordered list', "*");
+lmlEditor.addListButton('wikitext-editor-button-ordered-list', 'Ordered list', "#");
+lmlEditor.addButton('wikitext-editor-button-blockquote', 'Blockquote', "<blockquote>\n", "\n</blockquote>");lmlEditor.addButton('wikitext-editor-button-heading-1', 'Level 1 heading', "\n= ", " =\n");
+lmlEditor.addButton('wikitext-editor-button-heading-2', 'Level 2 heading', "\n== ", " ==\n");
+lmlEditor.addButton('wikitext-editor-button-heading-3', 'Level 3 heading', "\n=== ", " ===\n");
+lmlEditor.addButton('wikitext-editor-button-heading-4', 'Level 4 heading', "\n==== ", " ====\n");
+lmlEditor.addButton('wikitext-editor-button-heading-5', 'Level 5 heading', "\n===== ", " =====\n");
+lmlEditor.addButton('wikitext-editor-button-horizontal-rule', 'Horizontal rule', "\n", "----\n");
+</script>

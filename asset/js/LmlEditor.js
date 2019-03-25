@@ -17,7 +17,23 @@ function LmlEditor(textarea, buttonContainer) {
     this.translations = translations ? JSON.parse(translations) : {};
 
     /**
-     * Add a LML button
+     * Create a LML button
+     *
+     * @param id Button ID
+     * @param title Button title
+     * @return Button element
+     */
+    this.createButton = function(id, title) {
+        var button = document.createElement('button');
+        title = (title in this.translations) ? this.translations[title] : title;
+        button.id = id;
+        button.title = title;
+        button.appendChild(document.createTextNode(title));
+        return button;
+    };
+
+    /**
+     * Add a prepend/append button to the button container
      *
      * @param id Button ID
      * @param title Button title
@@ -25,14 +41,30 @@ function LmlEditor(textarea, buttonContainer) {
      * @param append Append formatting string
      */
     this.addButton = function(id, title, prepend, append) {
-        var button = document.createElement('button');
-        title = (title in this.translations) ? this.translations[title] : title;
-        button.id = id;
-        button.title = title;
-        button.appendChild(document.createTextNode(title));
+        button = this.createButton(id, title);
         button.onclick = (e) => {
             e.preventDefault();
             this.replaceText(prepend, append);
+        };
+        this.buttonContainer.appendChild(button);
+    };
+
+    /**
+     * Add a list button to the button container
+     *
+     * Provide an indentation character to maintain indentation. Otherwise, the
+     * button will repeat the list character however many indentation levels.
+     *
+     * @param id Button ID
+     * @param title Button title
+     * @param listChar List character
+     * @param indentChar Indentation character
+     */
+    this.addListButton = function(id, title, listChar, indentChar = null) {
+        button = this.createButton(id, title);
+        button.onclick = (e) => {
+            e.preventDefault();
+            this.listText(listChar, indentChar);
         };
         this.buttonContainer.appendChild(button);
     };
@@ -49,6 +81,27 @@ function LmlEditor(textarea, buttonContainer) {
         var end = textarea.selectionEnd;
         var replacement = prepend + textarea.value.substring(start, end) + append;
         textarea.value = textarea.value.slice(0, start) + replacement + textarea.value.slice(end);
+        textarea.focus();
+    };
+
+    /**
+     * Replace selected text with a list
+     *
+     * @param listChar List character
+     * @param indentChar Indentation character
+     */
+    this.listText = function(listChar, indentChar) {
+        var textarea = this.textarea;
+        var start = textarea.selectionStart;
+        var end = textarea.selectionEnd;
+        var list = textarea.value.substring(start, end).split("\n");
+        list.forEach(function(value, index, list) {
+            var listLevel = value.search(/\S|$/);
+            list[index] = ('string' === typeof(indentChar))
+                ? indentChar.repeat(listLevel) + listChar + ' ' + value.trimStart()
+                : listChar.repeat(listLevel + 1) + ' ' + value.trimStart();
+        });
+        textarea.value = textarea.value.slice(0, start) + list.join("\n") + textarea.value.slice(end);
         textarea.focus();
     };
 
@@ -72,5 +125,6 @@ function LmlEditor(textarea, buttonContainer) {
         this.addButton('wikitext-editor-button-preformatted', 'Preformatted', "<pre>", "</pre>");
         this.addButton('wikitext-editor-button-horizontal-rule', 'Horizontal rule', "\n", "----\n");
         this.addButton('wikitext-editor-button-line-break', 'Line break', "\n", "<br>\n");
+        this.addListButton('wikitext-editor-button-bullet-list', 'Bullet list', "*");
     };
 }

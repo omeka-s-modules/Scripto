@@ -5,37 +5,20 @@ $this->headScript()->appendFile($this->assetUrl('vendor/jquery-panzoom/jquery.pa
 $this->headScript()->appendFile($this->assetUrl('vendor/featherlight/featherlight.min.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/LmlEditor.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/common/media.js', 'Scripto'));
-$this->headScript()->appendFile($this->assetUrl('js/public-app/media-edit.js', 'Scripto'));
 
-$this->scripto()->postTitle(sprintf($this->scripto()->translate($project->mediaType(), 'Discussion of %s: Media #%s'), $sItem->link($item->displayTitle()), $sMedia->position()));
-$this->scripto()->postSubtitle(sprintf($this->translate('Original title: %s'), $media->displayTitle()));
+$this->scripto()->postTitle(sprintf($this->scripto()->translate($project->mediaType(), 'Notes for %s: %s #%s'), $sItem->link($item->displayTitle()), ucfirst($project->mediaType()), $sMedia->position()));
+$this->scripto()->postSubtitle(sprintf($this->translate('Original title: %s'), $sMedia->link($media->displayTitle())));
 ?>
 <?php echo $this->form()->openTag($mediaForm); ?>
 <?php echo $this->formElement($mediaForm->get('mediapublicappform_csrf')); ?>
     <div class="media-head">
-        <?php echo $this->scripto()->watchlistToggle($sMedia); ?>
-        <div class="protection-field">
-            <?php $editAccess = $sMedia->editAccess(1); ?>
-            <div class="current-protection"><strong><?php echo $this->translate('Protection: '); ?></strong><?php echo $this->translate($editAccess['label']); ?></div>
-            <div class="protection-expiration"><strong><?php echo $this->translate('Expiration: '); ?></strong><?php echo $editAccess['expiry'] ? $this->i18n()->dateFormat($editAccess['expiry'], 'short', 'short') : $this->translate('Never'); ?></div>
-        </div>
+        <?php echo $this->scripto()->watchlistToggle($sMedia, true); ?>
         <input type="submit" class="save" value="<?php echo $this->escapeHtml($this->translate('Save')); ?>">
         <?php echo $sMedia->link($this->translate('Cancel'), 'talk', ['class' => 'button']); ?>
     </div>
     <div id="wikitext" class="resource-content">
-        <div class="wikitext-featherlight horizontal">
-            <h3><?php echo sprintf($this->scripto()->translate($project->mediaType(), 'Discussion of %s: Media #%s'), $item->displayTitle(), $sMedia->position()); ?></h3>
-            <button type="button" class="full-screen"><?php echo $this->translate('Go full screen'); ?></button>
-            <div class="layout">
-                <label><?php echo $this->translate('Layout'); ?></label>
-                <button type="button" name="horizontal" class="horizontal active" aria-label="<?php echo $this->escapeHtml($this->translate('Horizontal view')); ?>" title="<?php echo $this->escapeHtml($this->translate('Horizontal view')); ?>" disabled=""></button>
-                <button type="button" name="vertical" class="vertical" aria-label="<?php echo $this->escapeHtml($this->translate('Vertical view')); ?>" title="<?php echo $this->escapeHtml($this->translate('Vertical view')); ?>"></button>
-            </div>
-            <div class="wikitext-flex">
-                <div class="textarea-flex">
-                    <div class="wikitext-editor-buttons" data-lml-editor-translations="<?php echo $this->escapeHtml($this->scripto()->getLmlEditorTranslations()); ?>"></div>
-                    <?php echo $this->formTextarea($mediaForm->get('wikitext')); ?>
-                </div>
+        <div id="media-column">
+            <div class="media render">
                 <?php if ($sMedia->isRenderableImage()): ?>
                 <div class="panzoom-container image">
                     <div class="zoom-controls">
@@ -55,10 +38,40 @@ $this->scripto()->postSubtitle(sprintf($this->translate('Original title: %s'), $
                 </div>
                 <?php endif; ?>
             </div>
+            <div class="media copy">
+                <h3><?php echo $this->scripto()->translate($project->contentType(), 'HTML'); ?></h3>
+                <?php $pageHtml = $sMedia->pageHtml(0); ?>
+                <?php echo $pageHtml  ? $pageHtml : sprintf('<span>[%s]</span>', $this->scripto()->translate($project->contentType(), 'No HTML')); ?>
+            </div>
+            <?php $displayValues = $media->displayValues(); ?>
+            <?php if ($displayValues): ?>
+            <div class="media metadata">
+                <h3><?php echo $this->translate('Metadata'); ?></h3>
+                <?php echo $displayValues; ?>
+            </div>
+            <?php endif; ?>
+        </div>
+        <div class="wikitext-flex notes-column">
+            <p><?php echo sprintf($this->translate('Notes are a workspace where project participants can keep ideas and observations regarding the %s of the %s. When contributing to the notes, it is encouraged to include the user and timestamp.'), $project->contentType(), $project->mediaType()); ?></p>
+            <div class="change-summary">
+                <?php echo $this->formText($mediaForm->get('summary')); ?>
+            </div>
+            <div class="textarea-flex">
+                <div class="wikitext-editor-buttons" data-lml-editor-translations="<?php echo $this->escapeHtml($this->scripto()->getLmlEditorTranslations()); ?>"></div>
+                <?php echo $this->formTextarea($mediaForm->get('wikitext')); ?>
+            </div>
         </div>
     </div>
-    <div class="change-summary">
-        <p><?php echo $this->translate('Summarize your comment:'); ?></p>
-        <?php echo $this->formText($mediaForm->get('summary')); ?>
-    </div>
 </form>
+<script>
+// Add wikitext editor buttons to the wikitext textarea.
+var lmlEditor = new LmlEditor(
+    document.getElementsByClassName('wikitext-editor-text')[0],
+    document.getElementsByClassName('wikitext-editor-buttons')[0]
+);
+lmlEditor.addButton('wikitext-editor-button-bold', 'Bold', "'''", "'''");
+lmlEditor.addButton('wikitext-editor-button-italic', 'Italic', "''", "''");
+lmlEditor.addButton('wikitext-editor-button-underline', 'Underline', "<u>", "</u>");
+lmlEditor.addButton('wikitext-editor-button-blockquote', 'Blockquote', "<blockquote>\n", "\n</blockquote>");
+lmlEditor.addButton('wikitext-editor-button-signature', 'Signature', "", "<?php echo $this->escapeJs($this->scripto()->getUserSignature()); ?>");
+</script>

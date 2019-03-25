@@ -82,7 +82,7 @@ $this->scripto()->postTitle(sprintf($this->translate('Contributions by %s'), $us
                 <td class="number">
                     <?php echo $sMedia
                     ? $isTalk
-                        ? $this->hyperlink(sprintf($this->scripto()->translate($project->mediaType(), 'Media #%s discussion'), $sMedia->position()), $sMedia->url('talk'))
+                        ? $this->hyperlink(sprintf($this->scripto()->translate($project->mediaType(), 'Media #%s notes'), $sMedia->position()), $sMedia->url('talk'))
                         : $this->hyperlink(sprintf($this->scripto()->translate($project->mediaType(), 'Media #%s'), $sMedia->position()), $sMedia->url())
                     : $this->translate('n/a'); ?>
                 </td>

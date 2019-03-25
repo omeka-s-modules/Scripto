@@ -50,75 +50,9 @@ class Scripto extends AbstractHelper
     protected $postSubtitle;
 
     /**
-     * @var array Breadcrumbs route map
+     * @var array Admin breadcrumbs route map
      */
-    protected $bcRouteMap = [
-        'admin/scripto' => [
-            'breadcrumbs' => [],
-            'text' => 'Dashboard', // @translate
-            'params' => [],
-        ],
-        'admin/scripto-user' => [
-            'breadcrumbs' => ['admin/scripto'],
-            'text' => 'Users', // @translate
-            'params' => [],
-        ],
-        'admin/scripto-user-contributions' => [
-            'breadcrumbs' => ['admin/scripto', 'admin/scripto-user'],
-            'text' => 'User contributions', // @translate
-            'params' => ['user-id'],
-        ],
-        'admin/scripto-user-watchlist' => [
-            'breadcrumbs' => ['admin/scripto', 'admin/scripto-user'],
-            'text' => 'User watchlist', // @translate
-            'params' => ['user-id'],
-        ],
-        'admin/scripto-project' => [
-            'breadcrumbs' => ['admin/scripto'],
-            'text' => 'Projects', // @translate
-            'params' => [],
-        ],
-        'admin/scripto-item' => [
-            'breadcrumbs' => ['admin/scripto', 'admin/scripto-project'],
-            'text' => 'Review project', // @translate
-            'params' => ['project-id'],
-        ],
-        'admin/scripto-media' => [
-            'breadcrumbs' => ['admin/scripto', 'admin/scripto-project', 'admin/scripto-item'],
-            'text' => 'Review item', // @translate
-            'params' => ['project-id', 'item-id'],
-        ],
-        'admin/scripto-media-id' => [
-            'breadcrumbs' => ['admin/scripto', 'admin/scripto-project', 'admin/scripto-item', 'admin/scripto-media'],
-            'text' => 'Review media', // @translate
-            'params' => ['project-id', 'item-id', 'media-id'],
-        ],
-        'admin/scripto-revision' => [
-            'breadcrumbs' => ['admin/scripto', 'admin/scripto-project', 'admin/scripto-item', 'admin/scripto-media', 'admin/scripto-media-id'],
-            'text' => 'Revisions', // @translate
-            'params' => ['project-id', 'item-id', 'media-id'],
-        ],
-        'admin/scripto-revision-compare' => [
-            'breadcrumbs' => ['admin/scripto', 'admin/scripto-project', 'admin/scripto-item', 'admin/scripto-media', 'admin/scripto-media-id', 'admin/scripto-revision'],
-            'text' => 'Compare revisions', // @translate
-            'params' => ['project-id', 'item-id', 'media-id', 'to-revision-id', 'from-revision-id'],
-        ],
-        'admin/scripto-talk-media-id' => [
-            'breadcrumbs' => ['admin/scripto', 'admin/scripto-project', 'admin/scripto-item', 'admin/scripto-media', 'admin/scripto-media-id'],
-            'text' => 'View discussion', // @translate
-            'params' => ['project-id', 'item-id', 'media-id'],
-        ],
-        'admin/scripto-talk-revision' => [
-            'breadcrumbs' => ['admin/scripto', 'admin/scripto-project', 'admin/scripto-item', 'admin/scripto-media', 'admin/scripto-media-id', 'admin/scripto-talk-media-id'],
-            'text' => 'Revisions', // @translate
-            'params' => ['project-id', 'item-id', 'media-id'],
-        ],
-        'admin/scripto-talk-revision-compare' => [
-            'breadcrumbs' => ['admin/scripto', 'admin/scripto-project', 'admin/scripto-item', 'admin/scripto-media', 'admin/scripto-media-id', 'admin/scripto-talk-media-id', 'admin/scripto-talk-revision'],
-            'text' => 'Compare revisions', // @translate
-            'params' => ['project-id', 'item-id', 'media-id', 'to-revision-id', 'from-revision-id'],
-        ],
-    ];
+    protected $bcRouteMap;
 
     /**
      * @var array Map between item|media|content type strings for translation
@@ -135,6 +69,7 @@ class Scripto extends AbstractHelper
         $this->apiClient = $apiClient;
         $this->formElementManager = $formElementManager;
         $this->routeMatch = $routeMatch;
+        $this->bcRouteMap = include('breadcrumbs_route_map.php');
         $this->typeStringMap = include('type_string_map.php');
     }
 
@@ -579,12 +514,12 @@ HTML;
             $html,
             $view->escapeHtml($view->url(null, ['action' => 'watch'], true)),
             $view->escapeHtml($userIsWatching),
-            $view->scripto()->translate($view->project->mediaType(), 'Stop watching media'),
+            $view->scripto()->translate($view->project->mediaType(), 'Stop tracking media'),
             $userIsWatching ? null : $view->escapeHtml('display: none;'),
-            $view->scripto()->translate($view->project->mediaType(), 'Watch media'),
+            $view->scripto()->translate($view->project->mediaType(), 'Track media'),
             $userIsWatching ? $view->escapeHtml('display: none;') : null,
-            $view->scripto()->translate($view->project->mediaType(), 'Media successfully saved to your watchlist'),
-            $view->scripto()->translate($view->project->mediaType(), 'Media successfully removed from your watchlist')
+            $view->scripto()->translate($view->project->mediaType(), 'Now tracking media'),
+            $view->scripto()->translate($view->project->mediaType(), 'No longer tracking media')
         );
     }
 
@@ -612,6 +547,9 @@ HTML;
             'Horizontal rule' => $view->translate('Horizontal rule'),
             'Line break' => $view->translate('Line break'),
             'Signature' => $view->translate('Signature'),
+            'Strikethrough' => $view->translate('Strikethrough'),
+            'Unordered list' => $view->translate('Unordered list'),
+            'Ordered list' => $view->translate('Ordered list'),
         ]);
     }
 
@@ -651,5 +589,28 @@ HTML;
             $string = $this->typeStringMap[$string][$type];
         }
         return $view->translate($string);
+    }
+
+    /**
+     * Get the user signature for media talk page.
+     *
+     * MediaWiki's signature markup is not appropriate to use within Scripto
+     * because it links back to the MediaWiki installation instead of Omeka.
+     * This creates custom signature markup that links the user's name to their
+     * public Scripto contributions page. Note that the links will break if the
+     * domain changes in the meantime.
+     *
+     * @see https://www.mediawiki.org/wiki/Help:Signatures
+     * @return string
+     */
+    public function getUserSignature()
+    {
+        $view = $this->getView();
+        $userInfo = $this->apiClient->queryUserInfo();
+        return sprintf(
+            '-- [%s %s] ~~~~~',
+            $view->url('scripto-user-contributions', ['user-id' => $userInfo['name']], ['force_canonical' => true]),
+            $userInfo['name']
+        );
     }
 }

@@ -24,7 +24,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto media show');
     <div id="page-action-menu">
         <?php echo $this->scripto()->watchlistToggle($sMedia); ?>
         <?php echo $this->hyperlink($this->translate('Revision history'), $this->url('admin/scripto-revision', ['action' => 'browse'], true), ['class' => 'button']); ?></li>
-        <?php echo $this->hyperlink($this->translate('View discussion'), $this->url('admin/scripto-talk-media-id', ['action' => 'show-talk', 'revision-id' => null], true), ['class' => 'button']); ?></li>
+        <?php echo $this->hyperlink($this->translate('View notes'), $this->url('admin/scripto-talk-media-id', ['action' => 'show-talk', 'revision-id' => null], true), ['class' => 'button']); ?></li>
         <?php echo $this->formSubmit($mediaForm->get('submit_mediaform')); ?>
     </div>
 </div>
