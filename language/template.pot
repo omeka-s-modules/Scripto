@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-25 15:01-0500\n"
+"POT-Creation-Date: 2019-03-25 13:01-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,154 +73,166 @@ msgstr ""
 msgid "Successfully logged out of Scripto."
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:176 view/scripto/admin/index/index.phtml:8
+#: src/ViewHelper/Scripto.php:111 view/scripto/admin/index/index.phtml:8
 #: view/scripto/admin/project/add.phtml:8
 #: view/scripto/admin/project/browse.phtml:8
 #: view/scripto/admin/user/browse.phtml:8
 msgid "Scripto"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:190 view/scripto/admin/project/browse.phtml:8
+#: src/ViewHelper/Scripto.php:125 view/scripto/admin/project/browse.phtml:8
 #: view/scripto/public-app/project/browse.phtml:2
 msgid "Projects"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:292 src/ViewHelper/Scripto.php:347
+#: src/ViewHelper/Scripto.php:227 src/ViewHelper/Scripto.php:282
 #, php-format
 msgid "Logged in to Scripto as %s"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:294 src/ViewHelper/Scripto.php:295
-#: src/ViewHelper/Scripto.php:348 view/scripto/admin/index/index.phtml:8
+#: src/ViewHelper/Scripto.php:229 src/ViewHelper/Scripto.php:230
+#: src/ViewHelper/Scripto.php:283 view/scripto/admin/index/index.phtml:8
 msgid "Dashboard"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:297 src/ViewHelper/Scripto.php:298
-#: src/ViewHelper/Scripto.php:349 view/scripto/admin/user/contributions.phtml:8
+#: src/ViewHelper/Scripto.php:232 src/ViewHelper/Scripto.php:233
+#: src/ViewHelper/Scripto.php:284 view/scripto/admin/user/contributions.phtml:8
 msgid "Contributions"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:300 src/ViewHelper/Scripto.php:301
-#: src/ViewHelper/Scripto.php:350 view/scripto/admin/user/watchlist.phtml:9
+#: src/ViewHelper/Scripto.php:235 src/ViewHelper/Scripto.php:236
+#: src/ViewHelper/Scripto.php:285 view/scripto/admin/user/watchlist.phtml:9
 msgid "Watchlist"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:313
+#: src/ViewHelper/Scripto.php:248
 msgid "Log in to Scripto"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:424 src/ViewHelper/Scripto.php:425
+#: src/ViewHelper/Scripto.php:359 src/ViewHelper/Scripto.php:360
 msgid "First page"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:430 src/ViewHelper/Scripto.php:431
+#: src/ViewHelper/Scripto.php:365 src/ViewHelper/Scripto.php:366
 msgid "Next page"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:459
+#: src/ViewHelper/Scripto.php:394
 #, php-format
 msgid "%s of %s"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:478 view/scripto/admin/media/show-talk.phtml:104
+#: src/ViewHelper/Scripto.php:413 view/scripto/admin/media/show-talk.phtml:104
 #: view/scripto/admin/media/show.phtml:105
 msgid "Older revision"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:481 view/scripto/admin/media/show-talk.phtml:109
+#: src/ViewHelper/Scripto.php:416 view/scripto/admin/media/show-talk.phtml:109
 #: view/scripto/admin/media/show.phtml:110
 msgid "Newer revision"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:495
+#: src/ViewHelper/Scripto.php:430
 msgid "6 hours"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:496
+#: src/ViewHelper/Scripto.php:431
 msgid "12 hours"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:497
+#: src/ViewHelper/Scripto.php:432
 msgid "1 day"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:498
+#: src/ViewHelper/Scripto.php:433
 msgid "3 days"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:499
+#: src/ViewHelper/Scripto.php:434
 msgid "7 days"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:500
+#: src/ViewHelper/Scripto.php:435
 msgid "30 days"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:501
+#: src/ViewHelper/Scripto.php:436
 msgid "90 days"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:518
+#: src/ViewHelper/Scripto.php:453
 msgid "Period of time to display:"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:600
+#: src/ViewHelper/Scripto.php:535
 msgid "Italic"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:601
+#: src/ViewHelper/Scripto.php:536
 msgid "Bold"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:602
+#: src/ViewHelper/Scripto.php:537
 msgid "Strike out"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:603
+#: src/ViewHelper/Scripto.php:538
 msgid "Underline"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:604
+#: src/ViewHelper/Scripto.php:539
 msgid "Blockquote"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:605
+#: src/ViewHelper/Scripto.php:540
 msgid "Hidden comment"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:606
+#: src/ViewHelper/Scripto.php:541
 msgid "Level 1 heading"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:607
+#: src/ViewHelper/Scripto.php:542
 msgid "Level 2 heading"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:608
+#: src/ViewHelper/Scripto.php:543
 msgid "Level 3 heading"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:609
+#: src/ViewHelper/Scripto.php:544
 msgid "Level 4 heading"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:610
+#: src/ViewHelper/Scripto.php:545
 msgid "Level 5 heading"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:611
+#: src/ViewHelper/Scripto.php:546
 msgid "Preformatted"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:612
+#: src/ViewHelper/Scripto.php:547
 msgid "Horizontal rule"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:614
+#: src/ViewHelper/Scripto.php:549
 msgid "Signature"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:634
+#: src/ViewHelper/Scripto.php:550
+msgid "Strikethrough"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:551
+msgid "Unordered list"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:552
+msgid "Ordered list"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:572
 msgid "Select one"
 msgstr ""
 
@@ -235,6 +247,14 @@ msgstr ""
 
 #: view/common/block-layout/scripto-block.phtml:15
 msgid "The Scripto project is not found."
+msgstr ""
+
+#: view/common/media-head.phtml:5
+msgid "Browse revision history"
+msgstr ""
+
+#: view/common/media-head.phtml:7 view/scripto/admin/media/show.phtml:27
+msgid "View notes"
 msgstr ""
 
 #: view/layout/layout-scripto-public-app.phtml:30
@@ -258,6 +278,10 @@ msgstr ""
 
 #: view/layout/layout-scripto-public-app.phtml:66
 msgid "Content"
+msgstr ""
+
+#: view/layout/layout-scripto-public-app.phtml:87
+msgid "Back to top"
 msgstr ""
 
 #: view/scripto/admin/imported-scripto-item.phtml:8
@@ -615,10 +639,7 @@ msgid "Omeka media"
 msgstr ""
 
 #: view/scripto/admin/media/show-talk.phtml:14
-#: view/scripto/public-app/media/show-talk.phtml:15
-#: view/scripto/public-app/media/show-talk.phtml:56
-#: view/scripto/public-app/media/show.phtml:14
-msgid "Discussion"
+msgid "Notes"
 msgstr ""
 
 #: view/scripto/admin/media/show-talk.phtml:26
@@ -644,8 +665,7 @@ msgstr ""
 
 #: view/scripto/admin/media/show-talk.phtml:42
 #: view/scripto/admin/media/show.phtml:43
-#: view/scripto/public-app/media/edit-talk.phtml:28
-#: view/scripto/public-app/media/edit.phtml:33
+#: view/scripto/public-app/media/edit.phtml:32
 msgid "Go full screen"
 msgstr ""
 
@@ -653,58 +673,55 @@ msgstr ""
 #: view/scripto/admin/media/show.phtml:45
 #: view/scripto/public-app/item/browse.phtml:15
 #: view/scripto/public-app/media/browse.phtml:14
-#: view/scripto/public-app/media/edit-talk.phtml:30
-#: view/scripto/public-app/media/edit.phtml:35
+#: view/scripto/public-app/media/edit.phtml:34
 msgid "Layout"
 msgstr ""
 
 #: view/scripto/admin/media/show-talk.phtml:45
 #: view/scripto/admin/media/show.phtml:46
-#: view/scripto/public-app/media/edit-talk.phtml:31
-#: view/scripto/public-app/media/edit.phtml:36
+#: view/scripto/public-app/media/edit.phtml:35
 msgid "Horizontal view"
 msgstr ""
 
 #: view/scripto/admin/media/show-talk.phtml:46
 #: view/scripto/admin/media/show.phtml:47
-#: view/scripto/public-app/media/edit-talk.phtml:32
-#: view/scripto/public-app/media/edit.phtml:37
+#: view/scripto/public-app/media/edit.phtml:36
 msgid "Vertical view"
 msgstr ""
 
 #: view/scripto/admin/media/show-talk.phtml:55
 #: view/scripto/admin/media/show.phtml:56
-#: view/scripto/public-app/media/edit-talk.phtml:42
-#: view/scripto/public-app/media/edit.phtml:47
-#: view/scripto/public-app/media/show-talk.phtml:39
-#: view/scripto/public-app/media/show.phtml:38
+#: view/scripto/public-app/media/edit-talk.phtml:25
+#: view/scripto/public-app/media/edit.phtml:42
+#: view/scripto/public-app/media/show-talk.phtml:20
+#: view/scripto/public-app/media/show.phtml:17
 msgid "Zoom in"
 msgstr ""
 
 #: view/scripto/admin/media/show-talk.phtml:56
 #: view/scripto/admin/media/show.phtml:57
-#: view/scripto/public-app/media/edit-talk.phtml:43
-#: view/scripto/public-app/media/edit.phtml:48
-#: view/scripto/public-app/media/show-talk.phtml:40
-#: view/scripto/public-app/media/show.phtml:39
+#: view/scripto/public-app/media/edit-talk.phtml:26
+#: view/scripto/public-app/media/edit.phtml:43
+#: view/scripto/public-app/media/show-talk.phtml:21
+#: view/scripto/public-app/media/show.phtml:18
 msgid "Zoom out"
 msgstr ""
 
 #: view/scripto/admin/media/show-talk.phtml:57
 #: view/scripto/admin/media/show.phtml:58
-#: view/scripto/public-app/media/edit-talk.phtml:44
-#: view/scripto/public-app/media/edit.phtml:49
-#: view/scripto/public-app/media/show-talk.phtml:41
-#: view/scripto/public-app/media/show.phtml:40
+#: view/scripto/public-app/media/edit-talk.phtml:27
+#: view/scripto/public-app/media/edit.phtml:44
+#: view/scripto/public-app/media/show-talk.phtml:22
+#: view/scripto/public-app/media/show.phtml:19
 msgid "Rotate right"
 msgstr ""
 
 #: view/scripto/admin/media/show-talk.phtml:58
 #: view/scripto/admin/media/show.phtml:59
-#: view/scripto/public-app/media/edit-talk.phtml:45
-#: view/scripto/public-app/media/edit.phtml:50
-#: view/scripto/public-app/media/show-talk.phtml:42
-#: view/scripto/public-app/media/show.phtml:41
+#: view/scripto/public-app/media/edit-talk.phtml:28
+#: view/scripto/public-app/media/edit.phtml:45
+#: view/scripto/public-app/media/show-talk.phtml:23
+#: view/scripto/public-app/media/show.phtml:20
 msgid "Rotate left"
 msgstr ""
 
@@ -771,10 +788,6 @@ msgstr ""
 msgid "Verify changes before confirming this reversion."
 msgstr ""
 
-#: view/scripto/admin/media/show.phtml:27
-msgid "View discussion"
-msgstr ""
-
 #: view/scripto/admin/media/show.phtml:150
 msgid "Review status"
 msgstr ""
@@ -794,7 +807,7 @@ msgid "view revision"
 msgstr ""
 
 #: view/scripto/admin/media/show.phtml:192
-#: view/scripto/public-app/media/edit.phtml:24
+#: view/scripto/public-app/media/edit.phtml:23
 msgid "Mark this revision as complete"
 msgstr ""
 
@@ -916,15 +929,15 @@ msgstr ""
 
 #: view/scripto/admin/revision/browse-talk.phtml:18
 #: view/scripto/admin/revision/browse.phtml:18
-#: view/scripto/public-app/revision/browse-talk.phtml:9
-#: view/scripto/public-app/revision/browse.phtml:9
+#: view/scripto/public-app/revision/browse-talk.phtml:11
+#: view/scripto/public-app/revision/browse.phtml:11
 msgid "Compare selected"
 msgstr ""
 
 #: view/scripto/admin/revision/browse-talk.phtml:25
 #: view/scripto/admin/revision/browse.phtml:25
-#: view/scripto/public-app/revision/browse-talk.phtml:15
-#: view/scripto/public-app/revision/browse.phtml:15
+#: view/scripto/public-app/revision/browse-talk.phtml:18
+#: view/scripto/public-app/revision/browse.phtml:17
 msgid "Compare"
 msgstr ""
 
@@ -932,10 +945,10 @@ msgstr ""
 #: view/scripto/admin/revision/browse-talk.phtml:44
 #: view/scripto/admin/revision/browse.phtml:43
 #: view/scripto/admin/revision/browse.phtml:44
-#: view/scripto/public-app/revision/browse-talk.phtml:33
-#: view/scripto/public-app/revision/browse-talk.phtml:34
-#: view/scripto/public-app/revision/browse.phtml:33
-#: view/scripto/public-app/revision/browse.phtml:34
+#: view/scripto/public-app/revision/browse-talk.phtml:36
+#: view/scripto/public-app/revision/browse-talk.phtml:37
+#: view/scripto/public-app/revision/browse.phtml:35
+#: view/scripto/public-app/revision/browse.phtml:36
 msgid "cur"
 msgstr ""
 
@@ -943,24 +956,24 @@ msgstr ""
 #: view/scripto/admin/revision/browse-talk.phtml:47
 #: view/scripto/admin/revision/browse.phtml:46
 #: view/scripto/admin/revision/browse.phtml:47
-#: view/scripto/public-app/revision/browse-talk.phtml:36
-#: view/scripto/public-app/revision/browse-talk.phtml:37
-#: view/scripto/public-app/revision/browse.phtml:36
-#: view/scripto/public-app/revision/browse.phtml:37
+#: view/scripto/public-app/revision/browse-talk.phtml:39
+#: view/scripto/public-app/revision/browse-talk.phtml:40
+#: view/scripto/public-app/revision/browse.phtml:38
+#: view/scripto/public-app/revision/browse.phtml:39
 msgid "prev"
 msgstr ""
 
 #: view/scripto/admin/revision/browse-talk.phtml:52
 #: view/scripto/admin/revision/browse.phtml:52
-#: view/scripto/public-app/revision/browse-talk.phtml:42
-#: view/scripto/public-app/revision/browse.phtml:42
+#: view/scripto/public-app/revision/browse-talk.phtml:45
+#: view/scripto/public-app/revision/browse.phtml:44
 msgid "From revision"
 msgstr ""
 
 #: view/scripto/admin/revision/browse-talk.phtml:58
 #: view/scripto/admin/revision/browse.phtml:58
-#: view/scripto/public-app/revision/browse-talk.phtml:48
-#: view/scripto/public-app/revision/browse.phtml:48
+#: view/scripto/public-app/revision/browse-talk.phtml:51
+#: view/scripto/public-app/revision/browse.phtml:50
 msgid "To revision"
 msgstr ""
 
@@ -968,8 +981,8 @@ msgstr ""
 #: view/scripto/admin/revision/browse.phtml:79
 #: view/scripto/admin/user/contributions.phtml:99
 #: view/scripto/admin/user/watchlist.phtml:98
-#: view/scripto/public-app/revision/browse-talk.phtml:69
-#: view/scripto/public-app/revision/browse.phtml:69
+#: view/scripto/public-app/revision/browse-talk.phtml:72
+#: view/scripto/public-app/revision/browse.phtml:71
 #: view/scripto/public-app/user/contributions.phtml:93
 #: view/scripto/public-app/user/watchlist.phtml:92
 #, php-format
@@ -1065,74 +1078,58 @@ msgstr ""
 msgid "Show original titles"
 msgstr ""
 
-#: view/scripto/public-app/media/edit-talk.phtml:11
-#: view/scripto/public-app/media/edit.phtml:11
+#: view/scripto/public-app/media/edit-talk.phtml:10
+#: view/scripto/public-app/media/edit.phtml:10
 #: view/scripto/public-app/media/show-talk.phtml:10
 #: view/scripto/public-app/media/show.phtml:9
 #, php-format
 msgid "Original title: %s"
 msgstr ""
 
-#: view/scripto/public-app/media/edit-talk.phtml:19
-#: view/scripto/public-app/media/edit.phtml:19
+#: view/scripto/public-app/media/edit-talk.phtml:55
+#, php-format
+msgid ""
+"Notes are a workspace where project participants can keep ideas and "
+"observations regarding the %s of the %s. When contributing to the notes, it "
+"is encouraged to include the user and timestamp."
+msgstr ""
+
+#: view/scripto/public-app/media/edit.phtml:18
 msgid "Protection: "
 msgstr ""
 
-#: view/scripto/public-app/media/edit-talk.phtml:20
-#: view/scripto/public-app/media/edit.phtml:20
+#: view/scripto/public-app/media/edit.phtml:19
 msgid "Expiration: "
 msgstr ""
 
-#: view/scripto/public-app/media/edit-talk.phtml:61
-msgid "Summarize your comment:"
-msgstr ""
-
-#: view/scripto/public-app/media/edit.phtml:23
+#: view/scripto/public-app/media/edit.phtml:22
 msgid "Status: "
 msgstr ""
 
-#: view/scripto/public-app/media/edit.phtml:66
-msgid "Summarize your changes:"
+#: view/scripto/public-app/media/show-talk.phtml:51
+msgid "No notes yet."
 msgstr ""
 
-#: view/scripto/public-app/media/show-talk.phtml:19
-msgid "Discuss"
-msgstr ""
-
-#: view/scripto/public-app/media/show-talk.phtml:20
-msgid "View discussion history"
-msgstr ""
-
-#: view/scripto/public-app/media/show-talk.phtml:58
-msgid "No discussion yet."
-msgstr ""
-
-#: view/scripto/public-app/media/show.phtml:19
-msgid "View revision history"
+#: view/scripto/public-app/media/show-talk.phtml:55
+msgid "Browse notes history"
 msgstr ""
 
 #: view/scripto/public-app/project/browse.phtml:21
 msgid "No Scripto projects found"
 msgstr ""
 
-#: view/scripto/public-app/revision/browse-talk.phtml:3
-#, php-format
-msgid "Discussion revisions: %s"
+#: view/scripto/public-app/revision/browse-talk.phtml:12
+msgid "Back to notes"
 msgstr ""
 
-#: view/scripto/public-app/revision/browse-talk.phtml:81
-#: view/scripto/public-app/revision/browse.phtml:81
+#: view/scripto/public-app/revision/browse-talk.phtml:84
+#: view/scripto/public-app/revision/browse.phtml:83
 msgid "No revisions found"
-msgstr ""
-
-#: view/scripto/public-app/revision/browse.phtml:3
-#, php-format
-msgid "Revisions: %s"
 msgstr ""
 
 #: view/scripto/public-app/revision/compare-talk.phtml:2
 #, php-format
-msgid "Compare discussion revisions: %s"
+msgid "Compare note revisions: %s"
 msgstr ""
 
 #: view/scripto/public-app/revision/compare-talk.phtml:6
@@ -1149,7 +1146,7 @@ msgstr ""
 
 #: view/scripto/public-app/revision/show-talk.phtml:2
 #, php-format
-msgid "Discussion revision: %s"
+msgid "Notes revision: %s"
 msgstr ""
 
 #: view/scripto/public-app/revision/show-talk.phtml:4
@@ -1177,23 +1174,25 @@ msgstr ""
 msgid "Your watchlist"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:68
+#: src/ViewHelper/breadcrumbs_route_map.php:15
 msgid "User contributions"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:73
+#: src/ViewHelper/breadcrumbs_route_map.php:20
 msgid "User watchlist"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:83
+#: src/ViewHelper/breadcrumbs_route_map.php:30
 msgid "Review project"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:88 src/ViewHelper/type_string_map.php:96
+#: src/ViewHelper/breadcrumbs_route_map.php:35
+#: src/ViewHelper/type_string_map.php:96
 msgid "Review item"
 msgstr ""
 
-#: src/ViewHelper/Scripto.php:93 src/ViewHelper/type_string_map.php:377
+#: src/ViewHelper/breadcrumbs_route_map.php:40
+#: src/ViewHelper/type_string_map.php:377
 msgid "Review media"
 msgstr ""
 
@@ -1721,42 +1720,42 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:165
 #, php-format
-msgid "Media #%s discussion"
+msgid "Media #%s notes"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:166
 #, php-format
-msgid "Page #%s discussion"
+msgid "Page #%s notes"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:167
 #, php-format
-msgid "Image #%s discussion"
+msgid "Image #%s notes"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:168
 #, php-format
-msgid "Section #%s discussion"
+msgid "Section #%s notes"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:169
 #, php-format
-msgid "Segment #%s discussion"
+msgid "Segment #%s notes"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:170
 #, php-format
-msgid "Folio #%s discussion"
+msgid "Folio #%s notes"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:171
 #, php-format
-msgid "Sheet #%s discussion"
+msgid "Sheet #%s notes"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:172
 #, php-format
-msgid "Entry #%s discussion"
+msgid "Entry #%s notes"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:174
@@ -2556,74 +2555,74 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:395
 #, php-format
-msgid "Discussion of %s: Media #%s"
+msgid "Notes of %s: Media #%s"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:396
 #, php-format
-msgid "Discussion of %s: Page #%s"
+msgid "Notes of %s: Page #%s"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:397
 #, php-format
-msgid "Discussion of %s: Image #%s"
+msgid "Notes of %s: Image #%s"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:398
 #, php-format
-msgid "Discussion of %s: Section #%s"
+msgid "Notes of %s: Section #%s"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:399
 #, php-format
-msgid "Discussion of %s: Segment #%s"
+msgid "Notes of %s: Segment #%s"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:400
 #, php-format
-msgid "Discussion of %s: Folio #%s"
+msgid "Notes of %s: Folio #%s"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:401
 #, php-format
-msgid "Discussion of %s: Sheet #%s"
+msgid "Notes of %s: Sheet #%s"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:402
 #, php-format
-msgid "Discussion of %s: Entry #%s"
+msgid "Notes of %s: Entry #%s"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:404
-msgid "Stop watching media"
+msgid "Stop tracking media"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:405
-msgid "Stop watching page"
+msgid "Stop tracking page"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:406
-msgid "Stop watching image"
+msgid "Stop tracking image"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:407
-msgid "Stop watching section"
+msgid "Stop tracking section"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:408
-msgid "Stop watching segment"
+msgid "Stop tracking segment"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:409
-msgid "Stop watching folio"
+msgid "Stop tracking folio"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:410
-msgid "Stop watching sheet"
+msgid "Stop tracking sheet"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:411
-msgid "Stop watching entry"
+msgid "Stop tracking entry"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:413
@@ -2659,35 +2658,35 @@ msgid "Watch entry"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:422
-msgid "Media successfully saved to your watchlist"
+msgid "Now tracking media"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:423
-msgid "Page successfully saved to your watchlist"
+msgid "Now tracking page"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:424
-msgid "Image successfully saved to your watchlist"
+msgid "Now tracking image"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:425
-msgid "Section successfully saved to your watchlist"
+msgid "Now tracking section"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:426
-msgid "Segment successfully saved to your watchlist"
+msgid "Now tracking segment"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:427
-msgid "Folio successfully saved to your watchlist"
+msgid "Now tracking folio"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:428
-msgid "Sheet successfully saved to your watchlist"
+msgid "Now tracking sheet"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:429
-msgid "Entry successfully saved to your watchlist"
+msgid "Now tracking entry"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:431
@@ -2695,31 +2694,31 @@ msgid "Media successfully removed from your watchlist"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:432
-msgid "Page successfully removed from your watchlist"
+msgid "No longer tracking page"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:433
-msgid "Image successfully removed from your watchlist"
+msgid "No longer tracking image"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:434
-msgid "Section successfully removed from your watchlist"
+msgid "No longer tracking section"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:435
-msgid "Segment successfully removed from your watchlist"
+msgid "No longer tracking segment"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:436
-msgid "Folio successfully removed from your watchlist"
+msgid "No longer tracking folio"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:437
-msgid "Sheet successfully removed from your watchlist"
+msgid "No longer tracking sheet"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:438
-msgid "Entry successfully removed from your watchlist"
+msgid "No longer tracking entry"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:445
@@ -3087,7 +3086,11 @@ msgstr ""
 msgid "Change summary"
 msgstr ""
 
-#: src/Form/MediaPublicAppForm.php:34
+#: src/Form/MediaPublicAppForm.php:27
+msgid "Summarize your changes"
+msgstr ""
+
+#: src/Form/MediaPublicAppForm.php:35
 msgid "Mark complete"
 msgstr ""
 
