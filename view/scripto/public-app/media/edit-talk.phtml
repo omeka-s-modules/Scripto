@@ -57,7 +57,7 @@ $this->scripto()->postSubtitle(sprintf($this->translate('Original title: %s'), $
                 <?php echo $this->formText($mediaForm->get('summary')); ?>
             </div>
             <div class="textarea-flex">
-                <div class="wikitext-editor-buttons" data-lml-editor-translations="<?php echo $this->escapeHtml($this->scripto()->getLmlEditorTranslations()); ?>"></div>
+                <div class="wikitext-editor-buttons" data-signature="<?php echo $this->escapeHtml($this->scripto()->getUserSignature()); ?>" data-lml-editor-translations="<?php echo $this->escapeHtml($this->scripto()->getLmlEditorTranslations()); ?>"></div>
                 <?php echo $this->formTextarea($mediaForm->get('wikitext')); ?>
             </div>
         </div>
@@ -65,13 +65,8 @@ $this->scripto()->postSubtitle(sprintf($this->translate('Original title: %s'), $
 </form>
 <script>
 // Add wikitext editor buttons to the wikitext textarea.
-var lmlEditor = new LmlEditor(
-    document.getElementsByClassName('wikitext-editor-text')[0],
-    document.getElementsByClassName('wikitext-editor-buttons')[0]
+Scripto.enableMediaTalkEditor(
+    document.getElementsByClassName('wikitext-editor-text'),
+    document.getElementsByClassName('wikitext-editor-buttons')
 );
-lmlEditor.addButton('wikitext-editor-button-bold', 'Bold', "'''", "'''");
-lmlEditor.addButton('wikitext-editor-button-italic', 'Italic', "''", "''");
-lmlEditor.addButton('wikitext-editor-button-underline', 'Underline', "<u>", "</u>");
-lmlEditor.addButton('wikitext-editor-button-blockquote', 'Blockquote', "<blockquote>\n", "\n</blockquote>");
-lmlEditor.addButton('wikitext-editor-button-signature', 'Signature', "", "<?php echo $this->escapeJs($this->scripto()->getUserSignature()); ?>");
 </script>

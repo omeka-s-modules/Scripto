@@ -40,12 +40,8 @@ if ($('.image.panzoom-container').length) {
 
             // Apply wikitext editor to lightbox textarea.
             if (editorText.length) {
-                var lmlEditor = new LmlEditor(
-                    editorTextFl[0],
-                    editorButtonsFl[0],
-                );
                 editorButtonsFl.empty();
-                lmlEditor.addMediawikiButtons();
+                Scripto.enableMediaEditor(editorTextFl, editorButtonsFl);
                 // Apply the selection range to the lightbox textarea.
                 editorTextFl[0].setSelectionRange(
                     editorText[0].selectionStart,

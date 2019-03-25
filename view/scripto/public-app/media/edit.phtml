@@ -67,20 +67,8 @@ $this->scripto()->postSubtitle(sprintf($this->translate('Original title: %s'), $
 </form>
 <script>
 // Add wikitext editor buttons to the wikitext textarea.
-var lmlEditor = new LmlEditor(
-    document.getElementsByClassName('wikitext-editor-text')[0],
-    document.getElementsByClassName('wikitext-editor-buttons')[0]
+Scripto.enableMediaEditor(
+    document.getElementsByClassName('wikitext-editor-text'),
+    document.getElementsByClassName('wikitext-editor-buttons')
 );
-lmlEditor.addButton('wikitext-editor-button-bold', 'Bold', "'''", "'''");
-lmlEditor.addButton('wikitext-editor-button-italic', 'Italic', "''", "''");
-lmlEditor.addButton('wikitext-editor-button-underline', 'Underline', "<u>", "</u>");
-lmlEditor.addButton('wikitext-editor-button-strikethrough', 'Strikethrough', "<s>", "</s>");
-lmlEditor.addListButton('wikitext-editor-button-unordered-list', 'Unordered list', "*");
-lmlEditor.addListButton('wikitext-editor-button-ordered-list', 'Ordered list', "#");
-lmlEditor.addButton('wikitext-editor-button-blockquote', 'Blockquote', "<blockquote>\n", "\n</blockquote>");lmlEditor.addButton('wikitext-editor-button-heading-1', 'Level 1 heading', "\n= ", " =\n");
-lmlEditor.addButton('wikitext-editor-button-heading-2', 'Level 2 heading', "\n== ", " ==\n");
-lmlEditor.addButton('wikitext-editor-button-heading-3', 'Level 3 heading', "\n=== ", " ===\n");
-lmlEditor.addButton('wikitext-editor-button-heading-4', 'Level 4 heading', "\n==== ", " ====\n");
-lmlEditor.addButton('wikitext-editor-button-heading-5', 'Level 5 heading', "\n===== ", " =====\n");
-lmlEditor.addButton('wikitext-editor-button-horizontal-rule', 'Horizontal rule', "\n", "----\n");
 </script>
