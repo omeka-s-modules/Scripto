@@ -2,7 +2,7 @@
 
 Transcribe and translate items.
 
-See the [Omeka S user manual](https://omeka.org/s/docs/user-manual/) for user documentation.
+See the [user manual](https://github.com/omeka/omeka-s-enduser/blob/scripto/docs/modules/scripto.md) for documentation.
 
 ## Requirements
 
