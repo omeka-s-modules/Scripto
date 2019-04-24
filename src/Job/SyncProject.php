@@ -197,6 +197,103 @@ class SyncProject extends ScriptoJob
      */
     public function getAllItemMedia(Item $item, ScriptoProject $project)
     {
-        return $item->getMedia();
+        $conn = $this->getServiceLocator()->get('Omeka\Connection');
+        $em = $this->getServiceLocator()->get('Omeka\EntityManager');
+
+        // Select all Document instances, including Image title.
+        $instances = $conn->fetchAll('
+            SELECT *
+            FROM pwd_document_instance di
+            LEFT JOIN value v ON v.resource_id = di.image_id
+            WHERE di.document_id = ?
+            AND di.image_id IS NOT NULL -- must have image
+            AND v.value IS NOT NULL     -- image must have a title
+            AND v.property_id = 1       -- dcterms:title
+        ', [$item->getId()]);
+        if (!$instances) {
+            return [];
+        }
+
+        // Get the priority instance.
+        $instance = $this->getPriorityInstance($instances);
+        if (!$instance) {
+            return [];
+        }
+
+        // Get the Document pages from the corresponding Image item.
+        $imageItem = $em->find('Omeka\Entity\Item', $instance['image_id']);
+        list($offset, $length) = $this->getOffsetAndLength($item, $instance, $conn);
+        return array_slice($imageItem->getMedia()->toArray(), $offset, $length);
+    }
+
+    /**
+     * Get a Document's instance, prioritized by source type and image series.
+     *
+     * A "collection" instance has priority because it is the most common.
+     * Instances containing "a" series images have priority because they are
+     * high quality images.
+     *
+     * This logic is identical to that used in the previous version of PWD.
+     *
+     * @param array $instances
+     * @return array
+     */
+    public function getPriorityInstance(array $instances)
+    {
+        $sourceTypes = ['collection', 'publication']; // "microfilm" source has no images
+        foreach ($sourceTypes as $sourceType) {
+            foreach ($instances as $instance) {
+                if ($sourceType === $instance['source_type'] && 'a' === substr($instance['value'], -1)) {
+                    return $instance;
+                }
+            }
+        }
+        foreach ($sourceTypes as $sourceType) {
+            foreach ($instances as $instance) {
+                if ($sourceType === $instance['source_type']) {
+                    return $instance;
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Get the page offset and length of a Document's instance.
+     *
+     * This logic is identical to that used in the previous version of PWD.
+     *
+     * @pa
+     * @param array $instance
+     * @param Connection $conn
+     * @return array [offset, length]
+     */
+    public function getOffsetAndLength(Item $item, array $instance, $conn)
+    {
+        if (is_numeric($instance['page_number'])) {
+            // The instance has a page number.
+            $offset = $instance['page_number'] - 1;
+            $length = is_numeric($instance['page_count']) ? $instance['page_count'] : null;
+        } else {
+            // The instance has no page_number. Query the document item for
+            // bibo:pageStart and bibo:numPages and apply them to the offset and
+            // length.
+            $pageStart = $conn->fetchColumn('
+                SELECT value
+                FROM value
+                WHERE resource_id = ?
+                AND property_id = 111 -- bibo:pageStart
+            ', [$item->getId()], 0);
+            $numPages = $conn->fetchColumn('
+                SELECT value
+                FROM value
+                WHERE resource_id = ?
+                AND property_id = 106 -- bibo:numPages
+            ', [$item->getId()], 0);
+
+            $offset = $pageStart ? $pageStart - 1 : 0;
+            $length = $numPages ?: null;
+        }
+        return [$offset, $length];
     }
 }
