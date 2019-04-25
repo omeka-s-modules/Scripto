@@ -983,7 +983,15 @@ class ApiClient
      */
     public function logout()
     {
-        $this->request(['action' => 'logout']); // Log out of MediaWiki
+        $query = $this->request([
+            'action' => 'query',
+            'meta' => 'tokens',
+            'type' => 'csrf',
+        ]);
+        $this->request([
+            'action' => 'logout',
+            'token' => $query['query']['tokens']['csrftoken'],
+        ]);
         $this->httpClient->clearCookies(); // Clear HTTP client cookies
         $this->session->cookies = null; // Clear session cookies
         $this->userInfo = null; // Reset MediaWiki user information
