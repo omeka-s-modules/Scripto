@@ -50,7 +50,7 @@ $this->headScript()->appendFile($this->assetUrl('js/public-app.js', 'Scripto'));
                         <?php
                         $searchAction = isset($sItem) ? $sItem->url() : $project->url();
                         $searchQuery = $this->params()->fromQuery('search');
-                        $searchLabel = $this->escapeHtml(sprintf($this->translate('Search %s'), $project->title()));
+                        $searchLabel = $this->escapeHtml(sprintf($this->translate('Search %s'), (isset($sItem) ? 'item media' : 'project items')));
                         ?>
                         <form id="scripto-search" class="wrapper" action="<?php echo $this->escapeHtml($searchAction); ?>">
                             <input type="text" name="search" value="<?php echo $this->escapeHtml($searchQuery); ?>" aria-label="<?php echo $searchLabel; ?>" placeholder="<?php echo $searchLabel; ?>">
