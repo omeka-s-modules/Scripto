@@ -13,6 +13,7 @@ class ImportProject extends ScriptoJob
 {
     public function perform()
     {
+        ini_set('memory_limit', '500M');
         $em = $this->getServiceLocator()->get('Omeka\EntityManager');
         $project = $em->find('Scripto\Entity\ScriptoProject', $this->getArg('scripto_project_id'));
         $this->importProject($project);
