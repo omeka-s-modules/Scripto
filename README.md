@@ -12,3 +12,5 @@ See the [user manual](https://github.com/omeka/omeka-s-enduser/blob/scripto/docs
 ## Installation
 
 See general end user documentation for [Installing a module](http://dev.omeka.org/docs/s/user-manual/modules/#installing-modules)
+
+Note that if you are installing this module from a GitHub file download, you will need to rename the module directory to just `Scripto` (as opposed to `Scripto-master`) in order to be able to run the module.
