@@ -22,8 +22,16 @@ abstract class ScriptoJob extends AbstractJob
             JOIN si.item i
             JOIN si.scriptoProject sp
             WHERE sp.id = :scripto_project_id'
-        )->setParameter('scripto_project_id', $project->getId());
-        return array_column($query->getResult(), 'item_id', 'scripto_item_id');
+        );
+        $conn = $em->getConnection();
+        $stmt = $conn->prepare($query->getSQL());
+        $stmt->bindValue(1, $project->getId());
+        $stmt->execute();
+        $results = [];
+        foreach ($stmt as $row) {
+            $results[$row['id_0']] = $row['id_1'];
+        }
+        return $results;
     }
 
     /**
@@ -42,8 +50,16 @@ abstract class ScriptoJob extends AbstractJob
             JOIN sm.scriptoItem si
             JOIN si.scriptoProject sp
             WHERE sp.id = :scripto_project_id'
-        )->setParameter('scripto_project_id', $project->getId());
-        return array_column($query->getResult(), 'media_id', 'scripto_media_id');
+        );
+        $conn = $em->getConnection();
+        $stmt = $conn->prepare($query->getSQL());
+        $stmt->bindValue(1, $project->getId());
+        $stmt->execute();
+        $results = [];
+        foreach ($stmt as $row) {
+            $results[$row['id_0']] = $row['id_1'];
+        }
+        return $results;
     }
 
     /**
