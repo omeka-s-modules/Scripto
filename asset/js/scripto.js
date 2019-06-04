@@ -103,6 +103,6 @@ var Scripto = {
         lmlEditor.addButton('wikitext-editor-button-italic', 'Italic', "''", "''");
         lmlEditor.addButton('wikitext-editor-button-underline', 'Underline', "<u>", "</u>");
         lmlEditor.addButton('wikitext-editor-button-blockquote', 'Blockquote', "<blockquote>\n", "\n</blockquote>");
-        lmlEditor.addButton('wikitext-editor-button-signature', 'Signature', "", buttonContainer.data('signature'));
+        lmlEditor.addButton('wikitext-editor-button-signature', 'Signature', "", buttonContainer[0].dataset.signature);
     }
 };
