@@ -14,10 +14,17 @@ class ItemController extends AbstractActionController
         }
 
         $this->setBrowseDefaults(null);
-        $query = array_merge(
-            ['scripto_project_id' => $this->params('project-id')],
-            $this->params()->fromQuery()
-        );
+        $query = $this->params()->fromQuery();
+        $query['scripto_project_id'] =  $this->params('project-id');
+        if ($project->filterApproved()
+            && !isset($query['is_approved'])
+            && !isset($query['is_not_approved'])
+            && !isset($query['is_in_progress'])
+            && !isset($query['is_new'])
+            && !isset($query['is_edited_after_imported'])
+        ) {
+            $query['is_not_approved'] = true;
+        }
         $response = $this->api()->search('scripto_items', $query);
         $this->paginator($response->getTotalResults(), $this->params()->fromQuery('page'));
         $sItems = $response->getContent();
