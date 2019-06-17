@@ -60,6 +60,7 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
             'o:lang' => $this->lang(),
             'o-module-scripto:import_target' => $this->importTarget(),
             'o-module-scripto:browse_layout' => $this->browseLayout(),
+            'o-module-scripto:filter_approved' => $this->filterApproved(),
             'o-module-scripto:item_type' => $this->itemType(),
             'o-module-scripto:media_type' => $this->mediaType(),
             'o-module-scripto:content_type' => $this->contentType(),
@@ -120,6 +121,11 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
     public function browseLayout()
     {
         return $this->resource->getBrowseLayout();
+    }
+
+    public function filterApproved()
+    {
+        return $this->resource->getFilterApproved();
     }
 
     public function itemType()

@@ -1,5 +1,25 @@
 <?php
 $this->scripto()->postTitle($project->title());
+$filters = [
+    [
+        'label' => $this->translate('Is in progress'),
+        'value' => 'is_in_progress'
+    ],
+    [
+        'label' => $this->translate('Is new'),
+        'value' => 'is_new'
+    ],
+];
+if (!$project->filterApproved()) {
+    $filters[] = [
+        'label' => $this->translate('Is approved'),
+        'value' => 'is_approved'
+    ];
+    $filters[] = [
+        'label' => $this->translate('Is not approved'),
+        'value' => 'is_not_approved'
+    ];
+}
 ?>
 <div class="resource-content">
     <?php if ($projectDescription = $project->description()): ?>
@@ -28,24 +48,7 @@ $this->scripto()->postTitle($project->title());
             </div>
             <div class="filtering-toggle">
                 <a href="#" class="filtering-heading menu-toggle"><?php echo $this->translate('Filter'); ?></a>
-                <?php echo $this->filterSelector([
-                    [
-                        'label' => $this->translate('Is approved'),
-                        'value' => 'is_approved'
-                    ],
-                    [
-                        'label' => $this->translate('Is not approved'),
-                        'value' => 'is_not_approved'
-                    ],
-                    [
-                        'label' => $this->translate('Is in progress'),
-                        'value' => 'is_in_progress'
-                    ],
-                    [
-                        'label' => $this->translate('Is new'),
-                        'value' => 'is_new'
-                    ],
-                ]); ?>
+                <?php echo $this->filterSelector($filters); ?>
             </div>
             <?php echo $this->pagination(); ?>
         </div>
