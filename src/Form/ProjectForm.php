@@ -118,6 +118,15 @@ class ProjectForm extends Form
         ]);
 
         $this->add([
+            'name' => 'o-module-scripto:filter_approved',
+            'type' => 'checkbox',
+            'options' => [
+                'label' => 'Filter approved', // @translate
+                'info' => 'Filter out approved items from the public browse view.', // @translate
+            ],
+        ]);
+
+        $this->add([
             'name' => 'o-module-scripto:item_type',
             'type' => 'select',
             'options' => [

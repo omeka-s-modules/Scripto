@@ -92,6 +92,11 @@ class ScriptoProject extends AbstractEntity
     protected $browseLayout;
 
     /**
+     * @Column(type="boolean")
+     */
+    protected $filterApproved = false;
+
+    /**
      * @Column(nullable=true)
      */
     protected $itemType;
@@ -240,6 +245,16 @@ class ScriptoProject extends AbstractEntity
     public function getBrowseLayout()
     {
         return $this->browseLayout;
+    }
+
+    public function setFilterApproved($filterApproved)
+    {
+        $this->filterApproved = (bool) $filterApproved;
+    }
+
+    public function getFilterApproved()
+    {
+        return $this->filterApproved;
     }
 
     public function setItemType($itemType)
