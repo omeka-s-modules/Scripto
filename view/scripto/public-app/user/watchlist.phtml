@@ -39,7 +39,7 @@ $this->scripto()->postTitle($this->translate('Your watchlist'));
                         : $this->hyperlink(sprintf($this->scripto()->translate($project->mediaType(), 'Media #%s'), $sMedia->position()), $sMedia->url())
                     : $this->translate('n/a'); ?>
                 </td>
-                <td><?php echo $this->scripto()->translate($project->itemType(), 'Item'); ?></td>
+                <td><?php echo $project ? $this->scripto()->translate($project->itemType(), 'Item') : $this->translate('n/a'); ?></td>
                 <td><?php echo $sItem ? $sItem->link($sItem->item()->displayTitle()) : $page['title']; ?></td>
                 <td><?php echo $project ? $project->link($project->title()) : $this->translate('n/a'); ?></td>
                 <td>
