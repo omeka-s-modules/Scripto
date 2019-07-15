@@ -27,6 +27,10 @@ class IndexController extends AbstractActionController
         $view->setVariable('user', $user);
         $view->setVariable('userCons', $userCons);
         $view->setVariable('watchlist', $watchlist);
+        $project = $this->scripto()->getRepresentation($this->params('site-project-id'));
+        if ($project) {
+            $this->layout()->setVariable('project', $project);
+        }
         return $view;
     }
 
@@ -55,6 +59,10 @@ class IndexController extends AbstractActionController
 
         $view = new ViewModel;
         $view->setVariable('form', $form);
+        $project = $this->scripto()->getRepresentation($this->params('site-project-id'));
+        if ($project) {
+            $this->layout()->setVariable('project', $project);
+        }
         return $view;
     }
 

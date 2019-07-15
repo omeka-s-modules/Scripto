@@ -20,6 +20,10 @@ class UserController extends AbstractActionController
         $view->setVariable('user', $user);
         $view->setVariable('userCons', $userCons);
         $view->setVariable('continue', $continue);
+        $project = $this->scripto()->getRepresentation($this->params('site-project-id'));
+        if ($project) {
+            $this->layout()->setVariable('project', $project);
+        }
         return $view;
     }
 
@@ -29,6 +33,7 @@ class UserController extends AbstractActionController
             // User must be logged in.
             return $this->redirect()->toRoute('scripto');
         }
+
         $userName = $this->params('user-id');
         $currentUser = $this->scripto()->apiClient()->queryUserInfo();
         if ($userName !== $currentUser['name']) {
@@ -48,6 +53,10 @@ class UserController extends AbstractActionController
         $view->setVariable('watchlist', $watchlist);
         $view->setVariable('hours', $hours);
         $view->setVariable('continue', $continue);
+        $project = $this->scripto()->getRepresentation($this->params('site-project-id'));
+        if ($project) {
+            $this->layout()->setVariable('project', $project);
+        }
         return $view;
     }
 }
