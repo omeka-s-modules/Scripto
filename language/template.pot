@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-25 13:01-0400\n"
+"POT-Creation-Date: 2019-07-15 15:33-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,18 +17,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: Module.php:417
+#: Module.php:422
 msgid "Cannot access Scripto. Missing MediaWiki API URL."
 msgstr ""
 
-#: Module.php:449
+#: Module.php:454
 #, php-format
 msgid ""
 "The MediaWiki user does not have the necessary permissions to create the "
 "page \"%s\""
 msgstr ""
 
-#: Module.php:455
+#: Module.php:460
 #, php-format
 msgid ""
 "The MediaWiki user does not have the necessary permissions to edit the page "
@@ -49,15 +49,15 @@ msgstr ""
 msgid "Existing expiration time: %s"
 msgstr ""
 
-#: src/Controller/Admin/ProjectController.php:156
+#: src/Controller/Admin/ProjectController.php:158
 msgid "See this job for sync progress."
 msgstr ""
 
-#: src/Controller/Admin/ProjectController.php:181
+#: src/Controller/Admin/ProjectController.php:183
 msgid "See this job for import progress."
 msgstr ""
 
-#: src/Controller/Admin/ProjectController.php:206
+#: src/Controller/Admin/ProjectController.php:208
 msgid "See this job for unimport progress."
 msgstr ""
 
@@ -449,25 +449,25 @@ msgstr ""
 
 #: view/scripto/admin/item/browse.phtml:45
 #: view/scripto/admin/media/browse.phtml:64
-#: view/scripto/public-app/item/browse.phtml:33
+#: view/scripto/public-app/item/browse.phtml:15
 #: view/scripto/public-app/media/browse.phtml:60
 msgid "Is approved"
 msgstr ""
 
 #: view/scripto/admin/item/browse.phtml:49
 #: view/scripto/admin/media/browse.phtml:68
-#: view/scripto/public-app/item/browse.phtml:37
+#: view/scripto/public-app/item/browse.phtml:19
 #: view/scripto/public-app/media/browse.phtml:64
 msgid "Is not approved"
 msgstr ""
 
 #: view/scripto/admin/item/browse.phtml:53
-#: view/scripto/public-app/item/browse.phtml:41
+#: view/scripto/public-app/item/browse.phtml:5
 msgid "Is in progress"
 msgstr ""
 
 #: view/scripto/admin/item/browse.phtml:57
-#: view/scripto/public-app/item/browse.phtml:45
+#: view/scripto/public-app/item/browse.phtml:9
 msgid "Is new"
 msgstr ""
 
@@ -671,7 +671,7 @@ msgstr ""
 
 #: view/scripto/admin/media/show-talk.phtml:44
 #: view/scripto/admin/media/show.phtml:45
-#: view/scripto/public-app/item/browse.phtml:15
+#: view/scripto/public-app/item/browse.phtml:35
 #: view/scripto/public-app/media/browse.phtml:14
 #: view/scripto/public-app/media/edit.phtml:34
 msgid "Layout"
@@ -891,13 +891,13 @@ msgid "Browse layout"
 msgstr ""
 
 #: view/scripto/admin/project/show-details.phtml:41
-#: view/scripto/public-app/item/browse.phtml:16
+#: view/scripto/public-app/item/browse.phtml:36
 #: view/scripto/public-app/media/browse.phtml:15
 msgid "List"
 msgstr ""
 
 #: view/scripto/admin/project/show-details.phtml:43
-#: view/scripto/public-app/item/browse.phtml:17
+#: view/scripto/public-app/item/browse.phtml:37
 #: view/scripto/public-app/media/browse.phtml:16
 msgid "Grid"
 msgstr ""
@@ -1056,12 +1056,15 @@ msgid "current"
 msgstr ""
 
 #: view/scripto/admin/user/contributions.phtml:93
+#: view/scripto/admin/user/contributions.phtml:95
 #: view/scripto/admin/user/contributions.phtml:97
 #: view/scripto/admin/user/watchlist.phtml:52
 #: view/scripto/admin/user/watchlist.phtml:56
 #: view/scripto/public-app/user/contributions.phtml:87
+#: view/scripto/public-app/user/contributions.phtml:89
 #: view/scripto/public-app/user/contributions.phtml:91
 #: view/scripto/public-app/user/watchlist.phtml:40
+#: view/scripto/public-app/user/watchlist.phtml:42
 #: view/scripto/public-app/user/watchlist.phtml:44
 msgid "n/a"
 msgstr ""
@@ -1209,12 +1212,12 @@ msgid "Books"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:10 src/ViewHelper/type_string_map.php:19
-#: src/Form/ProjectForm.php:128
+#: src/Form/ProjectForm.php:149
 msgid "Audio"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:11 src/ViewHelper/type_string_map.php:20
-#: src/Form/ProjectForm.php:134
+#: src/Form/ProjectForm.php:155
 msgid "Video"
 msgstr ""
 
@@ -1226,7 +1229,7 @@ msgstr ""
 msgid "Journals"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:21 src/Form/ProjectForm.php:133
+#: src/ViewHelper/type_string_map.php:21 src/Form/ProjectForm.php:154
 msgid "Paper"
 msgstr ""
 
@@ -1590,23 +1593,23 @@ msgstr ""
 msgid "Entries"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:131 src/Form/ProjectForm.php:151
+#: src/ViewHelper/type_string_map.php:131 src/Form/ProjectForm.php:172
 msgid "Section"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:132 src/Form/ProjectForm.php:152
+#: src/ViewHelper/type_string_map.php:132 src/Form/ProjectForm.php:173
 msgid "Segment"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:133 src/Form/ProjectForm.php:148
+#: src/ViewHelper/type_string_map.php:133 src/Form/ProjectForm.php:169
 msgid "Folio"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:134 src/Form/ProjectForm.php:153
+#: src/ViewHelper/type_string_map.php:134 src/Form/ProjectForm.php:174
 msgid "Sheet"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:135 src/Form/ProjectForm.php:147
+#: src/ViewHelper/type_string_map.php:135 src/Form/ProjectForm.php:168
 msgid "Entry"
 msgstr ""
 
@@ -2723,13 +2726,13 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:445
 #: src/ViewHelper/type_string_map.php:465
-#: src/ViewHelper/type_string_map.php:470 src/Form/ProjectForm.php:167
+#: src/ViewHelper/type_string_map.php:470 src/Form/ProjectForm.php:188
 msgid "Transcription"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:446
 #: src/ViewHelper/type_string_map.php:466
-#: src/ViewHelper/type_string_map.php:471 src/Form/ProjectForm.php:168
+#: src/ViewHelper/type_string_map.php:471 src/Form/ProjectForm.php:189
 msgid "Translation"
 msgstr ""
 
@@ -2851,7 +2854,7 @@ msgstr ""
 msgid "A property must have an ID"
 msgstr ""
 
-#: src/Api/Adapter/ScriptoProjectAdapter.php:168
+#: src/Api/Adapter/ScriptoProjectAdapter.php:174
 msgid "A Scripto project title must not be null"
 msgstr ""
 
@@ -2881,34 +2884,34 @@ msgstr ""
 msgid "This project has no property. %s"
 msgstr ""
 
-#: src/Controller/Admin/ProjectController.php:43
+#: src/Controller/Admin/ProjectController.php:44
 msgid "Scripto project successfully created."
 msgstr ""
 
-#: src/Controller/Admin/ProjectController.php:75
+#: src/Controller/Admin/ProjectController.php:77
 msgid "Scripto project successfully edited."
 msgstr ""
 
-#: src/Controller/Admin/ProjectController.php:102
+#: src/Controller/Admin/ProjectController.php:104
 msgid "Scripto project successfully deleted"
 msgstr ""
 
-#: src/Controller/Admin/ProjectController.php:152
+#: src/Controller/Admin/ProjectController.php:154
 #, php-format
 msgid "Syncing Scripto project. This may take a while. %s"
 msgstr ""
 
-#: src/Controller/Admin/ProjectController.php:177
+#: src/Controller/Admin/ProjectController.php:179
 #, php-format
 msgid "Importing Scripto project text. This may take a while. %s"
 msgstr ""
 
-#: src/Controller/Admin/ProjectController.php:202
+#: src/Controller/Admin/ProjectController.php:204
 #, php-format
 msgid "Unimporting Scripto project text. This may take a while. %s"
 msgstr ""
 
-#: src/Controller/PublicApp/IndexController.php:46
+#: src/Controller/PublicApp/IndexController.php:51
 msgid ""
 "Your Scripto account has been created! Please check your email for a link to "
 "activate your account."
@@ -2944,41 +2947,57 @@ msgstr ""
 msgid "Enter guidelines for producing content for this project."
 msgstr ""
 
+#: src/Form/ProjectForm.php:85
+msgid "Create account text"
+msgstr ""
+
 #: src/Form/ProjectForm.php:86
+msgid "Enter text for the create account page of this project."
+msgstr ""
+
+#: src/Form/ProjectForm.php:98
 msgid "Enter the language of your content using an IETF language tag."
 msgstr ""
 
-#: src/Form/ProjectForm.php:112
+#: src/Form/ProjectForm.php:124
 msgid "Select the default layout for public browse views."
 msgstr ""
 
-#: src/Form/ProjectForm.php:125
+#: src/Form/ProjectForm.php:136
+msgid "Filter approved"
+msgstr ""
+
+#: src/Form/ProjectForm.php:137
+msgid "Filter out approved items from the public browse view."
+msgstr ""
+
+#: src/Form/ProjectForm.php:146
 msgid ""
 "Select the type of item convered by this project. This is used to clarify "
 "the interface, if needed."
 msgstr ""
 
-#: src/Form/ProjectForm.php:126
+#: src/Form/ProjectForm.php:147
 msgid "Generic item"
 msgstr ""
 
-#: src/Form/ProjectForm.php:144
+#: src/Form/ProjectForm.php:165
 msgid ""
 "Select the type of media covered by this project. This is used to clarify "
 "the interface, if needed."
 msgstr ""
 
-#: src/Form/ProjectForm.php:145
+#: src/Form/ProjectForm.php:166
 msgid "Generic media"
 msgstr ""
 
-#: src/Form/ProjectForm.php:163
+#: src/Form/ProjectForm.php:184
 msgid ""
 "Select the type of content convered by this project. This is used to clarify "
 "the interface, if needed."
 msgstr ""
 
-#: src/Form/ProjectForm.php:164
+#: src/Form/ProjectForm.php:185
 msgid "Generic content"
 msgstr ""
 

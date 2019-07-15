@@ -1,6 +1,9 @@
 <?php
 $this->scripto()->postTitle($this->translate('Create account'));
 ?>
+<?php if (isset($project)): ?>
+<p><?php echo $project->createAccountText(); ?></p>
+<?php endif; ?>
 <div class="resource-content">
     <?php echo $this->form($form); ?>
 </div>

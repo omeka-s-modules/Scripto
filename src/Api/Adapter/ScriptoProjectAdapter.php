@@ -110,6 +110,9 @@ class ScriptoProjectAdapter extends AbstractEntityAdapter
         if ($this->shouldHydrate($request, 'o-module-scripto:guidelines')) {
             $entity->setGuidelines($request->getValue('o-module-scripto:guidelines'));
         }
+        if ($this->shouldHydrate($request, 'o-module-scripto:create_account_text')) {
+            $entity->setCreateAccountText($request->getValue('o-module-scripto:create_account_text'));
+        }
         if ($this->shouldHydrate($request, 'o-module-scripto:description')) {
             $entity->setDescription($request->getValue('o-module-scripto:description'));
         }

@@ -87,6 +87,11 @@ class ScriptoProject extends AbstractEntity
     protected $guidelines;
 
     /**
+     * @Column(type="text", nullable=true)
+     */
+    protected $createAccountText;
+
+    /**
      * @Column(nullable=true)
      */
     protected $browseLayout;
@@ -235,6 +240,16 @@ class ScriptoProject extends AbstractEntity
     public function getGuidelines()
     {
         return $this->guidelines;
+    }
+
+    public function setCreateAccountText($createAccountText)
+    {
+        $this->createAccountText = $createAccountText;
+    }
+
+    public function getCreateAccountText()
+    {
+        return $this->createAccountText;
     }
 
     public function setBrowseLayout($browseLayout)

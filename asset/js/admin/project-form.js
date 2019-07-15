@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
 CKEDITOR.inline(document.getElementById('o-module-scripto-guidelines'));
+CKEDITOR.inline(document.getElementById('o-module-scripto-create-account-text'));
 
 var template = $($('#reviewer-row-template').data('template'));
 
