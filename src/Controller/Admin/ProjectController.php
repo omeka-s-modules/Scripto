@@ -38,6 +38,7 @@ class ProjectController extends AbstractActionController
                 $formData['o:item_set'] = ['o:id' => $formData['o:item_set']];
                 $formData['o:property'] = ['o:id' => $formData['o:property']];
                 $formData['o-module-scripto:guidelines'] = $this->htmlPurifier->purify($formData['o-module-scripto:guidelines']);
+                $formData['o-module-scripto:create_account_text'] = $this->htmlPurifier->purify($formData['o-module-scripto:create_account_text']);
                 $response = $this->api($form)->create('scripto_projects', $formData);
                 if ($response) {
                     $this->messenger()->addSuccess('Scripto project successfully created.'); // @translate
@@ -69,6 +70,7 @@ class ProjectController extends AbstractActionController
                 $formData['o:item_set'] = ['o:id' => $formData['o:item_set']];
                 $formData['o:property'] = ['o:id' => $formData['o:property']];
                 $formData['o-module-scripto:guidelines'] = $this->htmlPurifier->purify($formData['o-module-scripto:guidelines']);
+                $formData['o-module-scripto:create_account_text'] = $this->htmlPurifier->purify($formData['o-module-scripto:create_account_text']);
                 $formData['o-module-scripto:reviewer'] = $this->params()->fromPost('o-module-scripto:reviewer');
                 $response = $this->api($form)->update('scripto_projects', $this->params('project-id'), $formData);
                 if ($response) {

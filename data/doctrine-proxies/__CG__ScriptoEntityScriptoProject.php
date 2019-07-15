@@ -64,10 +64,10 @@ class ScriptoProject extends \Scripto\Entity\ScriptoProject implements \Doctrine
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'owner', 'isPublic', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'guidelines', 'browseLayout', 'filterApproved', 'itemType', 'mediaType', 'contentType', 'created', 'synced', 'imported', 'reviewers'];
+            return ['__isInitialized__', 'id', 'owner', 'isPublic', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'guidelines', 'createAccountText', 'browseLayout', 'filterApproved', 'itemType', 'mediaType', 'contentType', 'created', 'synced', 'imported', 'reviewers'];
         }
 
-        return ['__isInitialized__', 'id', 'owner', 'isPublic', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'guidelines', 'browseLayout', 'filterApproved', 'itemType', 'mediaType', 'contentType', 'created', 'synced', 'imported', 'reviewers'];
+        return ['__isInitialized__', 'id', 'owner', 'isPublic', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'guidelines', 'createAccountText', 'browseLayout', 'filterApproved', 'itemType', 'mediaType', 'contentType', 'created', 'synced', 'imported', 'reviewers'];
     }
 
     /**
@@ -384,6 +384,28 @@ class ScriptoProject extends \Scripto\Entity\ScriptoProject implements \Doctrine
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getGuidelines', []);
 
         return parent::getGuidelines();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCreateAccountText($createAccountText)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCreateAccountText', [$createAccountText]);
+
+        return parent::setCreateAccountText($createAccountText);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCreateAccountText()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreateAccountText', []);
+
+        return parent::getCreateAccountText();
     }
 
     /**

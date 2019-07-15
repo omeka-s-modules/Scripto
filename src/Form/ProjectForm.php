@@ -79,6 +79,18 @@ class ProjectForm extends Form
         ]);
 
         $this->add([
+            'name' => 'o-module-scripto:create_account_text',
+            'type' => 'textarea',
+            'options' => [
+                'label' => 'Create account text', // @translate
+                'info' => 'Enter text for the create account page of this project.', // @translate
+            ],
+            'attributes' => [
+                'id' => 'o-module-scripto-create-account-text',
+            ],
+        ]);
+
+        $this->add([
             'name' => 'o:lang',
             'type' => 'text',
             'options' => [
@@ -189,6 +201,13 @@ class ProjectForm extends Form
         ]);
         $inputFilter->add([
             'name' => 'o-module-scripto:guidelines',
+            'required' => false,
+            'filters' => [
+                ['name' => 'toNull'],
+            ],
+        ]);
+        $inputFilter->add([
+            'name' => 'o-module-scripto:create_account_text',
             'required' => false,
             'filters' => [
                 ['name' => 'toNull'],

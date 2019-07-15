@@ -22,6 +22,7 @@ class UserController extends AbstractActionController
         $view->setVariable('continue', $continue);
         $project = $this->scripto()->getRepresentation($this->params('site-project-id'));
         if ($project) {
+            $view->setVariable('project', $project);
             $this->layout()->setVariable('project', $project);
         }
         return $view;
@@ -55,6 +56,7 @@ class UserController extends AbstractActionController
         $view->setVariable('continue', $continue);
         $project = $this->scripto()->getRepresentation($this->params('site-project-id'));
         if ($project) {
+            $view->setVariable('project', $project);
             $this->layout()->setVariable('project', $project);
         }
         return $view;

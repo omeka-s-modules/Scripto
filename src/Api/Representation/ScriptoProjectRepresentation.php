@@ -52,6 +52,7 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
             'o-module-scripto:title' => $this->title(),
             'o-module-scripto:description' => $this->description(),
             'o-module-scripto:guidelines' => $this->guidelines(),
+            'o-module-scripto:create_account_text' => $this->createAccountText(),
             'o-module-scripto:reviewer' => $this->reviewers(),
             'o:is_public' => $this->isPublic(),
             'o:owner' => $owner ? $owner->getReference() : null,
@@ -116,6 +117,11 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
     public function guidelines()
     {
         return $this->resource->getGuidelines();
+    }
+
+    public function createAccountText()
+    {
+        return $this->resource->getCreateAccountText();
     }
 
     public function browseLayout()
