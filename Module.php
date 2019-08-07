@@ -504,7 +504,7 @@ class Module extends AbstractModule
         $qb = $event->getParam('queryBuilder');
 
         // Users can view projects they do not own that are public.
-        $expression = $qb->expr()->eq("Scripto\Entity\ScriptoProject.isPublic", true);
+        $expression = $qb->expr()->eq("omeka_root.isPublic", true);
 
         $auth = $this->getServiceLocator()->get('Omeka\AuthenticationService');
         $acl = $this->getServiceLocator()->get('Omeka\Acl');
@@ -517,12 +517,12 @@ class Module extends AbstractModule
             }
             $adapter = $event->getTarget();
             $projectAlias = $adapter->createAlias();
-            $qb->leftJoin('Scripto\Entity\ScriptoProject.reviewers', $projectAlias);
+            $qb->leftJoin('omeka_root.reviewers', $projectAlias);
             $expression = $qb->expr()->orX(
                 $expression,
                 // Users can view projects they own.
                 $qb->expr()->eq(
-                    "Scripto\Entity\ScriptoProject.owner",
+                    "omeka_root.owner",
                     $adapter->createNamedParameter($qb, $identity)
                 ),
                 // Users can view projects that they review.
