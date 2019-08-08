@@ -42,7 +42,7 @@ class ScriptoItemAdapter extends AbstractEntityAdapter
     {
         if (isset($query['scripto_project_id'])) {
             $alias = $this->createAlias();
-            $qb->innerJoin('Scripto\Entity\ScriptoItem.scriptoProject', $alias);
+            $qb->innerJoin('omeka_root.scriptoProject', $alias);
             $qb->andWhere($qb->expr()->eq(
                 "$alias.id",
                 $this->createNamedParameter($qb, $query['scripto_project_id']))
@@ -50,7 +50,7 @@ class ScriptoItemAdapter extends AbstractEntityAdapter
         }
         if (isset($query['item_id'])) {
             $alias = $this->createAlias();
-            $qb->innerJoin('Scripto\Entity\ScriptoItem.item', $alias);
+            $qb->innerJoin('omeka_root.item', $alias);
             $qb->andWhere($qb->expr()->eq(
                 "$alias.id",
                 $this->createNamedParameter($qb, $query['item_id']))
@@ -63,7 +63,7 @@ class ScriptoItemAdapter extends AbstractEntityAdapter
             $subQb = $this->getEntityManager()->createQueryBuilder()
                 ->select($alias)
                 ->from('Scripto\Entity\ScriptoMedia', $alias)
-                ->andWhere("$alias.scriptoItem = Scripto\Entity\ScriptoItem.id")
+                ->andWhere("$alias.scriptoItem = omeka_root.id")
                 ->andWhere("$alias.approved IS NULL");
             $qb->andWhere($qb->expr()->not($qb->expr()->exists($subQb->getDQL())));
         } elseif (isset($query['is_not_approved']) || isset($query['is_in_progress']) || isset($query['is_new'])) {
@@ -73,7 +73,7 @@ class ScriptoItemAdapter extends AbstractEntityAdapter
             $subQb = $this->getEntityManager()->createQueryBuilder()
                 ->select($alias)
                 ->from('Scripto\Entity\ScriptoMedia', $alias)
-                ->andWhere("$alias.scriptoItem = Scripto\Entity\ScriptoItem.id")
+                ->andWhere("$alias.scriptoItem = omeka_root.id")
                 ->andWhere("$alias.approved IS NULL");
             $qb->andWhere($qb->expr()->exists($subQb->getDQL()));
         }
@@ -83,19 +83,19 @@ class ScriptoItemAdapter extends AbstractEntityAdapter
             // a) at least one child media is not marked as approved, and b)
             // at least one child media has been edited. Note that an "in
             // progress" item can be marked as "In progress" and "Completed".
-            $qb->andWhere($qb->expr()->isNotNull('Scripto\Entity\ScriptoItem.edited'));
+            $qb->andWhere($qb->expr()->isNotNull('omeka_root.edited'));
         } elseif (isset($query['is_new'])) {
             // Get all new Scripto items. An item is "new" if a) at least one
             // child media is not marked as approved, and b) no child media has
             // been edited. Note that media can be not edited but marked as
             // completed, so a "new" item can be marked as "New" and "Completed".
-            $qb->andWhere($qb->expr()->isNull('Scripto\Entity\ScriptoItem.edited'));
+            $qb->andWhere($qb->expr()->isNull('omeka_root.edited'));
         }
 
         if (isset($query['is_edited_after_imported'])) {
             $alias = $this->createAlias();
-            $qb->innerJoin('Scripto\Entity\ScriptoItem.scriptoProject', $alias);
-            $qb->andWhere($qb->expr()->gt('Scripto\Entity\ScriptoItem.edited', "$alias.imported"));
+            $qb->innerJoin('omeka_root.scriptoProject', $alias);
+            $qb->andWhere($qb->expr()->gt('omeka_root.edited', "$alias.imported"));
         }
 
         if (isset($query['search'])) {
@@ -104,7 +104,7 @@ class ScriptoItemAdapter extends AbstractEntityAdapter
             $itemAlias = $this->createAlias();
             $valueAlias = $this->createAlias();
             $param = $this->createNamedParameter($qb, "%$value%");
-            $qb->leftJoin('Scripto\Entity\ScriptoItem.item', $itemAlias)
+            $qb->leftJoin('omeka_root.item', $itemAlias)
                 ->leftJoin("$itemAlias.values", $valueAlias)
                 ->andWhere($qb->expr()->orX(
                     $qb->expr()->like("$valueAlias.value", $param),

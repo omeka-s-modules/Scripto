@@ -51,7 +51,7 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
     {
         if (isset($query['scripto_item_id'])) {
             $alias = $this->createAlias();
-            $qb->innerJoin('Scripto\Entity\ScriptoMedia.scriptoItem', $alias);
+            $qb->innerJoin('omeka_root.scriptoItem', $alias);
             $qb->andWhere($qb->expr()->eq(
                 "$alias.id",
                 $this->createNamedParameter($qb, $query['scripto_item_id']))
@@ -59,46 +59,46 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
         }
         if (isset($query['media_id'])) {
             $alias = $this->createAlias();
-            $qb->innerJoin('Scripto\Entity\ScriptoMedia.media', $alias);
+            $qb->innerJoin('omeka_root.media', $alias);
             $qb->andWhere($qb->expr()->eq(
                 "$alias.id",
                 $this->createNamedParameter($qb, $query['media_id']))
             );
         }
         if (isset($query['is_approved'])) {
-            $qb->andWhere($qb->expr()->isNotNull('Scripto\Entity\ScriptoMedia.approved'));
+            $qb->andWhere($qb->expr()->isNotNull('omeka_root.approved'));
         } elseif (isset($query['is_not_approved'])) {
-            $qb->andWhere($qb->expr()->isNull('Scripto\Entity\ScriptoMedia.approved'));
+            $qb->andWhere($qb->expr()->isNull('omeka_root.approved'));
         }
         if (isset($query['is_completed'])) {
-            $qb->andWhere($qb->expr()->isNotNull('Scripto\Entity\ScriptoMedia.completed'));
+            $qb->andWhere($qb->expr()->isNotNull('omeka_root.completed'));
         } elseif (isset($query['is_not_completed'])) {
-            $qb->andWhere($qb->expr()->isNull('Scripto\Entity\ScriptoMedia.completed'));
+            $qb->andWhere($qb->expr()->isNull('omeka_root.completed'));
         }
         if (isset($query['is_edited'])) {
-            $qb->andWhere($qb->expr()->isNotNull('Scripto\Entity\ScriptoMedia.edited'));
+            $qb->andWhere($qb->expr()->isNotNull('omeka_root.edited'));
         } elseif (isset($query['is_not_edited'])) {
-            $qb->andWhere($qb->expr()->isNull('Scripto\Entity\ScriptoMedia.edited'));
+            $qb->andWhere($qb->expr()->isNull('omeka_root.edited'));
         }
         if (isset($query['is_edited_after_approved'])) {
-            $qb->andWhere($qb->expr()->gt('Scripto\Entity\ScriptoMedia.edited', 'Scripto\Entity\ScriptoMedia.approved'));
+            $qb->andWhere($qb->expr()->gt('omeka_root.edited', 'omeka_root.approved'));
         }
         if (isset($query['is_edited_after_imported'])) {
             $aliasItem = $this->createAlias();
-            $qb->innerJoin('Scripto\Entity\ScriptoMedia.scriptoItem', 'Scripto\Entity\ScriptoItem');
+            $qb->innerJoin('omeka_root.scriptoItem', $aliasItem);
             $aliasProject = $this->createAlias();
-            $qb->innerJoin('Scripto\Entity\ScriptoItem.scriptoProject', $aliasProject);
-            $qb->andWhere($qb->expr()->gt('Scripto\Entity\ScriptoMedia.edited', "$aliasProject.imported"));
+            $qb->innerJoin("$aliasItem.scriptoProject", $aliasProject);
+            $qb->andWhere($qb->expr()->gt('omeka_root.edited', "$aliasProject.imported"));
         }
         if (isset($query['is_synced_after_imported'])) {
             $aliasItem = $this->createAlias();
-            $qb->innerJoin('Scripto\Entity\ScriptoMedia.scriptoItem', 'Scripto\Entity\ScriptoItem');
+            $qb->innerJoin('omeka_root.scriptoItem', $aliasItem);
             $aliasProject = $this->createAlias();
-            $qb->innerJoin('Scripto\Entity\ScriptoItem.scriptoProject', $aliasProject);
-            $qb->andWhere($qb->expr()->gt('Scripto\Entity\ScriptoMedia.synced', "$aliasProject.imported"));
+            $qb->innerJoin("$aliasItem.scriptoProject", $aliasProject);
+            $qb->andWhere($qb->expr()->gt('omeka_root.synced', "$aliasProject.imported"));
         }
         if (isset($query['has_imported_html'])) {
-            $qb->andWhere($qb->expr()->isNotNull('Scripto\Entity\ScriptoMedia.importedHtml'));
+            $qb->andWhere($qb->expr()->isNotNull('omeka_root.importedHtml'));
         }
         if (isset($query['search'])) {
             // Filter by search query. Equivalent to property=null, type=in.
@@ -106,7 +106,7 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
             $mediaAlias = $this->createAlias();
             $valueAlias = $this->createAlias();
             $param = $this->createNamedParameter($qb, "%$value%");
-            $qb->leftJoin('Scripto\Entity\ScriptoMedia.media', $mediaAlias)
+            $qb->leftJoin('omeka_root.media', $mediaAlias)
                 ->leftJoin("$mediaAlias.values", $valueAlias)
                 ->andWhere($qb->expr()->orX(
                     $qb->expr()->like("$valueAlias.value", $param),

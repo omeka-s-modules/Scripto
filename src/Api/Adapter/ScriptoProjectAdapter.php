@@ -36,7 +36,7 @@ class ScriptoProjectAdapter extends AbstractEntityAdapter
     {
         if (isset($query['owner_id'])) {
             $alias = $this->createAlias();
-            $qb->innerJoin('Scripto\Entity\ScriptoProject.owner', $alias);
+            $qb->innerJoin('omeka_root.owner', $alias);
             $qb->andWhere($qb->expr()->eq(
                 "$alias.id",
                 $this->createNamedParameter($qb, $query['owner_id']))
@@ -44,7 +44,7 @@ class ScriptoProjectAdapter extends AbstractEntityAdapter
         }
         if (isset($query['item_set_id'])) {
             $alias = $this->createAlias();
-            $qb->innerJoin('Scripto\Entity\ScriptoProject.itemSet', $alias);
+            $qb->innerJoin('omeka_root.itemSet', $alias);
             $qb->andWhere($qb->expr()->eq(
                 "$alias.id",
                 $this->createNamedParameter($qb, $query['item_set_id']))
@@ -52,7 +52,7 @@ class ScriptoProjectAdapter extends AbstractEntityAdapter
         }
         if (isset($query['property_id'])) {
             $alias = $this->createAlias();
-            $qb->innerJoin('Scripto\Entity\ScriptoProject.property', $alias);
+            $qb->innerJoin('omeka_root.property', $alias);
             $qb->andWhere($qb->expr()->eq(
                 "$alias.id",
                 $this->createNamedParameter($qb, $query['property_id']))
@@ -60,7 +60,7 @@ class ScriptoProjectAdapter extends AbstractEntityAdapter
         }
         if (isset($query['has_reviewer_id'])) {
             $alias = $this->createAlias();
-            $qb->innerJoin('Scripto\Entity\ScriptoProject.reviewers', $alias);
+            $qb->innerJoin('omeka_root.reviewers', $alias);
             $qb->andWhere($qb->expr()->eq(
                 "$alias.user",
                 $this->createNamedParameter($qb, $query['has_reviewer_id']))
