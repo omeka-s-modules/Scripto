@@ -960,7 +960,7 @@ h2.media-item {
     padding-right: 0;
 }
 
-.project.resource-list {
+.project.resource-metadata + .resource-list {
     width: 100%;
     padding-left: 0;
 }
@@ -993,6 +993,10 @@ h2.media-item {
 .resource-metadata + .resource-list {
     width: 70%;
     padding-left: .5 * $spacing-unit;
+}
+
+.resource-metadata + .resource-list th:first-child {
+    width: 50%;
 }
 
 div.resource-row {
