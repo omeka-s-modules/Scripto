@@ -57,6 +57,7 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
             'o:is_public' => $this->isPublic(),
             'o:owner' => $owner ? $owner->getReference() : null,
             'o:item_set' => $itemSet ? $itemSet->getReference() : null,
+            'o-module-scripto:media_types' => $this->mediaTypes() ?: null,
             'o:property' => $property ? $property->getReference() : null,
             'o:lang' => $this->lang(),
             'o-module-scripto:import_target' => $this->importTarget(),
@@ -86,6 +87,11 @@ class ScriptoProjectRepresentation extends AbstractEntityRepresentation
     {
         return $this->getAdapter('item_sets')
             ->getRepresentation($this->resource->getItemSet());
+    }
+
+    public function mediaTypes()
+    {
+        return $this->resource->getMediaTypes() ?: [];
     }
 
     public function property()

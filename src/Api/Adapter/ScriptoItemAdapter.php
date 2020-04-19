@@ -22,12 +22,12 @@ class ScriptoItemAdapter extends AbstractEntityAdapter
 
     public function getRepresentationClass()
     {
-        return 'Scripto\Api\Representation\ScriptoItemRepresentation';
+        return \Scripto\Api\Representation\ScriptoItemRepresentation::class;
     }
 
     public function getEntityClass()
     {
-        return 'Scripto\Entity\ScriptoItem';
+        return \Scripto\Entity\ScriptoItem::class;
     }
 
     public function create(Request $request)

@@ -24,12 +24,12 @@ class ScriptoProjectAdapter extends AbstractEntityAdapter
 
     public function getRepresentationClass()
     {
-        return 'Scripto\Api\Representation\ScriptoProjectRepresentation';
+        return \Scripto\Api\Representation\ScriptoProjectRepresentation::class;
     }
 
     public function getEntityClass()
     {
-        return 'Scripto\Entity\ScriptoProject';
+        return \Scripto\Entity\ScriptoProject::class;
     }
 
     public function buildQuery(QueryBuilder $qb, array $query)
@@ -93,6 +93,9 @@ class ScriptoProjectAdapter extends AbstractEntityAdapter
                 $itemSet = $this->getAdapter('item_sets')->findEntity($itemSet['o:id']);
             }
             $entity->setItemSet($itemSet);
+        }
+        if ($this->shouldHydrate($request, 'o-module-scripto:media_types')) {
+            $entity->setMediaTypes($request->getValue('o-module-scripto:media_types'));
         }
         if ($this->shouldHydrate($request, 'o:property')) {
             $property = $request->getValue('o:property');
