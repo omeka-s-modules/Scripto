@@ -143,7 +143,7 @@ class ProjectForm extends Form
             'type' => 'select',
             'options' => [
                 'label' => 'Item type', // @translate
-                'info' => 'Select the type of item convered by this project. This is used to clarify the interface, if needed.', // @translate
+                'info' => 'Select the type of item covered by this project. This is used to clarify the interface, if needed.', // @translate
                 'empty_option' => 'Generic item', // @translate
                 'value_options' => [
                     'audio' => 'Audio', // @translate
@@ -181,7 +181,7 @@ class ProjectForm extends Form
             'type' => 'select',
             'options' => [
                 'label' => 'Content type', // @translate
-                'info' => 'Select the type of content convered by this project. This is used to clarify the interface, if needed.', // @translate
+                'info' => 'Select the type of content covered by this project. This is used to clarify the interface, if needed.', // @translate
                 'empty_option' => 'Generic content', // @translate
                 'value_options' => [
                     'description' => 'Description', // @translate
