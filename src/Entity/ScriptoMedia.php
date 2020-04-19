@@ -3,7 +3,6 @@ namespace Scripto\Entity;
 
 use DateTime;
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Omeka\Entity\AbstractEntity;
 use Omeka\Entity\Media;
 use Omeka\Entity\User;
@@ -234,7 +233,7 @@ class ScriptoMedia extends AbstractEntity
         return $this->approvedBy;
     }
 
-     public function setApprovedRevision($approvedRevision)
+    public function setApprovedRevision($approvedRevision)
     {
         $this->approvedRevision = $approvedRevision;
     }
@@ -254,7 +253,7 @@ class ScriptoMedia extends AbstractEntity
         return $this->importedHtml;
     }
 
-   /**
+    /**
      * Set Scripto media wikitext data.
      *
      * Note that wikitext is stored in MediaWiki, not Omeka. We use this setter

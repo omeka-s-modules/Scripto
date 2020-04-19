@@ -63,7 +63,7 @@ class Scripto extends AbstractPlugin
         if (!$itemId && !$mediaId) {
             return $project;
         }
-        
+
         $sItem = $controller->api()->searchOne('scripto_items', [
             'scripto_project_id' => $project->id(),
             'item_id' => $itemId,

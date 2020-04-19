@@ -11,7 +11,7 @@ return [
     ],
     'service_manager' => [
         'factories' => [
-            'Scripto\Mediawiki\ApiClient'  => Scripto\Service\Mediawiki\ApiClientFactory::class,
+            'Scripto\Mediawiki\ApiClient' => Scripto\Service\Mediawiki\ApiClientFactory::class,
         ],
     ],
     'api_adapters' => [
@@ -105,7 +105,7 @@ return [
                     ],
                 ],
             ],
-            'scripto-user-contributions' =>  [
+            'scripto-user-contributions' => [
                 'type' => 'Segment',
                 'options' => [
                     'route' => '/scripto[/s/:site-slug/:site-project-id]/user/:user-id/contributions',
@@ -120,7 +120,7 @@ return [
                     ],
                 ],
             ],
-            'scripto-user-watchlist' =>  [
+            'scripto-user-watchlist' => [
                 'type' => 'Segment',
                 'options' => [
                     'route' => '/scripto[/s/:site-slug/:site-project-id]/user/:user-id/watchlist',
@@ -135,7 +135,7 @@ return [
                     ],
                 ],
             ],
-            'scripto-project' =>  [
+            'scripto-project' => [
                 'type' => 'Segment',
                 'options' => [
                     'route' => '/scripto[/s/:site-slug/:site-project-id]/project[/:action]',
@@ -151,7 +151,7 @@ return [
                     ],
                 ],
             ],
-            'scripto-project-id' =>  [
+            'scripto-project-id' => [
                 'type' => 'Segment',
                 'options' => [
                     'route' => '/scripto[/s/:site-slug/:site-project-id]/:project-id[/:action]',
@@ -168,7 +168,7 @@ return [
                     ],
                 ],
             ],
-            'scripto-item' =>  [
+            'scripto-item' => [
                 'type' => 'Segment',
                 'options' => [
                     'route' => '/scripto[/s/:site-slug/:site-project-id]/:project-id/item[/:action]',
@@ -185,7 +185,7 @@ return [
                     ],
                 ],
             ],
-            'scripto-item-id' =>  [
+            'scripto-item-id' => [
                 'type' => 'Segment',
                 'options' => [
                     'route' => '/scripto[/s/:site-slug/:site-project-id]/:project-id/:item-id[/:action]',
@@ -203,7 +203,7 @@ return [
                     ],
                 ],
             ],
-            'scripto-media' =>  [
+            'scripto-media' => [
                 'type' => 'Segment',
                 'options' => [
                     'route' => '/scripto[/s/:site-slug/:site-project-id]/:project-id/:item-id/media[/:action]',
@@ -221,7 +221,7 @@ return [
                     ],
                 ],
             ],
-            'scripto-media-id' =>  [
+            'scripto-media-id' => [
                 'type' => 'Segment',
                 'options' => [
                     'route' => '/scripto[/s/:site-slug/:site-project-id]/:project-id/:item-id/:media-id[/:action]',
@@ -240,7 +240,7 @@ return [
                     ],
                 ],
             ],
-            'scripto-revision' =>  [
+            'scripto-revision' => [
                 'type' => 'Segment',
                 'options' => [
                     'route' => '/scripto[/s/:site-slug/:site-project-id]/:project-id/:item-id/:media-id/revision[/:action]',
@@ -259,7 +259,7 @@ return [
                     ],
                 ],
             ],
-            'scripto-revision-id' =>  [
+            'scripto-revision-id' => [
                 'type' => 'Segment',
                 'options' => [
                     'route' => '/scripto[/s/:site-slug/:site-project-id]/:project-id/:item-id/:media-id/revision/:revision-id[/:action]',
@@ -279,7 +279,7 @@ return [
                     ],
                 ],
             ],
-            'scripto-revision-compare' =>  [
+            'scripto-revision-compare' => [
                 'type' => 'Segment',
                 'options' => [
                     'route' => '/scripto[/s/:site-slug/:site-project-id]/:project-id/:item-id/:media-id/revision/:from-revision-id/:to-revision-id[/:action]',
@@ -300,7 +300,7 @@ return [
                     ],
                 ],
             ],
-            'scripto-talk-media-id' =>  [
+            'scripto-talk-media-id' => [
                 'type' => 'Segment',
                 'options' => [
                     'route' => '/scripto[/s/:site-slug/:site-project-id]/:project-id/:item-id/:media-id/talk[/:action]',
@@ -319,7 +319,7 @@ return [
                     ],
                 ],
             ],
-            'scripto-talk-revision' =>  [
+            'scripto-talk-revision' => [
                 'type' => 'Segment',
                 'options' => [
                     'route' => '/scripto[/s/:site-slug/:site-project-id]/:project-id/:item-id/:media-id/talk/revision[/:action]',
@@ -338,7 +338,7 @@ return [
                     ],
                 ],
             ],
-            'scripto-talk-revision-id' =>  [
+            'scripto-talk-revision-id' => [
                 'type' => 'Segment',
                 'options' => [
                     'route' => '/scripto[/s/:site-slug/:site-project-id]/:project-id/:item-id/:media-id/talk/revision/:revision-id[/:action]',
@@ -358,7 +358,7 @@ return [
                     ],
                 ],
             ],
-            'scripto-talk-revision-compare' =>  [
+            'scripto-talk-revision-compare' => [
                 'type' => 'Segment',
                 'options' => [
                     'route' => '/scripto[/s/:site-slug/:site-project-id]/:project-id/:item-id/:media-id/talk/revision/:from-revision-id/:to-revision-id[/:action]',
@@ -395,7 +395,7 @@ return [
                             ],
                         ],
                     ],
-                    'scripto-user' =>  [
+                    'scripto-user' => [
                         'type' => 'Segment',
                         'options' => [
                             'route' => '/scripto/user',
@@ -409,7 +409,7 @@ return [
                             ],
                         ],
                     ],
-                    'scripto-user-contributions' =>  [
+                    'scripto-user-contributions' => [
                         'type' => 'Segment',
                         'options' => [
                             'route' => '/scripto/user/:user-id/contributions',
@@ -420,7 +420,7 @@ return [
                             ],
                         ],
                     ],
-                    'scripto-user-watchlist' =>  [
+                    'scripto-user-watchlist' => [
                         'type' => 'Segment',
                         'options' => [
                             'route' => '/scripto/user/:user-id/watchlist',
@@ -431,7 +431,7 @@ return [
                             ],
                         ],
                     ],
-                    'scripto-project' =>  [
+                    'scripto-project' => [
                         'type' => 'Segment',
                         'options' => [
                             'route' => '/scripto/project[/:action]',
@@ -445,7 +445,7 @@ return [
                             ],
                         ],
                     ],
-                    'scripto-project-id' =>  [
+                    'scripto-project-id' => [
                         'type' => 'Segment',
                         'options' => [
                             'route' => '/scripto/:project-id[/:action]',
@@ -460,7 +460,7 @@ return [
                             ],
                         ],
                     ],
-                    'scripto-item' =>  [
+                    'scripto-item' => [
                         'type' => 'Segment',
                         'options' => [
                             'route' => '/scripto/:project-id/item[/:action]',
@@ -475,7 +475,7 @@ return [
                             ],
                         ],
                     ],
-                    'scripto-item-id' =>  [
+                    'scripto-item-id' => [
                         'type' => 'Segment',
                         'options' => [
                             'route' => '/scripto/:project-id/:item-id[/:action]',
@@ -491,7 +491,7 @@ return [
                             ],
                         ],
                     ],
-                    'scripto-media' =>  [
+                    'scripto-media' => [
                         'type' => 'Segment',
                         'options' => [
                             'route' => '/scripto/:project-id/:item-id/media[/:action]',
@@ -507,7 +507,7 @@ return [
                             ],
                         ],
                     ],
-                    'scripto-media-id' =>  [
+                    'scripto-media-id' => [
                         'type' => 'Segment',
                         'options' => [
                             'route' => '/scripto/:project-id/:item-id/:media-id[/:revision-id][/:action]',
@@ -525,7 +525,7 @@ return [
                             ],
                         ],
                     ],
-                    'scripto-revision' =>  [
+                    'scripto-revision' => [
                         'type' => 'Segment',
                         'options' => [
                             'route' => '/scripto/:project-id/:item-id/:media-id/revision[/:action]',
@@ -542,7 +542,7 @@ return [
                             ],
                         ],
                     ],
-                    'scripto-revision-compare' =>  [
+                    'scripto-revision-compare' => [
                         'type' => 'Segment',
                         'options' => [
                             'route' => '/scripto/:project-id/:item-id/:media-id/revision/:from-revision-id/:to-revision-id[/:action]',
@@ -561,7 +561,7 @@ return [
                             ],
                         ],
                     ],
-                    'scripto-talk-media-id' =>  [
+                    'scripto-talk-media-id' => [
                         'type' => 'Segment',
                         'options' => [
                             'route' => '/scripto/:project-id/:item-id/:media-id/talk[/:revision-id][/:action]',
@@ -579,7 +579,7 @@ return [
                             ],
                         ],
                     ],
-                    'scripto-talk-revision' =>  [
+                    'scripto-talk-revision' => [
                         'type' => 'Segment',
                         'options' => [
                             'route' => '/scripto/:project-id/:item-id/:media-id/talk/revision[/:action]',
@@ -596,7 +596,7 @@ return [
                             ],
                         ],
                     ],
-                    'scripto-talk-revision-compare' =>  [
+                    'scripto-talk-revision-compare' => [
                         'type' => 'Segment',
                         'options' => [
                             'route' => '/scripto/:project-id/:item-id/:media-id/talk/revision/:from-revision-id/:to-revision-id[/:action]',

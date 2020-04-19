@@ -1,7 +1,6 @@
 <?php
 namespace Scripto\Controller\Admin;
 
-use Scripto\Form\RevisionRevertForm;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 

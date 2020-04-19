@@ -69,8 +69,8 @@ class Scripto extends AbstractHelper
         $this->apiClient = $apiClient;
         $this->formElementManager = $formElementManager;
         $this->routeMatch = $routeMatch;
-        $this->bcRouteMap = include('breadcrumbs_route_map.php');
-        $this->typeStringMap = include('type_string_map.php');
+        $this->bcRouteMap = include 'breadcrumbs_route_map.php';
+        $this->typeStringMap = include 'type_string_map.php';
     }
 
     /**
@@ -355,15 +355,15 @@ class Scripto extends AbstractHelper
         return sprintf(
             '<nav class="pagination" role="navigation">%s%s</nav>',
             $view->hyperlink('', $view->url(null, [], true), [
-                'class' => 'first o-icon-first button', 
-                'title' => $view->translate('First page'), 
-                'aria-label' => $view->translate('First page')
+                'class' => 'first o-icon-first button',
+                'title' => $view->translate('First page'),
+                'aria-label' => $view->translate('First page'),
             ]),
             $view->continue
                 ? $view->hyperlink('', $view->url(null, [], ['query' => ['continue' => $view->continue]], true), [
-                    'class' => 'next o-icon-next button', 
-                    'title' => $view->translate('Next page'), 
-                    'aria-label' => $view->translate('Next page')
+                    'class' => 'next o-icon-next button',
+                    'title' => $view->translate('Next page'),
+                    'aria-label' => $view->translate('Next page'),
                 ])
                 : '<span class="next o-icon-next button inactive"></span>'
         );

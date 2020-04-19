@@ -5,8 +5,6 @@ use Composer\Semver\Comparator;
 use DateTime;
 use Omeka\Module\AbstractModule;
 use Omeka\Mvc\Exception\RuntimeException as MvcRuntimeException;
-use Scripto\Form\ModuleConfigForm;
-use Scripto\Mediawiki\Exception\RequestException as MediawikiRequestException;
 use Scripto\PermissionsAssertion\ProjectIsPublicAssertion;
 use Scripto\PermissionsAssertion\UserCanReviewAssertion;
 use Scripto\PermissionsAssertion\UserOwnsProjectAssertion;
@@ -76,7 +74,7 @@ class Module extends AbstractModule
                     'o:namespace_uri' => 'http://scripto.org/vocab#',
                     'o:prefix' => 'scripto',
                     'o:label' => 'Scripto',
-                    'o:comment' =>  null,
+                    'o:comment' => null,
                 ],
                 [
                     'file' => __DIR__ . '/vocabs/scripto.n3',
@@ -634,7 +632,7 @@ class Module extends AbstractModule
                 foreach ($sItemEntities as $sItemEntity) {
                     $sItems[] = [
                         $sItemAdapter->getRepresentation($sItemEntity[0]),
-                        $sItemEntity[1]
+                        $sItemEntity[1],
                     ];
                 }
             }

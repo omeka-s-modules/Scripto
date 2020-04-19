@@ -15,7 +15,7 @@ class ItemController extends AbstractActionController
 
         $this->setBrowseDefaults(null);
         $query = $this->params()->fromQuery();
-        $query['scripto_project_id'] =  $this->params('project-id');
+        $query['scripto_project_id'] = $this->params('project-id');
         if ($project->filterApproved()
             && !isset($query['is_approved'])
             && !isset($query['is_not_approved'])
