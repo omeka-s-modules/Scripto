@@ -29,7 +29,7 @@ class SyncProject extends ScriptoJob
     public function syncProject(ScriptoProject $project)
     {
         if (!$project->getItemSet()) {
-            throw new Exception\RuntimeException('Cannot sync a project without an item set.');
+            throw new Exception\RuntimeException('Cannot sync a project without an item set.'); // @translate
         }
 
         $this->syncProjectItems($project);
