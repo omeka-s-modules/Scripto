@@ -2,6 +2,7 @@
 namespace Scripto\Job;
 
 use DateTime;
+use Doctrine\Common\Collections\Criteria;
 use Omeka\Entity\Item;
 use Omeka\Entity\Media;
 use Omeka\Job\Exception;
@@ -70,7 +71,6 @@ class SyncProject extends ScriptoJob
         $toDelete = array_diff($sItems, $oItems);
         $toCreate = array_diff($oItems, $sItems);
 
-        $sItemData = [];
         foreach ($toCreate as $itemId) {
             $sItem = new ScriptoItem;
             $sItem->setScriptoProject($project);
@@ -101,6 +101,7 @@ class SyncProject extends ScriptoJob
      */
     public function syncProjectMedia(ScriptoProject $project)
     {
+        /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getServiceLocator()->get('Omeka\EntityManager');
 
         // Iterate all Scripto items in the Scripto project.
@@ -136,14 +137,24 @@ class SyncProject extends ScriptoJob
             // a media will cascade delete all corresponding Scripto media.
             // Nevertheless, a bulk deletion will be necessary if the item/media
             // abstraction ever changes.
-            $query = $em->createQuery('
-                DELETE FROM Scripto\Entity\ScriptoMedia sm
-                WHERE sm.scriptoItem = :scripto_item_id
-                AND sm.id NOT IN (:scripto_media_ids)
-            ')->setParameters([
-                'scripto_item_id' => $sItemId,
-                'scripto_media_ids' => $sMediaIdsToRetain,
-            ]);
+            if ($sMediaIdsToRetain) {
+                $query = $em->createQuery('
+                    DELETE FROM Scripto\Entity\ScriptoMedia sm
+                    WHERE sm.scriptoItem = :scripto_item_id
+                    AND sm.id NOT IN (:scripto_media_ids)
+                ')->setParameters([
+                    'scripto_item_id' => $sItemId,
+                    'scripto_media_ids' => $sMediaIdsToRetain,
+                ]);
+            } else {
+                $query = $em->createQuery('
+                    DELETE FROM Scripto\Entity\ScriptoMedia sm
+                    WHERE sm.scriptoItem = :scripto_item_id
+                ')->setParameters([
+                    'scripto_item_id' => $sItemId,
+                ]);
+            }
+
             $query->execute();
 
             // Must flush the entity manager after deleting so newly persisted
@@ -193,10 +204,19 @@ class SyncProject extends ScriptoJob
      *
      * @param Item $item
      * @param ScriptoProject $project
-     * @return array
+     * @return \Doctrine\Common\Collections\ArrayCollection|array
      */
     public function getAllItemMedia(Item $item, ScriptoProject $project)
     {
-        return $item->getMedia();
+        $medias = $item->getMedia();
+        $mediaTypes = $project->getMediaTypes();
+        if ($mediaTypes) {
+            $mediaTypes[] = '';
+            $criteria = \Doctrine\Common\Collections\Criteria::create()
+                ->where(Criteria::expr()->isNull('mediaType'))
+                ->orWhere(Criteria::expr()->in('mediaType', $mediaTypes));
+            $medias = $medias->matching($criteria);
+        }
+        return $medias;
     }
 }

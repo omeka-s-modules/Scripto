@@ -1,9 +1,10 @@
 <?php
 namespace Scripto\Form;
 
-use Zend\Form\Form;
 use Omeka\Form\Element\ItemSetSelect;
 use Omeka\Form\Element\PropertySelect;
+use Scripto\Form\Element\MediaTypeSelect;
+use Zend\Form\Form;
 
 class ProjectForm extends Form
 {
@@ -51,6 +52,23 @@ class ProjectForm extends Form
                 'class' => 'chosen-select',
                 'data-placeholder' => 'Select a property', // @translate
                 'id' => 'o-property',
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'o-module-scripto:media_types',
+            'type' => MediaTypeSelect::class,
+            'options' => [
+                'label' => 'Media types', // @translate
+                'info' => 'Select media types to include in the project. If empty, all media will be included.', // @translate
+                'empty_option' => '',
+            ],
+            'attributes' => [
+                'id' => 'o-module-scripto-media_types',
+                'multiple' => true,
+                'required' => false,
+                'class' => 'chosen-select',
+                'data-placeholder' => 'Select media types', // @translate
             ],
         ]);
 
@@ -192,6 +210,13 @@ class ProjectForm extends Form
         ]);
 
         $inputFilter = $this->getInputFilter();
+        $inputFilter->add([
+            'name' => 'o-module-scripto:media_types',
+            'required' => false,
+            'filters' => [
+                ['name' => 'toNull'],
+            ],
+        ]);
         $inputFilter->add([
             'name' => 'o-module-scripto:description',
             'required' => false,

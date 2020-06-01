@@ -14,6 +14,18 @@
     <div class="value"><?php echo $itemSet ? $itemSet->link($itemSet->displayTitle()) : $this->translate('Not set'); ?></div>
 </div>
 <div class="meta-group">
+    <h4><?php echo $this->translate('Media types'); ?></h4>
+    <?php if ($mediaTypes = $project->mediaTypes()): ?>
+    <div class="value">
+    <?php foreach ($mediaTypes as $mediaType): ?>
+    <?php echo $mediaType; ?><br/>
+    <?php endforeach; ?>
+    </div>
+    <?php else: ?>
+    <div class="value"><?php echo $this->translate('All'); ?></div>
+    <?php endif; ?>
+</div>
+<div class="meta-group">
     <h4><?php echo $this->translate('Property'); ?></h4>
     <?php $property = $project->property(); ?>
     <div class="value"><?php echo $property ? sprintf('%s : %s', $property->vocabulary()->label(), $property->label()) : $this->translate('Not set'); ?></div>
