@@ -50,6 +50,15 @@ class ScriptoProject extends AbstractEntity
     protected $itemSet;
 
     /**
+     * @var array
+     * @Column(
+     *     type="json_array",
+     *     nullable=true
+     * )
+     */
+    protected $mediaTypes;
+
+    /**
      * @ManyToOne(
      *     targetEntity="Omeka\Entity\Property"
      * )
@@ -179,6 +188,16 @@ class ScriptoProject extends AbstractEntity
     public function getItemSet()
     {
         return $this->itemSet;
+    }
+
+    public function setMediaTypes(array $mediaTypes = null)
+    {
+        $this->mediaTypes = $mediaTypes;
+    }
+
+    public function getMediaTypes()
+    {
+        return $this->mediaTypes;
     }
 
     public function setProperty(Property $property = null)

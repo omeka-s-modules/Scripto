@@ -31,6 +31,7 @@ return [
     ],
     'form_elements' => [
         'factories' => [
+            'Scripto\Form\Element\MediaTypeSelect' => Scripto\Service\Form\Element\MediaTypeSelectFactory::class,
             'Scripto\Form\ModuleConfigForm' => Scripto\Service\Form\ModuleConfigFormFactory::class,
         ],
     ],

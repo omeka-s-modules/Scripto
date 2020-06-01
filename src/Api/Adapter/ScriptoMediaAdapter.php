@@ -31,12 +31,12 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
 
     public function getRepresentationClass()
     {
-        return 'Scripto\Api\Representation\ScriptoMediaRepresentation';
+        return \Scripto\Api\Representation\ScriptoMediaRepresentation::class;
     }
 
     public function getEntityClass()
     {
-        return 'Scripto\Entity\ScriptoMedia';
+        return \Scripto\Entity\ScriptoMedia::class;
     }
 
     public function create(Request $request)
@@ -204,7 +204,7 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
      * Get the previous Scripto media.
      *
      * @param ScriptoMedia
-     * @return ScriptoMediaRepresentation|null
+     * @return \Scripto\Api\Representation\ScriptoMediaRepresentation|null
      */
     public function getPreviousScriptoMedia(ScriptoMedia $sMedia)
     {
@@ -230,7 +230,7 @@ class ScriptoMediaAdapter extends AbstractEntityAdapter
      * Get the next Scripto media.
      *
      * @param ScriptoMedia
-     * @return ScriptoMediaRepresentation|null
+     * @return \Scripto\Api\Representation\ScriptoMediaRepresentation|null
      */
     public function getNextScriptoMedia(ScriptoMedia $sMedia)
     {

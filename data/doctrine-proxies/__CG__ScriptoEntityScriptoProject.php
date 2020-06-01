@@ -12,14 +12,14 @@ class ScriptoProject extends \Scripto\Entity\ScriptoProject implements \Doctrine
      *      three parameters, being respectively the proxy object to be initialized, the method that triggered the
      *      initialization process and an array of ordered parameters that were passed to that method.
      *
-     * @see \Doctrine\Common\Persistence\Proxy::__setInitializer
+     * @see \Doctrine\Common\Proxy\Proxy::__setInitializer
      */
     public $__initializer__;
 
     /**
      * @var \Closure the callback responsible of loading properties that need to be copied in the cloned object
      *
-     * @see \Doctrine\Common\Persistence\Proxy::__setCloner
+     * @see \Doctrine\Common\Proxy\Proxy::__setCloner
      */
     public $__cloner__;
 
@@ -34,7 +34,7 @@ class ScriptoProject extends \Scripto\Entity\ScriptoProject implements \Doctrine
      * @var array properties to be lazy loaded, with keys being the property
      *            names and values being their default values
      *
-     * @see \Doctrine\Common\Persistence\Proxy::__getLazyProperties
+     * @see \Doctrine\Common\Proxy\Proxy::__getLazyProperties
      */
     public static $lazyPropertiesDefaults = [];
 
@@ -64,10 +64,10 @@ class ScriptoProject extends \Scripto\Entity\ScriptoProject implements \Doctrine
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'owner', 'isPublic', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'guidelines', 'createAccountText', 'browseLayout', 'filterApproved', 'itemType', 'mediaType', 'contentType', 'created', 'synced', 'imported', 'reviewers'];
+            return ['__isInitialized__', 'id', 'owner', 'isPublic', 'itemSet', 'mediaTypes', 'property', 'lang', 'importTarget', 'title', 'description', 'guidelines', 'createAccountText', 'browseLayout', 'filterApproved', 'itemType', 'mediaType', 'contentType', 'created', 'synced', 'imported', 'reviewers'];
         }
 
-        return ['__isInitialized__', 'id', 'owner', 'isPublic', 'itemSet', 'property', 'lang', 'importTarget', 'title', 'description', 'guidelines', 'createAccountText', 'browseLayout', 'filterApproved', 'itemType', 'mediaType', 'contentType', 'created', 'synced', 'imported', 'reviewers'];
+        return ['__isInitialized__', 'id', 'owner', 'isPublic', 'itemSet', 'mediaTypes', 'property', 'lang', 'importTarget', 'title', 'description', 'guidelines', 'createAccountText', 'browseLayout', 'filterApproved', 'itemType', 'mediaType', 'contentType', 'created', 'synced', 'imported', 'reviewers'];
     }
 
     /**
@@ -252,6 +252,28 @@ class ScriptoProject extends \Scripto\Entity\ScriptoProject implements \Doctrine
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getItemSet', []);
 
         return parent::getItemSet();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setMediaTypes(array $mediaTypes = NULL)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setMediaTypes', [$mediaTypes]);
+
+        return parent::setMediaTypes($mediaTypes);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getMediaTypes()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMediaTypes', []);
+
+        return parent::getMediaTypes();
     }
 
     /**
