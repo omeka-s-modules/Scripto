@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-01 16:27-0400\n"
+"POT-Creation-Date: 2020-06-01 14:10-0400\n"
 "PO-Revision-Date: 2018-11-27 19:38+0000\n"
 "Last-Translator: Carlos Rivera <Robertohernande9z9@hotmail.com>, 2019\n"
 "Language-Team: Spanish (https://www.transifex.com/omeka/teams/14184/es/)\n"
@@ -22,13 +22,13 @@ msgstr ""
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: Module.php:422
+#: Module.php:423
 msgid "Cannot access Scripto. Missing MediaWiki API URL."
 msgstr ""
 "No se puede acceder a Scripto. Está ausente la dirección URL de la API de "
 "MediaWiki."
 
-#: Module.php:454
+#: Module.php:455
 #, php-format
 msgid ""
 "The MediaWiki user does not have the necessary permissions to create the "
@@ -37,7 +37,7 @@ msgstr ""
 "El usuario MediaWiki no tiene los permisos necesarios para crear la página "
 "\"%s\""
 
-#: Module.php:460
+#: Module.php:461
 #, php-format
 msgid ""
 "The MediaWiki user does not have the necessary permissions to edit the page "
@@ -301,7 +301,7 @@ msgstr "Volver a inicio"
 #: view/scripto/admin/imported-scripto-item.phtml:8
 #: view/scripto/admin/imported-scripto-media.phtml:8
 #: view/scripto/admin/project/show-details.phtml:14
-#: view/scripto/admin/project/show-details.phtml:19
+#: view/scripto/admin/project/show-details.phtml:31
 msgid "Not set"
 msgstr "No establecido"
 
@@ -587,7 +587,7 @@ msgstr "Posición"
 #: view/scripto/admin/media/show-details.phtml:33
 #: view/scripto/admin/project/browse.phtml:36
 #: view/scripto/admin/project/browse.phtml:56
-#: view/scripto/admin/project/show-details.phtml:73
+#: view/scripto/admin/project/show-details.phtml:85
 msgid "Last synced"
 msgstr "Ultima sincronización"
 
@@ -645,6 +645,11 @@ msgstr "¿Necesita sincronizar el proyecto?"
 #: view/scripto/admin/media/browse.phtml:178
 msgid "The Omeka item has no metadata."
 msgstr "El item Omeka no tiene metadatos."
+
+#: view/scripto/admin/media/show-details.phtml:24
+#, php-format
+msgid "%s; expiring %s"
+msgstr ""
 
 #: view/scripto/admin/media/show-details.phtml:28
 msgid "never"
@@ -886,14 +891,14 @@ msgstr "Revisores"
 
 #: view/scripto/admin/project/browse.phtml:32
 #: view/scripto/admin/project/browse.phtml:55
-#: view/scripto/admin/project/show-details.phtml:69
+#: view/scripto/admin/project/show-details.phtml:81
 #: view/scripto/admin/user/browse.phtml:24
 msgid "Date created"
 msgstr "Fecha de creación"
 
 #: view/scripto/admin/project/browse.phtml:40
 #: view/scripto/admin/project/browse.phtml:57
-#: view/scripto/admin/project/show-details.phtml:78
+#: view/scripto/admin/project/show-details.phtml:90
 msgid "Last imported"
 msgstr "Ultima importación"
 
@@ -914,51 +919,55 @@ msgstr "Clic sobre un usuario para agregarlo al proyecto."
 msgid "Project metadata"
 msgstr "Metadatos del proyecto"
 
-#: view/scripto/admin/project/show-details.phtml:22
+#: view/scripto/admin/project/show-details.phtml:17
+msgid "Media types"
+msgstr ""
+
+#: view/scripto/admin/project/show-details.phtml:34
 msgid "Language tag"
 msgstr "Etiqueta Idioma"
 
-#: view/scripto/admin/project/show-details.phtml:26
+#: view/scripto/admin/project/show-details.phtml:38
 msgid "Import target"
 msgstr "Importar objeto"
 
-#: view/scripto/admin/project/show-details.phtml:33
+#: view/scripto/admin/project/show-details.phtml:45
 msgid "Item and media"
 msgstr "Elemento y medio"
 
-#: view/scripto/admin/project/show-details.phtml:38
+#: view/scripto/admin/project/show-details.phtml:50
 msgid "Browse layout"
 msgstr "Navegar diseños"
 
-#: view/scripto/admin/project/show-details.phtml:41
+#: view/scripto/admin/project/show-details.phtml:53
 #: view/scripto/public-app/item/browse.phtml:36
 #: view/scripto/public-app/media/browse.phtml:15
 msgid "List"
 msgstr "Lista"
 
-#: view/scripto/admin/project/show-details.phtml:43
+#: view/scripto/admin/project/show-details.phtml:55
 #: view/scripto/public-app/item/browse.phtml:37
 #: view/scripto/public-app/media/browse.phtml:16
 msgid "Grid"
 msgstr "Cuadrícula"
 
-#: view/scripto/admin/project/show-details.phtml:48
+#: view/scripto/admin/project/show-details.phtml:60
 msgid "Item type"
 msgstr "Tipo de item"
 
-#: view/scripto/admin/project/show-details.phtml:52
+#: view/scripto/admin/project/show-details.phtml:64
 msgid "Media type"
 msgstr "Media"
 
-#: view/scripto/admin/project/show-details.phtml:56
+#: view/scripto/admin/project/show-details.phtml:68
 msgid "Content type"
 msgstr "Tipo de contenido"
 
-#: view/scripto/admin/project/show-details.phtml:75
+#: view/scripto/admin/project/show-details.phtml:87
 msgid "Not synced"
 msgstr "No sincronizado"
 
-#: view/scripto/admin/project/show-details.phtml:80
+#: view/scripto/admin/project/show-details.phtml:92
 msgid "Not imported"
 msgstr "No importada"
 
@@ -1243,6 +1252,22 @@ msgstr "Revisar elemento"
 msgid "Review media"
 msgstr "Revisar medios"
 
+#: src/ViewHelper/Scripto.php:517 src/ViewHelper/type_string_map.php:404
+msgid "Stop tracking media"
+msgstr "Detener seguimiento de medio"
+
+#: src/ViewHelper/Scripto.php:519
+msgid "Track media"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:521 src/ViewHelper/type_string_map.php:422
+msgid "Now tracking media"
+msgstr "Siguiendo medio"
+
+#: src/ViewHelper/Scripto.php:522
+msgid "No longer tracking media"
+msgstr ""
+
 #: src/ViewHelper/type_string_map.php:7
 msgid "Documents"
 msgstr "Documentos"
@@ -1256,12 +1281,12 @@ msgid "Books"
 msgstr "Libros"
 
 #: src/ViewHelper/type_string_map.php:10 src/ViewHelper/type_string_map.php:19
-#: src/Form/ProjectForm.php:149
+#: src/Form/ProjectForm.php:167
 msgid "Audio"
 msgstr "Audio"
 
 #: src/ViewHelper/type_string_map.php:11 src/ViewHelper/type_string_map.php:20
-#: src/Form/ProjectForm.php:155
+#: src/Form/ProjectForm.php:173
 msgid "Video"
 msgstr "Video"
 
@@ -1273,7 +1298,7 @@ msgstr "Papeles"
 msgid "Journals"
 msgstr "Revistas"
 
-#: src/ViewHelper/type_string_map.php:21 src/Form/ProjectForm.php:154
+#: src/ViewHelper/type_string_map.php:21 src/Form/ProjectForm.php:172
 msgid "Paper"
 msgstr "Papel"
 
@@ -1637,23 +1662,23 @@ msgstr "Hojas"
 msgid "Entries"
 msgstr "Entradas"
 
-#: src/ViewHelper/type_string_map.php:131 src/Form/ProjectForm.php:172
+#: src/ViewHelper/type_string_map.php:131 src/Form/ProjectForm.php:190
 msgid "Section"
 msgstr "Sección"
 
-#: src/ViewHelper/type_string_map.php:132 src/Form/ProjectForm.php:173
+#: src/ViewHelper/type_string_map.php:132 src/Form/ProjectForm.php:191
 msgid "Segment"
 msgstr "Segmento"
 
-#: src/ViewHelper/type_string_map.php:133 src/Form/ProjectForm.php:169
+#: src/ViewHelper/type_string_map.php:133 src/Form/ProjectForm.php:187
 msgid "Folio"
 msgstr "Folio"
 
-#: src/ViewHelper/type_string_map.php:134 src/Form/ProjectForm.php:174
+#: src/ViewHelper/type_string_map.php:134 src/Form/ProjectForm.php:192
 msgid "Sheet"
 msgstr "Hoja"
 
-#: src/ViewHelper/type_string_map.php:135 src/Form/ProjectForm.php:168
+#: src/ViewHelper/type_string_map.php:135 src/Form/ProjectForm.php:186
 msgid "Entry"
 msgstr "Entrada"
 
@@ -2153,7 +2178,7 @@ msgstr "Scripto: Hoja"
 msgid "Scripto: Entry"
 msgstr "Scripto: Entrada"
 
-#: src/ViewHelper/type_string_map.php:273 src/Form/MediaForm.php:32
+#: src/ViewHelper/type_string_map.php:273 src/Form/MediaForm.php:31
 msgid "Mark media as not complete"
 msgstr "Marcar los medios como no completos"
 
@@ -2217,7 +2242,7 @@ msgstr "Marcar hoja como completa"
 msgid "Mark entry as complete"
 msgstr "Marcar entrada como completa"
 
-#: src/ViewHelper/type_string_map.php:291 src/Form/MediaForm.php:57
+#: src/ViewHelper/type_string_map.php:291 src/Form/MediaForm.php:56
 msgid "Mark media as not approved"
 msgstr "Marcar medio como no aprobado"
 
@@ -2640,10 +2665,6 @@ msgstr "Comentarios de %s:  Hojas # %s"
 msgid "Notes of %s: Entry #%s"
 msgstr "Comentarios de %s: Entradas # %s"
 
-#: src/ViewHelper/type_string_map.php:404
-msgid "Stop tracking media"
-msgstr "Detener seguimiento de medio"
-
 #: src/ViewHelper/type_string_map.php:405
 msgid "Stop tracking page"
 msgstr "Detener seguimiento de página"
@@ -2703,10 +2724,6 @@ msgstr "Ver hoja"
 #: src/ViewHelper/type_string_map.php:420
 msgid "Watch entry"
 msgstr "Ver entrada"
-
-#: src/ViewHelper/type_string_map.php:422
-msgid "Now tracking media"
-msgstr "Siguiendo medio"
 
 #: src/ViewHelper/type_string_map.php:423
 msgid "Now tracking page"
@@ -2770,13 +2787,13 @@ msgstr "Ya no dar seguimiento a entrada"
 
 #: src/ViewHelper/type_string_map.php:445
 #: src/ViewHelper/type_string_map.php:465
-#: src/ViewHelper/type_string_map.php:470 src/Form/ProjectForm.php:188
+#: src/ViewHelper/type_string_map.php:470 src/Form/ProjectForm.php:206
 msgid "Transcription"
 msgstr "Transcripción"
 
 #: src/ViewHelper/type_string_map.php:446
 #: src/ViewHelper/type_string_map.php:466
-#: src/ViewHelper/type_string_map.php:471 src/Form/ProjectForm.php:189
+#: src/ViewHelper/type_string_map.php:471 src/Form/ProjectForm.php:207
 msgid "Translation"
 msgstr "Traducción"
 
@@ -2828,25 +2845,41 @@ msgstr "Sin transcripción"
 msgid "No translation"
 msgstr "Sin traducción"
 
+#: src/Service/Form/Element/MediaTypeSelectFactory.php:17
+msgid "Select media type…"
+msgstr ""
+
+#: src/Job/ImportProject.php:35
+msgid "Cannot import a project without a property."
+msgstr ""
+
+#: src/Job/SyncProject.php:33
+msgid "Cannot sync a project without an item set."
+msgstr ""
+
+#: src/Job/ScriptoJob.php:73
+msgid "Cannot unimport a project without a property."
+msgstr ""
+
 #: src/Api/Representation/ScriptoItemRepresentation.php:11
-#: src/Api/Representation/ScriptoMediaRepresentation.php:15
+#: src/Api/Representation/ScriptoMediaRepresentation.php:12
 msgid "New"
 msgstr "Nuevo"
 
 #: src/Api/Representation/ScriptoItemRepresentation.php:12
-#: src/Api/Representation/ScriptoMediaRepresentation.php:16
+#: src/Api/Representation/ScriptoMediaRepresentation.php:13
 msgid "In progress"
 msgstr "En progreso"
 
-#: src/Api/Representation/ScriptoMediaRepresentation.php:468
+#: src/Api/Representation/ScriptoMediaRepresentation.php:465
 msgid "Confirmed only"
 msgstr "Solo confirmados"
 
-#: src/Api/Representation/ScriptoMediaRepresentation.php:471
+#: src/Api/Representation/ScriptoMediaRepresentation.php:468
 msgid "Admin only"
 msgstr "Solo Administrador"
 
-#: src/Api/Representation/ScriptoMediaRepresentation.php:484
+#: src/Api/Representation/ScriptoMediaRepresentation.php:481
 msgid "Open to all"
 msgstr "Abrir todos"
 
@@ -2902,7 +2935,7 @@ msgstr "Un conjunto de elementos debe poseer un ID"
 msgid "A property must have an ID"
 msgstr "Una propiedad debe poser una ID"
 
-#: src/Api/Adapter/ScriptoProjectAdapter.php:174
+#: src/Api/Adapter/ScriptoProjectAdapter.php:177
 msgid "A Scripto project title must not be null"
 msgstr "Titulo de proyecto Scripto no puede ser nulo"
 
@@ -2971,11 +3004,11 @@ msgstr ""
 "Su cuenta Scripto ha sido creada! Por favor, compruebe su correo electrónico"
 " el cual contiene un enlace para activar su cuenta."
 
-#: src/Form/ProjectForm.php:17
+#: src/Form/ProjectForm.php:18
 msgid "Enter the title of this project."
 msgstr "Ingrese el título para este proyecto."
 
-#: src/Form/ProjectForm.php:30
+#: src/Form/ProjectForm.php:31
 msgid ""
 "Select the item set used to synchronize project items. Once synchronized, "
 "this project will contain every item in this item set."
@@ -2984,63 +3017,73 @@ msgstr ""
 "elementos del proyecto.  Una vez sincronizado, el proyecto contendrá todos "
 "los elementos dentro del conjunto de elementos"
 
-#: src/Form/ProjectForm.php:36
+#: src/Form/ProjectForm.php:37
 msgid "Select an item set"
 msgstr "Seleccionar un conjunto de elementos"
 
-#: src/Form/ProjectForm.php:46
+#: src/Form/ProjectForm.php:47
 msgid "Select the property used to store imported content."
 msgstr "Seleccione la propiedad usada para guardar el contenido importado."
 
-#: src/Form/ProjectForm.php:62
+#: src/Form/ProjectForm.php:63
+msgid ""
+"Select media types to include in the project. If empty, all media will be "
+"included."
+msgstr ""
+
+#: src/Form/ProjectForm.php:71
+msgid "Select media types"
+msgstr ""
+
+#: src/Form/ProjectForm.php:80
 msgid "Enter the description of this project."
 msgstr "Ingrese la descripción de este proyecto."
 
-#: src/Form/ProjectForm.php:73
+#: src/Form/ProjectForm.php:91
 msgid "Guidelines"
 msgstr "Guías"
 
-#: src/Form/ProjectForm.php:74
+#: src/Form/ProjectForm.php:92
 msgid "Enter guidelines for producing content for this project."
 msgstr ""
 "Introduzca las guías para la producción de contenido para este proyecto."
 
-#: src/Form/ProjectForm.php:85
+#: src/Form/ProjectForm.php:103
 msgid "Create account text"
 msgstr ""
 
-#: src/Form/ProjectForm.php:86
+#: src/Form/ProjectForm.php:104
 msgid "Enter text for the create account page of this project."
 msgstr ""
 
-#: src/Form/ProjectForm.php:98
+#: src/Form/ProjectForm.php:116
 msgid "Enter the language of your content using an IETF language tag."
 msgstr "Ingrese el idioma del contenido usando una etiqueta de idioma IETF"
 
-#: src/Form/ProjectForm.php:124
+#: src/Form/ProjectForm.php:142
 msgid "Select the default layout for public browse views."
 msgstr ""
 "Seleccione el diseño predeterminado en las vistas de exploración públicas."
 
-#: src/Form/ProjectForm.php:136
+#: src/Form/ProjectForm.php:154
 msgid "Filter approved"
 msgstr ""
 
-#: src/Form/ProjectForm.php:137
+#: src/Form/ProjectForm.php:155
 msgid "Filter out approved items from the public browse view."
 msgstr ""
 
-#: src/Form/ProjectForm.php:146
+#: src/Form/ProjectForm.php:164
 msgid ""
-"Select the type of item convered by this project. This is used to clarify "
-"the interface, if needed."
+"Select the type of item covered by this project. This is used to clarify the"
+" interface, if needed."
 msgstr ""
 
-#: src/Form/ProjectForm.php:147
+#: src/Form/ProjectForm.php:165
 msgid "Generic item"
 msgstr "Item genérico"
 
-#: src/Form/ProjectForm.php:165
+#: src/Form/ProjectForm.php:183
 msgid ""
 "Select the type of media covered by this project. This is used to clarify "
 "the interface, if needed."
@@ -3048,17 +3091,17 @@ msgstr ""
 "Seleccione el tipo de medio ha tratar para este proyecto. Esto se utiliza "
 "para aclarar la interfaz, si es necesario."
 
-#: src/Form/ProjectForm.php:166
+#: src/Form/ProjectForm.php:184
 msgid "Generic media"
 msgstr "Medio genérico"
 
-#: src/Form/ProjectForm.php:184
+#: src/Form/ProjectForm.php:202
 msgid ""
-"Select the type of content convered by this project. This is used to clarify"
-" the interface, if needed."
+"Select the type of content covered by this project. This is used to clarify "
+"the interface, if needed."
 msgstr ""
 
-#: src/Form/ProjectForm.php:185
+#: src/Form/ProjectForm.php:203
 msgid "Generic content"
 msgstr "Contenido genérico"
 
@@ -3066,7 +3109,7 @@ msgstr "Contenido genérico"
 msgid "Log out"
 msgstr "Desconectarse"
 
-#: src/Form/ScriptoLoginForm.php:15 src/Form/CreateAccountForm.php:15
+#: src/Form/ScriptoLoginForm.php:15 src/Form/CreateAccountForm.php:14
 msgid "Username"
 msgstr "Nombre de usuario"
 
@@ -3074,15 +3117,15 @@ msgstr "Nombre de usuario"
 msgid "Unimport project"
 msgstr "Deshacer proyecto"
 
-#: src/Form/CreateAccountForm.php:45
+#: src/Form/CreateAccountForm.php:44
 msgid "Email address"
 msgstr "Dirección de correo electrónico"
 
-#: src/Form/CreateAccountForm.php:55
+#: src/Form/CreateAccountForm.php:54
 msgid "Real name"
 msgstr "Nombre real"
 
-#: src/Form/CreateAccountForm.php:62
+#: src/Form/CreateAccountForm.php:61
 msgid "Create your account"
 msgstr "Crear una cuenta"
 
@@ -3090,115 +3133,115 @@ msgstr "Crear una cuenta"
 msgid "Confirm reversion"
 msgstr "Confirmar revisión"
 
-#: src/Form/MediaForm.php:15
+#: src/Form/MediaForm.php:14
 msgid "Toggle complete"
 msgstr ""
 
-#: src/Form/MediaForm.php:28
+#: src/Form/MediaForm.php:27
 msgid "Complete action"
 msgstr "Acción completa"
 
-#: src/Form/MediaForm.php:29 src/Form/MediaForm.php:54
+#: src/Form/MediaForm.php:28 src/Form/MediaForm.php:53
 msgid "Select action:"
 msgstr "Seleccionar acción:"
 
-#: src/Form/MediaForm.php:40
+#: src/Form/MediaForm.php:39
 msgid "Toggle approved"
 msgstr "Intercambiar aprobados"
 
-#: src/Form/MediaForm.php:53
+#: src/Form/MediaForm.php:52
 msgid "Approved action"
 msgstr "Acción aprobada."
 
-#: src/Form/MediaForm.php:65 src/Form/MediaBatchForm.php:45
+#: src/Form/MediaForm.php:64 src/Form/MediaBatchForm.php:44
 msgid "Protection level"
 msgstr "Nivel de protección"
 
-#: src/Form/MediaForm.php:67 src/Form/MediaBatchForm.php:48
+#: src/Form/MediaForm.php:66 src/Form/MediaBatchForm.php:47
 msgid "Allow all users"
 msgstr "Permitir a todos los usuarios"
 
-#: src/Form/MediaForm.php:68 src/Form/MediaBatchForm.php:49
+#: src/Form/MediaForm.php:67 src/Form/MediaBatchForm.php:48
 msgid "Allow only confirmed users"
 msgstr "Permitir solo usuarios confirmados"
 
-#: src/Form/MediaForm.php:69 src/Form/MediaBatchForm.php:50
+#: src/Form/MediaForm.php:68 src/Form/MediaBatchForm.php:49
 msgid "Allow only administrators"
 msgstr "Permitir solo a los administradores"
 
-#: src/Form/MediaForm.php:80 src/Form/MediaBatchForm.php:58
+#: src/Form/MediaForm.php:79 src/Form/MediaBatchForm.php:57
 msgid "Protection expiry"
 msgstr "Vencimiento de la protección"
 
-#: src/Form/MediaForm.php:82 src/Form/MediaBatchForm.php:60
+#: src/Form/MediaForm.php:81 src/Form/MediaBatchForm.php:59
 msgid "infinite"
 msgstr "infinito"
 
-#: src/Form/MediaForm.php:83 src/Form/MediaBatchForm.php:61
+#: src/Form/MediaForm.php:82 src/Form/MediaBatchForm.php:60
 msgid "1 hour"
 msgstr "1 hora"
 
-#: src/Form/MediaForm.php:85 src/Form/MediaBatchForm.php:63
+#: src/Form/MediaForm.php:84 src/Form/MediaBatchForm.php:62
 msgid "1 week"
 msgstr "1 semana"
 
-#: src/Form/MediaForm.php:86 src/Form/MediaBatchForm.php:64
+#: src/Form/MediaForm.php:85 src/Form/MediaBatchForm.php:63
 msgid "2 weeks"
 msgstr "2 años"
 
-#: src/Form/MediaForm.php:87 src/Form/MediaBatchForm.php:65
+#: src/Form/MediaForm.php:86 src/Form/MediaBatchForm.php:64
 msgid "1 month"
 msgstr "1 mes"
 
-#: src/Form/MediaForm.php:88 src/Form/MediaBatchForm.php:66
+#: src/Form/MediaForm.php:87 src/Form/MediaBatchForm.php:65
 msgid "3 months"
 msgstr "3 meses"
 
-#: src/Form/MediaForm.php:89 src/Form/MediaBatchForm.php:67
+#: src/Form/MediaForm.php:88 src/Form/MediaBatchForm.php:66
 msgid "6 months"
 msgstr "6 meses"
 
-#: src/Form/MediaForm.php:90 src/Form/MediaBatchForm.php:68
+#: src/Form/MediaForm.php:89 src/Form/MediaBatchForm.php:67
 msgid "1 year"
 msgstr "1 año"
 
-#: src/Form/MediaPublicAppForm.php:25
+#: src/Form/MediaPublicAppForm.php:24
 msgid "Change summary"
 msgstr "Cambiar resumen"
 
-#: src/Form/MediaPublicAppForm.php:27
+#: src/Form/MediaPublicAppForm.php:26
 msgid "Summarize your changes"
 msgstr "Resuma los cambios"
 
-#: src/Form/MediaPublicAppForm.php:35
+#: src/Form/MediaPublicAppForm.php:34
 msgid "Mark complete"
 msgstr "Marcar completado"
 
-#: src/Form/MediaBatchForm.php:15
+#: src/Form/MediaBatchForm.php:14
 msgid "Completion status"
 msgstr "Estado de terminación"
 
-#: src/Form/MediaBatchForm.php:17
+#: src/Form/MediaBatchForm.php:16
 msgid "Complete"
 msgstr "Completo"
 
-#: src/Form/MediaBatchForm.php:18
+#: src/Form/MediaBatchForm.php:17
 msgid "Incomplete"
 msgstr "Incompleto"
 
-#: src/Form/MediaBatchForm.php:30
+#: src/Form/MediaBatchForm.php:29
 msgid "Approval status"
 msgstr "Estado de aprobación"
 
-#: src/Form/MediaBatchForm.php:76
+#: src/Form/MediaBatchForm.php:75
 msgid "Watchlist status"
 msgstr "Estado de la lista de seguimiento"
 
-#: src/Form/MediaBatchForm.php:78
+#: src/Form/MediaBatchForm.php:77
 msgid "Watch"
 msgstr "Ver"
 
-#: src/Form/MediaBatchForm.php:79
+#: src/Form/MediaBatchForm.php:78
 msgid "Unwatch"
 msgstr ""
 
