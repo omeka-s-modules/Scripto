@@ -21,7 +21,7 @@
     <div class="value"><?php
         $editAccess = $sMedia->editAccess(0);
         echo sprintf(
-            '%s; expiring %s',
+            $this->translate('%s; expiring %s'),
             $this->translate($editAccess['label']),
             $editAccess['expiry']
                 ? $this->i18n()->dateFormat($editAccess['expiry'], 'short', 'short')

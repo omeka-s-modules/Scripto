@@ -70,7 +70,7 @@ abstract class ScriptoJob extends AbstractJob
     public function unimportProject(ScriptoProject $project)
     {
         if (!$project->getProperty()) {
-            throw new Exception\RuntimeException('Cannot unimport a project without a property.');
+            throw new Exception\RuntimeException('Cannot unimport a project without a property.'); // @translate
         }
 
         $em = $this->getServiceLocator()->get('Omeka\EntityManager');

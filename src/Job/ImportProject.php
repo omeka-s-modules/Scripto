@@ -32,7 +32,7 @@ class ImportProject extends ScriptoJob
     public function importProject(ScriptoProject $project)
     {
         if (!$project->getProperty()) {
-            throw new Exception\RuntimeException('Cannot import a project without a property.');
+            throw new Exception\RuntimeException('Cannot import a project without a property.'); // @translate
         }
 
         $em = $this->getServiceLocator()->get('Omeka\EntityManager');

@@ -224,15 +224,15 @@ class Scripto extends AbstractHelper
             ));
             return sprintf(
                 '<div id="scripto-login"><h3>%s | %s | %s | %s</h3>%s</div>',
-                sprintf($view->translate('Logged in to Scripto as %s'), $userInfo['name']),
+                sprintf($view->translate('Logged in to Scripto as %s'), $userInfo['name']), // @translate
                 'admin/scripto' === $routeName
-                    ? $view->translate('Dashboard')
+                    ? $view->translate('Dashboard') // @translate
                     : $view->hyperlink($view->translate('Dashboard'), $view->url('admin/scripto')),
                 'admin/scripto-user-contributions' === $routeName
-                    ? $view->translate('Contributions')
+                    ? $view->translate('Contributions') // @translate
                     : $view->hyperlink($view->translate('Contributions'), $view->url('admin/scripto-user-contributions', ['user-id' => $userInfo['name']])),
                 'admin/scripto-user-watchlist' === $routeName
-                    ? $view->translate('Watchlist')
+                    ? $view->translate('Watchlist') // @translate
                     : $view->hyperlink($view->translate('Watchlist'), $view->url('admin/scripto-user-watchlist', ['user-id' => $userInfo['name']])),
                 $view->form($form)
             );
@@ -245,7 +245,7 @@ class Scripto extends AbstractHelper
             ));
             return sprintf(
                 '<div id="scripto-login"><h3>%s</h3>%s</div>',
-                $view->translate('Log in to Scripto'),
+                $view->translate('Log in to Scripto'), // @translate
                 $view->form($form)
             );
         }
@@ -278,7 +278,7 @@ class Scripto extends AbstractHelper
                     </ul>
                 </div>
                 %s',
-                $view->translate('User menu'),
+                $view->translate('User menu'), // @translate
                 sprintf($view->translate('Logged in to Scripto as %s'), sprintf('<span class="username">%s</span>', $userInfo['name'])),
                 $view->hyperlink($view->translate('Dashboard'), $view->url('scripto', ['action' => 'index'], true)),
                 $view->hyperlink($view->translate('Contributions'), $view->url('scripto-user-contributions', ['action' => 'contributions', 'user-id' => $userInfo['name']], true)),
@@ -356,14 +356,14 @@ class Scripto extends AbstractHelper
             '<nav class="pagination" role="navigation">%s%s</nav>',
             $view->hyperlink('', $view->url(null, [], true), [
                 'class' => 'first o-icon-first button',
-                'title' => $view->translate('First page'),
-                'aria-label' => $view->translate('First page'),
+                'title' => $view->translate('First page'), // @translate
+                'aria-label' => $view->translate('First page'), // @translate
             ]),
             $view->continue
                 ? $view->hyperlink('', $view->url(null, [], ['query' => ['continue' => $view->continue]], true), [
                     'class' => 'next o-icon-next button',
-                    'title' => $view->translate('Next page'),
-                    'aria-label' => $view->translate('Next page'),
+                    'title' => $view->translate('Next page'), // @translate
+                    'aria-label' => $view->translate('Next page'), // @translate
                 ])
                 : '<span class="next o-icon-next button inactive"></span>'
         );
@@ -450,7 +450,7 @@ class Scripto extends AbstractHelper
 HTML;
         return sprintf(
             $html,
-            $view->translate('Period of time to display:'),
+            $view->translate('Period of time to display:'), // @translate
             $view->escapeHtml($view->url(null, [], true)),
             implode(PHP_EOL, $options)
         );
@@ -467,8 +467,8 @@ HTML;
         return sprintf(
             '<form id="scripto-search"><input type="text" name="search" value="%s" aria-label="%s"><button type="submit" aria-label="%s" class="o-icon-search"></button></form>',
             $view->escapeHtml($view->params()->fromQuery('search')),
-            $view->translate('Query'),
-            $view->translate('Search')
+            $view->translate('Query'), // @translate
+            $view->translate('Search') // @translate
         );
     }
 
@@ -490,7 +490,7 @@ HTML;
     /**
      * Render the wtchlist toggle form.
      *
-     * @param ScriptoMediaRepresentation $sMedia
+     * @param \Scripto\Api\Representation\ScriptoMediaRepresentation $sMedia
      * @return string
      */
     public function watchlistToggle($sMedia)
@@ -514,12 +514,12 @@ HTML;
             $html,
             $view->escapeHtml($view->url(null, ['action' => 'watch'], true)),
             $view->escapeHtml($userIsWatching),
-            $view->scripto()->translate($view->project->mediaType(), 'Stop tracking media'),
+            $view->scripto()->translate($view->project->mediaType(), 'Stop tracking media'), // @translate
             $userIsWatching ? null : $view->escapeHtml('display: none;'),
-            $view->scripto()->translate($view->project->mediaType(), 'Track media'),
+            $view->scripto()->translate($view->project->mediaType(), 'Track media'), // @translate
             $userIsWatching ? $view->escapeHtml('display: none;') : null,
-            $view->scripto()->translate($view->project->mediaType(), 'Now tracking media'),
-            $view->scripto()->translate($view->project->mediaType(), 'No longer tracking media')
+            $view->scripto()->translate($view->project->mediaType(), 'Now tracking media'), // @translate
+            $view->scripto()->translate($view->project->mediaType(), 'No longer tracking media') // @translate
         );
     }
 
@@ -569,7 +569,7 @@ HTML;
             $options[$project->id()] = $project->title();
         }
         $select = new Element\Select($name);
-        $select->setEmptyOption($view->translate('Select one'));
+        $select->setEmptyOption($view->translate('Select one')); // @translate
         $select->setValueOptions($options);
         $select->setValue($value);
         return $select;
