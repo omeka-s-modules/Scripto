@@ -54,9 +54,9 @@ class ModuleConfigForm extends Form
                             Callback::INVALID_VALUE => sprintf(
                                 'Invalid MediaWiki API. The URL must resolve to a MediaWiki API endpoint and the MediaWiki version must be %s or greater.', // @translate
                                 ApiClient::MINIMUM_VERSION
-                            )
+                            ),
                         ],
-                        'callback' => [$this, 'apiIsValid']
+                        'callback' => [$this, 'apiIsValid'],
                     ],
                 ],
             ],

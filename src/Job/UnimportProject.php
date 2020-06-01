@@ -1,11 +1,6 @@
 <?php
 namespace Scripto\Job;
 
-use DateTime;
-use Omeka\Entity\Value;
-use Scripto\Entity\ScriptoProject;
-use Scripto\Mediawiki\Exception\ParseException;
-
 /**
  * Unimport project content from Omeka items.
  */

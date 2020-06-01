@@ -1,6 +1,6 @@
 <?php
 return [
-    /**
+    /*
      * Item type
      */
     'Items' => [ // @translate
@@ -112,7 +112,7 @@ return [
         'journal' => 'Browse journals', // @translate
     ],
 
-    /**
+    /*
      * Media type
      */
     'Medias' => [ // @translate
@@ -438,7 +438,7 @@ return [
         'entry' => 'No longer tracking entry', // @translate
     ],
 
-    /**
+    /*
      * Content type
      */
     'Content' => [ // @translate

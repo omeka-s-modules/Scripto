@@ -188,5 +188,4 @@ class MediaController extends AbstractActionController
         $this->layout()->setVariable('sMedia', $sMedia);
         return $view;
     }
-
 }
