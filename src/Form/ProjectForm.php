@@ -61,7 +61,7 @@ class ProjectForm extends Form
             'options' => [
                 'label' => 'Media types', // @translate
                 'info' => 'Select media types to include in the project. If empty, all media will be included.', // @translate
-                'empty_option' => '[No media type]', // @translate
+                'empty_option' => '[Media without media type]', // @translate
                 'disable_inarray_validator' => true,
             ],
             'attributes' => [
