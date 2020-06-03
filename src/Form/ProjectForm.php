@@ -61,7 +61,8 @@ class ProjectForm extends Form
             'options' => [
                 'label' => 'Media types', // @translate
                 'info' => 'Select media types to include in the project. If empty, all media will be included.', // @translate
-                'empty_option' => '',
+                'empty_option' => '[No media type]', // @translate
+                'disable_inarray_validator' => true,
             ],
             'attributes' => [
                 'id' => 'o-module-scripto-media_types',

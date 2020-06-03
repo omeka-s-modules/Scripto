@@ -197,10 +197,11 @@ class SyncProject extends ScriptoJob
     }
 
     /**
-     * Get all media assigned to the passed item, in original order.
+     * Get media assigned to an item, in original order.
      *
      * This method provides an abstraction for implementations that need to
-     * change which media are mapped to an item.
+     * change which media are mapped to an item. These implementations should
+     * honor the project's media type filter, if possible.
      *
      * @param Item $item
      * @param ScriptoProject $project
@@ -211,10 +212,13 @@ class SyncProject extends ScriptoJob
         $medias = $item->getMedia();
         $mediaTypes = $project->getMediaTypes();
         if ($mediaTypes) {
-            $mediaTypes[] = '';
-            $criteria = \Doctrine\Common\Collections\Criteria::create()
-                ->where(Criteria::expr()->isNull('mediaType'))
-                ->orWhere(Criteria::expr()->in('mediaType', $mediaTypes));
+            // Filter media types.
+            $orX = [Criteria::expr()->in('mediaType', $mediaTypes)];
+            if (in_array('', $mediaTypes)) {
+                $orX[] = Criteria::expr()->isNull('mediaType');
+                $orX[] = Criteria::expr()->eq('mediaType', '');
+            }
+            $criteria = Criteria::create()->where(Criteria::expr()->orX(...$orX));
             $medias = $medias->matching($criteria);
         }
         return $medias;
