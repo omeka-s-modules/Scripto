@@ -3,9 +3,9 @@ namespace Scripto\Mediawiki;
 
 use DateTime;
 use DateTimeZone;
-use Zend\Http\Client as HttpClient;
-use Zend\Http\Request;
-use Zend\Session\Container;
+use Laminas\Http\Client as HttpClient;
+use Laminas\Http\Request;
+use Laminas\Session\Container;
 
 /**
  * MediaWiki API client

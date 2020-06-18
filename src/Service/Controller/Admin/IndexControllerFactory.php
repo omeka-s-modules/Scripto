@@ -3,7 +3,7 @@ namespace Scripto\Service\Controller\Admin;
 
 use Interop\Container\ContainerInterface;
 use Scripto\Controller\Admin\IndexController;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 class IndexControllerFactory implements FactoryInterface
 {

@@ -5,8 +5,8 @@ use Scripto\Form\MediaBatchForm;
 use Scripto\Form\MediaForm;
 use Scripto\Form\RevisionRevertForm;
 use Scripto\Mediawiki\Exception\QueryException;
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\View\Model\ViewModel;
 
 class MediaController extends AbstractActionController
 {

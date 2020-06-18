@@ -1,7 +1,7 @@
 <?php
 namespace Scripto\Form;
 
-use Zend\Form\Form;
+use Laminas\Form\Form;
 
 class ProjectImportForm extends Form
 {

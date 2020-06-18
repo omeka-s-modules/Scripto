@@ -5,10 +5,10 @@ use Omeka\Entity\User;
 use Scripto\Entity\ScriptoItem;
 use Scripto\Entity\ScriptoMedia;
 use Scripto\Entity\ScriptoProject;
-use Zend\Permissions\Acl\Acl;
-use Zend\Permissions\Acl\Assertion\AssertionInterface;
-use Zend\Permissions\Acl\Resource\ResourceInterface;
-use Zend\Permissions\Acl\Role\RoleInterface;
+use Laminas\Permissions\Acl\Acl;
+use Laminas\Permissions\Acl\Assertion\AssertionInterface;
+use Laminas\Permissions\Acl\Resource\ResourceInterface;
+use Laminas\Permissions\Acl\Role\RoleInterface;
 
 /**
  * Assert that an Omeka user can review a Scripto media.

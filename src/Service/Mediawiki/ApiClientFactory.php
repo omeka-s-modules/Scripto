@@ -3,7 +3,7 @@ namespace Scripto\Service\Mediawiki;
 
 use Interop\Container\ContainerInterface;
 use Scripto\Mediawiki\ApiClient;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 class ApiClientFactory implements FactoryInterface
 {

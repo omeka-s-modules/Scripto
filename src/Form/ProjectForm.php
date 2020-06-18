@@ -4,7 +4,7 @@ namespace Scripto\Form;
 use Omeka\Form\Element\ItemSetSelect;
 use Omeka\Form\Element\PropertySelect;
 use Scripto\Form\Element\MediaTypeSelect;
-use Zend\Form\Form;
+use Laminas\Form\Form;
 
 class ProjectForm extends Form
 {

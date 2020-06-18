@@ -2,9 +2,9 @@
 namespace Scripto\Form;
 
 use Scripto\Mediawiki\ApiClient;
-use Zend\Form\Form;
-use Zend\Http\Client as HttpClient;
-use Zend\Validator\Callback;
+use Laminas\Form\Form;
+use Laminas\Http\Client as HttpClient;
+use Laminas\Validator\Callback;
 
 class ModuleConfigForm extends Form
 {
