@@ -17,7 +17,7 @@ class ItemController extends AbstractActionController
             return $this->redirect()->toRoute('admin/scripto');
         }
 
-        $this->setBrowseDefaults('synced');
+        $this->setBrowseDefaults('id');
         $query = array_merge(
             ['scripto_project_id' => $this->params('project-id')],
             $this->params()->fromQuery()

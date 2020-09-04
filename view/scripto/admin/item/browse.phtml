@@ -32,6 +32,10 @@ if ($project->userIsAllowed('update')):
     <?php echo $this->pagination(); ?>
     <?php echo $this->sortSelector([
         [
+            'label' => $this->translate('ID'),
+            'value' => 'id'
+        ],
+        [
             'label' => $this->translate('Date synced'),
             'value' => 'synced'
         ],

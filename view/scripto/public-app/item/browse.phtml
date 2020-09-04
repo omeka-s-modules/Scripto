@@ -41,6 +41,10 @@ if (!$project->filterApproved()) {
                 <a href="#" class="sorting-heading menu-toggle"><?php echo $this->translate('Sort'); ?></a>
                 <?php echo $this->sortSelector([
                     [
+                        'label' => $this->translate('ID'),
+                        'value' => 'id'
+                    ],
+                    [
                         'label' => $this->scripto()->translate($project->contentType(), 'Last edited'),
                         'value' => 'edited'
                     ],

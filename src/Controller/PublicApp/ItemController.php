@@ -13,7 +13,7 @@ class ItemController extends AbstractActionController
             return $this->redirect()->toRoute('scripto');
         }
 
-        $this->setBrowseDefaults(null);
+        $this->setBrowseDefaults('id');
         $query = $this->params()->fromQuery();
         $query['scripto_project_id'] = $this->params('project-id');
         if ($project->filterApproved()
