@@ -3,7 +3,7 @@ namespace Scripto\Service\Form\Element;
 
 use Scripto\Form\Element\MediaTypeSelect;
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 class MediaTypeSelectFactory implements FactoryInterface
 {

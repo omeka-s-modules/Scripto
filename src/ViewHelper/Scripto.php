@@ -4,10 +4,10 @@ namespace Scripto\ViewHelper;
 use Scripto\Form\ScriptoLoginForm;
 use Scripto\Form\ScriptoLogoutForm;
 use Scripto\Mediawiki\ApiClient;
-use Zend\Form\Element;
-use Zend\Router\Http\RouteMatch;
-use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\Form\Element;
+use Laminas\Router\Http\RouteMatch;
+use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\View\Helper\AbstractHelper;
 
 /**
  * View helper used to render Scripto template elements.

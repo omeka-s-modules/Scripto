@@ -3,7 +3,7 @@ namespace Scripto\Service\ControllerPlugin;
 
 use Interop\Container\ContainerInterface;
 use Scripto\ControllerPlugin\Scripto;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 class ScriptoFactory implements FactoryInterface
 {

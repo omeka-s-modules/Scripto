@@ -11,8 +11,8 @@ use Scripto\Form\ProjectSyncForm;
 use Scripto\Job\ImportProject;
 use Scripto\Job\SyncProject;
 use Scripto\Job\UnimportProject;
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\View\Model\ViewModel;
 
 class ProjectController extends AbstractActionController
 {

@@ -6,7 +6,7 @@ use Scripto\Form\ScriptoLoginForm;
 use Scripto\Form\ScriptoLogoutForm;
 use Scripto\Mediawiki\ApiClient;
 use Scripto\Mediawiki\Exception\ClientloginException;
-use Zend\Mvc\Controller\Plugin\AbstractPlugin;
+use Laminas\Mvc\Controller\Plugin\AbstractPlugin;
 
 /**
  * Controller plugin used for Scripto-specific functionality.

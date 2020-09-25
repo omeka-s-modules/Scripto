@@ -3,7 +3,7 @@ namespace Scripto\Api\Representation;
 
 use Omeka\Api\Representation\AbstractRepresentation;
 use Scripto\Entity\ScriptoReviewer;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
 class ScriptoReviewerRepresentation extends AbstractRepresentation
 {

@@ -3,8 +3,8 @@ namespace Scripto\Controller\PublicApp;
 
 use Scripto\Form\CreateAccountForm;
 use Scripto\Mediawiki\Exception\CreateaccountException;
-use Zend\View\Model\ViewModel;
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\View\Model\ViewModel;
+use Laminas\Mvc\Controller\AbstractActionController;
 
 class IndexController extends AbstractActionController
 {

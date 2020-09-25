@@ -5,8 +5,8 @@ use Omeka\Stdlib\Message;
 use Scripto\Form\ProjectImportForm;
 use Scripto\Form\ProjectUnimportForm;
 use Scripto\Form\ProjectSyncForm;
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\View\Model\ViewModel;
 
 class ItemController extends AbstractActionController
 {
