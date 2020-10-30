@@ -48,7 +48,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto media show');
         </div>
         <div class="wikitext-flex">
             <div class="textarea-flex">
-                <textarea disabled aria-label="<?php echo $this->translate('Wikitext'); ?>"><?php echo $sMedia->pageWikitext(0, $revision['revid']); ?></textarea>
+                <textarea disabled aria-label="<?php echo $this->translate('Wikitext'); ?>"><?php echo $sMedia->pageWikitext(0, $revision['revid'] ?? null); ?></textarea>
             </div>
             <?php if ($sMedia->isRenderableImage()): ?>
             <div class="panzoom-container image">
@@ -73,7 +73,7 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto media show');
 </div>
 
 <div id="html" class="section">
-    <?php echo $sMedia->pageHtml(0, $revision['revid']); ?>
+    <?php echo $sMedia->pageHtml(0, $revision['revid'] ?? null); ?>
 </div>
 
 <div id="media-metadata" class="section">
@@ -101,17 +101,17 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto media show');
     <!-- Revision section -->
     <div class="revision meta-group">
         <nav role="navigation" class="pagination">
-            <?php if ($revision['parentid']): ?>
+            <?php if ($revision && $revision['parentid']): ?>
             <?php echo $this->hyperlink('', $this->url(null, ['revision-id' => $revision['parentid']], true), ['class' => 'previous o-icon-prev button', 'title' => $this->translate('Older revision')]); ?>
             <?php else: ?>
             <span class="previous o-icon-prev button inactive"></span>
             <?php endif; ?>
-            <?php if ($revision['childid']): ?>
+            <?php if ($revision && $revision['childid']): ?>
             <?php echo $this->hyperlink('', $this->url(null, ['revision-id' => $revision['childid']], true), ['class' => 'next o-icon-next button', 'title' => $this->translate('Newer revision')]); ?>
             <?php else: ?>
             <span class="next o-icon-next button inactive"></span>
             <?php endif; ?>
-            <?php if ($revision['latestid'] && $revision['latestid'] !== $revision['revid']): ?>
+            <?php if ($revision && $revision['latestid'] && $revision['latestid'] !== $revision['revid']): ?>
             <?php echo $this->hyperlink('', $this->url(null, ['revision-id' => $revision['latestid']], true), ['class' => 'last o-icon-last button', 'title' => $this->translate('Latest revision')]); ?>
             <?php else: ?>
             <span class="last o-icon-last button inactive"></span>
