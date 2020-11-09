@@ -25,6 +25,7 @@ class ItemController extends AbstractActionController
         ) {
             $query['is_not_approved'] = true;
         }
+
         $response = $this->api()->search('scripto_items', $query);
         $this->paginator($response->getTotalResults(), $this->params()->fromQuery('page'));
         $sItems = $response->getContent();
@@ -33,6 +34,20 @@ class ItemController extends AbstractActionController
         $view->setVariable('sItems', $sItems);
         $view->setVariable('project', $project);
         $this->layout()->setVariable('project', $project);
+        return $view;
+    }
+
+
+    public function browseAllAction()
+    {
+        $this->setBrowseDefaults('id');
+        $query = $this->params()->fromQuery();
+        $response = $this->api()->search('scripto_items', $query);
+        $this->paginator($response->getTotalResults(), $this->params()->fromQuery('page'));
+        $sItems = $response->getContent();
+
+        $view = new ViewModel;
+        $view->setVariable('sItems', $sItems);
         return $view;
     }
 

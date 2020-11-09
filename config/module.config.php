@@ -170,6 +170,23 @@ return [
                     ],
                 ],
             ],
+            'scripto-all-items' => [
+                'type' => 'Segment',
+                'options' => [
+                    'route' => '/scripto[/s/:site-slug/:site-project-id]/items[/:action]',
+                    'constraints' => [
+                        'site-slug' => '[a-zA-Z0-9_-]+',
+                        'site-project-id' => '\d+',
+                        'project-id' => '\d+',
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ],
+                    'defaults' => [
+                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                        'controller' => 'item',
+                        'action' => 'browse-all',
+                    ],
+                ],
+            ],
             'scripto-item' => [
                 'type' => 'Segment',
                 'options' => [
