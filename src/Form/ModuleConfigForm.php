@@ -74,16 +74,15 @@ class ModuleConfigForm extends Form
     {
         try {
             $client = new ApiClient($this->httpClient, $apiUrl, $this->timeZone);
+            if (!is_array($client->querySiteInfo())) {
+                // Not a MediaWiki API endpoint
+                return false;
+            }
+            if (version_compare($client->getVersion(), ApiClient::MINIMUM_VERSION, '<')) {
+                // The MediaWiki version is invalid
+                return false;
+            }
         } catch (\Exception $e) {
-            // Not a resolvable URL
-            return false;
-        }
-        if (!is_array($client->querySiteInfo())) {
-            // Not a MediaWiki API endpoint
-            return false;
-        }
-        if (version_compare($client->getVersion(), ApiClient::MINIMUM_VERSION, '<')) {
-            // The MediaWiki version is invalid
             return false;
         }
         return true;
