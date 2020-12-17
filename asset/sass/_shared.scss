@@ -181,3 +181,58 @@
     font-style: italic;
 }
 
+button#fullscreen {
+  margin: 0 24px 0 0;
+}
+
+button#fullscreen:after {
+  content: "\f24d";
+  font-family: "Font Awesome 5 Free";
+  display: inline-block;
+  margin-left: 6px;
+}
+
+.layout button:after {
+  font-family: "Font Awesome 5 Free";
+  display: inline-block;
+  font-weight: 900;
+}
+
+.layout #horizontal-layout {
+    border-radius: 3px 0 0 3px;
+}
+
+.layout #horizontal-layout:after {
+    content: "\f337";
+}
+
+
+.layout #vertical-layout {
+    border-radius: 0 3px 3px 0;
+    margin-left: -1px;
+}
+
+.layout #vertical-layout:after {
+    content: "\f338";
+}
+
+.zoom-controls button:before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}
+
+#panzoom-zoom-in:before {
+  content: "\f00e";
+}
+
+#panzoom-zoom-out:before {
+  content: "\f010";
+}
+
+#panzoom-rotate-left:before {
+  content: "\f2ea";
+}
+
+#panzoom-rotate-right:before {
+  content: "\f2f9";
+}

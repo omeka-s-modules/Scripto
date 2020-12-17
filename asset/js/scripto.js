@@ -6,17 +6,21 @@ var Scripto = {
      * @param element
      */
     applyPanzoom: function(element) {
-        var container = element.parent();
-        if (!container.hasClass('image')) {
+        var container = element.parentNode;
+        
+        if ((" " + container.className + " ").replace(/[\n\t]/g, " ").indexOf(" image ") < 0 ) {
             return;
         }
-        $panzoom = element.panzoom({
-            $zoomIn: container.find(".zoom-in"),
-            $zoomOut: container.find(".zoom-out"),
-            $reset: container.find(".reset"),
+
+        $panzoom = Panzoom(element, {
             maxScale: 20
         });
-        container.on('mousewheel.focal', function(e) {
+        
+        var zoomInButton = document.getElementsByClassName('zoom-in')[0];
+        var zoomOutButton = document.getElementsByClassName('zoom-out')[0];
+        zoomInButton.addEventListener('click', $panzoom.zoomIn);
+        zoomOutButton.addEventListener('click', $panzoom.zoomOut);
+        /* container.on('mousewheel.focal', function(e) {
             e.preventDefault();
             var delta = e.delta || e.originalEvent.wheelDelta;
             var zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0;
@@ -25,7 +29,7 @@ var Scripto = {
                 animate: false,
                 focal: e
             });
-        });
+        }); */
     },
 
     /**
