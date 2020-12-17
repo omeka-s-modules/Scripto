@@ -104,9 +104,19 @@ function disableFullscreen() {
 }
 // Enable horizontal layout.
 function enableHorizontalLayout() {
+  $('.wikitext-featherlight').removeClass('vertical').addClass('horizontal');
+  horizontalLayoutButton.setAttribute('class', 'active');
+  horizontalLayoutButton.setAttribute('disabled', true);
+  verticalLayoutButton.removeAttribute('class');
+  verticalLayoutButton.removeAttribute('disabled');
 }
 // Enable vertical layout.
 function enableVerticalLayout() {
+  $('.wikitext-featherlight').removeClass('horizontal').addClass('vertical');
+  verticalLayoutButton.setAttribute('class', 'active');
+  verticalLayoutButton.setAttribute('disabled', true);
+  horizontalLayoutButton.removeAttribute('class');
+  horizontalLayoutButton.removeAttribute('disabled');
 }
 
 });
