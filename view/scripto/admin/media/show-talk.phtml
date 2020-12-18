@@ -1,9 +1,6 @@
 <?php 
-$this->headLink()->appendStylesheet($this->assetUrl('vendor/featherlight/featherlight.min.css', 'Scripto'));
 $this->headLink()->appendStylesheet($this->assetUrl('css/admin.css', 'Scripto'));
 $this->headLink()->appendStylesheet('https://use.fontawesome.com/releases/v5.0.9/css/all.css');
-$this->headScript()->appendFile($this->assetUrl('vendor/jquery-panzoom/jquery.panzoom.min.js', 'Scripto'));
-$this->headScript()->appendFile($this->assetUrl('vendor/featherlight/featherlight.min.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/admin.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/common/media.js', 'Scripto'));
@@ -39,11 +36,11 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto media show');
 <div id="wikitext" class="active section">
     <div class="wikitext-featherlight horizontal">
         <h3><?php echo $media->displayTitle(); ?></h3>
-        <button class="full-screen"><?php echo $this->translate('Go full screen'); ?></button>
+        <button id="fullscreen"><?php echo $this->translate('Go full screen'); ?></button>
         <div class="layout">
-            <label><?php echo $this->translate('Layout'); ?></label>
-            <button name="horizontal" class="horizontal active" aria-label="<?php echo $this->translate('Horizontal view'); ?>" title="<?php echo $this->translate('Horizontal view'); ?>" disabled></button>
-            <button name="vertical" class="vertical" aria-label="<?php echo $this->translate('Vertical view'); ?>" title="<?php echo $this->translate('Vertical view'); ?>"></button>
+          <label><?php echo $this->translate('Layout'); ?></label>
+          <button type="button" name="horizontal" id="horizontal-layout" class="active" aria-label="<?php echo $this->escapeHtml($this->translate('Horizontal view')); ?>" title="<?php echo $this->escapeHtml($this->translate('Horizontal view')); ?>" disabled=""></button>
+          <button type="button" name="vertical" id="vertical-layout" aria-label="<?php echo $this->escapeHtml($this->translate('Vertical view')); ?>" title="<?php echo $this->escapeHtml($this->translate('Vertical view')); ?>"></button>
         </div>
         <div class="wikitext-flex">
             <?php if ($sMedia->isRenderableImage()): ?>
@@ -53,6 +50,9 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto media show');
                 <?php echo $media->render(['link' => null]); ?>
             </div>
             <?php endif; ?>
+            <div class="textarea-flex">
+              <textarea disabled aria-label="<?php echo $this->translate('Wikitext'); ?>"><?php echo $sMedia->pageWikitext(0, $revision['revid'] ?? null); ?></textarea>
+            </div>
         </div>
     </div>
 </div>
