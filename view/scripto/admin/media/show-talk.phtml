@@ -34,31 +34,43 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto media show');
 ]); ?>
 
 <div id="wikitext" class="active section">
-    <div class="wikitext-featherlight horizontal">
-        <h3><?php echo $media->displayTitle(); ?></h3>
-        <button id="fullscreen"><?php echo $this->translate('Go full screen'); ?></button>
-        <div class="layout">
-          <label><?php echo $this->translate('Layout'); ?></label>
-          <button type="button" name="horizontal" id="horizontal-layout" class="active" aria-label="<?php echo $this->escapeHtml($this->translate('Horizontal view')); ?>" title="<?php echo $this->escapeHtml($this->translate('Horizontal view')); ?>" disabled=""></button>
-          <button type="button" name="vertical" id="vertical-layout" aria-label="<?php echo $this->escapeHtml($this->translate('Vertical view')); ?>" title="<?php echo $this->escapeHtml($this->translate('Vertical view')); ?>"></button>
-        </div>
-        <div class="wikitext-flex">
-            <?php if ($sMedia->isRenderableImage()): ?>
-            <?php echo $this->partial('common/media-viewer'); ?>
-            <?php else: ?>
-            <div class="panzoom-container">
-                <?php echo $media->render(['link' => null]); ?>
-            </div>
-            <?php endif; ?>
-            <div class="textarea-flex">
-              <textarea disabled aria-label="<?php echo $this->translate('Wikitext'); ?>"><?php echo $sMedia->pageWikitext(0, $revision['revid'] ?? null); ?></textarea>
-            </div>
-        </div>
-    </div>
+<div class="resource-content">
+  <div id="media-column" class="wikitext-flex">
+      <div class="media render">
+          <?php if ($sMedia->isRenderableImage()): ?>
+          <?php echo $this->partial('common/media-viewer'); ?>
+          <?php else: ?>
+          <div class="panzoom-container">
+              <?php echo $media->render(['link' => null]); ?>
+          </div>
+          <?php endif; ?>
+      </div>
+      <div class="media copy">
+        <?php $pageHtml = $sMedia->pageHtml(0); ?>
+        <textarea disabled   aria-label="<?php echo $this->translate('Wikitext'); ?>"><?php echo $pageHtml; ?></textarea>
+      </div>
+      <?php $displayValues = $media->displayValues(); ?>
+      <?php if ($displayValues): ?>
+      <div class="media metadata">
+          <h3><?php echo $this->translate('Metadata'); ?></h3>
+          <?php echo $displayValues; ?>
+      </div>
+      <?php endif; ?>
+  </div>
+  <div class="notes-column">
+      <?php $pageHtml = $sMedia->pageHtml(1); ?>
+      <?php echo $pageHtml  ? $pageHtml : sprintf('<span>[%s]</span>', $this->translate('No notes yet.')); ?>
+      <ul class="note-actions">
+          <li><?php echo $this->hyperlink($this->translate('Browse notes history'), $this->url('admin/scripto-talk-revision', ['action' => 'browse-talk'], true)); ?></li>
+      </ul>
+  </div>
+</div>
+
 </div>
 
 <div id="html" class="section">
-    <?php echo $sMedia->pageHtml(1, $revision['revid']); ?>
+      <?php $pageHtml = $sMedia->pageHtml(0); ?>
+      <?php echo $pageHtml  ? $pageHtml : sprintf('<span>[%s]</span>', $this->scripto()->translate($project->contentType(), 'No HTML')); ?>
 </div>
 
 <div id="media-metadata" class="section">

@@ -65,24 +65,30 @@ rotateRightButton.addEventListener('click', e => {
     panzoomImg.style.transition = 'transform 0.25s';
     panzoomImg.style.transform = `rotate(${rotateDeg}deg)`;
 });
-// Handle the fullscreen (focus) button.
-fullscreenButton.addEventListener('click', e => {
-    const body = document.querySelector('body');
-    if (body.classList.contains('fullscreen')) {
-        disableFullscreen();
-    } else {
-        enableFullscreen();
-    }
-});
-// Handle the horizontal layout button.
-horizontalLayoutButton.addEventListener('click', e => {
-    enableHorizontalLayout();
-});
-// Handle the vertical layout button.
-verticalLayoutButton.addEventListener('click', e => {
-    enableVerticalLayout();
-});
 
+// Handle the fullscreen (focus) button.
+if (fullscreenButton) {
+  fullscreenButton.addEventListener('click', e => {
+      const body = document.querySelector('body');
+      if (body.classList.contains('fullscreen')) {
+          disableFullscreen();
+      } else {
+          enableFullscreen();
+      }
+  });
+}
+// Handle the horizontal layout button.
+if (horizontalLayoutButton) {
+  horizontalLayoutButton.addEventListener('click', e => {
+    enableHorizontalLayout();
+  });
+}
+// Handle the vertical layout button.
+if (verticalLayoutButton) {
+  verticalLayoutButton.addEventListener('click', e => {
+    enableVerticalLayout();
+  });
+}
 // Initialize the media viewer.
 function initMediaViewer() {
     rotateDeg = 0

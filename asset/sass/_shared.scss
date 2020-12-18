@@ -236,3 +236,52 @@ button#fullscreen:after {
 #panzoom-rotate-right:before {
   content: "\f2f9";
 }
+
+.resource-content {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+#media-column {
+  width: 40%;
+  
+  .render {
+      width: 100%;
+  }
+}
+
+.notes-column {
+  width: 60%;
+  height: 100%;
+  margin-top: 0;
+  align-content: flex-start;
+  
+  .change-summary {
+      width: 100%;
+  }
+  
+  .textarea-flex {
+      width: 100%;
+  }
+}
+
+.note-actions {
+    list-style: none;
+    padding-left: 0;
+    margin-left: 0;
+    display: flex;
+    
+    li {
+        display: inline-block;
+        
+        &:not(:last-child):after {
+            content: "|";
+            display: inline-block;
+        }
+    }
+}
+
+.note-actions a {
+    display: inline-block;
+}

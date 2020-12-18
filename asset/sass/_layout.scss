@@ -768,70 +768,37 @@ h2.media-item {
 }
 
 #media-column {
-    width: 40%;
     padding-right: .5 * $spacing-unit;
     
     & > div {
         margin-bottom: $spacing-unit;
     }
-    
-    .render {
-        width: 100%;
-    }
 }
 
 .notes-column {
-    width: 60%;
     padding-left: .5 * $spacing-unit;
-    height: 100%;
-    margin-top: 0;
-    align-content: flex-start;
     
     .change-summary {
-        width: 100%;
         margin: 0 0 (.5 * $spacing-unit);
     }
     
     .textarea-flex {
-        width: 100%;
         min-height: (10 * $spacing-unit);
     }
 }
 
 .notes-head {
-    display: flex;
-    align-items: center;
     margin-bottom: $spacing-unit;
-}
-
-.notes-head h3 {
-    margin-bottom: 0;
 }
 
 .notes-nav {
     margin-left: $spacing-unit;
 }
 
-.note-actions {
-    list-style: none;
-    padding-left: 0;
-    margin-left: 0;
-    display: flex;
-    
-    li {
-        display: inline-block;
-        
-        &:not(:last-child):after {
-            content: "|";
-            display: inline-block;
-            margin: 0 (.125 * $spacing-unit);
-        }
-    }
+.note-actions li:not(:last-child):after {
+  margin: 0 (.125 * $spacing-unit);
 }
 
-.note-actions a {
-    display: inline-block;
-}
 
 .note-actions .watchlist.button {
     margin-right: 0;
