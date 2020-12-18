@@ -46,22 +46,8 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto media show');
             <button name="vertical" class="vertical" aria-label="<?php echo $this->translate('Vertical view'); ?>" title="<?php echo $this->translate('Vertical view'); ?>"></button>
         </div>
         <div class="wikitext-flex">
-            <div class="textarea-flex">
-                <textarea disabled aria-label="<?php echo $this->translate('Wikitext'); ?>"><?php echo $sMedia->pageWikitext(1, $revision['revid']); ?></textarea>
-            </div>
             <?php if ($sMedia->isRenderableImage()): ?>
-            <div class="panzoom-container image">
-                <div class="zoom-controls">
-                    <button class="zoom-in" aria-label="<?php echo $this->translate('Zoom in'); ?>" title="<?php echo $this->translate('Zoom in'); ?>"></button>
-                    <button class="zoom-out" aria-label="<?php echo $this->translate('Zoom out'); ?>" title="<?php echo $this->translate('Zoom out'); ?>"></button>
-                    <button class="rotate-right" aria-label="<?php echo $this->translate('Rotate right'); ?>" title="<?php echo $this->translate('Rotate right'); ?>"></button>
-                    <button class="rotate-left" aria-label="<?php echo $this->translate('Rotate left'); ?>" title="<?php echo $this->translate('Rotate left'); ?>"></button>
-                    <button class="reset"><?php echo $this->translate('Reset'); ?></button>
-                </div>
-                <div class="media-render">
-                    <img src="<?php echo $this->escapeHtml($sMedia->media()->originalUrl()); ?>">
-                </div>
-            </div>
+            <?php echo $this->partial('common/media-viewer'); ?>
             <?php else: ?>
             <div class="panzoom-container">
                 <?php echo $media->render(['link' => null]); ?>

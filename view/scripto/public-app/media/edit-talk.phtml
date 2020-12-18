@@ -17,7 +17,7 @@ $this->scripto()->postSubtitle(sprintf($this->translate('Original title: %s'), $
         <div id="media-column">
             <div class="media render">
                 <?php if ($sMedia->isRenderableImage()): ?>
-                <?php echo $this->partial('media-viewer'); ?>
+                <?php echo $this->partial('common/media-viewer'); ?>
                 <?php else: ?>
                 <div class="panzoom-container">
                     <?php echo $media->render(['link' => null]); ?>
