@@ -25,9 +25,9 @@ $this->scripto()->postSubtitle(sprintf($this->translate('Original title: %s'), $
         <?php echo $sMedia->link($this->translate('Cancel'), 'show', ['class' => 'button']); ?>
     </div>
     <div id="wikitext" class="resource-content">
-        <div class="wikitext-featherlight horizontal">
+        <div id="wikitext-layout" class="horizontal">
             <h3><?php echo sprintf($this->scripto()->translate($project->mediaType(), '%s: Media #%s'), $item->displayTitle(), $sMedia->position()); ?></h3>
-            <button type="button" id="fullscreen"><?php echo $this->translate('Go full screen'); ?></button>
+            <button type="button" id="fullscreen"><span class="go-fullscreen"><?php echo $this->translate('Go full screen'); ?></span><span class="exit-fullscreen"><?php echo $this->translate('Exit full screen'); ?></span></button>
             <div class="layout">
                 <label><?php echo $this->translate('Layout'); ?></label>
                 <button type="button" name="horizontal" id="horizontal-layout" class="active" aria-label="<?php echo $this->escapeHtml($this->translate('Horizontal view')); ?>" title="<?php echo $this->escapeHtml($this->translate('Horizontal view')); ?>" disabled=""></button>

@@ -74,6 +74,10 @@ body.fullscreen.sidebar-open #content {
   transition: none;
 }
 
+body.fullscreen.sidebar-open .sidebar {
+  display: none;
+}
+
 .fullscreen #scripto-login,
 .fullscreen .breadcrumbs {
   display: none;
@@ -176,7 +180,7 @@ nav.pagination .button:last-child {
     justify-content: space-between; 
 }
 
-.wikitext-featherlight {
+#wikitext-layout {
     width: 100%;
 }
 

@@ -192,6 +192,15 @@ button#fullscreen:after {
   margin-left: 6px;
 }
 
+.fullscreen #fullscreen .go-fullscreen,
+.exit-fullscreen {
+  display: none;
+}
+
+.fullscreen #fullscreen .exit-fullscreen {
+  display: inline-block;
+}
+
 .layout button:after {
   font-family: "Font Awesome 5 Free";
   display: inline-block;

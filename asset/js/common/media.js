@@ -11,7 +11,9 @@ const resetButton            = document.getElementById('panzoom-reset');
 const fullscreenButton       = document.getElementById('fullscreen');
 const deleteButton           = document.getElementById('delete-button');
 const horizontalLayoutButton = document.getElementById('horizontal-layout');
-const verticalLayoutButton   = document.getElementById('vertical-layout');
+const verticalLayoutButton   = document.getElementById('vertical-layout'); 
+const body                   = document.querySelector('body');
+const layoutContainer        = document.getElementById('wikitext-layout');
 
 let panzoom;
 let rotateDeg;
@@ -69,7 +71,6 @@ rotateRightButton.addEventListener('click', e => {
 // Handle the fullscreen (focus) button.
 if (fullscreenButton) {
   fullscreenButton.addEventListener('click', e => {
-      const body = document.querySelector('body');
       if (body.classList.contains('fullscreen')) {
           disableFullscreen();
       } else {
@@ -102,15 +103,16 @@ function resetRotate() {
 }
 // Enable fullscreen.
 function enableFullscreen() {
-  $('body').addClass('fullscreen');
+  body.classList.add('fullscreen');
 }
 // Disable fullscreen.
 function disableFullscreen() {
-  $('body').removeClass('fullscreen');
+  body.classList.remove('fullscreen');
 }
 // Enable horizontal layout.
 function enableHorizontalLayout() {
-  $('.wikitext-featherlight').removeClass('vertical').addClass('horizontal');
+  layoutContainer.classList.remove('vertical');
+  layoutContainer.classList.add('horizontal');
   horizontalLayoutButton.setAttribute('class', 'active');
   horizontalLayoutButton.setAttribute('disabled', true);
   verticalLayoutButton.removeAttribute('class');
@@ -118,7 +120,8 @@ function enableHorizontalLayout() {
 }
 // Enable vertical layout.
 function enableVerticalLayout() {
-  $('.wikitext-featherlight').removeClass('horizontal').addClass('vertical');
+  layoutContainer.classList.remove('horizontal');
+  layoutContainer.classList.add('vertical');
   verticalLayoutButton.setAttribute('class', 'active');
   verticalLayoutButton.setAttribute('disabled', true);
   horizontalLayoutButton.removeAttribute('class');
