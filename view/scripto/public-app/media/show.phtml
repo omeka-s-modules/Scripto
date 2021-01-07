@@ -1,6 +1,5 @@
 <?php
 $this->headLink()->appendStylesheet('https://use.fontawesome.com/releases/v5.0.9/css/all.css');
-$this->headScript()->appendFile($this->assetUrl('vendor/panzoom/panzoom.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/LmlEditor.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/common/media.js', 'Scripto'));
 $this->scripto()->postTitle(sprintf($this->scripto()->translate($project->mediaType(), '%s: %s #%s'), $sItem->link($item->displayTitle()), ucfirst($project->mediaType()), $sMedia->position()));
