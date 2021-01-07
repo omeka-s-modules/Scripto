@@ -14,6 +14,9 @@ const horizontalLayoutButton = document.getElementById('horizontal-layout');
 const verticalLayoutButton   = document.getElementById('vertical-layout'); 
 const body                   = document.querySelector('body');
 const layoutContainer        = document.getElementById('wikitext-layout');
+const wlContainer            = document.getElementById('watchlist-container');
+const wlWatchedButton        = document.getElementById('watchlist-watched');
+const wlNotWatchedButton     = document.getElementById('watchlist-not-watched');
 
 let panzoom;
 let rotateDeg;
@@ -90,6 +93,12 @@ if (verticalLayoutButton) {
     enableVerticalLayout();
   });
 }
+wlWatchedButton.addEventListener('click', e => {
+    handleWatchlistButton();
+});
+wlNotWatchedButton.addEventListener('click', e => {
+    handleWatchlistButton();
+});
 // Initialize the media viewer.
 function initMediaViewer() {
     rotateDeg = 0
@@ -126,6 +135,28 @@ function enableVerticalLayout() {
   verticalLayoutButton.setAttribute('disabled', true);
   horizontalLayoutButton.removeAttribute('class');
   horizontalLayoutButton.removeAttribute('disabled');
+}
+function handleWatchlistButton() {
+    const watching = (1 == wlContainer.dataset.watching) ? 0 : 1;
+    console.log(watching);
+    fetch(wlContainer.dataset.url, {
+        method: 'post',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: `watching=${watching}`
+    })
+    .then(response => {
+        if (watching) {
+            wlNotWatchedButton.style.display = 'none';
+            wlWatchedButton.style.display = 'inline';
+            wlContainer.dataset.watching = 1;
+        } else {
+            wlNotWatchedButton.style.display = 'inline';
+            wlWatchedButton.style.display = 'none';
+            wlContainer.dataset.watching = 0;
+        }
+
+    });
+
 }
 
 });

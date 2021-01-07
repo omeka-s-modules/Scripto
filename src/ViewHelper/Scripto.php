@@ -503,9 +503,9 @@ HTML;
         $userIsWatching = $sMedia->isWatched(0);
 
         $html = <<<'HTML'
-<div class="watch-list" data-url="%1$s" data-watching="%2$s">
-    <a href="#" class="watchlist button watched" aria-label="%3$s" title="%3$s" style="%4$s">%3$s</a>
-    <a href="#" class="watchlist button" aria-label="%5$s" title="%5$s" style="%6$s">%5$s</a>
+<div id="watchlist-container" class="watch-list" data-url="%1$s" data-watching="%2$s">
+    <a href="#" id="watchlist-watched" class="watchlist button watched" aria-label="%3$s" title="%3$s" style="%4$s">%3$s</a>
+    <a href="#" id="watchlist-not-watched" class="watchlist button" aria-label="%5$s" title="%5$s" style="%6$s">%5$s</a>
     <div class="watch success">%7$s</div>
     <div class="unwatch success">%8$s</div>
 </div>
