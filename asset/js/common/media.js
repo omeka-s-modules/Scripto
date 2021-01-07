@@ -93,9 +93,11 @@ if (verticalLayoutButton) {
     enableVerticalLayout();
   });
 }
+// Handle the watchlist watched button
 wlWatchedButton.addEventListener('click', e => {
     handleWatchlistButton();
 });
+// Handle the watchlist not-watched button
 wlNotWatchedButton.addEventListener('click', e => {
     handleWatchlistButton();
 });
@@ -136,9 +138,9 @@ function enableVerticalLayout() {
   horizontalLayoutButton.removeAttribute('class');
   horizontalLayoutButton.removeAttribute('disabled');
 }
+// Handle the watchlist toggle.
 function handleWatchlistButton() {
     const watching = (1 == wlContainer.dataset.watching) ? 0 : 1;
-    console.log(watching);
     fetch(wlContainer.dataset.url, {
         method: 'post',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -156,7 +158,6 @@ function handleWatchlistButton() {
         }
 
     });
-
 }
 
 });
