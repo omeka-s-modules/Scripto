@@ -17,6 +17,8 @@ const layoutContainer        = document.getElementById('wikitext-layout');
 const wlContainer            = document.getElementById('watchlist-container');
 const wlWatchedButton        = document.getElementById('watchlist-watched');
 const wlNotWatchedButton     = document.getElementById('watchlist-not-watched');
+const wlWatchSuccess         = document.getElementById('watch-success');
+const wlUnwatchSuccess       = document.getElementById('unwatch-success');
 
 let panzoom;
 let rotateDeg;
@@ -149,36 +151,22 @@ function handleWatchlistButton() {
     .then(response => {
         if (watching) {
             wlNotWatchedButton.style.display = 'none';
-            wlWatchedButton.style.display = 'inline';
+            wlWatchedButton.style.display = 'inline-block';
             wlContainer.dataset.watching = 1;
+            wlWatchSuccess.classList.add('fadeInOut');
+            window.setTimeout(function() {
+              wlWatchSuccess.classList.remove('fadeInOut');
+            }, 3000);
         } else {
-            wlNotWatchedButton.style.display = 'inline';
+            wlNotWatchedButton.style.display = 'inline-block';
             wlWatchedButton.style.display = 'none';
             wlContainer.dataset.watching = 0;
+            wlUnwatchSuccess.classList.add('fadeInOut');
+            window.setTimeout(function() {
+              wlUnwatchSuccess.classList.remove('fadeInOut');
+            }, 3000);
         }
 
     });
 }
-
-// Handle the watchlist toggle.
-var watchlist = $('.watch-list');
-var watchedIcon = watchlist.children('.watchlist.button.watched');
-var notWatchedIcon = watchlist.children('.watchlist.button').not('.watched');
-var watching = watchlist.data('watching');
-
-watchlist.children('.watchlist.button').on('click', function(e) {
-    e.preventDefault();
-    watching = (1 === watching) ? 0 : 1;
-    $.post(watchlist.data('url'), {'watching': watching})
-        .done(function(data) {
-            watchedIcon.toggle();
-            notWatchedIcon.toggle();
-            if (watching) {
-                watchlist.children('.watch.success').fadeIn('slow').delay(2000).fadeOut('slow');
-            } else {
-                watchlist.children('.unwatch.success').fadeIn('slow').delay(2000).fadeOut('slow');
-            }
-        });
-});
-
 });
