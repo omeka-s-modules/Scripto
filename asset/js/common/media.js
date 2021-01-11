@@ -1,123 +1,172 @@
-$(document).ready(function() {
+document.addEventListener('DOMContentLoaded', e => {
 
-// Handle the watchlist toggle.
-var watchlist = $('.watch-list');
-var watchedIcon = watchlist.children('.watchlist.button.watched');
-var notWatchedIcon = watchlist.children('.watchlist.button').not('.watched');
-var watching = watchlist.data('watching');
+const panzoomContainer       = document.getElementById('panzoom-container');
+const panzoomElem            = document.getElementById('panzoom');
+const panzoomImg             = document.getElementById('panzoom-img');
+const zoomInButton           = document.getElementById('panzoom-zoom-in');
+const zoomOutButton          = document.getElementById('panzoom-zoom-out');
+const rotateLeftButton       = document.getElementById('panzoom-rotate-left');
+const rotateRightButton      = document.getElementById('panzoom-rotate-right');
+const resetButton            = document.getElementById('panzoom-reset');
+const fullscreenButton       = document.getElementById('fullscreen');
+const deleteButton           = document.getElementById('delete-button');
+const horizontalLayoutButton = document.getElementById('horizontal-layout');
+const verticalLayoutButton   = document.getElementById('vertical-layout'); 
+const body                   = document.querySelector('body');
+const layoutContainer        = document.getElementById('wikitext-layout');
+const wlContainer            = document.getElementById('watchlist-container');
+const wlWatchedButton        = document.getElementById('watchlist-watched');
+const wlNotWatchedButton     = document.getElementById('watchlist-not-watched');
+const wlWatchSuccess         = document.getElementById('watch-success');
+const wlUnwatchSuccess       = document.getElementById('unwatch-success');
 
-watchlist.children('.watchlist.button').on('click', function(e) {
-    e.preventDefault();
-    watching = (1 === watching) ? 0 : 1;
-    $.post(watchlist.data('url'), {'watching': watching})
-        .done(function(data) {
-            watchedIcon.toggle();
-            notWatchedIcon.toggle();
-            if (watching) {
-                watchlist.children('.watch.success').fadeIn('slow').delay(2000).fadeOut('slow');
-            } else {
-                watchlist.children('.unwatch.success').fadeIn('slow').delay(2000).fadeOut('slow');
-            }
-        });
+let panzoom;
+let rotateDeg;
+
+initMediaViewer();
+
+// Handle panzoom click to focus.
+panzoomContainer.addEventListener('click', e => {
+    panzoomContainer.focus();
 });
-
-// Apply panzoom and featherlight.
-if ($('.image.panzoom-container').length) {
-
-    var editorText = $('#wikitext .wikitext-editor-text');
-
-    Scripto.applyPanzoom($('.media-render'));
-
-    $('.full-screen').featherlight('.wikitext-featherlight', {
-        beforeOpen: function() {
-            $('.media-render').panzoom('destroy');
-        },
-        afterOpen: function() {
-            var editorTextFl = $('.featherlight-content .wikitext-editor-text');
-            var editorButtonsFl = $('.featherlight-content .wikitext-editor-buttons');
-
-            Scripto.applyPanzoom($('.featherlight-content .media-render'));
-
-            // Apply wikitext editor to lightbox textarea.
-            if (editorText.length) {
-                editorButtonsFl.empty();
-                Scripto.enableMediaEditor(editorTextFl, editorButtonsFl);
-                // Apply the selection range to the lightbox textarea.
-                editorTextFl[0].setSelectionRange(
-                    editorText[0].selectionStart,
-                    editorText[0].selectionEnd
-                );
-                editorTextFl.focus();
-            }
-        },
-        beforeClose: function() {
-            var editorTextFl = $('.featherlight-content .wikitext-editor-text');
-            var storedPanzoomStyle = $('.featherlight-content .media-render').attr('style');
-            var storedRotateStyle = $('.featherlight-content .panzoom-container img').attr('style');
-
-            $('.featherlight-content .media-render').panzoom('destroy');
-            $('.media-render').attr('style', storedPanzoomStyle);
-            $('.panzoom-container img').attr('style', storedRotateStyle);
-
-            // Copy value of lightbox textarea to original textarea.
-            if (editorTextFl.length) {
-                editorText.val(editorTextFl.val());
-                // Apply the selection range to the original textarea.
-                editorText[0].setSelectionRange(
-                    editorTextFl[0].selectionStart,
-                    editorTextFl[0].selectionEnd
-                );
-                editorText.focus();
-            }
-        },
-        afterClose: function() {
-            Scripto.applyPanzoom($('.media-render'));
-        }
-    });
-
-    // Maintain focus on text editor when manipulating image.
-    $('.panzoom-container').on('click', '.zoom-out, .zoom-in, .rotate-left, .rotate-right, .reset', function(e) {
-        e.preventDefault();
-        if ($(this).closest('.featherlight').length) {
-            $('.featherlight-content .wikitext-editor-text').focus();
-        } else {
-            editorText.focus();
-        }
-    });
-
-    $('.panzoom-container').on('click', '.rotate-left', function(e) {
-        e.preventDefault();
-        var panzoomImg = $(this).parents('.panzoom-container').find('img');
-        Scripto.setRotation(panzoomImg, 'left');
-    });
-
-    $('.panzoom-container').on('click', '.rotate-right', function(e) {
-        e.preventDefault();
-        var panzoomImg = $(this).parents('.panzoom-container').find('img');
-        Scripto.setRotation(panzoomImg, 'right');
-    });
-
-    $('.panzoom-container').on('click', '.reset', function(e) {
-        e.preventDefault();
-        var panzoomImg = $(this).parents('.panzoom-container').find('img');
-        panzoomImg.css('transform', 'none');
-    });
-} else {
-    $('.full-screen').featherlight('.wikitext-featherlight');
-}
-
-// Handle the layout buttons.
-$('.layout button').click(function(e) {
-    $('.layout button').toggleClass('active');
-    $('.wikitext-featherlight').toggleClass('horizontal').toggleClass('vertical');
-    $('.layout button:disabled').removeAttr('disabled');
-    $('.layout button.active').attr('disabled', true);
-    // Maintain focus on text editor when switching layouts.
-    if ($(this).closest('.featherlight').length) {
-        $('.featherlight-content .wikitext-editor-text').focus();
-    } else {
-        editorText.focus();
+// Handle panning by arrow keys.
+panzoomContainer.addEventListener('keydown', e => {
+    switch (e.code) {
+        case 'ArrowUp':
+            panzoom.pan(0, -2, {relative: true});
+            break;
+        case 'ArrowDown':
+            panzoom.pan(0, 2, {relative: true});
+            break;
+        case 'ArrowLeft':
+            panzoom.pan(-2, 0, {relative: true});
+            break;
+        case 'ArrowRight':
+            panzoom.pan(2, 0, {relative: true});
+            break;
+        default:
+            return;
     }
+    e.preventDefault();
+});
+// Handle the scroll wheel.
+panzoomContainer.addEventListener('wheel', panzoom.zoomWithWheel);
+// Handle the zoom in button.
+zoomInButton.addEventListener('click', panzoom.zoomIn);
+// Handle the zoom out button.
+zoomOutButton.addEventListener('click', panzoom.zoomOut);
+// Handle the reset button.
+resetButton.addEventListener('click', e => {
+    panzoom.reset();
+    resetRotate();
+});
+// Handle the rotate left button.
+rotateLeftButton.addEventListener('click', e => {
+    rotateDeg = rotateDeg - 90;
+    panzoomImg.style.transition = 'transform 0.25s';
+    panzoomImg.style.transform = `rotate(${rotateDeg}deg)`;
+});
+// Handle the rotate right button.
+rotateRightButton.addEventListener('click', e => {
+    rotateDeg = rotateDeg + 90;
+    panzoomImg.style.transition = 'transform 0.25s';
+    panzoomImg.style.transform = `rotate(${rotateDeg}deg)`;
 });
 
+// Handle the fullscreen (focus) button.
+if (fullscreenButton) {
+  fullscreenButton.addEventListener('click', e => {
+      if (body.classList.contains('fullscreen')) {
+          disableFullscreen();
+      } else {
+          enableFullscreen();
+      }
+  });
+}
+// Handle the horizontal layout button.
+if (horizontalLayoutButton) {
+  horizontalLayoutButton.addEventListener('click', e => {
+    enableHorizontalLayout();
+  });
+}
+// Handle the vertical layout button.
+if (verticalLayoutButton) {
+  verticalLayoutButton.addEventListener('click', e => {
+    enableVerticalLayout();
+  });
+}
+// Handle the watchlist watched button
+wlWatchedButton.addEventListener('click', e => {
+    handleWatchlistButton();
+});
+// Handle the watchlist not-watched button
+wlNotWatchedButton.addEventListener('click', e => {
+    handleWatchlistButton();
+});
+// Initialize the media viewer.
+function initMediaViewer() {
+    rotateDeg = 0
+    panzoom = Panzoom(panzoomElem, {});
+}
+// Reset rotation.
+function resetRotate() {
+    rotateDeg = 0;
+    panzoomImg.style.transition = 'none';
+    panzoomImg.style.transform = 'none';
+}
+// Enable fullscreen.
+function enableFullscreen() {
+  body.classList.add('fullscreen');
+}
+// Disable fullscreen.
+function disableFullscreen() {
+  body.classList.remove('fullscreen');
+}
+// Enable horizontal layout.
+function enableHorizontalLayout() {
+  layoutContainer.classList.remove('vertical');
+  layoutContainer.classList.add('horizontal');
+  horizontalLayoutButton.setAttribute('class', 'active');
+  horizontalLayoutButton.setAttribute('disabled', true);
+  verticalLayoutButton.removeAttribute('class');
+  verticalLayoutButton.removeAttribute('disabled');
+}
+// Enable vertical layout.
+function enableVerticalLayout() {
+  layoutContainer.classList.remove('horizontal');
+  layoutContainer.classList.add('vertical');
+  verticalLayoutButton.setAttribute('class', 'active');
+  verticalLayoutButton.setAttribute('disabled', true);
+  horizontalLayoutButton.removeAttribute('class');
+  horizontalLayoutButton.removeAttribute('disabled');
+}
+// Handle the watchlist toggle.
+function handleWatchlistButton() {
+    const watching = (1 == wlContainer.dataset.watching) ? 0 : 1;
+    fetch(wlContainer.dataset.url, {
+        method: 'post',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: `watching=${watching}`
+    })
+    .then(response => {
+        if (watching) {
+            wlNotWatchedButton.style.display = 'none';
+            wlWatchedButton.style.display = 'inline-block';
+            wlContainer.dataset.watching = 1;
+            wlWatchSuccess.classList.add('fadeInOut');
+            window.setTimeout(function() {
+              wlWatchSuccess.classList.remove('fadeInOut');
+            }, 3000);
+        } else {
+            wlNotWatchedButton.style.display = 'inline-block';
+            wlWatchedButton.style.display = 'none';
+            wlContainer.dataset.watching = 0;
+            wlUnwatchSuccess.classList.add('fadeInOut');
+            window.setTimeout(function() {
+              wlUnwatchSuccess.classList.remove('fadeInOut');
+            }, 3000);
+        }
+
+    });
+}
 });

@@ -53,12 +53,6 @@
     width: 38px;
 }
 
-.layout button:after {
-    font-family: "Font Awesome 5 Free";
-    display: inline-block;
-    font-weight: 900;
-}
-
 .layout button:hover {
     z-index: 1;
     box-shadow: none !important;
@@ -67,22 +61,26 @@
 .layout button:not(:disabled):hover {
     border: 1px solid #999;
 }
-
-.layout .horizontal {
-    border-radius: 3px 0 0 3px;
+.fullscreen header {
+  width: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
-.layout .horizontal:after {
-    content: "\f337";
+.fullscreen div[role="main"] > h1:first-of-type,
+body.fullscreen #content, 
+body.fullscreen.sidebar-open #content {
+  width: 100% !important;
+  transition: none;
 }
 
-.layout .vertical {
-    border-radius: 0 3px 3px 0;
-    margin-left: -1px;
+body.fullscreen.sidebar-open .sidebar {
+  display: none;
 }
 
-.layout .vertical:after {
-    content: "\f338";
+.fullscreen #scripto-login,
+.fullscreen .breadcrumbs {
+  display: none;
 }
 
 .wikitext-flex {
@@ -182,11 +180,7 @@ nav.pagination .button:last-child {
     justify-content: space-between; 
 }
 
-.wikitext-featherlight {
-    width: 100%;
-}
-
-.horizontal .wikitext-flex .textarea-flex {
+#horizontal-layout .wikitext-flex .textarea-flex {
     display: flex;
     margin-right: 12px;
     flex-direction: column;
@@ -198,13 +192,17 @@ nav.pagination .button:last-child {
     flex: 1;
 }
 
+#panzoom-container {
+    position: relative;
+}
+
 .horizontal .wikitext-flex .textarea-flex,
-.horizontal .wikitext-flex .panzoom-container {
+.horizontal .wikitext-flex #panzoom-container {
     width: calc(50% - 6px);
 }
 
 .vertical .wikitext-flex .textarea-flex,
-.vertical .wikitext-flex .panzoom-container {
+.vertical .wikitext-flex #panzoom-container {
     width: 100%;
 }
 
@@ -213,13 +211,13 @@ nav.pagination .button:last-child {
     min-height: 35vh;
 }
 
-.vertical .wikitext-flex .panzoom-container {
+.vertical .wikitext-flex #panzoom-container {
     order: 1;
     margin-bottom: 24px;
     height: 35vh;
 }
 
-.wikitext-flex .panzoom-container {
+.wikitext-flex #panzoom-container {
     border: 1px solid #dfdfdf;
 }
 
@@ -271,88 +269,21 @@ nav.pagination .button:last-child {
     z-index: -1;
 }
 
-.zoom-controls button:before {
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-}
-
-.zoom-in:before {
-    content: "\f00e";
-}
-
-.zoom-out:before {
-    content: "\f010";
-}
-
-.rotate-left:before {
-    content: "\f2ea";
-}
-
-.rotate-right:before {
-    content: "\f2f9";
-}
-
-.featherlight .featherlight-content {
-    width: 95%;
-    margin: 0;
-    height: 95%;
-    padding: 12px 12px 0;
-}
-
-.featherlight-content .wikitext-featherlight {
-    height: calc(100% - 48px);
-}
-
-.wikitext-featherlight h3,
-.featherlight-content .full-screen {
-    display: none;
-    position: relative;
-}
-
-.wikitext-featherlight h3:after {
-    content: "";
-    position: absolute;
-    top: -12px;
-    right: -12px;
-    left: -12px;
-    bottom: -12px;
-    background-color: rgba(0,0,0,.08);
-}
-
-.featherlight-content .wikitext-featherlight h3 {
-    display: block;
-    font-size: 16px;
-    line-height: 24px;
-}
-
-button.featherlight-close-icon.featherlight-close {
-    border: 0;
-    box-shadow: none;
-    background-color: transparent;
-    width: 36px;
-    height: 36px;
-    line-height: 36px;
-    margin: 6px 6px 0;
-}
-
-.featherlight-content .horizontal .wikitext-flex {
-    height: calc(100% - 54px);
-}
-
-.featherlight-content .horizontal .wikitext-flex .textarea-flex,
-.featherlight-content .horizontal .wikitext-flex .panzoom-container {
-    min-height: 100%;
-}
-
-button.full-screen {
+button#fullscreen {
     margin: 0 24px 0 0;
 }
 
-button.full-screen:after {
-    content: "\f24d";
-    font-family: "Font Awesome 5 Free";
-    display: inline-block;
-    margin-left: 6px;
+.media.copy {
+    margin-top: 24px;
+    width: 100%;
+    
+    textarea {
+      width: 100%;
+    }
+}
+
+.notes-column {
+    padding: 0 24px;
 }
 
 .current-previous {

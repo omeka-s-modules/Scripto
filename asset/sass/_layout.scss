@@ -537,6 +537,11 @@ nav.pagination .row-count {
     content: "\f337";
 }
 
+.fullscreen header,
+.fullscreen .media-head {
+    display: none;
+}
+
 .layout .vertical {
     border-radius: 0 3px 3px 0;
     margin-left: -1px;
@@ -574,12 +579,12 @@ nav.pagination .row-count {
 }
 
 .horizontal .wikitext-flex .textarea-flex,
-.horizontal .wikitext-flex .panzoom-container {
+.horizontal .wikitext-flex #panzoom-container {
     width: calc(50% - 6px);
 }
 
 .vertical .wikitext-flex .textarea-flex,
-.vertical .wikitext-flex .panzoom-container {
+.vertical .wikitext-flex #panzoom-container {
     width: 100%;
 }
 
@@ -592,12 +597,12 @@ nav.pagination .row-count {
     height: auto;
 }
 
-.vertical .wikitext-flex .panzoom-container {
+.vertical .wikitext-flex #panzoom-container {
     margin-bottom: 24px;
     min-height: 35vh;
 }
 
-.panzoom-container {
+#panzoom-container {
     border: 1px solid #dfdfdf;
     position: relative;
 }
@@ -616,11 +621,11 @@ nav.pagination .row-count {
     }
 }
 
-.media.html .panzoom-container {
+.media.html #panzoom-container {
     margin-bottom: $spacing-unit;
 }
 
-.media-render {
+#panzoom {
     margin-bottom: 0;
     
     & > * {
@@ -630,7 +635,7 @@ nav.pagination .row-count {
     }
 }
 
-.wikitext-flex .media-render img {
+.wikitext-flex #panzoom img {
     vertical-align: bottom;
 }
 
@@ -665,85 +670,6 @@ nav.pagination .row-count {
 .zoom-controls button:before {
   @include font-awesome;
   font-weight: 900;
-}
-
-.zoom-in:before {
-  content: "\f00e";
-}
-
-.zoom-out:before {
-  content: "\f010";
-}
-
-.rotate-left:before {
-    content: "\f2ea";
-}
-
-.rotate-right:before {
-    content: "\f2f9";
-}
-
-.featherlight .featherlight-content {
-    width: 95%;
-    margin: 0;
-    height: 95%;
-    padding: 12px 12px 0;
-}
-
-.featherlight-content .wikitext-featherlight {
-    height: calc(100% - 48px);
-}
-
-.wikitext-featherlight h3,
-.featherlight-content .full-screen {
-    display: none;
-    position: relative;
-}
-
-.wikitext-featherlight h3:before {
-    content: "";
-    position: absolute;
-    top: -12px;
-    right: -12px;
-    left: -12px;
-    bottom: -12px;
-    background-color: rgba(0,0,0,.08);
-}
-
-.featherlight-content .wikitext-featherlight h3 {
-    display: block;
-    font-size: 16px;
-    line-height: 24px;
-}
-
-button.featherlight-close-icon.featherlight-close {
-    border: 0;
-    box-shadow: none;
-    background-color: transparent;
-    width: 36px;
-    height: 36px;
-    line-height: 36px;
-    margin: 6px 6px 0;
-}
-
-.featherlight-content .horizontal .wikitext-flex {
-    height: calc(100% - 54px);
-}
-
-.featherlight-content .horizontal .wikitext-flex .textarea-flex,
-.featherlight-content .horizontal .wikitext-flex .panzoom-container {
-    min-height: 100%;
-}
-
-button.full-screen {
-    margin: 0 24px 0 0;
-}
-
-button.full-screen:after {
-    content: "\f24d";
-    font-family: "Font Awesome 5 Free";
-    display: inline-block;
-    margin-left: 6px;
 }
 
 h2.media-item {
@@ -842,70 +768,37 @@ h2.media-item {
 }
 
 #media-column {
-    width: 40%;
     padding-right: .5 * $spacing-unit;
     
     & > div {
         margin-bottom: $spacing-unit;
     }
-    
-    .render {
-        width: 100%;
-    }
 }
 
 .notes-column {
-    width: 60%;
     padding-left: .5 * $spacing-unit;
-    height: 100%;
-    margin-top: 0;
-    align-content: flex-start;
     
     .change-summary {
-        width: 100%;
         margin: 0 0 (.5 * $spacing-unit);
     }
     
     .textarea-flex {
-        width: 100%;
         min-height: (10 * $spacing-unit);
     }
 }
 
 .notes-head {
-    display: flex;
-    align-items: center;
     margin-bottom: $spacing-unit;
-}
-
-.notes-head h3 {
-    margin-bottom: 0;
 }
 
 .notes-nav {
     margin-left: $spacing-unit;
 }
 
-.note-actions {
-    list-style: none;
-    padding-left: 0;
-    margin-left: 0;
-    display: flex;
-    
-    li {
-        display: inline-block;
-        
-        &:not(:last-child):after {
-            content: "|";
-            display: inline-block;
-            margin: 0 (.125 * $spacing-unit);
-        }
-    }
+.note-actions li:not(:last-child):after {
+  margin: 0 (.125 * $spacing-unit);
 }
 
-.note-actions a {
-    display: inline-block;
-}
 
 .note-actions .watchlist.button {
     margin-right: 0;
@@ -1240,58 +1133,6 @@ div.resource-row {
 .wikitext-editor-buttons #wikitext-editor-button-heading-5:before {
     font-family: $base-font-family;
     content: "h5";
-}
-
-.featherlight .featherlight-content {
-    width: 95%;
-    margin: 0;
-    height: 95%;
-    padding: 12px 12px 0;
-}
-
-.featherlight-content .wikitext-featherlight {
-    height: calc(100% - 48px);
-}
-
-.wikitext-featherlight h3,
-.featherlight-content .full-screen {
-    display: none;
-    position: relative;
-}
-
-.wikitext-featherlight h3:before {
-    content: "";
-    position: absolute;
-    top: -12px;
-    right: -12px;
-    left: -12px;
-    bottom: -12px;
-    background-color: rgba(0,0,0,.08);
-}
-
-.featherlight-content .wikitext-featherlight h3 {
-    display: block;
-    font-size: 16px;
-    line-height: 24px;
-}
-
-button.featherlight-close-icon.featherlight-close {
-    border: 0;
-    box-shadow: none;
-    background-color: transparent;
-    width: 36px;
-    height: 36px;
-    line-height: 36px;
-    margin: 6px 6px 0;
-}
-
-.featherlight-content .horizontal .wikitext-flex {
-    height: calc(100% - 54px);
-}
-
-.featherlight-content .horizontal .wikitext-flex .textarea-flex,
-.featherlight-content .horizontal .wikitext-flex .panzoom-container {
-    min-height: 100%;
 }
 
 .property {
