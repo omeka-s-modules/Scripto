@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-01 12:42-0400\n"
+"POT-Creation-Date: 2021-01-12 11:05-0500\n"
 "PO-Revision-Date: 2018-11-27 19:38+0000\n"
 "Last-Translator: Giorgio Comai <g@giorgiocomai.eu>, 2020\n"
 "Language-Team: Italian (https://www.transifex.com/omeka/teams/14184/it/)\n"
@@ -132,13 +132,13 @@ msgstr "Pagina successiva"
 msgid "%s of %s"
 msgstr "%sdi %s"
 
-#: src/ViewHelper/Scripto.php:413 view/scripto/admin/media/show-talk.phtml:104
-#: view/scripto/admin/media/show.phtml:105
+#: src/ViewHelper/Scripto.php:413 view/scripto/admin/media/show-talk.phtml:102
+#: view/scripto/admin/media/show.phtml:92
 msgid "Older revision"
 msgstr "Maggiore revisione"
 
-#: src/ViewHelper/Scripto.php:416 view/scripto/admin/media/show-talk.phtml:109
-#: view/scripto/admin/media/show.phtml:110
+#: src/ViewHelper/Scripto.php:416 view/scripto/admin/media/show-talk.phtml:107
+#: view/scripto/admin/media/show.phtml:97
 msgid "Newer revision"
 msgstr "Nuova revisione"
 
@@ -263,9 +263,25 @@ msgstr "Progetto Scripto non trovato."
 msgid "Browse revision history"
 msgstr "Sfoglia la storia delle revisioni"
 
-#: view/common/media-head.phtml:7 view/scripto/admin/media/show.phtml:27
+#: view/common/media-head.phtml:7 view/scripto/admin/media/show.phtml:25
 msgid "View notes"
 msgstr "Vedi le note"
+
+#: view/common/media-viewer.phtml:7
+msgid "Zoom in"
+msgstr "Zooma su"
+
+#: view/common/media-viewer.phtml:8
+msgid "Zoom out"
+msgstr "Zooma all'indietro"
+
+#: view/common/media-viewer.phtml:9
+msgid "Rotate right"
+msgstr "Gira a destra"
+
+#: view/common/media-viewer.phtml:10
+msgid "Rotate left"
+msgstr "Gira a sinistra"
 
 #: view/layout/layout-scripto-public-app.phtml:30
 msgid "Toggle menu"
@@ -430,64 +446,64 @@ msgid "Edit project"
 msgstr "Modifica progetto"
 
 #: view/scripto/admin/item/browse.phtml:18
-#: view/scripto/admin/item/browse.phtml:130
+#: view/scripto/admin/item/browse.phtml:134
 msgid "Sync project"
 msgstr "Sincronizza progetto"
 
 #: view/scripto/admin/item/browse.phtml:19
-#: view/scripto/admin/item/browse.phtml:143
+#: view/scripto/admin/item/browse.phtml:147
 msgid "Import content"
 msgstr "Importa contenuto"
 
 #: view/scripto/admin/item/browse.phtml:20
-#: view/scripto/admin/item/browse.phtml:160
+#: view/scripto/admin/item/browse.phtml:164
 msgid "Unimport content"
 msgstr "Contenuto non importato"
 
-#: view/scripto/admin/item/browse.phtml:35
-#: view/scripto/admin/item/browse.phtml:73
+#: view/scripto/admin/item/browse.phtml:39
+#: view/scripto/admin/item/browse.phtml:77
 #: view/scripto/admin/item/show-details.phtml:15
 msgid "Date synced"
 msgstr "Data di sincronizzazione"
 
-#: view/scripto/admin/item/browse.phtml:39
-#: view/scripto/admin/item/browse.phtml:74
+#: view/scripto/admin/item/browse.phtml:43
+#: view/scripto/admin/item/browse.phtml:78
 #: view/scripto/admin/media/browse.phtml:34
 #: view/scripto/admin/media/browse.phtml:114
 #: view/scripto/public-app/media/browse.phtml:27
 msgid "Last edited"
 msgstr "Ultima modifica"
 
-#: view/scripto/admin/item/browse.phtml:45
+#: view/scripto/admin/item/browse.phtml:49
 #: view/scripto/admin/media/browse.phtml:64
 #: view/scripto/public-app/item/browse.phtml:15
 #: view/scripto/public-app/media/browse.phtml:60
 msgid "Is approved"
 msgstr "Approvato"
 
-#: view/scripto/admin/item/browse.phtml:49
+#: view/scripto/admin/item/browse.phtml:53
 #: view/scripto/admin/media/browse.phtml:68
 #: view/scripto/public-app/item/browse.phtml:19
 #: view/scripto/public-app/media/browse.phtml:64
 msgid "Is not approved"
 msgstr "Non approvato"
 
-#: view/scripto/admin/item/browse.phtml:53
+#: view/scripto/admin/item/browse.phtml:57
 #: view/scripto/public-app/item/browse.phtml:5
 msgid "Is in progress"
 msgstr "In esecuzione"
 
-#: view/scripto/admin/item/browse.phtml:57
+#: view/scripto/admin/item/browse.phtml:61
 #: view/scripto/public-app/item/browse.phtml:9
 msgid "Is new"
 msgstr "Nuovo"
 
-#: view/scripto/admin/item/browse.phtml:61
+#: view/scripto/admin/item/browse.phtml:65
 #: view/scripto/admin/media/browse.phtml:76
 msgid "Is edited after imported"
 msgstr "Modificato dopo importazione"
 
-#: view/scripto/admin/item/browse.phtml:111
+#: view/scripto/admin/item/browse.phtml:115
 msgid ""
 "Do you need to sync the project? If you have recently synced, the sync job "
 "has likely not finished."
@@ -495,13 +511,13 @@ msgstr ""
 "Hai bisogno di sincronizzare il progetto? Se hai recentemente sincronizzato,"
 " il lavoro sincronizzato probabilmente non è stato finito."
 
-#: view/scripto/admin/item/browse.phtml:132
+#: view/scripto/admin/item/browse.phtml:136
 msgid "This project has no item set. Set an item set to enable syncing."
 msgstr ""
 "Questo progetto non ha collezioni. Imposta una collezione per abilitare la "
 "sincronizzazione."
 
-#: view/scripto/admin/item/browse.phtml:134
+#: view/scripto/admin/item/browse.phtml:138
 msgid ""
 "Synchronize this project with the configured item set. Once synchronized, "
 "this project will contain every item in the item set. You should synchronize"
@@ -510,13 +526,13 @@ msgid ""
 " removed, or reordered."
 msgstr ""
 
-#: view/scripto/admin/item/browse.phtml:145
+#: view/scripto/admin/item/browse.phtml:149
 msgid "This project has no property. Set a property to enable importing."
 msgstr ""
 "Questo progetto non ha proprietà. Imposta una proprietà per consentire "
 "l'importazione."
 
-#: view/scripto/admin/item/browse.phtml:147
+#: view/scripto/admin/item/browse.phtml:151
 msgid ""
 "Import project content into Omeka. Scripto stores content in a wiki before "
 "it is imported. Importing will copy approved content from the wiki into "
@@ -526,7 +542,7 @@ msgstr ""
 "una wiki prima di importartli. L'importazione copierà i contenuti approvati "
 "dalla wiki in Omeka, rendendo così possibile visualizzarli e cercarli."
 
-#: view/scripto/admin/item/browse.phtml:149
+#: view/scripto/admin/item/browse.phtml:153
 #, php-format
 msgid ""
 "%s: All existing values matching the configured import target, property, and"
@@ -536,17 +552,17 @@ msgstr ""
 "obiettivo di importazione, proprietà e tag della lingua, saranno "
 "sovrascritti o cancellati."
 
-#: view/scripto/admin/item/browse.phtml:162
+#: view/scripto/admin/item/browse.phtml:166
 msgid "This project has no property. Set a property to enable unimporting."
 msgstr ""
 "Questo progetto non ha proprietà. Imposta una proprietà per non consentire "
 "l'importazione."
 
-#: view/scripto/admin/item/browse.phtml:164
+#: view/scripto/admin/item/browse.phtml:168
 msgid "Unimport project content from Omeka."
 msgstr "Il contenuto non importato da Omeka."
 
-#: view/scripto/admin/item/browse.phtml:166
+#: view/scripto/admin/item/browse.phtml:170
 #, php-format
 msgid ""
 "%s: All existing values matching the configured import target, property, and"
@@ -625,8 +641,8 @@ msgstr "Sincronizzato dopo importazione"
 
 #: view/scripto/admin/media/browse.phtml:116
 #: view/scripto/admin/media/show-details.phtml:20
-#: view/scripto/admin/media/show-talk.phtml:149
-#: view/scripto/admin/media/show.phtml:249
+#: view/scripto/admin/media/show-talk.phtml:147
+#: view/scripto/admin/media/show.phtml:236
 msgid "Edit protection"
 msgstr "Modifica protezione"
 
@@ -648,18 +664,18 @@ msgid "never"
 msgstr "mai"
 
 #: view/scripto/admin/media/show-details.phtml:54
-#: view/scripto/admin/media/show.phtml:158
-#: view/scripto/admin/media/show.phtml:204
+#: view/scripto/admin/media/show.phtml:145
+#: view/scripto/admin/media/show.phtml:191
 msgid "[Unknown]"
 msgstr "[Sconosciuto]"
 
 #: view/scripto/admin/media/show-details.phtml:56
-#: view/scripto/admin/media/show.phtml:190
+#: view/scripto/admin/media/show.phtml:177
 msgid "Not completed"
 msgstr "Non terminato"
 
 #: view/scripto/admin/media/show-details.phtml:72
-#: view/scripto/admin/media/show.phtml:236
+#: view/scripto/admin/media/show.phtml:223
 msgid "Not approved"
 msgstr "Non approvato"
 
@@ -671,19 +687,19 @@ msgstr "Pagina MediaWiki"
 msgid "Omeka media"
 msgstr "Omeka media"
 
-#: view/scripto/admin/media/show-talk.phtml:14
+#: view/scripto/admin/media/show-talk.phtml:11
 msgid "Notes"
 msgstr "Note"
 
-#: view/scripto/admin/media/show-talk.phtml:26
-#: view/scripto/admin/media/show.phtml:26
+#: view/scripto/admin/media/show-talk.phtml:23
+#: view/scripto/admin/media/show.phtml:24
 msgid "Revision history"
 msgstr "Revisione della storia"
 
-#: view/scripto/admin/media/show-talk.phtml:34
+#: view/scripto/admin/media/show-talk.phtml:31
 #: view/scripto/admin/media/show-talk.phtml:50
-#: view/scripto/admin/media/show.phtml:35
-#: view/scripto/admin/media/show.phtml:51
+#: view/scripto/admin/media/show.phtml:33
+#: view/scripto/admin/media/show.phtml:56
 #: view/scripto/public-app/revision/show-talk.phtml:14
 #: view/scripto/public-app/revision/show-talk.phtml:15
 #: view/scripto/public-app/revision/show.phtml:14
@@ -691,123 +707,71 @@ msgstr "Revisione della storia"
 msgid "Wikitext"
 msgstr "Wikitext"
 
-#: view/scripto/admin/media/show-talk.phtml:36
-#: view/scripto/admin/media/show.phtml:37
+#: view/scripto/admin/media/show-talk.phtml:33
+#: view/scripto/admin/media/show.phtml:35
 msgid "Omeka media metadata"
 msgstr "Media Omeka metadata"
 
-#: view/scripto/admin/media/show-talk.phtml:42
-#: view/scripto/admin/media/show.phtml:43
-#: view/scripto/public-app/media/edit.phtml:32
-msgid "Go full screen"
-msgstr "Vai a schermo intero"
+#: view/scripto/admin/media/show-talk.phtml:62
+#: view/scripto/public-app/media/show-talk.phtml:37
+msgid "No notes yet."
+msgstr "Nessuna nota presente."
 
-#: view/scripto/admin/media/show-talk.phtml:44
-#: view/scripto/admin/media/show.phtml:45
-#: view/scripto/public-app/item/browse.phtml:35
-#: view/scripto/public-app/media/browse.phtml:14
-#: view/scripto/public-app/media/edit.phtml:34
-msgid "Layout"
-msgstr "Layout"
+#: view/scripto/admin/media/show-talk.phtml:64
+#: view/scripto/public-app/media/show-talk.phtml:41
+msgid "Browse notes history"
+msgstr "Sfoglia le precedenti versioni delle note"
 
-#: view/scripto/admin/media/show-talk.phtml:45
-#: view/scripto/admin/media/show.phtml:46
-#: view/scripto/public-app/media/edit.phtml:35
-msgid "Horizontal view"
-msgstr "Vista orizzontale"
-
-#: view/scripto/admin/media/show-talk.phtml:46
-#: view/scripto/admin/media/show.phtml:47
-#: view/scripto/public-app/media/edit.phtml:36
-msgid "Vertical view"
-msgstr "Vista verticale"
-
-#: view/scripto/admin/media/show-talk.phtml:55
-#: view/scripto/admin/media/show.phtml:56
-#: view/scripto/public-app/media/edit-talk.phtml:25
-#: view/scripto/public-app/media/edit.phtml:42
-#: view/scripto/public-app/media/show-talk.phtml:20
-#: view/scripto/public-app/media/show.phtml:17
-msgid "Zoom in"
-msgstr "Zooma su"
-
-#: view/scripto/admin/media/show-talk.phtml:56
-#: view/scripto/admin/media/show.phtml:57
-#: view/scripto/public-app/media/edit-talk.phtml:26
-#: view/scripto/public-app/media/edit.phtml:43
-#: view/scripto/public-app/media/show-talk.phtml:21
-#: view/scripto/public-app/media/show.phtml:18
-msgid "Zoom out"
-msgstr "Zooma all'indietro"
-
-#: view/scripto/admin/media/show-talk.phtml:57
-#: view/scripto/admin/media/show.phtml:58
-#: view/scripto/public-app/media/edit-talk.phtml:27
-#: view/scripto/public-app/media/edit.phtml:44
-#: view/scripto/public-app/media/show-talk.phtml:22
-#: view/scripto/public-app/media/show.phtml:19
-msgid "Rotate right"
-msgstr "Gira a destra"
-
-#: view/scripto/admin/media/show-talk.phtml:58
-#: view/scripto/admin/media/show.phtml:59
-#: view/scripto/public-app/media/edit-talk.phtml:28
-#: view/scripto/public-app/media/edit.phtml:45
-#: view/scripto/public-app/media/show-talk.phtml:23
-#: view/scripto/public-app/media/show.phtml:20
-msgid "Rotate left"
-msgstr "Gira a sinistra"
-
-#: view/scripto/admin/media/show-talk.phtml:93
-#: view/scripto/admin/media/show.phtml:94
+#: view/scripto/admin/media/show-talk.phtml:91
+#: view/scripto/admin/media/show.phtml:81
 msgid "The Omeka media has no metadata."
 msgstr "La media Omeka non ha la metadata."
 
-#: view/scripto/admin/media/show-talk.phtml:114
-#: view/scripto/admin/media/show.phtml:115
+#: view/scripto/admin/media/show-talk.phtml:112
+#: view/scripto/admin/media/show.phtml:102
 msgid "Latest revision"
 msgstr "Ultima revisione"
 
-#: view/scripto/admin/media/show-talk.phtml:119
-#: view/scripto/admin/media/show.phtml:120
+#: view/scripto/admin/media/show-talk.phtml:117
+#: view/scripto/admin/media/show.phtml:107
 msgid "This revision"
 msgstr "Questa revisione"
 
-#: view/scripto/admin/media/show-talk.phtml:123
-#: view/scripto/admin/media/show.phtml:124
-#: view/scripto/admin/media/show.phtml:154
-#: view/scripto/admin/media/show.phtml:200
+#: view/scripto/admin/media/show-talk.phtml:121
+#: view/scripto/admin/media/show.phtml:111
+#: view/scripto/admin/media/show.phtml:141
+#: view/scripto/admin/media/show.phtml:187
 #, php-format
 msgid "%s: %s by %s"
 msgstr "%s:%sda%s"
 
-#: view/scripto/admin/media/show-talk.phtml:125
-#: view/scripto/admin/media/show.phtml:126
+#: view/scripto/admin/media/show-talk.phtml:123
+#: view/scripto/admin/media/show.phtml:113
 msgid "Latest"
 msgstr "Ultimo"
 
-#: view/scripto/admin/media/show-talk.phtml:126
-#: view/scripto/admin/media/show.phtml:127
+#: view/scripto/admin/media/show-talk.phtml:124
+#: view/scripto/admin/media/show.phtml:114
 msgid "Out-of-date"
 msgstr "Non aggiornato"
 
-#: view/scripto/admin/media/show-talk.phtml:137
-#: view/scripto/admin/media/show.phtml:138
+#: view/scripto/admin/media/show-talk.phtml:135
+#: view/scripto/admin/media/show.phtml:125
 msgid "Revert to this revision."
 msgstr "Ritorna alla revisione."
 
-#: view/scripto/admin/media/show-talk.phtml:142
-#: view/scripto/admin/media/show.phtml:143
+#: view/scripto/admin/media/show-talk.phtml:140
+#: view/scripto/admin/media/show.phtml:130
 msgid "There are no revisions."
 msgstr "Non ci sono le revisioni."
 
-#: view/scripto/admin/media/show-talk.phtml:164
-#: view/scripto/admin/media/show.phtml:266
+#: view/scripto/admin/media/show-talk.phtml:162
+#: view/scripto/admin/media/show.phtml:253
 msgid "Revert to this revision"
 msgstr "Ritorna alla revisione"
 
-#: view/scripto/admin/media/show-talk.phtml:166
-#: view/scripto/admin/media/show.phtml:268
+#: view/scripto/admin/media/show-talk.phtml:164
+#: view/scripto/admin/media/show.phtml:255
 #, php-format
 msgid ""
 "%s: You are reverting to an out-of-date revision. Any changes made since "
@@ -820,50 +784,77 @@ msgstr ""
 " che potrebbero essere costruttive. Tieni presente che questo ripristino non"
 " avrà impatto si quali revisioni sono indicate come completate o approvate."
 
-#: view/scripto/admin/media/show-talk.phtml:170
-#: view/scripto/admin/media/show.phtml:272
+#: view/scripto/admin/media/show-talk.phtml:168
+#: view/scripto/admin/media/show.phtml:259
 msgid "Verify changes before confirming this reversion."
 msgstr "Verifica le modifiche prima di confermare la revisione"
 
-#: view/scripto/admin/media/show.phtml:150
+#: view/scripto/admin/media/show.phtml:41
+#: view/scripto/public-app/media/edit.phtml:29
+msgid "Go full screen"
+msgstr "Vai a schermo intero"
+
+#: view/scripto/admin/media/show.phtml:41
+#: view/scripto/public-app/media/edit.phtml:29
+msgid "Exit full screen"
+msgstr ""
+
+#: view/scripto/admin/media/show.phtml:43
+#: view/scripto/public-app/item/browse.phtml:35
+#: view/scripto/public-app/media/browse.phtml:14
+#: view/scripto/public-app/media/edit.phtml:31
+msgid "Layout"
+msgstr "Layout"
+
+#: view/scripto/admin/media/show.phtml:44
+#: view/scripto/public-app/media/edit.phtml:32
+msgid "Horizontal view"
+msgstr "Vista orizzontale"
+
+#: view/scripto/admin/media/show.phtml:45
+#: view/scripto/public-app/media/edit.phtml:33
+msgid "Vertical view"
+msgstr "Vista verticale"
+
+#: view/scripto/admin/media/show.phtml:137
 msgid "Review status"
 msgstr "Revisiona lo stato"
 
-#: view/scripto/admin/media/show.phtml:166
+#: view/scripto/admin/media/show.phtml:153
 msgid "This revision marked as complete."
 msgstr "Revisione  segnata come terminata."
 
-#: view/scripto/admin/media/show.phtml:174
+#: view/scripto/admin/media/show.phtml:161
 #, php-format
 msgid "Another revision marked as complete. [%s]"
 msgstr "Un'altra revisione segnata come terminata. [%s]"
 
-#: view/scripto/admin/media/show.phtml:175
-#: view/scripto/admin/media/show.phtml:221
+#: view/scripto/admin/media/show.phtml:162
+#: view/scripto/admin/media/show.phtml:208
 msgid "view revision"
 msgstr "vedi revisione"
 
-#: view/scripto/admin/media/show.phtml:192
-#: view/scripto/public-app/media/edit.phtml:23
+#: view/scripto/admin/media/show.phtml:179
+#: view/scripto/public-app/media/edit.phtml:20
 msgid "Mark this revision as complete"
 msgstr "Segna questa revisione come completata"
 
-#: view/scripto/admin/media/show.phtml:201
+#: view/scripto/admin/media/show.phtml:188
 msgid "Approved"
 msgstr "Approvato"
 
-#: view/scripto/admin/media/show.phtml:212
+#: view/scripto/admin/media/show.phtml:199
 #: view/scripto/admin/revision/compare.phtml:46
 #: view/scripto/public-app/revision/compare.phtml:41
 msgid "This revision marked as approved."
 msgstr "Questa revisione è segnata come approvata"
 
-#: view/scripto/admin/media/show.phtml:220
+#: view/scripto/admin/media/show.phtml:207
 #, php-format
 msgid "Another revision marked as approved. [%s]"
 msgstr "Un'altra revisione segnata come approvata. [%s]"
 
-#: view/scripto/admin/media/show.phtml:238
+#: view/scripto/admin/media/show.phtml:225
 msgid "Mark this revision as approved"
 msgstr "Segna questa revisione come come approvata"
 
@@ -1122,15 +1113,15 @@ msgstr "Nessuna lista di controllo trovata."
 msgid "Show original titles"
 msgstr "Mostra i titoli originali"
 
-#: view/scripto/public-app/media/edit-talk.phtml:10
-#: view/scripto/public-app/media/edit.phtml:10
-#: view/scripto/public-app/media/show-talk.phtml:10
-#: view/scripto/public-app/media/show.phtml:9
+#: view/scripto/public-app/media/edit-talk.phtml:7
+#: view/scripto/public-app/media/edit.phtml:7
+#: view/scripto/public-app/media/show-talk.phtml:7
+#: view/scripto/public-app/media/show.phtml:6
 #, php-format
 msgid "Original title: %s"
 msgstr "Titolo originale:%s"
 
-#: view/scripto/public-app/media/edit-talk.phtml:55
+#: view/scripto/public-app/media/edit-talk.phtml:41
 #, php-format
 msgid ""
 "Notes are a workspace where project participants can keep ideas and "
@@ -1138,25 +1129,17 @@ msgid ""
 "is encouraged to include the user and timestamp."
 msgstr ""
 
-#: view/scripto/public-app/media/edit.phtml:18
+#: view/scripto/public-app/media/edit.phtml:15
 msgid "Protection: "
 msgstr "Protezione:"
 
-#: view/scripto/public-app/media/edit.phtml:19
+#: view/scripto/public-app/media/edit.phtml:16
 msgid "Expiration: "
 msgstr "Scadenza:"
 
-#: view/scripto/public-app/media/edit.phtml:22
+#: view/scripto/public-app/media/edit.phtml:19
 msgid "Status: "
 msgstr "Stato:"
-
-#: view/scripto/public-app/media/show-talk.phtml:51
-msgid "No notes yet."
-msgstr "Nessuna nota presente."
-
-#: view/scripto/public-app/media/show-talk.phtml:55
-msgid "Browse notes history"
-msgstr "Sfoglia le precedenti versioni delle note"
 
 #: view/scripto/public-app/project/browse.phtml:21
 msgid "No Scripto projects found"
