@@ -43,6 +43,7 @@ return [
             'Scripto\Controller\PublicApp\Item' => Scripto\Controller\PublicApp\ItemController::class,
             'Scripto\Controller\PublicApp\Media' => Scripto\Controller\PublicApp\MediaController::class,
             'Scripto\Controller\PublicApp\Revision' => Scripto\Controller\PublicApp\RevisionController::class,
+            'Scripto\Controller\PublicApp\RecentChanges' => Scripto\Controller\PublicApp\RecentChangesController::class,
             'Scripto\Controller\Admin\User' => Scripto\Controller\Admin\UserController::class,
             'Scripto\Controller\Admin\Item' => Scripto\Controller\Admin\ItemController::class,
             'Scripto\Controller\Admin\Media' => Scripto\Controller\Admin\MediaController::class,
@@ -298,6 +299,19 @@ return [
                         '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
                         'controller' => 'revision',
                         'action' => 'compare',
+                    ],
+                ],
+            ],
+            'scripto-recent-changes' => [
+                'type' => 'Segment',
+                'options' => [
+                    'route' => '/scripto/recent-changes',
+                    'constraints' => [
+                    ],
+                    'defaults' => [
+                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                        'controller' => 'recent-changes',
+                        'action' => 'browse',
                     ],
                 ],
             ],
