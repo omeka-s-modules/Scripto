@@ -48,9 +48,14 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto media show');
             <?php if ($sMedia->isRenderableImage()): ?>
             <?php echo $this->partial('common/media-viewer'); ?>
             <?php else: ?>
-            <div id="panzoom" class="media-render">
-              <img src="<?php echo $this->escapeHtml($media->originalUrl()); ?>" id="panzoom-img">
-            </div>
+                <!--
+                <div id="panzoom" class="media-render">
+                    <img src="<?php echo $this->escapeHtml($media->originalUrl()); ?>" id="panzoom-img">
+                </div>
+                -->
+                <div id="panzoom-container">
+                    <?php echo $media->render(['link' => null]); ?>
+                </div>
             <?php endif; ?>
             <div class="textarea-flex">
               <textarea disabled   aria-label="<?php echo $this->translate('Wikitext'); ?>"><?php echo $sMedia->pageWikitext(0, $revision['revid'] ?? null); ?></textarea>
