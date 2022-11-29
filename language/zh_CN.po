@@ -4,9 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Darío Hereñú, 2019
-# Carlos Rivera <Robertohernande9z9@hotmail.com>, 2019
-# Alfonso Montejo <almontejor@gmail.com>, 2021
+# Hong Zhang <zhangh@unlv.nevada.edu>, 2021
 # 
 #, fuzzy
 msgid ""
@@ -15,77 +13,69 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-29 12:33-0500\n"
 "PO-Revision-Date: 2018-11-27 19:38+0000\n"
-"Last-Translator: Alfonso Montejo <almontejor@gmail.com>, 2021\n"
-"Language-Team: Spanish (https://www.transifex.com/omeka/teams/14184/es/)\n"
+"Last-Translator: Hong Zhang <zhangh@unlv.nevada.edu>, 2021\n"
+"Language-Team: Chinese (China) (https://www.transifex.com/omeka/teams/14184/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es\n"
-"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: Module.php:423
 msgid "Cannot access Scripto. Missing MediaWiki API URL."
-msgstr ""
-"No se puede acceder a Scripto. Está ausente la dirección URL de la API de "
-"MediaWiki."
+msgstr "无法访问Scripto。缺失MediaWiki API URL。"
 
 #: Module.php:455
 #, php-format
 msgid ""
 "The MediaWiki user does not have the necessary permissions to create the "
 "page \"%s\""
-msgstr ""
-"El usuario MediaWiki no tiene los permisos necesarios para crear la página "
-"\"%s\""
+msgstr "MediaWiki用户没有必需的权限来创建页面“%s”"
 
 #: Module.php:461
 #, php-format
 msgid ""
 "The MediaWiki user does not have the necessary permissions to edit the page "
 "\"%s\""
-msgstr ""
-"El usuario MediaWiki no tiene los permisos necesarios para editar la página "
-"\"%s\""
+msgstr "MediaWiki用户没有必需的权限来编辑页面“%s”"
 
 #: src/Controller/Admin/ItemController.php:35
 msgid "Set an item set here."
-msgstr "Establecer aquí un conjunto de elementos."
+msgstr "在这里设定一个条目集。"
 
 #: src/Controller/Admin/ItemController.php:46
 msgid "Set a property here."
-msgstr "Establecer aquí una propiedad."
+msgstr "在此设定一个属性。"
 
 #: src/Controller/Admin/MediaController.php:165
 #: src/Controller/Admin/MediaController.php:260
 #, php-format
 msgid "Existing expiration time: %s"
-msgstr "Tiempo de expiración:  %s"
+msgstr "现有过期时间：%s"
 
 #: src/Controller/Admin/ProjectController.php:158
 msgid "See this job for sync progress."
-msgstr "Consulte esta tarea para el progreso de sincronización."
+msgstr "查看此任务看同步进度。"
 
 #: src/Controller/Admin/ProjectController.php:183
 msgid "See this job for import progress."
-msgstr "Consulte esta tarea para el progreso de la importación."
+msgstr "查看此任务看导入进度。"
 
 #: src/Controller/Admin/ProjectController.php:208
 msgid "See this job for unimport progress."
-msgstr "Mostrar progreso de desimportación."
+msgstr ""
 
 #: src/ControllerPlugin/Scripto.php:149
 msgid "Successfully logged in to Scripto."
-msgstr "Inicio de sesión exitoso en Scripto."
+msgstr "成功登录Scripto。"
 
 #: src/ControllerPlugin/Scripto.php:151
 msgid "Cannot log in to Scripto. Email or password is invalid."
-msgstr ""
-"No se puede iniciar sesión en Scripto. Correo electrónico o contraseña no "
-"son válidos."
+msgstr "无法登入Scripto。电子邮件地址或密码是无效的。"
 
 #: src/ControllerPlugin/Scripto.php:176
 msgid "Successfully logged out of Scripto."
-msgstr "Finalizó sesión satisfactoriamente de Scripto. "
+msgstr "成功登出Scripto。"
 
 #: src/ViewHelper/Scripto.php:111 view/scripto/admin/index/index.phtml:8
 #: view/scripto/admin/project/add.phtml:8
@@ -97,288 +87,288 @@ msgstr "Scripto"
 #: src/ViewHelper/Scripto.php:125 view/scripto/admin/project/browse.phtml:8
 #: view/scripto/public-app/project/browse.phtml:2
 msgid "Projects"
-msgstr "Proyectos"
+msgstr "项目"
 
 #: src/ViewHelper/Scripto.php:227 src/ViewHelper/Scripto.php:282
 #, php-format
 msgid "Logged in to Scripto as %s"
-msgstr "Se inició sesión en Scripto como %s"
+msgstr "登录Scripto为%s"
 
 #: src/ViewHelper/Scripto.php:229 src/ViewHelper/Scripto.php:230
 #: src/ViewHelper/Scripto.php:283 view/scripto/admin/index/index.phtml:8
 msgid "Dashboard"
-msgstr "Panel"
+msgstr "控制面板"
 
 #: src/ViewHelper/Scripto.php:232 src/ViewHelper/Scripto.php:233
 #: src/ViewHelper/Scripto.php:284
 #: view/scripto/admin/user/contributions.phtml:8
 msgid "Contributions"
-msgstr "Contribuciones"
+msgstr "贡献"
 
 #: src/ViewHelper/Scripto.php:235 src/ViewHelper/Scripto.php:236
 #: src/ViewHelper/Scripto.php:285 view/scripto/admin/user/watchlist.phtml:9
 msgid "Watchlist"
-msgstr "Lista de seguimiento"
+msgstr "监视列表"
 
 #: src/ViewHelper/Scripto.php:248
 msgid "Log in to Scripto"
-msgstr "Iniciar sesión en Scripto"
+msgstr "登录Scripto"
 
 #: src/ViewHelper/Scripto.php:359 src/ViewHelper/Scripto.php:360
 msgid "First page"
-msgstr "Primera página"
+msgstr "第一页"
 
 #: src/ViewHelper/Scripto.php:365 src/ViewHelper/Scripto.php:366
 msgid "Next page"
-msgstr "Próxima página"
+msgstr "下一页"
 
 #: src/ViewHelper/Scripto.php:394
 #, php-format
 msgid "%s of %s"
-msgstr "%s de %s"
+msgstr "%s的%s"
 
 #: src/ViewHelper/Scripto.php:413 view/scripto/admin/media/show-talk.phtml:102
 #: view/scripto/admin/media/show.phtml:92
 msgid "Older revision"
-msgstr "Revisión anterior"
+msgstr "较旧版本"
 
 #: src/ViewHelper/Scripto.php:416 view/scripto/admin/media/show-talk.phtml:107
 #: view/scripto/admin/media/show.phtml:97
 msgid "Newer revision"
-msgstr "Revisión más reciente"
+msgstr "较新版本"
 
 #: src/ViewHelper/Scripto.php:430
 msgid "6 hours"
-msgstr "6 horas"
+msgstr "6 小时"
 
 #: src/ViewHelper/Scripto.php:431
 msgid "12 hours"
-msgstr "12 horas"
+msgstr "12 小时"
 
 #: src/ViewHelper/Scripto.php:432
 msgid "1 day"
-msgstr "1 día"
+msgstr "1 天"
 
 #: src/ViewHelper/Scripto.php:433
 msgid "3 days"
-msgstr "3 días"
+msgstr "3 天"
 
 #: src/ViewHelper/Scripto.php:434
 msgid "7 days"
-msgstr "7 días"
+msgstr "7 天"
 
 #: src/ViewHelper/Scripto.php:435
 msgid "30 days"
-msgstr "30 días"
+msgstr "30 天"
 
 #: src/ViewHelper/Scripto.php:436
 msgid "90 days"
-msgstr "90 días"
+msgstr "90 天"
 
 #: src/ViewHelper/Scripto.php:453
 msgid "Period of time to display:"
-msgstr "Período de tiempo a mostrar:"
+msgstr "显示的时间范围："
 
 #: src/ViewHelper/Scripto.php:535
 msgid "Italic"
-msgstr "Cursiva"
+msgstr "斜体字"
 
 #: src/ViewHelper/Scripto.php:536
 msgid "Bold"
-msgstr "Negrita"
+msgstr "黑体字"
 
 #: src/ViewHelper/Scripto.php:537
 msgid "Strike out"
-msgstr "Tachar"
+msgstr "删去"
 
 #: src/ViewHelper/Scripto.php:538
 msgid "Underline"
-msgstr "Subrayar"
+msgstr "下划线"
 
 #: src/ViewHelper/Scripto.php:539
 msgid "Blockquote"
-msgstr "Bloque de cita"
+msgstr "块引用"
 
 #: src/ViewHelper/Scripto.php:540
 msgid "Hidden comment"
-msgstr "Comentario oculto"
+msgstr "隐藏的评论"
 
 #: src/ViewHelper/Scripto.php:541
 msgid "Level 1 heading"
-msgstr "Encabezado nivel 1"
+msgstr "一级标题"
 
 #: src/ViewHelper/Scripto.php:542
 msgid "Level 2 heading"
-msgstr "Encabezado nivel 2"
+msgstr "二级标题"
 
 #: src/ViewHelper/Scripto.php:543
 msgid "Level 3 heading"
-msgstr "Encabezado nivel 3"
+msgstr "三级标题"
 
 #: src/ViewHelper/Scripto.php:544
 msgid "Level 4 heading"
-msgstr "Encabezado nivel 4"
+msgstr "四级标题"
 
 #: src/ViewHelper/Scripto.php:545
 msgid "Level 5 heading"
-msgstr "Encabezado nivel 5"
+msgstr "五级标题"
 
 #: src/ViewHelper/Scripto.php:546
 msgid "Preformatted"
-msgstr "Preformateado"
+msgstr "预格式化的"
 
 #: src/ViewHelper/Scripto.php:547
 msgid "Horizontal rule"
-msgstr "Regla horizontal"
+msgstr "水平标尺"
 
 #: src/ViewHelper/Scripto.php:549
 msgid "Signature"
-msgstr "Firma"
+msgstr "签名"
 
 #: src/ViewHelper/Scripto.php:550
 msgid "Strikethrough"
-msgstr "Tachado"
+msgstr "删除线"
 
 #: src/ViewHelper/Scripto.php:551
 msgid "Unordered list"
-msgstr "Lista desordenada"
+msgstr "无序列表"
 
 #: src/ViewHelper/Scripto.php:552
 msgid "Ordered list"
-msgstr "Lista ordenada"
+msgstr "有序列表"
 
 #: src/ViewHelper/Scripto.php:572
 msgid "Select one"
-msgstr "Seleccionar uno"
+msgstr "选择一个"
 
 #: view/common/block-layout/scripto-block-form.phtml:2
 msgid "Add a link to this Scripto project:"
-msgstr "Agregar un enlace a este proyecto Scripto:"
+msgstr "给此Scripto项目添加链接："
 
 #: view/common/block-layout/scripto-block-form.phtml:5
 #: view/scripto/admin/project/browse.phtml:113
 msgid "No Scripto projects found."
-msgstr "No se encontraron proyectos Scripto."
+msgstr "没有找到任何Scripto项目。"
 
 #: view/common/block-layout/scripto-block.phtml:15
 msgid "The Scripto project is not found."
-msgstr "El proyecto Scripto no se encontró."
+msgstr "没有找到该Scripto项目。"
 
 #: view/common/media-head.phtml:5
 msgid "Browse revision history"
-msgstr "Examinar el historial de revisiones"
+msgstr "浏览版本历史"
 
 #: view/common/media-head.phtml:7 view/scripto/admin/media/show.phtml:25
 msgid "View notes"
-msgstr "Ver notas"
+msgstr "查看注释"
 
 #: view/common/media-viewer.phtml:7
 msgid "Zoom in"
-msgstr "Acercarse"
+msgstr "放大"
 
 #: view/common/media-viewer.phtml:8
 msgid "Zoom out"
-msgstr "Alejarse"
+msgstr "缩小"
 
 #: view/common/media-viewer.phtml:9
 msgid "Rotate right"
-msgstr "Girar a la derecha"
+msgstr "向右旋转"
 
 #: view/common/media-viewer.phtml:10
 msgid "Rotate left"
-msgstr "Girar a la izquierda"
+msgstr "向左旋转"
 
 #: view/layout/layout-scripto-public-app.phtml:30
 msgid "Toggle menu"
-msgstr "Intercambiar menú"
+msgstr "切换菜单"
 
 #: view/layout/layout-scripto-public-app.phtml:40
 #: view/scripto/public-app/index/create-account.phtml:2
 msgid "Create account"
-msgstr "Crear cuenta"
+msgstr "创建账号"
 
 #: view/layout/layout-scripto-public-app.phtml:47
 #: view/scripto/public-app/project/guidelines.phtml:2
 msgid "Project guidelines"
-msgstr "Guías para el proyecto"
+msgstr "项目指南"
 
 #: view/layout/layout-scripto-public-app.phtml:53
 #, php-format
 msgid "Search %s"
-msgstr "Buscar %s"
+msgstr "搜索%s"
 
 #: view/layout/layout-scripto-public-app.phtml:66
 msgid "Content"
-msgstr "Contenido"
+msgstr "内容"
 
 #: view/layout/layout-scripto-public-app.phtml:87
 msgid "Back to top"
-msgstr "Volver al principio"
+msgstr "返回顶部"
 
 #: view/scripto/admin/imported-scripto-item.phtml:8
 #: view/scripto/admin/imported-scripto-media.phtml:8
 #: view/scripto/admin/project/show-details.phtml:14
 #: view/scripto/admin/project/show-details.phtml:31
 msgid "Not set"
-msgstr "No establecido"
+msgstr "未设定"
 
 #: view/scripto/admin/index/index.phtml:12
 #: view/scripto/admin/item/browse.phtml:15
 msgid "Actions"
-msgstr "Acciones"
+msgstr "操作"
 
 #: view/scripto/admin/index/index.phtml:14
 msgid "Browse projects"
-msgstr "Navegar proyectos"
+msgstr "浏览项目"
 
 #: view/scripto/admin/index/index.phtml:16
 #: view/scripto/admin/project/browse.phtml:14
 msgid "Add new project"
-msgstr "Añadir nuevo proyecto"
+msgstr "添加新项目"
 
 #: view/scripto/admin/index/index.phtml:18
 msgid "Browse users"
-msgstr "Navegar entre los usuarios"
+msgstr "浏览用户"
 
 #: view/scripto/admin/index/index.phtml:28
 msgid "Projects you own"
-msgstr "Proyectos que le pertenecen"
+msgstr "您拥有的项目"
 
 #: view/scripto/admin/index/index.phtml:28
 #: view/scripto/admin/index/index.phtml:56
 msgid "View all projects"
-msgstr "Ver todos los proyectos"
+msgstr "查看所有项目"
 
 #: view/scripto/admin/index/index.phtml:42
 #, php-format
 msgid "You do not own any projects. %s"
-msgstr "No posee ningún proyecto. %s"
+msgstr "您不拥有任何项目。%s"
 
 #: view/scripto/admin/index/index.phtml:46
 msgid "Add a project here."
-msgstr "Agregar aquí un proyecto."
+msgstr "在此添加一个项目。"
 
 #: view/scripto/admin/index/index.phtml:50
 msgid "You do not own any projects."
-msgstr "No posee ningún proyecto."
+msgstr "您不拥有任何项目。"
 
 #: view/scripto/admin/index/index.phtml:56
 msgid "Projects you review"
-msgstr "Proyectos que evalúa"
+msgstr "您审核的项目"
 
 #: view/scripto/admin/index/index.phtml:68
 msgid "You are not reviewing any projects."
-msgstr "No está evaluando ningún proyecto."
+msgstr "您没有在审核任何项目。"
 
 #: view/scripto/admin/index/index.phtml:74
 #: view/scripto/public-app/index/index.phtml:3
 msgid "Your recent contributions"
-msgstr "Sus recientes contribuciones"
+msgstr "您最近的贡献"
 
 #: view/scripto/admin/index/index.phtml:76
 #: view/scripto/public-app/index/index.phtml:5
 msgid "View your contributions"
-msgstr "Ver sus contribuciones"
+msgstr "查看您的贡献"
 
 #: view/scripto/admin/index/index.phtml:112
 #: view/scripto/admin/index/index.phtml:122
@@ -397,7 +387,7 @@ msgstr "Ver sus contribuciones"
 #: view/scripto/public-app/user/watchlist.phtml:65
 #: view/scripto/public-app/user/watchlist.phtml:77
 msgid "diff"
-msgstr "diferencia"
+msgstr ""
 
 #: view/scripto/admin/index/index.phtml:123
 #: view/scripto/admin/index/index.phtml:210
@@ -408,69 +398,67 @@ msgstr "diferencia"
 #: view/scripto/public-app/user/contributions.phtml:69
 #: view/scripto/public-app/user/watchlist.phtml:78
 msgid "hist"
-msgstr "historial"
+msgstr ""
 
 #: view/scripto/admin/index/index.phtml:151
 #: view/scripto/public-app/index/index.phtml:88
 msgid "No contributions found."
-msgstr "No se encontraron contribuciones."
+msgstr "没有找到任何贡献。"
 
 #: view/scripto/admin/index/index.phtml:153
 #: view/scripto/public-app/index/index.phtml:90
 msgid "No contributions found. Do you need to log in to Scripto?"
-msgstr ""
-"No se encontraron contribuciones. ¿Necesita iniciar sesión en scripto?"
+msgstr "没有找到任何贡献。您是否需要登入Scripto？"
 
 #: view/scripto/admin/index/index.phtml:160
 #: view/scripto/public-app/index/index.phtml:97
 msgid "Your recent watchlist"
-msgstr "Su reciente lista de seguimiento"
+msgstr "您最近的监视列表"
 
 #: view/scripto/admin/index/index.phtml:162
 #: view/scripto/public-app/index/index.phtml:99
 msgid "View your watchlist"
-msgstr "Ver su lista de seguimiento"
+msgstr "查看您的监视列表"
 
 #: view/scripto/admin/index/index.phtml:238
 #: view/scripto/public-app/index/index.phtml:183
 msgid "No watchlist found."
-msgstr "No se encontra lista de seguimiento."
+msgstr "没有找到监视列表。"
 
 #: view/scripto/admin/index/index.phtml:240
 #: view/scripto/public-app/index/index.phtml:185
 msgid "No watchlist found. Do you need to log in to Scripto?"
-msgstr ""
-"No se encuentra lista de seguimiento. ¿Necesita iniciar sesión en Scripto?"
+msgstr "没有找到监视列表。您是否需要登入Scripto？"
 
 #: view/scripto/admin/item/browse.phtml:8
 #: view/scripto/admin/project/edit.phtml:8
 msgid "Scripto: Project"
-msgstr "Scripto: Projecto"
+msgstr "Scripto：项目"
 
 #: view/scripto/admin/item/browse.phtml:17
 msgid "Edit project"
-msgstr "Modificar proyecto"
+msgstr "编辑项目"
 
 #: view/scripto/admin/item/browse.phtml:18
 #: view/scripto/admin/item/browse.phtml:134
 msgid "Sync project"
-msgstr "Sincronizar proyecto"
+msgstr "同步项目"
 
 #: view/scripto/admin/item/browse.phtml:19
 #: view/scripto/admin/item/browse.phtml:147
 msgid "Import content"
-msgstr "Importar contenido"
+msgstr "导入内容"
 
 #: view/scripto/admin/item/browse.phtml:20
 #: view/scripto/admin/item/browse.phtml:164
 msgid "Unimport content"
-msgstr "Desimportar contenido"
+msgstr ""
 
 #: view/scripto/admin/item/browse.phtml:39
 #: view/scripto/admin/item/browse.phtml:77
 #: view/scripto/admin/item/show-details.phtml:15
 msgid "Date synced"
-msgstr "Fecha sincronizada"
+msgstr "同步日期"
 
 #: view/scripto/admin/item/browse.phtml:43
 #: view/scripto/admin/item/browse.phtml:78
@@ -478,50 +466,46 @@ msgstr "Fecha sincronizada"
 #: view/scripto/admin/media/browse.phtml:114
 #: view/scripto/public-app/media/browse.phtml:27
 msgid "Last edited"
-msgstr "Última modificación"
+msgstr "最后编辑于"
 
 #: view/scripto/admin/item/browse.phtml:49
 #: view/scripto/admin/media/browse.phtml:64
 #: view/scripto/public-app/item/browse.phtml:15
 #: view/scripto/public-app/media/browse.phtml:60
 msgid "Is approved"
-msgstr "Está aprobada"
+msgstr "已被批准"
 
 #: view/scripto/admin/item/browse.phtml:53
 #: view/scripto/admin/media/browse.phtml:68
 #: view/scripto/public-app/item/browse.phtml:19
 #: view/scripto/public-app/media/browse.phtml:64
 msgid "Is not approved"
-msgstr "No está aprobada"
+msgstr "未被批准"
 
 #: view/scripto/admin/item/browse.phtml:57
 #: view/scripto/public-app/item/browse.phtml:5
 msgid "Is in progress"
-msgstr "Está en proceso"
+msgstr "正在处理中"
 
 #: view/scripto/admin/item/browse.phtml:61
 #: view/scripto/public-app/item/browse.phtml:9
 msgid "Is new"
-msgstr "Es nuevo"
+msgstr "新的"
 
 #: view/scripto/admin/item/browse.phtml:65
 #: view/scripto/admin/media/browse.phtml:76
 msgid "Is edited after imported"
-msgstr "Se edita después de importado"
+msgstr "导入之后已编辑"
 
 #: view/scripto/admin/item/browse.phtml:115
 msgid ""
 "Do you need to sync the project? If you have recently synced, the sync job "
 "has likely not finished."
-msgstr ""
-"¿Necesita sincronizar el proyecto? Si ha sincronizado recientemente, es "
-"probable que el proceso de sincronización no haya finalizado aun. "
+msgstr "您需要同步项目吗？如果最近您同步过，同步任务很可能未完成。"
 
 #: view/scripto/admin/item/browse.phtml:136
 msgid "This project has no item set. Set an item set to enable syncing."
-msgstr ""
-"Este proyecto no posee un conjunto de elementos. Establézcalo para permitir "
-"su sincronización."
+msgstr "该项目没有条目集。设定一个条目集来启用同步。"
 
 #: view/scripto/admin/item/browse.phtml:138
 msgid ""
@@ -531,18 +515,11 @@ msgid ""
 "are added or removed from the item set, and when item media have been added,"
 " removed, or reordered."
 msgstr ""
-"Sincroniza este proyecto con el conjunto de fichas establecido. Una vez "
-"sincronizado, el proyecto contendrá todas las fichas pertenecientes al "
-"conjunto de fichas. Debe realizarse una sincronización periódica cada vez "
-"que cambien los tipos de medio configurados, cuando se añadan o eliminen "
-"fichas de los conjuntos de fichas, y cuando se añadan, eliminen o reordenen "
-"los medios de las fichas."
+"把该项目和设置好的条目集同步起来。在同步之后，该项目将包含条目集中的每个条目。每当设置好的媒介类型改变后，或条目集中添加或删除条目后，以及添加、删除或重排序条目媒介后，您应当定期同步。"
 
 #: view/scripto/admin/item/browse.phtml:149
 msgid "This project has no property. Set a property to enable importing."
-msgstr ""
-"Este proyecto no tiene propiedad. Establezca una para habilitar la "
-"importación."
+msgstr "该项目没有属性。设定一个属性来启用同步。"
 
 #: view/scripto/admin/item/browse.phtml:151
 msgid ""
@@ -550,57 +527,49 @@ msgid ""
 "it is imported. Importing will copy approved content from the wiki into "
 "Omeka so that it can be viewed and searched."
 msgstr ""
-"Importar el contenido del proyecto en Omeka. Scripto almacena el contenido "
-"en un wiki antes de que sea importado. La importación copiará el contenido "
-"aprobado de la wiki en Omeka para que se pueda ver y buscar."
+"把项目内容导入Omeka。在导入前，Scripto把内容存储在一个wiki中。导入操作将把被批准的内容从wiki中拷贝到Omeka，以便查看和搜索。"
 
 #: view/scripto/admin/item/browse.phtml:153
 #, php-format
 msgid ""
 "%s: All existing values matching the configured import target, property, and"
 " language tag will be overwritten or deleted."
-msgstr ""
-"%s :Todos los valores existentes que coincidan con el destino de "
-"importación, propiedad y etiqueta de idioma se sobrescribirán o eliminarán."
+msgstr "%s：所有现有的能匹配设置好的导入目标、属性和语言标签的值将被改写或删除。"
 
 #: view/scripto/admin/item/browse.phtml:166
 msgid "This project has no property. Set a property to enable unimporting."
 msgstr ""
-"Este proyecto no tiene propiedad. Establezca una propiedad para habilitar la"
-" desimportación."
 
 #: view/scripto/admin/item/browse.phtml:168
 msgid "Unimport project content from Omeka."
-msgstr "Deshacer contenido del proyecto de Omeka."
+msgstr ""
 
 #: view/scripto/admin/item/browse.phtml:170
 #, php-format
 msgid ""
 "%s: All existing values matching the configured import target, property, and"
 " language tag will be deleted."
-msgstr ""
-"%s :Todos los valores que coincidan con el destino de configuración "
-"importado, propiedad y etiqueta de idioma se eliminarán. "
+msgstr "%s：所有现有的能匹配到设置好的导入目标、属性、和语言标签的值都将被删除。"
 
 #: view/scripto/admin/item/show-details.phtml:52
 #: view/scripto/admin/media/show-details.phtml:84
 msgid "Omeka item"
-msgstr "Elemento Omeka"
+msgstr "Omeka条目"
 
 #: view/scripto/admin/item/show-details.phtml:58
 #: view/scripto/admin/media/show-details.phtml:90
 #: view/scripto/admin/project/show-details.phtml:9
 msgid "No description"
-msgstr "Sin descripción"
+msgstr "无描述"
 
 #: view/scripto/admin/media/browse.phtml:16
 msgid "Omeka item metadata"
-msgstr "Metadatos de elemento Omeka"
+msgstr "Omeka媒体元数据"
 
 #: view/scripto/admin/media/browse.phtml:26
 #: view/scripto/public-app/media/browse.phtml:23
 msgid "Position"
-msgstr "Posición"
+msgstr ""
 
 #: view/scripto/admin/media/browse.phtml:30
 #: view/scripto/admin/media/show-details.phtml:33
@@ -608,104 +577,104 @@ msgstr "Posición"
 #: view/scripto/admin/project/browse.phtml:56
 #: view/scripto/admin/project/show-details.phtml:85
 msgid "Last synced"
-msgstr "Última sincronización"
+msgstr "最后同步于"
 
 #: view/scripto/admin/media/browse.phtml:38
 #: view/scripto/admin/media/show-details.phtml:47
 #: view/scripto/public-app/media/browse.phtml:31
 msgid "Last completed"
-msgstr "Ultima vez completado"
+msgstr "最后完成于"
 
 #: view/scripto/admin/media/browse.phtml:42
 #: view/scripto/admin/media/show-details.phtml:59
 #: view/scripto/public-app/media/browse.phtml:35
 msgid "Last approved"
-msgstr "Ultima aprobación"
+msgstr "最后批准于"
 
 #: view/scripto/admin/media/browse.phtml:48
 #: view/scripto/public-app/media/browse.phtml:44
 msgid "Is edited"
-msgstr "Está modificado"
+msgstr "已编辑的"
 
 #: view/scripto/admin/media/browse.phtml:52
 #: view/scripto/public-app/media/browse.phtml:48
 msgid "Is not edited"
-msgstr "No está modificado"
+msgstr "未编辑的"
 
 #: view/scripto/admin/media/browse.phtml:56
 #: view/scripto/public-app/media/browse.phtml:52
 msgid "Is completed"
-msgstr "Es completada"
+msgstr "已完成"
 
 #: view/scripto/admin/media/browse.phtml:60
 #: view/scripto/public-app/media/browse.phtml:56
 msgid "Is not completed"
-msgstr "No está completado"
+msgstr "未完成的"
 
 #: view/scripto/admin/media/browse.phtml:72
 msgid "Is edited after approved"
-msgstr "Se edita después de aprobado"
+msgstr "批准后已编辑"
 
 #: view/scripto/admin/media/browse.phtml:80
 msgid "Is synced after imported"
-msgstr "Se sincroniza después de importado"
+msgstr "导入后已同步"
 
 #: view/scripto/admin/media/browse.phtml:116
 #: view/scripto/admin/media/show-details.phtml:20
 #: view/scripto/admin/media/show-talk.phtml:147
 #: view/scripto/admin/media/show.phtml:236
 msgid "Edit protection"
-msgstr "Modificar protección"
+msgstr ""
 
 #: view/scripto/admin/media/browse.phtml:156
 msgid "Do you need to sync the project?"
-msgstr "¿Necesita sincronizar el proyecto?"
+msgstr "您是否需要同步该项目？"
 
 #: view/scripto/admin/media/browse.phtml:178
 msgid "The Omeka item has no metadata."
-msgstr "El item Omeka no tiene metadatos."
+msgstr "该Omeka条目没有元数据。"
 
 #: view/scripto/admin/media/show-details.phtml:24
 #, php-format
 msgid "%s; expiring %s"
-msgstr "%s; vence %s"
+msgstr "%s；即将到期%s"
 
 #: view/scripto/admin/media/show-details.phtml:28
 msgid "never"
-msgstr "nunca"
+msgstr ""
 
 #: view/scripto/admin/media/show-details.phtml:54
 #: view/scripto/admin/media/show.phtml:145
 #: view/scripto/admin/media/show.phtml:191
 msgid "[Unknown]"
-msgstr "[Desconocido]"
+msgstr "【未知】"
 
 #: view/scripto/admin/media/show-details.phtml:56
 #: view/scripto/admin/media/show.phtml:177
 msgid "Not completed"
-msgstr "No completado"
+msgstr "未完成"
 
 #: view/scripto/admin/media/show-details.phtml:72
 #: view/scripto/admin/media/show.phtml:223
 msgid "Not approved"
-msgstr "No aprobados"
+msgstr "未被批准"
 
 #: view/scripto/admin/media/show-details.phtml:75
 msgid "MediaWiki page"
-msgstr "Página MediaWiki"
+msgstr "MediaWiki页面"
 
 #: view/scripto/admin/media/show-details.phtml:80
 msgid "Omeka media"
-msgstr "Medios Omeka"
+msgstr "Omeka媒介"
 
 #: view/scripto/admin/media/show-talk.phtml:11
 msgid "Notes"
-msgstr "Notas"
+msgstr "注释"
 
 #: view/scripto/admin/media/show-talk.phtml:23
 #: view/scripto/admin/media/show.phtml:24
 msgid "Revision history"
-msgstr "Historial de revisiones"
+msgstr "版本历史"
 
 #: view/scripto/admin/media/show-talk.phtml:31
 #: view/scripto/admin/media/show-talk.phtml:50
@@ -716,37 +685,37 @@ msgstr "Historial de revisiones"
 #: view/scripto/public-app/revision/show.phtml:14
 #: view/scripto/public-app/revision/show.phtml:15
 msgid "Wikitext"
-msgstr "Wikitext"
+msgstr ""
 
 #: view/scripto/admin/media/show-talk.phtml:33
 #: view/scripto/admin/media/show.phtml:35
 msgid "Omeka media metadata"
-msgstr "Omeka media metadatos"
+msgstr "Omeka媒介元数据"
 
 #: view/scripto/admin/media/show-talk.phtml:62
 #: view/scripto/public-app/media/show-talk.phtml:37
 msgid "No notes yet."
-msgstr "Todavía no hay notas."
+msgstr "尚无注释。"
 
 #: view/scripto/admin/media/show-talk.phtml:64
 #: view/scripto/public-app/media/show-talk.phtml:41
 msgid "Browse notes history"
-msgstr "Buscar historial de notas"
+msgstr "浏览注释历史"
 
 #: view/scripto/admin/media/show-talk.phtml:91
 #: view/scripto/admin/media/show.phtml:81
 msgid "The Omeka media has no metadata."
-msgstr "El medio Omeka no posee metadatos."
+msgstr "该Omeka媒介没有元数据。"
 
 #: view/scripto/admin/media/show-talk.phtml:112
 #: view/scripto/admin/media/show.phtml:102
 msgid "Latest revision"
-msgstr "Ultima revisión"
+msgstr "最新版本"
 
 #: view/scripto/admin/media/show-talk.phtml:117
 #: view/scripto/admin/media/show.phtml:107
 msgid "This revision"
-msgstr "Esta revisión"
+msgstr "该版本"
 
 #: view/scripto/admin/media/show-talk.phtml:121
 #: view/scripto/admin/media/show.phtml:111
@@ -754,32 +723,32 @@ msgstr "Esta revisión"
 #: view/scripto/admin/media/show.phtml:187
 #, php-format
 msgid "%s: %s by %s"
-msgstr "%s: %s por %s"
+msgstr ""
 
 #: view/scripto/admin/media/show-talk.phtml:123
 #: view/scripto/admin/media/show.phtml:113
 msgid "Latest"
-msgstr "Ultimo"
+msgstr "最新的"
 
 #: view/scripto/admin/media/show-talk.phtml:124
 #: view/scripto/admin/media/show.phtml:114
 msgid "Out-of-date"
-msgstr "Fuera de plazo"
+msgstr "过时"
 
 #: view/scripto/admin/media/show-talk.phtml:135
 #: view/scripto/admin/media/show.phtml:125
 msgid "Revert to this revision."
-msgstr "Deshacer esta revisión."
+msgstr "恢复到此版本"
 
 #: view/scripto/admin/media/show-talk.phtml:140
 #: view/scripto/admin/media/show.phtml:130
 msgid "There are no revisions."
-msgstr "No hay revisiones."
+msgstr "没有修订版。"
 
 #: view/scripto/admin/media/show-talk.phtml:162
 #: view/scripto/admin/media/show.phtml:253
 msgid "Revert to this revision"
-msgstr "Deshacer esta revisión"
+msgstr "恢复到此版本"
 
 #: view/scripto/admin/media/show-talk.phtml:164
 #: view/scripto/admin/media/show.phtml:255
@@ -790,195 +759,191 @@ msgid ""
 " that this revert will not affect which revisions are marked as completed or"
 " approved."
 msgstr ""
-"%s :Usted está volviendo a una revisión  obsoleta. Cualquier cambio "
-"realizado desde esta revisión se perderá, incluidos los cambios que pueden "
-"ser significativos. Tenga en cuenta que esta reversión no afectará a las "
-"revisiones marcadas como completadas o aprobadas."
 
 #: view/scripto/admin/media/show-talk.phtml:168
 #: view/scripto/admin/media/show.phtml:259
 msgid "Verify changes before confirming this reversion."
-msgstr "Verifique los cambios antes de confirmar esta reversión."
+msgstr "在确认此复原之前核实更改。"
 
 #: view/scripto/admin/media/show.phtml:41
 #: view/scripto/public-app/media/edit.phtml:29
 msgid "Go full screen"
-msgstr "Ir a pantalla completa"
+msgstr "进入全屏"
 
 #: view/scripto/admin/media/show.phtml:41
 #: view/scripto/public-app/media/edit.phtml:29
 msgid "Exit full screen"
-msgstr "Salir de pantalla completa"
+msgstr "退出全屏"
 
 #: view/scripto/admin/media/show.phtml:43
 #: view/scripto/public-app/item/browse.phtml:35
 #: view/scripto/public-app/media/browse.phtml:14
 #: view/scripto/public-app/media/edit.phtml:31
 msgid "Layout"
-msgstr "Diseño"
+msgstr "版面编排"
 
 #: view/scripto/admin/media/show.phtml:44
 #: view/scripto/public-app/media/edit.phtml:32
 msgid "Horizontal view"
-msgstr "Vista horizontal"
+msgstr "水平视图"
 
 #: view/scripto/admin/media/show.phtml:45
 #: view/scripto/public-app/media/edit.phtml:33
 msgid "Vertical view"
-msgstr "Vista vertical"
+msgstr "垂直视图"
 
 #: view/scripto/admin/media/show.phtml:137
 msgid "Review status"
-msgstr "Estado de la revisión"
+msgstr "审核状态"
 
 #: view/scripto/admin/media/show.phtml:153
 msgid "This revision marked as complete."
-msgstr "Esta revisión está marcada como completa."
+msgstr "被标记为完成的该版本。"
 
 #: view/scripto/admin/media/show.phtml:161
 #, php-format
 msgid "Another revision marked as complete. [%s]"
-msgstr "Otra revisión marcada como completa. [%s]"
+msgstr "被标记为完成的另一版本。【%s】"
 
 #: view/scripto/admin/media/show.phtml:162
 #: view/scripto/admin/media/show.phtml:208
 msgid "view revision"
-msgstr "ver revisión"
+msgstr "查看修订版"
 
 #: view/scripto/admin/media/show.phtml:179
 #: view/scripto/public-app/media/edit.phtml:20
 msgid "Mark this revision as complete"
-msgstr "Marcar esta revisión como completa"
+msgstr "标记此版本为完成"
 
 #: view/scripto/admin/media/show.phtml:188
 msgid "Approved"
-msgstr "Aprobado"
+msgstr "已批准"
 
 #: view/scripto/admin/media/show.phtml:199
 #: view/scripto/admin/revision/compare.phtml:46
 #: view/scripto/public-app/revision/compare.phtml:41
 msgid "This revision marked as approved."
-msgstr "Esta revisión fue marcada como aprobada."
+msgstr "被标记为已批准的该版本。"
 
 #: view/scripto/admin/media/show.phtml:207
 #, php-format
 msgid "Another revision marked as approved. [%s]"
-msgstr "Otra revisión marcada como aprobada. [%s]"
+msgstr "被标记为已批准的另一版本。【%s】"
 
 #: view/scripto/admin/media/show.phtml:225
 msgid "Mark this revision as approved"
-msgstr "Marcar esta revisión como aprobada"
+msgstr "标记此版本为已批准"
 
 #: view/scripto/admin/project/add.phtml:8
 msgid "New project"
-msgstr "Nuevo proyecto"
+msgstr "新项目"
 
 #: view/scripto/admin/project/add.phtml:11
 #: view/scripto/admin/project/edit.phtml:11
 msgid "Configuration"
-msgstr "Configuración"
+msgstr "配置"
 
 #: view/scripto/admin/project/add.phtml:12
 #: view/scripto/admin/project/edit.phtml:12
 msgid "Reviewers"
-msgstr "Revisores"
+msgstr "审核者"
 
 #: view/scripto/admin/project/browse.phtml:32
 #: view/scripto/admin/project/browse.phtml:55
 #: view/scripto/admin/project/show-details.phtml:81
 #: view/scripto/admin/user/browse.phtml:24
 msgid "Date created"
-msgstr "Fecha de creación"
+msgstr "创建日期"
 
 #: view/scripto/admin/project/browse.phtml:40
 #: view/scripto/admin/project/browse.phtml:57
 #: view/scripto/admin/project/show-details.phtml:90
 msgid "Last imported"
-msgstr "Ultima importación"
+msgstr "最后导入于"
 
 #: view/scripto/admin/project/browse.phtml:109
 #, php-format
 msgid "No Scripto projects found. %s"
-msgstr "No se encontraron proyectos Scripto. %s"
+msgstr "没有找到任何Scripto项目。%s"
 
 #: view/scripto/admin/project/browse.phtml:110
 msgid "Add a new project."
-msgstr "Añadir nuevo proyecto."
+msgstr "添加一个新项目。"
 
 #: view/scripto/admin/project/reviewers-form.phtml:12
 msgid "Click on a user to add them to the project."
-msgstr "Clic sobre un usuario para agregarlo al proyecto."
+msgstr "点击一个用户把他们添加到项目中。"
 
 #: view/scripto/admin/project/show-details.phtml:1
 msgid "Project metadata"
-msgstr "Metadatos del proyecto"
+msgstr "项目元数据"
 
 #: view/scripto/admin/project/show-details.phtml:17
 msgid "Media types"
-msgstr "Tipos de medio"
+msgstr "媒体类型"
 
 #: view/scripto/admin/project/show-details.phtml:34
 msgid "Language tag"
-msgstr "Etiqueta Idioma"
+msgstr "语言标签"
 
 #: view/scripto/admin/project/show-details.phtml:38
 msgid "Import target"
-msgstr "Importar objeto"
+msgstr "导入目标"
 
 #: view/scripto/admin/project/show-details.phtml:45
 msgid "Item and media"
-msgstr "Elemento y medio"
+msgstr "条目和媒介"
 
 #: view/scripto/admin/project/show-details.phtml:50
 msgid "Browse layout"
-msgstr "Navegar diseños"
+msgstr "浏览版面设计"
 
 #: view/scripto/admin/project/show-details.phtml:53
 #: view/scripto/public-app/item/browse.phtml:36
 #: view/scripto/public-app/media/browse.phtml:15
 msgid "List"
-msgstr "Lista"
+msgstr "列表"
 
 #: view/scripto/admin/project/show-details.phtml:55
 #: view/scripto/public-app/item/browse.phtml:37
 #: view/scripto/public-app/media/browse.phtml:16
 msgid "Grid"
-msgstr "Cuadrícula"
+msgstr "网格"
 
 #: view/scripto/admin/project/show-details.phtml:60
 msgid "Item type"
-msgstr "Tipo de item"
+msgstr "条目类型"
 
 #: view/scripto/admin/project/show-details.phtml:68
 msgid "Content type"
-msgstr "Tipo de contenido"
+msgstr "内容类型"
 
 #: view/scripto/admin/project/show-details.phtml:87
 msgid "Not synced"
-msgstr "No sincronizado"
+msgstr "未同步"
 
 #: view/scripto/admin/project/show-details.phtml:92
 msgid "Not imported"
-msgstr "No importada"
+msgstr "未导入"
 
 #: view/scripto/admin/revision/browse-talk.phtml:9
 #: view/scripto/admin/revision/browse.phtml:9
 msgid "Revisions"
-msgstr "Revisiones"
+msgstr "修订版"
 
 #: view/scripto/admin/revision/browse-talk.phtml:18
 #: view/scripto/admin/revision/browse.phtml:18
 #: view/scripto/public-app/revision/browse-talk.phtml:11
 #: view/scripto/public-app/revision/browse.phtml:11
 msgid "Compare selected"
-msgstr "Comparar seleccionado"
+msgstr "比较被选中的"
 
 #: view/scripto/admin/revision/browse-talk.phtml:25
 #: view/scripto/admin/revision/browse.phtml:25
 #: view/scripto/public-app/revision/browse-talk.phtml:18
 #: view/scripto/public-app/revision/browse.phtml:17
 msgid "Compare"
-msgstr "Comparar"
+msgstr "比较"
 
 #: view/scripto/admin/revision/browse-talk.phtml:43
 #: view/scripto/admin/revision/browse-talk.phtml:44
@@ -989,7 +954,7 @@ msgstr "Comparar"
 #: view/scripto/public-app/revision/browse.phtml:35
 #: view/scripto/public-app/revision/browse.phtml:36
 msgid "cur"
-msgstr "act"
+msgstr ""
 
 #: view/scripto/admin/revision/browse-talk.phtml:46
 #: view/scripto/admin/revision/browse-talk.phtml:47
@@ -1000,21 +965,21 @@ msgstr "act"
 #: view/scripto/public-app/revision/browse.phtml:38
 #: view/scripto/public-app/revision/browse.phtml:39
 msgid "prev"
-msgstr "ant"
+msgstr ""
 
 #: view/scripto/admin/revision/browse-talk.phtml:52
 #: view/scripto/admin/revision/browse.phtml:52
 #: view/scripto/public-app/revision/browse-talk.phtml:45
 #: view/scripto/public-app/revision/browse.phtml:44
 msgid "From revision"
-msgstr "Desde la revisión"
+msgstr ""
 
 #: view/scripto/admin/revision/browse-talk.phtml:58
 #: view/scripto/admin/revision/browse.phtml:58
 #: view/scripto/public-app/revision/browse-talk.phtml:51
 #: view/scripto/public-app/revision/browse.phtml:50
 msgid "To revision"
-msgstr "A revisión"
+msgstr ""
 
 #: view/scripto/admin/revision/browse-talk.phtml:79
 #: view/scripto/admin/revision/browse.phtml:79
@@ -1026,12 +991,12 @@ msgstr "A revisión"
 #: view/scripto/public-app/user/watchlist.phtml:92
 #, php-format
 msgid "%s bytes (%s)"
-msgstr "%s bytes (%s)"
+msgstr "%s字节（%s）"
 
 #: view/scripto/admin/revision/compare-talk.phtml:6
 #: view/scripto/admin/revision/compare.phtml:6
 msgid "Compare revisions"
-msgstr "Comparar revisiones"
+msgstr "比较各版本"
 
 #: view/scripto/admin/revision/compare-talk.phtml:24
 #: view/scripto/admin/revision/compare-talk.phtml:34
@@ -1043,56 +1008,56 @@ msgstr "Comparar revisiones"
 #: view/scripto/public-app/revision/compare.phtml:29
 #, php-format
 msgid "Revision as of %s"
-msgstr "Revisión %s"
+msgstr ""
 
 #: view/scripto/admin/revision/compare-talk.phtml:49
 #: view/scripto/admin/revision/compare.phtml:69
 #: view/scripto/public-app/revision/compare-talk.phtml:44
 #: view/scripto/public-app/revision/compare.phtml:64
 msgid "(No difference)"
-msgstr "(Sin diferencia)"
+msgstr "（无差别）"
 
 #: view/scripto/admin/revision/compare.phtml:45
 #: view/scripto/public-app/revision/compare.phtml:40
 msgid "This revision marked as completed."
-msgstr "Esta revisión fue marcada como completada."
+msgstr "被标记为已完成的该版本。"
 
 #: view/scripto/admin/user/browse.phtml:22
 msgid "MediaWiki groups"
-msgstr "Grupos MediaWiki"
+msgstr "MediaWiki组"
 
 #: view/scripto/admin/user/browse.phtml:23
 msgid "Edit count"
-msgstr "Modificar contador"
+msgstr "编辑数"
 
 #: view/scripto/admin/user/contributions.phtml:8
 #: view/scripto/admin/user/watchlist.phtml:9
 msgid "Scripto: User"
-msgstr "Scripto: Usuario"
+msgstr "Scripto：用户"
 
 #: view/scripto/admin/user/contributions.phtml:23
 #: view/scripto/admin/user/watchlist.phtml:29
 #: view/scripto/public-app/user/contributions.phtml:11
 #: view/scripto/public-app/user/watchlist.phtml:17
 msgid "Revision"
-msgstr "Revisión"
+msgstr "修订版"
 
 #: view/scripto/admin/user/contributions.phtml:25
 #: view/scripto/admin/user/watchlist.phtml:25
 #: view/scripto/public-app/user/contributions.phtml:13
 #: view/scripto/public-app/user/watchlist.phtml:13
 msgid "Media #"
-msgstr "Medios #"
+msgstr "媒介#"
 
 #: view/scripto/admin/user/contributions.phtml:38
 #: view/scripto/public-app/user/contributions.phtml:26
 msgid "new"
-msgstr "nuevo"
+msgstr ""
 
 #: view/scripto/admin/user/contributions.phtml:39
 #: view/scripto/public-app/user/contributions.phtml:27
 msgid "current"
-msgstr "actual"
+msgstr ""
 
 #: view/scripto/admin/user/contributions.phtml:93
 #: view/scripto/admin/user/contributions.phtml:95
@@ -1106,19 +1071,19 @@ msgstr "actual"
 #: view/scripto/public-app/user/watchlist.phtml:42
 #: view/scripto/public-app/user/watchlist.phtml:44
 msgid "n/a"
-msgstr "n/a"
+msgstr "不适用"
 
 #: view/scripto/admin/user/contributions.phtml:116
 msgid "No user contributions found."
-msgstr "No se encontraron contribuciones de usuarios."
+msgstr "没有找到任何用户贡献。"
 
 #: view/scripto/admin/user/watchlist.phtml:116
 msgid "No watchlist pages found."
-msgstr "No se encuentran las páginas de la lista de seguimiento."
+msgstr "没有找到任何监视列表页面。"
 
 #: view/scripto/public-app/media/browse.phtml:70
 msgid "Show original titles"
-msgstr "Mostrar títulos originales"
+msgstr "显示初始标题"
 
 #: view/scripto/public-app/media/edit-talk.phtml:7
 #: view/scripto/public-app/media/edit.phtml:7
@@ -1126,7 +1091,7 @@ msgstr "Mostrar títulos originales"
 #: view/scripto/public-app/media/show.phtml:6
 #, php-format
 msgid "Original title: %s"
-msgstr "Titulo original: %s"
+msgstr "初始标题：%s"
 
 #: view/scripto/public-app/media/edit-talk.phtml:41
 #, php-format
@@ -1135,1247 +1100,1239 @@ msgid ""
 "observations regarding the %s of the %s. When contributing to the notes, it "
 "is encouraged to include the user and timestamp."
 msgstr ""
-"Los comentarios son un espacio de trabajo donde los participantes del "
-"proyecto pueden mantener ideas y observaciones respecto a los/el %s de "
-"los/el %s. Al contribuir a los comentarios, se recomienda incluir el usuario"
-" y  el momento en que se realizó."
 
 #: view/scripto/public-app/media/edit.phtml:15
 msgid "Protection: "
-msgstr "Protección:"
+msgstr ""
 
 #: view/scripto/public-app/media/edit.phtml:16
 msgid "Expiration: "
-msgstr "Vencimiento:"
+msgstr "过期："
 
 #: view/scripto/public-app/media/edit.phtml:19
 msgid "Status: "
-msgstr "Estado:"
+msgstr "状态："
 
 #: view/scripto/public-app/project/browse.phtml:21
 msgid "No Scripto projects found"
-msgstr "No se encontraron proyectos Scripto."
+msgstr "没有找到任何Scripto项目"
 
 #: view/scripto/public-app/revision/browse-talk.phtml:12
 msgid "Back to notes"
-msgstr "Regresar a las notas"
+msgstr "返回注释"
 
 #: view/scripto/public-app/revision/browse-talk.phtml:84
 #: view/scripto/public-app/revision/browse.phtml:83
 msgid "No revisions found"
-msgstr "No se encontraron revisiones"
+msgstr "没有找到任何修订版"
 
 #: view/scripto/public-app/revision/compare-talk.phtml:2
 #, php-format
 msgid "Compare note revisions: %s"
-msgstr "Compare las revisiones de notas: %s"
+msgstr "比较注释版本：%s"
 
 #: view/scripto/public-app/revision/compare-talk.phtml:6
 #: view/scripto/public-app/revision/compare.phtml:6
 #: view/scripto/public-app/revision/show-talk.phtml:11
 #: view/scripto/public-app/revision/show.phtml:11
 msgid "Return to revision history"
-msgstr "Volver al historial de revisiones"
+msgstr "返回到版本历史"
 
 #: view/scripto/public-app/revision/compare.phtml:2
 #, php-format
 msgid "Compare revisions: %s"
-msgstr "Comparar revisiones: %s"
+msgstr "比较版本：%s"
 
 #: view/scripto/public-app/revision/show-talk.phtml:2
 #, php-format
 msgid "Notes revision: %s"
-msgstr "Revisión de notas: %s"
+msgstr "注释版本：%s"
 
 #: view/scripto/public-app/revision/show-talk.phtml:4
 #: view/scripto/public-app/revision/show.phtml:4
 #, php-format
 msgid "Revision as of %s by %s"
-msgstr "Revisión  %s de %s"
+msgstr ""
 
 #: view/scripto/public-app/revision/show-talk.phtml:20
 #: view/scripto/public-app/revision/show.phtml:20
 msgid "No HTML"
-msgstr "Sin HTML"
+msgstr "没有HTML"
 
 #: view/scripto/public-app/revision/show.phtml:2
 #, php-format
 msgid "Revision: %s"
-msgstr "Revisión: %s"
+msgstr "版本：%s"
 
 #: view/scripto/public-app/user/contributions.phtml:2
 #, php-format
 msgid "Contributions by %s"
-msgstr "Contribuciones de %s"
+msgstr "%s的贡献"
 
 #: view/scripto/public-app/user/watchlist.phtml:3
 msgid "Your watchlist"
-msgstr "Su lista de seguimiento"
+msgstr "您的监视列表"
 
 #: src/Job/ImportProject.php:35
 msgid "Cannot import a project without a property."
-msgstr "No es posible importar un proyecto sin una propiedad."
+msgstr "无法同步没有属性的项目。"
 
 #: src/Job/SyncProject.php:33
 msgid "Cannot sync a project without an item set."
-msgstr "No es posible sincronizar un proyecto sin un conjunto de fichas."
+msgstr "无法同步没有条目集的项目。"
 
 #: src/Job/ScriptoJob.php:73
 msgid "Cannot unimport a project without a property."
-msgstr "No es posible anular la importación de un proyecto sin una propiedad."
+msgstr ""
 
 #: src/Api/Representation/ScriptoMediaRepresentation.php:12
 #: src/Api/Representation/ScriptoItemRepresentation.php:11
 msgid "New"
-msgstr "Nuevo"
+msgstr ""
 
 #: src/Api/Representation/ScriptoMediaRepresentation.php:13
 #: src/Api/Representation/ScriptoItemRepresentation.php:12
 msgid "In progress"
-msgstr "En proceso"
+msgstr "正在处理中"
 
 #: src/Api/Representation/ScriptoMediaRepresentation.php:465
 msgid "Confirmed only"
-msgstr "Solo confirmados"
+msgstr ""
 
 #: src/Api/Representation/ScriptoMediaRepresentation.php:468
 msgid "Admin only"
-msgstr "Solo Administrador"
+msgstr ""
 
 #: src/Api/Representation/ScriptoMediaRepresentation.php:481
 msgid "Open to all"
-msgstr "Abrir todos"
+msgstr ""
 
 #: src/Api/Adapter/ScriptoMediaAdapter.php:46
 msgid ""
 "The Scripto\\Api\\Adapter\\ScriptoMediaAdapter adapter does not implement "
 "the create operation."
-msgstr ""
-"El adaptador Scripto\\Api\\Adapter\\ScriptoMediaAdapter no implementa la "
-"operación de creación."
+msgstr "Scripto\\Api\\Adapter\\ScriptoMediaAdapter 适配器没有实现创建操作。"
 
 #: src/Api/Adapter/ScriptoMediaAdapter.php:170
 msgid "A Scripto item must not be null."
-msgstr "Un elemento Scripto no puede ser nulo."
+msgstr "Scripto条目不能为空值"
 
 #: src/Api/Adapter/ScriptoMediaAdapter.php:173
 msgid "A media must not be null."
-msgstr "Un medio Scripto no puede ser nulo."
+msgstr "媒体不能为空值"
 
 #: src/Api/Adapter/ScriptoMediaAdapter.php:179
 msgid "Invalid completed revision ID."
-msgstr "Revisión completada ID no válido."
+msgstr "无效的已完成版本ID。"
 
 #: src/Api/Adapter/ScriptoMediaAdapter.php:186
 msgid "Invalid approved revision ID."
-msgstr "ID aprobado no válido."
+msgstr "无效的已批准版本ID。"
 
 #: src/Api/Adapter/ScriptoProjectAdapter.php:74
 msgid "An owner must have an ID"
-msgstr "Un propietario debe poseer una ID"
+msgstr "所有者必须有一个ID"
 
 #: src/Api/Adapter/ScriptoProjectAdapter.php:77
 msgid "An item set must have an ID"
-msgstr "Un conjunto de elementos debe poseer un ID"
+msgstr "条目集必须有一个ID"
 
 #: src/Api/Adapter/ScriptoProjectAdapter.php:80
 msgid "A property must have an ID"
-msgstr "Una propiedad debe poser una ID"
+msgstr "属性必须有一个ID"
 
 #: src/Api/Adapter/ScriptoProjectAdapter.php:177
 msgid "A Scripto project title must not be null"
-msgstr "Titulo de proyecto Scripto no puede ser nulo"
+msgstr "Scripto项目标题不能为空值"
 
 #: src/Api/Adapter/ScriptoItemAdapter.php:37
 msgid ""
 "The Scripto\\Api\\Adapter\\ScriptoItemAdapter adapter does not implement the"
 " create operation."
-msgstr ""
-"El adaptador Scripto\\Api\\Adapter\\ScriptoItemAdapter no implementa la "
-"operación de creación."
+msgstr "Scripto\\Api\\Adapter\\ScriptoItemAdapter适配器没有实现创建操作。"
 
 #: src/Api/Adapter/ScriptoItemAdapter.php:127
 msgid "A Scripto project must not be null"
-msgstr "Proyecto Scripto no puede ser nulo"
+msgstr "Scripto项目不能为空值"
 
 #: src/Api/Adapter/ScriptoItemAdapter.php:130
 msgid "An item must not be null"
-msgstr "Item no puede ser nulo"
+msgstr "条目不能为空值"
 
 #: src/ViewHelper/type_string_map.php:7
 msgid "Documents"
-msgstr "Documentos"
+msgstr "文件"
 
 #: src/ViewHelper/type_string_map.php:8
 msgid "Manuscripts"
-msgstr "Manuscritos"
+msgstr "手稿"
 
 #: src/ViewHelper/type_string_map.php:9
 msgid "Books"
-msgstr "Libros"
+msgstr "书籍"
 
 #: src/ViewHelper/type_string_map.php:10 src/ViewHelper/type_string_map.php:19
 #: src/Form/ProjectForm.php:168
 msgid "Audio"
-msgstr "Audio"
+msgstr "音频"
 
 #: src/ViewHelper/type_string_map.php:11 src/ViewHelper/type_string_map.php:20
 #: src/Form/ProjectForm.php:174
 msgid "Video"
-msgstr "Video"
+msgstr "视频"
 
 #: src/ViewHelper/type_string_map.php:12
 msgid "Papers"
-msgstr "Papeles"
+msgstr "论文"
 
 #: src/ViewHelper/type_string_map.php:13
 msgid "Journals"
-msgstr "Revistas"
+msgstr "期刊"
 
 #: src/ViewHelper/type_string_map.php:21 src/Form/ProjectForm.php:173
 msgid "Paper"
-msgstr "Papel"
+msgstr "论文"
 
 #: src/ViewHelper/type_string_map.php:24
 msgid "No Scripto items found"
-msgstr "No se encontraron elementos Scripto"
+msgstr "没有找到任何Scripto条目"
 
 #: src/ViewHelper/type_string_map.php:25
 msgid "No Scripto documents found"
-msgstr "No se encontraron documentos Scripto"
+msgstr "没有找到任何Scripto文件"
 
 #: src/ViewHelper/type_string_map.php:26
 msgid "No Scripto manuscripts found"
-msgstr "No se encontraron manuscritos Scripto"
+msgstr "没有找到任何Scripto手稿"
 
 #: src/ViewHelper/type_string_map.php:27
 msgid "No Scripto books found"
-msgstr "No se encontraron libros Scripto"
+msgstr "没有找到任何Scripto书籍"
 
 #: src/ViewHelper/type_string_map.php:28
 msgid "No Scripto audio found"
-msgstr "No se encontró audio Scripto"
+msgstr "没有找到任何Scripto音频"
 
 #: src/ViewHelper/type_string_map.php:29
 msgid "No Scripto video found"
-msgstr "No se encontró ningún video de Scripto"
+msgstr "没有找到任何Scripto视频"
 
 #: src/ViewHelper/type_string_map.php:30
 msgid "No Scripto papers found"
-msgstr "No se encontraron documentos de Scripto"
+msgstr "没有找到任何Scripto论文"
 
 #: src/ViewHelper/type_string_map.php:31
 msgid "No Scripto journals found"
-msgstr "No se encontraron revistas de Scripto"
+msgstr "没有找到任何Scripto期刊"
 
 #: src/ViewHelper/type_string_map.php:33
 #, php-format
 msgid "%s items"
-msgstr "%s elementos"
+msgstr "%s条目"
 
 #: src/ViewHelper/type_string_map.php:34
 #, php-format
 msgid "%s documents"
-msgstr "%s documentos"
+msgstr "%s文件"
 
 #: src/ViewHelper/type_string_map.php:35
 #, php-format
 msgid "%s manuscripts"
-msgstr "%s manuscritos"
+msgstr "%s手稿"
 
 #: src/ViewHelper/type_string_map.php:36
 #, php-format
 msgid "%s books"
-msgstr "%s libros"
+msgstr "%s书籍"
 
 #: src/ViewHelper/type_string_map.php:37
 #, php-format
 msgid "%s audio"
-msgstr "%s audio"
+msgstr "%s音频"
 
 #: src/ViewHelper/type_string_map.php:38
 #, php-format
 msgid "%s video"
-msgstr "%s video"
+msgstr "%s视频"
 
 #: src/ViewHelper/type_string_map.php:39
 #, php-format
 msgid "%s papers"
-msgstr "%s artículos"
+msgstr "%s论文"
 
 #: src/ViewHelper/type_string_map.php:40
 #, php-format
 msgid "%s journals"
-msgstr "%s revistas"
+msgstr "%s期刊"
 
 #: src/ViewHelper/type_string_map.php:42
 #, php-format
 msgid "item: %s"
-msgstr "item: %s"
+msgstr "条目：%s"
 
 #: src/ViewHelper/type_string_map.php:43
 #, php-format
 msgid "document: %s"
-msgstr "documento: %s"
+msgstr "文件：%s"
 
 #: src/ViewHelper/type_string_map.php:44
 #, php-format
 msgid "manuscript: %s"
-msgstr "manuscrito: %s"
+msgstr "手稿：%s"
 
 #: src/ViewHelper/type_string_map.php:45
 #, php-format
 msgid "book: %s"
-msgstr "libro: %s"
+msgstr "书籍：%s"
 
 #: src/ViewHelper/type_string_map.php:46
 #, php-format
 msgid "audio: %s"
-msgstr "audio: %s"
+msgstr "音频：%s"
 
 #: src/ViewHelper/type_string_map.php:47
 #, php-format
 msgid "video: %s"
-msgstr "video: %s"
+msgstr "视频：%s"
 
 #: src/ViewHelper/type_string_map.php:48
 #, php-format
 msgid "paper: %s"
-msgstr "artículo: %s"
+msgstr "论文：%s"
 
 #: src/ViewHelper/type_string_map.php:49
 #, php-format
 msgid "journal: %s"
-msgstr "revista: %s"
+msgstr "期刊：%s"
 
 #: src/ViewHelper/type_string_map.php:51
 msgid "Total item count"
-msgstr "Recuento total de elementos"
+msgstr "总条目数"
 
 #: src/ViewHelper/type_string_map.php:52
 msgid "Total document count"
-msgstr "Total documentos"
+msgstr "总文件数"
 
 #: src/ViewHelper/type_string_map.php:53
 msgid "Total manuscript count"
-msgstr "Total manuscritos"
+msgstr "总手稿数"
 
 #: src/ViewHelper/type_string_map.php:54
 msgid "Total book count"
-msgstr "Total libros"
+msgstr "总书籍数"
 
 #: src/ViewHelper/type_string_map.php:55
 msgid "Total audio count"
-msgstr "Total audios"
+msgstr "总音频数"
 
 #: src/ViewHelper/type_string_map.php:56
 msgid "Total video count"
-msgstr "Total videos"
+msgstr "总视频数"
 
 #: src/ViewHelper/type_string_map.php:57
 msgid "Total paper count"
-msgstr "Total artículos"
+msgstr "总论文数"
 
 #: src/ViewHelper/type_string_map.php:58
 msgid "Total journal count"
-msgstr "Total revistas"
+msgstr "总期刊数"
 
 #: src/ViewHelper/type_string_map.php:60
 msgid "Is approved item count"
-msgstr "item aprobados"
+msgstr "已批准的条目数"
 
 #: src/ViewHelper/type_string_map.php:61
 msgid "Is approved document count"
-msgstr "Documentos aprovados"
+msgstr "已批准的文件数"
 
 #: src/ViewHelper/type_string_map.php:62
 msgid "Is approved manuscript count"
-msgstr "Manuscritos aprobados"
+msgstr "已批准的手稿数"
 
 #: src/ViewHelper/type_string_map.php:63
 msgid "Is approved book count"
-msgstr "Libros aprobados"
+msgstr "已批准的书籍数"
 
 #: src/ViewHelper/type_string_map.php:64
 msgid "Is approved audio count"
-msgstr "Audios aprobados"
+msgstr "已批准的音频数"
 
 #: src/ViewHelper/type_string_map.php:65
 msgid "Is approved video count"
-msgstr "Videos aprobados"
+msgstr "已批准的视频数"
 
 #: src/ViewHelper/type_string_map.php:66
 msgid "Is approved paper count"
-msgstr "Artículos aprobados"
+msgstr "已批准的论文数"
 
 #: src/ViewHelper/type_string_map.php:67
 msgid "Is approved journal count"
-msgstr "Revistas aprobadas"
+msgstr "已批准的期刊数"
 
 #: src/ViewHelper/type_string_map.php:69
 msgid "Is not approved item count"
-msgstr "Item no aprobados"
+msgstr "未批准的条目数"
 
 #: src/ViewHelper/type_string_map.php:70
 msgid "Is not approved document count"
-msgstr "Documentos no aprobados"
+msgstr "未批准的文件数"
 
 #: src/ViewHelper/type_string_map.php:71
 msgid "Is not approved manuscript count"
-msgstr "Manuscritos no aprobados"
+msgstr "未批准的手稿数"
 
 #: src/ViewHelper/type_string_map.php:72
 msgid "Is not approved book count"
-msgstr "Libros no aprobados"
+msgstr "未批准的书籍数"
 
 #: src/ViewHelper/type_string_map.php:73
 msgid "Is not approved audio count"
-msgstr "Audios no aprobados"
+msgstr "未批准的音频数"
 
 #: src/ViewHelper/type_string_map.php:74
 msgid "Is not approved video count"
-msgstr "Videos no aprobados"
+msgstr "未批准的视频数"
 
 #: src/ViewHelper/type_string_map.php:75
 msgid "Is not approved paper count"
-msgstr "Artículos no aprobados"
+msgstr "未批准的论文数"
 
 #: src/ViewHelper/type_string_map.php:76
 msgid "Is not approved journal count"
-msgstr "Revistas no aprobadas"
+msgstr "未批准的期刊数"
 
 #: src/ViewHelper/type_string_map.php:78
 msgid "Scripto item metadata"
-msgstr "Metadatos del elemento Scripto"
+msgstr "Scripto条目元数据"
 
 #: src/ViewHelper/type_string_map.php:79
 msgid "Scripto document metadata"
-msgstr "Metadatos del documento Scripto"
+msgstr "Scripto文件元数据"
 
 #: src/ViewHelper/type_string_map.php:80
 msgid "Scripto manuscript metadata"
-msgstr "Metadatos del manuscrito Scripto"
+msgstr "Scripto手稿元数据"
 
 #: src/ViewHelper/type_string_map.php:81
 msgid "Scripto book metadata"
-msgstr "Metadatos de libros Scripto"
+msgstr "Scripto书籍元数据"
 
 #: src/ViewHelper/type_string_map.php:82
 msgid "Scripto audio metadata"
-msgstr "Metadatos de audio Scripto "
+msgstr "Scripto音频元数据"
 
 #: src/ViewHelper/type_string_map.php:83
 msgid "Scripto video metadata"
-msgstr "Metadatos de videos Scripto"
+msgstr "Scripto视频元数据"
 
 #: src/ViewHelper/type_string_map.php:84
 msgid "Scripto paper metadata"
-msgstr "Metadatos de artículos Scripto"
+msgstr "Scripto论文元数据"
 
 #: src/ViewHelper/type_string_map.php:85
 msgid "Scripto journal metadata"
-msgstr "Metadatos de revistas Scripto"
+msgstr "Scripto期刊元数据"
 
 #: src/ViewHelper/type_string_map.php:87
 msgid "Scripto: Item"
-msgstr "Scripto: Item"
+msgstr "Scripto：条目"
 
 #: src/ViewHelper/type_string_map.php:88
 msgid "Scripto: Document"
-msgstr "Scripto: Documento"
+msgstr "Scripto：文件"
 
 #: src/ViewHelper/type_string_map.php:89
 msgid "Scripto: Manuscript"
-msgstr "Scripto: Manuscrito"
+msgstr "Scripto：手稿"
 
 #: src/ViewHelper/type_string_map.php:90
 msgid "Scripto: Book"
-msgstr "Scripto: Libro"
+msgstr "Scripto：书籍"
 
 #: src/ViewHelper/type_string_map.php:91
 msgid "Scripto: Audio"
-msgstr "Scripto: Audio"
+msgstr "Scripto：音频"
 
 #: src/ViewHelper/type_string_map.php:92
 msgid "Scripto: Video"
-msgstr "Scripto: Video"
+msgstr "Scripto：视频"
 
 #: src/ViewHelper/type_string_map.php:93
 msgid "Scripto: Paper"
-msgstr "Scripto: Artículo"
+msgstr "Scripto：论文"
 
 #: src/ViewHelper/type_string_map.php:94
 msgid "Scripto: Journal"
-msgstr "Scripto: revista"
+msgstr "Scripto：期刊"
 
 #: src/ViewHelper/type_string_map.php:96
 #: src/ViewHelper/breadcrumbs_route_map.php:35
 msgid "Review item"
-msgstr "Revisar elemento"
+msgstr "审核条目"
 
 #: src/ViewHelper/type_string_map.php:97
 msgid "Review document"
-msgstr "Revisar documento"
+msgstr "审核文件"
 
 #: src/ViewHelper/type_string_map.php:98
 msgid "Review manuscript"
-msgstr "Revisar manuscrito"
+msgstr "审核手稿"
 
 #: src/ViewHelper/type_string_map.php:99
 msgid "Review book"
-msgstr "Revisar libro"
+msgstr "审核书籍"
 
 #: src/ViewHelper/type_string_map.php:100
 msgid "Review audio"
-msgstr "Revisar audio"
+msgstr "审核音频"
 
 #: src/ViewHelper/type_string_map.php:101
 msgid "Review video"
-msgstr "Revisar vídeo"
+msgstr "审核视频"
 
 #: src/ViewHelper/type_string_map.php:102
 msgid "Review paper"
-msgstr "Revisar artículo"
+msgstr "审核论文"
 
 #: src/ViewHelper/type_string_map.php:103
 msgid "Review journal"
-msgstr "Revisar revista"
+msgstr "审核期刊"
 
 #: src/ViewHelper/type_string_map.php:105
 msgid "Browse items"
-msgstr "Navegar entre elementos"
+msgstr "浏览条目"
 
 #: src/ViewHelper/type_string_map.php:106
 msgid "Browse documents"
-msgstr "Buscar documentos"
+msgstr "浏览文件"
 
 #: src/ViewHelper/type_string_map.php:107
 msgid "Browse manuscripts"
-msgstr "Buscar manuscritos"
+msgstr "浏览手稿"
 
 #: src/ViewHelper/type_string_map.php:108
 msgid "Browse books"
-msgstr "Buscar libros"
+msgstr "浏览书籍"
 
 #: src/ViewHelper/type_string_map.php:109
 msgid "Browse audio"
-msgstr "Buscar audio"
+msgstr "浏览音频"
 
 #: src/ViewHelper/type_string_map.php:110
 msgid "Browse video"
-msgstr "Buscar video"
+msgstr "浏览视频"
 
 #: src/ViewHelper/type_string_map.php:111
 msgid "Browse papers"
-msgstr "Buscar artículos"
+msgstr "浏览论文"
 
 #: src/ViewHelper/type_string_map.php:112
 msgid "Browse journals"
-msgstr "Buscar revistas"
+msgstr "浏览书籍"
 
 #: src/ViewHelper/type_string_map.php:118
 msgid "Medias"
-msgstr "Medios"
+msgstr "媒体"
 
 #: src/ViewHelper/type_string_map.php:121
 msgid "Images"
-msgstr "Imagenes"
+msgstr "图像"
 
 #: src/ViewHelper/type_string_map.php:122
 msgid "Sections"
-msgstr "Secciones"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:123
 msgid "Segments"
-msgstr "Segmentos"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:124
 msgid "Folios"
-msgstr "Folios"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:125
 msgid "Sheets"
-msgstr "Hojas"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:126
 msgid "Entries"
-msgstr "Entradas"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:131 src/Form/ProjectForm.php:191
 msgid "Section"
-msgstr "Sección"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:132 src/Form/ProjectForm.php:192
 msgid "Segment"
-msgstr "Segmento"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:133 src/Form/ProjectForm.php:188
 msgid "Folio"
-msgstr "Folio"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:134 src/Form/ProjectForm.php:193
 msgid "Sheet"
-msgstr "Hoja"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:135 src/Form/ProjectForm.php:187
 msgid "Entry"
-msgstr "Entrada"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:137
 msgid "Primary media"
-msgstr "Medio principal"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:138
 msgid "Primary page"
-msgstr "Página principal"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:139
 msgid "Primary image"
-msgstr "Imagen principal"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:140
 msgid "Primary section"
-msgstr "Sección principal"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:141
 msgid "Primary segment"
-msgstr "Segmento principal"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:142
 msgid "Primary folio"
-msgstr "Folio principal"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:143
 msgid "Primary sheet"
-msgstr "Hoja principal"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:144
 msgid "Primary entry"
-msgstr "Entrada principal"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:146
 msgid "Approved medias"
-msgstr "Medios aprobados"
+msgstr "已批准的媒介"
 
 #: src/ViewHelper/type_string_map.php:147
 msgid "Approved media"
-msgstr "Medio aprobado"
+msgstr "已批准的媒介"
 
 #: src/ViewHelper/type_string_map.php:148
 msgid "Approved pages"
-msgstr "Páginas aprobadas"
+msgstr "已批准的页面"
 
 #: src/ViewHelper/type_string_map.php:149
 msgid "Approved images"
-msgstr "Imágenes aprobadas"
+msgstr "已批准的图像"
 
 #: src/ViewHelper/type_string_map.php:150
 msgid "Approved sections"
-msgstr "Secciones aprobadas"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:151
 msgid "Approved segments"
-msgstr "Segmentos aprobados"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:152
 msgid "Approved folios"
-msgstr "Folios aprobados"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:153
 msgid "Approved sheets"
-msgstr "Hojas aprobadas"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:154
 msgid "Approved entries"
-msgstr "Entradas aprobadas"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:156
 #, php-format
 msgid "Media #%s"
-msgstr "Medio # %s"
+msgstr "媒介#%s"
 
 #: src/ViewHelper/type_string_map.php:157
 #, php-format
 msgid "Page #%s"
-msgstr "Página # %s"
+msgstr "页面#%s"
 
 #: src/ViewHelper/type_string_map.php:158
 #, php-format
 msgid "Image #%s"
-msgstr "Imagen # %s"
+msgstr "图像#%s"
 
 #: src/ViewHelper/type_string_map.php:159
 #, php-format
 msgid "Section #%s"
-msgstr "Sección # %s "
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:160
 #, php-format
 msgid "Segment #%s"
-msgstr "Segmento # %s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:161
 #, php-format
 msgid "Folio #%s"
-msgstr "Folio # %s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:162
 #, php-format
 msgid "Sheet #%s"
-msgstr "Hoja # %s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:163
 #, php-format
 msgid "Entry #%s"
-msgstr "Entrada # %s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:165
 #, php-format
 msgid "Media #%s notes"
-msgstr "Medio # %s comentarios"
+msgstr "媒介#%s注释"
 
 #: src/ViewHelper/type_string_map.php:166
 #, php-format
 msgid "Page #%s notes"
-msgstr "Página # %s comentarios"
+msgstr "页面#%s注释"
 
 #: src/ViewHelper/type_string_map.php:167
 #, php-format
 msgid "Image #%s notes"
-msgstr "Imagen # %s comentarios"
+msgstr "图像#%s注释"
 
 #: src/ViewHelper/type_string_map.php:168
 #, php-format
 msgid "Section #%s notes"
-msgstr "Sección  # %s comentarios"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:169
 #, php-format
 msgid "Segment #%s notes"
-msgstr " Segmento # %s comentarios"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:170
 #, php-format
 msgid "Folio #%s notes"
-msgstr "Folio # %s comentarios"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:171
 #, php-format
 msgid "Sheet #%s notes"
-msgstr "Hoja  # %s comentarios"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:172
 #, php-format
 msgid "Entry #%s notes"
-msgstr "Entrada  # %s comentarios"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:174
 msgid "Media count"
-msgstr "Número de medio"
+msgstr "媒介数"
 
 #: src/ViewHelper/type_string_map.php:175
 msgid "Page count"
-msgstr "Número de página"
+msgstr "论文数"
 
 #: src/ViewHelper/type_string_map.php:176
 msgid "Image count"
-msgstr "Número de imagen"
+msgstr "图像数"
 
 #: src/ViewHelper/type_string_map.php:177
 msgid "Section count"
-msgstr "Número de sección"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:178
 msgid "Segment count"
-msgstr "Número de segmento"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:179
 msgid "Folio count"
-msgstr "Número de portafolio"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:180
 msgid "Sheet count"
-msgstr "Número de hoja"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:181
 msgid "Entry count"
-msgstr "Número de entrada"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:183
 msgid "Total media count"
-msgstr "Total de medios"
+msgstr "总媒介数"
 
 #: src/ViewHelper/type_string_map.php:184
 msgid "Total page count"
-msgstr "Total de páginas"
+msgstr "总页数"
 
 #: src/ViewHelper/type_string_map.php:185
 msgid "Total image count"
-msgstr "Total de imágenes"
+msgstr "总图像数"
 
 #: src/ViewHelper/type_string_map.php:186
 msgid "Total section count"
-msgstr "Total de secciones"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:187
 msgid "Total segment count"
-msgstr "Total de segmentos"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:188
 msgid "Total folio count"
-msgstr "Total de folios"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:189
 msgid "Total sheet count"
-msgstr "Total de hojas"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:190
 msgid "Total entry count"
-msgstr "Total de entradas"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:192
 msgid "Is approved media count"
-msgstr "Se ha aprobado la cantidad de medios"
+msgstr "已批准的媒介数"
 
 #: src/ViewHelper/type_string_map.php:193
 msgid "Is approved page count"
-msgstr "Se ha aprobado la cantidad de páginas"
+msgstr "已批准的页面数"
 
 #: src/ViewHelper/type_string_map.php:194
 msgid "Is approved image count"
-msgstr "Se ha aprobado la cantidad de imágenes "
+msgstr "已批准的图像数"
 
 #: src/ViewHelper/type_string_map.php:195
 msgid "Is approved section count"
-msgstr "Se ha aprobado la cantidad de secciones"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:196
 msgid "Is approved segment count"
-msgstr "Se ha aprobado la cantidad de segmentos "
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:197
 msgid "Is approved folio count"
-msgstr "Se ha aprobado la cantidad de folios "
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:198
 msgid "Is approved sheet count"
-msgstr "Se ha aprobado la cantidad de hojas"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:199
 msgid "Is approved entry count"
-msgstr "Se ha aprobado la cantidad de entradas"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:201
 msgid "Is completed media count"
-msgstr "Se ha completado cantidad de medios"
+msgstr "已完成媒介数"
 
 #: src/ViewHelper/type_string_map.php:202
 msgid "Is completed page count"
-msgstr "Se ha completado cantidad de paginas"
+msgstr "已完成页面数"
 
 #: src/ViewHelper/type_string_map.php:203
 msgid "Is completed image count"
-msgstr "Se ha completado cantidad de imágenes"
+msgstr "已完成图像数"
 
 #: src/ViewHelper/type_string_map.php:204
 msgid "Is completed section count"
-msgstr "Se ha completado cantidad de secciones"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:205
 msgid "Is completed segment count"
-msgstr "Se ha completado cantidad de segmentos"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:206
 msgid "Is completed folio count"
-msgstr "Se ha completado cantidad de folios"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:207
 msgid "Is completed sheet count"
-msgstr "Se ha completado cantidad de hojas"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:208
 msgid "Is completed entry count"
-msgstr "Se ha completado cantidad de entradas"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:210
 msgid "Is in progress media count"
-msgstr "Medios en curso "
+msgstr "正在处理中的媒介数"
 
 #: src/ViewHelper/type_string_map.php:211
 msgid "Is in progress page count"
-msgstr "Páginas en curso"
+msgstr "正在处理中的页面数"
 
 #: src/ViewHelper/type_string_map.php:212
 msgid "Is in progress image count"
-msgstr "Imágenes en curso"
+msgstr "正在处理中的图像数"
 
 #: src/ViewHelper/type_string_map.php:213
 msgid "Is in progress section count"
-msgstr "Secciones en curso"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:214
 msgid "Is in progress segment count"
-msgstr "Segmentos en curso"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:215
 msgid "Is in progress folio count"
-msgstr "Folios en curso"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:216
 msgid "Is in progress sheet count"
-msgstr "Hojas en curso"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:217
 msgid "Is in progress entry count"
-msgstr "Entradas en curso"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:219
 msgid "Is edited after approved media count"
-msgstr "Se edita después de aprobar los medios"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:220
 msgid "Is edited after approved page count"
-msgstr "Se edita después de aprobar las páginas"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:221
 msgid "Is edited after approved image count"
-msgstr "Se edita después de aprobar las imágenes"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:222
 msgid "Is edited after approved section count"
-msgstr "Se edita después de aprobar las secciones"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:223
 msgid "Is edited after approved segment count"
-msgstr "Se edita después de aprobar los segmentos"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:224
 msgid "Is edited after approved folio count"
-msgstr "Se edita después de aprobar los folios"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:225
 msgid "Is edited after approved sheet count"
-msgstr "Se edita después de aprobar las hojas"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:226
 msgid "Is edited after approved entry count"
-msgstr "Se edita después de aprobar las entradas"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:228
 msgid "Is edited after imported media count"
-msgstr "Se edita después de importar los medios"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:229
 msgid "Is edited after imported page count"
-msgstr "Se edita después de importar las páginas"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:230
 msgid "Is edited after imported image count"
-msgstr "Se edita después de importar las imágenes"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:231
 msgid "Is edited after imported section count"
-msgstr "Se edita después de importar las secciones"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:232
 msgid "Is edited after imported segment count"
-msgstr "Se edita después de importar los segmentos"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:233
 msgid "Is edited after imported folio count"
-msgstr "Se edita después de importar los folios"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:234
 msgid "Is edited after imported sheet count"
-msgstr "Se edita después de importar las hojas"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:235
 msgid "Is edited after imported entry count"
-msgstr "Se edita después de importar las entradas"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:237
 msgid "Is synced after imported media count"
-msgstr "Se sincroniza después de importar los medios"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:238
 msgid "Is synced after imported page count"
-msgstr "Se sincroniza después de importar las páginas"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:239
 msgid "Is synced after imported image count"
-msgstr "Se sincroniza después de importar las imágenes"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:240
 msgid "Is synced after imported section count"
-msgstr "Se sincroniza después de importar las secciones"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:241
 msgid "Is synced after imported segment count"
-msgstr "Se sincroniza después de importar los segmentos"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:242
 msgid "Is synced after imported folio count"
-msgstr "Se sincroniza después de importar los folios"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:243
 msgid "Is synced after imported sheet count"
-msgstr "Se sincroniza después de importar las hojas"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:244
 msgid "Is synced after imported entry count"
-msgstr "Se sincroniza después de importar las entradas"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:247
 msgid "Select page"
-msgstr "Seleccionar página"
+msgstr "选择页面"
 
 #: src/ViewHelper/type_string_map.php:248
 msgid "Select image"
-msgstr "Seleccionar imagen"
+msgstr "选择图像"
 
 #: src/ViewHelper/type_string_map.php:249
 msgid "Select section"
-msgstr "Seleccionar sección"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:250
 msgid "Select segment"
-msgstr "Seleccionar segmento"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:251
 msgid "Select folio"
-msgstr "Seleccionar folio"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:252
 msgid "Select sheet"
-msgstr "Seleccionar hoja"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:253
 msgid "Select entry"
-msgstr "Seleccionar entrada"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:255
 msgid "No Scripto media found"
-msgstr "No se encontraron medios Scripto"
+msgstr "没有找到任何Scripto媒介"
 
 #: src/ViewHelper/type_string_map.php:256
 msgid "No Scripto pages found"
-msgstr "No se encontraron paginas Scripto"
+msgstr "没有找到任何Scripto页面"
 
 #: src/ViewHelper/type_string_map.php:257
 msgid "No Scripto images found"
-msgstr "No se encontraron imágenes Scripto"
+msgstr "没有找到任何Scripto图像"
 
 #: src/ViewHelper/type_string_map.php:258
 msgid "No Scripto sections found"
-msgstr "No se encontraron secciones Scripto"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:259
 msgid "No Scripto segments found"
-msgstr "No se encontraron segmentos Scripto"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:260
 msgid "No Scripto folios found"
-msgstr "No se encontraron folios Scripto"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:261
 msgid "No Scripto sheets found"
-msgstr "No se encontraron hojas Scripto"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:262
 msgid "No Scripto entries found"
-msgstr "No se encontraron entradas Scripto"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:264
 msgid "Scripto: Media"
-msgstr "Scripto: Medios"
+msgstr "Scripto：媒介"
 
 #: src/ViewHelper/type_string_map.php:265
 msgid "Scripto: Page"
-msgstr "Scripto: Página"
+msgstr "Scripto：页面"
 
 #: src/ViewHelper/type_string_map.php:266
 msgid "Scripto: Image"
-msgstr "Scripto: imagen"
+msgstr "Scripto：图像"
 
 #: src/ViewHelper/type_string_map.php:267
 msgid "Scripto: Section"
-msgstr "Scripto: Sección"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:268
 msgid "Scripto: Segment"
-msgstr "Scripto: Segmento"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:269
 msgid "Scripto: Folio"
-msgstr "Scripto: Folio"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:270
 msgid "Scripto: Sheet"
-msgstr "Scripto: Hoja"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:271
 msgid "Scripto: Entry"
-msgstr "Scripto: Entrada"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:273 src/Form/MediaForm.php:31
 msgid "Mark media as not complete"
-msgstr "Marcar los medios como no completos"
+msgstr "标记媒介为未完成。"
 
 #: src/ViewHelper/type_string_map.php:274
 msgid "Mark page as not complete"
-msgstr "Marcar la página como no completada"
+msgstr "标记页面为未完成。"
 
 #: src/ViewHelper/type_string_map.php:275
 msgid "Mark image as not complete"
-msgstr "Marcar la imagen como no completada"
+msgstr "标记图像为未完成。"
 
 #: src/ViewHelper/type_string_map.php:276
 msgid "Mark section as not complete"
-msgstr "Marcar la sección como no completada"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:277
 msgid "Mark segment as not complete"
-msgstr "Marcar el segmento como no completado"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:278
 msgid "Mark folio as not complete"
-msgstr "Marcar el folio como no completado"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:279
 msgid "Mark sheet as not complete"
-msgstr "Marcar la hoja como no completada"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:280
 msgid "Mark entry as not complete"
-msgstr "Marcar la entrada como no completada"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:282
 msgid "Mark media as complete"
-msgstr "Marcar medios como completo"
+msgstr "标记媒介为完成"
 
 #: src/ViewHelper/type_string_map.php:283
 msgid "Mark page as complete"
-msgstr "Marcar página como completa"
+msgstr "标记页面为完成"
 
 #: src/ViewHelper/type_string_map.php:284
 msgid "Mark image as complete"
-msgstr "Marcar imagen como completa"
+msgstr "标记图像为完成"
 
 #: src/ViewHelper/type_string_map.php:285
 msgid "Mark section as complete"
-msgstr "Marcar sección como completa"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:286
 msgid "Mark segment as complete"
-msgstr "Marcar segmento como completo"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:287
 msgid "Mark folio as complete"
-msgstr "Marcar folio como completo"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:288
 msgid "Mark sheet as complete"
-msgstr "Marcar hoja como completa"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:289
 msgid "Mark entry as complete"
-msgstr "Marcar entrada como completa"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:291 src/Form/MediaForm.php:56
 msgid "Mark media as not approved"
-msgstr "Marcar medio como no aprobado"
+msgstr "标记媒介为未批准"
 
 #: src/ViewHelper/type_string_map.php:292
 msgid "Mark page as not approved"
-msgstr "Marcar página como no aprobada"
+msgstr "标记页面为未批准"
 
 #: src/ViewHelper/type_string_map.php:293
 msgid "Mark image as not approved"
-msgstr "Marcar imagen como no aprobada"
+msgstr "标记图像为未批准"
 
 #: src/ViewHelper/type_string_map.php:294
 msgid "Mark section as not approved"
-msgstr "Marcar sección como no aprobada"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:295
 msgid "Mark segment as not approved"
-msgstr "Marcar segmento como no aprobado"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:296
 msgid "Mark folio as not approved"
-msgstr "Marcar folio como no aprobado"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:297
 msgid "Mark sheet as not approved"
-msgstr "Marcar hoja como no aprobada"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:298
 msgid "Mark entry as not approved"
-msgstr "Marcar entrada como no aprobada"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:300
 msgid "Mark media as approved"
-msgstr "Marcar medio como aprobado"
+msgstr "标记媒介为已批准"
 
 #: src/ViewHelper/type_string_map.php:301
 msgid "Mark page as approved"
-msgstr "Marcar página como aprobada"
+msgstr "标记页面为已批准"
 
 #: src/ViewHelper/type_string_map.php:302
 msgid "Mark image as approved"
-msgstr "Marcar imagen como aprobada"
+msgstr "标记图像为已批准"
 
 #: src/ViewHelper/type_string_map.php:303
 msgid "Mark section as approved"
-msgstr "Marcar sección como aprobada"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:304
 msgid "Mark segment as approved"
-msgstr "Marcar segmento como aprobado"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:305
 msgid "Mark folio as approved"
-msgstr "Marcar folio como aprobado"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:306
 msgid "Mark sheet as approved"
-msgstr "Marcar hoja como aprobada"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:307
 msgid "Mark entry as approved"
-msgstr "Marcar entrada como aprobada"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:309
 msgid "Scripto media metadata"
-msgstr "Metadatos del medio Scripto"
+msgstr "Scripto媒介元数据"
 
 #: src/ViewHelper/type_string_map.php:310
 msgid "Scripto page metadata"
-msgstr "Metadatos de la página Scripto"
+msgstr "Scripto页面元数据"
 
 #: src/ViewHelper/type_string_map.php:311
 msgid "Scripto image metadata"
-msgstr "Metadatos de la imagen Scripto"
+msgstr "Scripto图像元数据"
 
 #: src/ViewHelper/type_string_map.php:312
 msgid "Scripto section metadata"
-msgstr "Metadatos de la sección Scripto"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:313
 msgid "Scripto segment metadata"
-msgstr "Metadatos del segmento Scripto"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:314
 msgid "Scripto folio metadata"
-msgstr "Metadatos del folio Scripto"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:315
 msgid "Scripto sheet metadata"
-msgstr "Metadatos de la hoja Scripto"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:316
 msgid "Scripto entry metadata"
-msgstr "Metadatos de la entrada Scripto"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:318
 msgid "Batch edit medias"
@@ -2383,67 +2340,67 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:320
 msgid "Batch edit pages"
-msgstr "Modificar páginas en grupos"
+msgstr "批量编辑页面"
 
 #: src/ViewHelper/type_string_map.php:321
 msgid "Batch edit images"
-msgstr "Modificar imágenes en grupos"
+msgstr "批量编辑图像"
 
 #: src/ViewHelper/type_string_map.php:322
 msgid "Batch edit sections"
-msgstr "Modificar secciones en grupos"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:323
 msgid "Batch edit segments"
-msgstr "Modificar segmentos en grupos"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:324
 msgid "Batch edit folios"
-msgstr "Modificar folios en grupos"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:325
 msgid "Batch edit sheets"
-msgstr "Modificar hojas en grupos"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:326
 msgid "Batch edit entries"
-msgstr "Modificar entradas en grupos"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:328
 msgid "Batch edit all medias"
-msgstr "Modificar todos los medios en grupos"
+msgstr "批量编辑所有媒介"
 
 #: src/ViewHelper/type_string_map.php:329
 msgid "Batch edit all media"
-msgstr "Modificar en bruto todos los medios"
+msgstr "批量编辑所有媒介"
 
 #: src/ViewHelper/type_string_map.php:330
 msgid "Batch edit all pages"
-msgstr "Modificar todas las páginas en grupos"
+msgstr "批量编辑所有页面"
 
 #: src/ViewHelper/type_string_map.php:331
 msgid "Batch edit all images"
-msgstr "Modificar todas las imágenes en grupo"
+msgstr "批量编辑所有图像"
 
 #: src/ViewHelper/type_string_map.php:332
 msgid "Batch edit all sections"
-msgstr "Modificar todas las secciones en grupos"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:333
 msgid "Batch edit all segments"
-msgstr "Modificar todos los segmentos en grupos"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:334
 msgid "Batch edit all folios"
-msgstr "Modificar todos los folios en grupos"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:335
 msgid "Batch edit all sheets"
-msgstr "Modificar todas las hojas en grupos"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:336
 msgid "Batch edit all entries"
-msgstr "Modificar todas las entradas en grupos"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:338
 msgid "Affected medias"
@@ -2451,827 +2408,804 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:340
 msgid "Affected pages"
-msgstr "Páginas afectadas"
+msgstr "受影响的页面"
 
 #: src/ViewHelper/type_string_map.php:341
 msgid "Affected images"
-msgstr "Imágenes afectadas"
+msgstr "受影响的图像"
 
 #: src/ViewHelper/type_string_map.php:342
 msgid "Affected sections"
-msgstr "Secciones afectadas"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:343
 msgid "Affected segments"
-msgstr "Segmentos  afectados"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:344
 msgid "Affected folios"
-msgstr "Folios afectados"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:345
 msgid "Affected sheets"
-msgstr "Hojas  afectadas"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:346
 msgid "Affected entries"
-msgstr " Entradas afectadas"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:348
 #, php-format
 msgid "You are editing the following %s medias"
-msgstr "Está editando los siguientes medios %s"
+msgstr "您正在编辑以下%s媒介"
 
 #: src/ViewHelper/type_string_map.php:349
 #, php-format
 msgid "You are editing the following %s media"
-msgstr "Está editando el siguiente medio %s"
+msgstr "您正在编辑以下%s媒介"
 
 #: src/ViewHelper/type_string_map.php:350
 #, php-format
 msgid "You are editing the following %s pages"
-msgstr "Está editando las siguientes páginas %s"
+msgstr "您正在编辑以下%s页面"
 
 #: src/ViewHelper/type_string_map.php:351
 #, php-format
 msgid "You are editing the following %s images"
-msgstr "Está editando las siguientes imágenes %s"
+msgstr "您正在编辑以下%s图像"
 
 #: src/ViewHelper/type_string_map.php:352
 #, php-format
 msgid "You are editing the following %s sections"
-msgstr "Está editando las siguientes secciones %s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:353
 #, php-format
 msgid "You are editing the following %s segments"
-msgstr "Está editando los siguientes segmentos %s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:354
 #, php-format
 msgid "You are editing the following %s folios"
-msgstr "Está editando los siguientes folios %s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:355
 #, php-format
 msgid "You are editing the following %s sheets"
-msgstr "Está editando las siguientes hojas %s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:356
 #, php-format
 msgid "You are editing the following %s entries"
-msgstr "Está editando las siguientes entradas %s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:358
 #, php-format
 msgid "You are editing %s medias"
-msgstr "Está editando medios %s"
+msgstr "您正在编辑%s媒介"
 
 #: src/ViewHelper/type_string_map.php:359
 #, php-format
 msgid "You are editing %s media"
-msgstr "Está editando medio %s"
+msgstr "您正在编辑%s媒介"
 
 #: src/ViewHelper/type_string_map.php:360
 #, php-format
 msgid "You are editing %s pages"
-msgstr "Está editando páginas %s"
+msgstr "您正在编辑%s页面"
 
 #: src/ViewHelper/type_string_map.php:361
 #, php-format
 msgid "You are editing %s images"
-msgstr "Editando %s imágenes"
+msgstr "您正在编辑%s图像"
 
 #: src/ViewHelper/type_string_map.php:362
 #, php-format
 msgid "You are editing %s sections"
-msgstr "Está editando secciones %s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:363
 #, php-format
 msgid "You are editing %s segments"
-msgstr "Está editando segmentos %s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:364
 #, php-format
 msgid "You are editing %s folios"
-msgstr "Está editando folios %s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:365
 #, php-format
 msgid "You are editing %s sheets"
-msgstr "Editando %s hojas"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:366
 #, php-format
 msgid "You are editing %s entries"
-msgstr "Está editando entradas %s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:368
 msgid "This Scripto media has no revisions."
-msgstr "Este medio Scripto no posee revisiones."
+msgstr "该Scripto媒介没有修订版。"
 
 #: src/ViewHelper/type_string_map.php:369
 msgid "This Scripto page has no revisions."
-msgstr "Esta página Scripto no posee revisiones."
+msgstr "该Scripto页面没有修订版。"
 
 #: src/ViewHelper/type_string_map.php:370
 msgid "This Scripto image has no revisions."
-msgstr "Esta imagen Scripto no posee revisiones."
+msgstr "该Scripto图像没有修订版。"
 
 #: src/ViewHelper/type_string_map.php:371
 msgid "This Scripto section has no revisions."
-msgstr "Esta sección Scripto no posee revisiones."
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:372
 msgid "This Scripto segment has no revisions."
-msgstr "Este segmento Scripto no posee revisiones."
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:373
 msgid "This Scripto folio has no revisions."
-msgstr "Este folio Scripto no posee revisiones."
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:374
 msgid "This Scripto sheet has no revisions."
-msgstr "Esta hoja Scripto no posee revisiones."
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:375
 msgid "This Scripto entry has no revisions"
-msgstr "Esta entrada Scripto no posee revisiones."
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:377
 #: src/ViewHelper/breadcrumbs_route_map.php:40
 msgid "Review media"
-msgstr "Revisar medios"
+msgstr "审核媒介"
 
 #: src/ViewHelper/type_string_map.php:378
 #: src/ViewHelper/type_string_map.php:379
 msgid "Review page"
-msgstr "Revisar página"
+msgstr "审核页面"
 
 #: src/ViewHelper/type_string_map.php:380
 msgid "Review section"
-msgstr "Revisar sección"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:381
 msgid "Review segment"
-msgstr "Revisar segmento"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:382
 msgid "Review folio"
-msgstr "Revisar folio"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:383
 msgid "Review sheet"
-msgstr "Revisar hoja"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:384
 msgid "Review entry"
-msgstr "Revisar entrada"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:386
 #, php-format
 msgid "%s: Media #%s"
-msgstr "%s: Medio # %s"
+msgstr "%s：媒介#%s"
 
 #: src/ViewHelper/type_string_map.php:387
 #, php-format
 msgid "%s: Page #%s"
-msgstr "%s: Página # %s"
+msgstr "%s：页面#%s"
 
 #: src/ViewHelper/type_string_map.php:388
 #, php-format
 msgid "%s: Image #%s"
-msgstr "%s: Imagen # %s"
+msgstr "%s：图像#%s"
 
 #: src/ViewHelper/type_string_map.php:389
 #, php-format
 msgid "%s: Section #%s"
-msgstr "%s: Sección # %s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:390
 #, php-format
 msgid "%s: Segment #%s"
-msgstr "%s: Segmento # %s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:391
 #, php-format
 msgid "%s: Folio #%s"
-msgstr "%s: Folio # %s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:392
 #, php-format
 msgid "%s: Sheet #%s"
-msgstr "%s: Hoja # %s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:393
 #, php-format
 msgid "%s: Entry #%s"
-msgstr "%s: Entrada # %s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:395
 #, php-format
 msgid "Notes of %s: Media #%s"
-msgstr "Comentarios de %s: Medio # %s"
+msgstr "%s的注释：媒介#%s"
 
 #: src/ViewHelper/type_string_map.php:396
 #, php-format
 msgid "Notes of %s: Page #%s"
-msgstr "Comentarios de %s: Página # %s"
+msgstr "%s的注释：页面#%s"
 
 #: src/ViewHelper/type_string_map.php:397
 #, php-format
 msgid "Notes of %s: Image #%s"
-msgstr "Comentarios de %s: imagen # %s"
+msgstr "%s的注释：图像#%s"
 
 #: src/ViewHelper/type_string_map.php:398
 #, php-format
 msgid "Notes of %s: Section #%s"
-msgstr "Comentarios de %s: Sección # %s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:399
 #, php-format
 msgid "Notes of %s: Segment #%s"
-msgstr "Comentarios de %s: Segmento # %s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:400
 #, php-format
 msgid "Notes of %s: Folio #%s"
-msgstr "Comentarios de %s: Folio # %s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:401
 #, php-format
 msgid "Notes of %s: Sheet #%s"
-msgstr "Comentarios de %s:  Hojas # %s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:402
 #, php-format
 msgid "Notes of %s: Entry #%s"
-msgstr "Comentarios de %s: Entradas # %s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:404 src/ViewHelper/Scripto.php:517
 msgid "Stop tracking media"
-msgstr "Detener seguimiento de medio"
+msgstr "停止跟踪媒介"
 
 #: src/ViewHelper/type_string_map.php:405
 msgid "Stop tracking page"
-msgstr "Detener seguimiento de página"
+msgstr "停止跟踪页面"
 
 #: src/ViewHelper/type_string_map.php:406
 msgid "Stop tracking image"
-msgstr "Detener seguimiento de imagen"
+msgstr "停止跟踪图像"
 
 #: src/ViewHelper/type_string_map.php:407
 msgid "Stop tracking section"
-msgstr "Detener seguimiento de sección"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:408
 msgid "Stop tracking segment"
-msgstr "Detener seguimiento del segmento"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:409
 msgid "Stop tracking folio"
-msgstr "Detener seguimiento de folio"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:410
 msgid "Stop tracking sheet"
-msgstr "Detener seguimiento de hoja"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:411
 msgid "Stop tracking entry"
-msgstr "Detener seguimiento de entrada"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:413
 msgid "Watch media"
-msgstr "Ver medios"
+msgstr "关注媒介"
 
 #: src/ViewHelper/type_string_map.php:414
 msgid "Watch page"
-msgstr "Ver página"
+msgstr "关注页面"
 
 #: src/ViewHelper/type_string_map.php:415
 msgid "Watch image"
-msgstr "Ver imagen"
+msgstr "关注图像"
 
 #: src/ViewHelper/type_string_map.php:416
 msgid "Watch section"
-msgstr "Ver sección"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:417
 msgid "Watch segment"
-msgstr "Ver segmento"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:418
 msgid "Watch folio"
-msgstr "Ver folio"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:419
 msgid "Watch sheet"
-msgstr "Ver hoja"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:420
 msgid "Watch entry"
-msgstr "Ver entrada"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:422 src/ViewHelper/Scripto.php:521
 msgid "Now tracking media"
-msgstr "Siguiendo medio"
+msgstr "现在正跟踪媒介"
 
 #: src/ViewHelper/type_string_map.php:423
 msgid "Now tracking page"
-msgstr "Siguiendo página"
+msgstr "现在正跟踪页面"
 
 #: src/ViewHelper/type_string_map.php:424
 msgid "Now tracking image"
-msgstr "Siguiendo imagen"
+msgstr "现在正跟踪图像"
 
 #: src/ViewHelper/type_string_map.php:425
 msgid "Now tracking section"
-msgstr "Siguiendo sección"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:426
 msgid "Now tracking segment"
-msgstr "Siguiendo segmento"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:427
 msgid "Now tracking folio"
-msgstr "Siguiendo folio"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:428
 msgid "Now tracking sheet"
-msgstr "Siguiendo hoja"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:429
 msgid "Now tracking entry"
-msgstr "Siguiendo entrada"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:431
 msgid "Media successfully removed from your watchlist"
-msgstr "Medios eliminados con éxito de su lista de seguimiento"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:432
 msgid "No longer tracking page"
-msgstr "Ya no dar seguimiento a página"
+msgstr "不再跟踪页面"
 
 #: src/ViewHelper/type_string_map.php:433
 msgid "No longer tracking image"
-msgstr "Ya no dar seguimiento a imagen"
+msgstr "不再跟踪图像"
 
 #: src/ViewHelper/type_string_map.php:434
 msgid "No longer tracking section"
-msgstr "Ya no dar seguimiento a sección"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:435
 msgid "No longer tracking segment"
-msgstr "Ya no dar seguimiento al segmento"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:436
 msgid "No longer tracking folio"
-msgstr "Ya no dar seguimiento al folio"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:437
 msgid "No longer tracking sheet"
-msgstr "Ya no dar seguimiento a hoja"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:438
 msgid "No longer tracking entry"
-msgstr "Ya no dar seguimiento a entrada"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:445
 #: src/ViewHelper/type_string_map.php:465
 #: src/ViewHelper/type_string_map.php:470 src/Form/ProjectForm.php:207
 msgid "Transcription"
-msgstr "Transcripción"
+msgstr "抄本"
 
 #: src/ViewHelper/type_string_map.php:446
 #: src/ViewHelper/type_string_map.php:466
 #: src/ViewHelper/type_string_map.php:471 src/Form/ProjectForm.php:208
 msgid "Translation"
-msgstr "Traducción"
+msgstr "翻译"
 
 #: src/ViewHelper/type_string_map.php:450
 msgid "Last transcribed"
-msgstr "Última transcrita"
+msgstr "最后抄写于"
 
 #: src/ViewHelper/type_string_map.php:451
 msgid "Last translated"
-msgstr "Última traducción"
+msgstr "最后翻译于"
 
 #: src/ViewHelper/type_string_map.php:452
 msgid "Last described"
-msgstr "Última descrita"
+msgstr "最后描述于"
 
 #: src/ViewHelper/type_string_map.php:454
 msgid "Not edited"
-msgstr "No modificado"
+msgstr "未编辑"
 
 #: src/ViewHelper/type_string_map.php:455
 msgid "Not transcribed"
-msgstr "No transcrita"
+msgstr "未抄写"
 
 #: src/ViewHelper/type_string_map.php:456
 msgid "Not translated"
-msgstr "No traducido"
+msgstr "未翻译"
 
 #: src/ViewHelper/type_string_map.php:457
 msgid "Not described"
-msgstr "No descrita"
+msgstr "未描述"
 
 #: src/ViewHelper/type_string_map.php:460
 msgid "Transcribe"
-msgstr "Transcribir"
+msgstr "抄录"
 
 #: src/ViewHelper/type_string_map.php:461
 msgid "Translate"
-msgstr "Traducir"
+msgstr "翻译"
 
 #: src/ViewHelper/type_string_map.php:462
 msgid "Describe"
-msgstr "Describir"
+msgstr "描述"
 
 #: src/ViewHelper/type_string_map.php:475
 msgid "No transcription"
-msgstr "Sin transcripción"
+msgstr "没有抄本"
 
 #: src/ViewHelper/type_string_map.php:476
 msgid "No translation"
-msgstr "Sin traducción"
+msgstr "没有译本"
 
 #: src/ViewHelper/Scripto.php:519
 msgid "Track media"
-msgstr "Seguimiento de medios"
+msgstr "跟踪图像"
 
 #: src/ViewHelper/Scripto.php:522
 msgid "No longer tracking media"
-msgstr "Se ha dejado de rastrear los medios"
+msgstr "不再跟踪媒介"
 
 #: src/ViewHelper/breadcrumbs_route_map.php:15
 msgid "User contributions"
-msgstr "Contribuciones de usuarios"
+msgstr "用户贡献"
 
 #: src/ViewHelper/breadcrumbs_route_map.php:20
 msgid "User watchlist"
-msgstr "Lista de seguimiento del usuario"
+msgstr "用户的监视列表"
 
 #: src/ViewHelper/breadcrumbs_route_map.php:30
 msgid "Review project"
-msgstr "Revisar proyecto"
+msgstr "审核项目"
 
 #: src/Form/MediaBatchForm.php:14
 msgid "Completion status"
-msgstr "Estado de terminación"
+msgstr ""
 
 #: src/Form/MediaBatchForm.php:16
 msgid "Complete"
-msgstr "Completo"
+msgstr "完成的"
 
 #: src/Form/MediaBatchForm.php:17
 msgid "Incomplete"
-msgstr "Incompleto"
+msgstr "未完成的"
 
 #: src/Form/MediaBatchForm.php:29
 msgid "Approval status"
-msgstr "Estado de aprobación"
+msgstr ""
 
 #: src/Form/MediaBatchForm.php:44 src/Form/MediaForm.php:64
 msgid "Protection level"
-msgstr "Nivel de protección"
+msgstr ""
 
 #: src/Form/MediaBatchForm.php:47 src/Form/MediaForm.php:66
 msgid "Allow all users"
-msgstr "Permitir a todos los usuarios"
+msgstr "允许所有用户"
 
 #: src/Form/MediaBatchForm.php:48 src/Form/MediaForm.php:67
 msgid "Allow only confirmed users"
-msgstr "Permitir solo usuarios confirmados"
+msgstr "只允许确认过的用户"
 
 #: src/Form/MediaBatchForm.php:49 src/Form/MediaForm.php:68
 msgid "Allow only administrators"
-msgstr "Permitir solo a los administradores"
+msgstr "只允许管理员"
 
 #: src/Form/MediaBatchForm.php:57 src/Form/MediaForm.php:79
 msgid "Protection expiry"
-msgstr "Vencimiento de la protección"
+msgstr ""
 
 #: src/Form/MediaBatchForm.php:59 src/Form/MediaForm.php:81
 msgid "infinite"
-msgstr "infinito"
+msgstr "无限的"
 
 #: src/Form/MediaBatchForm.php:60 src/Form/MediaForm.php:82
 msgid "1 hour"
-msgstr "1 hora"
+msgstr "1 小时"
 
 #: src/Form/MediaBatchForm.php:62 src/Form/MediaForm.php:84
 msgid "1 week"
-msgstr "1 semana"
+msgstr "1 星期"
 
 #: src/Form/MediaBatchForm.php:63 src/Form/MediaForm.php:85
 msgid "2 weeks"
-msgstr "2 años"
+msgstr "2 星期"
 
 #: src/Form/MediaBatchForm.php:64 src/Form/MediaForm.php:86
 msgid "1 month"
-msgstr "1 mes"
+msgstr "1 个月"
 
 #: src/Form/MediaBatchForm.php:65 src/Form/MediaForm.php:87
 msgid "3 months"
-msgstr "3 meses"
+msgstr "3 个月"
 
 #: src/Form/MediaBatchForm.php:66 src/Form/MediaForm.php:88
 msgid "6 months"
-msgstr "6 meses"
+msgstr "6 个月"
 
 #: src/Form/MediaBatchForm.php:67 src/Form/MediaForm.php:89
 msgid "1 year"
-msgstr "1 año"
+msgstr "1 年"
 
 #: src/Form/MediaBatchForm.php:75
 msgid "Watchlist status"
-msgstr "Estado de la lista de seguimiento"
+msgstr "监视列表状态"
 
 #: src/Form/MediaBatchForm.php:77
 msgid "Watch"
-msgstr "Seguir"
+msgstr "关注"
 
 #: src/Form/MediaBatchForm.php:78
 msgid "Unwatch"
-msgstr "Dejar de seguir"
+msgstr "取消关注"
 
 #: src/Form/ScriptoLogoutForm.php:15
 msgid "Log out"
-msgstr "Desconectarse"
+msgstr "登出"
 
 #: src/Form/ProjectForm.php:18
 msgid "Enter the title of this project."
-msgstr "Ingrese el título para este proyecto."
+msgstr "输入该项目的标题。"
 
 #: src/Form/ProjectForm.php:31
 msgid ""
 "Select the item set used to synchronize project items. Once synchronized, "
 "this project will contain every item in this item set."
-msgstr ""
-"Seleccione el conjunto de elementos utilizado para la sincronización de los "
-"elementos del proyecto.  Una vez sincronizado, el proyecto contendrá todos "
-"los elementos dentro del conjunto de elementos"
+msgstr "选择用来同步项目条目的条目集。在同步之后，该项目将包含此条目集的每个条目。"
 
 #: src/Form/ProjectForm.php:37
 msgid "Select an item set"
-msgstr "Seleccionar un conjunto de elementos"
+msgstr "选择一个条目集"
 
 #: src/Form/ProjectForm.php:47
 msgid "Select the property used to store imported content."
-msgstr "Seleccione la propiedad usada para guardar el contenido importado."
+msgstr "选择用来存储导入内容的属性。"
 
 #: src/Form/ProjectForm.php:63
 msgid ""
 "Select media types to include in the project. If empty, all media will be "
 "included."
-msgstr ""
-"Seleccionar los tipos de medio para incluir en el proyecto. Si se deja "
-"vacío, se incluirán todos los medios."
+msgstr "选择需要包括进项目中的媒介类型。如为空，所有媒体都将被包括进去。"
 
 #: src/Form/ProjectForm.php:64
 msgid "[Media without media type]"
-msgstr "[Medios sin tipo de medio]"
+msgstr "【没有媒介类型的媒介】"
 
 #: src/Form/ProjectForm.php:72
 msgid "Select media types"
-msgstr "Seleccionar tipos de medio"
+msgstr "选择媒介类型"
 
 #: src/Form/ProjectForm.php:81
 msgid "Enter the description of this project."
-msgstr "Ingrese la descripción de este proyecto."
+msgstr "输入该项目的描述。"
 
 #: src/Form/ProjectForm.php:92
 msgid "Guidelines"
-msgstr "Guías"
+msgstr "指南"
 
 #: src/Form/ProjectForm.php:93
 msgid "Enter guidelines for producing content for this project."
-msgstr ""
-"Introduzca las guías para la producción de contenido para este proyecto."
+msgstr "输入为该项目创作内容的指南。"
 
 #: src/Form/ProjectForm.php:104
 msgid "Create account text"
-msgstr "Texto de creación de cuenta"
+msgstr "创建账号文本"
 
 #: src/Form/ProjectForm.php:105
 msgid "Enter text for the create account page of this project."
-msgstr ""
-"Introducir el texto que se mostrará en la página de creación de cuenta de "
-"este proyecto."
+msgstr "输入该项目的账户创建页面的文本。"
 
 #: src/Form/ProjectForm.php:117
 msgid "Enter the language of your content using an IETF language tag."
-msgstr "Ingrese el idioma del contenido usando una etiqueta de idioma IETF"
+msgstr "使用IETF语言标签，输入您的内容的语言。"
 
 #: src/Form/ProjectForm.php:143
 msgid "Select the default layout for public browse views."
-msgstr ""
-"Seleccione el diseño predeterminado en las vistas de exploración públicas."
+msgstr "选择用于公共浏览视图的默认版面编排。"
 
 #: src/Form/ProjectForm.php:155
 msgid "Filter approved"
-msgstr "Filtrar aprobadas"
+msgstr "过滤器已批准"
 
 #: src/Form/ProjectForm.php:156
 msgid "Filter out approved items from the public browse view."
-msgstr "Filtrar las fichas aprobadas en la vista pública de navegación."
+msgstr "从公共浏览视图中过滤掉已批准的条目。"
 
 #: src/Form/ProjectForm.php:165
 msgid ""
 "Select the type of item covered by this project. This is used to clarify the"
 " interface, if needed."
-msgstr ""
-"Seleccionar el tipo de ficha que se incluirá en este proyecto. Se usa para "
-"clarificar la interfaz en caso necesario."
+msgstr "选择该项目涵盖的条目类型。这是为了在必要时阐明界面。"
 
 #: src/Form/ProjectForm.php:166
 msgid "Generic item"
-msgstr "Item genérico"
+msgstr "通用条目"
 
 #: src/Form/ProjectForm.php:184
 msgid ""
 "Select the type of media covered by this project. This is used to clarify "
 "the interface, if needed."
-msgstr ""
-"Seleccione el tipo de medio ha tratar para este proyecto. Esto se utiliza "
-"para aclarar la interfaz, si es necesario."
+msgstr "选择该项目涵盖的媒体类型。这是为了在必要时阐明界面。"
 
 #: src/Form/ProjectForm.php:185
 msgid "Generic media"
-msgstr "Medio genérico"
+msgstr "通用媒介"
 
 #: src/Form/ProjectForm.php:203
 msgid ""
 "Select the type of content covered by this project. This is used to clarify "
 "the interface, if needed."
-msgstr ""
-"Seleccionar el tipo de contenido que se incluirá en este proyecto. Se usa "
-"para clarificar la interfaz en caso necesario."
+msgstr "选择该项目涵盖的内容类型。这是为了在必要时阐明界面。"
 
 #: src/Form/ProjectForm.php:204
 msgid "Generic content"
-msgstr "Contenido genérico"
+msgstr "通用内容"
 
 #: src/Form/ProjectUnimportForm.php:14
 msgid "Unimport project"
-msgstr "Deshacer proyecto"
+msgstr ""
 
 #: src/Form/ScriptoLoginForm.php:15 src/Form/CreateAccountForm.php:14
 msgid "Username"
-msgstr "Nombre de usuario"
+msgstr "用户名"
 
 #: src/Form/ModuleConfigForm.php:27
 msgid "MediaWiki API URL"
-msgstr "URL de la API de MediaWiki"
+msgstr "MediaWiki API URL"
 
 #: src/Form/ModuleConfigForm.php:28
 msgid "Enter the URL to your MediaWiki API endpoint."
-msgstr "Ingrese el parametro URL de su API de MediaWiki"
+msgstr "输入您的MediaWiki API终点的URL。"
 
 #: src/Form/ModuleConfigForm.php:55
 #, php-format
 msgid ""
 "Invalid MediaWiki API. The URL must resolve to a MediaWiki API endpoint and "
 "the MediaWiki version must be %s or greater."
-msgstr ""
-"API MediaWiki inválida.   La URL debe resolver un endpoint API MediaWiki y "
-"la versión de la MediaWiki debe ser %s o mayor."
+msgstr "无效的MediaWiki API。该URL必须解析到一个MediaWiki API终点，并且MediaWiki版本必须是%s或更高。"
 
 #: src/Form/CreateAccountForm.php:44
 msgid "Email address"
-msgstr "Dirección de correo electrónico"
+msgstr "电子邮件地址"
 
 #: src/Form/CreateAccountForm.php:54
 msgid "Real name"
-msgstr "Nombre real"
+msgstr "真实名"
 
 #: src/Form/CreateAccountForm.php:61
 msgid "Create your account"
-msgstr "Crear una cuenta"
+msgstr "创建您的账号"
 
 #: src/Form/RevisionRevertForm.php:14
 msgid "Confirm reversion"
-msgstr "Confirmar revisión"
+msgstr "确认复原"
 
 #: src/Form/MediaForm.php:14
 msgid "Toggle complete"
-msgstr "Alternar completado"
+msgstr "切换完毕"
 
 #: src/Form/MediaForm.php:27
 msgid "Complete action"
-msgstr "Acción completa"
+msgstr ""
 
 #: src/Form/MediaForm.php:28 src/Form/MediaForm.php:53
 msgid "Select action:"
-msgstr "Seleccionar acción:"
+msgstr "选择操作："
 
 #: src/Form/MediaForm.php:39
 msgid "Toggle approved"
-msgstr "Intercambiar aprobados"
+msgstr "切换已批准"
 
 #: src/Form/MediaForm.php:52
 msgid "Approved action"
-msgstr "Acción aprobada."
+msgstr "已批准的操作"
 
 #: src/Form/ProjectImportForm.php:14
 msgid "Import project"
-msgstr "Importar proyecto"
+msgstr "导入项目"
 
 #: src/Form/MediaPublicAppForm.php:24
 msgid "Change summary"
-msgstr "Cambiar resumen"
+msgstr "更改总结"
 
 #: src/Form/MediaPublicAppForm.php:26
 msgid "Summarize your changes"
-msgstr "Resuma los cambios"
+msgstr "总结您的更改。"
 
 #: src/Form/MediaPublicAppForm.php:34
 msgid "Mark complete"
-msgstr "Marcar completado"
+msgstr "标记为完成"
 
 #: src/Controller/PublicApp/IndexController.php:51
 msgid ""
 "Your Scripto account has been created! Please check your email for a link to"
 " activate your account."
-msgstr ""
-"Su cuenta Scripto ha sido creada! Por favor, compruebe su correo electrónico"
-" el cual contiene un enlace para activar su cuenta."
+msgstr "您的Scripto账号已经创建！请查看您的电子邮件，用其中的链接激活您的账号。"
 
 #: src/Controller/PublicApp/MediaController.php:164
 #: src/Controller/Admin/MediaController.php:150
 #: src/Controller/Admin/MediaController.php:248
 msgid "Scripto media successfully updated."
-msgstr "El medio Scripto se actualizó exitosamente."
+msgstr "Scripto媒介已成功更新。"
 
 #: src/Controller/Admin/ItemController.php:31
 #, php-format
 msgid "This project has no item set. %s"
-msgstr "Este proyecto no posee un conjunto de elementos. %s"
+msgstr "该项目没有条目集。%s"
 
 #: src/Controller/Admin/ItemController.php:42
 #, php-format
 msgid "This project has no property. %s"
-msgstr "Este proyecto no posee propiedades. %s"
+msgstr "该项目没有属性。%s"
 
 #: src/Controller/Admin/ProjectController.php:44
 msgid "Scripto project successfully created."
-msgstr "El proyecto Scripto fue creado exitosamente."
+msgstr "Scripto项目已成功创建。"
 
 #: src/Controller/Admin/ProjectController.php:77
 msgid "Scripto project successfully edited."
-msgstr "Proyecto Scripto modificado exitosamente."
+msgstr "Scripto项目已成功编辑。"
 
 #: src/Controller/Admin/ProjectController.php:104
 msgid "Scripto project successfully deleted"
-msgstr "Proyecto Scripto exitosamente eliminado"
+msgstr "Scripto项目已成功删除。"
 
 #: src/Controller/Admin/ProjectController.php:154
 #, php-format
 msgid "Syncing Scripto project. This may take a while. %s"
-msgstr ""
-"Sincronizando proyecto Scripto. Esta acción puede tomar unos momentos. %s"
+msgstr "正在同步Scripto项目。这需要一段时间。%s"
 
 #: src/Controller/Admin/ProjectController.php:179
 #, php-format
 msgid "Importing Scripto project text. This may take a while. %s"
-msgstr ""
-"Importando el proyecto textual Scripto. Esta acción puede tomar unos "
-"momentos. %s"
+msgstr "正在导入Scripto项目文本。这需要一段时间。%s"
 
 #: src/Controller/Admin/ProjectController.php:204
 #, php-format
 msgid "Unimporting Scripto project text. This may take a while. %s"
 msgstr ""
-"Sin importar el texto del proyecto Scripto. Esto puede tardar un rato %s"
 
 #: src/Controller/Admin/MediaController.php:93
 #: src/Controller/Admin/MediaController.php:216
 msgid "Scripto media revision successfully reverted."
-msgstr "Revisión de medio scripto revertida correctamente."
+msgstr ""
 
 #: src/Controller/Admin/MediaController.php:354
 #: src/Controller/Admin/MediaController.php:441
 msgid "Scripto media successfully edited"
-msgstr "Medio Scripto modificado exitosamente"
+msgstr "Scripto媒介已成功编辑。"
 
 #: vocabs/scripto.n3
 msgid "A plain text representation of the content of a resource."
-msgstr "Una representación en modo texto plano del contenido del recurso."
+msgstr "一个资源内容的纯文本表达。"
 
 #: vocabs/scripto.n3
 msgid "transcription"
-msgstr "transcripción"
+msgstr "抄本"
 
 #: vocabs/scripto.n3
 msgid "A transcription of a resource."
-msgstr "La transcripción de un recurso."
+msgstr "一个资源的抄本。"
 
 #: vocabs/scripto.n3
 msgid "translation"
-msgstr "traducción"
+msgstr "翻译"
 
 #: vocabs/scripto.n3
 msgid "A translation of a resource."
-msgstr "Una traducción de un recurso."
+msgstr "一个资源的翻译。"

@@ -5,16 +5,16 @@
 # 
 # Translators:
 # Moon Ika, 2019
-# Rivo Zängov <eraser@eraser.ee>, 2020
+# Rivo Zängov <eraser@eraser.ee>, 2022
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-12 11:05-0500\n"
+"POT-Creation-Date: 2022-11-29 12:33-0500\n"
 "PO-Revision-Date: 2018-11-27 19:38+0000\n"
-"Last-Translator: Rivo Zängov <eraser@eraser.ee>, 2020\n"
+"Last-Translator: Rivo Zängov <eraser@eraser.ee>, 2022\n"
 "Language-Team: Estonian (https://www.transifex.com/omeka/teams/14184/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,11 +42,11 @@ msgstr ""
 
 #: src/Controller/Admin/ItemController.php:35
 msgid "Set an item set here."
-msgstr ""
+msgstr "Määra siin ühikute kogum."
 
 #: src/Controller/Admin/ItemController.php:46
 msgid "Set a property here."
-msgstr ""
+msgstr "Määra siin omadus."
 
 #: src/Controller/Admin/MediaController.php:165
 #: src/Controller/Admin/MediaController.php:260
@@ -281,7 +281,7 @@ msgstr "Pööra vasakule"
 
 #: view/layout/layout-scripto-public-app.phtml:30
 msgid "Toggle menu"
-msgstr ""
+msgstr "Menüü lülitamine"
 
 #: view/layout/layout-scripto-public-app.phtml:40
 #: view/scripto/public-app/index/create-account.phtml:2
@@ -369,7 +369,7 @@ msgstr "Sinu viimased panused"
 #: view/scripto/admin/index/index.phtml:76
 #: view/scripto/public-app/index/index.phtml:5
 msgid "View your contributions"
-msgstr ""
+msgstr "Vaata oma kaastööd"
 
 #: view/scripto/admin/index/index.phtml:112
 #: view/scripto/admin/index/index.phtml:122
@@ -404,7 +404,7 @@ msgstr "ajalugu"
 #: view/scripto/admin/index/index.phtml:151
 #: view/scripto/public-app/index/index.phtml:88
 msgid "No contributions found."
-msgstr ""
+msgstr "Ühtegi kaastööd ei leitud."
 
 #: view/scripto/admin/index/index.phtml:153
 #: view/scripto/public-app/index/index.phtml:90
@@ -496,7 +496,7 @@ msgstr "On uus"
 #: view/scripto/admin/item/browse.phtml:65
 #: view/scripto/admin/media/browse.phtml:76
 msgid "Is edited after imported"
-msgstr ""
+msgstr "On pärast importimist muudetud"
 
 #: view/scripto/admin/item/browse.phtml:115
 msgid ""
@@ -553,7 +553,7 @@ msgstr ""
 #: view/scripto/admin/item/show-details.phtml:52
 #: view/scripto/admin/media/show-details.phtml:84
 msgid "Omeka item"
-msgstr ""
+msgstr "Omeka ühik"
 
 #: view/scripto/admin/item/show-details.phtml:58
 #: view/scripto/admin/media/show-details.phtml:90
@@ -616,7 +616,7 @@ msgstr "On muudetud pärast heakskiitmist"
 
 #: view/scripto/admin/media/browse.phtml:80
 msgid "Is synced after imported"
-msgstr ""
+msgstr "On süngitud pärast importimist"
 
 #: view/scripto/admin/media/browse.phtml:116
 #: view/scripto/admin/media/show-details.phtml:20
@@ -636,7 +636,7 @@ msgstr "Omeka ühikul puuduvad metaandmed."
 #: view/scripto/admin/media/show-details.phtml:24
 #, php-format
 msgid "%s; expiring %s"
-msgstr ""
+msgstr "%s; aegumine %s"
 
 #: view/scripto/admin/media/show-details.phtml:28
 msgid "never"
@@ -699,12 +699,12 @@ msgstr "Märkmeid pole veel."
 #: view/scripto/admin/media/show-talk.phtml:64
 #: view/scripto/public-app/media/show-talk.phtml:41
 msgid "Browse notes history"
-msgstr ""
+msgstr "Sirvimise märkmete ajalugu"
 
 #: view/scripto/admin/media/show-talk.phtml:91
 #: view/scripto/admin/media/show.phtml:81
 msgid "The Omeka media has no metadata."
-msgstr ""
+msgstr "Omeka meedial puuduvad metaandmed."
 
 #: view/scripto/admin/media/show-talk.phtml:112
 #: view/scripto/admin/media/show.phtml:102
@@ -772,7 +772,7 @@ msgstr "Ava täisekraanil"
 #: view/scripto/admin/media/show.phtml:41
 #: view/scripto/public-app/media/edit.phtml:29
 msgid "Exit full screen"
-msgstr ""
+msgstr "Välju täisekraanist"
 
 #: view/scripto/admin/media/show.phtml:43
 #: view/scripto/public-app/item/browse.phtml:35
@@ -793,11 +793,11 @@ msgstr "Vertikaalne vaade"
 
 #: view/scripto/admin/media/show.phtml:137
 msgid "Review status"
-msgstr ""
+msgstr "Vaata staatus üle"
 
 #: view/scripto/admin/media/show.phtml:153
 msgid "This revision marked as complete."
-msgstr ""
+msgstr "See versioon on märgitud lõplikuks."
 
 #: view/scripto/admin/media/show.phtml:161
 #, php-format
@@ -822,7 +822,7 @@ msgstr "Heaks kiidetud"
 #: view/scripto/admin/revision/compare.phtml:46
 #: view/scripto/public-app/revision/compare.phtml:41
 msgid "This revision marked as approved."
-msgstr ""
+msgstr "See versioon on märgitud heakskiidetuks."
 
 #: view/scripto/admin/media/show.phtml:207
 #, php-format
@@ -831,7 +831,7 @@ msgstr ""
 
 #: view/scripto/admin/media/show.phtml:225
 msgid "Mark this revision as approved"
-msgstr ""
+msgstr "Märgi see versioon heakskiidetuks"
 
 #: view/scripto/admin/project/add.phtml:8
 msgid "New project"
@@ -879,7 +879,7 @@ msgstr "Projekti info"
 
 #: view/scripto/admin/project/show-details.phtml:17
 msgid "Media types"
-msgstr ""
+msgstr "Meedia liigid"
 
 #: view/scripto/admin/project/show-details.phtml:34
 msgid "Language tag"
@@ -887,7 +887,7 @@ msgstr "Keele silt"
 
 #: view/scripto/admin/project/show-details.phtml:38
 msgid "Import target"
-msgstr ""
+msgstr "Importimise sihtkoht"
 
 #: view/scripto/admin/project/show-details.phtml:45
 msgid "Item and media"
@@ -912,10 +912,6 @@ msgstr "Võrgustik"
 #: view/scripto/admin/project/show-details.phtml:60
 msgid "Item type"
 msgstr "Ühiku liik"
-
-#: view/scripto/admin/project/show-details.phtml:64
-msgid "Media type"
-msgstr "Meedia liik"
 
 #: view/scripto/admin/project/show-details.phtml:68
 msgid "Content type"
@@ -1050,7 +1046,7 @@ msgstr "Versioon"
 #: view/scripto/public-app/user/contributions.phtml:13
 #: view/scripto/public-app/user/watchlist.phtml:13
 msgid "Media #"
-msgstr ""
+msgstr "Meedia Nr."
 
 #: view/scripto/admin/user/contributions.phtml:38
 #: view/scripto/public-app/user/contributions.phtml:26
@@ -1078,7 +1074,7 @@ msgstr "pole"
 
 #: view/scripto/admin/user/contributions.phtml:116
 msgid "No user contributions found."
-msgstr ""
+msgstr "Kasutaja kaastööd ei leitud."
 
 #: view/scripto/admin/user/watchlist.phtml:116
 msgid "No watchlist pages found."
@@ -1139,12 +1135,12 @@ msgstr ""
 #: view/scripto/public-app/revision/show-talk.phtml:11
 #: view/scripto/public-app/revision/show.phtml:11
 msgid "Return to revision history"
-msgstr ""
+msgstr "Tagasi versiooniajaloo juurde"
 
 #: view/scripto/public-app/revision/compare.phtml:2
 #, php-format
 msgid "Compare revisions: %s"
-msgstr ""
+msgstr "Võrdle versioone: %s"
 
 #: view/scripto/public-app/revision/show-talk.phtml:2
 #, php-format
@@ -1165,38 +1161,102 @@ msgstr "HTML-i pole"
 #: view/scripto/public-app/revision/show.phtml:2
 #, php-format
 msgid "Revision: %s"
-msgstr ""
+msgstr "Versioon: %s"
 
 #: view/scripto/public-app/user/contributions.phtml:2
 #, php-format
 msgid "Contributions by %s"
-msgstr ""
+msgstr "Kasutaja %s kaastööd"
 
 #: view/scripto/public-app/user/watchlist.phtml:3
 msgid "Your watchlist"
 msgstr "Sinu jälgimiste nimekiri"
 
-#: src/ViewHelper/breadcrumbs_route_map.php:15
-msgid "User contributions"
-msgstr "Kasutajate kaastööd"
+#: src/Job/ImportProject.php:35
+msgid "Cannot import a project without a property."
+msgstr ""
 
-#: src/ViewHelper/breadcrumbs_route_map.php:20
-msgid "User watchlist"
-msgstr "Kasutaja jälgimiste nimekiri"
+#: src/Job/SyncProject.php:33
+msgid "Cannot sync a project without an item set."
+msgstr ""
 
-#: src/ViewHelper/breadcrumbs_route_map.php:30
-msgid "Review project"
-msgstr "Vaata projekt üle"
+#: src/Job/ScriptoJob.php:73
+msgid "Cannot unimport a project without a property."
+msgstr ""
 
-#: src/ViewHelper/breadcrumbs_route_map.php:35
-#: src/ViewHelper/type_string_map.php:96
-msgid "Review item"
-msgstr "Vaata ühik üle"
+#: src/Api/Representation/ScriptoMediaRepresentation.php:12
+#: src/Api/Representation/ScriptoItemRepresentation.php:11
+msgid "New"
+msgstr "Uus"
 
-#: src/ViewHelper/breadcrumbs_route_map.php:40
-#: src/ViewHelper/type_string_map.php:377
-msgid "Review media"
-msgstr "Vaata meedia üle"
+#: src/Api/Representation/ScriptoMediaRepresentation.php:13
+#: src/Api/Representation/ScriptoItemRepresentation.php:12
+msgid "In progress"
+msgstr "Töös"
+
+#: src/Api/Representation/ScriptoMediaRepresentation.php:465
+msgid "Confirmed only"
+msgstr "Ainult kinnitatud"
+
+#: src/Api/Representation/ScriptoMediaRepresentation.php:468
+msgid "Admin only"
+msgstr "Ainult admin"
+
+#: src/Api/Representation/ScriptoMediaRepresentation.php:481
+msgid "Open to all"
+msgstr ""
+
+#: src/Api/Adapter/ScriptoMediaAdapter.php:46
+msgid ""
+"The Scripto\\Api\\Adapter\\ScriptoMediaAdapter adapter does not implement "
+"the create operation."
+msgstr ""
+
+#: src/Api/Adapter/ScriptoMediaAdapter.php:170
+msgid "A Scripto item must not be null."
+msgstr ""
+
+#: src/Api/Adapter/ScriptoMediaAdapter.php:173
+msgid "A media must not be null."
+msgstr ""
+
+#: src/Api/Adapter/ScriptoMediaAdapter.php:179
+msgid "Invalid completed revision ID."
+msgstr ""
+
+#: src/Api/Adapter/ScriptoMediaAdapter.php:186
+msgid "Invalid approved revision ID."
+msgstr ""
+
+#: src/Api/Adapter/ScriptoProjectAdapter.php:74
+msgid "An owner must have an ID"
+msgstr "Omanikul peab olema ID"
+
+#: src/Api/Adapter/ScriptoProjectAdapter.php:77
+msgid "An item set must have an ID"
+msgstr "Ühikul peab olema ID"
+
+#: src/Api/Adapter/ScriptoProjectAdapter.php:80
+msgid "A property must have an ID"
+msgstr ""
+
+#: src/Api/Adapter/ScriptoProjectAdapter.php:177
+msgid "A Scripto project title must not be null"
+msgstr "Scripto projekti pealkiri ei tohi olla tühi."
+
+#: src/Api/Adapter/ScriptoItemAdapter.php:37
+msgid ""
+"The Scripto\\Api\\Adapter\\ScriptoItemAdapter adapter does not implement the"
+" create operation."
+msgstr ""
+
+#: src/Api/Adapter/ScriptoItemAdapter.php:127
+msgid "A Scripto project must not be null"
+msgstr ""
+
+#: src/Api/Adapter/ScriptoItemAdapter.php:130
+msgid "An item must not be null"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:7
 msgid "Documents"
@@ -1238,23 +1298,23 @@ msgstr "Ühtegi Scripto kirjet ei leitud"
 
 #: src/ViewHelper/type_string_map.php:25
 msgid "No Scripto documents found"
-msgstr ""
+msgstr "Ühtegi Scripto dokumenti ei leitud"
 
 #: src/ViewHelper/type_string_map.php:26
 msgid "No Scripto manuscripts found"
-msgstr ""
+msgstr "Ühtegi Scripto käsikirja ei leitud"
 
 #: src/ViewHelper/type_string_map.php:27
 msgid "No Scripto books found"
-msgstr ""
+msgstr "Ühtegi Scripto raamatut ei leitud"
 
 #: src/ViewHelper/type_string_map.php:28
 msgid "No Scripto audio found"
-msgstr ""
+msgstr "Ühtegi Scripto heli ei leitud"
 
 #: src/ViewHelper/type_string_map.php:29
 msgid "No Scripto video found"
-msgstr ""
+msgstr "Ühtegi Scripto videot ei leitud"
 
 #: src/ViewHelper/type_string_map.php:30
 msgid "No Scripto papers found"
@@ -1262,7 +1322,7 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:31
 msgid "No Scripto journals found"
-msgstr ""
+msgstr "Ühtegi Scripto päevikut ei leitud"
 
 #: src/ViewHelper/type_string_map.php:33
 #, php-format
@@ -1307,7 +1367,7 @@ msgstr "%s päevikut"
 #: src/ViewHelper/type_string_map.php:42
 #, php-format
 msgid "item: %s"
-msgstr ""
+msgstr "ühik: %s"
 
 #: src/ViewHelper/type_string_map.php:43
 #, php-format
@@ -1354,7 +1414,7 @@ msgstr "Dokumentide koguarv"
 
 #: src/ViewHelper/type_string_map.php:53
 msgid "Total manuscript count"
-msgstr ""
+msgstr "Käsikirjade koguarv"
 
 #: src/ViewHelper/type_string_map.php:54
 msgid "Total book count"
@@ -1362,11 +1422,11 @@ msgstr "Raamatute koguarv"
 
 #: src/ViewHelper/type_string_map.php:55
 msgid "Total audio count"
-msgstr ""
+msgstr "Audio koguarv"
 
 #: src/ViewHelper/type_string_map.php:56
 msgid "Total video count"
-msgstr ""
+msgstr "Video koguarv"
 
 #: src/ViewHelper/type_string_map.php:57
 msgid "Total paper count"
@@ -1386,7 +1446,7 @@ msgstr "On heakskiidetud dokumentide arv"
 
 #: src/ViewHelper/type_string_map.php:62
 msgid "Is approved manuscript count"
-msgstr ""
+msgstr "Heakskiidetud käsikirjade arv"
 
 #: src/ViewHelper/type_string_map.php:63
 msgid "Is approved book count"
@@ -1394,7 +1454,7 @@ msgstr "Heaks kiidetud raamatute koguarv"
 
 #: src/ViewHelper/type_string_map.php:64
 msgid "Is approved audio count"
-msgstr ""
+msgstr "Heakskiidetud audio arv"
 
 #: src/ViewHelper/type_string_map.php:65
 msgid "Is approved video count"
@@ -1426,7 +1486,7 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:73
 msgid "Is not approved audio count"
-msgstr ""
+msgstr "Heakskiidetmata audiote arv"
 
 #: src/ViewHelper/type_string_map.php:74
 msgid "Is not approved video count"
@@ -1454,15 +1514,15 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:81
 msgid "Scripto book metadata"
-msgstr ""
+msgstr "Scripto raamatu metaandmed"
 
 #: src/ViewHelper/type_string_map.php:82
 msgid "Scripto audio metadata"
-msgstr ""
+msgstr "Scripto audio metaandmed"
 
 #: src/ViewHelper/type_string_map.php:83
 msgid "Scripto video metadata"
-msgstr ""
+msgstr "Scripto video metaandmed"
 
 #: src/ViewHelper/type_string_map.php:84
 msgid "Scripto paper metadata"
@@ -1504,13 +1564,18 @@ msgstr ""
 msgid "Scripto: Journal"
 msgstr "Scripto: Päevik"
 
+#: src/ViewHelper/type_string_map.php:96
+#: src/ViewHelper/breadcrumbs_route_map.php:35
+msgid "Review item"
+msgstr "Vaata ühik üle"
+
 #: src/ViewHelper/type_string_map.php:97
 msgid "Review document"
 msgstr "Vaata dokument üle"
 
 #: src/ViewHelper/type_string_map.php:98
 msgid "Review manuscript"
-msgstr ""
+msgstr "Vaata käsikiri üle"
 
 #: src/ViewHelper/type_string_map.php:99
 msgid "Review book"
@@ -1542,7 +1607,7 @@ msgstr "Sirvi dokumente"
 
 #: src/ViewHelper/type_string_map.php:107
 msgid "Browse manuscripts"
-msgstr ""
+msgstr "Sirvi käsikirjasid"
 
 #: src/ViewHelper/type_string_map.php:108
 msgid "Browse books"
@@ -1554,7 +1619,7 @@ msgstr "Sirvi heli"
 
 #: src/ViewHelper/type_string_map.php:110
 msgid "Browse video"
-msgstr ""
+msgstr "Sirvi videoid"
 
 #: src/ViewHelper/type_string_map.php:111
 msgid "Browse papers"
@@ -1582,15 +1647,15 @@ msgstr "Segmendid"
 
 #: src/ViewHelper/type_string_map.php:124
 msgid "Folios"
-msgstr ""
+msgstr "Ffooliod"
 
 #: src/ViewHelper/type_string_map.php:125
 msgid "Sheets"
-msgstr ""
+msgstr "Lehekülgi"
 
 #: src/ViewHelper/type_string_map.php:126
 msgid "Entries"
-msgstr ""
+msgstr "Sissekanded"
 
 #: src/ViewHelper/type_string_map.php:131 src/Form/ProjectForm.php:191
 msgid "Section"
@@ -1602,7 +1667,7 @@ msgstr "Segment"
 
 #: src/ViewHelper/type_string_map.php:133 src/Form/ProjectForm.php:188
 msgid "Folio"
-msgstr ""
+msgstr "Foolio"
 
 #: src/ViewHelper/type_string_map.php:134 src/Form/ProjectForm.php:193
 msgid "Sheet"
@@ -1634,7 +1699,7 @@ msgstr "Peamine segment"
 
 #: src/ViewHelper/type_string_map.php:142
 msgid "Primary folio"
-msgstr ""
+msgstr "Peamine foolio"
 
 #: src/ViewHelper/type_string_map.php:143
 msgid "Primary sheet"
@@ -1670,7 +1735,7 @@ msgstr "Heakskiidetud segmendid"
 
 #: src/ViewHelper/type_string_map.php:152
 msgid "Approved folios"
-msgstr ""
+msgstr "Heakskiidetud fooliod"
 
 #: src/ViewHelper/type_string_map.php:153
 msgid "Approved sheets"
@@ -1708,7 +1773,7 @@ msgstr "Segment nr.%s"
 #: src/ViewHelper/type_string_map.php:161
 #, php-format
 msgid "Folio #%s"
-msgstr ""
+msgstr "Foolio nr%s"
 
 #: src/ViewHelper/type_string_map.php:162
 #, php-format
@@ -1718,12 +1783,12 @@ msgstr ""
 #: src/ViewHelper/type_string_map.php:163
 #, php-format
 msgid "Entry #%s"
-msgstr ""
+msgstr "Sissekande nr%s"
 
 #: src/ViewHelper/type_string_map.php:165
 #, php-format
 msgid "Media #%s notes"
-msgstr ""
+msgstr "Meedia #%s märkmed"
 
 #: src/ViewHelper/type_string_map.php:166
 #, php-format
@@ -1738,17 +1803,17 @@ msgstr ""
 #: src/ViewHelper/type_string_map.php:168
 #, php-format
 msgid "Section #%s notes"
-msgstr ""
+msgstr "Sektsioon #%s märkmed"
 
 #: src/ViewHelper/type_string_map.php:169
 #, php-format
 msgid "Segment #%s notes"
-msgstr ""
+msgstr "Segmendi #%s märkmed"
 
 #: src/ViewHelper/type_string_map.php:170
 #, php-format
 msgid "Folio #%s notes"
-msgstr ""
+msgstr "Foolio nr%s märkmed"
 
 #: src/ViewHelper/type_string_map.php:171
 #, php-format
@@ -1782,11 +1847,11 @@ msgstr "Segmentide arv"
 
 #: src/ViewHelper/type_string_map.php:179
 msgid "Folio count"
-msgstr ""
+msgstr "Fooliote arv"
 
 #: src/ViewHelper/type_string_map.php:180
 msgid "Sheet count"
-msgstr ""
+msgstr "Lehtede arv"
 
 #: src/ViewHelper/type_string_map.php:181
 msgid "Entry count"
@@ -1798,7 +1863,7 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:184
 msgid "Total page count"
-msgstr ""
+msgstr "Lehekülgede koguarv"
 
 #: src/ViewHelper/type_string_map.php:185
 msgid "Total image count"
@@ -1810,11 +1875,11 @@ msgstr "Sektsioondie koguarv"
 
 #: src/ViewHelper/type_string_map.php:187
 msgid "Total segment count"
-msgstr ""
+msgstr "Segmentide koguarv"
 
 #: src/ViewHelper/type_string_map.php:188
 msgid "Total folio count"
-msgstr ""
+msgstr "Fooliote koguarv"
 
 #: src/ViewHelper/type_string_map.php:189
 msgid "Total sheet count"
@@ -1846,7 +1911,7 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:197
 msgid "Is approved folio count"
-msgstr ""
+msgstr "Heakskiidetud fooliote arv"
 
 #: src/ViewHelper/type_string_map.php:198
 msgid "Is approved sheet count"
@@ -2034,7 +2099,7 @@ msgstr "Vali segment"
 
 #: src/ViewHelper/type_string_map.php:251
 msgid "Select folio"
-msgstr ""
+msgstr "Vali foolio"
 
 #: src/ViewHelper/type_string_map.php:252
 msgid "Select sheet"
@@ -2042,7 +2107,7 @@ msgstr "Vali leht"
 
 #: src/ViewHelper/type_string_map.php:253
 msgid "Select entry"
-msgstr ""
+msgstr "Vali sissekanne"
 
 #: src/ViewHelper/type_string_map.php:255
 msgid "No Scripto media found"
@@ -2058,7 +2123,7 @@ msgstr "Scripto pilte ei leitud"
 
 #: src/ViewHelper/type_string_map.php:258
 msgid "No Scripto sections found"
-msgstr ""
+msgstr "Ühtegi Scripto sektsiooni ei leitud"
 
 #: src/ViewHelper/type_string_map.php:259
 msgid "No Scripto segments found"
@@ -2066,11 +2131,11 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:260
 msgid "No Scripto folios found"
-msgstr ""
+msgstr "Ühtegi Scripto fooliot ei leitud"
 
 #: src/ViewHelper/type_string_map.php:261
 msgid "No Scripto sheets found"
-msgstr ""
+msgstr "Ühtegi Scripto lehekülge ei leitud"
 
 #: src/ViewHelper/type_string_map.php:262
 msgid "No Scripto entries found"
@@ -2098,15 +2163,15 @@ msgstr "Scripto: Segment"
 
 #: src/ViewHelper/type_string_map.php:269
 msgid "Scripto: Folio"
-msgstr ""
+msgstr "Scripto: Foolio"
 
 #: src/ViewHelper/type_string_map.php:270
 msgid "Scripto: Sheet"
-msgstr ""
+msgstr "Scripto: Leht"
 
 #: src/ViewHelper/type_string_map.php:271
 msgid "Scripto: Entry"
-msgstr ""
+msgstr "Scripto: Sissekanne"
 
 #: src/ViewHelper/type_string_map.php:273 src/Form/MediaForm.php:31
 msgid "Mark media as not complete"
@@ -2122,7 +2187,7 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:276
 msgid "Mark section as not complete"
-msgstr ""
+msgstr "Märgi sektsioon mitte valmisolevaks"
 
 #: src/ViewHelper/type_string_map.php:277
 msgid "Mark segment as not complete"
@@ -2130,7 +2195,7 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:278
 msgid "Mark folio as not complete"
-msgstr ""
+msgstr "Märgi foolio mitte lõpetatuks"
 
 #: src/ViewHelper/type_string_map.php:279
 msgid "Mark sheet as not complete"
@@ -2162,7 +2227,7 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:287
 msgid "Mark folio as complete"
-msgstr ""
+msgstr "Märgi foolio lõpetatuks"
 
 #: src/ViewHelper/type_string_map.php:288
 msgid "Mark sheet as complete"
@@ -2178,11 +2243,11 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:292
 msgid "Mark page as not approved"
-msgstr ""
+msgstr "Märgi lehekülg mitte heaks kiidetuks"
 
 #: src/ViewHelper/type_string_map.php:293
 msgid "Mark image as not approved"
-msgstr ""
+msgstr "Märgi pilt mitte heaks kiidetuks"
 
 #: src/ViewHelper/type_string_map.php:294
 msgid "Mark section as not approved"
@@ -2190,11 +2255,11 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:295
 msgid "Mark segment as not approved"
-msgstr ""
+msgstr "Märgi segment mitte heaks kiidetuks"
 
 #: src/ViewHelper/type_string_map.php:296
 msgid "Mark folio as not approved"
-msgstr ""
+msgstr "Märgi foolio mitte heakskiidetuks"
 
 #: src/ViewHelper/type_string_map.php:297
 msgid "Mark sheet as not approved"
@@ -2202,7 +2267,7 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:298
 msgid "Mark entry as not approved"
-msgstr ""
+msgstr "Märgi sissekanne mitte heaks kiidetuks"
 
 #: src/ViewHelper/type_string_map.php:300
 msgid "Mark media as approved"
@@ -2210,7 +2275,7 @@ msgstr "Märgi meedia heakskidietuks"
 
 #: src/ViewHelper/type_string_map.php:301
 msgid "Mark page as approved"
-msgstr ""
+msgstr "Märgi lehekülg kui mitte heaks kiidetud"
 
 #: src/ViewHelper/type_string_map.php:302
 msgid "Mark image as approved"
@@ -2218,7 +2283,7 @@ msgstr "Märgi pilt heakskidietuks"
 
 #: src/ViewHelper/type_string_map.php:303
 msgid "Mark section as approved"
-msgstr ""
+msgstr "Märgi sektsioon heakskiidetuks"
 
 #: src/ViewHelper/type_string_map.php:304
 msgid "Mark segment as approved"
@@ -2226,7 +2291,7 @@ msgstr "Märgi segment heakskiidetuks"
 
 #: src/ViewHelper/type_string_map.php:305
 msgid "Mark folio as approved"
-msgstr ""
+msgstr "Märgi foolio heakskiidetuks"
 
 #: src/ViewHelper/type_string_map.php:306
 msgid "Mark sheet as approved"
@@ -2258,7 +2323,7 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:314
 msgid "Scripto folio metadata"
-msgstr ""
+msgstr "Scripto foolio metaandmed"
 
 #: src/ViewHelper/type_string_map.php:315
 msgid "Scripto sheet metadata"
@@ -2268,8 +2333,8 @@ msgstr ""
 msgid "Scripto entry metadata"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:319
-msgid "Batch edit media"
+#: src/ViewHelper/type_string_map.php:318
+msgid "Batch edit medias"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:320
@@ -2290,15 +2355,15 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:324
 msgid "Batch edit folios"
-msgstr ""
+msgstr "Fooliote hulgi muutmine"
 
 #: src/ViewHelper/type_string_map.php:325
 msgid "Batch edit sheets"
-msgstr ""
+msgstr "Lehtede hulgi muutmine"
 
 #: src/ViewHelper/type_string_map.php:326
 msgid "Batch edit entries"
-msgstr ""
+msgstr "Sissekannete hulgi muutmine"
 
 #: src/ViewHelper/type_string_map.php:328
 msgid "Batch edit all medias"
@@ -2314,7 +2379,7 @@ msgstr "Kõigi lehekülgede hulgi muutmine"
 
 #: src/ViewHelper/type_string_map.php:331
 msgid "Batch edit all images"
-msgstr ""
+msgstr "Kõigi piltide hulgi muutmine"
 
 #: src/ViewHelper/type_string_map.php:332
 msgid "Batch edit all sections"
@@ -2322,11 +2387,11 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:333
 msgid "Batch edit all segments"
-msgstr ""
+msgstr "Kõigi segmentide hulgi muutmine"
 
 #: src/ViewHelper/type_string_map.php:334
 msgid "Batch edit all folios"
-msgstr ""
+msgstr "Kõigi fooliote hulgitöötlemine"
 
 #: src/ViewHelper/type_string_map.php:335
 msgid "Batch edit all sheets"
@@ -2334,10 +2399,10 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:336
 msgid "Batch edit all entries"
-msgstr ""
+msgstr "ssekannete hulgi muutmine"
 
-#: src/ViewHelper/type_string_map.php:339
-msgid "Affected media"
+#: src/ViewHelper/type_string_map.php:338
+msgid "Affected medias"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:340
@@ -2362,7 +2427,7 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:345
 msgid "Affected sheets"
-msgstr ""
+msgstr "Mõjutatud lehed"
 
 #: src/ViewHelper/type_string_map.php:346
 msgid "Affected entries"
@@ -2396,7 +2461,7 @@ msgstr ""
 #: src/ViewHelper/type_string_map.php:353
 #, php-format
 msgid "You are editing the following %s segments"
-msgstr ""
+msgstr "Sa muudad järgnevaid %s segmente"
 
 #: src/ViewHelper/type_string_map.php:354
 #, php-format
@@ -2426,7 +2491,7 @@ msgstr ""
 #: src/ViewHelper/type_string_map.php:360
 #, php-format
 msgid "You are editing %s pages"
-msgstr ""
+msgstr "Oled muutmas %s lehekülge"
 
 #: src/ViewHelper/type_string_map.php:361
 #, php-format
@@ -2446,7 +2511,7 @@ msgstr ""
 #: src/ViewHelper/type_string_map.php:364
 #, php-format
 msgid "You are editing %s folios"
-msgstr ""
+msgstr "Oled muutmas %s fooliot"
 
 #: src/ViewHelper/type_string_map.php:365
 #, php-format
@@ -2456,7 +2521,7 @@ msgstr ""
 #: src/ViewHelper/type_string_map.php:366
 #, php-format
 msgid "You are editing %s entries"
-msgstr ""
+msgstr "Oled muutmas %s sissekannet"
 
 #: src/ViewHelper/type_string_map.php:368
 msgid "This Scripto media has no revisions."
@@ -2490,6 +2555,11 @@ msgstr ""
 msgid "This Scripto entry has no revisions"
 msgstr ""
 
+#: src/ViewHelper/type_string_map.php:377
+#: src/ViewHelper/breadcrumbs_route_map.php:40
+msgid "Review media"
+msgstr "Vaata meedia üle"
+
 #: src/ViewHelper/type_string_map.php:378
 #: src/ViewHelper/type_string_map.php:379
 msgid "Review page"
@@ -2501,11 +2571,11 @@ msgstr "Vaata sektsioon üle"
 
 #: src/ViewHelper/type_string_map.php:381
 msgid "Review segment"
-msgstr ""
+msgstr "Vaata segment üle"
 
 #: src/ViewHelper/type_string_map.php:382
 msgid "Review folio"
-msgstr ""
+msgstr "Vaata foolio üle"
 
 #: src/ViewHelper/type_string_map.php:383
 msgid "Review sheet"
@@ -2513,7 +2583,7 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:384
 msgid "Review entry"
-msgstr ""
+msgstr "Vaata sissekanne üle"
 
 #: src/ViewHelper/type_string_map.php:386
 #, php-format
@@ -2528,7 +2598,7 @@ msgstr "%s: lehekülg nr.%s"
 #: src/ViewHelper/type_string_map.php:388
 #, php-format
 msgid "%s: Image #%s"
-msgstr ""
+msgstr "%s: Pilt nr%s"
 
 #: src/ViewHelper/type_string_map.php:389
 #, php-format
@@ -2543,7 +2613,7 @@ msgstr ""
 #: src/ViewHelper/type_string_map.php:391
 #, php-format
 msgid "%s: Folio #%s"
-msgstr ""
+msgstr "%s: Foolio nr%s"
 
 #: src/ViewHelper/type_string_map.php:392
 #, php-format
@@ -2553,7 +2623,7 @@ msgstr ""
 #: src/ViewHelper/type_string_map.php:393
 #, php-format
 msgid "%s: Entry #%s"
-msgstr ""
+msgstr "%s: Sissekande nr%s"
 
 #: src/ViewHelper/type_string_map.php:395
 #, php-format
@@ -2617,7 +2687,7 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:409
 msgid "Stop tracking folio"
-msgstr ""
+msgstr "Lõpeta foolio jälgimine"
 
 #: src/ViewHelper/type_string_map.php:410
 msgid "Stop tracking sheet"
@@ -2681,7 +2751,7 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:427
 msgid "Now tracking folio"
-msgstr ""
+msgstr "Fooliot jälgitakse"
 
 #: src/ViewHelper/type_string_map.php:428
 msgid "Now tracking sheet"
@@ -2693,7 +2763,7 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:431
 msgid "Media successfully removed from your watchlist"
-msgstr ""
+msgstr "Meedia on sinu jälgimiste nimekirjast eemaldatud"
 
 #: src/ViewHelper/type_string_map.php:432
 msgid "No longer tracking page"
@@ -2713,7 +2783,7 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:436
 msgid "No longer tracking folio"
-msgstr ""
+msgstr "Fooliot ei jälgita enam"
 
 #: src/ViewHelper/type_string_map.php:437
 msgid "No longer tracking sheet"
@@ -2727,7 +2797,7 @@ msgstr ""
 #: src/ViewHelper/type_string_map.php:465
 #: src/ViewHelper/type_string_map.php:470 src/Form/ProjectForm.php:207
 msgid "Transcription"
-msgstr ""
+msgstr "Transkriptsioon"
 
 #: src/ViewHelper/type_string_map.php:446
 #: src/ViewHelper/type_string_map.php:466
@@ -2753,7 +2823,7 @@ msgstr "Pole muudetud"
 
 #: src/ViewHelper/type_string_map.php:455
 msgid "Not transcribed"
-msgstr ""
+msgstr "Transkribeerimata"
 
 #: src/ViewHelper/type_string_map.php:456
 msgid "Not translated"
@@ -2765,7 +2835,7 @@ msgstr "Pole kirjeldatud"
 
 #: src/ViewHelper/type_string_map.php:460
 msgid "Transcribe"
-msgstr ""
+msgstr "Transkribeeri"
 
 #: src/ViewHelper/type_string_map.php:461
 msgid "Translate"
@@ -2777,7 +2847,7 @@ msgstr "Kirjelda"
 
 #: src/ViewHelper/type_string_map.php:475
 msgid "No transcription"
-msgstr ""
+msgstr "Transkriptsiooni pole"
 
 #: src/ViewHelper/type_string_map.php:476
 msgid "No translation"
@@ -2791,182 +2861,17 @@ msgstr ""
 msgid "No longer tracking media"
 msgstr ""
 
-#: src/Controller/Admin/ProjectController.php:44
-msgid "Scripto project successfully created."
-msgstr ""
+#: src/ViewHelper/breadcrumbs_route_map.php:15
+msgid "User contributions"
+msgstr "Kasutajate kaastööd"
 
-#: src/Controller/Admin/ProjectController.php:77
-msgid "Scripto project successfully edited."
-msgstr ""
+#: src/ViewHelper/breadcrumbs_route_map.php:20
+msgid "User watchlist"
+msgstr "Kasutaja jälgimiste nimekiri"
 
-#: src/Controller/Admin/ProjectController.php:104
-msgid "Scripto project successfully deleted"
-msgstr ""
-
-#: src/Controller/Admin/ProjectController.php:154
-#, php-format
-msgid "Syncing Scripto project. This may take a while. %s"
-msgstr ""
-
-#: src/Controller/Admin/ProjectController.php:179
-#, php-format
-msgid "Importing Scripto project text. This may take a while. %s"
-msgstr ""
-
-#: src/Controller/Admin/ProjectController.php:204
-#, php-format
-msgid "Unimporting Scripto project text. This may take a while. %s"
-msgstr ""
-
-#: src/Controller/Admin/MediaController.php:93
-#: src/Controller/Admin/MediaController.php:216
-msgid "Scripto media revision successfully reverted."
-msgstr ""
-
-#: src/Controller/Admin/MediaController.php:150
-#: src/Controller/Admin/MediaController.php:248
-#: src/Controller/PublicApp/MediaController.php:164
-msgid "Scripto media successfully updated."
-msgstr ""
-
-#: src/Controller/Admin/MediaController.php:354
-#: src/Controller/Admin/MediaController.php:441
-msgid "Scripto media successfully edited"
-msgstr ""
-
-#: src/Controller/Admin/ItemController.php:31
-#, php-format
-msgid "This project has no item set. %s"
-msgstr ""
-
-#: src/Controller/Admin/ItemController.php:42
-#, php-format
-msgid "This project has no property. %s"
-msgstr ""
-
-#: src/Controller/PublicApp/IndexController.php:51
-msgid ""
-"Your Scripto account has been created! Please check your email for a link to"
-" activate your account."
-msgstr ""
-
-#: src/Job/SyncProject.php:33
-msgid "Cannot sync a project without an item set."
-msgstr ""
-
-#: src/Job/ImportProject.php:35
-msgid "Cannot import a project without a property."
-msgstr ""
-
-#: src/Job/ScriptoJob.php:73
-msgid "Cannot unimport a project without a property."
-msgstr ""
-
-#: src/Api/Adapter/ScriptoItemAdapter.php:37
-msgid ""
-"The Scripto\\Api\\Adapter\\ScriptoItemAdapter adapter does not implement the"
-" create operation."
-msgstr ""
-
-#: src/Api/Adapter/ScriptoItemAdapter.php:127
-msgid "A Scripto project must not be null"
-msgstr ""
-
-#: src/Api/Adapter/ScriptoItemAdapter.php:130
-msgid "An item must not be null"
-msgstr ""
-
-#: src/Api/Adapter/ScriptoProjectAdapter.php:74
-msgid "An owner must have an ID"
-msgstr "Omanikul peab olema ID"
-
-#: src/Api/Adapter/ScriptoProjectAdapter.php:77
-msgid "An item set must have an ID"
-msgstr "Ühikul peab olema ID"
-
-#: src/Api/Adapter/ScriptoProjectAdapter.php:80
-msgid "A property must have an ID"
-msgstr ""
-
-#: src/Api/Adapter/ScriptoProjectAdapter.php:177
-msgid "A Scripto project title must not be null"
-msgstr "Scripto projekti pealkiri ei tohi olla tühi."
-
-#: src/Api/Adapter/ScriptoMediaAdapter.php:46
-msgid ""
-"The Scripto\\Api\\Adapter\\ScriptoMediaAdapter adapter does not implement "
-"the create operation."
-msgstr ""
-
-#: src/Api/Adapter/ScriptoMediaAdapter.php:170
-msgid "A Scripto item must not be null."
-msgstr ""
-
-#: src/Api/Adapter/ScriptoMediaAdapter.php:173
-msgid "A media must not be null."
-msgstr ""
-
-#: src/Api/Adapter/ScriptoMediaAdapter.php:179
-msgid "Invalid completed revision ID."
-msgstr ""
-
-#: src/Api/Adapter/ScriptoMediaAdapter.php:186
-msgid "Invalid approved revision ID."
-msgstr ""
-
-#: src/Api/Representation/ScriptoItemRepresentation.php:11
-#: src/Api/Representation/ScriptoMediaRepresentation.php:12
-msgid "New"
-msgstr "Uus"
-
-#: src/Api/Representation/ScriptoItemRepresentation.php:12
-#: src/Api/Representation/ScriptoMediaRepresentation.php:13
-msgid "In progress"
-msgstr "Töös"
-
-#: src/Api/Representation/ScriptoMediaRepresentation.php:465
-msgid "Confirmed only"
-msgstr "Ainult kinnitatud"
-
-#: src/Api/Representation/ScriptoMediaRepresentation.php:468
-msgid "Admin only"
-msgstr "Ainult admin"
-
-#: src/Api/Representation/ScriptoMediaRepresentation.php:481
-msgid "Open to all"
-msgstr ""
-
-#: src/Form/MediaPublicAppForm.php:24
-msgid "Change summary"
-msgstr "Muuda kokkuvõtet"
-
-#: src/Form/MediaPublicAppForm.php:26
-msgid "Summarize your changes"
-msgstr "Muudatuste kokkuvõte"
-
-#: src/Form/MediaPublicAppForm.php:34
-msgid "Mark complete"
-msgstr ""
-
-#: src/Form/CreateAccountForm.php:14 src/Form/ScriptoLoginForm.php:15
-msgid "Username"
-msgstr "Kasutajanimi"
-
-#: src/Form/CreateAccountForm.php:44
-msgid "Email address"
-msgstr "E-posti aadress"
-
-#: src/Form/CreateAccountForm.php:54
-msgid "Real name"
-msgstr "Tegelik nimi"
-
-#: src/Form/CreateAccountForm.php:61
-msgid "Create your account"
-msgstr "Loo oma konto"
-
-#: src/Form/ProjectImportForm.php:14
-msgid "Import project"
-msgstr "Impordi projekt"
+#: src/ViewHelper/breadcrumbs_route_map.php:30
+msgid "Review project"
+msgstr "Vaata projekt üle"
 
 #: src/Form/MediaBatchForm.php:14
 msgid "Completion status"
@@ -2974,11 +2879,11 @@ msgstr ""
 
 #: src/Form/MediaBatchForm.php:16
 msgid "Complete"
-msgstr ""
+msgstr "Lõpetatud"
 
 #: src/Form/MediaBatchForm.php:17
 msgid "Incomplete"
-msgstr ""
+msgstr "Lõpetamata"
 
 #: src/Form/MediaBatchForm.php:29
 msgid "Approval status"
@@ -3010,7 +2915,7 @@ msgstr "piiramatult"
 
 #: src/Form/MediaBatchForm.php:60 src/Form/MediaForm.php:82
 msgid "1 hour"
-msgstr ""
+msgstr "1 tund"
 
 #: src/Form/MediaBatchForm.php:62 src/Form/MediaForm.php:84
 msgid "1 week"
@@ -3018,15 +2923,15 @@ msgstr "1 nädal"
 
 #: src/Form/MediaBatchForm.php:63 src/Form/MediaForm.php:85
 msgid "2 weeks"
-msgstr ""
+msgstr "2 nädalat"
 
 #: src/Form/MediaBatchForm.php:64 src/Form/MediaForm.php:86
 msgid "1 month"
-msgstr ""
+msgstr "1 kuu"
 
 #: src/Form/MediaBatchForm.php:65 src/Form/MediaForm.php:87
 msgid "3 months"
-msgstr ""
+msgstr "3 kuud"
 
 #: src/Form/MediaBatchForm.php:66 src/Form/MediaForm.php:88
 msgid "6 months"
@@ -3042,23 +2947,15 @@ msgstr ""
 
 #: src/Form/MediaBatchForm.php:77
 msgid "Watch"
-msgstr ""
+msgstr "Jälgi"
 
 #: src/Form/MediaBatchForm.php:78
 msgid "Unwatch"
-msgstr ""
+msgstr "Lõpeta jälgimine"
 
 #: src/Form/ScriptoLogoutForm.php:15
 msgid "Log out"
 msgstr "Logi välja"
-
-#: src/Form/ProjectUnimportForm.php:14
-msgid "Unimport project"
-msgstr ""
-
-#: src/Form/RevisionRevertForm.php:14
-msgid "Confirm reversion"
-msgstr ""
 
 #: src/Form/ProjectForm.php:18
 msgid "Enter the title of this project."
@@ -3098,7 +2995,7 @@ msgstr "Sisesta selle projekti kirjeldus."
 
 #: src/Form/ProjectForm.php:92
 msgid "Guidelines"
-msgstr ""
+msgstr "Juhendid"
 
 #: src/Form/ProjectForm.php:93
 msgid "Enter guidelines for producing content for this project."
@@ -3158,6 +3055,45 @@ msgstr ""
 msgid "Generic content"
 msgstr "Üldine sisu"
 
+#: src/Form/ProjectUnimportForm.php:14
+msgid "Unimport project"
+msgstr "Tühista projekti importimine"
+
+#: src/Form/ScriptoLoginForm.php:15 src/Form/CreateAccountForm.php:14
+msgid "Username"
+msgstr "Kasutajanimi"
+
+#: src/Form/ModuleConfigForm.php:27
+msgid "MediaWiki API URL"
+msgstr ""
+
+#: src/Form/ModuleConfigForm.php:28
+msgid "Enter the URL to your MediaWiki API endpoint."
+msgstr ""
+
+#: src/Form/ModuleConfigForm.php:55
+#, php-format
+msgid ""
+"Invalid MediaWiki API. The URL must resolve to a MediaWiki API endpoint and "
+"the MediaWiki version must be %s or greater."
+msgstr ""
+
+#: src/Form/CreateAccountForm.php:44
+msgid "Email address"
+msgstr "E-posti aadress"
+
+#: src/Form/CreateAccountForm.php:54
+msgid "Real name"
+msgstr "Tegelik nimi"
+
+#: src/Form/CreateAccountForm.php:61
+msgid "Create your account"
+msgstr "Loo oma konto"
+
+#: src/Form/RevisionRevertForm.php:14
+msgid "Confirm reversion"
+msgstr ""
+
 #: src/Form/MediaForm.php:14
 msgid "Toggle complete"
 msgstr "Lülitamine on lõpetatud"
@@ -3178,19 +3114,79 @@ msgstr ""
 msgid "Approved action"
 msgstr "Heakskiidetud tegevus"
 
-#: src/Form/ModuleConfigForm.php:27
-msgid "MediaWiki API URL"
+#: src/Form/ProjectImportForm.php:14
+msgid "Import project"
+msgstr "Impordi projekt"
+
+#: src/Form/MediaPublicAppForm.php:24
+msgid "Change summary"
+msgstr "Muuda kokkuvõtet"
+
+#: src/Form/MediaPublicAppForm.php:26
+msgid "Summarize your changes"
+msgstr "Muudatuste kokkuvõte"
+
+#: src/Form/MediaPublicAppForm.php:34
+msgid "Mark complete"
 msgstr ""
 
-#: src/Form/ModuleConfigForm.php:28
-msgid "Enter the URL to your MediaWiki API endpoint."
-msgstr ""
-
-#: src/Form/ModuleConfigForm.php:55
-#, php-format
+#: src/Controller/PublicApp/IndexController.php:51
 msgid ""
-"Invalid MediaWiki API. The URL must resolve to a MediaWiki API endpoint and "
-"the MediaWiki version must be %s or greater."
+"Your Scripto account has been created! Please check your email for a link to"
+" activate your account."
+msgstr ""
+
+#: src/Controller/PublicApp/MediaController.php:164
+#: src/Controller/Admin/MediaController.php:150
+#: src/Controller/Admin/MediaController.php:248
+msgid "Scripto media successfully updated."
+msgstr ""
+
+#: src/Controller/Admin/ItemController.php:31
+#, php-format
+msgid "This project has no item set. %s"
+msgstr ""
+
+#: src/Controller/Admin/ItemController.php:42
+#, php-format
+msgid "This project has no property. %s"
+msgstr ""
+
+#: src/Controller/Admin/ProjectController.php:44
+msgid "Scripto project successfully created."
+msgstr ""
+
+#: src/Controller/Admin/ProjectController.php:77
+msgid "Scripto project successfully edited."
+msgstr ""
+
+#: src/Controller/Admin/ProjectController.php:104
+msgid "Scripto project successfully deleted"
+msgstr ""
+
+#: src/Controller/Admin/ProjectController.php:154
+#, php-format
+msgid "Syncing Scripto project. This may take a while. %s"
+msgstr ""
+
+#: src/Controller/Admin/ProjectController.php:179
+#, php-format
+msgid "Importing Scripto project text. This may take a while. %s"
+msgstr ""
+
+#: src/Controller/Admin/ProjectController.php:204
+#, php-format
+msgid "Unimporting Scripto project text. This may take a while. %s"
+msgstr ""
+
+#: src/Controller/Admin/MediaController.php:93
+#: src/Controller/Admin/MediaController.php:216
+msgid "Scripto media revision successfully reverted."
+msgstr ""
+
+#: src/Controller/Admin/MediaController.php:354
+#: src/Controller/Admin/MediaController.php:441
+msgid "Scripto media successfully edited"
 msgstr ""
 
 #: vocabs/scripto.n3
@@ -3211,4 +3207,4 @@ msgstr "tõlge"
 
 #: vocabs/scripto.n3
 msgid "A translation of a resource."
-msgstr ""
+msgstr "Ressursi tõlge."
