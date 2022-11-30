@@ -171,7 +171,7 @@ class MediaController extends AbstractActionController
         $mediaForm->setData($data);
 
         $sItem = $sMedia->scriptoItem();
-        $revisionId = isset($revision['revid']) ? $revision['revid'] : null;
+        $revisionId = $revision['revid'] ?? null;
         $view = new ViewModel;
         $view->setVariable('revision', $revision);
         $view->setVariable('latestRevision', $sMedia->pageLatestRevision(0));
@@ -266,7 +266,7 @@ class MediaController extends AbstractActionController
         $mediaForm->setData($data);
 
         $sItem = $sMedia->scriptoItem();
-        $revisionId = isset($revision['revid']) ? $revision['revid'] : null;
+        $revisionId = $revision['revid'] ?? null;
         $view = new ViewModel;
         $view->setVariable('revision', $revision);
         $view->setVariable('latestRevision', $sMedia->pageLatestRevision(1));

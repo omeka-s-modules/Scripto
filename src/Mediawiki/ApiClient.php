@@ -380,7 +380,7 @@ class ApiClient
             }
             foreach ($titleChunk as $title) {
                 $title = (string) $title;
-                $normalizedTitle = isset($normalized[$title]) ? $normalized[$title] : $title;
+                $normalizedTitle = $normalized[$title] ?? $title;
                 foreach ($query['query']['pages'] as  $page) {
                     if ($page['title'] === $normalizedTitle) {
                         $pages[] = $page;
@@ -826,7 +826,7 @@ class ApiClient
         if (isset($parse['error']) && 'missingtitle' !== $parse['error']['code']) {
             throw new Exception\ParseException($parse['error']['info']);
         }
-        return isset($parse['parse']['text']) ? $parse['parse']['text'] : null;
+        return $parse['parse']['text'] ?? null;
     }
 
     /**

@@ -44,8 +44,7 @@ class RevisionController extends AbstractActionController
 
         $sItem = $sMedia->scriptoItem();
         $response = $sMedia->pageRevisions($namespace, 100, $this->params()->fromQuery('continue'));
-        $revisions = isset($response['query']['pages'][0]['revisions'])
-            ? $response['query']['pages'][0]['revisions'] : [];
+        $revisions = $response['query']['pages'][0]['revisions'] ?? [];
         $continue = isset($response['continue']) ? $response['continue']['rvcontinue'] : null;
 
         $view = new ViewModel;

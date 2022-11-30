@@ -329,7 +329,7 @@ class ScriptoMediaRepresentation extends AbstractEntityRepresentation
     public function pageLatestRevision($namespace)
     {
         $page = $this->page($namespace);
-        return isset($page['revisions'][0]) ? $page['revisions'][0] : null;
+        return $page['revisions'][0] ?? null;
     }
 
     /**
@@ -442,7 +442,7 @@ class ScriptoMediaRepresentation extends AbstractEntityRepresentation
     public function isWatched($namespace)
     {
         $page = $this->page($namespace);
-        return isset($page['watched']) ? $page['watched'] : false;
+        return $page['watched'] ?? false;
     }
 
     /**

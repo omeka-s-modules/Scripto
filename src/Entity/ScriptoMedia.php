@@ -280,7 +280,7 @@ class ScriptoMedia extends AbstractEntity
      */
     public function getWikitextData($key)
     {
-        return isset($this->wikitextData[$key]) ? $this->wikitextData[$key] : null;
+        return $this->wikitextData[$key] ?? null;
     }
 
     /**
