@@ -18,7 +18,7 @@ class ScriptoReviewerRepresentation extends AbstractRepresentation
     /**
      * {@inheritDoc}
      */
-    public function jsonSerialize()
+    public function jsonSerialize() : array
     {
         return [
             'o:user' => $this->user()->getReference(),
