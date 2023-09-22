@@ -11,10 +11,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-12 16:25-0500\n"
+"POT-Creation-Date: 2023-09-22 19:38-0400\n"
 "PO-Revision-Date: 2018-11-27 19:38+0000\n"
 "Last-Translator: Hong Zhang <zhangh@unlv.nevada.edu>, 2021\n"
-"Language-Team: Chinese (China) (https://www.transifex.com/omeka/teams/14184/zh_CN/)\n"
+"Language-Team: Chinese (China) (https://app.transifex.com/omeka/teams/14184/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -642,12 +642,6 @@ msgstr "%s；即将到期%s"
 #: view/scripto/admin/media/show-details.phtml:28
 msgid "never"
 msgstr ""
-
-#: view/scripto/admin/media/show-details.phtml:54
-#: view/scripto/admin/media/show.phtml:145
-#: view/scripto/admin/media/show.phtml:191
-msgid "[Unknown]"
-msgstr "【未知】"
 
 #: view/scripto/admin/media/show-details.phtml:56
 #: view/scripto/admin/media/show.phtml:177
@@ -1678,10 +1672,6 @@ msgstr ""
 msgid "Entry"
 msgstr ""
 
-#: src/ViewHelper/type_string_map.php:137
-msgid "Primary media"
-msgstr ""
-
 #: src/ViewHelper/type_string_map.php:138
 msgid "Primary page"
 msgstr ""
@@ -2628,42 +2618,42 @@ msgstr ""
 
 #: src/ViewHelper/type_string_map.php:395
 #, php-format
-msgid "Notes of %s: Media #%s"
-msgstr "%s的注释：媒介#%s"
+msgid "Notes for %s: Media #%s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:396
 #, php-format
-msgid "Notes of %s: Page #%s"
-msgstr "%s的注释：页面#%s"
+msgid "Notes for %s: Page #%s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:397
 #, php-format
-msgid "Notes of %s: Image #%s"
-msgstr "%s的注释：图像#%s"
+msgid "Notes for %s: Image #%s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:398
 #, php-format
-msgid "Notes of %s: Section #%s"
+msgid "Notes for %s: Section #%s"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:399
 #, php-format
-msgid "Notes of %s: Segment #%s"
+msgid "Notes for %s: Segment #%s"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:400
 #, php-format
-msgid "Notes of %s: Folio #%s"
+msgid "Notes for %s: Folio #%s"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:401
 #, php-format
-msgid "Notes of %s: Sheet #%s"
+msgid "Notes for %s: Sheet #%s"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:402
 #, php-format
-msgid "Notes of %s: Entry #%s"
+msgid "Notes for %s: Entry #%s"
 msgstr ""
 
 #: src/ViewHelper/type_string_map.php:404 src/ViewHelper/Scripto.php:517

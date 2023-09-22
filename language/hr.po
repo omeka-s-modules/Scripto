@@ -12,10 +12,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-12 16:25-0500\n"
+"POT-Creation-Date: 2023-09-22 19:38-0400\n"
 "PO-Revision-Date: 2018-11-27 19:38+0000\n"
 "Last-Translator: Josip Ilic <josip.ilic@ericsson.com>, 2021\n"
-"Language-Team: Croatian (https://www.transifex.com/omeka/teams/14184/hr/)\n"
+"Language-Team: Croatian (https://app.transifex.com/omeka/teams/14184/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -665,12 +665,6 @@ msgstr "%s; istječe %s"
 #: view/scripto/admin/media/show-details.phtml:28
 msgid "never"
 msgstr "nikad"
-
-#: view/scripto/admin/media/show-details.phtml:54
-#: view/scripto/admin/media/show.phtml:145
-#: view/scripto/admin/media/show.phtml:191
-msgid "[Unknown]"
-msgstr "[Nepoznato]"
 
 #: view/scripto/admin/media/show-details.phtml:56
 #: view/scripto/admin/media/show.phtml:177
@@ -1712,10 +1706,6 @@ msgstr "List"
 msgid "Entry"
 msgstr "Unos"
 
-#: src/ViewHelper/type_string_map.php:137
-msgid "Primary media"
-msgstr "Primarni medij"
-
 #: src/ViewHelper/type_string_map.php:138
 msgid "Primary page"
 msgstr "Primarna stranica"
@@ -2662,43 +2652,43 @@ msgstr "%s: Unos #%s"
 
 #: src/ViewHelper/type_string_map.php:395
 #, php-format
-msgid "Notes of %s: Media #%s"
-msgstr "Bilješke od %s: Medij # %s"
+msgid "Notes for %s: Media #%s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:396
 #, php-format
-msgid "Notes of %s: Page #%s"
-msgstr "Bilješke od %s: Stranica # %s"
+msgid "Notes for %s: Page #%s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:397
 #, php-format
-msgid "Notes of %s: Image #%s"
-msgstr "Bilješke od %s: Slika # %s"
+msgid "Notes for %s: Image #%s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:398
 #, php-format
-msgid "Notes of %s: Section #%s"
-msgstr "Bilješke od %s: Odjeljak # %s"
+msgid "Notes for %s: Section #%s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:399
 #, php-format
-msgid "Notes of %s: Segment #%s"
-msgstr "Bilješke od %s: Segment # %s"
+msgid "Notes for %s: Segment #%s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:400
 #, php-format
-msgid "Notes of %s: Folio #%s"
-msgstr "Bilješke od %s: Folio #%s"
+msgid "Notes for %s: Folio #%s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:401
 #, php-format
-msgid "Notes of %s: Sheet #%s"
-msgstr "Bilješke od %s: List #%s"
+msgid "Notes for %s: Sheet #%s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:402
 #, php-format
-msgid "Notes of %s: Entry #%s"
-msgstr "Bilješke od %s: Unos #%s"
+msgid "Notes for %s: Entry #%s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:404 src/ViewHelper/Scripto.php:517
 msgid "Stop tracking media"

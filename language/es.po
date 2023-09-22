@@ -6,17 +6,17 @@
 # Translators:
 # Darío Hereñú, 2019
 # Carlos Rivera <Robertohernande9z9@hotmail.com>, 2019
-# Alfonso Montejo <almontejor@gmail.com>, 2021
+# Alfonso Montejo <almontejor@gmail.com>, 2023
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-12 16:25-0500\n"
+"POT-Creation-Date: 2023-09-22 19:38-0400\n"
 "PO-Revision-Date: 2018-11-27 19:38+0000\n"
-"Last-Translator: Alfonso Montejo <almontejor@gmail.com>, 2021\n"
-"Language-Team: Spanish (https://www.transifex.com/omeka/teams/14184/es/)\n"
+"Last-Translator: Alfonso Montejo <almontejor@gmail.com>, 2023\n"
+"Language-Team: Spanish (https://app.transifex.com/omeka/teams/14184/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -673,12 +673,6 @@ msgstr "%s; vence %s"
 #: view/scripto/admin/media/show-details.phtml:28
 msgid "never"
 msgstr "nunca"
-
-#: view/scripto/admin/media/show-details.phtml:54
-#: view/scripto/admin/media/show.phtml:145
-#: view/scripto/admin/media/show.phtml:191
-msgid "[Unknown]"
-msgstr "[Desconocido]"
 
 #: view/scripto/admin/media/show-details.phtml:56
 #: view/scripto/admin/media/show.phtml:177
@@ -1721,10 +1715,6 @@ msgstr "Hoja"
 msgid "Entry"
 msgstr "Entrada"
 
-#: src/ViewHelper/type_string_map.php:137
-msgid "Primary media"
-msgstr "Medio principal"
-
 #: src/ViewHelper/type_string_map.php:138
 msgid "Primary page"
 msgstr "Página principal"
@@ -2379,7 +2369,7 @@ msgstr "Metadatos de la entrada Scripto"
 
 #: src/ViewHelper/type_string_map.php:318
 msgid "Batch edit medias"
-msgstr ""
+msgstr "Edición en lote de medios"
 
 #: src/ViewHelper/type_string_map.php:320
 msgid "Batch edit pages"
@@ -2447,7 +2437,7 @@ msgstr "Modificar todas las entradas en grupos"
 
 #: src/ViewHelper/type_string_map.php:338
 msgid "Affected medias"
-msgstr ""
+msgstr "Medios afectados"
 
 #: src/ViewHelper/type_string_map.php:340
 msgid "Affected pages"
@@ -2671,43 +2661,43 @@ msgstr "%s: Entrada # %s"
 
 #: src/ViewHelper/type_string_map.php:395
 #, php-format
-msgid "Notes of %s: Media #%s"
-msgstr "Comentarios de %s: Medio # %s"
+msgid "Notes for %s: Media #%s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:396
 #, php-format
-msgid "Notes of %s: Page #%s"
-msgstr "Comentarios de %s: Página # %s"
+msgid "Notes for %s: Page #%s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:397
 #, php-format
-msgid "Notes of %s: Image #%s"
-msgstr "Comentarios de %s: imagen # %s"
+msgid "Notes for %s: Image #%s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:398
 #, php-format
-msgid "Notes of %s: Section #%s"
-msgstr "Comentarios de %s: Sección # %s"
+msgid "Notes for %s: Section #%s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:399
 #, php-format
-msgid "Notes of %s: Segment #%s"
-msgstr "Comentarios de %s: Segmento # %s"
+msgid "Notes for %s: Segment #%s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:400
 #, php-format
-msgid "Notes of %s: Folio #%s"
-msgstr "Comentarios de %s: Folio # %s"
+msgid "Notes for %s: Folio #%s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:401
 #, php-format
-msgid "Notes of %s: Sheet #%s"
-msgstr "Comentarios de %s:  Hojas # %s"
+msgid "Notes for %s: Sheet #%s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:402
 #, php-format
-msgid "Notes of %s: Entry #%s"
-msgstr "Comentarios de %s: Entradas # %s"
+msgid "Notes for %s: Entry #%s"
+msgstr ""
 
 #: src/ViewHelper/type_string_map.php:404 src/ViewHelper/Scripto.php:517
 msgid "Stop tracking media"
