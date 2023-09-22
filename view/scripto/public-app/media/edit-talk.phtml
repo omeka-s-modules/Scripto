@@ -3,7 +3,7 @@ $this->headLink()->appendStylesheet('https://use.fontawesome.com/releases/v5.0.9
 $this->headScript()->appendFile($this->assetUrl('js/LmlEditor.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/common/media.js', 'Scripto'));
 
-$this->scripto()->postTitle(sprintf($this->scripto()->translate($project->mediaType(), 'Notes for %s: %s #%s'), $sItem->link($item->displayTitle()), ucfirst($project->mediaType()), $sMedia->position()));
+$this->scripto()->postTitle(sprintf($this->scripto()->translate($project->mediaType(), 'Notes for %s: Media #%s'), $sItem->link($item->displayTitle()), $sMedia->position()));
 $this->scripto()->postSubtitle(sprintf($this->translate('Original title: %s'), $sMedia->link($media->displayTitle())));
 ?>
 <?php echo $this->form()->openTag($mediaForm); ?>

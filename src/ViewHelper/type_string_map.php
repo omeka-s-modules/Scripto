@@ -392,14 +392,14 @@ return [
         'sheet' => '%s: Sheet #%s', // @translate
         'entry' => '%s: Entry #%s', // @translate
     ],
-    'Notes of %s: Media #%s' => [ // @translate
-        'page' => 'Notes of %s: Page #%s', // @translate
-        'image' => 'Notes of %s: Image #%s', // @translate
-        'section' => 'Notes of %s: Section #%s', // @translate
-        'segment' => 'Notes of %s: Segment #%s', // @translate
-        'folio' => 'Notes of %s: Folio #%s', // @translate
-        'sheet' => 'Notes of %s: Sheet #%s', // @translate
-        'entry' => 'Notes of %s: Entry #%s', // @translate
+    'Notes for %s: Media #%s' => [ // @translate
+        'page' => 'Notes for %s: Page #%s', // @translate
+        'image' => 'Notes for %s: Image #%s', // @translate
+        'section' => 'Notes for %s: Section #%s', // @translate
+        'segment' => 'Notes for %s: Segment #%s', // @translate
+        'folio' => 'Notes for %s: Folio #%s', // @translate
+        'sheet' => 'Notes for %s: Sheet #%s', // @translate
+        'entry' => 'Notes for %s: Entry #%s', // @translate
     ],
     'Stop tracking media' => [ // @translate
         'page' => 'Stop tracking page', // @translate
