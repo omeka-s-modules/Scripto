@@ -574,6 +574,50 @@ class ApiClient
     }
 
     /**
+     * Query recent changes.
+     *
+     * @link https://www.mediawiki.org/wiki/API:RecentChanges
+     * @param int $hours How many hours ago to end listing
+     * @param int $limit
+     * @param string $continue
+     * @return array
+     */
+    public function queryRecentChanges($hours, $limit, $continue = null)
+    {
+        if (!is_numeric($limit)) {
+            throw new Exception\InvalidArgumentException('A limit must be numeric');
+        }
+        if (isset($continue) && !is_string($continue)) {
+            throw new Exception\InvalidArgumentException('A continue must be a string');
+        }
+
+        $request = [
+            'action' => 'query',
+            'list' => 'recentchanges',
+            'rclimit' => $limit,
+            'rcend' => strtotime(sprintf('-%s hour', $hours)),
+            'rcprop' => 'user|comment|timestamp|title|ids|sizes|parsedcomment|loginfo|flags',
+        ];
+        if ($continue) {
+            $request['rccontinue'] = $continue;
+        }
+
+        $query = $this->request($request);
+
+        if (isset($query['error'])) {
+            throw new Exception\QueryException($query['error']['info']);
+        }
+        // Set timestamps to DateTime objects adjusted to Omeka's time zone.
+        foreach ($query['query']['recentchanges'] as $index => $recentChange) {
+            $dateTime = new DateTime($recentChange['timestamp']);
+            $dateTime->setTimezone(new DateTimeZone($this->timeZone));
+            $query['query']['recentchanges'][$index]['timestamp'] = $dateTime;
+        }
+
+        return $query;
+    }
+
+    /**
      * Parse revision wikitext into HTML.
      *
      * @link https://www.mediawiki.org/wiki/API:Parsing_wikitext

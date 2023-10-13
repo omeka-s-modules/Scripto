@@ -457,6 +457,16 @@ HTML;
     }
 
     /**
+     * Render the recentchanges time period select.
+     *
+     * @return string
+     */
+    public function recentChangesTimePeriodSelect()
+    {
+        return $this->watchlistTimePeriodSelect();
+    }
+
+    /**
      * Render an admin search box for filtering items and media.
      *
      * @return string
