@@ -22,7 +22,7 @@ class ScriptoMediaRepresentation extends AbstractEntityRepresentation
         }
         $urlHelper = $this->getViewHelper('Url');
         return $urlHelper(
-            'scripto-media-id',
+            'site/scripto-media-id',
             [
                 'action' => $action,
                 'project-id' => $this->resource->getScriptoItem()->getScriptoProject()->getId(),

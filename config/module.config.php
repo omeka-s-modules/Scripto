@@ -90,293 +90,281 @@ return [
     ],
     'router' => [
         'routes' => [
-            'scripto' => [
-                'type' => 'Segment',
-                'options' => [
-                    'route' => '/scripto[/s/:site-slug/:site-project-id][/:action]',
-                    'constraints' => [
-                        'site-slug' => '[a-zA-Z0-9_-]+',
-                        'site-project-id' => '\d+',
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+            'site' => [
+                'child_routes' => [
+                    'scripto' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/:site-project-id[/:action]',
+                            'constraints' => [
+                                'site-project-id' => '\d+',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                                'controller' => 'index',
+                                'action' => 'index',
+                            ],
+                        ],
                     ],
-                    'defaults' => [
-                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
-                        'controller' => 'index',
-                        'action' => 'index',
+                    'scripto-user-contributions' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/:site-project-id/user/:user-id/contributions',
+                            'constraints' => [
+                                'site-project-id' => '\d+',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                                'controller' => 'user',
+                                'action' => 'contributions',
+                            ],
+                        ],
                     ],
-                ],
-            ],
-            'scripto-user-contributions' => [
-                'type' => 'Segment',
-                'options' => [
-                    'route' => '/scripto[/s/:site-slug/:site-project-id]/user/:user-id/contributions',
-                    'constraints' => [
-                        'site-slug' => '[a-zA-Z0-9_-]+',
-                        'site-project-id' => '\d+',
+                    'scripto-user-watchlist' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/:site-project-id/user/:user-id/watchlist',
+                            'constraints' => [
+                                'site-project-id' => '\d+',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                                'controller' => 'user',
+                                'action' => 'watchlist',
+                            ],
+                        ],
                     ],
-                    'defaults' => [
-                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
-                        'controller' => 'user',
-                        'action' => 'contributions',
+                    'scripto-project' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/:site-project-id/project[/:action]',
+                            'constraints' => [
+                                'site-project-id' => '\d+',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                                'controller' => 'project',
+                                'action' => 'browse',
+                            ],
+                        ],
                     ],
-                ],
-            ],
-            'scripto-user-watchlist' => [
-                'type' => 'Segment',
-                'options' => [
-                    'route' => '/scripto[/s/:site-slug/:site-project-id]/user/:user-id/watchlist',
-                    'constraints' => [
-                        'site-slug' => '[a-zA-Z0-9_-]+',
-                        'site-project-id' => '\d+',
+                    'scripto-project-id' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/:site-project-id/:project-id[/:action]',
+                            'constraints' => [
+                                'site-project-id' => '\d+',
+                                'project-id' => '\d+',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                                'controller' => 'project',
+                                'action' => 'show',
+                            ],
+                        ],
                     ],
-                    'defaults' => [
-                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
-                        'controller' => 'user',
-                        'action' => 'watchlist',
+                    'scripto-item' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/:site-project-id/:project-id/item[/:action]',
+                            'constraints' => [
+                                'site-project-id' => '\d+',
+                                'project-id' => '\d+',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                                'controller' => 'item',
+                                'action' => 'browse',
+                            ],
+                        ],
                     ],
-                ],
-            ],
-            'scripto-project' => [
-                'type' => 'Segment',
-                'options' => [
-                    'route' => '/scripto[/s/:site-slug/:site-project-id]/project[/:action]',
-                    'constraints' => [
-                        'site-slug' => '[a-zA-Z0-9_-]+',
-                        'site-project-id' => '\d+',
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    'scripto-item-id' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/:site-project-id/:project-id/:item-id[/:action]',
+                            'constraints' => [
+                                'site-project-id' => '\d+',
+                                'project-id' => '\d+',
+                                'item-id' => '\d+',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                                'controller' => 'item',
+                                'action' => 'show',
+                            ],
+                        ],
                     ],
-                    'defaults' => [
-                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
-                        'controller' => 'project',
-                        'action' => 'browse',
+                    'scripto-media' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/:site-project-id/:project-id/:item-id/media[/:action]',
+                            'constraints' => [
+                                'site-project-id' => '\d+',
+                                'project-id' => '\d+',
+                                'item-id' => '\d+',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                                'controller' => 'media',
+                                'action' => 'browse',
+                            ],
+                        ],
                     ],
-                ],
-            ],
-            'scripto-project-id' => [
-                'type' => 'Segment',
-                'options' => [
-                    'route' => '/scripto[/s/:site-slug/:site-project-id]/:project-id[/:action]',
-                    'constraints' => [
-                        'site-slug' => '[a-zA-Z0-9_-]+',
-                        'site-project-id' => '\d+',
-                        'project-id' => '\d+',
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    'scripto-media-id' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/:site-project-id/:project-id/:item-id/:media-id[/:action]',
+                            'constraints' => [
+                                'site-project-id' => '\d+',
+                                'project-id' => '\d+',
+                                'item-id' => '\d+',
+                                'media-id' => '\d+',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                                'controller' => 'media',
+                                'action' => 'show',
+                            ],
+                        ],
                     ],
-                    'defaults' => [
-                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
-                        'controller' => 'project',
-                        'action' => 'show',
+                    'scripto-revision' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/:site-project-id/:project-id/:item-id/:media-id/revision[/:action]',
+                            'constraints' => [
+                                'site-project-id' => '\d+',
+                                'project-id' => '\d+',
+                                'item-id' => '\d+',
+                                'media-id' => '\d+',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                                'controller' => 'revision',
+                                'action' => 'browse',
+                            ],
+                        ],
                     ],
-                ],
-            ],
-            'scripto-item' => [
-                'type' => 'Segment',
-                'options' => [
-                    'route' => '/scripto[/s/:site-slug/:site-project-id]/:project-id/item[/:action]',
-                    'constraints' => [
-                        'site-slug' => '[a-zA-Z0-9_-]+',
-                        'site-project-id' => '\d+',
-                        'project-id' => '\d+',
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    'scripto-revision-id' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/:site-project-id/:project-id/:item-id/:media-id/revision/:revision-id[/:action]',
+                            'constraints' => [
+                                'site-project-id' => '\d+',
+                                'project-id' => '\d+',
+                                'item-id' => '\d+',
+                                'media-id' => '\d+',
+                                'revision-id' => '\d+',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                                'controller' => 'revision',
+                                'action' => 'show',
+                            ],
+                        ],
                     ],
-                    'defaults' => [
-                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
-                        'controller' => 'item',
-                        'action' => 'browse',
+                    'scripto-revision-compare' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/:site-project-id/:project-id/:item-id/:media-id/revision/:from-revision-id/:to-revision-id[/:action]',
+                            'constraints' => [
+                                'site-project-id' => '\d+',
+                                'project-id' => '\d+',
+                                'item-id' => '\d+',
+                                'media-id' => '\d+',
+                                'from-revision-id' => '\d+',
+                                'to-revision-id' => '\d+',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                                'controller' => 'revision',
+                                'action' => 'compare',
+                            ],
+                        ],
                     ],
-                ],
-            ],
-            'scripto-item-id' => [
-                'type' => 'Segment',
-                'options' => [
-                    'route' => '/scripto[/s/:site-slug/:site-project-id]/:project-id/:item-id[/:action]',
-                    'constraints' => [
-                        'site-slug' => '[a-zA-Z0-9_-]+',
-                        'site-project-id' => '\d+',
-                        'project-id' => '\d+',
-                        'item-id' => '\d+',
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    'scripto-talk-media-id' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/:site-project-id/:project-id/:item-id/:media-id/talk[/:action]',
+                            'constraints' => [
+                                'site-project-id' => '\d+',
+                                'project-id' => '\d+',
+                                'item-id' => '\d+',
+                                'media-id' => '\d+',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                                'controller' => 'media',
+                                'action' => 'show-talk',
+                            ],
+                        ],
                     ],
-                    'defaults' => [
-                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
-                        'controller' => 'item',
-                        'action' => 'show',
+                    'scripto-talk-revision' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/:site-project-id/:project-id/:item-id/:media-id/talk/revision[/:action]',
+                            'constraints' => [
+                                'site-project-id' => '\d+',
+                                'project-id' => '\d+',
+                                'item-id' => '\d+',
+                                'media-id' => '\d+',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                                'controller' => 'revision',
+                                'action' => 'browse-talk',
+                            ],
+                        ],
                     ],
-                ],
-            ],
-            'scripto-media' => [
-                'type' => 'Segment',
-                'options' => [
-                    'route' => '/scripto[/s/:site-slug/:site-project-id]/:project-id/:item-id/media[/:action]',
-                    'constraints' => [
-                        'site-slug' => '[a-zA-Z0-9_-]+',
-                        'site-project-id' => '\d+',
-                        'project-id' => '\d+',
-                        'item-id' => '\d+',
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    'scripto-talk-revision-id' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/:site-project-id/:project-id/:item-id/:media-id/talk/revision/:revision-id[/:action]',
+                            'constraints' => [
+                                'site-project-id' => '\d+',
+                                'project-id' => '\d+',
+                                'item-id' => '\d+',
+                                'media-id' => '\d+',
+                                'revision-id' => '\d+',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                                'controller' => 'revision',
+                                'action' => 'show-talk',
+                            ],
+                        ],
                     ],
-                    'defaults' => [
-                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
-                        'controller' => 'media',
-                        'action' => 'browse',
-                    ],
-                ],
-            ],
-            'scripto-media-id' => [
-                'type' => 'Segment',
-                'options' => [
-                    'route' => '/scripto[/s/:site-slug/:site-project-id]/:project-id/:item-id/:media-id[/:action]',
-                    'constraints' => [
-                        'site-slug' => '[a-zA-Z0-9_-]+',
-                        'site-project-id' => '\d+',
-                        'project-id' => '\d+',
-                        'item-id' => '\d+',
-                        'media-id' => '\d+',
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                    ],
-                    'defaults' => [
-                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
-                        'controller' => 'media',
-                        'action' => 'show',
-                    ],
-                ],
-            ],
-            'scripto-revision' => [
-                'type' => 'Segment',
-                'options' => [
-                    'route' => '/scripto[/s/:site-slug/:site-project-id]/:project-id/:item-id/:media-id/revision[/:action]',
-                    'constraints' => [
-                        'site-slug' => '[a-zA-Z0-9_-]+',
-                        'site-project-id' => '\d+',
-                        'project-id' => '\d+',
-                        'item-id' => '\d+',
-                        'media-id' => '\d+',
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                    ],
-                    'defaults' => [
-                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
-                        'controller' => 'revision',
-                        'action' => 'browse',
-                    ],
-                ],
-            ],
-            'scripto-revision-id' => [
-                'type' => 'Segment',
-                'options' => [
-                    'route' => '/scripto[/s/:site-slug/:site-project-id]/:project-id/:item-id/:media-id/revision/:revision-id[/:action]',
-                    'constraints' => [
-                        'site-slug' => '[a-zA-Z0-9_-]+',
-                        'site-project-id' => '\d+',
-                        'project-id' => '\d+',
-                        'item-id' => '\d+',
-                        'media-id' => '\d+',
-                        'revision-id' => '\d+',
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                    ],
-                    'defaults' => [
-                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
-                        'controller' => 'revision',
-                        'action' => 'show',
-                    ],
-                ],
-            ],
-            'scripto-revision-compare' => [
-                'type' => 'Segment',
-                'options' => [
-                    'route' => '/scripto[/s/:site-slug/:site-project-id]/:project-id/:item-id/:media-id/revision/:from-revision-id/:to-revision-id[/:action]',
-                    'constraints' => [
-                        'site-slug' => '[a-zA-Z0-9_-]+',
-                        'site-project-id' => '\d+',
-                        'project-id' => '\d+',
-                        'item-id' => '\d+',
-                        'media-id' => '\d+',
-                        'from-revision-id' => '\d+',
-                        'to-revision-id' => '\d+',
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                    ],
-                    'defaults' => [
-                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
-                        'controller' => 'revision',
-                        'action' => 'compare',
-                    ],
-                ],
-            ],
-            'scripto-talk-media-id' => [
-                'type' => 'Segment',
-                'options' => [
-                    'route' => '/scripto[/s/:site-slug/:site-project-id]/:project-id/:item-id/:media-id/talk[/:action]',
-                    'constraints' => [
-                        'site-slug' => '[a-zA-Z0-9_-]+',
-                        'site-project-id' => '\d+',
-                        'project-id' => '\d+',
-                        'item-id' => '\d+',
-                        'media-id' => '\d+',
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                    ],
-                    'defaults' => [
-                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
-                        'controller' => 'media',
-                        'action' => 'show-talk',
-                    ],
-                ],
-            ],
-            'scripto-talk-revision' => [
-                'type' => 'Segment',
-                'options' => [
-                    'route' => '/scripto[/s/:site-slug/:site-project-id]/:project-id/:item-id/:media-id/talk/revision[/:action]',
-                    'constraints' => [
-                        'site-slug' => '[a-zA-Z0-9_-]+',
-                        'site-project-id' => '\d+',
-                        'project-id' => '\d+',
-                        'item-id' => '\d+',
-                        'media-id' => '\d+',
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                    ],
-                    'defaults' => [
-                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
-                        'controller' => 'revision',
-                        'action' => 'browse-talk',
-                    ],
-                ],
-            ],
-            'scripto-talk-revision-id' => [
-                'type' => 'Segment',
-                'options' => [
-                    'route' => '/scripto[/s/:site-slug/:site-project-id]/:project-id/:item-id/:media-id/talk/revision/:revision-id[/:action]',
-                    'constraints' => [
-                        'site-slug' => '[a-zA-Z0-9_-]+',
-                        'site-project-id' => '\d+',
-                        'project-id' => '\d+',
-                        'item-id' => '\d+',
-                        'media-id' => '\d+',
-                        'revision-id' => '\d+',
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                    ],
-                    'defaults' => [
-                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
-                        'controller' => 'revision',
-                        'action' => 'show-talk',
-                    ],
-                ],
-            ],
-            'scripto-talk-revision-compare' => [
-                'type' => 'Segment',
-                'options' => [
-                    'route' => '/scripto[/s/:site-slug/:site-project-id]/:project-id/:item-id/:media-id/talk/revision/:from-revision-id/:to-revision-id[/:action]',
-                    'constraints' => [
-                        'site-slug' => '[a-zA-Z0-9_-]+',
-                        'site-project-id' => '\d+',
-                        'project-id' => '\d+',
-                        'item-id' => '\d+',
-                        'media-id' => '\d+',
-                        'from-revision-id' => '\d+',
-                        'to-revision-id' => '\d+',
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                    ],
-                    'defaults' => [
-                        '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
-                        'controller' => 'revision',
-                        'action' => 'compare-talk',
+                    'scripto-talk-revision-compare' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/scripto/:site-project-id/:project-id/:item-id/:media-id/talk/revision/:from-revision-id/:to-revision-id[/:action]',
+                            'constraints' => [
+                                'site-project-id' => '\d+',
+                                'project-id' => '\d+',
+                                'item-id' => '\d+',
+                                'media-id' => '\d+',
+                                'from-revision-id' => '\d+',
+                                'to-revision-id' => '\d+',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                '__NAMESPACE__' => 'Scripto\Controller\PublicApp',
+                                'controller' => 'revision',
+                                'action' => 'compare-talk',
+                            ],
+                        ],
                     ],
                 ],
             ],

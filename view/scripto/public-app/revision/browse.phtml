@@ -32,10 +32,10 @@ $this->scripto()->postSubtitle($sMedia->link($media->displayTitle(), 'show-talk'
                             <?php echo sprintf(
                                 '%s | %s',
                                 $latestId !== $revision['revid']
-                                    ? $this->hyperlink($this->translate('cur'), $this->url('scripto-revision-compare', ['action' => 'compare', 'from-revision-id' => $revision['revid'], 'to-revision-id' => $latestId], true))
+                                    ? $this->hyperlink($this->translate('cur'), $this->url('site/scripto-revision-compare', ['action' => 'compare', 'from-revision-id' => $revision['revid'], 'to-revision-id' => $latestId], true))
                                     : $this->translate('cur'),
                                 $childRevision
-                                    ? $this->hyperlink($this->translate('prev'), $this->url('scripto-revision-compare', ['action' => 'compare', 'from-revision-id' => $childRevision['revid'], 'to-revision-id' => $revision['revid']], true))
+                                    ? $this->hyperlink($this->translate('prev'), $this->url('site/scripto-revision-compare', ['action' => 'compare', 'from-revision-id' => $childRevision['revid'], 'to-revision-id' => $revision['revid']], true))
                                     : $this->translate('prev')
                             ); ?>
                             </div>
@@ -55,7 +55,7 @@ $this->scripto()->postSubtitle($sMedia->link($media->displayTitle(), 'show-talk'
                     <td>
                         <?php echo $this->hyperlink(
                             $revision['timestamp']->format('G:i:s, j F Y'),
-                            $this->url('scripto-revision-id', ['action' => 'show', 'revision-id' => $revision['revid']], true)
+                            $this->url('site/scripto-revision-id', ['action' => 'show', 'revision-id' => $revision['revid']], true)
                         ); ?>
                         <?php if ($revision['revid'] === $sMedia->completedRevision()): ?>
                         <div class="green">This revision marked as completed.</div>
@@ -64,7 +64,7 @@ $this->scripto()->postSubtitle($sMedia->link($media->displayTitle(), 'show-talk'
                         <div class="green">This revision marked as approved.</div>
                         <?php endif; ?>
                     </td>
-                    <td><?php echo $this->hyperlink($revision['user'], $this->url('scripto-user-contributions', ['action' => 'contributions', 'user-id' => $revision['user']], true)); ?></td>
+                    <td><?php echo $this->hyperlink($revision['user'], $this->url('site/scripto-user-contributions', ['action' => 'contributions', 'user-id' => $revision['user']], true)); ?></td>
                     <td><?php
                     $sizeDiff = $childRevision ? $revision['size'] - $childRevision['size'] : 0;
                     echo sprintf(

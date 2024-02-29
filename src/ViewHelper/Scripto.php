@@ -123,7 +123,7 @@ class Scripto extends AbstractHelper
             ? $this->publicAppProject->link($view->translate('Project'), null, ['class' => 'page-link'])
             : $view->hyperlink(
                 $view->translate('Projects'),
-                $view->url('scripto-project', ['action' => 'browse'], true),
+                $view->url('site/scripto-project', ['action' => 'browse'], true),
                 ['class' => 'page-link']
             );
     }
@@ -263,7 +263,7 @@ class Scripto extends AbstractHelper
             $userInfo = $this->apiClient->queryUserInfo();
             $form = $this->formElementManager->get(ScriptoLogoutForm::class);
             $form->setAttribute('action', $view->url(
-                'scripto',
+                'site/scripto',
                 ['action' => 'logout'],
                 ['query' => ['redirect' => $this->getCurrentUrl()]]
             ));
@@ -280,17 +280,18 @@ class Scripto extends AbstractHelper
                 %s',
                 $view->translate('User menu'), // @translate
                 sprintf($view->translate('Logged in to Scripto as %s'), sprintf('<span class="username">%s</span>', $userInfo['name'])),
-                $view->hyperlink($view->translate('Dashboard'), $view->url('scripto', ['action' => 'index'], true)),
-                $view->hyperlink($view->translate('Contributions'), $view->url('scripto-user-contributions', ['action' => 'contributions', 'user-id' => $userInfo['name']], true)),
-                $view->hyperlink($view->translate('Watchlist'), $view->url('scripto-user-watchlist', ['action' => 'watchlist', 'user-id' => $userInfo['name']], true)),
+                $view->hyperlink($view->translate('Dashboard'), $view->url('site/scripto', ['action' => 'index'], true)),
+                $view->hyperlink($view->translate('Contributions'), $view->url('site/scripto-user-contributions', ['action' => 'contributions', 'user-id' => $userInfo['name']], true)),
+                $view->hyperlink($view->translate('Watchlist'), $view->url('site/scripto-user-watchlist', ['action' => 'watchlist', 'user-id' => $userInfo['name']], true)),
                 $view->form($form)
             );
         } else {
             $form = $this->formElementManager->get(ScriptoLoginForm::class);
             $form->setAttribute('action', $view->url(
-                'scripto',
+                'site/scripto',
                 ['action' => 'login'],
-                ['query' => ['redirect' => $this->getCurrentUrl()]]
+                ['query' => ['redirect' => $this->getCurrentUrl()]],
+                true
             ));
             return sprintf(
                 '<div class="user logged-out"><a href="#" class="user-toggle page-link menu-toggle">%s</a><div class="user-menu">%s</div></div>',
@@ -609,7 +610,7 @@ HTML;
         $userInfo = $this->apiClient->queryUserInfo();
         return sprintf(
             '-- [%s %s] ~~~~~',
-            $view->url('scripto-user-contributions', ['user-id' => $userInfo['name']], ['force_canonical' => true]),
+            $view->url('site/scripto-user-contributions', ['user-id' => $userInfo['name']], ['force_canonical' => true], true),
             $userInfo['name']
         );
     }

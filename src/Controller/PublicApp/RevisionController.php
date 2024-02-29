@@ -50,7 +50,7 @@ class RevisionController extends AbstractActionController
             $this->params('media-id')
         );
         if (!$sMedia) {
-            return $this->redirect()->toRoute('scripto');
+            return $this->redirect()->toRoute('site/scripto');
         }
 
         $response = $sMedia->pageRevisions($namespace, 100, $this->params()->fromQuery('continue'));
@@ -87,7 +87,7 @@ class RevisionController extends AbstractActionController
             $this->params('media-id')
         );
         if (!$sMedia) {
-            return $this->redirect()->toRoute('scripto');
+            return $this->redirect()->toRoute('site/scripto');
         }
 
         try {
