@@ -22,7 +22,7 @@ class ProjectController extends AbstractActionController
     {
         $project = $this->scripto()->getRepresentation($this->params('project-id'));
         if (!$project) {
-            return $this->redirect()->toRoute('scripto');
+            return $this->redirect()->toRoute('site/scripto');
         }
 
         $view = new ViewModel;
@@ -34,7 +34,7 @@ class ProjectController extends AbstractActionController
     public function showAction()
     {
         return $this->redirect()->toRoute(
-            'scripto-item',
+            'site/scripto-item',
             ['action' => 'browse'],
             ['query' => $this->params()->fromQuery()],
             true

@@ -21,7 +21,7 @@ class ScriptoItemRepresentation extends AbstractEntityRepresentation
         }
         $urlHelper = $this->getViewHelper('Url');
         return $urlHelper(
-            'scripto-item-id',
+            'site/scripto-item-id',
             [
                 'action' => $action,
                 'project-id' => $this->resource->getScriptoProject()->getId(),

@@ -38,7 +38,7 @@ $this->scripto()->postSubtitle(sprintf($this->translate('Original title: %s'), $
         <ul class="note-actions">
         <?php if ($userCanEdit): ?>
             <li><?php echo $sMedia->link($this->translate('Edit'), 'edit-talk'); ?></li>
-            <li><?php echo $this->hyperlink($this->translate('Browse notes history'), $this->url('scripto-talk-revision', ['action' => 'browse-talk'], true)); ?></li>
+            <li><?php echo $this->hyperlink($this->translate('Browse notes history'), $this->url('site/scripto-talk-revision', ['action' => 'browse-talk'], true)); ?></li>
         <?php endif; ?>
         </ul>
     </div>

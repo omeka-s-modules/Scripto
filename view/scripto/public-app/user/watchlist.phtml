@@ -45,7 +45,7 @@ $this->scripto()->postTitle($this->translate('Your watchlist'));
                 <td>
                     <?php echo $sMedia
                     ? $this->hyperlink($date, $this->url(
-                        $isTalk ? 'scripto-talk-revision-id' : 'scripto-revision-id',
+                        $isTalk ? 'site/scripto-talk-revision-id' : 'site/scripto-revision-id',
                         [
                             'action' => 'show',
                             'project-id' => $project->id(),
@@ -63,7 +63,7 @@ $this->scripto()->postTitle($this->translate('Your watchlist'));
                         '(%s | %s)',
                         $page['old_revid']
                             ? $this->hyperlink($this->translate('diff'), $this->url(
-                                $isTalk ? 'scripto-talk-revision-compare' : 'scripto-revision-compare',
+                                $isTalk ? 'site/scripto-talk-revision-compare' : 'site/scripto-revision-compare',
                                 [
                                     'action' => 'compare',
                                     'project-id' => $project->id(),
@@ -76,7 +76,7 @@ $this->scripto()->postTitle($this->translate('Your watchlist'));
                             ))
                             : $this->translate('diff'),
                         $this->hyperlink($this->translate('hist'), $this->url(
-                            $isTalk ? 'scripto-talk-revision' : 'scripto-revision',
+                            $isTalk ? 'site/scripto-talk-revision' : 'site/scripto-revision',
                             [
                                 'action' => 'browse',
                                 'project-id' => $project->id(),
@@ -98,7 +98,7 @@ $this->scripto()->postTitle($this->translate('Your watchlist'));
                         number_format($sizeDiff)
                     )
                 ); ?></td>
-                <td><?php echo $this->hyperlink($page['user'], $this->url('scripto-user-contributions', ['action' => 'contributions', 'user-id' => $page['user']], true)); ?></td>
+                <td><?php echo $this->hyperlink($page['user'], $this->url('site/scripto-user-contributions', ['action' => 'contributions', 'user-id' => $page['user']], true)); ?></td>
                 <td><i><?php echo strip_tags($page['parsedcomment']); ?></i></td>
             </tr>
         <?php endforeach; ?>

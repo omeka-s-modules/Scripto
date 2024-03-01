@@ -10,7 +10,7 @@ class ItemController extends AbstractActionController
     {
         $project = $this->scripto()->getRepresentation($this->params('project-id'));
         if (!$project) {
-            return $this->redirect()->toRoute('scripto');
+            return $this->redirect()->toRoute('site/scripto');
         }
 
         $this->setBrowseDefaults('id');
@@ -39,7 +39,7 @@ class ItemController extends AbstractActionController
     public function showAction()
     {
         return $this->redirect()->toRoute(
-            'scripto-media',
+            'site/scripto-media',
             ['action' => 'browse'],
             ['query' => $this->params()->fromQuery()],
             true

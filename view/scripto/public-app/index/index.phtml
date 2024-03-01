@@ -2,7 +2,7 @@
         <h4>
             <?php echo $this->translate('Your recent contributions'); ?>
             <?php if (!isset($user['invalid'])): ?>
-            <?php echo $this->hyperlink($this->translate('View your contributions'), $this->url('scripto-user-contributions', ['action' => 'contributions', 'user-id' => $user['name']], true), ['class' => 'button']); ?>
+            <?php echo $this->hyperlink($this->translate('View your contributions'), $this->url('site/scripto-user-contributions', ['action' => 'contributions', 'user-id' => $user['name']], true), ['class' => 'button']); ?>
             <?php endif; ?>
         </h4>
         <?php if (!isset($user['invalid']) && $userCons): ?>
@@ -27,7 +27,7 @@
                     '%s: %s (%s) (%s | %s) %s (%s) <i>%s</i>',
                     $this->scripto()->translate($project->itemType(), 'Item'),
                     $this->hyperlink($sItem->item()->displayTitle(), $this->url(
-                        $isTalk ? 'scripto-talk-media-id' : 'scripto-media-id',
+                        $isTalk ? 'site/scripto-talk-media-id' : 'site/scripto-media-id',
                         [
                             'action' => 'show',
                             'project-id' => $project->id(),
@@ -41,7 +41,7 @@
                         : sprintf($this->scripto()->translate($project->mediaType(), 'Media #%s'), $sMedia->position()),
                     $userCon['parentid']
                         ? $this->hyperlink($this->translate('diff'), $this->url(
-                            $isTalk ? 'scripto-talk-revision-compare' : 'scripto-revision-compare',
+                            $isTalk ? 'site/scripto-talk-revision-compare' : 'site/scripto-revision-compare',
                             [
                                 'action' => 'compare',
                                 'project-id' => $project->id(),
@@ -54,7 +54,7 @@
                         ))
                         : $this->translate('diff'),
                     $this->hyperlink($this->translate('hist'), $this->url(
-                        $isTalk ? 'scripto-talk-revision' : 'scripto-revision',
+                        $isTalk ? 'site/scripto-talk-revision' : 'site/scripto-revision',
                         [
                             'action' => 'browse',
                             'project-id' => $project->id(),
@@ -64,7 +64,7 @@
                         true
                     )),
                     $this->hyperlink($date, $this->url(
-                        $isTalk ? 'scripto-talk-revision-id' : 'scripto-revision-id',
+                        $isTalk ? 'site/scripto-talk-revision-id' : 'site/scripto-revision-id',
                         [
                             'action' => 'show',
                             'project-id' => $project->id(),
@@ -96,7 +96,7 @@
         <h4>
             <?php echo $this->translate('Your recent watchlist'); ?>
             <?php if (!isset($user['invalid'])): ?>
-            <?php echo $this->hyperlink($this->translate('View your watchlist'), $this->url('scripto-user-watchlist', ['action' => 'watchlist', 'user-id' => $user['name']], true), ['class' => 'button']); ?>
+            <?php echo $this->hyperlink($this->translate('View your watchlist'), $this->url('site/scripto-user-watchlist', ['action' => 'watchlist', 'user-id' => $user['name']], true), ['class' => 'button']); ?>
             <?php endif; ?>
         </h4>
         <?php if (!isset($user['invalid']) && $watchlist): ?>
@@ -122,7 +122,7 @@
                     '%s: %s (%s) (%s | %s) %s (%s) <i>%s</i>',
                     $this->scripto()->translate($project->itemType(), 'Item'),
                     $this->hyperlink($sItem->item()->displayTitle(), $this->url(
-                        $isTalk ? 'scripto-talk-media-id' : 'scripto-media-id',
+                        $isTalk ? 'site/scripto-talk-media-id' : 'site/scripto-media-id',
                         [
                             'action' => 'show',
                             'project-id' => $project->id(),
@@ -136,7 +136,7 @@
                         : sprintf($this->scripto()->translate($project->mediaType(), 'Media #%s'), $sMedia->position()),
                     $page['old_revid']
                         ? $this->hyperlink($this->translate('diff'), $this->url(
-                            $isTalk ? 'scripto-talk-revision-compare' : 'scripto-revision-compare',
+                            $isTalk ? 'site/scripto-talk-revision-compare' : 'site/scripto-revision-compare',
                             [
                                 'action' => 'compare',
                                 'project-id' => $project->id(),
@@ -149,7 +149,7 @@
                         ))
                         : $this->translate('diff'),
                     $this->hyperlink($this->translate('hist'), $this->url(
-                        $isTalk ? 'scripto-talk-revision' : 'scripto-revision',
+                        $isTalk ? 'site/scripto-talk-revision' : 'site/scripto-revision',
                         [
                             'action' => 'browse',
                             'project-id' => $project->id(),
@@ -159,7 +159,7 @@
                         true
                     )),
                     $this->hyperlink($date, $this->url(
-                        $isTalk ? 'scripto-talk-revision-id' : 'scripto-revision-id',
+                        $isTalk ? 'site/scripto-talk-revision-id' : 'site/scripto-revision-id',
                         [
                             'action' => 'show',
                             'project-id' => $project->id(),

@@ -32,14 +32,14 @@ class UserController extends AbstractActionController
     {
         if (!$this->scripto()->apiClient()->userIsLoggedIn()) {
             // User must be logged in.
-            return $this->redirect()->toRoute('scripto');
+            return $this->redirect()->toRoute('site/scripto');
         }
 
         $userName = $this->params('user-id');
         $currentUser = $this->scripto()->apiClient()->queryUserInfo();
         if ($userName !== $currentUser['name']) {
             // Logged in user must be current user.
-            return $this->redirect()->toRoute('scripto-user-watchlist', ['user-id' => $currentUser['name']]);
+            return $this->redirect()->toRoute('site/scripto-user-watchlist', ['user-id' => $currentUser['name']]);
         }
 
         $hours = $this->params()->fromQuery('hours', 720); // 30 days

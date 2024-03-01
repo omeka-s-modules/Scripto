@@ -25,7 +25,7 @@ $this->headScript()->appendFile($this->assetUrl('js/public-app.js', 'Scripto'));
     </head>
     <header class="site-header" role="banner">
         <div class="wrapper">
-            <?php echo $this->hyperlink($title, $this->url('scripto', ['action' => 'index'], true), ['class' => 'site-title']); ?>
+            <?php echo $this->hyperlink($title, $this->url('site/scripto', ['action' => 'index'], true), ['class' => 'site-title']); ?>
             <nav class="top-nav">
                 <input type="checkbox" id="nav-trigger" class="nav-trigger" aria-label="<?php echo $this->translate('Toggle menu'); ?>"/>
                 <label for="nav-trigger">
@@ -37,7 +37,7 @@ $this->headScript()->appendFile($this->assetUrl('js/public-app.js', 'Scripto'));
                         <?php echo $this->scripto()->publicAppSiteLink(); ?>
                         <?php echo $this->scripto()->loginBar(); ?>
                         <?php if (!$this->scripto()->apiClient()->userIsLoggedIn()): ?>
-                        <?php echo $this->hyperlink($this->translate('Create account'), $this->url('scripto', ['action' => 'create-account'], true), ['class' => 'page-link']); ?>
+                        <?php echo $this->hyperlink($this->translate('Create account'), $this->url('site/scripto', ['action' => 'create-account'], true), ['class' => 'page-link']); ?>
                         <?php endif; ?>
                     </div>
                     <?php if (isset($project)): ?>
