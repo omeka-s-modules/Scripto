@@ -277,6 +277,19 @@ class Module extends AbstractModule
             'rep.resource.json',
             [$this, 'filterMediaJsonLd']
         );
+
+        // Copy Scripto-related data for the CopyResources module.
+        $sharedEventManager->attach(
+            '*',
+            'copy_resources.copy_site',
+            function (Event $event) {
+                $copyResources = $event->getParam('copy_resources');
+                $siteCopy = $event->getParam('resource_copy');
+
+                $copyResources->revertSiteBlockLayouts($siteCopy->id(), 'scripto');
+                $copyResources->revertSiteNavigationLinkTypes($siteCopy->id(), 'scripto');
+            }
+        );
     }
 
     /**
