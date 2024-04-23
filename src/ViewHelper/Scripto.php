@@ -265,7 +265,8 @@ class Scripto extends AbstractHelper
             $form->setAttribute('action', $view->url(
                 'site/scripto',
                 ['action' => 'logout'],
-                ['query' => ['redirect' => $this->getCurrentUrl()]]
+                ['query' => ['redirect' => $this->getCurrentUrl()]],
+                true
             ));
             return sprintf(
                 '<div class="user logged-in">
