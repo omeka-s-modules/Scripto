@@ -40,10 +40,9 @@ $('.menu-toggle').on('click', function(e) {
 
 // Close the sort and filter menus by clicking anywhere outside them.
 $(document).on('click', function(e) {
-    var toggleParentCheck = $(e.target).parent().parent().is('.sorting-toggle, .filtering-toggle');
-    var toggleOptionCheck = $(e.target).is('option');
-    if (toggleParentCheck || toggleOptionCheck) {
-        // Ignore if clicks are triggered from in-menu selects.
+    var toggleParentCheck = $(e.target).parents('.sorting-toggle, .filtering-toggle').length > 0
+    if (toggleParentCheck) {
+        // Ignore if clicks are triggered from inside menus
         return;
     }
     $('.filtering-toggle, .sorting-toggle').removeClass('open');
