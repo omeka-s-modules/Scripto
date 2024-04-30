@@ -66,8 +66,7 @@ gridButton.click(function() {
 });
 
 // Toggle media's original titles.
-var mediaToggle = $('.title-toggle input[type="checkbox"]');
-$(document).on('change', mediaToggle, function() {
+$(document).on('change', '.title-toggle input[type="checkbox"]', function() {
    $('.original-title').toggleClass('active'); 
 });
 
