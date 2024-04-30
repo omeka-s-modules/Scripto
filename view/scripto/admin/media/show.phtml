@@ -1,7 +1,6 @@
-<?php 
+<?php
 $this->headLink()->appendStylesheet($this->assetUrl('css/admin.css', 'Scripto'));
 $this->headLink()->appendStylesheet('https://use.fontawesome.com/releases/v5.0.9/css/all.css');
-$this->headScript()->appendFile($this->assetUrl('vendor/panzoom/panzoom.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/scripto.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/admin.js', 'Scripto'));
 $this->headScript()->appendFile($this->assetUrl('js/common/media.js', 'Scripto'));
@@ -48,12 +47,12 @@ $this->htmlElement('body')->appendAttribute('class', 'scripto media show');
             <?php if ($sMedia->isRenderableImage()): ?>
             <?php echo $this->partial('common/media-viewer'); ?>
             <?php else: ?>
-            <div id="panzoom" class="media-render">
-              <img src="<?php echo $this->escapeHtml($media->originalUrl()); ?>" id="panzoom-img">
+            <div class="panzoom-container" style="min-width: 50%;">
+                <?php echo $media->render(['link' => null]); ?>
             </div>
             <?php endif; ?>
             <div class="textarea-flex">
-              <textarea disabled   aria-label="<?php echo $this->translate('Wikitext'); ?>"><?php echo $sMedia->pageWikitext(0, $revision['revid'] ?? null); ?></textarea>
+                <textarea disabled rows="12" aria-label="<?php echo $this->translate('Wikitext'); ?>"><?php echo $sMedia->pageWikitext(0, $revision['revid'] ?? null); ?></textarea>
             </div>
         </div>
     </div>

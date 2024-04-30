@@ -141,7 +141,7 @@ ul.user-menu {
     padding: 0;
 
     &:hover {
-      text-decoration: underline; 
+      text-decoration: underline;
     }
 }
 
@@ -281,7 +281,7 @@ ul.user-menu {
     padding: (.25 * $spacing-unit);
     border: 1px solid $grey-color-light;
     display: none;
-    
+
     &.active {
         display: block;
     }
@@ -484,7 +484,7 @@ nav.pagination .row-count {
 .value.resource .resource-link {
     display: flex;
     align-items: center;
-    
+
     img {
         max-height: $spacing-unit;
         width: auto;
@@ -493,7 +493,7 @@ nav.pagination .row-count {
     }
 }
 
-/** 
+/**
  * Media
  */
 
@@ -552,11 +552,14 @@ nav.pagination .row-count {
 }
 
 .wikitext-flex {
-    display: flex; 
+    display: flex;
     width: 100%;
-    flex-wrap: wrap;
     margin-top: 12px;
     min-height: 400px;
+
+    #wikitext-layout.vertical & {
+        flex-direction: column;
+    }
  }
 
 .wikitext-featherlight {
@@ -615,7 +618,7 @@ nav.pagination .row-count {
     padding: 0;
     width: 50%;
     padding-left: (.5 * $spacing-unit);
-    
+
     .copy {
         margin-bottom: $spacing-unit;
     }
@@ -627,7 +630,7 @@ nav.pagination .row-count {
 
 #panzoom {
     margin-bottom: 0;
-    
+
     & > * {
         max-width: 100%;
         height: auto;
@@ -769,7 +772,7 @@ h2.media-item {
 
 #media-column {
     padding-right: .5 * $spacing-unit;
-    
+
     & > div {
         margin-bottom: $spacing-unit;
     }
@@ -777,11 +780,11 @@ h2.media-item {
 
 .notes-column {
     padding-left: .5 * $spacing-unit;
-    
+
     .change-summary {
         margin: 0 0 (.5 * $spacing-unit);
     }
-    
+
     .textarea-flex {
         min-height: (10 * $spacing-unit);
     }
@@ -810,7 +813,7 @@ h2.media-item {
     margin: 0 (.5 * $spacing-unit);
 }
 
-/* 
+/*
  * Item
  */
 
@@ -836,7 +839,7 @@ h2.media-item {
 
 .resource-list .original-title {
     display: none;
-    
+
     &.active {
         display: inline;
     }
@@ -987,7 +990,7 @@ div.resource-row {
 
 .title-toggle {
     padding: (.125 * $spacing-unit) (.25 * $spacing-unit);
-    
+
     input {
         margin-right: .25 * $spacing-unit;
     }
@@ -1023,6 +1026,10 @@ div.resource-row {
 
 .change-summary {
     margin: (-1.5 * $spacing-unit) 0 (.5 * $spacing-unit);
+
+    #wikitext-layout.vertical & {
+        margin-top: 0;
+    }
 }
 
 #change-summary-text {
@@ -1143,7 +1150,7 @@ div.resource-row {
     margin-bottom: 0;
 }
 
-/* 
+/*
  * Revisions
  */
 
@@ -1151,7 +1158,7 @@ div.resource-row {
     border: 0;
 }
 
-.media.wikitext, 
+.media.wikitext,
 .media.wikitext + .media.html {
     width: 50%;
 }
@@ -1161,7 +1168,7 @@ div.resource-row {
     height: 100%;
 }
 
-/** 
+/**
  * User
  */
 

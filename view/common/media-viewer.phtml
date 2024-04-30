@@ -1,6 +1,6 @@
 <?php
 $this->headScript()->appendFile($this->assetUrl('vendor/panzoom-4.3.1/dist/panzoom.min.js', 'Scripto'));
-$this->headScript()->appendFile($this->assetUrl('js/common/media.js', 'Scripto'));
+$this->headScript()->appendFile($this->assetUrl('js/common/media-viewer.js', 'Scripto'));
 ?>
 <div id="panzoom-container" class="image">
   <div class="zoom-controls">
@@ -11,6 +11,6 @@ $this->headScript()->appendFile($this->assetUrl('js/common/media.js', 'Scripto')
       <button type="button" id="panzoom-reset"><?php echo $this->translate('Reset'); ?></button>
   </div>
   <div id="panzoom" class="media-render">
-    <img src="<?php echo $this->escapeHtml($media->originalUrl()); ?>" id="panzoom-img">
+      <img src="<?php echo $this->escapeHtml($media->originalUrl()); ?>" id="panzoom-img">
   </div>
 </div>

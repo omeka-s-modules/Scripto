@@ -8,7 +8,7 @@
     max-width: 50%;
 }
 
-.browse .scripto-media td:first-child, 
+.browse .scripto-media td:first-child,
 .browse .scripto-media th:first-child {
     width: 36px;
 }
@@ -68,7 +68,7 @@
 }
 
 .fullscreen div[role="main"] > h1:first-of-type,
-body.fullscreen #content, 
+body.fullscreen #content,
 body.fullscreen.sidebar-open #content {
   width: 100% !important;
   transition: none;
@@ -84,11 +84,14 @@ body.fullscreen.sidebar-open .sidebar {
 }
 
 .wikitext-flex {
-    display: flex; 
+    display: flex;
     width: 100%;
-    flex-wrap: wrap;
     margin-top: 12px;
     min-height: 400px;
+
+    #wikitext-layout.vertical & {
+        flex-direction: column;
+    }
  }
 
 .browse .browse-controls {
@@ -134,8 +137,8 @@ body.fullscreen.sidebar-open .sidebar {
     order: 1;
 }
 
-.browse nav.pagination form, 
-.browse nav.pagination .button, 
+.browse nav.pagination form,
+.browse nav.pagination .button,
 .browse nav.pagination .row-count {
     float: none;
 }
@@ -176,8 +179,8 @@ nav.pagination .button:last-child {
 }
 
 #wikitext.active {
-    display: flex; 
-    justify-content: space-between; 
+    display: flex;
+    justify-content: space-between;
 }
 
 #horizontal-layout .wikitext-flex .textarea-flex {
@@ -276,7 +279,7 @@ button#fullscreen {
 .media.copy {
     margin-top: 24px;
     width: 100%;
-    
+
     textarea {
       width: 100%;
     }
@@ -398,7 +401,7 @@ button#fullscreen {
     border-bottom: 1px solid #dfdfdf;
 }
 
-#compare-table .diff-deletedline div:before, 
+#compare-table .diff-deletedline div:before,
 #compare-table .diff-addedline div:before {
     left: -1px;
 }
@@ -616,7 +619,7 @@ button#fullscreen {
     vertical-align: top;
 }
 
-.scripto.user.browse td:first-child, 
+.scripto.user.browse td:first-child,
 .scripto.user.browse th:first-child {
     width: auto;
 }
