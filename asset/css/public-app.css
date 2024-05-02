@@ -924,7 +924,8 @@ nav.pagination .row-count {
   height: 100%; }
 
 .horizontal .wikitext-flex .textarea-flex,
-.horizontal .wikitext-flex #panzoom-container {
+.horizontal .wikitext-flex #panzoom-container,
+.horizontal .wikitext-flex .panzoom-container {
   width: calc(50% - 6px); }
 
 .vertical .wikitext-flex .textarea-flex,
