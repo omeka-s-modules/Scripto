@@ -50,7 +50,7 @@ class IndexController extends AbstractActionController
                         $formData['email'], $formData['realname']
                     );
                     $this->messenger()->addSuccess('Your Scripto account has been created! Please check your email for a link to activate your account.'); // @translate
-                    return $this->redirect()->toRoute('site/scripto');
+                    return $this->redirect()->toRoute('site/scripto', ['action' => 'index'], [], true);
                 } catch (CreateaccountException $e) {
                     $this->messenger()->addError($e->getMessage());
                 }
