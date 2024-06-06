@@ -620,22 +620,21 @@ class Module extends AbstractModule
     public function getImportedScriptoItems($itemId)
     {
         if (!isset($this->cache['imported_scripto_resources'][$itemId])) {
-            $em = $this->getServiceLocator()->get('Omeka\EntityManager');
-            $dql = '
-            SELECT si, GROUP_CONCAT(sm.importedHtml ORDER BY sm.position ASC SEPARATOR \'\')
-            FROM Scripto\Entity\ScriptoItem si
-            JOIN si.item i WITH i.id = :item_id
-            LEFT JOIN si.scriptoMedia sm
-            WHERE sm.importedHtml IS NOT NULL
-            GROUP BY si';
-            $sItemEntities = $em->createQuery($dql)->setParameter('item_id', $itemId)->getResult();
+            $services = $this->getServiceLocator();
+            $em = $services->get('Omeka\EntityManager');
+            $sItemAdapter = $services->get('Omeka\ApiAdapterManager')->get('scripto_items');
+            $sItemEntities = $em->getRepository('Scripto\Entity\ScriptoItem')->findBy(['item' => $itemId]);
             $sItems = [];
-            if ($sItemEntities) {
-                $sItemAdapter = $this->getServiceLocator()->get('Omeka\ApiAdapterManager')->get('scripto_items');
-                foreach ($sItemEntities as $sItemEntity) {
+            foreach ($sItemEntities as $sItemEntity) {
+                $importedHtml = [];
+                foreach ($sItemEntity->getScriptoMedia() as $sMedia) {
+                    $importedHtml[] = $sMedia->getImportedHtml();
+                }
+                $importedHtml = array_filter($importedHtml);
+                if ($importedHtml) {
                     $sItems[] = [
-                        $sItemAdapter->getRepresentation($sItemEntity[0]),
-                        $sItemEntity[1],
+                        $sItemAdapter->getRepresentation($sItemEntity),
+                        implode('', $importedHtml),
                     ];
                 }
             }
