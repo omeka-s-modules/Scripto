@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-22 19:38-0400\n"
+"POT-Creation-Date: 2024-06-20 15:11-0400\n"
 "PO-Revision-Date: 2018-11-27 19:38+0000\n"
 "Last-Translator: Iametza Interaktiboa, 2022\n"
 "Language-Team: Basque (https://app.transifex.com/omeka/teams/14184/eu/)\n"
@@ -21,18 +21,18 @@ msgstr ""
 "Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: Module.php:423
+#: Module.php:436
 msgid "Cannot access Scripto. Missing MediaWiki API URL."
 msgstr "Ezin da Scripto atzitu. Ez da zehaztu MediaWiki API Helbidea."
 
-#: Module.php:455
+#: Module.php:468
 #, php-format
 msgid ""
 "The MediaWiki user does not have the necessary permissions to create the "
 "page \"%s\""
 msgstr "MediaWiki erabiltzaileak ez du nahikoa baimenik \"%s\" orria sortzeko"
 
-#: Module.php:461
+#: Module.php:474
 #, php-format
 msgid ""
 "The MediaWiki user does not have the necessary permissions to edit the page "
@@ -129,12 +129,12 @@ msgid "%s of %s"
 msgstr "%s %stik"
 
 #: src/ViewHelper/Scripto.php:413 view/scripto/admin/media/show-talk.phtml:102
-#: view/scripto/admin/media/show.phtml:92
+#: view/scripto/admin/media/show.phtml:91
 msgid "Older revision"
 msgstr "Errebisio zaharragoa"
 
 #: src/ViewHelper/Scripto.php:416 view/scripto/admin/media/show-talk.phtml:107
-#: view/scripto/admin/media/show.phtml:97
+#: view/scripto/admin/media/show.phtml:96
 msgid "Newer revision"
 msgstr "Errebisio berriagoa"
 
@@ -259,7 +259,7 @@ msgstr "Scripto proiektua ez da aurkitu."
 msgid "Browse revision history"
 msgstr "Arakatu berrikuspen historia"
 
-#: view/common/media-head.phtml:7 view/scripto/admin/media/show.phtml:25
+#: view/common/media-head.phtml:7 view/scripto/admin/media/show.phtml:24
 msgid "View notes"
 msgstr "Ikusi oharrak"
 
@@ -586,11 +586,6 @@ msgstr "Deskribapenik ez"
 msgid "Omeka item metadata"
 msgstr "Omeka elementuaren metadatua"
 
-#: view/scripto/admin/media/browse.phtml:26
-#: view/scripto/public-app/media/browse.phtml:23
-msgid "Position"
-msgstr "Posizioa"
-
 #: view/scripto/admin/media/browse.phtml:30
 #: view/scripto/admin/media/show-details.phtml:33
 #: view/scripto/admin/project/browse.phtml:36
@@ -642,7 +637,7 @@ msgstr "Inportatu ondoren sinkronizatu da"
 #: view/scripto/admin/media/browse.phtml:116
 #: view/scripto/admin/media/show-details.phtml:20
 #: view/scripto/admin/media/show-talk.phtml:147
-#: view/scripto/admin/media/show.phtml:236
+#: view/scripto/admin/media/show.phtml:235
 msgid "Edit protection"
 msgstr "Editatu babesa"
 
@@ -664,12 +659,12 @@ msgid "never"
 msgstr "inoiz"
 
 #: view/scripto/admin/media/show-details.phtml:56
-#: view/scripto/admin/media/show.phtml:177
+#: view/scripto/admin/media/show.phtml:176
 msgid "Not completed"
 msgstr "Ez osatua"
 
 #: view/scripto/admin/media/show-details.phtml:72
-#: view/scripto/admin/media/show.phtml:223
+#: view/scripto/admin/media/show.phtml:222
 msgid "Not approved"
 msgstr "Ez onartua"
 
@@ -686,14 +681,14 @@ msgid "Notes"
 msgstr "Oharrak"
 
 #: view/scripto/admin/media/show-talk.phtml:23
-#: view/scripto/admin/media/show.phtml:24
+#: view/scripto/admin/media/show.phtml:23
 msgid "Revision history"
 msgstr "Berrikuspen historia"
 
 #: view/scripto/admin/media/show-talk.phtml:31
 #: view/scripto/admin/media/show-talk.phtml:50
-#: view/scripto/admin/media/show.phtml:33
-#: view/scripto/admin/media/show.phtml:56
+#: view/scripto/admin/media/show.phtml:32
+#: view/scripto/admin/media/show.phtml:55
 #: view/scripto/public-app/revision/show-talk.phtml:14
 #: view/scripto/public-app/revision/show-talk.phtml:15
 #: view/scripto/public-app/revision/show.phtml:14
@@ -702,7 +697,7 @@ msgid "Wikitext"
 msgstr "Wikitext"
 
 #: view/scripto/admin/media/show-talk.phtml:33
-#: view/scripto/admin/media/show.phtml:35
+#: view/scripto/admin/media/show.phtml:34
 msgid "Omeka media metadata"
 msgstr "Omeka multimedia metadatua"
 
@@ -717,55 +712,55 @@ msgid "Browse notes history"
 msgstr "Arakatu oharren historikoa"
 
 #: view/scripto/admin/media/show-talk.phtml:91
-#: view/scripto/admin/media/show.phtml:81
+#: view/scripto/admin/media/show.phtml:80
 msgid "The Omeka media has no metadata."
 msgstr "Omeka multimediak ez dauka metadaturik."
 
 #: view/scripto/admin/media/show-talk.phtml:112
-#: view/scripto/admin/media/show.phtml:102
+#: view/scripto/admin/media/show.phtml:101
 msgid "Latest revision"
 msgstr "Azkeneko berrikuspena"
 
 #: view/scripto/admin/media/show-talk.phtml:117
-#: view/scripto/admin/media/show.phtml:107
+#: view/scripto/admin/media/show.phtml:106
 msgid "This revision"
 msgstr "Berrikuspen hau"
 
 #: view/scripto/admin/media/show-talk.phtml:121
-#: view/scripto/admin/media/show.phtml:111
-#: view/scripto/admin/media/show.phtml:141
-#: view/scripto/admin/media/show.phtml:187
+#: view/scripto/admin/media/show.phtml:110
+#: view/scripto/admin/media/show.phtml:140
+#: view/scripto/admin/media/show.phtml:186
 #, php-format
 msgid "%s: %s by %s"
 msgstr "%s: %s %sk"
 
 #: view/scripto/admin/media/show-talk.phtml:123
-#: view/scripto/admin/media/show.phtml:113
+#: view/scripto/admin/media/show.phtml:112
 msgid "Latest"
 msgstr "Azkenekoa"
 
 #: view/scripto/admin/media/show-talk.phtml:124
-#: view/scripto/admin/media/show.phtml:114
+#: view/scripto/admin/media/show.phtml:113
 msgid "Out-of-date"
 msgstr "Iraungita"
 
 #: view/scripto/admin/media/show-talk.phtml:135
-#: view/scripto/admin/media/show.phtml:125
+#: view/scripto/admin/media/show.phtml:124
 msgid "Revert to this revision."
 msgstr "Itzuli berrikuspen honetara."
 
 #: view/scripto/admin/media/show-talk.phtml:140
-#: view/scripto/admin/media/show.phtml:130
+#: view/scripto/admin/media/show.phtml:129
 msgid "There are no revisions."
 msgstr "Ez dago berrikuspenik."
 
 #: view/scripto/admin/media/show-talk.phtml:162
-#: view/scripto/admin/media/show.phtml:253
+#: view/scripto/admin/media/show.phtml:252
 msgid "Revert to this revision"
 msgstr "Itzuli berrikuspen honetara"
 
 #: view/scripto/admin/media/show-talk.phtml:164
-#: view/scripto/admin/media/show.phtml:255
+#: view/scripto/admin/media/show.phtml:254
 #, php-format
 msgid ""
 "%s: You are reverting to an out-of-date revision. Any changes made since "
@@ -779,76 +774,69 @@ msgstr ""
 "ze berrikuspen dauden osatu edo onartu bezala markatuta."
 
 #: view/scripto/admin/media/show-talk.phtml:168
-#: view/scripto/admin/media/show.phtml:259
+#: view/scripto/admin/media/show.phtml:258
 msgid "Verify changes before confirming this reversion."
 msgstr "Egiaztatu aldaketak berrikuspen hau onartu aurretik."
 
-#: view/scripto/admin/media/show.phtml:41
+#: view/scripto/admin/media/show.phtml:40
 #: view/scripto/public-app/media/edit.phtml:29
 msgid "Go full screen"
 msgstr "Joan pantaila osora"
 
-#: view/scripto/admin/media/show.phtml:41
+#: view/scripto/admin/media/show.phtml:40
 #: view/scripto/public-app/media/edit.phtml:29
 msgid "Exit full screen"
 msgstr "Irten pantaila osotik"
 
 #: view/scripto/admin/media/show.phtml:43
-#: view/scripto/public-app/item/browse.phtml:35
-#: view/scripto/public-app/media/browse.phtml:14
-#: view/scripto/public-app/media/edit.phtml:31
-msgid "Layout"
-msgstr "Diseinua"
-
-#: view/scripto/admin/media/show.phtml:44
 #: view/scripto/public-app/media/edit.phtml:32
 msgid "Horizontal view"
 msgstr "Ikuspegi horizontala"
 
-#: view/scripto/admin/media/show.phtml:45
+#: view/scripto/admin/media/show.phtml:44
 #: view/scripto/public-app/media/edit.phtml:33
 msgid "Vertical view"
 msgstr "Ikuspegi bertikala"
 
-#: view/scripto/admin/media/show.phtml:137
+#: view/scripto/admin/media/show.phtml:136
 msgid "Review status"
 msgstr "Berrikuspenaren egoera"
 
-#: view/scripto/admin/media/show.phtml:153
+#: view/scripto/admin/media/show.phtml:152
 msgid "This revision marked as complete."
 msgstr "Berrikuspen hau osatuta bezala zehaztu da."
 
-#: view/scripto/admin/media/show.phtml:161
+#: view/scripto/admin/media/show.phtml:160
 #, php-format
 msgid "Another revision marked as complete. [%s]"
 msgstr "Beste berrikuspen bat osatuta bezala zehaztu da. [%s]"
 
-#: view/scripto/admin/media/show.phtml:162
-#: view/scripto/admin/media/show.phtml:208
+#: view/scripto/admin/media/show.phtml:161
+#: view/scripto/admin/media/show.phtml:207
 msgid "view revision"
 msgstr "ikusi berrikuspena"
 
-#: view/scripto/admin/media/show.phtml:179
+#: view/scripto/admin/media/show.phtml:178
 #: view/scripto/public-app/media/edit.phtml:20
 msgid "Mark this revision as complete"
 msgstr "Zehaztu berrikuspen hau osatuta bezala"
 
-#: view/scripto/admin/media/show.phtml:188
+#: view/scripto/admin/media/show.phtml:187
 msgid "Approved"
 msgstr "Onartuta"
 
-#: view/scripto/admin/media/show.phtml:199
+#: view/scripto/admin/media/show.phtml:198
 #: view/scripto/admin/revision/compare.phtml:46
 #: view/scripto/public-app/revision/compare.phtml:41
 msgid "This revision marked as approved."
 msgstr "Berrikuspen hau onartuta bezala markatu da."
 
-#: view/scripto/admin/media/show.phtml:207
+#: view/scripto/admin/media/show.phtml:206
 #, php-format
 msgid "Another revision marked as approved. [%s]"
 msgstr "Beste berrikuspen bat onartuta bezala zehaztu da. [%s]"
 
-#: view/scripto/admin/media/show.phtml:225
+#: view/scripto/admin/media/show.phtml:224
 msgid "Mark this revision as approved"
 msgstr "Zehaztu berrikuspen hau onartuta bezala"
 
@@ -921,12 +909,6 @@ msgstr "Arakatu diseinua"
 #: view/scripto/public-app/media/browse.phtml:15
 msgid "List"
 msgstr "Zerrenda"
-
-#: view/scripto/admin/project/show-details.phtml:55
-#: view/scripto/public-app/item/browse.phtml:37
-#: view/scripto/public-app/media/browse.phtml:16
-msgid "Grid"
-msgstr "Sarea"
 
 #: view/scripto/admin/project/show-details.phtml:60
 msgid "Item type"
