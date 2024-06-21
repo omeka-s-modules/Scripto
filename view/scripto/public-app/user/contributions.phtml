@@ -35,7 +35,7 @@ $this->scripto()->postTitle(sprintf($this->translate('Contributions by %s'), $us
                 <td class="revision">
                     <?php echo $sMedia
                     ? $this->hyperlink($date, $this->url(
-                        $isTalk ? 'scripto-talk-revision-id' : 'scripto-revision-id',
+                        $isTalk ? 'site/scripto-talk-revision-id' : 'site/scripto-revision-id',
                         [
                             'action' => 'show',
                             'project-id' => $project->id(),
@@ -54,7 +54,7 @@ $this->scripto()->postTitle(sprintf($this->translate('Contributions by %s'), $us
                         '(%s | %s)',
                         $userCon['parentid']
                             ? $this->hyperlink($this->translate('diff'), $this->url(
-                                $isTalk ? 'scripto-talk-revision-compare' : 'scripto-revision-compare',
+                                $isTalk ? 'site/scripto-talk-revision-compare' : 'site/scripto-revision-compare',
                                 [
                                     'action' => 'compare',
                                     'project-id' => $project->id(),
@@ -67,7 +67,7 @@ $this->scripto()->postTitle(sprintf($this->translate('Contributions by %s'), $us
                             ))
                             : $this->translate('diff'),
                         $this->hyperlink($this->translate('hist'), $this->url(
-                            $isTalk ? 'scripto-talk-revision' : 'scripto-revision',
+                            $isTalk ? 'site/scripto-talk-revision' : 'site/scripto-revision',
                             [
                                 'action' => 'browse',
                                 'project-id' => $project->id(),

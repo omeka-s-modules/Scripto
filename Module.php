@@ -405,7 +405,7 @@ class Module extends AbstractModule
     public function setPublicAppLayout(Event $event)
     {
         $routeName = $event->getRouteMatch()->getMatchedRouteName();
-        if (0 !== strpos($routeName, 'scripto')) {
+        if (0 !== strpos($routeName, 'site/scripto')) {
             // Not a public application Scripto route.
             return;
         }
