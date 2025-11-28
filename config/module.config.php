@@ -33,6 +33,7 @@ return [
         'factories' => [
             'Scripto\Form\Element\MediaTypeSelect' => Scripto\Service\Form\Element\MediaTypeSelectFactory::class,
             'Scripto\Form\ModuleConfigForm' => Scripto\Service\Form\ModuleConfigFormFactory::class,
+            'Scripto\Form\CreateAccountForm' => Scripto\Service\Form\CreateAccountFormFactory::class,
         ],
     ],
     'controllers' => [
