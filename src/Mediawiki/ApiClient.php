@@ -932,8 +932,12 @@ class ApiClient
         if (isset($createaccount['error'])) {
             throw new Exception\CreateaccountException($createaccount['error']['info']);
         }
-        if ('FAIL' === $createaccount['createaccount']['status']) {
-            throw new Exception\CreateaccountException($createaccount['createaccount']['message']);
+        if ('PASS' !== $createaccount['createaccount']['status']) {
+            throw new Exception\CreateaccountException(
+                $createaccount['createaccount']['message']
+                    ?? $createaccount['createaccount']['messagecode']
+                    ?? 'Account creation failed.'
+            );
         }
         return $createaccount['createaccount'];
     }
@@ -964,8 +968,12 @@ class ApiClient
         if (isset($clientlogin['error'])) {
             throw new Exception\ClientloginException($clientlogin['error']['info']);
         }
-        if ('FAIL' === $clientlogin['clientlogin']['status']) {
-            throw new Exception\ClientloginException($clientlogin['clientlogin']['message']);
+        if ('PASS' !== $clientlogin['clientlogin']['status']) {
+            throw new Exception\ClientloginException(
+                $clientlogin['clientlogin']['message']
+                    ?? $clientlogin['clientlogin']['messagecode']
+                    ?? 'Login failed.'
+            );
         }
         // Persist the authentication cookies.
         $this->session->cookies = $this->httpClient->getCookies();

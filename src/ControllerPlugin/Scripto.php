@@ -148,7 +148,7 @@ class Scripto extends AbstractPlugin
                     );
                     $controller->messenger()->addSuccess($controller->translate('Successfully logged in to Scripto.'));
                 } catch (ClientloginException $e) {
-                    $controller->messenger()->addError($controller->translate('Cannot log in to Scripto. Email or password is invalid.'));
+                    $controller->messenger()->addError($e->getMessage());
                 }
             }
             $redirect = $controller->getRequest()->getQuery('redirect');
