@@ -381,7 +381,7 @@ class ApiClient
             foreach ($titleChunk as $title) {
                 $title = (string) $title;
                 $normalizedTitle = $normalized[$title] ?? $title;
-                foreach ($query['query']['pages'] as  $page) {
+                foreach ($query['query']['pages'] as $page) {
                     if ($page['title'] === $normalizedTitle) {
                         $pages[] = $page;
                         continue;

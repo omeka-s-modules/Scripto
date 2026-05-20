@@ -15,8 +15,8 @@ use Laminas\Permissions\Acl\Role\RoleInterface;
  */
 class UserCanReviewAssertion implements AssertionInterface
 {
-    public function assert(Acl $acl, RoleInterface $role = null,
-        ResourceInterface $resource = null, $privilege = null
+    public function assert(Acl $acl, ?RoleInterface $role = null,
+        ?ResourceInterface $resource = null, $privilege = null
     ) {
         if (!$role) {
             // The user is not authenticated.

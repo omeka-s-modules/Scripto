@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-20 15:11-0400\n"
+"POT-Creation-Date: 2026-05-20 12:02-0400\n"
 "PO-Revision-Date: 2018-11-27 19:38+0000\n"
 "Last-Translator: Judith Hannoun <judith.hannoun@gmail.com>, 2020\n"
 "Language-Team: French (https://app.transifex.com/omeka/teams/14184/fr/)\n"
@@ -73,12 +73,6 @@ msgstr "Voir la tache pour suivre l’annulation de l’import."
 #: src/ControllerPlugin/Scripto.php:149
 msgid "Successfully logged in to Scripto."
 msgstr "Connecté à Scripto."
-
-#: src/ControllerPlugin/Scripto.php:151
-msgid "Cannot log in to Scripto. Email or password is invalid."
-msgstr ""
-"Impossible de se connecter à Scripto. Adresse courriel ou mot de passe "
-"invalide."
 
 #: src/ControllerPlugin/Scripto.php:176
 msgid "Successfully logged out of Scripto."
@@ -1177,95 +1171,17 @@ msgstr "Contributions de %s"
 msgid "Your watchlist"
 msgstr "Votre veille"
 
-#: src/Job/ImportProject.php:35
-msgid "Cannot import a project without a property."
+#: src/Job/ScriptoJob.php:73
+msgid "Cannot unimport a project without a property."
 msgstr ""
 
 #: src/Job/SyncProject.php:33
 msgid "Cannot sync a project without an item set."
 msgstr ""
 
-#: src/Job/ScriptoJob.php:73
-msgid "Cannot unimport a project without a property."
+#: src/Job/ImportProject.php:35
+msgid "Cannot import a project without a property."
 msgstr ""
-
-#: src/Api/Representation/ScriptoMediaRepresentation.php:12
-#: src/Api/Representation/ScriptoItemRepresentation.php:11
-msgid "New"
-msgstr "Nouveau"
-
-#: src/Api/Representation/ScriptoMediaRepresentation.php:13
-#: src/Api/Representation/ScriptoItemRepresentation.php:12
-msgid "In progress"
-msgstr "En cours"
-
-#: src/Api/Representation/ScriptoMediaRepresentation.php:465
-msgid "Confirmed only"
-msgstr "Seulement les confirmés"
-
-#: src/Api/Representation/ScriptoMediaRepresentation.php:468
-msgid "Admin only"
-msgstr "Seulement aux admin"
-
-#: src/Api/Representation/ScriptoMediaRepresentation.php:481
-msgid "Open to all"
-msgstr "Ouvert à tous"
-
-#: src/Api/Adapter/ScriptoMediaAdapter.php:46
-msgid ""
-"The Scripto\\Api\\Adapter\\ScriptoMediaAdapter adapter does not implement "
-"the create operation."
-msgstr ""
-"L’adaptateur Scripto\\Api\\Adapter\\ScriptoMediaAdapter n’implémente pas "
-"l’opération \"create\"."
-
-#: src/Api/Adapter/ScriptoMediaAdapter.php:170
-msgid "A Scripto item must not be null."
-msgstr "Un contenu Scripto ne peut pas être vide."
-
-#: src/Api/Adapter/ScriptoMediaAdapter.php:173
-msgid "A media must not be null."
-msgstr "Un média Scripto ne peut pas être vide."
-
-#: src/Api/Adapter/ScriptoMediaAdapter.php:179
-msgid "Invalid completed revision ID."
-msgstr "Numéro de révision complète invalide."
-
-#: src/Api/Adapter/ScriptoMediaAdapter.php:186
-msgid "Invalid approved revision ID."
-msgstr "Numéro d’approbation de révision invalide."
-
-#: src/Api/Adapter/ScriptoProjectAdapter.php:74
-msgid "An owner must have an ID"
-msgstr "Un propriétaire doit avoir un numéro"
-
-#: src/Api/Adapter/ScriptoProjectAdapter.php:77
-msgid "An item set must have an ID"
-msgstr "Une collection doit avoir un numéro"
-
-#: src/Api/Adapter/ScriptoProjectAdapter.php:80
-msgid "A property must have an ID"
-msgstr "Une propriété doit avoir un numéro"
-
-#: src/Api/Adapter/ScriptoProjectAdapter.php:177
-msgid "A Scripto project title must not be null"
-msgstr "Le titre d’un projet Scripto ne peut pas être vide"
-
-#: src/Api/Adapter/ScriptoItemAdapter.php:37
-msgid ""
-"The Scripto\\Api\\Adapter\\ScriptoItemAdapter adapter does not implement the"
-" create operation."
-msgstr ""
-"L’adaptateur Scripto\\Api\\Adapter\\ScriptoMediaAdapter n’implémente pas "
-"l’opération \"create\"."
-
-#: src/Api/Adapter/ScriptoItemAdapter.php:127
-msgid "A Scripto project must not be null"
-msgstr "Un projet Scripto ne peut pas être vide"
-
-#: src/Api/Adapter/ScriptoItemAdapter.php:130
-msgid "An item must not be null"
-msgstr "Un contenu ne peut pas être vide"
 
 #: src/ViewHelper/type_string_map.php:7
 msgid "Documents"
@@ -2858,14 +2774,6 @@ msgstr "Pas de transcription"
 msgid "No translation"
 msgstr "Pas de traduction"
 
-#: src/ViewHelper/Scripto.php:519
-msgid "Track media"
-msgstr ""
-
-#: src/ViewHelper/Scripto.php:522
-msgid "No longer tracking media"
-msgstr ""
-
 #: src/ViewHelper/breadcrumbs_route_map.php:15
 msgid "User contributions"
 msgstr "Contributions utilisateurs"
@@ -2877,6 +2785,243 @@ msgstr "Veille utilisateur"
 #: src/ViewHelper/breadcrumbs_route_map.php:30
 msgid "Review project"
 msgstr "Réviser le projet"
+
+#: src/ViewHelper/Scripto.php:519
+msgid "Track media"
+msgstr ""
+
+#: src/ViewHelper/Scripto.php:522
+msgid "No longer tracking media"
+msgstr ""
+
+#: src/Api/Representation/ScriptoItemRepresentation.php:11
+#: src/Api/Representation/ScriptoMediaRepresentation.php:12
+msgid "New"
+msgstr "Nouveau"
+
+#: src/Api/Representation/ScriptoItemRepresentation.php:12
+#: src/Api/Representation/ScriptoMediaRepresentation.php:13
+msgid "In progress"
+msgstr "En cours"
+
+#: src/Api/Representation/ScriptoMediaRepresentation.php:465
+msgid "Confirmed only"
+msgstr "Seulement les confirmés"
+
+#: src/Api/Representation/ScriptoMediaRepresentation.php:468
+msgid "Admin only"
+msgstr "Seulement aux admin"
+
+#: src/Api/Representation/ScriptoMediaRepresentation.php:481
+msgid "Open to all"
+msgstr "Ouvert à tous"
+
+#: src/Api/Adapter/ScriptoProjectAdapter.php:74
+msgid "An owner must have an ID"
+msgstr "Un propriétaire doit avoir un numéro"
+
+#: src/Api/Adapter/ScriptoProjectAdapter.php:77
+msgid "An item set must have an ID"
+msgstr "Une collection doit avoir un numéro"
+
+#: src/Api/Adapter/ScriptoProjectAdapter.php:80
+msgid "A property must have an ID"
+msgstr "Une propriété doit avoir un numéro"
+
+#: src/Api/Adapter/ScriptoProjectAdapter.php:177
+msgid "A Scripto project title must not be null"
+msgstr "Le titre d’un projet Scripto ne peut pas être vide"
+
+#: src/Api/Adapter/ScriptoMediaAdapter.php:46
+msgid ""
+"The Scripto\\Api\\Adapter\\ScriptoMediaAdapter adapter does not implement "
+"the create operation."
+msgstr ""
+"L’adaptateur Scripto\\Api\\Adapter\\ScriptoMediaAdapter n’implémente pas "
+"l’opération \"create\"."
+
+#: src/Api/Adapter/ScriptoMediaAdapter.php:170
+msgid "A Scripto item must not be null."
+msgstr "Un contenu Scripto ne peut pas être vide."
+
+#: src/Api/Adapter/ScriptoMediaAdapter.php:173
+msgid "A media must not be null."
+msgstr "Un média Scripto ne peut pas être vide."
+
+#: src/Api/Adapter/ScriptoMediaAdapter.php:179
+msgid "Invalid completed revision ID."
+msgstr "Numéro de révision complète invalide."
+
+#: src/Api/Adapter/ScriptoMediaAdapter.php:186
+msgid "Invalid approved revision ID."
+msgstr "Numéro d’approbation de révision invalide."
+
+#: src/Api/Adapter/ScriptoItemAdapter.php:37
+msgid ""
+"The Scripto\\Api\\Adapter\\ScriptoItemAdapter adapter does not implement the"
+" create operation."
+msgstr ""
+"L’adaptateur Scripto\\Api\\Adapter\\ScriptoMediaAdapter n’implémente pas "
+"l’opération \"create\"."
+
+#: src/Api/Adapter/ScriptoItemAdapter.php:127
+msgid "A Scripto project must not be null"
+msgstr "Un projet Scripto ne peut pas être vide"
+
+#: src/Api/Adapter/ScriptoItemAdapter.php:130
+msgid "An item must not be null"
+msgstr "Un contenu ne peut pas être vide"
+
+#: src/Controller/PublicApp/IndexController.php:51
+msgid ""
+"Your Scripto account has been created! Please check your email for a link to"
+" activate your account."
+msgstr ""
+"Votre compte Scripto a été créé ! Merci de vérifier vos mails et de cliquer "
+"sur le lien pour activer votre compte."
+
+#: src/Controller/PublicApp/MediaController.php:164
+#: src/Controller/Admin/MediaController.php:150
+#: src/Controller/Admin/MediaController.php:248
+msgid "Scripto media successfully updated."
+msgstr "Mise à jour du média Scripto effectuée."
+
+#: src/Controller/Admin/MediaController.php:93
+#: src/Controller/Admin/MediaController.php:216
+msgid "Scripto media revision successfully reverted."
+msgstr ""
+"Le retour à la révision s'est correctement effectué pour le média Scripto."
+
+#: src/Controller/Admin/MediaController.php:354
+#: src/Controller/Admin/MediaController.php:441
+msgid "Scripto media successfully edited"
+msgstr "Édition du média Scripto effectuée"
+
+#: src/Controller/Admin/ProjectController.php:44
+msgid "Scripto project successfully created."
+msgstr "Projet Scripto créé avec succès."
+
+#: src/Controller/Admin/ProjectController.php:77
+msgid "Scripto project successfully edited."
+msgstr "Projet Scripto correctement édité."
+
+#: src/Controller/Admin/ProjectController.php:104
+msgid "Scripto project successfully deleted"
+msgstr "Projet Scripto correctement supprimé"
+
+#: src/Controller/Admin/ProjectController.php:154
+#, php-format
+msgid "Syncing Scripto project. This may take a while. %s"
+msgstr "Synchronisation du projet Scripto. Cela peut prendre un moment. %s"
+
+#: src/Controller/Admin/ProjectController.php:179
+#, php-format
+msgid "Importing Scripto project text. This may take a while. %s"
+msgstr "Import du projet Scripto. Cela peut prendre un moment. %s"
+
+#: src/Controller/Admin/ProjectController.php:204
+#, php-format
+msgid "Unimporting Scripto project text. This may take a while. %s"
+msgstr ""
+"Annulation de l’import du projet Scripto. Cela peut prendre un moment. %s"
+
+#: src/Controller/Admin/ItemController.php:31
+#, php-format
+msgid "This project has no item set. %s"
+msgstr "Ce projet n’a pas de collection. %s"
+
+#: src/Controller/Admin/ItemController.php:42
+#, php-format
+msgid "This project has no property. %s"
+msgstr "Ce projet n’a pas de propriété. %s"
+
+#: src/Form/ProjectImportForm.php:14
+msgid "Import project"
+msgstr "Importer le projet"
+
+#: src/Form/MediaForm.php:14
+msgid "Toggle complete"
+msgstr "Inverser le statut Complet"
+
+#: src/Form/MediaForm.php:27
+msgid "Complete action"
+msgstr "Action compléter"
+
+#: src/Form/MediaForm.php:28 src/Form/MediaForm.php:53
+msgid "Select action:"
+msgstr "Choisir l’action :"
+
+#: src/Form/MediaForm.php:39
+msgid "Toggle approved"
+msgstr "Inverser le statut Approuvé"
+
+#: src/Form/MediaForm.php:52
+msgid "Approved action"
+msgstr "Action Approuver"
+
+#: src/Form/MediaForm.php:64 src/Form/MediaBatchForm.php:44
+msgid "Protection level"
+msgstr "Niveau de protection"
+
+#: src/Form/MediaForm.php:66 src/Form/MediaBatchForm.php:47
+msgid "Allow all users"
+msgstr "Autoriser tous les utilisateurs"
+
+#: src/Form/MediaForm.php:67 src/Form/MediaBatchForm.php:48
+msgid "Allow only confirmed users"
+msgstr "Autoriser seulement les utilisateurs confirmés"
+
+#: src/Form/MediaForm.php:68 src/Form/MediaBatchForm.php:49
+msgid "Allow only administrators"
+msgstr "Autoriser seulement les administrateurs"
+
+#: src/Form/MediaForm.php:79 src/Form/MediaBatchForm.php:57
+msgid "Protection expiry"
+msgstr "Expiration de la protection"
+
+#: src/Form/MediaForm.php:81 src/Form/MediaBatchForm.php:59
+msgid "infinite"
+msgstr "sans limite"
+
+#: src/Form/MediaForm.php:82 src/Form/MediaBatchForm.php:60
+msgid "1 hour"
+msgstr "1 heure"
+
+#: src/Form/MediaForm.php:84 src/Form/MediaBatchForm.php:62
+msgid "1 week"
+msgstr "1 semaine"
+
+#: src/Form/MediaForm.php:85 src/Form/MediaBatchForm.php:63
+msgid "2 weeks"
+msgstr "2 semaines"
+
+#: src/Form/MediaForm.php:86 src/Form/MediaBatchForm.php:64
+msgid "1 month"
+msgstr "1 mois"
+
+#: src/Form/MediaForm.php:87 src/Form/MediaBatchForm.php:65
+msgid "3 months"
+msgstr "3 mois"
+
+#: src/Form/MediaForm.php:88 src/Form/MediaBatchForm.php:66
+msgid "6 months"
+msgstr "6 mois"
+
+#: src/Form/MediaForm.php:89 src/Form/MediaBatchForm.php:67
+msgid "1 year"
+msgstr "1 an"
+
+#: src/Form/MediaPublicAppForm.php:24
+msgid "Change summary"
+msgstr "Résumé des changements"
+
+#: src/Form/MediaPublicAppForm.php:26
+msgid "Summarize your changes"
+msgstr "Résumer vos changements"
+
+#: src/Form/MediaPublicAppForm.php:34
+msgid "Mark complete"
+msgstr "Marquer complet"
 
 #: src/Form/MediaBatchForm.php:14
 msgid "Completion status"
@@ -2894,58 +3039,6 @@ msgstr "Incomplet"
 msgid "Approval status"
 msgstr "Statut d’approbation"
 
-#: src/Form/MediaBatchForm.php:44 src/Form/MediaForm.php:64
-msgid "Protection level"
-msgstr "Niveau de protection"
-
-#: src/Form/MediaBatchForm.php:47 src/Form/MediaForm.php:66
-msgid "Allow all users"
-msgstr "Autoriser tous les utilisateurs"
-
-#: src/Form/MediaBatchForm.php:48 src/Form/MediaForm.php:67
-msgid "Allow only confirmed users"
-msgstr "Autoriser seulement les utilisateurs confirmés"
-
-#: src/Form/MediaBatchForm.php:49 src/Form/MediaForm.php:68
-msgid "Allow only administrators"
-msgstr "Autoriser seulement les administrateurs"
-
-#: src/Form/MediaBatchForm.php:57 src/Form/MediaForm.php:79
-msgid "Protection expiry"
-msgstr "Expiration de la protection"
-
-#: src/Form/MediaBatchForm.php:59 src/Form/MediaForm.php:81
-msgid "infinite"
-msgstr "sans limite"
-
-#: src/Form/MediaBatchForm.php:60 src/Form/MediaForm.php:82
-msgid "1 hour"
-msgstr "1 heure"
-
-#: src/Form/MediaBatchForm.php:62 src/Form/MediaForm.php:84
-msgid "1 week"
-msgstr "1 semaine"
-
-#: src/Form/MediaBatchForm.php:63 src/Form/MediaForm.php:85
-msgid "2 weeks"
-msgstr "2 semaines"
-
-#: src/Form/MediaBatchForm.php:64 src/Form/MediaForm.php:86
-msgid "1 month"
-msgstr "1 mois"
-
-#: src/Form/MediaBatchForm.php:65 src/Form/MediaForm.php:87
-msgid "3 months"
-msgstr "3 mois"
-
-#: src/Form/MediaBatchForm.php:66 src/Form/MediaForm.php:88
-msgid "6 months"
-msgstr "6 mois"
-
-#: src/Form/MediaBatchForm.php:67 src/Form/MediaForm.php:89
-msgid "1 year"
-msgstr "1 an"
-
 #: src/Form/MediaBatchForm.php:75
 msgid "Watchlist status"
 msgstr "Statut de veille"
@@ -2958,9 +3051,50 @@ msgstr "Surveillé"
 msgid "Unwatch"
 msgstr "Non surveillé"
 
+#: src/Form/ProjectUnimportForm.php:14
+msgid "Unimport project"
+msgstr "Annuler l’import du projet"
+
 #: src/Form/ScriptoLogoutForm.php:15
 msgid "Log out"
 msgstr "Se déconnecter"
+
+#: src/Form/CreateAccountForm.php:14 src/Form/ScriptoLoginForm.php:15
+msgid "Username"
+msgstr "Nom d’utilisateur"
+
+#: src/Form/CreateAccountForm.php:44
+msgid "Email address"
+msgstr "Adresse mail"
+
+#: src/Form/CreateAccountForm.php:54
+msgid "Real name"
+msgstr "Nom réel"
+
+#: src/Form/CreateAccountForm.php:61
+msgid "Create your account"
+msgstr "Créer son compte"
+
+#: src/Form/ModuleConfigForm.php:27
+msgid "MediaWiki API URL"
+msgstr "Url de l’api MediaWiki"
+
+#: src/Form/ModuleConfigForm.php:28
+msgid "Enter the URL to your MediaWiki API endpoint."
+msgstr "Indiquer l’url de l’api de votre MediaWiki."
+
+#: src/Form/ModuleConfigForm.php:55
+#, php-format
+msgid ""
+"Invalid MediaWiki API. The URL must resolve to a MediaWiki API endpoint and "
+"the MediaWiki version must be %s or greater."
+msgstr ""
+"Api MediaWiki invalide. L’url doit correspondre à une api MediaWiki et la "
+"version MediaWiki doit être supérieure ou égale à %s."
+
+#: src/Form/RevisionRevertForm.php:14
+msgid "Confirm reversion"
+msgstr "Confirmer le retour"
 
 #: src/Form/ProjectForm.php:18
 msgid "Enter the title of this project."
@@ -3067,146 +3201,6 @@ msgstr ""
 #: src/Form/ProjectForm.php:204
 msgid "Generic content"
 msgstr "Contenu générique"
-
-#: src/Form/ProjectUnimportForm.php:14
-msgid "Unimport project"
-msgstr "Annuler l’import du projet"
-
-#: src/Form/ScriptoLoginForm.php:15 src/Form/CreateAccountForm.php:14
-msgid "Username"
-msgstr "Nom d’utilisateur"
-
-#: src/Form/ModuleConfigForm.php:27
-msgid "MediaWiki API URL"
-msgstr "Url de l’api MediaWiki"
-
-#: src/Form/ModuleConfigForm.php:28
-msgid "Enter the URL to your MediaWiki API endpoint."
-msgstr "Indiquer l’url de l’api de votre MediaWiki."
-
-#: src/Form/ModuleConfigForm.php:55
-#, php-format
-msgid ""
-"Invalid MediaWiki API. The URL must resolve to a MediaWiki API endpoint and "
-"the MediaWiki version must be %s or greater."
-msgstr ""
-"Api MediaWiki invalide. L’url doit correspondre à une api MediaWiki et la "
-"version MediaWiki doit être supérieure ou égale à %s."
-
-#: src/Form/CreateAccountForm.php:44
-msgid "Email address"
-msgstr "Adresse mail"
-
-#: src/Form/CreateAccountForm.php:54
-msgid "Real name"
-msgstr "Nom réel"
-
-#: src/Form/CreateAccountForm.php:61
-msgid "Create your account"
-msgstr "Créer son compte"
-
-#: src/Form/RevisionRevertForm.php:14
-msgid "Confirm reversion"
-msgstr "Confirmer le retour"
-
-#: src/Form/MediaForm.php:14
-msgid "Toggle complete"
-msgstr "Inverser le statut Complet"
-
-#: src/Form/MediaForm.php:27
-msgid "Complete action"
-msgstr "Action compléter"
-
-#: src/Form/MediaForm.php:28 src/Form/MediaForm.php:53
-msgid "Select action:"
-msgstr "Choisir l’action :"
-
-#: src/Form/MediaForm.php:39
-msgid "Toggle approved"
-msgstr "Inverser le statut Approuvé"
-
-#: src/Form/MediaForm.php:52
-msgid "Approved action"
-msgstr "Action Approuver"
-
-#: src/Form/ProjectImportForm.php:14
-msgid "Import project"
-msgstr "Importer le projet"
-
-#: src/Form/MediaPublicAppForm.php:24
-msgid "Change summary"
-msgstr "Résumé des changements"
-
-#: src/Form/MediaPublicAppForm.php:26
-msgid "Summarize your changes"
-msgstr "Résumer vos changements"
-
-#: src/Form/MediaPublicAppForm.php:34
-msgid "Mark complete"
-msgstr "Marquer complet"
-
-#: src/Controller/PublicApp/IndexController.php:51
-msgid ""
-"Your Scripto account has been created! Please check your email for a link to"
-" activate your account."
-msgstr ""
-"Votre compte Scripto a été créé ! Merci de vérifier vos mails et de cliquer "
-"sur le lien pour activer votre compte."
-
-#: src/Controller/PublicApp/MediaController.php:164
-#: src/Controller/Admin/MediaController.php:150
-#: src/Controller/Admin/MediaController.php:248
-msgid "Scripto media successfully updated."
-msgstr "Mise à jour du média Scripto effectuée."
-
-#: src/Controller/Admin/ItemController.php:31
-#, php-format
-msgid "This project has no item set. %s"
-msgstr "Ce projet n’a pas de collection. %s"
-
-#: src/Controller/Admin/ItemController.php:42
-#, php-format
-msgid "This project has no property. %s"
-msgstr "Ce projet n’a pas de propriété. %s"
-
-#: src/Controller/Admin/ProjectController.php:44
-msgid "Scripto project successfully created."
-msgstr "Projet Scripto créé avec succès."
-
-#: src/Controller/Admin/ProjectController.php:77
-msgid "Scripto project successfully edited."
-msgstr "Projet Scripto correctement édité."
-
-#: src/Controller/Admin/ProjectController.php:104
-msgid "Scripto project successfully deleted"
-msgstr "Projet Scripto correctement supprimé"
-
-#: src/Controller/Admin/ProjectController.php:154
-#, php-format
-msgid "Syncing Scripto project. This may take a while. %s"
-msgstr "Synchronisation du projet Scripto. Cela peut prendre un moment. %s"
-
-#: src/Controller/Admin/ProjectController.php:179
-#, php-format
-msgid "Importing Scripto project text. This may take a while. %s"
-msgstr "Import du projet Scripto. Cela peut prendre un moment. %s"
-
-#: src/Controller/Admin/ProjectController.php:204
-#, php-format
-msgid "Unimporting Scripto project text. This may take a while. %s"
-msgstr ""
-"Annulation de l’import du projet Scripto. Cela peut prendre un moment. %s"
-
-#: src/Controller/Admin/MediaController.php:93
-#: src/Controller/Admin/MediaController.php:216
-msgid "Scripto media revision successfully reverted."
-msgstr ""
-"Le retour à la révision s'est correctement effectué pour le média Scripto."
-
-#: src/Controller/Admin/MediaController.php:354
-#: src/Controller/Admin/MediaController.php:441
-msgid "Scripto media successfully edited"
-msgstr "Édition du média Scripto effectuée"
 
 #: vocabs/scripto.n3
 msgid "A plain text representation of the content of a resource."

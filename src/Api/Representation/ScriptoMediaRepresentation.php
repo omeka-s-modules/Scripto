@@ -50,7 +50,7 @@ class ScriptoMediaRepresentation extends AbstractEntityRepresentation
     }
 
     public function linkPretty($thumbnailType = 'square', $titleDefault = null,
-        $action = null, array $attributes = null
+        $action = null, ?array $attributes = null
     ) {
         $media = $this->media();
         $escape = $this->getViewHelper('escapeHtml');

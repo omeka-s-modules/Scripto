@@ -2,24 +2,29 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
+# Translators:
+# Tomasz Sopylo <tomasz@sopylo.pl>, 2026
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-20 12:02-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2018-11-27 19:38+0000\n"
+"Last-Translator: Tomasz Sopylo <tomasz@sopylo.pl>, 2026\n"
+"Language-Team: Polish (https://app.transifex.com/omeka/teams/14184/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: pl\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #: Module.php:436
 msgid "Cannot access Scripto. Missing MediaWiki API URL."
 msgstr ""
+"Nie można uzyskać dostępu do Scripto. Brakujący adres URL API MediaWiki."
 
 #: Module.php:468
 #, php-format
@@ -27,6 +32,8 @@ msgid ""
 "The MediaWiki user does not have the necessary permissions to create the "
 "page \"%s\""
 msgstr ""
+"Użytkownik MediaWiki nie ma niezbędnych uprawnień do utworzenia strony "
+"\"%s\""
 
 #: Module.php:474
 #, php-format
@@ -34,332 +41,335 @@ msgid ""
 "The MediaWiki user does not have the necessary permissions to edit the page "
 "\"%s\""
 msgstr ""
+"Użytkownik MediaWiki nie ma niezbędnych uprawnień do edytowania strony "
+"\"%s\""
 
 #: src/Controller/Admin/ItemController.php:35
 msgid "Set an item set here."
-msgstr ""
+msgstr "Ustaw zestaw przedmiotów tutaj."
 
 #: src/Controller/Admin/ItemController.php:46
 msgid "Set a property here."
-msgstr ""
+msgstr "Ustaw tutaj właściwość."
 
 #: src/Controller/Admin/MediaController.php:165
 #: src/Controller/Admin/MediaController.php:260
 #, php-format
 msgid "Existing expiration time: %s"
-msgstr ""
+msgstr "Istniejący czas wygaśnięcia: %s"
 
 #: src/Controller/Admin/ProjectController.php:158
 msgid "See this job for sync progress."
-msgstr ""
+msgstr "Zobacz tę pracę dla postępu synchronizacji."
 
 #: src/Controller/Admin/ProjectController.php:183
 msgid "See this job for import progress."
-msgstr ""
+msgstr "Zobacz to zadanie dotyczące postępu importu."
 
 #: src/Controller/Admin/ProjectController.php:208
 msgid "See this job for unimport progress."
-msgstr ""
+msgstr "Zobacz tę pracę dla postępu importu."
 
 #: src/ControllerPlugin/Scripto.php:149
 msgid "Successfully logged in to Scripto."
-msgstr ""
+msgstr "Pomyślnie zalogowano do Scripto."
 
 #: src/ControllerPlugin/Scripto.php:176
 msgid "Successfully logged out of Scripto."
-msgstr ""
+msgstr "Pomyślnie wylogowano z Scripto."
 
 #: src/ViewHelper/Scripto.php:111 view/scripto/admin/index/index.phtml:8
 #: view/scripto/admin/project/add.phtml:8
 #: view/scripto/admin/project/browse.phtml:8
 #: view/scripto/admin/user/browse.phtml:8
 msgid "Scripto"
-msgstr ""
+msgstr "Scripto"
 
 #: src/ViewHelper/Scripto.php:125 view/scripto/admin/project/browse.phtml:8
 #: view/scripto/public-app/project/browse.phtml:2
 msgid "Projects"
-msgstr ""
+msgstr "Projekty"
 
 #: src/ViewHelper/Scripto.php:227 src/ViewHelper/Scripto.php:282
 #, php-format
 msgid "Logged in to Scripto as %s"
-msgstr ""
+msgstr "Zalogowano do Scripto jako %s"
 
 #: src/ViewHelper/Scripto.php:229 src/ViewHelper/Scripto.php:230
 #: src/ViewHelper/Scripto.php:283 view/scripto/admin/index/index.phtml:8
 msgid "Dashboard"
-msgstr ""
+msgstr "Panel sterowania"
 
 #: src/ViewHelper/Scripto.php:232 src/ViewHelper/Scripto.php:233
-#: src/ViewHelper/Scripto.php:284 view/scripto/admin/user/contributions.phtml:8
+#: src/ViewHelper/Scripto.php:284
+#: view/scripto/admin/user/contributions.phtml:8
 msgid "Contributions"
-msgstr ""
+msgstr "Wkłady"
 
 #: src/ViewHelper/Scripto.php:235 src/ViewHelper/Scripto.php:236
 #: src/ViewHelper/Scripto.php:285 view/scripto/admin/user/watchlist.phtml:9
 msgid "Watchlist"
-msgstr ""
+msgstr "Lista obserwacyjna"
 
 #: src/ViewHelper/Scripto.php:248
 msgid "Log in to Scripto"
-msgstr ""
+msgstr "Zaloguj się do Scripto"
 
 #: src/ViewHelper/Scripto.php:359 src/ViewHelper/Scripto.php:360
 msgid "First page"
-msgstr ""
+msgstr "Pierwsza strona"
 
 #: src/ViewHelper/Scripto.php:365 src/ViewHelper/Scripto.php:366
 msgid "Next page"
-msgstr ""
+msgstr "Następna strona"
 
 #: src/ViewHelper/Scripto.php:394
 #, php-format
 msgid "%s of %s"
-msgstr ""
+msgstr "%s z %s"
 
 #: src/ViewHelper/Scripto.php:413 view/scripto/admin/media/show-talk.phtml:102
 #: view/scripto/admin/media/show.phtml:91
 msgid "Older revision"
-msgstr ""
+msgstr "Starsza wersja"
 
 #: src/ViewHelper/Scripto.php:416 view/scripto/admin/media/show-talk.phtml:107
 #: view/scripto/admin/media/show.phtml:96
 msgid "Newer revision"
-msgstr ""
+msgstr "Nowsza wersja"
 
 #: src/ViewHelper/Scripto.php:430
 msgid "6 hours"
-msgstr ""
+msgstr "6 godzin"
 
 #: src/ViewHelper/Scripto.php:431
 msgid "12 hours"
-msgstr ""
+msgstr "12 godzin"
 
 #: src/ViewHelper/Scripto.php:432
 msgid "1 day"
-msgstr ""
+msgstr "1 dzień"
 
 #: src/ViewHelper/Scripto.php:433
 msgid "3 days"
-msgstr ""
+msgstr "3 dni"
 
 #: src/ViewHelper/Scripto.php:434
 msgid "7 days"
-msgstr ""
+msgstr "7 dni"
 
 #: src/ViewHelper/Scripto.php:435
 msgid "30 days"
-msgstr ""
+msgstr "30 dni"
 
 #: src/ViewHelper/Scripto.php:436
 msgid "90 days"
-msgstr ""
+msgstr "90 dni"
 
 #: src/ViewHelper/Scripto.php:453
 msgid "Period of time to display:"
-msgstr ""
+msgstr "Okres czasu do wyświetlenia:"
 
 #: src/ViewHelper/Scripto.php:535
 msgid "Italic"
-msgstr ""
+msgstr "Kursywa"
 
 #: src/ViewHelper/Scripto.php:536
 msgid "Bold"
-msgstr ""
+msgstr "Pogrubiony"
 
 #: src/ViewHelper/Scripto.php:537
 msgid "Strike out"
-msgstr ""
+msgstr "Przekreśl"
 
 #: src/ViewHelper/Scripto.php:538
 msgid "Underline"
-msgstr ""
+msgstr "Podkreślenie"
 
 #: src/ViewHelper/Scripto.php:539
 msgid "Blockquote"
-msgstr ""
+msgstr "Cytat blokowy"
 
 #: src/ViewHelper/Scripto.php:540
 msgid "Hidden comment"
-msgstr ""
+msgstr "Ukryty komentarz"
 
 #: src/ViewHelper/Scripto.php:541
 msgid "Level 1 heading"
-msgstr ""
+msgstr "<h1>Nagłówek poziomu 1</h1>"
 
 #: src/ViewHelper/Scripto.php:542
 msgid "Level 2 heading"
-msgstr ""
+msgstr "<h2>Nagłówek poziomu 2</h2>"
 
 #: src/ViewHelper/Scripto.php:543
 msgid "Level 3 heading"
-msgstr ""
+msgstr "<h3>Nagłówek poziomu 3</h3>"
 
 #: src/ViewHelper/Scripto.php:544
 msgid "Level 4 heading"
-msgstr ""
+msgstr "Nagłówek poziomu 4"
 
 #: src/ViewHelper/Scripto.php:545
 msgid "Level 5 heading"
-msgstr ""
+msgstr "<h5>Nagłówek poziomu 5</h5>"
 
 #: src/ViewHelper/Scripto.php:546
 msgid "Preformatted"
-msgstr ""
+msgstr "Preformatowany"
 
 #: src/ViewHelper/Scripto.php:547
 msgid "Horizontal rule"
-msgstr ""
+msgstr "Linia pozioma"
 
 #: src/ViewHelper/Scripto.php:549
 msgid "Signature"
-msgstr ""
+msgstr "Podpis"
 
 #: src/ViewHelper/Scripto.php:550
 msgid "Strikethrough"
-msgstr ""
+msgstr "Przekreślenie"
 
 #: src/ViewHelper/Scripto.php:551
 msgid "Unordered list"
-msgstr ""
+msgstr "Lista nieuporządkowana"
 
 #: src/ViewHelper/Scripto.php:552
 msgid "Ordered list"
-msgstr ""
+msgstr "Lista uporządkowana"
 
 #: src/ViewHelper/Scripto.php:572
 msgid "Select one"
-msgstr ""
+msgstr "Wybierz jeden"
 
 #: view/common/block-layout/scripto-block-form.phtml:2
 msgid "Add a link to this Scripto project:"
-msgstr ""
+msgstr "Dodaj link do tego projektu Scripto:"
 
 #: view/common/block-layout/scripto-block-form.phtml:5
 #: view/scripto/admin/project/browse.phtml:113
 msgid "No Scripto projects found."
-msgstr ""
+msgstr "Nie znaleziono projektów Scripto."
 
 #: view/common/block-layout/scripto-block.phtml:15
 msgid "The Scripto project is not found."
-msgstr ""
+msgstr "Projekt Scripto nie został znaleziony."
 
 #: view/common/media-head.phtml:5
 msgid "Browse revision history"
-msgstr ""
+msgstr "Przeglądaj historię wersji"
 
 #: view/common/media-head.phtml:7 view/scripto/admin/media/show.phtml:24
 msgid "View notes"
-msgstr ""
+msgstr "Zobacz notatki"
 
 #: view/common/media-viewer.phtml:7
 msgid "Zoom in"
-msgstr ""
+msgstr "Powiększ"
 
 #: view/common/media-viewer.phtml:8
 msgid "Zoom out"
-msgstr ""
+msgstr "Oddal widok"
 
 #: view/common/media-viewer.phtml:9
 msgid "Rotate right"
-msgstr ""
+msgstr "Obróć w prawo"
 
 #: view/common/media-viewer.phtml:10
 msgid "Rotate left"
-msgstr ""
+msgstr "Obróć w lewo"
 
 #: view/layout/layout-scripto-public-app.phtml:30
 msgid "Toggle menu"
-msgstr ""
+msgstr "Przełącz menu"
 
 #: view/layout/layout-scripto-public-app.phtml:40
 #: view/scripto/public-app/index/create-account.phtml:2
 msgid "Create account"
-msgstr ""
+msgstr "Utwórz konto"
 
 #: view/layout/layout-scripto-public-app.phtml:47
 #: view/scripto/public-app/project/guidelines.phtml:2
 msgid "Project guidelines"
-msgstr ""
+msgstr "Wytyczne projektu"
 
 #: view/layout/layout-scripto-public-app.phtml:53
 #, php-format
 msgid "Search %s"
-msgstr ""
+msgstr "Szukaj %s"
 
 #: view/layout/layout-scripto-public-app.phtml:66
 msgid "Content"
-msgstr ""
+msgstr "Zawartość"
 
 #: view/layout/layout-scripto-public-app.phtml:87
 msgid "Back to top"
-msgstr ""
+msgstr "Powrót na górę"
 
 #: view/scripto/admin/imported-scripto-item.phtml:8
 #: view/scripto/admin/imported-scripto-media.phtml:8
 #: view/scripto/admin/project/show-details.phtml:14
 #: view/scripto/admin/project/show-details.phtml:31
 msgid "Not set"
-msgstr ""
+msgstr "Nie ustawiono"
 
 #: view/scripto/admin/index/index.phtml:12
 #: view/scripto/admin/item/browse.phtml:15
 msgid "Actions"
-msgstr ""
+msgstr "Działania"
 
 #: view/scripto/admin/index/index.phtml:14
 msgid "Browse projects"
-msgstr ""
+msgstr "Przeglądaj projekty"
 
 #: view/scripto/admin/index/index.phtml:16
 #: view/scripto/admin/project/browse.phtml:14
 msgid "Add new project"
-msgstr ""
+msgstr "Dodaj nowy projekt"
 
 #: view/scripto/admin/index/index.phtml:18
 msgid "Browse users"
-msgstr ""
+msgstr "Przeglądaj użytkowników"
 
 #: view/scripto/admin/index/index.phtml:28
 msgid "Projects you own"
-msgstr ""
+msgstr "Projekty, które posiadasz"
 
 #: view/scripto/admin/index/index.phtml:28
 #: view/scripto/admin/index/index.phtml:56
 msgid "View all projects"
-msgstr ""
+msgstr "Zobacz wszystkie projekty"
 
 #: view/scripto/admin/index/index.phtml:42
 #, php-format
 msgid "You do not own any projects. %s"
-msgstr ""
+msgstr "Nie posiadasz żadnych projektów. %s"
 
 #: view/scripto/admin/index/index.phtml:46
 msgid "Add a project here."
-msgstr ""
+msgstr "Dodaj tutaj projekt."
 
 #: view/scripto/admin/index/index.phtml:50
 msgid "You do not own any projects."
-msgstr ""
+msgstr "Nie posiadasz żadnych projektów."
 
 #: view/scripto/admin/index/index.phtml:56
 msgid "Projects you review"
-msgstr ""
+msgstr "Projekty, które przeglądasz"
 
 #: view/scripto/admin/index/index.phtml:68
 msgid "You are not reviewing any projects."
-msgstr ""
+msgstr "Nie przeglądasz żadnych projektów."
 
 #: view/scripto/admin/index/index.phtml:74
 #: view/scripto/public-app/index/index.phtml:3
 msgid "Your recent contributions"
-msgstr ""
+msgstr "Twoje ostatnie wkłady"
 
 #: view/scripto/admin/index/index.phtml:76
 #: view/scripto/public-app/index/index.phtml:5
 msgid "View your contributions"
-msgstr ""
+msgstr "Zobacz swoje wkłady"
 
 #: view/scripto/admin/index/index.phtml:112
 #: view/scripto/admin/index/index.phtml:122
@@ -378,7 +388,7 @@ msgstr ""
 #: view/scripto/public-app/user/watchlist.phtml:65
 #: view/scripto/public-app/user/watchlist.phtml:77
 msgid "diff"
-msgstr ""
+msgstr "różnica"
 
 #: view/scripto/admin/index/index.phtml:123
 #: view/scripto/admin/index/index.phtml:210
@@ -389,67 +399,68 @@ msgstr ""
 #: view/scripto/public-app/user/contributions.phtml:69
 #: view/scripto/public-app/user/watchlist.phtml:78
 msgid "hist"
-msgstr ""
+msgstr "hist"
 
 #: view/scripto/admin/index/index.phtml:151
 #: view/scripto/public-app/index/index.phtml:88
 msgid "No contributions found."
-msgstr ""
+msgstr "Nie znaleziono żadnych wkładów."
 
 #: view/scripto/admin/index/index.phtml:153
 #: view/scripto/public-app/index/index.phtml:90
 msgid "No contributions found. Do you need to log in to Scripto?"
-msgstr ""
+msgstr "Nie znaleziono żadnych wkładów. Czy musisz się zalogować do Scripto?"
 
 #: view/scripto/admin/index/index.phtml:160
 #: view/scripto/public-app/index/index.phtml:97
 msgid "Your recent watchlist"
-msgstr ""
+msgstr "Twoja ostatnia lista obserwowanych"
 
 #: view/scripto/admin/index/index.phtml:162
 #: view/scripto/public-app/index/index.phtml:99
 msgid "View your watchlist"
-msgstr ""
+msgstr "Zobacz swoją listę obserwacyjną"
 
 #: view/scripto/admin/index/index.phtml:238
 #: view/scripto/public-app/index/index.phtml:183
 msgid "No watchlist found."
-msgstr ""
+msgstr "Nie znaleziono listy obserwacyjnej."
 
 #: view/scripto/admin/index/index.phtml:240
 #: view/scripto/public-app/index/index.phtml:185
 msgid "No watchlist found. Do you need to log in to Scripto?"
 msgstr ""
+"Nie znaleziono listy obserwacyjnej. Czy musisz zalogować się do Scripto?"
 
 #: view/scripto/admin/item/browse.phtml:8
 #: view/scripto/admin/project/edit.phtml:8
 msgid "Scripto: Project"
-msgstr ""
+msgstr "Scripto: Projekt"
 
 #: view/scripto/admin/item/browse.phtml:17
 msgid "Edit project"
-msgstr ""
+msgstr "Edytuj projekt"
 
 #: view/scripto/admin/item/browse.phtml:18
 #: view/scripto/admin/item/browse.phtml:134
 msgid "Sync project"
-msgstr ""
+msgstr "Synchronizuj projekt"
 
 #: view/scripto/admin/item/browse.phtml:19
 #: view/scripto/admin/item/browse.phtml:147
 msgid "Import content"
-msgstr ""
+msgstr "Importuj zawartość"
 
 #: view/scripto/admin/item/browse.phtml:20
 #: view/scripto/admin/item/browse.phtml:164
 msgid "Unimport content"
-msgstr ""
+msgstr "Nieimportuj treści"
 
 #: view/scripto/admin/item/browse.phtml:39
 #: view/scripto/admin/item/browse.phtml:77
 #: view/scripto/admin/item/show-details.phtml:15
 msgid "Date synced"
-msgstr ""
+msgstr "Data zsynchronizowana"
 
 #: view/scripto/admin/item/browse.phtml:43
 #: view/scripto/admin/item/browse.phtml:78
@@ -457,59 +468,71 @@ msgstr ""
 #: view/scripto/admin/media/browse.phtml:114
 #: view/scripto/public-app/media/browse.phtml:27
 msgid "Last edited"
-msgstr ""
+msgstr "Ostatnia edycja"
 
 #: view/scripto/admin/item/browse.phtml:49
 #: view/scripto/admin/media/browse.phtml:64
 #: view/scripto/public-app/item/browse.phtml:15
 #: view/scripto/public-app/media/browse.phtml:60
 msgid "Is approved"
-msgstr ""
+msgstr "jest zatwierdzone"
 
 #: view/scripto/admin/item/browse.phtml:53
 #: view/scripto/admin/media/browse.phtml:68
 #: view/scripto/public-app/item/browse.phtml:19
 #: view/scripto/public-app/media/browse.phtml:64
 msgid "Is not approved"
-msgstr ""
+msgstr "Nie jest zatwierdzone"
 
 #: view/scripto/admin/item/browse.phtml:57
 #: view/scripto/public-app/item/browse.phtml:5
 msgid "Is in progress"
-msgstr ""
+msgstr "Jest w toku"
 
 #: view/scripto/admin/item/browse.phtml:61
 #: view/scripto/public-app/item/browse.phtml:9
 msgid "Is new"
-msgstr ""
+msgstr "jest nowy"
 
 #: view/scripto/admin/item/browse.phtml:65
 #: view/scripto/admin/media/browse.phtml:76
 msgid "Is edited after imported"
-msgstr ""
+msgstr "Jest edytowany po imporcie"
 
 #: view/scripto/admin/item/browse.phtml:115
 msgid ""
 "Do you need to sync the project? If you have recently synced, the sync job "
 "has likely not finished."
 msgstr ""
+"Czy potrzebujesz zsynchronizować projekt? Jeśli ostatnio synchronizowałeś, "
+"zadanie synchronizacji prawdopodobnie jeszcze się nie zakończyło."
 
 #: view/scripto/admin/item/browse.phtml:136
 msgid "This project has no item set. Set an item set to enable syncing."
 msgstr ""
+"Ten projekt nie ma ustawionego zbioru elementów. Ustaw zbiór elementów, aby "
+"włączyć synchronizację."
 
 #: view/scripto/admin/item/browse.phtml:138
 msgid ""
 "Synchronize this project with the configured item set. Once synchronized, "
-"this project will contain every item in the item set. You should synchronize "
-"periodically: any time the configured media types have changed, when items "
-"are added or removed from the item set, and when item media have been added, "
-"removed, or reordered."
+"this project will contain every item in the item set. You should synchronize"
+" periodically: any time the configured media types have changed, when items "
+"are added or removed from the item set, and when item media have been added,"
+" removed, or reordered."
 msgstr ""
+"Synchronizuj ten projekt z skonfigurowanym zestawem elementów. Po "
+"synchronizacji ten projekt będzie zawierał każdy element w zestawie "
+"elementów. Powinieneś synchronizować okresowo: za każdym razem, gdy zmieniły"
+" się skonfigurowane typy mediów, gdy elementy zostały dodane lub usunięte z "
+"zestawu elementów oraz gdy media elementów zostały dodane, usunięte lub "
+"zmienione ich kolejność."
 
 #: view/scripto/admin/item/browse.phtml:149
 msgid "This project has no property. Set a property to enable importing."
 msgstr ""
+"Ten projekt nie ma przypisanej właściwości. Ustaw właściwość, aby włączyć "
+"importowanie."
 
 #: view/scripto/admin/item/browse.phtml:151
 msgid ""
@@ -517,43 +540,52 @@ msgid ""
 "it is imported. Importing will copy approved content from the wiki into "
 "Omeka so that it can be viewed and searched."
 msgstr ""
+"Importuj zawartość projektu do Omeka. Scripto przechowuje zawartość w wiki "
+"przed jej importem. Importowanie skopiuje zatwierdzoną zawartość z wiki do "
+"Omeka, aby mogła być przeglądana i wyszukiwana."
 
 #: view/scripto/admin/item/browse.phtml:153
 #, php-format
 msgid ""
-"%s: All existing values matching the configured import target, property, and "
-"language tag will be overwritten or deleted."
+"%s: All existing values matching the configured import target, property, and"
+" language tag will be overwritten or deleted."
 msgstr ""
+"%s: Wszystkie istniejące wartości pasujące do skonfigurowanego celu importu,"
+" właściwości i tagu językowego zostaną nadpisane lub usunięte."
 
 #: view/scripto/admin/item/browse.phtml:166
 msgid "This project has no property. Set a property to enable unimporting."
 msgstr ""
+"Ten projekt nie ma właściwości. Ustaw właściwość, aby włączyć funkcję "
+"wycofywania importu."
 
 #: view/scripto/admin/item/browse.phtml:168
 msgid "Unimport project content from Omeka."
-msgstr ""
+msgstr "Nieimportuj zawartości projektu z Omeka."
 
 #: view/scripto/admin/item/browse.phtml:170
 #, php-format
 msgid ""
-"%s: All existing values matching the configured import target, property, and "
-"language tag will be deleted."
+"%s: All existing values matching the configured import target, property, and"
+" language tag will be deleted."
 msgstr ""
+"%s: Wszystkie istniejące wartości pasujące do skonfigurowanego celu importu,"
+" właściwości i tagu językowego zostaną usunięte."
 
 #: view/scripto/admin/item/show-details.phtml:52
 #: view/scripto/admin/media/show-details.phtml:84
 msgid "Omeka item"
-msgstr ""
+msgstr "Element Omeka"
 
 #: view/scripto/admin/item/show-details.phtml:58
 #: view/scripto/admin/media/show-details.phtml:90
 #: view/scripto/admin/project/show-details.phtml:9
 msgid "No description"
-msgstr ""
+msgstr "Brak opisu"
 
 #: view/scripto/admin/media/browse.phtml:16
 msgid "Omeka item metadata"
-msgstr ""
+msgstr "Metadane elementów Omeka"
 
 #: view/scripto/admin/media/browse.phtml:30
 #: view/scripto/admin/media/show-details.phtml:33
@@ -561,98 +593,98 @@ msgstr ""
 #: view/scripto/admin/project/browse.phtml:56
 #: view/scripto/admin/project/show-details.phtml:85
 msgid "Last synced"
-msgstr ""
+msgstr "Ostatnia synchronizacja"
 
 #: view/scripto/admin/media/browse.phtml:38
 #: view/scripto/admin/media/show-details.phtml:47
 #: view/scripto/public-app/media/browse.phtml:31
 msgid "Last completed"
-msgstr ""
+msgstr "Ostatnie zakończone"
 
 #: view/scripto/admin/media/browse.phtml:42
 #: view/scripto/admin/media/show-details.phtml:59
 #: view/scripto/public-app/media/browse.phtml:35
 msgid "Last approved"
-msgstr ""
+msgstr "Ostatnio zatwierdzone"
 
 #: view/scripto/admin/media/browse.phtml:48
 #: view/scripto/public-app/media/browse.phtml:44
 msgid "Is edited"
-msgstr ""
+msgstr "Jest edytowany"
 
 #: view/scripto/admin/media/browse.phtml:52
 #: view/scripto/public-app/media/browse.phtml:48
 msgid "Is not edited"
-msgstr ""
+msgstr "Nie jest edytowane"
 
 #: view/scripto/admin/media/browse.phtml:56
 #: view/scripto/public-app/media/browse.phtml:52
 msgid "Is completed"
-msgstr ""
+msgstr "Zakończono"
 
 #: view/scripto/admin/media/browse.phtml:60
 #: view/scripto/public-app/media/browse.phtml:56
 msgid "Is not completed"
-msgstr ""
+msgstr "Nie jest ukończone"
 
 #: view/scripto/admin/media/browse.phtml:72
 msgid "Is edited after approved"
-msgstr ""
+msgstr "Jest edytowany po zatwierdzeniu"
 
 #: view/scripto/admin/media/browse.phtml:80
 msgid "Is synced after imported"
-msgstr ""
+msgstr "Jest zsynchronizowane po zaimportowaniu"
 
 #: view/scripto/admin/media/browse.phtml:116
 #: view/scripto/admin/media/show-details.phtml:20
 #: view/scripto/admin/media/show-talk.phtml:147
 #: view/scripto/admin/media/show.phtml:235
 msgid "Edit protection"
-msgstr ""
+msgstr "Ochrona edycji"
 
 #: view/scripto/admin/media/browse.phtml:156
 msgid "Do you need to sync the project?"
-msgstr ""
+msgstr "Czy potrzebujesz zsynchronizować projekt?"
 
 #: view/scripto/admin/media/browse.phtml:178
 msgid "The Omeka item has no metadata."
-msgstr ""
+msgstr "Element Omeka nie ma metadanych."
 
 #: view/scripto/admin/media/show-details.phtml:24
 #, php-format
 msgid "%s; expiring %s"
-msgstr ""
+msgstr "%s; wygasające %s"
 
 #: view/scripto/admin/media/show-details.phtml:28
 msgid "never"
-msgstr ""
+msgstr "nigdy"
 
 #: view/scripto/admin/media/show-details.phtml:56
 #: view/scripto/admin/media/show.phtml:176
 msgid "Not completed"
-msgstr ""
+msgstr "Nieukończone"
 
 #: view/scripto/admin/media/show-details.phtml:72
 #: view/scripto/admin/media/show.phtml:222
 msgid "Not approved"
-msgstr ""
+msgstr "Nie zatwierdzone"
 
 #: view/scripto/admin/media/show-details.phtml:75
 msgid "MediaWiki page"
-msgstr ""
+msgstr "Strona MediaWiki"
 
 #: view/scripto/admin/media/show-details.phtml:80
 msgid "Omeka media"
-msgstr ""
+msgstr "Omeka media"
 
 #: view/scripto/admin/media/show-talk.phtml:11
 msgid "Notes"
-msgstr ""
+msgstr "Notatki"
 
 #: view/scripto/admin/media/show-talk.phtml:23
 #: view/scripto/admin/media/show.phtml:23
 msgid "Revision history"
-msgstr ""
+msgstr "Historia rewizji"
 
 #: view/scripto/admin/media/show-talk.phtml:31
 #: view/scripto/admin/media/show-talk.phtml:50
@@ -663,37 +695,37 @@ msgstr ""
 #: view/scripto/public-app/revision/show.phtml:14
 #: view/scripto/public-app/revision/show.phtml:15
 msgid "Wikitext"
-msgstr ""
+msgstr "Wikitext"
 
 #: view/scripto/admin/media/show-talk.phtml:33
 #: view/scripto/admin/media/show.phtml:34
 msgid "Omeka media metadata"
-msgstr ""
+msgstr "Metadane mediów Omeka"
 
 #: view/scripto/admin/media/show-talk.phtml:62
 #: view/scripto/public-app/media/show-talk.phtml:37
 msgid "No notes yet."
-msgstr ""
+msgstr "Brak notatek."
 
 #: view/scripto/admin/media/show-talk.phtml:64
 #: view/scripto/public-app/media/show-talk.phtml:41
 msgid "Browse notes history"
-msgstr ""
+msgstr "Przeglądaj historię notatek"
 
 #: view/scripto/admin/media/show-talk.phtml:91
 #: view/scripto/admin/media/show.phtml:80
 msgid "The Omeka media has no metadata."
-msgstr ""
+msgstr "Media Omeka nie posiada metadanych."
 
 #: view/scripto/admin/media/show-talk.phtml:112
 #: view/scripto/admin/media/show.phtml:101
 msgid "Latest revision"
-msgstr ""
+msgstr "Najnowsza rewizja"
 
 #: view/scripto/admin/media/show-talk.phtml:117
 #: view/scripto/admin/media/show.phtml:106
 msgid "This revision"
-msgstr ""
+msgstr "Ta poprawka"
 
 #: view/scripto/admin/media/show-talk.phtml:121
 #: view/scripto/admin/media/show.phtml:110
@@ -701,214 +733,218 @@ msgstr ""
 #: view/scripto/admin/media/show.phtml:186
 #, php-format
 msgid "%s: %s by %s"
-msgstr ""
+msgstr "%s: %s autorstwa %s"
 
 #: view/scripto/admin/media/show-talk.phtml:123
 #: view/scripto/admin/media/show.phtml:112
 msgid "Latest"
-msgstr ""
+msgstr "Najnowsze"
 
 #: view/scripto/admin/media/show-talk.phtml:124
 #: view/scripto/admin/media/show.phtml:113
 msgid "Out-of-date"
-msgstr ""
+msgstr "Nieaktualny"
 
 #: view/scripto/admin/media/show-talk.phtml:135
 #: view/scripto/admin/media/show.phtml:124
 msgid "Revert to this revision."
-msgstr ""
+msgstr "Cofnij do tej wersji."
 
 #: view/scripto/admin/media/show-talk.phtml:140
 #: view/scripto/admin/media/show.phtml:129
 msgid "There are no revisions."
-msgstr ""
+msgstr "Nie ma żadnych poprawek."
 
 #: view/scripto/admin/media/show-talk.phtml:162
 #: view/scripto/admin/media/show.phtml:252
 msgid "Revert to this revision"
-msgstr ""
+msgstr "Przywróć tę wersję"
 
 #: view/scripto/admin/media/show-talk.phtml:164
 #: view/scripto/admin/media/show.phtml:254
 #, php-format
 msgid ""
 "%s: You are reverting to an out-of-date revision. Any changes made since "
-"this revision will be lost, including changes that may be constructive. Note "
-"that this revert will not affect which revisions are marked as completed or "
-"approved."
+"this revision will be lost, including changes that may be constructive. Note"
+" that this revert will not affect which revisions are marked as completed or"
+" approved."
 msgstr ""
+"%s: Cofasz się do przestarzałej wersji. Wszelkie zmiany wprowadzone od tej "
+"wersji zostaną utracone, w tym zmiany, które mogą być konstruktywne. Zauważ,"
+" że to cofnięcie nie wpłynie na to, które wersje są oznaczone jako "
+"zakończone lub zatwierdzone."
 
 #: view/scripto/admin/media/show-talk.phtml:168
 #: view/scripto/admin/media/show.phtml:258
 msgid "Verify changes before confirming this reversion."
-msgstr ""
+msgstr "Zweryfikuj zmiany przed potwierdzeniem tej rewizji."
 
 #: view/scripto/admin/media/show.phtml:40
 #: view/scripto/public-app/media/edit.phtml:29
 msgid "Go full screen"
-msgstr ""
+msgstr "Przejdź do trybu pełnoekranowego"
 
 #: view/scripto/admin/media/show.phtml:40
 #: view/scripto/public-app/media/edit.phtml:29
 msgid "Exit full screen"
-msgstr ""
+msgstr "Wyjdź z trybu pełnoekranowego"
 
 #: view/scripto/admin/media/show.phtml:43
 #: view/scripto/public-app/media/edit.phtml:32
 msgid "Horizontal view"
-msgstr ""
+msgstr "Widok poziomy"
 
 #: view/scripto/admin/media/show.phtml:44
 #: view/scripto/public-app/media/edit.phtml:33
 msgid "Vertical view"
-msgstr ""
+msgstr "Widok pionowy"
 
 #: view/scripto/admin/media/show.phtml:136
 msgid "Review status"
-msgstr ""
+msgstr "Status przeglądu"
 
 #: view/scripto/admin/media/show.phtml:152
 msgid "This revision marked as complete."
-msgstr ""
+msgstr "Ta rewizja oznaczona jako zakończona."
 
 #: view/scripto/admin/media/show.phtml:160
 #, php-format
 msgid "Another revision marked as complete. [%s]"
-msgstr ""
+msgstr "Kolejna rewizja oznaczona jako zakończona. [%s]"
 
 #: view/scripto/admin/media/show.phtml:161
 #: view/scripto/admin/media/show.phtml:207
 msgid "view revision"
-msgstr ""
+msgstr "zobacz rewizję"
 
 #: view/scripto/admin/media/show.phtml:178
 #: view/scripto/public-app/media/edit.phtml:20
 msgid "Mark this revision as complete"
-msgstr ""
+msgstr "Oznacz tę rewizję jako zakończoną"
 
 #: view/scripto/admin/media/show.phtml:187
 msgid "Approved"
-msgstr ""
+msgstr "Zatwierdzone"
 
 #: view/scripto/admin/media/show.phtml:198
 #: view/scripto/admin/revision/compare.phtml:46
 #: view/scripto/public-app/revision/compare.phtml:41
 msgid "This revision marked as approved."
-msgstr ""
+msgstr "Ta poprawka została oznaczona jako zatwierdzona."
 
 #: view/scripto/admin/media/show.phtml:206
 #, php-format
 msgid "Another revision marked as approved. [%s]"
-msgstr ""
+msgstr "Kolejna poprawka oznaczona jako zatwierdzona. [%s]"
 
 #: view/scripto/admin/media/show.phtml:224
 msgid "Mark this revision as approved"
-msgstr ""
+msgstr "Oznacz tę rewizję jako zatwierdzoną"
 
 #: view/scripto/admin/project/add.phtml:8
 msgid "New project"
-msgstr ""
+msgstr "Nowy projekt"
 
 #: view/scripto/admin/project/add.phtml:11
 #: view/scripto/admin/project/edit.phtml:11
 msgid "Configuration"
-msgstr ""
+msgstr "Konfiguracja"
 
 #: view/scripto/admin/project/add.phtml:12
 #: view/scripto/admin/project/edit.phtml:12
 msgid "Reviewers"
-msgstr ""
+msgstr "Recenzenci"
 
 #: view/scripto/admin/project/browse.phtml:32
 #: view/scripto/admin/project/browse.phtml:55
 #: view/scripto/admin/project/show-details.phtml:81
 #: view/scripto/admin/user/browse.phtml:24
 msgid "Date created"
-msgstr ""
+msgstr "Data utworzenia"
 
 #: view/scripto/admin/project/browse.phtml:40
 #: view/scripto/admin/project/browse.phtml:57
 #: view/scripto/admin/project/show-details.phtml:90
 msgid "Last imported"
-msgstr ""
+msgstr "Ostatnio zaimportowane"
 
 #: view/scripto/admin/project/browse.phtml:109
 #, php-format
 msgid "No Scripto projects found. %s"
-msgstr ""
+msgstr "Nie znaleziono projektów No Scripto. %s"
 
 #: view/scripto/admin/project/browse.phtml:110
 msgid "Add a new project."
-msgstr ""
+msgstr "Dodaj nowy projekt."
 
 #: view/scripto/admin/project/reviewers-form.phtml:12
 msgid "Click on a user to add them to the project."
-msgstr ""
+msgstr "Kliknij na użytkownika, aby dodać go do projektu."
 
 #: view/scripto/admin/project/show-details.phtml:1
 msgid "Project metadata"
-msgstr ""
+msgstr "Metadane projektu"
 
 #: view/scripto/admin/project/show-details.phtml:17
 msgid "Media types"
-msgstr ""
+msgstr "Typy mediów"
 
 #: view/scripto/admin/project/show-details.phtml:34
 msgid "Language tag"
-msgstr ""
+msgstr "Tag języka"
 
 #: view/scripto/admin/project/show-details.phtml:38
 msgid "Import target"
-msgstr ""
+msgstr "Importuj cel"
 
 #: view/scripto/admin/project/show-details.phtml:45
 msgid "Item and media"
-msgstr ""
+msgstr "Element i media"
 
 #: view/scripto/admin/project/show-details.phtml:50
 msgid "Browse layout"
-msgstr ""
+msgstr "Układ przeglądania"
 
 #: view/scripto/admin/project/show-details.phtml:53
 #: view/scripto/public-app/item/browse.phtml:36
 #: view/scripto/public-app/media/browse.phtml:15
 msgid "List"
-msgstr ""
+msgstr "Lista"
 
 #: view/scripto/admin/project/show-details.phtml:60
 msgid "Item type"
-msgstr ""
+msgstr "Typ przedmiotu"
 
 #: view/scripto/admin/project/show-details.phtml:68
 msgid "Content type"
-msgstr ""
+msgstr "Typ treści"
 
 #: view/scripto/admin/project/show-details.phtml:87
 msgid "Not synced"
-msgstr ""
+msgstr "Nie zsynchronizowano"
 
 #: view/scripto/admin/project/show-details.phtml:92
 msgid "Not imported"
-msgstr ""
+msgstr "Nie zaimportowano"
 
 #: view/scripto/admin/revision/browse-talk.phtml:9
 #: view/scripto/admin/revision/browse.phtml:9
 msgid "Revisions"
-msgstr ""
+msgstr "Rewizje"
 
 #: view/scripto/admin/revision/browse-talk.phtml:18
 #: view/scripto/admin/revision/browse.phtml:18
 #: view/scripto/public-app/revision/browse-talk.phtml:11
 #: view/scripto/public-app/revision/browse.phtml:11
 msgid "Compare selected"
-msgstr ""
+msgstr "Porównaj wybrane"
 
 #: view/scripto/admin/revision/browse-talk.phtml:25
 #: view/scripto/admin/revision/browse.phtml:25
 #: view/scripto/public-app/revision/browse-talk.phtml:18
 #: view/scripto/public-app/revision/browse.phtml:17
 msgid "Compare"
-msgstr ""
+msgstr "Porównaj"
 
 #: view/scripto/admin/revision/browse-talk.phtml:43
 #: view/scripto/admin/revision/browse-talk.phtml:44
@@ -919,7 +955,7 @@ msgstr ""
 #: view/scripto/public-app/revision/browse.phtml:35
 #: view/scripto/public-app/revision/browse.phtml:36
 msgid "cur"
-msgstr ""
+msgstr "cur"
 
 #: view/scripto/admin/revision/browse-talk.phtml:46
 #: view/scripto/admin/revision/browse-talk.phtml:47
@@ -930,21 +966,21 @@ msgstr ""
 #: view/scripto/public-app/revision/browse.phtml:38
 #: view/scripto/public-app/revision/browse.phtml:39
 msgid "prev"
-msgstr ""
+msgstr "poprzedni"
 
 #: view/scripto/admin/revision/browse-talk.phtml:52
 #: view/scripto/admin/revision/browse.phtml:52
 #: view/scripto/public-app/revision/browse-talk.phtml:45
 #: view/scripto/public-app/revision/browse.phtml:44
 msgid "From revision"
-msgstr ""
+msgstr "Z rewizji"
 
 #: view/scripto/admin/revision/browse-talk.phtml:58
 #: view/scripto/admin/revision/browse.phtml:58
 #: view/scripto/public-app/revision/browse-talk.phtml:51
 #: view/scripto/public-app/revision/browse.phtml:50
 msgid "To revision"
-msgstr ""
+msgstr "To poprawka"
 
 #: view/scripto/admin/revision/browse-talk.phtml:79
 #: view/scripto/admin/revision/browse.phtml:79
@@ -956,12 +992,12 @@ msgstr ""
 #: view/scripto/public-app/user/watchlist.phtml:92
 #, php-format
 msgid "%s bytes (%s)"
-msgstr ""
+msgstr "%s bajtów (%s)"
 
 #: view/scripto/admin/revision/compare-talk.phtml:6
 #: view/scripto/admin/revision/compare.phtml:6
 msgid "Compare revisions"
-msgstr ""
+msgstr "Porównaj rewizje"
 
 #: view/scripto/admin/revision/compare-talk.phtml:24
 #: view/scripto/admin/revision/compare-talk.phtml:34
@@ -973,56 +1009,56 @@ msgstr ""
 #: view/scripto/public-app/revision/compare.phtml:29
 #, php-format
 msgid "Revision as of %s"
-msgstr ""
+msgstr "Rewizja z dnia %s"
 
 #: view/scripto/admin/revision/compare-talk.phtml:49
 #: view/scripto/admin/revision/compare.phtml:69
 #: view/scripto/public-app/revision/compare-talk.phtml:44
 #: view/scripto/public-app/revision/compare.phtml:64
 msgid "(No difference)"
-msgstr ""
+msgstr "(No difference)"
 
 #: view/scripto/admin/revision/compare.phtml:45
 #: view/scripto/public-app/revision/compare.phtml:40
 msgid "This revision marked as completed."
-msgstr ""
+msgstr "Ta rewizja oznaczona jako zakończona."
 
 #: view/scripto/admin/user/browse.phtml:22
 msgid "MediaWiki groups"
-msgstr ""
+msgstr "Grupy MediaWiki"
 
 #: view/scripto/admin/user/browse.phtml:23
 msgid "Edit count"
-msgstr ""
+msgstr "Liczba edycji"
 
 #: view/scripto/admin/user/contributions.phtml:8
 #: view/scripto/admin/user/watchlist.phtml:9
 msgid "Scripto: User"
-msgstr ""
+msgstr "Scripto: Użytkownik"
 
 #: view/scripto/admin/user/contributions.phtml:23
 #: view/scripto/admin/user/watchlist.phtml:29
 #: view/scripto/public-app/user/contributions.phtml:11
 #: view/scripto/public-app/user/watchlist.phtml:17
 msgid "Revision"
-msgstr ""
+msgstr "Rewizja"
 
 #: view/scripto/admin/user/contributions.phtml:25
 #: view/scripto/admin/user/watchlist.phtml:25
 #: view/scripto/public-app/user/contributions.phtml:13
 #: view/scripto/public-app/user/watchlist.phtml:13
 msgid "Media #"
-msgstr ""
+msgstr "Media #"
 
 #: view/scripto/admin/user/contributions.phtml:38
 #: view/scripto/public-app/user/contributions.phtml:26
 msgid "new"
-msgstr ""
+msgstr "nowy"
 
 #: view/scripto/admin/user/contributions.phtml:39
 #: view/scripto/public-app/user/contributions.phtml:27
 msgid "current"
-msgstr ""
+msgstr "aktualny"
 
 #: view/scripto/admin/user/contributions.phtml:93
 #: view/scripto/admin/user/contributions.phtml:95
@@ -1036,19 +1072,19 @@ msgstr ""
 #: view/scripto/public-app/user/watchlist.phtml:42
 #: view/scripto/public-app/user/watchlist.phtml:44
 msgid "n/a"
-msgstr ""
+msgstr "n/a"
 
 #: view/scripto/admin/user/contributions.phtml:116
 msgid "No user contributions found."
-msgstr ""
+msgstr "Nie znaleziono wkładów użytkowników."
 
 #: view/scripto/admin/user/watchlist.phtml:116
 msgid "No watchlist pages found."
-msgstr ""
+msgstr "Nie znaleziono stron listy obserwowanych."
 
 #: view/scripto/public-app/media/browse.phtml:70
 msgid "Show original titles"
-msgstr ""
+msgstr "Pokaż oryginalne tytuły"
 
 #: view/scripto/public-app/media/edit-talk.phtml:7
 #: view/scripto/public-app/media/edit.phtml:7
@@ -1056,7 +1092,7 @@ msgstr ""
 #: view/scripto/public-app/media/show.phtml:6
 #, php-format
 msgid "Original title: %s"
-msgstr ""
+msgstr "Tytuł oryginalny: %s"
 
 #: view/scripto/public-app/media/edit-talk.phtml:41
 #, php-format
@@ -1065,1982 +1101,1993 @@ msgid ""
 "observations regarding the %s of the %s. When contributing to the notes, it "
 "is encouraged to include the user and timestamp."
 msgstr ""
+"Notatki to przestrzeń robocza, w której uczestnicy projektu mogą "
+"przechowywać pomysły i obserwacje dotyczące %s %s. Przy dodawaniu informacji"
+" do notatek zaleca się uwzględnienie użytkownika oraz znacznika czasu."
 
 #: view/scripto/public-app/media/edit.phtml:15
 msgid "Protection: "
-msgstr ""
+msgstr "Ochrona:"
 
 #: view/scripto/public-app/media/edit.phtml:16
 msgid "Expiration: "
-msgstr ""
+msgstr "Wygasanie:"
 
 #: view/scripto/public-app/media/edit.phtml:19
 msgid "Status: "
-msgstr ""
+msgstr "Status:"
 
 #: view/scripto/public-app/project/browse.phtml:21
 msgid "No Scripto projects found"
-msgstr ""
+msgstr "Nie znaleziono projektów No Scripto"
 
 #: view/scripto/public-app/revision/browse-talk.phtml:12
 msgid "Back to notes"
-msgstr ""
+msgstr "Powrót do notatek"
 
 #: view/scripto/public-app/revision/browse-talk.phtml:84
 #: view/scripto/public-app/revision/browse.phtml:83
 msgid "No revisions found"
-msgstr ""
+msgstr "Nie znaleziono poprawek"
 
 #: view/scripto/public-app/revision/compare-talk.phtml:2
 #, php-format
 msgid "Compare note revisions: %s"
-msgstr ""
+msgstr "Porównaj rewizje notatek: %s"
 
 #: view/scripto/public-app/revision/compare-talk.phtml:6
 #: view/scripto/public-app/revision/compare.phtml:6
 #: view/scripto/public-app/revision/show-talk.phtml:11
 #: view/scripto/public-app/revision/show.phtml:11
 msgid "Return to revision history"
-msgstr ""
+msgstr "Powrót do historii wersji"
 
 #: view/scripto/public-app/revision/compare.phtml:2
 #, php-format
 msgid "Compare revisions: %s"
-msgstr ""
+msgstr "Porównaj rewizje: %s"
 
 #: view/scripto/public-app/revision/show-talk.phtml:2
 #, php-format
 msgid "Notes revision: %s"
-msgstr ""
+msgstr "Rewizja notatek: %s"
 
 #: view/scripto/public-app/revision/show-talk.phtml:4
 #: view/scripto/public-app/revision/show.phtml:4
 #, php-format
 msgid "Revision as of %s by %s"
-msgstr ""
+msgstr "Rewizja z dnia %s przez %s"
 
 #: view/scripto/public-app/revision/show-talk.phtml:20
 #: view/scripto/public-app/revision/show.phtml:20
 msgid "No HTML"
-msgstr ""
+msgstr "Nie ma HTML"
 
 #: view/scripto/public-app/revision/show.phtml:2
 #, php-format
 msgid "Revision: %s"
-msgstr ""
+msgstr "Rewizja: %s"
 
 #: view/scripto/public-app/user/contributions.phtml:2
 #, php-format
 msgid "Contributions by %s"
-msgstr ""
+msgstr "Wkład %s"
 
 #: view/scripto/public-app/user/watchlist.phtml:3
 msgid "Your watchlist"
-msgstr ""
+msgstr "Twoja lista obserwacyjna"
 
 #: src/Job/ScriptoJob.php:73
 msgid "Cannot unimport a project without a property."
-msgstr ""
+msgstr "Nie można cofnąć importu projektu bez właściwości."
 
 #: src/Job/SyncProject.php:33
 msgid "Cannot sync a project without an item set."
-msgstr ""
+msgstr "Nie można zsynchronizować projektu bez zestawu elementów."
 
 #: src/Job/ImportProject.php:35
 msgid "Cannot import a project without a property."
-msgstr ""
+msgstr "Nie można zaimportować projektu bez właściwości."
 
 #: src/ViewHelper/type_string_map.php:7
 msgid "Documents"
-msgstr ""
+msgstr "Dokumenty"
 
 #: src/ViewHelper/type_string_map.php:8
 msgid "Manuscripts"
-msgstr ""
+msgstr "Rękopisy"
 
 #: src/ViewHelper/type_string_map.php:9
 msgid "Books"
-msgstr ""
+msgstr "Książki"
 
 #: src/ViewHelper/type_string_map.php:10 src/ViewHelper/type_string_map.php:19
 #: src/Form/ProjectForm.php:168
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: src/ViewHelper/type_string_map.php:11 src/ViewHelper/type_string_map.php:20
 #: src/Form/ProjectForm.php:174
 msgid "Video"
-msgstr ""
+msgstr "Wideo"
 
 #: src/ViewHelper/type_string_map.php:12
 msgid "Papers"
-msgstr ""
+msgstr "Dokumenty"
 
 #: src/ViewHelper/type_string_map.php:13
 msgid "Journals"
-msgstr ""
+msgstr "Dzienniki"
 
 #: src/ViewHelper/type_string_map.php:21 src/Form/ProjectForm.php:173
 msgid "Paper"
-msgstr ""
+msgstr "Papier"
 
 #: src/ViewHelper/type_string_map.php:24
 msgid "No Scripto items found"
-msgstr ""
+msgstr "Nie znaleziono elementów Scripto"
 
 #: src/ViewHelper/type_string_map.php:25
 msgid "No Scripto documents found"
-msgstr ""
+msgstr "Nie znaleziono dokumentów No Scripto"
 
 #: src/ViewHelper/type_string_map.php:26
 msgid "No Scripto manuscripts found"
-msgstr ""
+msgstr "Nie znaleziono rękopisów No Scripto"
 
 #: src/ViewHelper/type_string_map.php:27
 msgid "No Scripto books found"
-msgstr ""
+msgstr "Nie znaleziono książek Scripto"
 
 #: src/ViewHelper/type_string_map.php:28
 msgid "No Scripto audio found"
-msgstr ""
+msgstr "Nie znaleziono skryptu audio"
 
 #: src/ViewHelper/type_string_map.php:29
 msgid "No Scripto video found"
-msgstr ""
+msgstr "Nie znaleziono wideo No Scripto"
 
 #: src/ViewHelper/type_string_map.php:30
 msgid "No Scripto papers found"
-msgstr ""
+msgstr "Nie znaleziono dokumentów Scripto"
 
 #: src/ViewHelper/type_string_map.php:31
 msgid "No Scripto journals found"
-msgstr ""
+msgstr "Nie znaleziono dzienników No Scripto"
 
 #: src/ViewHelper/type_string_map.php:33
 #, php-format
 msgid "%s items"
-msgstr ""
+msgstr "%s przedmiotów"
 
 #: src/ViewHelper/type_string_map.php:34
 #, php-format
 msgid "%s documents"
-msgstr ""
+msgstr "%s dokumentów"
 
 #: src/ViewHelper/type_string_map.php:35
 #, php-format
 msgid "%s manuscripts"
-msgstr ""
+msgstr "%s rękopisów"
 
 #: src/ViewHelper/type_string_map.php:36
 #, php-format
 msgid "%s books"
-msgstr ""
+msgstr "%s książek"
 
 #: src/ViewHelper/type_string_map.php:37
 #, php-format
 msgid "%s audio"
-msgstr ""
+msgstr "%s audio"
 
 #: src/ViewHelper/type_string_map.php:38
 #, php-format
 msgid "%s video"
-msgstr ""
+msgstr "%s wideo"
 
 #: src/ViewHelper/type_string_map.php:39
 #, php-format
 msgid "%s papers"
-msgstr ""
+msgstr "%s dokumenty"
 
 #: src/ViewHelper/type_string_map.php:40
 #, php-format
 msgid "%s journals"
-msgstr ""
+msgstr "%s dzienników"
 
 #: src/ViewHelper/type_string_map.php:42
 #, php-format
 msgid "item: %s"
-msgstr ""
+msgstr "przedmiot: %s"
 
 #: src/ViewHelper/type_string_map.php:43
 #, php-format
 msgid "document: %s"
-msgstr ""
+msgstr "dokument: %s"
 
 #: src/ViewHelper/type_string_map.php:44
 #, php-format
 msgid "manuscript: %s"
-msgstr ""
+msgstr "rękopis: %s"
 
 #: src/ViewHelper/type_string_map.php:45
 #, php-format
 msgid "book: %s"
-msgstr ""
+msgstr "książka: %s"
 
 #: src/ViewHelper/type_string_map.php:46
 #, php-format
 msgid "audio: %s"
-msgstr ""
+msgstr "audio: %s"
 
 #: src/ViewHelper/type_string_map.php:47
 #, php-format
 msgid "video: %s"
-msgstr ""
+msgstr "wideo: %s"
 
 #: src/ViewHelper/type_string_map.php:48
 #, php-format
 msgid "paper: %s"
-msgstr ""
+msgstr "papier: %s"
 
 #: src/ViewHelper/type_string_map.php:49
 #, php-format
 msgid "journal: %s"
-msgstr ""
+msgstr "dziennik: %s"
 
 #: src/ViewHelper/type_string_map.php:51
 msgid "Total item count"
-msgstr ""
+msgstr "Łączna liczba pozycji"
 
 #: src/ViewHelper/type_string_map.php:52
 msgid "Total document count"
-msgstr ""
+msgstr "Łączna liczba dokumentów"
 
 #: src/ViewHelper/type_string_map.php:53
 msgid "Total manuscript count"
-msgstr ""
+msgstr "Całkowita liczba rękopisów"
 
 #: src/ViewHelper/type_string_map.php:54
 msgid "Total book count"
-msgstr ""
+msgstr "Łączna liczba książek"
 
 #: src/ViewHelper/type_string_map.php:55
 msgid "Total audio count"
-msgstr ""
+msgstr "Łączna liczba audio"
 
 #: src/ViewHelper/type_string_map.php:56
 msgid "Total video count"
-msgstr ""
+msgstr "Łączna liczba wideo"
 
 #: src/ViewHelper/type_string_map.php:57
 msgid "Total paper count"
-msgstr ""
+msgstr "Całkowita liczba dokumentów"
 
 #: src/ViewHelper/type_string_map.php:58
 msgid "Total journal count"
-msgstr ""
+msgstr "Całkowita liczba dzienników"
 
 #: src/ViewHelper/type_string_map.php:60
 msgid "Is approved item count"
-msgstr ""
+msgstr "Liczba zatwierdzonych przedmiotów"
 
 #: src/ViewHelper/type_string_map.php:61
 msgid "Is approved document count"
-msgstr ""
+msgstr "Liczba zatwierdzonych dokumentów"
 
 #: src/ViewHelper/type_string_map.php:62
 msgid "Is approved manuscript count"
-msgstr ""
+msgstr "Liczba zatwierdzonych rękopisów"
 
 #: src/ViewHelper/type_string_map.php:63
 msgid "Is approved book count"
-msgstr ""
+msgstr "Liczba zatwierdzonych książek"
 
 #: src/ViewHelper/type_string_map.php:64
 msgid "Is approved audio count"
-msgstr ""
+msgstr "Liczba zatwierdzonych nagrań audio"
 
 #: src/ViewHelper/type_string_map.php:65
 msgid "Is approved video count"
-msgstr ""
+msgstr "Liczba zatwierdzonych filmów"
 
 #: src/ViewHelper/type_string_map.php:66
 msgid "Is approved paper count"
-msgstr ""
+msgstr "Liczba zatwierdzonych dokumentów"
 
 #: src/ViewHelper/type_string_map.php:67
 msgid "Is approved journal count"
-msgstr ""
+msgstr "Liczba zatwierdzonych czasopism"
 
 #: src/ViewHelper/type_string_map.php:69
 msgid "Is not approved item count"
-msgstr ""
+msgstr "Liczba przedmiotów niezatwierdzonych"
 
 #: src/ViewHelper/type_string_map.php:70
 msgid "Is not approved document count"
-msgstr ""
+msgstr "Liczba dokumentów niezatwierdzonych"
 
 #: src/ViewHelper/type_string_map.php:71
 msgid "Is not approved manuscript count"
-msgstr ""
+msgstr "Liczba rękopisów niezatwierdzonych"
 
 #: src/ViewHelper/type_string_map.php:72
 msgid "Is not approved book count"
-msgstr ""
+msgstr "Liczba książek niezatwierdzonych"
 
 #: src/ViewHelper/type_string_map.php:73
 msgid "Is not approved audio count"
-msgstr ""
+msgstr "Liczba niezatwierdzonych nagrań audio"
 
 #: src/ViewHelper/type_string_map.php:74
 msgid "Is not approved video count"
-msgstr ""
+msgstr "Liczba filmów niezatwierdzonych"
 
 #: src/ViewHelper/type_string_map.php:75
 msgid "Is not approved paper count"
-msgstr ""
+msgstr "Liczba niezatwierdzonych dokumentów"
 
 #: src/ViewHelper/type_string_map.php:76
 msgid "Is not approved journal count"
-msgstr ""
+msgstr "Liczba czasopism niezatwierdzonych"
 
 #: src/ViewHelper/type_string_map.php:78
 msgid "Scripto item metadata"
-msgstr ""
+msgstr "Metadane elementu Scripto"
 
 #: src/ViewHelper/type_string_map.php:79
 msgid "Scripto document metadata"
-msgstr ""
+msgstr "Metadane dokumentu Scripto"
 
 #: src/ViewHelper/type_string_map.php:80
 msgid "Scripto manuscript metadata"
-msgstr ""
+msgstr "Metadane rękopisu Scripto"
 
 #: src/ViewHelper/type_string_map.php:81
 msgid "Scripto book metadata"
-msgstr ""
+msgstr "Metadane książki Scripto"
 
 #: src/ViewHelper/type_string_map.php:82
 msgid "Scripto audio metadata"
-msgstr ""
+msgstr "Metadane audio Scripto"
 
 #: src/ViewHelper/type_string_map.php:83
 msgid "Scripto video metadata"
-msgstr ""
+msgstr "Metadane wideo Scripto"
 
 #: src/ViewHelper/type_string_map.php:84
 msgid "Scripto paper metadata"
-msgstr ""
+msgstr "Metadane dokumentu Scripto"
 
 #: src/ViewHelper/type_string_map.php:85
 msgid "Scripto journal metadata"
-msgstr ""
+msgstr "Metadane dziennika Scripto"
 
 #: src/ViewHelper/type_string_map.php:87
 msgid "Scripto: Item"
-msgstr ""
+msgstr "Scripto: Element"
 
 #: src/ViewHelper/type_string_map.php:88
 msgid "Scripto: Document"
-msgstr ""
+msgstr "Scripto: Dokument"
 
 #: src/ViewHelper/type_string_map.php:89
 msgid "Scripto: Manuscript"
-msgstr ""
+msgstr "Scripto: Rękopis"
 
 #: src/ViewHelper/type_string_map.php:90
 msgid "Scripto: Book"
-msgstr ""
+msgstr "Scripto: Książka"
 
 #: src/ViewHelper/type_string_map.php:91
 msgid "Scripto: Audio"
-msgstr ""
+msgstr "Scripto: Audio"
 
 #: src/ViewHelper/type_string_map.php:92
 msgid "Scripto: Video"
-msgstr ""
+msgstr "Scripto: Wideo"
 
 #: src/ViewHelper/type_string_map.php:93
 msgid "Scripto: Paper"
-msgstr ""
+msgstr "Scripto: Papier"
 
 #: src/ViewHelper/type_string_map.php:94
 msgid "Scripto: Journal"
-msgstr ""
+msgstr "Scripto: Dziennik"
 
 #: src/ViewHelper/type_string_map.php:96
 #: src/ViewHelper/breadcrumbs_route_map.php:35
 msgid "Review item"
-msgstr ""
+msgstr "Przegląd przedmiotu"
 
 #: src/ViewHelper/type_string_map.php:97
 msgid "Review document"
-msgstr ""
+msgstr "Przegląd dokumentu"
 
 #: src/ViewHelper/type_string_map.php:98
 msgid "Review manuscript"
-msgstr ""
+msgstr "Przegląd rękopisu"
 
 #: src/ViewHelper/type_string_map.php:99
 msgid "Review book"
-msgstr ""
+msgstr "Przegląd książki"
 
 #: src/ViewHelper/type_string_map.php:100
 msgid "Review audio"
-msgstr ""
+msgstr "Przegląd audio"
 
 #: src/ViewHelper/type_string_map.php:101
 msgid "Review video"
-msgstr ""
+msgstr "Recenzja wideo"
 
 #: src/ViewHelper/type_string_map.php:102
 msgid "Review paper"
-msgstr ""
+msgstr "Artykuł przeglądowy"
 
 #: src/ViewHelper/type_string_map.php:103
 msgid "Review journal"
-msgstr ""
+msgstr "Przegląd dziennika"
 
 #: src/ViewHelper/type_string_map.php:105
 msgid "Browse items"
-msgstr ""
+msgstr "Przeglądaj przedmioty"
 
 #: src/ViewHelper/type_string_map.php:106
 msgid "Browse documents"
-msgstr ""
+msgstr "Przeglądaj dokumenty"
 
 #: src/ViewHelper/type_string_map.php:107
 msgid "Browse manuscripts"
-msgstr ""
+msgstr "Przeglądaj rękopisy"
 
 #: src/ViewHelper/type_string_map.php:108
 msgid "Browse books"
-msgstr ""
+msgstr "Przeglądaj książki"
 
 #: src/ViewHelper/type_string_map.php:109
 msgid "Browse audio"
-msgstr ""
+msgstr "Przeglądaj audio"
 
 #: src/ViewHelper/type_string_map.php:110
 msgid "Browse video"
-msgstr ""
+msgstr "Przeglądaj wideo"
 
 #: src/ViewHelper/type_string_map.php:111
 msgid "Browse papers"
-msgstr ""
+msgstr "Przeglądaj dokumenty"
 
 #: src/ViewHelper/type_string_map.php:112
 msgid "Browse journals"
-msgstr ""
+msgstr "Przeglądaj czasopisma"
 
 #: src/ViewHelper/type_string_map.php:118
 msgid "Medias"
-msgstr ""
+msgstr "Media"
 
 #: src/ViewHelper/type_string_map.php:121
 msgid "Images"
-msgstr ""
+msgstr "Obrazy"
 
 #: src/ViewHelper/type_string_map.php:122
 msgid "Sections"
-msgstr ""
+msgstr "Sekcje"
 
 #: src/ViewHelper/type_string_map.php:123
 msgid "Segments"
-msgstr ""
+msgstr "Segmenty"
 
 #: src/ViewHelper/type_string_map.php:124
 msgid "Folios"
-msgstr ""
+msgstr "Folia"
 
 #: src/ViewHelper/type_string_map.php:125
 msgid "Sheets"
-msgstr ""
+msgstr "Arkusze"
 
 #: src/ViewHelper/type_string_map.php:126
 msgid "Entries"
-msgstr ""
+msgstr "Wpisy"
 
 #: src/ViewHelper/type_string_map.php:131 src/Form/ProjectForm.php:191
 msgid "Section"
-msgstr ""
+msgstr "Sekcja"
 
 #: src/ViewHelper/type_string_map.php:132 src/Form/ProjectForm.php:192
 msgid "Segment"
-msgstr ""
+msgstr "Segment"
 
 #: src/ViewHelper/type_string_map.php:133 src/Form/ProjectForm.php:188
 msgid "Folio"
-msgstr ""
+msgstr "Folio"
 
 #: src/ViewHelper/type_string_map.php:134 src/Form/ProjectForm.php:193
 msgid "Sheet"
-msgstr ""
+msgstr "Arkusz"
 
 #: src/ViewHelper/type_string_map.php:135 src/Form/ProjectForm.php:187
 msgid "Entry"
-msgstr ""
+msgstr "Wpis"
 
 #: src/ViewHelper/type_string_map.php:138
 msgid "Primary page"
-msgstr ""
+msgstr "Strona główna"
 
 #: src/ViewHelper/type_string_map.php:139
 msgid "Primary image"
-msgstr ""
+msgstr "Obraz główny"
 
 #: src/ViewHelper/type_string_map.php:140
 msgid "Primary section"
-msgstr ""
+msgstr "Sekcja główna"
 
 #: src/ViewHelper/type_string_map.php:141
 msgid "Primary segment"
-msgstr ""
+msgstr "Segment główny"
 
 #: src/ViewHelper/type_string_map.php:142
 msgid "Primary folio"
-msgstr ""
+msgstr "Główny folder"
 
 #: src/ViewHelper/type_string_map.php:143
 msgid "Primary sheet"
-msgstr ""
+msgstr "Arkusz główny"
 
 #: src/ViewHelper/type_string_map.php:144
 msgid "Primary entry"
-msgstr ""
+msgstr "Podstawowy wpis"
 
 #: src/ViewHelper/type_string_map.php:146
 msgid "Approved medias"
-msgstr ""
+msgstr "Zatwierdzone media"
 
 #: src/ViewHelper/type_string_map.php:147
 msgid "Approved media"
-msgstr ""
+msgstr "Zatwierdzone media"
 
 #: src/ViewHelper/type_string_map.php:148
 msgid "Approved pages"
-msgstr ""
+msgstr "Zatwierdzone strony"
 
 #: src/ViewHelper/type_string_map.php:149
 msgid "Approved images"
-msgstr ""
+msgstr "Zatwierdzone obrazy"
 
 #: src/ViewHelper/type_string_map.php:150
 msgid "Approved sections"
-msgstr ""
+msgstr "Zatwierdzone sekcje"
 
 #: src/ViewHelper/type_string_map.php:151
 msgid "Approved segments"
-msgstr ""
+msgstr "Zatwierdzone segmenty"
 
 #: src/ViewHelper/type_string_map.php:152
 msgid "Approved folios"
-msgstr ""
+msgstr "Zatwierdzone arkusze"
 
 #: src/ViewHelper/type_string_map.php:153
 msgid "Approved sheets"
-msgstr ""
+msgstr "Zatwierdzone arkusze"
 
 #: src/ViewHelper/type_string_map.php:154
 msgid "Approved entries"
-msgstr ""
+msgstr "Zatwierdzone wpisy"
 
 #: src/ViewHelper/type_string_map.php:156
 #, php-format
 msgid "Media #%s"
-msgstr ""
+msgstr "Media #%s"
 
 #: src/ViewHelper/type_string_map.php:157
 #, php-format
 msgid "Page #%s"
-msgstr ""
+msgstr "Strona #%s"
 
 #: src/ViewHelper/type_string_map.php:158
 #, php-format
 msgid "Image #%s"
-msgstr ""
+msgstr "Obraz #%s"
 
 #: src/ViewHelper/type_string_map.php:159
 #, php-format
 msgid "Section #%s"
-msgstr ""
+msgstr "Sekcja #%s"
 
 #: src/ViewHelper/type_string_map.php:160
 #, php-format
 msgid "Segment #%s"
-msgstr ""
+msgstr "Segment #%s"
 
 #: src/ViewHelper/type_string_map.php:161
 #, php-format
 msgid "Folio #%s"
-msgstr ""
+msgstr "Folio #%s"
 
 #: src/ViewHelper/type_string_map.php:162
 #, php-format
 msgid "Sheet #%s"
-msgstr ""
+msgstr "Arkusz #%s"
 
 #: src/ViewHelper/type_string_map.php:163
 #, php-format
 msgid "Entry #%s"
-msgstr ""
+msgstr "Wpis #%s"
 
 #: src/ViewHelper/type_string_map.php:165
 #, php-format
 msgid "Media #%s notes"
-msgstr ""
+msgstr "Media #%s notatki"
 
 #: src/ViewHelper/type_string_map.php:166
 #, php-format
 msgid "Page #%s notes"
-msgstr ""
+msgstr "Notatki na stronie #%s"
 
 #: src/ViewHelper/type_string_map.php:167
 #, php-format
 msgid "Image #%s notes"
-msgstr ""
+msgstr "Obraz #%s notatki"
 
 #: src/ViewHelper/type_string_map.php:168
 #, php-format
 msgid "Section #%s notes"
-msgstr ""
+msgstr "Notatki sekcji #%s"
 
 #: src/ViewHelper/type_string_map.php:169
 #, php-format
 msgid "Segment #%s notes"
-msgstr ""
+msgstr "Notatki segmentu #%s"
 
 #: src/ViewHelper/type_string_map.php:170
 #, php-format
 msgid "Folio #%s notes"
-msgstr ""
+msgstr "Notatki Folio #%s"
 
 #: src/ViewHelper/type_string_map.php:171
 #, php-format
 msgid "Sheet #%s notes"
-msgstr ""
+msgstr "Notatki arkusza #%s"
 
 #: src/ViewHelper/type_string_map.php:172
 #, php-format
 msgid "Entry #%s notes"
-msgstr ""
+msgstr "Notatki wpisu #%s"
 
 #: src/ViewHelper/type_string_map.php:174
 msgid "Media count"
-msgstr ""
+msgstr "Liczba mediów"
 
 #: src/ViewHelper/type_string_map.php:175
 msgid "Page count"
-msgstr ""
+msgstr "Liczba stron"
 
 #: src/ViewHelper/type_string_map.php:176
 msgid "Image count"
-msgstr ""
+msgstr "Liczba obrazów"
 
 #: src/ViewHelper/type_string_map.php:177
 msgid "Section count"
-msgstr ""
+msgstr "Liczba sekcji"
 
 #: src/ViewHelper/type_string_map.php:178
 msgid "Segment count"
-msgstr ""
+msgstr "Liczba segmentów"
 
 #: src/ViewHelper/type_string_map.php:179
 msgid "Folio count"
-msgstr ""
+msgstr "Liczba foliów"
 
 #: src/ViewHelper/type_string_map.php:180
 msgid "Sheet count"
-msgstr ""
+msgstr "Liczba arkuszy"
 
 #: src/ViewHelper/type_string_map.php:181
 msgid "Entry count"
-msgstr ""
+msgstr "Liczba wpisów"
 
 #: src/ViewHelper/type_string_map.php:183
 msgid "Total media count"
-msgstr ""
+msgstr "Łączna liczba mediów"
 
 #: src/ViewHelper/type_string_map.php:184
 msgid "Total page count"
-msgstr ""
+msgstr "Całkowita liczba stron"
 
 #: src/ViewHelper/type_string_map.php:185
 msgid "Total image count"
-msgstr ""
+msgstr "Całkowita liczba obrazów"
 
 #: src/ViewHelper/type_string_map.php:186
 msgid "Total section count"
-msgstr ""
+msgstr "Całkowita liczba sekcji"
 
 #: src/ViewHelper/type_string_map.php:187
 msgid "Total segment count"
-msgstr ""
+msgstr "Całkowita liczba segmentów"
 
 #: src/ViewHelper/type_string_map.php:188
 msgid "Total folio count"
-msgstr ""
+msgstr "Całkowita liczba folii"
 
 #: src/ViewHelper/type_string_map.php:189
 msgid "Total sheet count"
-msgstr ""
+msgstr "Całkowita liczba arkuszy"
 
 #: src/ViewHelper/type_string_map.php:190
 msgid "Total entry count"
-msgstr ""
+msgstr "Całkowita liczba wpisów"
 
 #: src/ViewHelper/type_string_map.php:192
 msgid "Is approved media count"
-msgstr ""
+msgstr "Liczba zatwierdzonych mediów"
 
 #: src/ViewHelper/type_string_map.php:193
 msgid "Is approved page count"
-msgstr ""
+msgstr "Liczba stron zatwierdzonych"
 
 #: src/ViewHelper/type_string_map.php:194
 msgid "Is approved image count"
-msgstr ""
+msgstr "Liczba zatwierdzonych obrazów"
 
 #: src/ViewHelper/type_string_map.php:195
 msgid "Is approved section count"
-msgstr ""
+msgstr "Liczba zatwierdzonych sekcji"
 
 #: src/ViewHelper/type_string_map.php:196
 msgid "Is approved segment count"
-msgstr ""
+msgstr "Liczba zatwierdzonych segmentów"
 
 #: src/ViewHelper/type_string_map.php:197
 msgid "Is approved folio count"
-msgstr ""
+msgstr "Liczba zatwierdzonych folii"
 
 #: src/ViewHelper/type_string_map.php:198
 msgid "Is approved sheet count"
-msgstr ""
+msgstr "Liczba zatwierdzonych arkuszy"
 
 #: src/ViewHelper/type_string_map.php:199
 msgid "Is approved entry count"
-msgstr ""
+msgstr "Liczba zatwierdzonych wejść"
 
 #: src/ViewHelper/type_string_map.php:201
 msgid "Is completed media count"
-msgstr ""
+msgstr "Liczba zakończonych mediów"
 
 #: src/ViewHelper/type_string_map.php:202
 msgid "Is completed page count"
-msgstr ""
+msgstr "Czy liczba stron została ukończona"
 
 #: src/ViewHelper/type_string_map.php:203
 msgid "Is completed image count"
-msgstr ""
+msgstr "Liczba ukończonych obrazów"
 
 #: src/ViewHelper/type_string_map.php:204
 msgid "Is completed section count"
-msgstr ""
+msgstr "Liczba ukończonych sekcji"
 
 #: src/ViewHelper/type_string_map.php:205
 msgid "Is completed segment count"
-msgstr ""
+msgstr "Liczba ukończonych segmentów"
 
 #: src/ViewHelper/type_string_map.php:206
 msgid "Is completed folio count"
-msgstr ""
+msgstr "Czy liczba ukończonych foliów jest?"
 
 #: src/ViewHelper/type_string_map.php:207
 msgid "Is completed sheet count"
-msgstr ""
+msgstr "Czy liczba ukończonych arkuszy"
 
 #: src/ViewHelper/type_string_map.php:208
 msgid "Is completed entry count"
-msgstr ""
+msgstr "Liczba zakończonych wpisów"
 
 #: src/ViewHelper/type_string_map.php:210
 msgid "Is in progress media count"
-msgstr ""
+msgstr "Liczba mediów w trakcie przetwarzania"
 
 #: src/ViewHelper/type_string_map.php:211
 msgid "Is in progress page count"
-msgstr ""
+msgstr "Trwa liczenie stron"
 
 #: src/ViewHelper/type_string_map.php:212
 msgid "Is in progress image count"
-msgstr ""
+msgstr "Liczba obrazów w trakcie przetwarzania"
 
 #: src/ViewHelper/type_string_map.php:213
 msgid "Is in progress section count"
-msgstr ""
+msgstr "Czy w sekcji \"W trakcie\" jest liczba?"
 
 #: src/ViewHelper/type_string_map.php:214
 msgid "Is in progress segment count"
-msgstr ""
+msgstr "Liczba segmentów w trakcie realizacji"
 
 #: src/ViewHelper/type_string_map.php:215
 msgid "Is in progress folio count"
-msgstr ""
+msgstr "Liczba folii w toku"
 
 #: src/ViewHelper/type_string_map.php:216
 msgid "Is in progress sheet count"
-msgstr ""
+msgstr "Jest w toku liczba arkuszy"
 
 #: src/ViewHelper/type_string_map.php:217
 msgid "Is in progress entry count"
-msgstr ""
+msgstr "Liczba wpisów w toku"
 
 #: src/ViewHelper/type_string_map.php:219
 msgid "Is edited after approved media count"
-msgstr ""
+msgstr "Czy liczba zatwierdzonych mediów została edytowana?"
 
 #: src/ViewHelper/type_string_map.php:220
 msgid "Is edited after approved page count"
-msgstr ""
+msgstr "Jest edytowana po zatwierdzeniu liczby stron"
 
 #: src/ViewHelper/type_string_map.php:221
 msgid "Is edited after approved image count"
-msgstr ""
+msgstr "Czy liczba zatwierdzonych obrazów została edytowana?"
 
 #: src/ViewHelper/type_string_map.php:222
 msgid "Is edited after approved section count"
-msgstr ""
+msgstr "Jest edytowany po zatwierdzeniu liczby sekcji"
 
 #: src/ViewHelper/type_string_map.php:223
 msgid "Is edited after approved segment count"
-msgstr ""
+msgstr "Jest edytowany po zatwierdzeniu liczby segmentów"
 
 #: src/ViewHelper/type_string_map.php:224
 msgid "Is edited after approved folio count"
-msgstr ""
+msgstr "Jest edytowany po zatwierdzeniu liczby foliów."
 
 #: src/ViewHelper/type_string_map.php:225
 msgid "Is edited after approved sheet count"
-msgstr ""
+msgstr "Jest edytowany po zatwierdzeniu liczby arkuszy"
 
 #: src/ViewHelper/type_string_map.php:226
 msgid "Is edited after approved entry count"
-msgstr ""
+msgstr "Jest edytowane po zatwierdzeniu liczby wpisów"
 
 #: src/ViewHelper/type_string_map.php:228
 msgid "Is edited after imported media count"
-msgstr ""
+msgstr "Jest edytowane po zaimportowaniu liczby mediów"
 
 #: src/ViewHelper/type_string_map.php:229
 msgid "Is edited after imported page count"
-msgstr ""
+msgstr "Jest edytowana po zaimportowaniu liczby stron"
 
 #: src/ViewHelper/type_string_map.php:230
 msgid "Is edited after imported image count"
-msgstr ""
+msgstr "Jest edytowane po zaimportowaniu liczby obrazów"
 
 #: src/ViewHelper/type_string_map.php:231
 msgid "Is edited after imported section count"
-msgstr ""
+msgstr "Jest edytowany po zaimportowanej liczbie sekcji"
 
 #: src/ViewHelper/type_string_map.php:232
 msgid "Is edited after imported segment count"
-msgstr ""
+msgstr "Jest edytowany po zaimportowaniu liczby segmentów"
 
 #: src/ViewHelper/type_string_map.php:233
 msgid "Is edited after imported folio count"
-msgstr ""
+msgstr "Jest edytowany po zaimportowaniu liczby folii"
 
 #: src/ViewHelper/type_string_map.php:234
 msgid "Is edited after imported sheet count"
-msgstr ""
+msgstr "Jest edytowany po zaimportowaniu liczby arkuszy"
 
 #: src/ViewHelper/type_string_map.php:235
 msgid "Is edited after imported entry count"
-msgstr ""
+msgstr "Jest edytowany po zaimportowaniu liczby wpisów"
 
 #: src/ViewHelper/type_string_map.php:237
 msgid "Is synced after imported media count"
-msgstr ""
+msgstr "Jest zsynchronizowane po zaimportowaniu liczby mediów"
 
 #: src/ViewHelper/type_string_map.php:238
 msgid "Is synced after imported page count"
-msgstr ""
+msgstr "Jest zsynchronizowane po zaimportowaniu liczby stron"
 
 #: src/ViewHelper/type_string_map.php:239
 msgid "Is synced after imported image count"
-msgstr ""
+msgstr "Jest zsynchronizowany po liczbie zaimportowanych obrazów"
 
 #: src/ViewHelper/type_string_map.php:240
 msgid "Is synced after imported section count"
-msgstr ""
+msgstr "Jest zsynchronizowane po zaimportowaniu liczby sekcji"
 
 #: src/ViewHelper/type_string_map.php:241
 msgid "Is synced after imported segment count"
-msgstr ""
+msgstr "Jest zsynchronizowane po zaimportowanej liczbie segmentów"
 
 #: src/ViewHelper/type_string_map.php:242
 msgid "Is synced after imported folio count"
-msgstr ""
+msgstr "Jest zsynchronizowane po zaimportowaniu liczby foliów."
 
 #: src/ViewHelper/type_string_map.php:243
 msgid "Is synced after imported sheet count"
-msgstr ""
+msgstr "Jest zsynchronizowane po zaimportowanej liczbie arkuszy"
 
 #: src/ViewHelper/type_string_map.php:244
 msgid "Is synced after imported entry count"
-msgstr ""
+msgstr "Jest zsynchronizowane po zaimportowaniu liczby wpisów"
 
 #: src/ViewHelper/type_string_map.php:247
 msgid "Select page"
-msgstr ""
+msgstr "Wybierz stronę"
 
 #: src/ViewHelper/type_string_map.php:248
 msgid "Select image"
-msgstr ""
+msgstr "Wybierz obrazek"
 
 #: src/ViewHelper/type_string_map.php:249
 msgid "Select section"
-msgstr ""
+msgstr "Wybierz sekcję"
 
 #: src/ViewHelper/type_string_map.php:250
 msgid "Select segment"
-msgstr ""
+msgstr "Wybierz segment"
 
 #: src/ViewHelper/type_string_map.php:251
 msgid "Select folio"
-msgstr ""
+msgstr "Wybierz folio"
 
 #: src/ViewHelper/type_string_map.php:252
 msgid "Select sheet"
-msgstr ""
+msgstr "Wybierz arkusz"
 
 #: src/ViewHelper/type_string_map.php:253
 msgid "Select entry"
-msgstr ""
+msgstr "Wybierz wpis"
 
 #: src/ViewHelper/type_string_map.php:255
 msgid "No Scripto media found"
-msgstr ""
+msgstr "Nie znaleziono mediów Scripto"
 
 #: src/ViewHelper/type_string_map.php:256
 msgid "No Scripto pages found"
-msgstr ""
+msgstr "Nie znaleziono stron Scripto"
 
 #: src/ViewHelper/type_string_map.php:257
 msgid "No Scripto images found"
-msgstr ""
+msgstr "Nie znaleziono obrazów Scripto"
 
 #: src/ViewHelper/type_string_map.php:258
 msgid "No Scripto sections found"
-msgstr ""
+msgstr "Nie znaleziono sekcji No Scripto"
 
 #: src/ViewHelper/type_string_map.php:259
 msgid "No Scripto segments found"
-msgstr ""
+msgstr "Nie znaleziono segmentów No Scripto"
 
 #: src/ViewHelper/type_string_map.php:260
 msgid "No Scripto folios found"
-msgstr ""
+msgstr "Nie znaleziono folios Scripto"
 
 #: src/ViewHelper/type_string_map.php:261
 msgid "No Scripto sheets found"
-msgstr ""
+msgstr "Nie znaleziono arkuszy Scripto"
 
 #: src/ViewHelper/type_string_map.php:262
 msgid "No Scripto entries found"
-msgstr ""
+msgstr "Nie znaleziono wpisów Scripto"
 
 #: src/ViewHelper/type_string_map.php:264
 msgid "Scripto: Media"
-msgstr ""
+msgstr "Scripto: Media"
 
 #: src/ViewHelper/type_string_map.php:265
 msgid "Scripto: Page"
-msgstr ""
+msgstr "Scripto: Strona"
 
 #: src/ViewHelper/type_string_map.php:266
 msgid "Scripto: Image"
-msgstr ""
+msgstr "Scripto: Obraz"
 
 #: src/ViewHelper/type_string_map.php:267
 msgid "Scripto: Section"
-msgstr ""
+msgstr "Scripto: Sekcja"
 
 #: src/ViewHelper/type_string_map.php:268
 msgid "Scripto: Segment"
-msgstr ""
+msgstr "Scripto: Segment"
 
 #: src/ViewHelper/type_string_map.php:269
 msgid "Scripto: Folio"
-msgstr ""
+msgstr "Scripto: Folio"
 
 #: src/ViewHelper/type_string_map.php:270
 msgid "Scripto: Sheet"
-msgstr ""
+msgstr "Scripto: Arkusz"
 
 #: src/ViewHelper/type_string_map.php:271
 msgid "Scripto: Entry"
-msgstr ""
+msgstr "Scripto: Wpis"
 
 #: src/ViewHelper/type_string_map.php:273 src/Form/MediaForm.php:31
 msgid "Mark media as not complete"
-msgstr ""
+msgstr "Oznacz media jako niekompletne"
 
 #: src/ViewHelper/type_string_map.php:274
 msgid "Mark page as not complete"
-msgstr ""
+msgstr "Oznacz stronę jako niekompletną"
 
 #: src/ViewHelper/type_string_map.php:275
 msgid "Mark image as not complete"
-msgstr ""
+msgstr "Oznacz obraz jako niekompletny"
 
 #: src/ViewHelper/type_string_map.php:276
 msgid "Mark section as not complete"
-msgstr ""
+msgstr "Oznacz sekcję jako niekompletną"
 
 #: src/ViewHelper/type_string_map.php:277
 msgid "Mark segment as not complete"
-msgstr ""
+msgstr "Oznacz segment jako niekompletny"
 
 #: src/ViewHelper/type_string_map.php:278
 msgid "Mark folio as not complete"
-msgstr ""
+msgstr "Oznacz folio jako niekompletne"
 
 #: src/ViewHelper/type_string_map.php:279
 msgid "Mark sheet as not complete"
-msgstr ""
+msgstr "Oznacz arkusz jako niekompletny"
 
 #: src/ViewHelper/type_string_map.php:280
 msgid "Mark entry as not complete"
-msgstr ""
+msgstr "Oznacz wpis jako niekompletny"
 
 #: src/ViewHelper/type_string_map.php:282
 msgid "Mark media as complete"
-msgstr ""
+msgstr "Oznacz media jako zakończone"
 
 #: src/ViewHelper/type_string_map.php:283
 msgid "Mark page as complete"
-msgstr ""
+msgstr "Oznacz stronę jako ukończoną"
 
 #: src/ViewHelper/type_string_map.php:284
 msgid "Mark image as complete"
-msgstr ""
+msgstr "Oznacz obraz jako ukończony"
 
 #: src/ViewHelper/type_string_map.php:285
 msgid "Mark section as complete"
-msgstr ""
+msgstr "Oznacz sekcję jako ukończoną"
 
 #: src/ViewHelper/type_string_map.php:286
 msgid "Mark segment as complete"
-msgstr ""
+msgstr "Oznacz segment jako zakończony"
 
 #: src/ViewHelper/type_string_map.php:287
 msgid "Mark folio as complete"
-msgstr ""
+msgstr "Oznacz folio jako zakończone"
 
 #: src/ViewHelper/type_string_map.php:288
 msgid "Mark sheet as complete"
-msgstr ""
+msgstr "Oznacz arkusz jako ukończony"
 
 #: src/ViewHelper/type_string_map.php:289
 msgid "Mark entry as complete"
-msgstr ""
+msgstr "Oznacz wpis jako zakończony"
 
 #: src/ViewHelper/type_string_map.php:291 src/Form/MediaForm.php:56
 msgid "Mark media as not approved"
-msgstr ""
+msgstr "Oznacz media jako niezatwierdzone"
 
 #: src/ViewHelper/type_string_map.php:292
 msgid "Mark page as not approved"
-msgstr ""
+msgstr "Oznacz stronę jako niezatwierdzoną"
 
 #: src/ViewHelper/type_string_map.php:293
 msgid "Mark image as not approved"
-msgstr ""
+msgstr "Oznacz obraz jako niezatwierdzony"
 
 #: src/ViewHelper/type_string_map.php:294
 msgid "Mark section as not approved"
-msgstr ""
+msgstr "Oznacz sekcję jako niezatwierdzoną"
 
 #: src/ViewHelper/type_string_map.php:295
 msgid "Mark segment as not approved"
-msgstr ""
+msgstr "Oznacz segment jako niezatwierdzony"
 
 #: src/ViewHelper/type_string_map.php:296
 msgid "Mark folio as not approved"
-msgstr ""
+msgstr "Oznacz folio jako niezatwierdzone"
 
 #: src/ViewHelper/type_string_map.php:297
 msgid "Mark sheet as not approved"
-msgstr ""
+msgstr "Oznacz arkusz jako niezatwierdzony"
 
 #: src/ViewHelper/type_string_map.php:298
 msgid "Mark entry as not approved"
-msgstr ""
+msgstr "Oznacz wpis jako niezatwierdzony"
 
 #: src/ViewHelper/type_string_map.php:300
 msgid "Mark media as approved"
-msgstr ""
+msgstr "Oznacz media jako zatwierdzone"
 
 #: src/ViewHelper/type_string_map.php:301
 msgid "Mark page as approved"
-msgstr ""
+msgstr "Oznacz stronę jako zatwierdzoną"
 
 #: src/ViewHelper/type_string_map.php:302
 msgid "Mark image as approved"
-msgstr ""
+msgstr "Oznacz obraz jako zatwierdzony"
 
 #: src/ViewHelper/type_string_map.php:303
 msgid "Mark section as approved"
-msgstr ""
+msgstr "Oznacz sekcję jako zatwierdzoną"
 
 #: src/ViewHelper/type_string_map.php:304
 msgid "Mark segment as approved"
-msgstr ""
+msgstr "Oznacz segment jako zatwierdzony"
 
 #: src/ViewHelper/type_string_map.php:305
 msgid "Mark folio as approved"
-msgstr ""
+msgstr "Oznacz folio jako zatwierdzone"
 
 #: src/ViewHelper/type_string_map.php:306
 msgid "Mark sheet as approved"
-msgstr ""
+msgstr "Oznacz arkusz jako zatwierdzony"
 
 #: src/ViewHelper/type_string_map.php:307
 msgid "Mark entry as approved"
-msgstr ""
+msgstr "Oznacz wpis jako zatwierdzony"
 
 #: src/ViewHelper/type_string_map.php:309
 msgid "Scripto media metadata"
-msgstr ""
+msgstr "Metadane mediów Scripto"
 
 #: src/ViewHelper/type_string_map.php:310
 msgid "Scripto page metadata"
-msgstr ""
+msgstr "Metadane strony Scripto"
 
 #: src/ViewHelper/type_string_map.php:311
 msgid "Scripto image metadata"
-msgstr ""
+msgstr "Metadane obrazu Scripto"
 
 #: src/ViewHelper/type_string_map.php:312
 msgid "Scripto section metadata"
-msgstr ""
+msgstr "Metadane sekcji Scripto"
 
 #: src/ViewHelper/type_string_map.php:313
 msgid "Scripto segment metadata"
-msgstr ""
+msgstr "Metadane segmentu Scripto"
 
 #: src/ViewHelper/type_string_map.php:314
 msgid "Scripto folio metadata"
-msgstr ""
+msgstr "Metadane Scripto folio"
 
 #: src/ViewHelper/type_string_map.php:315
 msgid "Scripto sheet metadata"
-msgstr ""
+msgstr "Metadane arkusza Scripto"
 
 #: src/ViewHelper/type_string_map.php:316
 msgid "Scripto entry metadata"
-msgstr ""
+msgstr "Metadane wpisu Scripto"
 
 #: src/ViewHelper/type_string_map.php:318
 msgid "Batch edit medias"
-msgstr ""
+msgstr "Edycja zbiorcza mediów"
 
 #: src/ViewHelper/type_string_map.php:320
 msgid "Batch edit pages"
-msgstr ""
+msgstr "Edycja zbiorcza stron"
 
 #: src/ViewHelper/type_string_map.php:321
 msgid "Batch edit images"
-msgstr ""
+msgstr "Edycja zbiorcza obrazów"
 
 #: src/ViewHelper/type_string_map.php:322
 msgid "Batch edit sections"
-msgstr ""
+msgstr "Edycja zbiorcza sekcji"
 
 #: src/ViewHelper/type_string_map.php:323
 msgid "Batch edit segments"
-msgstr ""
+msgstr "Edycja zbiorcza segmentów"
 
 #: src/ViewHelper/type_string_map.php:324
 msgid "Batch edit folios"
-msgstr ""
+msgstr "Edycja zbiorcza foliów"
 
 #: src/ViewHelper/type_string_map.php:325
 msgid "Batch edit sheets"
-msgstr ""
+msgstr "Edycja wsadowa arkuszy"
 
 #: src/ViewHelper/type_string_map.php:326
 msgid "Batch edit entries"
-msgstr ""
+msgstr "Edycja zbiorcza wpisów"
 
 #: src/ViewHelper/type_string_map.php:328
 msgid "Batch edit all medias"
-msgstr ""
+msgstr "Edycja zbiorcza wszystkich mediów"
 
 #: src/ViewHelper/type_string_map.php:329
 msgid "Batch edit all media"
-msgstr ""
+msgstr "Edycja zbiorcza wszystkich mediów"
 
 #: src/ViewHelper/type_string_map.php:330
 msgid "Batch edit all pages"
-msgstr ""
+msgstr "Edytuj zbiorowo wszystkie strony"
 
 #: src/ViewHelper/type_string_map.php:331
 msgid "Batch edit all images"
-msgstr ""
+msgstr "Edycja zbiorcza wszystkich obrazów"
 
 #: src/ViewHelper/type_string_map.php:332
 msgid "Batch edit all sections"
-msgstr ""
+msgstr "Edycja zbiorcza wszystkich sekcji"
 
 #: src/ViewHelper/type_string_map.php:333
 msgid "Batch edit all segments"
-msgstr ""
+msgstr "Edytuj zbiorczo wszystkie segmenty"
 
 #: src/ViewHelper/type_string_map.php:334
 msgid "Batch edit all folios"
-msgstr ""
+msgstr "Edycja zbiorcza wszystkich foliów"
 
 #: src/ViewHelper/type_string_map.php:335
 msgid "Batch edit all sheets"
-msgstr ""
+msgstr "Edycja zbiorcza wszystkich arkuszy"
 
 #: src/ViewHelper/type_string_map.php:336
 msgid "Batch edit all entries"
-msgstr ""
+msgstr "Edycja zbiorcza wszystkich wpisów"
 
 #: src/ViewHelper/type_string_map.php:338
 msgid "Affected medias"
-msgstr ""
+msgstr "Dotknięte media"
 
 #: src/ViewHelper/type_string_map.php:340
 msgid "Affected pages"
-msgstr ""
+msgstr "Strony dotknięte"
 
 #: src/ViewHelper/type_string_map.php:341
 msgid "Affected images"
-msgstr ""
+msgstr "Dotknięte obrazy"
 
 #: src/ViewHelper/type_string_map.php:342
 msgid "Affected sections"
-msgstr ""
+msgstr "Dotknięte sekcje"
 
 #: src/ViewHelper/type_string_map.php:343
 msgid "Affected segments"
-msgstr ""
+msgstr "Dotknięte segmenty"
 
 #: src/ViewHelper/type_string_map.php:344
 msgid "Affected folios"
-msgstr ""
+msgstr "Dotknięte folia"
 
 #: src/ViewHelper/type_string_map.php:345
 msgid "Affected sheets"
-msgstr ""
+msgstr "Dotknięte arkusze"
 
 #: src/ViewHelper/type_string_map.php:346
 msgid "Affected entries"
-msgstr ""
+msgstr "Dotknięte wpisy"
 
 #: src/ViewHelper/type_string_map.php:348
 #, php-format
 msgid "You are editing the following %s medias"
-msgstr ""
+msgstr "Edytujesz następujące media %s"
 
 #: src/ViewHelper/type_string_map.php:349
 #, php-format
 msgid "You are editing the following %s media"
-msgstr ""
+msgstr "Edytujesz następujące %s media"
 
 #: src/ViewHelper/type_string_map.php:350
 #, php-format
 msgid "You are editing the following %s pages"
-msgstr ""
+msgstr "Edytujesz następujące %s strony"
 
 #: src/ViewHelper/type_string_map.php:351
 #, php-format
 msgid "You are editing the following %s images"
-msgstr ""
+msgstr "Edytujesz następujące %s obrazy"
 
 #: src/ViewHelper/type_string_map.php:352
 #, php-format
 msgid "You are editing the following %s sections"
-msgstr ""
+msgstr "Edytujesz następujące sekcje %s"
 
 #: src/ViewHelper/type_string_map.php:353
 #, php-format
 msgid "You are editing the following %s segments"
-msgstr ""
+msgstr "Edytujesz następujące segmenty %s"
 
 #: src/ViewHelper/type_string_map.php:354
 #, php-format
 msgid "You are editing the following %s folios"
-msgstr ""
+msgstr "Edytujesz następujące %s arkusze"
 
 #: src/ViewHelper/type_string_map.php:355
 #, php-format
 msgid "You are editing the following %s sheets"
-msgstr ""
+msgstr "Edytujesz następujące arkusze %s"
 
 #: src/ViewHelper/type_string_map.php:356
 #, php-format
 msgid "You are editing the following %s entries"
-msgstr ""
+msgstr "Edytujesz następujące wpisy %s"
 
 #: src/ViewHelper/type_string_map.php:358
 #, php-format
 msgid "You are editing %s medias"
-msgstr ""
+msgstr "Edytujesz %s media"
 
 #: src/ViewHelper/type_string_map.php:359
 #, php-format
 msgid "You are editing %s media"
-msgstr ""
+msgstr "Edytujesz media %s"
 
 #: src/ViewHelper/type_string_map.php:360
 #, php-format
 msgid "You are editing %s pages"
-msgstr ""
+msgstr "Edytujesz %s stron"
 
 #: src/ViewHelper/type_string_map.php:361
 #, php-format
 msgid "You are editing %s images"
-msgstr ""
+msgstr "Edytujesz %s obrazy"
 
 #: src/ViewHelper/type_string_map.php:362
 #, php-format
 msgid "You are editing %s sections"
-msgstr ""
+msgstr "Edytujesz sekcje %s"
 
 #: src/ViewHelper/type_string_map.php:363
 #, php-format
 msgid "You are editing %s segments"
-msgstr ""
+msgstr "Edytujesz %s segmentów"
 
 #: src/ViewHelper/type_string_map.php:364
 #, php-format
 msgid "You are editing %s folios"
-msgstr ""
+msgstr "Edytujesz %s foliów"
 
 #: src/ViewHelper/type_string_map.php:365
 #, php-format
 msgid "You are editing %s sheets"
-msgstr ""
+msgstr "Edytujesz arkusze %s"
 
 #: src/ViewHelper/type_string_map.php:366
 #, php-format
 msgid "You are editing %s entries"
-msgstr ""
+msgstr "Edytujesz %s wpisów"
 
 #: src/ViewHelper/type_string_map.php:368
 msgid "This Scripto media has no revisions."
-msgstr ""
+msgstr "Ten materiał Scripto nie ma żadnych wersji."
 
 #: src/ViewHelper/type_string_map.php:369
 msgid "This Scripto page has no revisions."
-msgstr ""
+msgstr "Ta strona Scripto nie ma żadnych rewizji."
 
 #: src/ViewHelper/type_string_map.php:370
 msgid "This Scripto image has no revisions."
-msgstr ""
+msgstr "Ten obraz Scripto nie ma żadnych rewizji."
 
 #: src/ViewHelper/type_string_map.php:371
 msgid "This Scripto section has no revisions."
-msgstr ""
+msgstr "Ta sekcja Scripto nie ma żadnych poprawek."
 
 #: src/ViewHelper/type_string_map.php:372
 msgid "This Scripto segment has no revisions."
-msgstr ""
+msgstr "Ten segment Scripto nie ma żadnych poprawek."
 
 #: src/ViewHelper/type_string_map.php:373
 msgid "This Scripto folio has no revisions."
-msgstr ""
+msgstr "Ten folio Scripto nie ma żadnych poprawek."
 
 #: src/ViewHelper/type_string_map.php:374
 msgid "This Scripto sheet has no revisions."
-msgstr ""
+msgstr "Ta karta Scripto nie ma żadnych poprawek."
 
 #: src/ViewHelper/type_string_map.php:375
 msgid "This Scripto entry has no revisions"
-msgstr ""
+msgstr "Ten wpis Scripto nie ma żadnych poprawek."
 
 #: src/ViewHelper/type_string_map.php:377
 #: src/ViewHelper/breadcrumbs_route_map.php:40
 msgid "Review media"
-msgstr ""
+msgstr "Przegląd mediów"
 
 #: src/ViewHelper/type_string_map.php:378
 #: src/ViewHelper/type_string_map.php:379
 msgid "Review page"
-msgstr ""
+msgstr "Strona recenzji"
 
 #: src/ViewHelper/type_string_map.php:380
 msgid "Review section"
-msgstr ""
+msgstr "Sekcja recenzji"
 
 #: src/ViewHelper/type_string_map.php:381
 msgid "Review segment"
-msgstr ""
+msgstr "Segment recenzji"
 
 #: src/ViewHelper/type_string_map.php:382
 msgid "Review folio"
-msgstr ""
+msgstr "Przegląd folio"
 
 #: src/ViewHelper/type_string_map.php:383
 msgid "Review sheet"
-msgstr ""
+msgstr "Arkusz przeglądowy"
 
 #: src/ViewHelper/type_string_map.php:384
 msgid "Review entry"
-msgstr ""
+msgstr "Przegląd wpisu"
 
 #: src/ViewHelper/type_string_map.php:386
 #, php-format
 msgid "%s: Media #%s"
-msgstr ""
+msgstr "%s: Media #%s"
 
 #: src/ViewHelper/type_string_map.php:387
 #, php-format
 msgid "%s: Page #%s"
-msgstr ""
+msgstr "%s: Strona #%s"
 
 #: src/ViewHelper/type_string_map.php:388
 #, php-format
 msgid "%s: Image #%s"
-msgstr ""
+msgstr "%s: Obraz #%s"
 
 #: src/ViewHelper/type_string_map.php:389
 #, php-format
 msgid "%s: Section #%s"
-msgstr ""
+msgstr "%s: Sekcja #%s"
 
 #: src/ViewHelper/type_string_map.php:390
 #, php-format
 msgid "%s: Segment #%s"
-msgstr ""
+msgstr "%s: Segment #%s"
 
 #: src/ViewHelper/type_string_map.php:391
 #, php-format
 msgid "%s: Folio #%s"
-msgstr ""
+msgstr "%s: Folio #%s"
 
 #: src/ViewHelper/type_string_map.php:392
 #, php-format
 msgid "%s: Sheet #%s"
-msgstr ""
+msgstr "%s: Arkusz #%s"
 
 #: src/ViewHelper/type_string_map.php:393
 #, php-format
 msgid "%s: Entry #%s"
-msgstr ""
+msgstr "%s: Wpis #%s"
 
 #: src/ViewHelper/type_string_map.php:395
 #, php-format
 msgid "Notes for %s: Media #%s"
-msgstr ""
+msgstr "Notatki dla %s: Media #%s"
 
 #: src/ViewHelper/type_string_map.php:396
 #, php-format
 msgid "Notes for %s: Page #%s"
-msgstr ""
+msgstr "Notatki dla %s: Strona #%s"
 
 #: src/ViewHelper/type_string_map.php:397
 #, php-format
 msgid "Notes for %s: Image #%s"
-msgstr ""
+msgstr "Notatki dla %s: Obraz #%s"
 
 #: src/ViewHelper/type_string_map.php:398
 #, php-format
 msgid "Notes for %s: Section #%s"
-msgstr ""
+msgstr "Notatki dla %s: Sekcja #%s"
 
 #: src/ViewHelper/type_string_map.php:399
 #, php-format
 msgid "Notes for %s: Segment #%s"
-msgstr ""
+msgstr "Notatki dla %s: Segment #%s"
 
 #: src/ViewHelper/type_string_map.php:400
 #, php-format
 msgid "Notes for %s: Folio #%s"
-msgstr ""
+msgstr "Notatki dla %s: Folio #%s"
 
 #: src/ViewHelper/type_string_map.php:401
 #, php-format
 msgid "Notes for %s: Sheet #%s"
-msgstr ""
+msgstr "Notatki dla %s: Arkusz #%s"
 
 #: src/ViewHelper/type_string_map.php:402
 #, php-format
 msgid "Notes for %s: Entry #%s"
-msgstr ""
+msgstr "Notatki dla %s: Wpis #%s"
 
 #: src/ViewHelper/type_string_map.php:404 src/ViewHelper/Scripto.php:517
 msgid "Stop tracking media"
-msgstr ""
+msgstr "Zatrzymaj śledzenie mediów"
 
 #: src/ViewHelper/type_string_map.php:405
 msgid "Stop tracking page"
-msgstr ""
+msgstr "Zatrzymaj śledzenie strony"
 
 #: src/ViewHelper/type_string_map.php:406
 msgid "Stop tracking image"
-msgstr ""
+msgstr "Zatrzymaj śledzenie obrazu"
 
 #: src/ViewHelper/type_string_map.php:407
 msgid "Stop tracking section"
-msgstr ""
+msgstr "Sekcja zatrzymaj śledzenie"
 
 #: src/ViewHelper/type_string_map.php:408
 msgid "Stop tracking segment"
-msgstr ""
+msgstr "Zatrzymaj śledzenie segmentu"
 
 #: src/ViewHelper/type_string_map.php:409
 msgid "Stop tracking folio"
-msgstr ""
+msgstr "Zatrzymaj śledzenie folio"
 
 #: src/ViewHelper/type_string_map.php:410
 msgid "Stop tracking sheet"
-msgstr ""
+msgstr "Zatrzymaj śledzenie arkusza"
 
 #: src/ViewHelper/type_string_map.php:411
 msgid "Stop tracking entry"
-msgstr ""
+msgstr "Zatrzymaj śledzenie wejścia"
 
 #: src/ViewHelper/type_string_map.php:413
 msgid "Watch media"
-msgstr ""
+msgstr "Oglądaj media"
 
 #: src/ViewHelper/type_string_map.php:414
 msgid "Watch page"
-msgstr ""
+msgstr "Strona oglądania"
 
 #: src/ViewHelper/type_string_map.php:415
 msgid "Watch image"
-msgstr ""
+msgstr "Obejrzyj obrazek"
 
 #: src/ViewHelper/type_string_map.php:416
 msgid "Watch section"
-msgstr ""
+msgstr "Sekcja Zegarek"
 
 #: src/ViewHelper/type_string_map.php:417
 msgid "Watch segment"
-msgstr ""
+msgstr "Zobacz segment"
 
 #: src/ViewHelper/type_string_map.php:418
 msgid "Watch folio"
-msgstr ""
+msgstr "Zobacz folio"
 
 #: src/ViewHelper/type_string_map.php:419
 msgid "Watch sheet"
-msgstr ""
+msgstr "Arkusz obserwacji"
 
 #: src/ViewHelper/type_string_map.php:420
 msgid "Watch entry"
-msgstr ""
+msgstr "Zapisz wpis"
 
 #: src/ViewHelper/type_string_map.php:422 src/ViewHelper/Scripto.php:521
 msgid "Now tracking media"
-msgstr ""
+msgstr "Teraz śledzenie mediów"
 
 #: src/ViewHelper/type_string_map.php:423
 msgid "Now tracking page"
-msgstr ""
+msgstr "Teraz śledzenie strony"
 
 #: src/ViewHelper/type_string_map.php:424
 msgid "Now tracking image"
-msgstr ""
+msgstr "Teraz śledzenie obrazu"
 
 #: src/ViewHelper/type_string_map.php:425
 msgid "Now tracking section"
-msgstr ""
+msgstr "Sekcja śledzenia"
 
 #: src/ViewHelper/type_string_map.php:426
 msgid "Now tracking segment"
-msgstr ""
+msgstr "Teraz śledzenie segmentu"
 
 #: src/ViewHelper/type_string_map.php:427
 msgid "Now tracking folio"
-msgstr ""
+msgstr "Teraz śledzenie folio"
 
 #: src/ViewHelper/type_string_map.php:428
 msgid "Now tracking sheet"
-msgstr ""
+msgstr "Teraz arkusz śledzenia"
 
 #: src/ViewHelper/type_string_map.php:429
 msgid "Now tracking entry"
-msgstr ""
+msgstr "Teraz śledzenie wpisu"
 
 #: src/ViewHelper/type_string_map.php:431
 msgid "Media successfully removed from your watchlist"
-msgstr ""
+msgstr "Media zostały pomyślnie usunięte z twojej listy obserwowanych."
 
 #: src/ViewHelper/type_string_map.php:432
 msgid "No longer tracking page"
-msgstr ""
+msgstr "Już nie śledzimy strony"
 
 #: src/ViewHelper/type_string_map.php:433
 msgid "No longer tracking image"
-msgstr ""
+msgstr "Już nie śledzenie obrazu"
 
 #: src/ViewHelper/type_string_map.php:434
 msgid "No longer tracking section"
-msgstr ""
+msgstr "Sekcja przestaje być śledzona"
 
 #: src/ViewHelper/type_string_map.php:435
 msgid "No longer tracking segment"
-msgstr ""
+msgstr "Nie śledzenie segmentu"
 
 #: src/ViewHelper/type_string_map.php:436
 msgid "No longer tracking folio"
-msgstr ""
+msgstr "Nie śledzenie folio"
 
 #: src/ViewHelper/type_string_map.php:437
 msgid "No longer tracking sheet"
-msgstr ""
+msgstr "Nie śledź już arkusza"
 
 #: src/ViewHelper/type_string_map.php:438
 msgid "No longer tracking entry"
-msgstr ""
+msgstr "Nie śledzenie wejścia"
 
 #: src/ViewHelper/type_string_map.php:445
 #: src/ViewHelper/type_string_map.php:465
 #: src/ViewHelper/type_string_map.php:470 src/Form/ProjectForm.php:207
 msgid "Transcription"
-msgstr ""
+msgstr "Transkrypcja"
 
 #: src/ViewHelper/type_string_map.php:446
 #: src/ViewHelper/type_string_map.php:466
 #: src/ViewHelper/type_string_map.php:471 src/Form/ProjectForm.php:208
 msgid "Translation"
 msgstr ""
+"Przykro mi, ale nie dostarczyłeś żadnego tekstu do przetłumaczenia. Proszę "
+"podaj tekst, który chcesz przetłumaczyć."
 
 #: src/ViewHelper/type_string_map.php:450
 msgid "Last transcribed"
-msgstr ""
+msgstr "Ostatnio transkrybowane"
 
 #: src/ViewHelper/type_string_map.php:451
 msgid "Last translated"
-msgstr ""
+msgstr "Ostatnio przetłumaczone"
 
 #: src/ViewHelper/type_string_map.php:452
 msgid "Last described"
-msgstr ""
+msgstr "Ostatnio opisany"
 
 #: src/ViewHelper/type_string_map.php:454
 msgid "Not edited"
-msgstr ""
+msgstr "Nie edytowane"
 
 #: src/ViewHelper/type_string_map.php:455
 msgid "Not transcribed"
-msgstr ""
+msgstr "Nie przepisano"
 
 #: src/ViewHelper/type_string_map.php:456
 msgid "Not translated"
-msgstr ""
+msgstr "Nie przetłumaczone"
 
 #: src/ViewHelper/type_string_map.php:457
 msgid "Not described"
-msgstr ""
+msgstr "Nieopisane"
 
 #: src/ViewHelper/type_string_map.php:460
 msgid "Transcribe"
-msgstr ""
+msgstr "Transkrybuj"
 
 #: src/ViewHelper/type_string_map.php:461
 msgid "Translate"
-msgstr ""
+msgstr "Proszę podać tekst do przetłumaczenia."
 
 #: src/ViewHelper/type_string_map.php:462
 msgid "Describe"
-msgstr ""
+msgstr "Opisz"
 
 #: src/ViewHelper/type_string_map.php:475
 msgid "No transcription"
-msgstr ""
+msgstr "Brak transkrypcji"
 
 #: src/ViewHelper/type_string_map.php:476
 msgid "No translation"
-msgstr ""
+msgstr "Nie ma tłumaczenia"
 
 #: src/ViewHelper/breadcrumbs_route_map.php:15
 msgid "User contributions"
-msgstr ""
+msgstr "Wkład użytkowników"
 
 #: src/ViewHelper/breadcrumbs_route_map.php:20
 msgid "User watchlist"
-msgstr ""
+msgstr "Lista obserwowanych użytkowników"
 
 #: src/ViewHelper/breadcrumbs_route_map.php:30
 msgid "Review project"
-msgstr ""
+msgstr "Przegląd projektu"
 
 #: src/ViewHelper/Scripto.php:519
 msgid "Track media"
-msgstr ""
+msgstr "Śledź media"
 
 #: src/ViewHelper/Scripto.php:522
 msgid "No longer tracking media"
-msgstr ""
+msgstr "Nie śledzimy już mediów"
 
 #: src/Api/Representation/ScriptoItemRepresentation.php:11
 #: src/Api/Representation/ScriptoMediaRepresentation.php:12
 msgid "New"
-msgstr ""
+msgstr "Nowy"
 
 #: src/Api/Representation/ScriptoItemRepresentation.php:12
 #: src/Api/Representation/ScriptoMediaRepresentation.php:13
 msgid "In progress"
-msgstr ""
+msgstr "W trakcie"
 
 #: src/Api/Representation/ScriptoMediaRepresentation.php:465
 msgid "Confirmed only"
-msgstr ""
+msgstr "Potwierdzone tylko"
 
 #: src/Api/Representation/ScriptoMediaRepresentation.php:468
 msgid "Admin only"
-msgstr ""
+msgstr "Tylko dla administratorów"
 
 #: src/Api/Representation/ScriptoMediaRepresentation.php:481
 msgid "Open to all"
-msgstr ""
+msgstr "Otwarte dla wszystkich"
 
 #: src/Api/Adapter/ScriptoProjectAdapter.php:74
 msgid "An owner must have an ID"
-msgstr ""
+msgstr "Właściciel musi mieć identyfikator."
 
 #: src/Api/Adapter/ScriptoProjectAdapter.php:77
 msgid "An item set must have an ID"
-msgstr ""
+msgstr "Zestaw przedmiotów musi mieć identyfikator"
 
 #: src/Api/Adapter/ScriptoProjectAdapter.php:80
 msgid "A property must have an ID"
-msgstr ""
+msgstr "Nieruchomość musi mieć identyfikator."
 
 #: src/Api/Adapter/ScriptoProjectAdapter.php:177
 msgid "A Scripto project title must not be null"
-msgstr ""
+msgstr "Tytuł projektu Scripto nie może być pusty"
 
 #: src/Api/Adapter/ScriptoMediaAdapter.php:46
 msgid ""
 "The Scripto\\Api\\Adapter\\ScriptoMediaAdapter adapter does not implement "
 "the create operation."
 msgstr ""
+"Adapter Scripto\\Api\\Adapter\\ScriptoMediaAdapter nie implementuje operacji"
+" tworzenia."
 
 #: src/Api/Adapter/ScriptoMediaAdapter.php:170
 msgid "A Scripto item must not be null."
-msgstr ""
+msgstr "Element Scripto nie może być pusty."
 
 #: src/Api/Adapter/ScriptoMediaAdapter.php:173
 msgid "A media must not be null."
-msgstr ""
+msgstr "Media nie może być puste."
 
 #: src/Api/Adapter/ScriptoMediaAdapter.php:179
 msgid "Invalid completed revision ID."
-msgstr ""
+msgstr "Nieprawidłowy identyfikator zakończonej rewizji."
 
 #: src/Api/Adapter/ScriptoMediaAdapter.php:186
 msgid "Invalid approved revision ID."
-msgstr ""
+msgstr "Nieprawidłowe zatwierdzone ID rewizji."
 
 #: src/Api/Adapter/ScriptoItemAdapter.php:37
 msgid ""
-"The Scripto\\Api\\Adapter\\ScriptoItemAdapter adapter does not implement the "
-"create operation."
+"The Scripto\\Api\\Adapter\\ScriptoItemAdapter adapter does not implement the"
+" create operation."
 msgstr ""
+"Adapter Scripto\\Api\\Adapter\\ScriptoItemAdapter nie implementuje operacji "
+"tworzenia."
 
 #: src/Api/Adapter/ScriptoItemAdapter.php:127
 msgid "A Scripto project must not be null"
-msgstr ""
+msgstr "Projekt Scripto nie może być pusty."
 
 #: src/Api/Adapter/ScriptoItemAdapter.php:130
 msgid "An item must not be null"
-msgstr ""
+msgstr "Element nie może być pusty"
 
 #: src/Controller/PublicApp/IndexController.php:51
 msgid ""
-"Your Scripto account has been created! Please check your email for a link to "
-"activate your account."
+"Your Scripto account has been created! Please check your email for a link to"
+" activate your account."
 msgstr ""
+"Twoje konto Scripto zostało utworzone! Proszę sprawdź swoją skrzynkę "
+"e-mailową, aby znaleźć link do aktywacji swojego konta."
 
 #: src/Controller/PublicApp/MediaController.php:164
 #: src/Controller/Admin/MediaController.php:150
 #: src/Controller/Admin/MediaController.php:248
 msgid "Scripto media successfully updated."
-msgstr ""
+msgstr "Scripto media zostało pomyślnie zaktualizowane."
 
 #: src/Controller/Admin/MediaController.php:93
 #: src/Controller/Admin/MediaController.php:216
 msgid "Scripto media revision successfully reverted."
-msgstr ""
+msgstr "Rewizja mediów Scripto została pomyślnie przywrócona."
 
 #: src/Controller/Admin/MediaController.php:354
 #: src/Controller/Admin/MediaController.php:441
 msgid "Scripto media successfully edited"
-msgstr ""
+msgstr "Scripto media zostało pomyślnie edytowane"
 
 #: src/Controller/Admin/ProjectController.php:44
 msgid "Scripto project successfully created."
-msgstr ""
+msgstr "Projekt Scripto został pomyślnie utworzony."
 
 #: src/Controller/Admin/ProjectController.php:77
 msgid "Scripto project successfully edited."
-msgstr ""
+msgstr "Projekt Scripto został pomyślnie edytowany."
 
 #: src/Controller/Admin/ProjectController.php:104
 msgid "Scripto project successfully deleted"
-msgstr ""
+msgstr "Projekt Scripto został pomyślnie usunięty."
 
 #: src/Controller/Admin/ProjectController.php:154
 #, php-format
 msgid "Syncing Scripto project. This may take a while. %s"
-msgstr ""
+msgstr "Synchronizowanie projektu Scripto. To może zająć chwilę. %s"
 
 #: src/Controller/Admin/ProjectController.php:179
 #, php-format
 msgid "Importing Scripto project text. This may take a while. %s"
-msgstr ""
+msgstr "Importowanie tekstu projektu Scripto. Może to potrwać chwilę. %s"
 
 #: src/Controller/Admin/ProjectController.php:204
 #, php-format
 msgid "Unimporting Scripto project text. This may take a while. %s"
-msgstr ""
+msgstr "Usuwanie tekstu projektu Scripto. To może potrwać chwilę. %s"
 
 #: src/Controller/Admin/ItemController.php:31
 #, php-format
 msgid "This project has no item set. %s"
-msgstr ""
+msgstr "Ten projekt nie ma ustawionego elementu. %s"
 
 #: src/Controller/Admin/ItemController.php:42
 #, php-format
 msgid "This project has no property. %s"
-msgstr ""
+msgstr "Ten projekt nie ma właściwości. %s"
 
 #: src/Form/ProjectImportForm.php:14
 msgid "Import project"
-msgstr ""
+msgstr "Importuj projekt"
 
 #: src/Form/MediaForm.php:14
 msgid "Toggle complete"
-msgstr ""
+msgstr "Przełącz ukończone"
 
 #: src/Form/MediaForm.php:27
 msgid "Complete action"
-msgstr ""
+msgstr "Zakończ akcję"
 
 #: src/Form/MediaForm.php:28 src/Form/MediaForm.php:53
 msgid "Select action:"
-msgstr ""
+msgstr "Wybierz akcję:"
 
 #: src/Form/MediaForm.php:39
 msgid "Toggle approved"
-msgstr ""
+msgstr "Przełącz zatwierdzony"
 
 #: src/Form/MediaForm.php:52
 msgid "Approved action"
-msgstr ""
+msgstr "Zatwierdzona akcja"
 
 #: src/Form/MediaForm.php:64 src/Form/MediaBatchForm.php:44
 msgid "Protection level"
-msgstr ""
+msgstr "Poziom ochrony"
 
 #: src/Form/MediaForm.php:66 src/Form/MediaBatchForm.php:47
 msgid "Allow all users"
-msgstr ""
+msgstr "Zezwól wszystkim użytkownikom"
 
 #: src/Form/MediaForm.php:67 src/Form/MediaBatchForm.php:48
 msgid "Allow only confirmed users"
-msgstr ""
+msgstr "Zezwól tylko na potwierdzonych użytkowników"
 
 #: src/Form/MediaForm.php:68 src/Form/MediaBatchForm.php:49
 msgid "Allow only administrators"
-msgstr ""
+msgstr "Zezwól tylko administratorom"
 
 #: src/Form/MediaForm.php:79 src/Form/MediaBatchForm.php:57
 msgid "Protection expiry"
-msgstr ""
+msgstr "Wygaszenie ochrony"
 
 #: src/Form/MediaForm.php:81 src/Form/MediaBatchForm.php:59
 msgid "infinite"
-msgstr ""
+msgstr "nieskończoność"
 
 #: src/Form/MediaForm.php:82 src/Form/MediaBatchForm.php:60
 msgid "1 hour"
-msgstr ""
+msgstr "1 godzina"
 
 #: src/Form/MediaForm.php:84 src/Form/MediaBatchForm.php:62
 msgid "1 week"
-msgstr ""
+msgstr "1 tydzień"
 
 #: src/Form/MediaForm.php:85 src/Form/MediaBatchForm.php:63
 msgid "2 weeks"
-msgstr ""
+msgstr "2 tygodnie"
 
 #: src/Form/MediaForm.php:86 src/Form/MediaBatchForm.php:64
 msgid "1 month"
-msgstr ""
+msgstr "1 miesiąc"
 
 #: src/Form/MediaForm.php:87 src/Form/MediaBatchForm.php:65
 msgid "3 months"
-msgstr ""
+msgstr "3 miesiące"
 
 #: src/Form/MediaForm.php:88 src/Form/MediaBatchForm.php:66
 msgid "6 months"
-msgstr ""
+msgstr "6 miesięcy"
 
 #: src/Form/MediaForm.php:89 src/Form/MediaBatchForm.php:67
 msgid "1 year"
-msgstr ""
+msgstr "1 rok"
 
 #: src/Form/MediaPublicAppForm.php:24
 msgid "Change summary"
-msgstr ""
+msgstr "Podsumowanie zmian"
 
 #: src/Form/MediaPublicAppForm.php:26
 msgid "Summarize your changes"
-msgstr ""
+msgstr "Podsumuj swoje zmiany"
 
 #: src/Form/MediaPublicAppForm.php:34
 msgid "Mark complete"
-msgstr ""
+msgstr "Oznacz jako zakończone"
 
 #: src/Form/MediaBatchForm.php:14
 msgid "Completion status"
-msgstr ""
+msgstr "Status ukończenia"
 
 #: src/Form/MediaBatchForm.php:16
 msgid "Complete"
-msgstr ""
+msgstr "Ukończone"
 
 #: src/Form/MediaBatchForm.php:17
 msgid "Incomplete"
-msgstr ""
+msgstr "Niekompletny"
 
 #: src/Form/MediaBatchForm.php:29
 msgid "Approval status"
-msgstr ""
+msgstr "Status zatwierdzenia"
 
 #: src/Form/MediaBatchForm.php:75
 msgid "Watchlist status"
-msgstr ""
+msgstr "Status listy obserwacyjnej"
 
 #: src/Form/MediaBatchForm.php:77
 msgid "Watch"
-msgstr ""
+msgstr "Zegarek"
 
 #: src/Form/MediaBatchForm.php:78
 msgid "Unwatch"
-msgstr ""
+msgstr "Przestań obserwować"
 
 #: src/Form/ProjectUnimportForm.php:14
 msgid "Unimport project"
-msgstr ""
+msgstr "Wyeksportuj projekt"
 
 #: src/Form/ScriptoLogoutForm.php:15
 msgid "Log out"
-msgstr ""
+msgstr "Wyloguj się"
 
 #: src/Form/CreateAccountForm.php:14 src/Form/ScriptoLoginForm.php:15
 msgid "Username"
-msgstr ""
+msgstr "Nazwa użytkownika"
 
 #: src/Form/CreateAccountForm.php:44
 msgid "Email address"
-msgstr ""
+msgstr "Adres e-mail"
 
 #: src/Form/CreateAccountForm.php:54
 msgid "Real name"
-msgstr ""
+msgstr "Prawdziwe imię"
 
 #: src/Form/CreateAccountForm.php:61
 msgid "Create your account"
-msgstr ""
+msgstr "Utwórz swoje konto"
 
 #: src/Form/ModuleConfigForm.php:27
 msgid "MediaWiki API URL"
-msgstr ""
+msgstr "Adres URL API MediaWiki"
 
 #: src/Form/ModuleConfigForm.php:28
 msgid "Enter the URL to your MediaWiki API endpoint."
-msgstr ""
+msgstr "Wprowadź adres URL do swojego punktu końcowego API MediaWiki."
 
 #: src/Form/ModuleConfigForm.php:55
 #, php-format
@@ -3048,125 +3095,138 @@ msgid ""
 "Invalid MediaWiki API. The URL must resolve to a MediaWiki API endpoint and "
 "the MediaWiki version must be %s or greater."
 msgstr ""
+"Nieprawidłowe API MediaWiki. Adres URL musi prowadzić do punktu końcowego "
+"API MediaWiki, a wersja MediaWiki musi być równa %s lub wyższa."
 
 #: src/Form/RevisionRevertForm.php:14
 msgid "Confirm reversion"
-msgstr ""
+msgstr "Potwierdź przywrócenie"
 
 #: src/Form/ProjectForm.php:18
 msgid "Enter the title of this project."
-msgstr ""
+msgstr "Wprowadź tytuł tego projektu."
 
 #: src/Form/ProjectForm.php:31
 msgid ""
 "Select the item set used to synchronize project items. Once synchronized, "
 "this project will contain every item in this item set."
 msgstr ""
+"Wybierz zestaw elementów używany do synchronizacji elementów projektu. Po "
+"synchronizacji ten projekt będzie zawierał każdy element w tym zestawie."
 
 #: src/Form/ProjectForm.php:37
 msgid "Select an item set"
-msgstr ""
+msgstr "Wybierz zestaw przedmiotów"
 
 #: src/Form/ProjectForm.php:47
 msgid "Select the property used to store imported content."
 msgstr ""
+"Wybierz właściwość używaną do przechowywania zaimportowanej zawartości."
 
 #: src/Form/ProjectForm.php:63
 msgid ""
 "Select media types to include in the project. If empty, all media will be "
 "included."
 msgstr ""
+"Wybierz typy mediów do uwzględnienia w projekcie. Jeśli puste, wszystkie "
+"media zostaną uwzględnione."
 
 #: src/Form/ProjectForm.php:64
 msgid "[Media without media type]"
-msgstr ""
+msgstr "[Media bez typu mediów]"
 
 #: src/Form/ProjectForm.php:72
 msgid "Select media types"
-msgstr ""
+msgstr "Wybierz typy mediów"
 
 #: src/Form/ProjectForm.php:81
 msgid "Enter the description of this project."
-msgstr ""
+msgstr "Wprowadź opis tego projektu."
 
 #: src/Form/ProjectForm.php:92
 msgid "Guidelines"
-msgstr ""
+msgstr "Wytyczne"
 
 #: src/Form/ProjectForm.php:93
 msgid "Enter guidelines for producing content for this project."
-msgstr ""
+msgstr "Wprowadź wytyczne dotyczące tworzenia treści dla tego projektu."
 
 #: src/Form/ProjectForm.php:104
 msgid "Create account text"
-msgstr ""
+msgstr "Utwórz konto"
 
 #: src/Form/ProjectForm.php:105
 msgid "Enter text for the create account page of this project."
-msgstr ""
+msgstr "Wprowadź tekst dla strony tworzenia konta tego projektu."
 
 #: src/Form/ProjectForm.php:117
 msgid "Enter the language of your content using an IETF language tag."
-msgstr ""
+msgstr "Wprowadź język swojej treści, używając tagu językowego IETF."
 
 #: src/Form/ProjectForm.php:143
 msgid "Select the default layout for public browse views."
-msgstr ""
+msgstr "Wybierz domyślny układ dla publicznych widoków przeglądania."
 
 #: src/Form/ProjectForm.php:155
 msgid "Filter approved"
-msgstr ""
+msgstr "Filtr zatwierdzony"
 
 #: src/Form/ProjectForm.php:156
 msgid "Filter out approved items from the public browse view."
-msgstr ""
+msgstr "Filtruj zatwierdzone przedmioty z publicznego widoku przeglądania."
 
 #: src/Form/ProjectForm.php:165
 msgid ""
-"Select the type of item covered by this project. This is used to clarify the "
-"interface, if needed."
+"Select the type of item covered by this project. This is used to clarify the"
+" interface, if needed."
 msgstr ""
+"Wybierz typ elementu objętego tym projektem. Jest to używane do wyjaśnienia "
+"interfejsu, jeśli zajdzie taka potrzeba."
 
 #: src/Form/ProjectForm.php:166
 msgid "Generic item"
-msgstr ""
+msgstr "Element ogólny"
 
 #: src/Form/ProjectForm.php:184
 msgid ""
 "Select the type of media covered by this project. This is used to clarify "
 "the interface, if needed."
 msgstr ""
+"Wybierz typ mediów objętych tym projektem. Jest to używane do wyjaśnienia "
+"interfejsu, jeśli zajdzie taka potrzeba."
 
 #: src/Form/ProjectForm.php:185
 msgid "Generic media"
-msgstr ""
+msgstr "Ogólne media"
 
 #: src/Form/ProjectForm.php:203
 msgid ""
 "Select the type of content covered by this project. This is used to clarify "
 "the interface, if needed."
 msgstr ""
+"Wybierz typ treści objętej tym projektem. Jest to używane do wyjaśnienia "
+"interfejsu, jeśli zajdzie taka potrzeba."
 
 #: src/Form/ProjectForm.php:204
 msgid "Generic content"
-msgstr ""
+msgstr "Ogólny content"
 
 #: vocabs/scripto.n3
 msgid "A plain text representation of the content of a resource."
-msgstr ""
+msgstr "Prosta tekstowa reprezentacja zawartości zasobu."
 
 #: vocabs/scripto.n3
 msgid "transcription"
-msgstr ""
+msgstr "transkrypcja"
 
 #: vocabs/scripto.n3
 msgid "A transcription of a resource."
-msgstr ""
+msgstr "Transkrypcja zasobu."
 
 #: vocabs/scripto.n3
 msgid "translation"
-msgstr ""
+msgstr "Proszę podać tekst do przetłumaczenia."
 
 #: vocabs/scripto.n3
 msgid "A translation of a resource."
-msgstr ""
+msgstr "Tłumaczenie zasobu."

@@ -22,7 +22,7 @@ class Scripto extends AbstractBlockLayout
     }
 
     public function form(PhpRenderer $view, SiteRepresentation $site,
-        SitePageRepresentation $page = null, SitePageBlockRepresentation $block = null)
+        ?SitePageRepresentation $page = null, ?SitePageBlockRepresentation $block = null)
     {
         $select = $view->scripto()->getProjectSelect(
             'o:block[__blockIndex__][o:data][project]',

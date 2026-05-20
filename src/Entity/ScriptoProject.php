@@ -160,7 +160,7 @@ class ScriptoProject extends AbstractEntity
         return $this->id;
     }
 
-    public function setOwner(User $owner = null)
+    public function setOwner(?User $owner = null)
     {
         $this->owner = $owner;
     }
@@ -180,7 +180,7 @@ class ScriptoProject extends AbstractEntity
         return (bool) $this->isPublic;
     }
 
-    public function setItemSet(ItemSet $itemSet = null)
+    public function setItemSet(?ItemSet $itemSet = null)
     {
         $this->itemSet = $itemSet;
     }
@@ -190,7 +190,7 @@ class ScriptoProject extends AbstractEntity
         return $this->itemSet;
     }
 
-    public function setMediaTypes(array $mediaTypes = null)
+    public function setMediaTypes(?array $mediaTypes = null)
     {
         $this->mediaTypes = $mediaTypes;
     }
@@ -200,7 +200,7 @@ class ScriptoProject extends AbstractEntity
         return $this->mediaTypes;
     }
 
-    public function setProperty(Property $property = null)
+    public function setProperty(?Property $property = null)
     {
         $this->property = $property;
     }
@@ -330,7 +330,7 @@ class ScriptoProject extends AbstractEntity
         return $this->created;
     }
 
-    public function setSynced(DateTime $dateTime = null)
+    public function setSynced(?DateTime $dateTime = null)
     {
         $this->synced = $dateTime;
     }
@@ -340,7 +340,7 @@ class ScriptoProject extends AbstractEntity
         return $this->synced;
     }
 
-    public function setImported(DateTime $dateTime = null)
+    public function setImported(?DateTime $dateTime = null)
     {
         $this->imported = $dateTime;
     }
