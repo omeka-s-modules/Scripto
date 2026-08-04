@@ -4,6 +4,7 @@ namespace Scripto\Mediawiki;
 use DateTime;
 use DateTimeZone;
 use Laminas\Http\Client as HttpClient;
+use Laminas\Http\Exception\ExceptionInterface as HttpExceptionInterface;
 use Laminas\Http\Request;
 use Laminas\Session\Container;
 
@@ -1024,10 +1025,26 @@ class ApiClient
         $request->setMethod(Request::METHOD_POST);
         $request->getPost()->fromArray($params);
 
-        $response = $this->httpClient->send($request);
-        if ($response->isSuccess()) {
-            return json_decode($response->getBody(), true);
+        try {
+            $response = $this->httpClient->send($request);
+            $body = $response->getBody();
+        } catch (HttpExceptionInterface $e) {
+            // A connection failure, read timeout, empty response or undecodable
+            // body would otherwise surface as a Laminas exception, which callers
+            // have no reason to expect. The top-level interface covers the
+            // client and adapter ones too.
+            throw new Exception\RequestException($e->getMessage(), 0, $e);
         }
-        throw new Exception\RequestException($response->renderStatusLine());
+        if (!$response->isSuccess()) {
+            throw new Exception\RequestException($response->renderStatusLine());
+        }
+        $data = json_decode($body, true);
+        if (!is_array($data)) {
+            // A success status carrying something other than JSON, which a
+            // proxy or error page can produce. Returning null here would let
+            // callers treat a failed edit as a successful one.
+            throw new Exception\RequestException('MediaWiki returned a response that is not JSON'); // @translate
+        }
+        return $data;
     }
 }

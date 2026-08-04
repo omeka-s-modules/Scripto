@@ -3,6 +3,7 @@ namespace Scripto\Controller\PublicApp;
 
 use Scripto\Form\CreateAccountForm;
 use Scripto\Mediawiki\Exception\CreateaccountException;
+use Scripto\Mediawiki\Exception\RequestException;
 use Laminas\View\Model\ViewModel;
 use Laminas\Mvc\Controller\AbstractActionController;
 
@@ -52,6 +53,11 @@ class IndexController extends AbstractActionController
                     return $this->redirect()->toRoute('scripto');
                 } catch (CreateaccountException $e) {
                     $this->messenger()->addError($e->getMessage());
+                } catch (RequestException $e) {
+                    // MediaWiki could not be reached. Its message can name
+                    // internal hosts, so log it and keep it out of the page.
+                    $this->logger()->err((string) $e);
+                    $this->messenger()->addError('Could not reach MediaWiki to create your account. Please try again in a moment.'); // @translate
                 }
             } else {
                 $this->messenger()->addFormErrors($form);

@@ -6,6 +6,7 @@ use Scripto\Form\ScriptoLoginForm;
 use Scripto\Form\ScriptoLogoutForm;
 use Scripto\Mediawiki\ApiClient;
 use Scripto\Mediawiki\Exception\ClientloginException;
+use Scripto\Mediawiki\Exception\RequestException;
 use Laminas\Mvc\Controller\Plugin\AbstractPlugin;
 
 /**
@@ -149,6 +150,13 @@ class Scripto extends AbstractPlugin
                     $controller->messenger()->addSuccess($controller->translate('Successfully logged in to Scripto.'));
                 } catch (ClientloginException $e) {
                     $controller->messenger()->addError($e->getMessage());
+                } catch (RequestException $e) {
+                    // MediaWiki could not be reached. Its message can name
+                    // internal hosts, so log it and keep it out of the page.
+                    $controller->logger()->err((string) $e);
+                    $controller->messenger()->addError($controller->translate(
+                        'Could not reach MediaWiki to log you in. Please try again in a moment.' // @translate
+                    ));
                 }
             }
             $redirect = $controller->getRequest()->getQuery('redirect');
