@@ -903,33 +903,47 @@ class ApiClient
     }
 
     /**
+     * Retrieve the list of fields available to build the user creation form
+     *
+     * @return array An associative array of all the available fields
+     */
+    public function getCreateAccountFields()
+    {
+        $res = $this->request([
+            'action' => 'query',
+            'meta' => 'authmanagerinfo',
+            'amirequestsfor' => 'create',
+            'amimergerequestfields' => '1',
+        ]);
+
+        // Some Mediawiki captcha stores need cookies to be set (CaptchaSessionStore)
+        $this->session->cookies = $this->httpClient->getCookies();
+
+        return $res['query']['authmanagerinfo']['fields'];
+    }
+
+    /**
      * Create a MediaWiki account using the default requests.
      *
      * @link https://www.mediawiki.org/wiki/API:Account_creation
-     * @param string $username Username for authentication
-     * @param string $password Password for authentication
-     * @param string $retype Retype password
-     * @param string $email Email address
-     * @param string $realname Real name of the user
+     * @param array $data Data to be sent to API for the 'createaccount'
+     *                    action. Keys should be the same as the result of
+     *                    getCreateAccountFields
      * @return array The successful create account result
      */
-    public function createAccount($username, $password, $retype, $email, $realname)
+    public function createAccount(array $data): array
     {
         $query = $this->request([
             'action' => 'query',
             'meta' => 'tokens',
             'type' => 'createaccount',
         ]);
-        $createaccount = $this->request([
+        $data = array_merge($data, [
             'action' => 'createaccount',
             'createreturnurl' => 'http://example.com/', // currently unused but required
             'createtoken' => $query['query']['tokens']['createaccounttoken'],
-            'username' => $username,
-            'password' => $password,
-            'retype' => $password,
-            'email' => $email,
-            'realname' => $realname,
         ]);
+        $createaccount = $this->request($data);
         if (isset($createaccount['error'])) {
             throw new Exception\CreateaccountException($createaccount['error']['info']);
         }
