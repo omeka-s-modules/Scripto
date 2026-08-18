@@ -3,7 +3,7 @@ $this->scripto()->postTitle(sprintf($this->translate('Compare note revisions: %s
 ?>
 <div class="resource-content">
     <div class="browse-controls">
-        <?php echo $this->hyperlink($this->translate('Return to revision history'), $this->url('scripto-talk-revision', ['action' => 'browse'], true)); ?>
+        <?php echo $this->hyperlink($this->translate('Return to revision history'), $this->url('site/scripto-talk-revision', ['action' => 'browse'], true)); ?>
         <?php echo $this->scripto()->compareRevisionsPagination(); ?>
     </div>
     <table id="compare-table">
@@ -16,20 +16,20 @@ $this->scripto()->postTitle(sprintf($this->translate('Compare note revisions: %s
         <thead>
             <tr>
                 <th colspan="2">
-                    <div class="revision-timestamp"><?php echo $this->hyperlink(sprintf($this->translate('Revision as of %s'), $fromRevision['timestamp']->format('G:i:s, j F Y')), $this->url('scripto-talk-revision-id', ['action' => 'show-talk', 'revision-id' => $fromRevision['revid']], true)); ?>
+                    <div class="revision-timestamp"><?php echo $this->hyperlink(sprintf($this->translate('Revision as of %s'), $fromRevision['timestamp']->format('G:i:s, j F Y')), $this->url('site/scripto-talk-revision-id', ['action' => 'show-talk', 'revision-id' => $fromRevision['revid']], true)); ?>
                     <?php echo sprintf(
                         $this->translate('by %s'),
-                        $this->hyperlink($fromRevision['user'], $this->url('scripto-user-contributions', ['action' => 'contributions', 'user-id' => $fromRevision['user']], true))
+                        $this->hyperlink($fromRevision['user'], $this->url('site/scripto-user-contributions', ['action' => 'contributions', 'user-id' => $fromRevision['user']], true))
                     ); ?></div>
                     <?php if ($fromRevision['parsedcomment']): ?>
                     <div class="parsed-comment"><?php echo strip_tags($fromRevision['parsedcomment']); ?></div>
                     <?php endif; ?>
                 </th>
                 <th colspan="2">
-                    <div class="revision-timestamp"><?php echo $this->hyperlink(sprintf($this->translate('Revision as of %s'), $toRevision['timestamp']->format('G:i:s, j F Y')), $this->url('scripto-talk-revision-id', ['action' => 'show-talk', 'revision-id' => $toRevision['revid']], true)); ?>
+                    <div class="revision-timestamp"><?php echo $this->hyperlink(sprintf($this->translate('Revision as of %s'), $toRevision['timestamp']->format('G:i:s, j F Y')), $this->url('site/scripto-talk-revision-id', ['action' => 'show-talk', 'revision-id' => $toRevision['revid']], true)); ?>
                     <?php echo sprintf(
                         $this->translate('by %s'),
-                        $this->hyperlink($toRevision['user'], $this->url('scripto-user-contributions', ['action' => 'contributions', 'user-id' => $toRevision['user']], true))
+                        $this->hyperlink($toRevision['user'], $this->url('site/scripto-user-contributions', ['action' => 'contributions', 'user-id' => $toRevision['user']], true))
                     ); ?></div>
                     <?php if ($toRevision['parsedcomment']): ?>
                     <div class="parsed-comment"><?php echo strip_tags($toRevision['parsedcomment']); ?></div>

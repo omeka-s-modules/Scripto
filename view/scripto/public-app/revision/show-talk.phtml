@@ -3,12 +3,12 @@ $this->scripto()->postTitle(sprintf($this->translate('Notes revision: %s'), $sMe
 $this->scripto()->postSubtitle(sprintf(
     $this->translate('Revision as of %s by %s'),
     $revision['timestamp']->format('G:i:s, j F Y'),
-    $this->hyperlink($revision['user'], $this->url('scripto-user-contributions', ['action' => 'contributions', 'user-id' => $revision['user']], true))
+    $this->hyperlink($revision['user'], $this->url('site/scripto-user-contributions', ['action' => 'contributions', 'user-id' => $revision['user']], true))
 ));
 ?>
 <div class="resource-content">
     <div class="browse-controls">
-        <?php echo $this->hyperlink($this->translate('Return to revision history'), $this->url('scripto-talk-revision', ['action' => 'browse'], true)); ?>
+        <?php echo $this->hyperlink($this->translate('Return to revision history'), $this->url('site/scripto-talk-revision', ['action' => 'browse'], true)); ?>
     </div>
     <div class="media wikitext">
         <h3><?php echo $this->translate('Wikitext'); ?></h3>

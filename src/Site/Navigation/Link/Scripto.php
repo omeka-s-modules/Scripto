@@ -42,7 +42,7 @@ class Scripto implements LinkInterface
     public function toZend(array $data, SiteRepresentation $site)
     {
         return [
-            'route' => 'scripto-project-id',
+            'route' => 'site/scripto-project-id',
             'params' => [
                 'site-slug' => $site->slug(),
                 'site-project-id' => $data['project_id'],

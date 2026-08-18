@@ -16,7 +16,7 @@ class MediaController extends AbstractActionController
             $this->params('item-id')
         );
         if (!$sItem) {
-            return $this->redirect()->toRoute('scripto');
+            return $this->redirect()->toRoute('site/scripto');
         }
 
         $this->setBrowseDefaults('position', 'asc');
@@ -104,7 +104,7 @@ class MediaController extends AbstractActionController
             $this->params('media-id')
         );
         if (!$sMedia) {
-            return $this->redirect()->toRoute('scripto');
+            return $this->redirect()->toRoute('site/scripto');
         }
 
         $sItem = $sMedia->scriptoItem();
@@ -135,7 +135,7 @@ class MediaController extends AbstractActionController
             $this->params('media-id')
         );
         if (!$sMedia) {
-            return $this->redirect()->toRoute('scripto');
+            return $this->redirect()->toRoute('site/scripto');
         }
 
         $action = (0 === $namespace) ? 'show' : 'talk';
