@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-20 12:02-0400\n"
+"POT-Creation-Date: 2026-09-02 14:36-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,11 +61,15 @@ msgstr ""
 msgid "See this job for unimport progress."
 msgstr ""
 
-#: src/ControllerPlugin/Scripto.php:149
+#: src/ControllerPlugin/Scripto.php:150
 msgid "Successfully logged in to Scripto."
 msgstr ""
 
-#: src/ControllerPlugin/Scripto.php:176
+#: src/ControllerPlugin/Scripto.php:158
+msgid "Could not reach MediaWiki to log you in. Please try again in a moment."
+msgstr ""
+
+#: src/ControllerPlugin/Scripto.php:184
 msgid "Successfully logged out of Scripto."
 msgstr ""
 
@@ -1136,6 +1140,10 @@ msgstr ""
 
 #: view/scripto/public-app/user/watchlist.phtml:3
 msgid "Your watchlist"
+msgstr ""
+
+#: src/Mediawiki/ApiClient.php:1046
+msgid "MediaWiki returned a response that is not JSON"
 msgstr ""
 
 #: src/Job/ScriptoJob.php:73
@@ -2835,16 +2843,42 @@ msgstr ""
 msgid "An item must not be null"
 msgstr ""
 
-#: src/Controller/PublicApp/IndexController.php:51
+#: src/Controller/PublicApp/IndexController.php:52
 msgid ""
 "Your Scripto account has been created! Please check your email for a link to "
 "activate your account."
 msgstr ""
 
-#: src/Controller/PublicApp/MediaController.php:164
+#: src/Controller/PublicApp/IndexController.php:60
+msgid ""
+"Could not reach MediaWiki to create your account. Please try again in a "
+"moment."
+msgstr ""
+
+#: src/Controller/PublicApp/MediaController.php:153
+msgid ""
+"MediaWiki is not allowing you to edit this page. If you were able to edit it "
+"a moment ago, this may be a temporary limit on your edit rate, and trying "
+"again shortly will work."
+msgstr ""
+
+#: src/Controller/PublicApp/MediaController.php:174
+msgid ""
+"MediaWiki is not allowing you to edit this page, so your changes were not "
+"saved. If you were able to edit it a moment ago, this may be a temporary "
+"limit on your edit rate, and saving again shortly will work."
+msgstr ""
+
+#: src/Controller/PublicApp/MediaController.php:176
 #: src/Controller/Admin/MediaController.php:150
 #: src/Controller/Admin/MediaController.php:248
 msgid "Scripto media successfully updated."
+msgstr ""
+
+#: src/Controller/PublicApp/MediaController.php:229
+msgid ""
+"Could not reach MediaWiki to save this page. Your changes were not saved. "
+"Please try again in a moment."
 msgstr ""
 
 #: src/Controller/Admin/MediaController.php:93
